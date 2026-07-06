@@ -1,6 +1,6 @@
 {
   "schemaVersion": 2,
-  "generatedAt": "2026-07-06T02:59:43.037Z",
+  "generatedAt": "2026-07-06T03:18:59.913Z",
   "patchVersion": "sc-4.1",
   "levels": [
     {
@@ -39,10 +39,10 @@
           "level": "interior",
           "label": "Interieur",
           "modelUrl": "https://github.com/elios134/asset-3d/releases/download/sc-4.1/AEGS_Idris_P.interior.glb",
-          "tris": 1064854,
-          "sizeBytes": 61860412,
+          "tris": 1064858,
+          "sizeBytes": 61963756,
           "hasInterior": true,
-          "sha256": "4d5e5b5aec130bae5e8fde6c3a5e1151cb51c023468be758306712342335f90c"
+          "sha256": "1d49aadc6c94a307758bf77032dd2af75282b1815658dc04f49f20f6e0814b19"
         }
       ]
     },
@@ -72,10 +72,10 @@
           "level": "interior",
           "label": "Interieur",
           "modelUrl": "https://github.com/elios134/asset-3d/releases/download/sc-4.1/DRAK_Cutlass_Black.interior.glb",
-          "tris": 651503,
-          "sizeBytes": 45779640,
+          "tris": 642743,
+          "sizeBytes": 44489812,
           "hasInterior": true,
-          "sha256": "147c9909a1135829ad7aa6fc6042453d859f920d03078fe332b1110eface6f48"
+          "sha256": "53f2d28edd46a31ed8a3480524ad05a606029de6d6be8b34e142f7a41434117b"
         }
       ]
     }
