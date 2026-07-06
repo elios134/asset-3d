@@ -1,6 +1,6 @@
 {
   "schemaVersion": 2,
-  "generatedAt": "2026-07-06T19:50:44.575Z",
+  "generatedAt": "2026-07-06T20:07:47.580Z",
   "patchVersion": "sc-4.1",
   "levels": [
     {
@@ -337,9 +337,9 @@
           "label": "Interieur",
           "modelUrl": "https://github.com/elios134/asset-3d/releases/download/sc-4.1/AEGS_Idris_M.interior.glb",
           "tris": 1104993,
-          "sizeBytes": 28950088,
+          "sizeBytes": 20768732,
           "hasInterior": true,
-          "sha256": "920c252b8cc238a21ab3b7e0351fc8fe2b85e300c19699e7b3ac234a8ffad0e6"
+          "sha256": "ba84724c4190aedd46e6833c5876f5184ea1d91f735ccb9677547b267417877d"
         }
       ]
     },
@@ -370,9 +370,9 @@
           "label": "Interieur",
           "modelUrl": "https://github.com/elios134/asset-3d/releases/download/sc-4.1/AEGS_Idris_P.interior.glb",
           "tris": 1064858,
-          "sizeBytes": 20055228,
+          "sizeBytes": 20051780,
           "hasInterior": true,
-          "sha256": "eaf77550bdbc63312b081d45e3ae0398b8a7a92913e1914f0868a7c469d60bc6"
+          "sha256": "3b4bf4fe6fca1e473a97ba7173d70d8414d89a1550ff44416d2c75da28ae3aeb"
         }
       ]
     },
@@ -1573,9 +1573,9 @@
           "label": "Interieur",
           "modelUrl": "https://github.com/elios134/asset-3d/releases/download/sc-4.1/ANVL_Hornet_F7CR.interior.glb",
           "tris": 169680,
-          "sizeBytes": 3627612,
+          "sizeBytes": 2522004,
           "hasInterior": true,
-          "sha256": "d8428edc256c17fa0594c6589ead90a357eddd564b93b926a5e145c7d5e0eeb3"
+          "sha256": "f1bef101753ff2a5792ab5cee60a240b4150a1817e5e7743a533b2ba4548cde7"
         }
       ]
     },
@@ -2215,9 +2215,9 @@
           "label": "Interieur",
           "modelUrl": "https://github.com/elios134/asset-3d/releases/download/sc-4.1/ARGO_CSV_Cargo.interior.glb",
           "tris": 232520,
-          "sizeBytes": 5074384,
+          "sizeBytes": 3327988,
           "hasInterior": true,
-          "sha256": "a651b6cfe10cf280ef6a1fb20b96a0359a9a53dd4f12021247691eaad12715b2"
+          "sha256": "cf557f03e827ddd5e5be56407950d6a06b84dfd58502766507bbff7c251481d4"
         }
       ]
     },
@@ -5893,9 +5893,9 @@
           "label": "Interieur",
           "modelUrl": "https://github.com/elios134/asset-3d/releases/download/sc-4.1/ORIG_m80.interior.glb",
           "tris": 670425,
-          "sizeBytes": 11385352,
+          "sizeBytes": 8299004,
           "hasInterior": true,
-          "sha256": "94fb57248cc29026849173e8c5b43fde93ba75ce83d11dc178f51a57b72941bc"
+          "sha256": "d931cf9d900293da80fe6e8b02655c204c66693734a6151b307c51c9e8421bfb"
         }
       ]
     },
@@ -6685,9 +6685,9 @@
           "label": "Interieur",
           "modelUrl": "https://github.com/elios134/asset-3d/releases/download/sc-4.1/RSI_Salvation.interior.glb",
           "tris": 349206,
-          "sizeBytes": 7801072,
+          "sizeBytes": 5545152,
           "hasInterior": true,
-          "sha256": "2dc6a1524e72fad1492701622524aaaf7e0c46141226f521d906de68cf852dd7"
+          "sha256": "c139a086545afa8c79e8a6b67f83a936cb131e2ef3168eea0f25b4423250da8a"
         }
       ]
     },
@@ -7147,9 +7147,9 @@
           "label": "Interieur",
           "modelUrl": "https://github.com/elios134/asset-3d/releases/download/sc-4.1/TMBL_Nova.interior.glb",
           "tris": 258714,
-          "sizeBytes": 4957976,
+          "sizeBytes": 3546852,
           "hasInterior": true,
-          "sha256": "ec5ebd4a558a9179447247d59cf92c8548a611bd5dfde6b49e7f851095b020fa"
+          "sha256": "b171e9d120763faf2652274662093d1282e6a2c62fe58f0e2c12307e5cd26274"
         }
       ]
     },
@@ -7246,9 +7246,9 @@
           "label": "Interieur",
           "modelUrl": "https://github.com/elios134/asset-3d/releases/download/sc-4.1/VNCL_Blade.interior.glb",
           "tris": 255238,
-          "sizeBytes": 4104024,
+          "sizeBytes": 3029688,
           "hasInterior": true,
-          "sha256": "22fc6380aa6c9ab1536b934a910bf629145450bcff7da9d74578e5f355a52b51"
+          "sha256": "11bb3395fee857ebc0da2477660637304ed9c6ac5d86b1074d0fafa58c2f8540"
         }
       ]
     },
