@@ -1,6 +1,6 @@
 {
   "schemaVersion": 2,
-  "generatedAt": "2026-07-06T18:02:32.709Z",
+  "generatedAt": "2026-07-06T18:20:10.601Z",
   "patchVersion": "sc-4.1",
   "levels": [
     {
@@ -370,9 +370,9 @@
           "label": "Interieur",
           "modelUrl": "https://github.com/elios134/asset-3d/releases/download/sc-4.1/AEGS_Idris_P.interior.glb",
           "tris": 1064858,
-          "sizeBytes": 27858340,
+          "sizeBytes": 20055228,
           "hasInterior": true,
-          "sha256": "6bf5dc02769cd7590205b2a69a02f2aeeccf0d1ad68f0f0202b9295a56f47e41"
+          "sha256": "eaf77550bdbc63312b081d45e3ae0398b8a7a92913e1914f0868a7c469d60bc6"
         }
       ]
     },
@@ -1120,9 +1120,9 @@
           "label": "Interieur",
           "modelUrl": "https://github.com/elios134/asset-3d/releases/download/sc-4.1/ANVL_Carrack.interior.glb",
           "tris": 434224,
-          "sizeBytes": 19051500,
+          "sizeBytes": 14811340,
           "hasInterior": true,
-          "sha256": "ecbf65b0abbed409d5295b03436cef01e9df931fa79b023cc00387f7ba34b320"
+          "sha256": "05710ddf351e3de31b5979c1aac1eb3895aa97b0620c67d33293d2d29716a57f"
         }
       ]
     },
@@ -1153,9 +1153,9 @@
           "label": "Interieur",
           "modelUrl": "https://github.com/elios134/asset-3d/releases/download/sc-4.1/ANVL_Carrack_Expedition.interior.glb",
           "tris": 434224,
-          "sizeBytes": 19050692,
+          "sizeBytes": 14810532,
           "hasInterior": true,
-          "sha256": "77bc857de08a8aa709785f057d880bea35865eb948c57559344711bf09f43d63"
+          "sha256": "f33de421bca3d123caeb9a6bd4f1157ceb00b78d1f17c14eab375d6fd927d410"
         }
       ]
     },
@@ -3393,10 +3393,10 @@
           "level": "interior",
           "label": "Interieur",
           "modelUrl": "https://github.com/elios134/asset-3d/releases/download/sc-4.1/DRAK_Cutter.interior.glb",
-          "tris": 627805,
-          "sizeBytes": 12646536,
+          "tris": 627793,
+          "sizeBytes": 8754860,
           "hasInterior": true,
-          "sha256": "174b431e6241c7211c3c8ec58b0bea8cc36dc2a716492284b3c263f611cba64a"
+          "sha256": "59fa648814ab6e387c090974f910851856bffae016061e886c9066773d56dd70"
         }
       ]
     },
@@ -3459,10 +3459,10 @@
           "level": "interior",
           "label": "Interieur",
           "modelUrl": "https://github.com/elios134/asset-3d/releases/download/sc-4.1/DRAK_Cutter_Scout.interior.glb",
-          "tris": 645831,
-          "sizeBytes": 13226856,
+          "tris": 645819,
+          "sizeBytes": 8982016,
           "hasInterior": true,
-          "sha256": "c5271753a62e75e466fa8ea61104450cd28aa60a4d0aa2d63a5905b7a44c90fd"
+          "sha256": "ad936ba45c7a616cc83839b8e43f640a9fdcdf359be7211cf4f5ba2beb78c3bb"
         }
       ]
     },
@@ -4573,9 +4573,9 @@
           "label": "Interieur",
           "modelUrl": "https://github.com/elios134/asset-3d/releases/download/sc-4.1/MISC_Freelancer_DUR.interior.glb",
           "tris": 247840,
-          "sizeBytes": 6836372,
+          "sizeBytes": 5166932,
           "hasInterior": true,
-          "sha256": "1a0881cfbde888f08ef0bb58139ad5439fe0f70b4755907992d69c707aed7ca1"
+          "sha256": "9cf27271c1981b1e6137b61beec36bca06a170b2f8b62b05912bb8cf1c1b4863"
         }
       ]
     },
@@ -4606,9 +4606,9 @@
           "label": "Interieur",
           "modelUrl": "https://github.com/elios134/asset-3d/releases/download/sc-4.1/MISC_Freelancer_MAX.interior.glb",
           "tris": 255789,
-          "sizeBytes": 6424388,
+          "sizeBytes": 4839840,
           "hasInterior": true,
-          "sha256": "5abbea45cc98a8554dfb1b6d287845424ed77111ee5eaf4d61f5c6aaeb9ee000"
+          "sha256": "17df78eb6736795fc50239038d8dd171b0a46f32f3168eb80946919b2355dc03"
         }
       ]
     },
@@ -4639,9 +4639,9 @@
           "label": "Interieur",
           "modelUrl": "https://github.com/elios134/asset-3d/releases/download/sc-4.1/MISC_Freelancer_MIS.interior.glb",
           "tris": 296069,
-          "sizeBytes": 7129004,
+          "sizeBytes": 5367176,
           "hasInterior": true,
-          "sha256": "892be7a67355614e1dfa8a69564bcc2b2eba009dd50af816ff4cb8ed9c0e2232"
+          "sha256": "f0925ff494e04e0a20c60bd0ad1c70d2a22f803d2e9cfa6f3fffc65509f598e6"
         }
       ]
     },
@@ -5628,10 +5628,10 @@
           "level": "interior",
           "label": "Interieur",
           "modelUrl": "https://github.com/elios134/asset-3d/releases/download/sc-4.1/ORIG_325a.interior.glb",
-          "tris": 176946,
-          "sizeBytes": 4054708,
+          "tris": 176906,
+          "sizeBytes": 2915528,
           "hasInterior": true,
-          "sha256": "2c06c5c11c1b38ad4c088ae7c5d7e3eaaad3655a5f62c92cc3a191afb7a87881"
+          "sha256": "93ddac64251c745a5dc09c3b5a45c29f5e7f138485e037dde497057db46071fa"
         }
       ]
     },
@@ -5661,10 +5661,10 @@
           "level": "interior",
           "label": "Interieur",
           "modelUrl": "https://github.com/elios134/asset-3d/releases/download/sc-4.1/ORIG_350r.interior.glb",
-          "tris": 177083,
-          "sizeBytes": 3774104,
+          "tris": 177043,
+          "sizeBytes": 2533748,
           "hasInterior": true,
-          "sha256": "95e8915471eec4d3c7deee131ae1029a7d34c3cb4a81d557a156978ab8f87ef6"
+          "sha256": "f667ae54fbc82e10fa9f20af6b35409d7dd85d40abdbc68ded871f8bf2b1060c"
         }
       ]
     },
@@ -6387,10 +6387,10 @@
           "level": "interior",
           "label": "Interieur",
           "modelUrl": "https://github.com/elios134/asset-3d/releases/download/sc-4.1/RSI_Constellation_Phoenix.interior.glb",
-          "tris": 470556,
-          "sizeBytes": 11475804,
+          "tris": 470554,
+          "sizeBytes": 8174352,
           "hasInterior": true,
-          "sha256": "a23aedcaf8941b2fb6c1d68e0daca21fce7a088e8943501a60825caeb6da59e9"
+          "sha256": "6bafb19520404305321390a5b4ef0209c784317fde46424ecf2e8409893f33c3"
         }
       ]
     },
@@ -6420,10 +6420,10 @@
           "level": "interior",
           "label": "Interieur",
           "modelUrl": "https://github.com/elios134/asset-3d/releases/download/sc-4.1/RSI_Constellation_Phoenix_Emerald.interior.glb",
-          "tris": 470556,
-          "sizeBytes": 11542224,
+          "tris": 470554,
+          "sizeBytes": 8240772,
           "hasInterior": true,
-          "sha256": "e100cefe8a8e74f5df97b9f00b3a81d9ba25f58942d0ccffe6391ba345e59bcc"
+          "sha256": "7bb9dde1cc38bed1bfd721bca2035035126fb829c37f5c3aa1702aec166307a2"
         }
       ]
     },

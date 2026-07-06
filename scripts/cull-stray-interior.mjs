@@ -42,7 +42,15 @@ for (const key of keys) {
       hull.min[1] - b.max[1], b.min[1] - hull.max[1],
       hull.min[2] - b.max[2], b.min[2] - hull.max[2],
     ); // >0 = mesh entierement hors coque de tant sur une face
-    if (over > THRESHOLD) { removed.push({ name: node.getName() || "?", over: over.toFixed(0) }); node.dispose(); }
+    if (over <= THRESHOLD) continue;
+    // CRITERE SUR : un parasite doit etre ANONYME ET DEGENERE (aire ~nulle). Jamais un mesh nomme
+    // (tuyere/nacelle...) ni volumineux, meme s'il depasse.
+    const name = node.getName() || "";
+    const anon = !name || /^[?]|^mesh[_.]?\d*$|^\d+$/i.test(name);
+    const minDim = Math.min(b.max[0] - b.min[0], b.max[1] - b.min[1], b.max[2] - b.min[2]);
+    if (!(anon && minDim < 0.5)) continue; // garde nomme OU volumineux
+    removed.push({ name: name || "?", over: over.toFixed(0) });
+    node.dispose();
   }
   const before = statSync(intPath).size;
   await doc.transform(prune(), meshopt({ encoder: MeshoptEncoder, level: "high" }));
