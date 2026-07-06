@@ -1,6 +1,6 @@
 {
   "schemaVersion": 2,
-  "generatedAt": "2026-07-06T04:00:42.247Z",
+  "generatedAt": "2026-07-06T06:38:21.529Z",
   "patchVersion": "sc-4.1",
   "levels": [
     {
@@ -47,6 +47,150 @@
       ]
     },
     {
+      "key": "AEGS_Retaliator",
+      "name": "Retaliator",
+      "manufacturer": "Aegis Dynamics",
+      "classification": "Modular",
+      "dims": {
+        "l": 70.5,
+        "b": 44,
+        "h": 13.5
+      },
+      "materials": "flat",
+      "patchVersion": "sc-4.1",
+      "variants": [
+        {
+          "level": "exterior",
+          "label": "Detaille",
+          "modelUrl": "https://github.com/elios134/asset-3d/releases/download/sc-4.1/AEGS_Retaliator.exterior.glb",
+          "tris": 517849,
+          "sizeBytes": 6810156,
+          "hasInterior": false,
+          "sha256": "e7d7ca4557ec8f6500825fe5c916826c9b68a1d104ee22c6762e81c5b250e885"
+        }
+      ]
+    },
+    {
+      "key": "AEGS_Sabre_Peregrine_Collector_Competition",
+      "name": "Sabre Peregrine Wikelo Speedy Special",
+      "manufacturer": "Aegis Dynamics",
+      "classification": "Racing",
+      "dims": {
+        "l": 24.5,
+        "b": 24.5,
+        "h": 5
+      },
+      "materials": "flat",
+      "patchVersion": "sc-4.1",
+      "variants": [
+        {
+          "level": "exterior",
+          "label": "Detaille",
+          "modelUrl": "https://github.com/elios134/asset-3d/releases/download/sc-4.1/AEGS_Sabre_Peregrine_Collector_Competition.exterior.glb",
+          "tris": 89380,
+          "sizeBytes": 2301308,
+          "hasInterior": false,
+          "sha256": "10d8f2c3fb8bbb3f012ed7dfad1e49e35d0b90dd793fec4969ef615b8580cb52"
+        }
+      ]
+    },
+    {
+      "key": "AEGS_Vanguard_Harbinger",
+      "name": "Vanguard Harbinger",
+      "manufacturer": "Aegis Dynamics",
+      "classification": "Heavy Fighter / Bomber",
+      "dims": {
+        "l": 48,
+        "b": 40,
+        "h": 9.5
+      },
+      "materials": "flat",
+      "patchVersion": "sc-4.1",
+      "variants": [
+        {
+          "level": "exterior",
+          "label": "Detaille",
+          "modelUrl": "https://github.com/elios134/asset-3d/releases/download/sc-4.1/AEGS_Vanguard_Harbinger.exterior.glb",
+          "tris": 159090,
+          "sizeBytes": 3111496,
+          "hasInterior": false,
+          "sha256": "e1a86770ba67558a4e79772877a43b7d611839c15f39b1a5dd68b00289eecc59"
+        }
+      ]
+    },
+    {
+      "key": "ANVL_Gladiator",
+      "name": "Gladiator",
+      "manufacturer": "Anvil Aerospace",
+      "classification": "Bomber",
+      "dims": {
+        "l": 22.75,
+        "b": 21,
+        "h": 6
+      },
+      "materials": "flat",
+      "patchVersion": "sc-4.1",
+      "variants": [
+        {
+          "level": "exterior",
+          "label": "Detaille",
+          "modelUrl": "https://github.com/elios134/asset-3d/releases/download/sc-4.1/ANVL_Gladiator.exterior.glb",
+          "tris": 114482,
+          "sizeBytes": 1989304,
+          "hasInterior": false,
+          "sha256": "76f81f22a3ed945cb6ef09141420fdf5bbb36b37c880ff402a95a7e7c0494338"
+        }
+      ]
+    },
+    {
+      "key": "ANVL_Spartan",
+      "name": "Spartan",
+      "manufacturer": "Anvil Aerospace",
+      "classification": "Passenger",
+      "dims": {
+        "l": 17,
+        "b": 7,
+        "h": 5.5
+      },
+      "materials": "flat",
+      "patchVersion": "sc-4.1",
+      "variants": [
+        {
+          "level": "exterior",
+          "label": "Detaille",
+          "modelUrl": "https://github.com/elios134/asset-3d/releases/download/sc-4.1/ANVL_Spartan.exterior.glb",
+          "tris": 58704,
+          "sizeBytes": 1456140,
+          "hasInterior": false,
+          "sha256": "e5b4f925290a41d8c543bb17891156cc3b22193ccc7a7a0b2b31de1fc102dff6"
+        }
+      ]
+    },
+    {
+      "key": "ARGO_ATLS",
+      "name": "ATLS",
+      "manufacturer": "Argo Astronautics",
+      "classification": "Cargo",
+      "dims": {
+        "l": 3.2,
+        "b": 1.6,
+        "h": 1.6
+      },
+      "materials": "flat",
+      "patchVersion": "sc-4.1",
+      "variants": [
+        {
+          "level": "exterior",
+          "label": "Detaille",
+          "modelUrl": "https://github.com/elios134/asset-3d/releases/download/sc-4.1/ARGO_ATLS.exterior.glb",
+          "tris": 46781,
+          "sizeBytes": 942296,
+          "hasInterior": false,
+          "sha256": "4f4c6643b559815ab3f409ca7629614437b5304c9a2f5866f65ffeccf4a58ade"
+        }
+      ]
+    },
+    {
       "key": "DRAK_Cutlass_Black",
       "name": "Cutlass Black",
       "manufacturer": "Drake Interplanetary",
@@ -76,6 +220,222 @@
           "sizeBytes": 44489812,
           "hasInterior": true,
           "sha256": "53f2d28edd46a31ed8a3480524ad05a606029de6d6be8b34e142f7a41434117b"
+        }
+      ]
+    },
+    {
+      "key": "DRAK_Cutlass_Black_Exec_Stealth",
+      "name": "Cutlass Black PYAM Exec",
+      "manufacturer": "Drake Interplanetary",
+      "classification": "Light Freight / Medium Fighter",
+      "dims": {
+        "l": 37.5,
+        "b": 26.5,
+        "h": 11.5
+      },
+      "materials": "flat",
+      "patchVersion": "sc-4.1",
+      "variants": [
+        {
+          "level": "exterior",
+          "label": "Detaille",
+          "modelUrl": "https://github.com/elios134/asset-3d/releases/download/sc-4.1/DRAK_Cutlass_Black_Exec_Stealth.exterior.glb",
+          "tris": 267914,
+          "sizeBytes": 4607640,
+          "hasInterior": false,
+          "sha256": "77ab55d4ca883f7411c59568929461cc9ae50ef6f913c493db4b8bec038d999b"
+        }
+      ]
+    },
+    {
+      "key": "DRAK_Cutter",
+      "name": "Cutter",
+      "manufacturer": "Drake Interplanetary",
+      "classification": "Starter / Pathfinder",
+      "dims": {
+        "l": 20,
+        "b": 16,
+        "h": 6
+      },
+      "materials": "flat",
+      "patchVersion": "sc-4.1",
+      "variants": [
+        {
+          "level": "exterior",
+          "label": "Detaille",
+          "modelUrl": "https://github.com/elios134/asset-3d/releases/download/sc-4.1/DRAK_Cutter.exterior.glb",
+          "tris": 224961,
+          "sizeBytes": 3955800,
+          "hasInterior": false,
+          "sha256": "88457a44919d654896fb1cb5a43a5d9d7415688899c1c4cc69d77a4aebc907e6"
+        }
+      ]
+    },
+    {
+      "key": "KRIG_P52_Merlin",
+      "name": "P-52 Merlin",
+      "manufacturer": "Kruger Intergalactic",
+      "classification": "Snub Fighter",
+      "dims": {
+        "l": 12,
+        "b": 5.25,
+        "h": 3
+      },
+      "materials": "flat",
+      "patchVersion": "sc-4.1",
+      "variants": [
+        {
+          "level": "exterior",
+          "label": "Detaille",
+          "modelUrl": "https://github.com/elios134/asset-3d/releases/download/sc-4.1/KRIG_P52_Merlin.exterior.glb",
+          "tris": 149945,
+          "sizeBytes": 2188404,
+          "hasInterior": false,
+          "sha256": "90343d63203b47974436bf0f9df8611f7b49c16331316a95dc997f2974a84dcf"
+        }
+      ]
+    },
+    {
+      "key": "MISC_Hull_A",
+      "name": "MISC Hull A",
+      "manufacturer": "Musashi Industrial and Starflight Concern",
+      "classification": "Light Freight",
+      "dims": {
+        "l": 30,
+        "b": 12.5,
+        "h": 8
+      },
+      "materials": "flat",
+      "patchVersion": "sc-4.1",
+      "variants": [
+        {
+          "level": "exterior",
+          "label": "Detaille",
+          "modelUrl": "https://github.com/elios134/asset-3d/releases/download/sc-4.1/MISC_Hull_A.exterior.glb",
+          "tris": 188786,
+          "sizeBytes": 3394176,
+          "hasInterior": false,
+          "sha256": "409e5ada48114f4965241ac40ac4ea2d79d4b379f7eb2515649eed63dc4939a0"
+        }
+      ]
+    },
+    {
+      "key": "ORIG_315p",
+      "name": "315p",
+      "manufacturer": "Origin Jumpworks",
+      "classification": "Pathfinder",
+      "dims": {
+        "l": 27,
+        "b": 17,
+        "h": 8
+      },
+      "materials": "flat",
+      "patchVersion": "sc-4.1",
+      "variants": [
+        {
+          "level": "exterior",
+          "label": "Detaille",
+          "modelUrl": "https://github.com/elios134/asset-3d/releases/download/sc-4.1/ORIG_315p.exterior.glb",
+          "tris": 80242,
+          "sizeBytes": 1644212,
+          "hasInterior": false,
+          "sha256": "91ab6e1674720c37193fe53216462e725c8d99a80f433154cbaae63ab3957d7d"
+        }
+      ]
+    },
+    {
+      "key": "ORIG_X1_Velocity",
+      "name": "X1 Velocity",
+      "manufacturer": "Origin Jumpworks",
+      "classification": "Racing",
+      "dims": {
+        "l": 5.19,
+        "b": 1.87,
+        "h": 1.55
+      },
+      "materials": "flat",
+      "patchVersion": "sc-4.1",
+      "variants": [
+        {
+          "level": "exterior",
+          "label": "Detaille",
+          "modelUrl": "https://github.com/elios134/asset-3d/releases/download/sc-4.1/ORIG_X1_Velocity.exterior.glb",
+          "tris": 63795,
+          "sizeBytes": 1381956,
+          "hasInterior": false,
+          "sha256": "4729a796e09358f954cdf16848f38de83345ef3bed9f4e0ba09343aae63efa8b"
+        }
+      ]
+    },
+    {
+      "key": "RSI_Perseus",
+      "name": "Perseus",
+      "manufacturer": "Roberts Space Industries",
+      "classification": "Heavy Gunship",
+      "dims": {
+        "l": 100,
+        "b": 50,
+        "h": 25
+      },
+      "materials": "flat",
+      "patchVersion": "sc-4.1",
+      "variants": [
+        {
+          "level": "exterior",
+          "label": "Detaille",
+          "modelUrl": "https://github.com/elios134/asset-3d/releases/download/sc-4.1/RSI_Perseus.exterior.glb",
+          "tris": 460002,
+          "sizeBytes": 8888076,
+          "hasInterior": false,
+          "sha256": "4b69bc3988d089097c2d644fd2c50064dfa393a4c33fe41db47488b5607f95d9"
+        }
+      ]
+    },
+    {
+      "key": "RSI_Ursa_Rover_Emerald",
+      "name": "Ursa Fortuna",
+      "manufacturer": "Roberts Space Industries",
+      "classification": "Pathfinder",
+      "dims": {
+        "l": 8.75,
+        "b": 6,
+        "h": 3.5
+      },
+      "materials": "flat",
+      "patchVersion": "sc-4.1",
+      "variants": [
+        {
+          "level": "exterior",
+          "label": "Detaille",
+          "modelUrl": "https://github.com/elios134/asset-3d/releases/download/sc-4.1/RSI_Ursa_Rover_Emerald.exterior.glb",
+          "tris": 74828,
+          "sizeBytes": 1530836,
+          "hasInterior": false,
+          "sha256": "9751e6156eed35ce12917e5a35daabaab564bce303499e883d8846e930d2755e"
+        }
+      ]
+    },
+    {
+      "key": "VNCL_Mauler",
+      "name": "Mauler Destroyer",
+      "manufacturer": "Vanduul Clans",
+      "classification": "Destroyer",
+      "dims": {
+        "l": 425,
+        "b": 125,
+        "h": 112
+      },
+      "materials": "flat",
+      "patchVersion": "sc-4.1",
+      "variants": [
+        {
+          "level": "exterior",
+          "label": "Detaille",
+          "modelUrl": "https://github.com/elios134/asset-3d/releases/download/sc-4.1/VNCL_Mauler.exterior.glb",
+          "tris": 350207,
+          "sizeBytes": 5292468,
+          "hasInterior": false,
+          "sha256": "886608878b118d99e41df1e3b6134aa2592892ab710ef62d10cfea47ffc5fc30"
         }
       ]
     }
