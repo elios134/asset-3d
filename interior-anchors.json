@@ -1,8 +1,8 @@
 {
-  "_comment": "Table d'ancrage des modules interieurs par vaisseau (le nommage shell/section est specifique CIG, pas derivable). Pour chaque module `interior_base_int_<X>_main` : shell = mot-clef du NOM de mesh de la coque de reference, hardpoint = nom du hardpoint d'ancrage. Metrique = centre de bbox monde des meshes shell (hors rampe). Aligne avec le harnais debug3d de l'app.",
+  "_comment": "Table d'ancrage des modules interieurs par vaisseau (nommage CIG section-specifique, non derivable). Par module `interior_base_int_<X>_main` : shell = mot-clef du NOM de mesh de la coque de reference ; hardpoint = ancrage X/Z (centre bbox coque -> hardpoint) ; floorTo (optionnel) = si present, l'axe Y aligne le PLANCHER (min y de la coque) sur le y de ce noeud (le pont), au lieu de centrer sur hardpoint.y. Necessaire car certains hardpoint_int_*.y valent le centre de piece et d'autres le plancher. Metrique = centre de bbox monde (hors rampe). Aligne avec le harnais debug3d de l'app.",
 
   "DRAK_Cutlass_Black": {
     "interior_base_int_cockpit_main": { "shell": "int_cockpit", "hardpoint": "hardpoint_int_cockpit" },
-    "interior_base_int_body_main":    { "shell": "int_rear",    "hardpoint": "hardpoint_int_body" }
+    "interior_base_int_body_main":    { "shell": "int_rear",    "hardpoint": "hardpoint_int_body", "floorTo": "hardpoint_cargogrid_main" }
   }
 }

@@ -86,7 +86,7 @@ function shellBBoxCenter(shellKw) {
       }
     }
   });
-  return hit ? { center: [(xn+xx)/2,(yn+yx)/2,(zn+zx)/2], hit } : null;
+  return hit ? { center: [(xn+xx)/2,(yn+yx)/2,(zn+zx)/2], minY: yn, hit } : null;
 }
 function nodeIndexByName(name) { return nodes.findIndex((n) => (n.name || "") === name); }
 function hardpointWorld(name) { const i = nodeIndexByName(name); if (i < 0) return null; const w = worldMatrix(i); return [w[12],w[13],w[14]]; }
@@ -101,12 +101,21 @@ for (const [moduleName, cfg] of Object.entries(mapping)) {
   if (!shell) { console.log(`  ⚠ ${moduleName} : aucun mesh shell /${cfg.shell}/`); continue; }
   if (!hp) { console.log(`  ⚠ ${moduleName} : hardpoint ${cfg.hardpoint} absent`); continue; }
   const c = shell.center;
-  const delta = [hp[0]-c[0], hp[1]-c[1], hp[2]-c[2]];
+  // X/Z : centre bbox coque -> hardpoint. Y : plancher -> pont (floorTo) si defini, sinon centre -> hardpoint.y
+  let dy, yMode;
+  if (cfg.floorTo) {
+    const fy = hardpointWorld(cfg.floorTo);
+    if (!fy) { console.log(`  ⚠ ${moduleName} : floorTo ${cfg.floorTo} absent`); continue; }
+    dy = fy[1] - shell.minY; yMode = `plancher->${cfg.floorTo}.y=${fy[1].toFixed(2)}`;
+  } else {
+    dy = hp[1] - c[1]; yMode = "centre->hardpoint.y";
+  }
+  const delta = [hp[0]-c[0], dy, hp[2]-c[2]];
   const pW = parent[mi] === -1 ? ident() : worldMatrix(parent[mi]);
   const newLocal = mul(invert(pW), mul(translation(...delta), mul(pW, localMatrix(nodes[mi]))));
   delete nodes[mi].translation; delete nodes[mi].rotation; delete nodes[mi].scale;
   nodes[mi].matrix = newLocal.map((v) => Math.abs(v) < 1e-9 ? 0 : v);
-  console.log(`  ✓ ${moduleName.padEnd(34)} shell/${cfg.shell}/ (${c.map(v=>v.toFixed(2)).join(",")}) -> ${cfg.hardpoint} (${hp.map(v=>v.toFixed(2)).join(",")})  delta ${Math.hypot(...delta).toFixed(2)}m`);
+  console.log(`  ✓ ${moduleName.padEnd(34)} shell/${cfg.shell}/ centre(${c.map(v=>v.toFixed(2)).join(",")}) plancherY=${shell.minY.toFixed(2)}  [${yMode}]  delta(${delta.map(v=>v.toFixed(2)).join(",")})`);
   fixed++;
 }
 
