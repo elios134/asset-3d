@@ -1,6 +1,6 @@
 {
   "schemaVersion": 2,
-  "generatedAt": "2026-07-06T13:06:57.246Z",
+  "generatedAt": "2026-07-06T13:46:45.627Z",
   "patchVersion": "sc-4.1",
   "levels": [
     {
@@ -34,6 +34,15 @@
           "sizeBytes": 1567212,
           "hasInterior": false,
           "sha256": "213e457471f3a4f8601c1731d015861cd311cc09f4b859f326cbbfe15c2d117d"
+        },
+        {
+          "level": "interior",
+          "label": "Interieur",
+          "modelUrl": "https://github.com/elios134/asset-3d/releases/download/sc-4.1/AEGS_Avenger_Stalker.interior.glb",
+          "tris": 240360,
+          "sizeBytes": 5789984,
+          "hasInterior": true,
+          "sha256": "98b6eb5a8665f37028f7423d005138fe71ae0a9f41cec4f8da44ee042146d408"
         }
       ]
     },
@@ -58,6 +67,15 @@
           "sizeBytes": 1569324,
           "hasInterior": false,
           "sha256": "c0f8ea61c656848286a56ad7b27e13f3f828ed78f449d9a91b01d19500db814e"
+        },
+        {
+          "level": "interior",
+          "label": "Interieur",
+          "modelUrl": "https://github.com/elios134/asset-3d/releases/download/sc-4.1/AEGS_Avenger_Titan.interior.glb",
+          "tris": 270098,
+          "sizeBytes": 6123356,
+          "hasInterior": true,
+          "sha256": "e0823bfa6f9c950384df1620c2b4b501d7aa90d13f5fab373b999dfcdae5e09d"
         }
       ]
     },
@@ -82,6 +100,15 @@
           "sizeBytes": 1468184,
           "hasInterior": false,
           "sha256": "7673637d723a30460ec98672a2e596a09286fc0311ff65e914405de28f6b22b8"
+        },
+        {
+          "level": "interior",
+          "label": "Interieur",
+          "modelUrl": "https://github.com/elios134/asset-3d/releases/download/sc-4.1/AEGS_Avenger_Titan_Renegade.interior.glb",
+          "tris": 258381,
+          "sizeBytes": 5994476,
+          "hasInterior": true,
+          "sha256": "102ea562e5e193c92c6104de67a8f5a44cae3f836108249ec5ad79232ea8f727"
         }
       ]
     },
@@ -106,6 +133,15 @@
           "sizeBytes": 1799952,
           "hasInterior": false,
           "sha256": "9e650d71b31f2a397dd3eaf7be0cb4ac1b1e8c8fd08df74a66ebde5cdbc8e1bd"
+        },
+        {
+          "level": "interior",
+          "label": "Interieur",
+          "modelUrl": "https://github.com/elios134/asset-3d/releases/download/sc-4.1/AEGS_Avenger_Warlock.interior.glb",
+          "tris": 275694,
+          "sizeBytes": 6113520,
+          "hasInterior": true,
+          "sha256": "77592ad6cda2d59a98c03f608139c8167cde7ec577b4b523ac5473af4a7a945a"
         }
       ]
     },
@@ -130,6 +166,15 @@
           "sizeBytes": 1462184,
           "hasInterior": false,
           "sha256": "7f50974b1d86bcb121a869db1457d37a17919d684ede6efa89e8f08ba5ed7f9c"
+        },
+        {
+          "level": "interior",
+          "label": "Interieur",
+          "modelUrl": "https://github.com/elios134/asset-3d/releases/download/sc-4.1/AEGS_Eclipse.interior.glb",
+          "tris": 194296,
+          "sizeBytes": 4466464,
+          "hasInterior": true,
+          "sha256": "07fce142a6c8d809b7739eff540e0bdcdb82f499925f68135192954a10abefa9"
         }
       ]
     },
@@ -154,6 +199,15 @@
           "sizeBytes": 3212592,
           "hasInterior": false,
           "sha256": "6b6e6deb6c9ade4f4f57fea070bb5846da566630470556e7f6ace3995de49956"
+        },
+        {
+          "level": "interior",
+          "label": "Interieur",
+          "modelUrl": "https://github.com/elios134/asset-3d/releases/download/sc-4.1/AEGS_Gladius.interior.glb",
+          "tris": 364484,
+          "sizeBytes": 7446852,
+          "hasInterior": true,
+          "sha256": "01aaae068ee199d4c5ad976bb059ba4afda0cc0522d9217bb3c876726f7f94cc"
         }
       ]
     },
@@ -178,6 +232,15 @@
           "sizeBytes": 3457612,
           "hasInterior": false,
           "sha256": "12e58c4200397cef63d2a78029505b0eddc5028841d7ccc9f831bb95def993d6"
+        },
+        {
+          "level": "interior",
+          "label": "Interieur",
+          "modelUrl": "https://github.com/elios134/asset-3d/releases/download/sc-4.1/AEGS_Gladius_PIR.interior.glb",
+          "tris": 378655,
+          "sizeBytes": 7573680,
+          "hasInterior": true,
+          "sha256": "9e126d641c70ed1f01289c00d01b9389bd5578d2f2a090d0a839cf45b9f79f76"
         }
       ]
     },
@@ -202,6 +265,15 @@
           "sizeBytes": 3282988,
           "hasInterior": false,
           "sha256": "cb8ea36b9461fbb1eadb3e258dc1ecfab3d34ca00f44fb1f8094a1e3cc516244"
+        },
+        {
+          "level": "interior",
+          "label": "Interieur",
+          "modelUrl": "https://github.com/elios134/asset-3d/releases/download/sc-4.1/AEGS_Gladius_Valiant.interior.glb",
+          "tris": 372043,
+          "sizeBytes": 7432912,
+          "hasInterior": true,
+          "sha256": "6caea5d90a1015d290322c471ff0b297c1f1609df2c299d548dbd91c828aade6"
         }
       ]
     },
@@ -226,6 +298,15 @@
           "sizeBytes": 4864520,
           "hasInterior": false,
           "sha256": "486fa2086a9a36f40272cb4405700b703271df25d830423a29deb435c50fa5b5"
+        },
+        {
+          "level": "interior",
+          "label": "Interieur",
+          "modelUrl": "https://github.com/elios134/asset-3d/releases/download/sc-4.1/AEGS_Hammerhead.interior.glb",
+          "tris": 407801,
+          "sizeBytes": 10945132,
+          "hasInterior": true,
+          "sha256": "cc86478dcddfcff7a265069f4d1bfa97fb7954bdd1a9dbcb7fc20985d151f64b"
         }
       ]
     },
@@ -250,6 +331,15 @@
           "sizeBytes": 7006796,
           "hasInterior": false,
           "sha256": "462c8f6a15bf4151ffd30d6ef98c15de0af789c07416fac582b63e3437d90f12"
+        },
+        {
+          "level": "interior",
+          "label": "Interieur",
+          "modelUrl": "https://github.com/elios134/asset-3d/releases/download/sc-4.1/AEGS_Idris_M.interior.glb",
+          "tris": 1104993,
+          "sizeBytes": 28950088,
+          "hasInterior": true,
+          "sha256": "920c252b8cc238a21ab3b7e0351fc8fe2b85e300c19699e7b3ac234a8ffad0e6"
         }
       ]
     },
@@ -280,9 +370,9 @@
           "label": "Interieur",
           "modelUrl": "https://github.com/elios134/asset-3d/releases/download/sc-4.1/AEGS_Idris_P.interior.glb",
           "tris": 1064858,
-          "sizeBytes": 61963756,
+          "sizeBytes": 27858340,
           "hasInterior": true,
-          "sha256": "1d49aadc6c94a307758bf77032dd2af75282b1815658dc04f49f20f6e0814b19"
+          "sha256": "6bf5dc02769cd7590205b2a69a02f2aeeccf0d1ad68f0f0202b9295a56f47e41"
         }
       ]
     },
@@ -331,6 +421,15 @@
           "sizeBytes": 3757800,
           "hasInterior": false,
           "sha256": "ccfc6aeff979dd3a319bf8ced119e667892580ad8c036bccd3ae32ae4cb1c506"
+        },
+        {
+          "level": "interior",
+          "label": "Interieur",
+          "modelUrl": "https://github.com/elios134/asset-3d/releases/download/sc-4.1/AEGS_Reclaimer.interior.glb",
+          "tris": 494425,
+          "sizeBytes": 14694600,
+          "hasInterior": true,
+          "sha256": "7fc2d77df07bd5f4bd009931cf16485ff985eafdb019b789966de99856f3d442"
         }
       ]
     },
@@ -355,6 +454,15 @@
           "sizeBytes": 6359292,
           "hasInterior": false,
           "sha256": "db7675ae55e63100f56ad7d90ed7e6f9137c4df768bd99ee1f5410fc7018e239"
+        },
+        {
+          "level": "interior",
+          "label": "Interieur",
+          "modelUrl": "https://github.com/elios134/asset-3d/releases/download/sc-4.1/AEGS_Redeemer.interior.glb",
+          "tris": 548313,
+          "sizeBytes": 13075276,
+          "hasInterior": true,
+          "sha256": "dc2020ff503c84d214f24fdebb66229d9aba4d3bb7a46b41c2a462d03e83683a"
         }
       ]
     },
@@ -379,6 +487,15 @@
           "sizeBytes": 6810156,
           "hasInterior": false,
           "sha256": "f817500428bdbbe5def92dadb901c0d526ab6c6bb8a4d6375a5cd2dd06ab8e50"
+        },
+        {
+          "level": "interior",
+          "label": "Interieur",
+          "modelUrl": "https://github.com/elios134/asset-3d/releases/download/sc-4.1/AEGS_Retaliator.interior.glb",
+          "tris": 296633,
+          "sizeBytes": 7210268,
+          "hasInterior": true,
+          "sha256": "f224a4d5721430a0804c876529e5c92a030a5bffb045ad200d4bf4364b82eb1c"
         }
       ]
     },
@@ -403,6 +520,15 @@
           "sizeBytes": 2557968,
           "hasInterior": false,
           "sha256": "af0d1a931c2e59bca4d29b89b1dc4b037a366a377c4920fc6d2f74516a263809"
+        },
+        {
+          "level": "interior",
+          "label": "Interieur",
+          "modelUrl": "https://github.com/elios134/asset-3d/releases/download/sc-4.1/AEGS_Sabre.interior.glb",
+          "tris": 275430,
+          "sizeBytes": 5266056,
+          "hasInterior": true,
+          "sha256": "924beb6a5e7da6306ee286d3869445152903379e36c5616e9f373a53074e09d0"
         }
       ]
     },
@@ -427,6 +553,15 @@
           "sizeBytes": 2548376,
           "hasInterior": false,
           "sha256": "38dda8bd5050dbee48488b5e7ec862466bc41a882897112e7a2a3e08393604cd"
+        },
+        {
+          "level": "interior",
+          "label": "Interieur",
+          "modelUrl": "https://github.com/elios134/asset-3d/releases/download/sc-4.1/AEGS_Sabre_Comet.interior.glb",
+          "tris": 251731,
+          "sizeBytes": 5504668,
+          "hasInterior": true,
+          "sha256": "d4db2b64fe9b2cd9a9a419d13b3b0387cfce97a9e429554018a15ebbf434bdd9"
         }
       ]
     },
@@ -451,6 +586,15 @@
           "sizeBytes": 2850664,
           "hasInterior": false,
           "sha256": "bc267ff3cf2dc344fd1a4fe51c140855d1609b8ee36882c9a3c79d48102cf54a"
+        },
+        {
+          "level": "interior",
+          "label": "Interieur",
+          "modelUrl": "https://github.com/elios134/asset-3d/releases/download/sc-4.1/AEGS_Sabre_Firebird.interior.glb",
+          "tris": 222856,
+          "sizeBytes": 5620516,
+          "hasInterior": true,
+          "sha256": "c848de820ee98eaa5ae395f6be6d157393ce333cf428841bd468a1ca682b88c8"
         }
       ]
     },
@@ -475,6 +619,15 @@
           "sizeBytes": 2360004,
           "hasInterior": false,
           "sha256": "9e2fa67b96319e12971180890e4558709927ac2605953f4268ba5e3ccb5056c2"
+        },
+        {
+          "level": "interior",
+          "label": "Interieur",
+          "modelUrl": "https://github.com/elios134/asset-3d/releases/download/sc-4.1/AEGS_Sabre_Peregrine.interior.glb",
+          "tris": 239043,
+          "sizeBytes": 5476688,
+          "hasInterior": true,
+          "sha256": "7c57ac4692ed3696d50af18cd997c2ff0b5a1f1b88d9e40ef258d4e38de3d194"
         }
       ]
     },
@@ -499,6 +652,15 @@
           "sizeBytes": 2579816,
           "hasInterior": false,
           "sha256": "52cb31426184a20000bb940b266a31f76613fe12e9f457c009868e52d60e0f57"
+        },
+        {
+          "level": "interior",
+          "label": "Interieur",
+          "modelUrl": "https://github.com/elios134/asset-3d/releases/download/sc-4.1/AEGS_Sabre_Raven.interior.glb",
+          "tris": 260689,
+          "sizeBytes": 5412052,
+          "hasInterior": true,
+          "sha256": "f2cad1b7ee17c55375640ec7463b0db6f5f529c28f28f182c40c6c461a011c28"
         }
       ]
     },
@@ -523,6 +685,15 @@
           "sizeBytes": 5736456,
           "hasInterior": false,
           "sha256": "4b8010d88c2e05d1fd274eb00629b2092444be57458e7dc493c0413fe1593804"
+        },
+        {
+          "level": "interior",
+          "label": "Interieur",
+          "modelUrl": "https://github.com/elios134/asset-3d/releases/download/sc-4.1/AEGS_Tiburon.interior.glb",
+          "tris": 747517,
+          "sizeBytes": 18947652,
+          "hasInterior": true,
+          "sha256": "e6659fc46b82c3a4aa0fd894c31a7ec8b6ad886844326bd4fe571b7a7f562a3f"
         }
       ]
     },
@@ -547,6 +718,15 @@
           "sizeBytes": 3426364,
           "hasInterior": false,
           "sha256": "dcc7fd60865ddd2988516b05e02f80fc17d927e7b2656d41b6fec74bf11bf7f8"
+        },
+        {
+          "level": "interior",
+          "label": "Interieur",
+          "modelUrl": "https://github.com/elios134/asset-3d/releases/download/sc-4.1/AEGS_Vanguard.interior.glb",
+          "tris": 260926,
+          "sizeBytes": 7779088,
+          "hasInterior": true,
+          "sha256": "5d5d8fa92767c64f62e628f07d4f07e63a88d1e0620a34768da5deb6a1e73069"
         }
       ]
     },
@@ -571,6 +751,15 @@
           "sizeBytes": 3111496,
           "hasInterior": false,
           "sha256": "fdcc7109d1027cdd8a1d88ec3ca4e75a97c3d67068c1f0fde1021b1c80ade7b4"
+        },
+        {
+          "level": "interior",
+          "label": "Interieur",
+          "modelUrl": "https://github.com/elios134/asset-3d/releases/download/sc-4.1/AEGS_Vanguard_Harbinger.interior.glb",
+          "tris": 262360,
+          "sizeBytes": 7579204,
+          "hasInterior": true,
+          "sha256": "67bcece28b630355fff8c6fdb25735525d747568b5c0647ff385f2e1882ab7e3"
         }
       ]
     },
@@ -595,6 +784,15 @@
           "sizeBytes": 3317896,
           "hasInterior": false,
           "sha256": "0d3484d051e4c676f10de2646e1d20d1978ac01252f7b5817563cd31eef1d2d9"
+        },
+        {
+          "level": "interior",
+          "label": "Interieur",
+          "modelUrl": "https://github.com/elios134/asset-3d/releases/download/sc-4.1/AEGS_Vanguard_Hoplite.interior.glb",
+          "tris": 265163,
+          "sizeBytes": 7881136,
+          "hasInterior": true,
+          "sha256": "e76b2bb6241032f7959d2812df18857d0fbc750c203809dc7d41b02acb008657"
         }
       ]
     },
@@ -619,6 +817,15 @@
           "sizeBytes": 3676360,
           "hasInterior": false,
           "sha256": "00a8d84875f6f5622f29442d924e29c89f97652dabbbcfa9022689abbbf9c708"
+        },
+        {
+          "level": "interior",
+          "label": "Interieur",
+          "modelUrl": "https://github.com/elios134/asset-3d/releases/download/sc-4.1/AEGS_Vanguard_Sentinel.interior.glb",
+          "tris": 259040,
+          "sizeBytes": 8209776,
+          "hasInterior": true,
+          "sha256": "79cda245d70d8802157ed1166f10b964b1262d47d20990dff20000559805382f"
         }
       ]
     },
@@ -643,6 +850,15 @@
           "sizeBytes": 1426528,
           "hasInterior": false,
           "sha256": "48df8b23006a380596eb5f4faca4092812923462937f55e9dd202e52f6525074"
+        },
+        {
+          "level": "interior",
+          "label": "Interieur",
+          "modelUrl": "https://github.com/elios134/asset-3d/releases/download/sc-4.1/ANVL_Arrow.interior.glb",
+          "tris": 146017,
+          "sizeBytes": 3218792,
+          "hasInterior": true,
+          "sha256": "d79ddbc99ae7d692fdfc75124062b5a77896c0c0af110f1270b37c0eeb179504"
         }
       ]
     },
@@ -667,6 +883,15 @@
           "sizeBytes": 6565696,
           "hasInterior": false,
           "sha256": "29fe31bfc39b87d5322a3b7fb3fffba31af9711c437530cce1d3ac4d9aecf363"
+        },
+        {
+          "level": "interior",
+          "label": "Interieur",
+          "modelUrl": "https://github.com/elios134/asset-3d/releases/download/sc-4.1/ANVL_Asgard.interior.glb",
+          "tris": 522654,
+          "sizeBytes": 14826648,
+          "hasInterior": true,
+          "sha256": "a331895889a3bc18f8c0fe38f2452c8b2ebe198b55858223b2c96a187cda8401"
         }
       ]
     },
@@ -691,6 +916,15 @@
           "sizeBytes": 1268296,
           "hasInterior": false,
           "sha256": "fafd31858172580772799fa98c3f5f3684ea2e002ec8f08e794bd79746ce712f"
+        },
+        {
+          "level": "interior",
+          "label": "Interieur",
+          "modelUrl": "https://github.com/elios134/asset-3d/releases/download/sc-4.1/ANVL_Ballista.interior.glb",
+          "tris": 169429,
+          "sizeBytes": 3393148,
+          "hasInterior": true,
+          "sha256": "9e89aa380841b60ef3a67e77a5c5412c99a917a42a51cc5e6211750a65a0ec14"
         }
       ]
     },
@@ -715,6 +949,15 @@
           "sizeBytes": 1268296,
           "hasInterior": false,
           "sha256": "6cfbacd2fce3e9a48799473c38cf944dd60c3983b4d4134bbbd3f789ddeaf16e"
+        },
+        {
+          "level": "interior",
+          "label": "Interieur",
+          "modelUrl": "https://github.com/elios134/asset-3d/releases/download/sc-4.1/ANVL_Ballista_Dunestalker.interior.glb",
+          "tris": 169429,
+          "sizeBytes": 3393160,
+          "hasInterior": true,
+          "sha256": "3d05be3bd71935bd933026d715d1ea7e01e652f308269e4ca2b35c324a4596f1"
         }
       ]
     },
@@ -739,6 +982,15 @@
           "sizeBytes": 1268296,
           "hasInterior": false,
           "sha256": "389e6b1ee80beb7d1296b23a3683c13da46a527c36e05d045ed4103e06d46b7f"
+        },
+        {
+          "level": "interior",
+          "label": "Interieur",
+          "modelUrl": "https://github.com/elios134/asset-3d/releases/download/sc-4.1/ANVL_Ballista_Snowblind.interior.glb",
+          "tris": 169429,
+          "sizeBytes": 3393156,
+          "hasInterior": true,
+          "sha256": "27eab10ca92d12f89fd213f9a1e805b8fa1f0d38dc26d3e536c641b412c7a8af"
         }
       ]
     },
@@ -763,6 +1015,15 @@
           "sizeBytes": 1296696,
           "hasInterior": false,
           "sha256": "8d99652dda4da4e98183c60e643e91fd9fc1efd7c392dc7b6ece2ba5ceae8de9"
+        },
+        {
+          "level": "interior",
+          "label": "Interieur",
+          "modelUrl": "https://github.com/elios134/asset-3d/releases/download/sc-4.1/ANVL_C8_Pisces.interior.glb",
+          "tris": 154225,
+          "sizeBytes": 3338784,
+          "hasInterior": true,
+          "sha256": "e687e9c960c0ef0973c38a5ad2b307f45155136ec87e292f815574edf7c6dd10"
         }
       ]
     },
@@ -787,6 +1048,15 @@
           "sizeBytes": 1536316,
           "hasInterior": false,
           "sha256": "66830dd3ce87a9cf58eb561d7233c56112be71d6f1a79b27bd9bc483d83d58f3"
+        },
+        {
+          "level": "interior",
+          "label": "Interieur",
+          "modelUrl": "https://github.com/elios134/asset-3d/releases/download/sc-4.1/ANVL_C8R_Pisces.interior.glb",
+          "tris": 205482,
+          "sizeBytes": 4632440,
+          "hasInterior": true,
+          "sha256": "e1de9d5b34a7f394faa4e5cf5c9b34750d0f1ce63419891781d46570b15c2259"
         }
       ]
     },
@@ -811,6 +1081,15 @@
           "sizeBytes": 1487020,
           "hasInterior": false,
           "sha256": "3fa099f8bcecad71838ee6a7295e8e25655f14441ffca873ebbda5484e4eb83d"
+        },
+        {
+          "level": "interior",
+          "label": "Interieur",
+          "modelUrl": "https://github.com/elios134/asset-3d/releases/download/sc-4.1/ANVL_C8X_Pisces_Expedition.interior.glb",
+          "tris": 170092,
+          "sizeBytes": 3600192,
+          "hasInterior": true,
+          "sha256": "443ff0c70989b79be3578f790926f31012dd4a9da03523b4b97e0b9b7e87fdce"
         }
       ]
     },
@@ -835,6 +1114,15 @@
           "sizeBytes": 4291044,
           "hasInterior": false,
           "sha256": "1915693e48c024eb6845556c026037982ccd8bc317410bdf0d416d0091ac8faf"
+        },
+        {
+          "level": "interior",
+          "label": "Interieur",
+          "modelUrl": "https://github.com/elios134/asset-3d/releases/download/sc-4.1/ANVL_Carrack.interior.glb",
+          "tris": 434224,
+          "sizeBytes": 19051500,
+          "hasInterior": true,
+          "sha256": "ecbf65b0abbed409d5295b03436cef01e9df931fa79b023cc00387f7ba34b320"
         }
       ]
     },
@@ -859,6 +1147,15 @@
           "sizeBytes": 4290280,
           "hasInterior": false,
           "sha256": "82df4a74524f59cc8f647b99ef2ad77b2e74c76101f622a3b0960bc17f1eb4de"
+        },
+        {
+          "level": "interior",
+          "label": "Interieur",
+          "modelUrl": "https://github.com/elios134/asset-3d/releases/download/sc-4.1/ANVL_Carrack_Expedition.interior.glb",
+          "tris": 434224,
+          "sizeBytes": 19050692,
+          "hasInterior": true,
+          "sha256": "77bc857de08a8aa709785f057d880bea35865eb948c57559344711bf09f43d63"
         }
       ]
     },
@@ -883,6 +1180,15 @@
           "sizeBytes": 3283388,
           "hasInterior": false,
           "sha256": "53350472ead66a65cbffe9776c97dcac8848af725f246e0d7023ec7aa0410ece"
+        },
+        {
+          "level": "interior",
+          "label": "Interieur",
+          "modelUrl": "https://github.com/elios134/asset-3d/releases/download/sc-4.1/ANVL_Centurion.interior.glb",
+          "tris": 339773,
+          "sizeBytes": 6546460,
+          "hasInterior": true,
+          "sha256": "97707fe6188812f4057969f098326515d279ff13d2adb28362da0d15acad7b40"
         }
       ]
     },
@@ -907,6 +1213,15 @@
           "sizeBytes": 1989304,
           "hasInterior": false,
           "sha256": "9b53c12ac610a4909db3d84598b3c6cc0e839bf3095e2755de204c58a960f3c1"
+        },
+        {
+          "level": "interior",
+          "label": "Interieur",
+          "modelUrl": "https://github.com/elios134/asset-3d/releases/download/sc-4.1/ANVL_Gladiator.interior.glb",
+          "tris": 230555,
+          "sizeBytes": 4344416,
+          "hasInterior": true,
+          "sha256": "a127828bc54bfa3524a6723d888a4181b5b2d4344b816fa1b708cc78885d4a2f"
         }
       ]
     },
@@ -955,6 +1270,15 @@
           "sizeBytes": 2500444,
           "hasInterior": false,
           "sha256": "781a9ac760a11979a1cacfaa271a5ca87f1d3158301b934ed63a7c73f061f5e5"
+        },
+        {
+          "level": "interior",
+          "label": "Interieur",
+          "modelUrl": "https://github.com/elios134/asset-3d/releases/download/sc-4.1/ANVL_Hornet_F7A_Mk1.interior.glb",
+          "tris": 289430,
+          "sizeBytes": 5710536,
+          "hasInterior": true,
+          "sha256": "b1335b3425209f290b42304efff0d571f03d4f7a39d279532df405d92f18d6ce"
         }
       ]
     },
@@ -979,6 +1303,15 @@
           "sizeBytes": 1820052,
           "hasInterior": false,
           "sha256": "be498d4c35f3a08a794d727fafa19a5d2e7b0d74eb38d0d6f567c4dbc5c9db03"
+        },
+        {
+          "level": "interior",
+          "label": "Interieur",
+          "modelUrl": "https://github.com/elios134/asset-3d/releases/download/sc-4.1/ANVL_Hornet_F7A_Mk2.interior.glb",
+          "tris": 189688,
+          "sizeBytes": 4279344,
+          "hasInterior": true,
+          "sha256": "600807702ca6a2acf2e91943b1c448e0def3c17f3644eaa98122e6a10c4b67da"
         }
       ]
     },
@@ -1003,6 +1336,15 @@
           "sizeBytes": 1642332,
           "hasInterior": false,
           "sha256": "6f04a7ceff937ae429523b255476f8e6c317e484f16676a2921f059eac0a543b"
+        },
+        {
+          "level": "interior",
+          "label": "Interieur",
+          "modelUrl": "https://github.com/elios134/asset-3d/releases/download/sc-4.1/ANVL_Hornet_F7C.interior.glb",
+          "tris": 176387,
+          "sizeBytes": 3760276,
+          "hasInterior": true,
+          "sha256": "a66d971aac71d4c59cd29a793eed6d3c5bff3ad7c7fae0c0f0eb5b76f8b5e0aa"
         }
       ]
     },
@@ -1027,6 +1369,15 @@
           "sizeBytes": 1660976,
           "hasInterior": false,
           "sha256": "97a80c761407fef004017193d259268cb96cb231276747f27cab7abfdce5c99e"
+        },
+        {
+          "level": "interior",
+          "label": "Interieur",
+          "modelUrl": "https://github.com/elios134/asset-3d/releases/download/sc-4.1/ANVL_Hornet_F7C_Mk2.interior.glb",
+          "tris": 182030,
+          "sizeBytes": 4171140,
+          "hasInterior": true,
+          "sha256": "1eafd1dda2681dbbbf7ea0d86a3554a3f102e01a61ad9d7dfadaa5ac27473f0a"
         }
       ]
     },
@@ -1051,6 +1402,15 @@
           "sizeBytes": 1836180,
           "hasInterior": false,
           "sha256": "6865ef6396d709849ce8b440e9d2e27f5bd8995c3cd2dc7bd2f44d994236b0a2"
+        },
+        {
+          "level": "interior",
+          "label": "Interieur",
+          "modelUrl": "https://github.com/elios134/asset-3d/releases/download/sc-4.1/ANVL_Hornet_F7C_Wildfire.interior.glb",
+          "tris": 169478,
+          "sizeBytes": 3949308,
+          "hasInterior": true,
+          "sha256": "83e1aa22edaa183ed4239b5f1bff0daf89a6ef3285203cf8b46d48b737ea66cb"
         }
       ]
     },
@@ -1075,6 +1435,15 @@
           "sizeBytes": 1972692,
           "hasInterior": false,
           "sha256": "a4e6b686b0107fb1b7fdbed1ece7d5961d37cd0a5b35764d06800c32c011b94a"
+        },
+        {
+          "level": "interior",
+          "label": "Interieur",
+          "modelUrl": "https://github.com/elios134/asset-3d/releases/download/sc-4.1/ANVL_Hornet_F7CM.interior.glb",
+          "tris": 230029,
+          "sizeBytes": 4400664,
+          "hasInterior": true,
+          "sha256": "2d195a7ac16d10ee79ae6f89e132000d1c1f158d142a5dfa85e975a01b1f7044"
         }
       ]
     },
@@ -1099,6 +1468,15 @@
           "sizeBytes": 1868240,
           "hasInterior": false,
           "sha256": "5bd06ad299dac4bd6587b3f8759699228826d2fda2ff424f8a75d06200c68bed"
+        },
+        {
+          "level": "interior",
+          "label": "Interieur",
+          "modelUrl": "https://github.com/elios134/asset-3d/releases/download/sc-4.1/ANVL_Hornet_F7CM_Heartseeker.interior.glb",
+          "tris": 202247,
+          "sizeBytes": 4402392,
+          "hasInterior": true,
+          "sha256": "0980b7a16224a41e08e0f64765e395a3d62898aadcf938ee88d7cf06bcee62ab"
         }
       ]
     },
@@ -1123,6 +1501,15 @@
           "sizeBytes": 2713940,
           "hasInterior": false,
           "sha256": "f3e1728fa5e403d8cf2733d29a9f2af3c66650364e67e71f440e15ab37529717"
+        },
+        {
+          "level": "interior",
+          "label": "Interieur",
+          "modelUrl": "https://github.com/elios134/asset-3d/releases/download/sc-4.1/ANVL_Hornet_F7CM_Mk2.interior.glb",
+          "tris": 308827,
+          "sizeBytes": 6258200,
+          "hasInterior": true,
+          "sha256": "152f3ca59e0b6ebf1eca42186a587bb9161ad2f78d203104672e1449ff2da2cb"
         }
       ]
     },
@@ -1147,6 +1534,15 @@
           "sizeBytes": 2435780,
           "hasInterior": false,
           "sha256": "ede2d7856dc54bf57d5f94fd33af21f2818224b18d96fd2982a087b7a6ecd5fa"
+        },
+        {
+          "level": "interior",
+          "label": "Interieur",
+          "modelUrl": "https://github.com/elios134/asset-3d/releases/download/sc-4.1/ANVL_Hornet_F7CM_Mk2_Heartseeker.interior.glb",
+          "tris": 282947,
+          "sizeBytes": 6278620,
+          "hasInterior": true,
+          "sha256": "30b5853b9c048f7a5f1a150d60fc55a8ddb3a35bbf4a07f2c486bc3b83581216"
         }
       ]
     },
@@ -1171,6 +1567,15 @@
           "sizeBytes": 1610016,
           "hasInterior": false,
           "sha256": "19e82983ad35ab25a7e194cf918544abb3633f8863d0d40920f60e575314b180"
+        },
+        {
+          "level": "interior",
+          "label": "Interieur",
+          "modelUrl": "https://github.com/elios134/asset-3d/releases/download/sc-4.1/ANVL_Hornet_F7CR.interior.glb",
+          "tris": 169680,
+          "sizeBytes": 3627612,
+          "hasInterior": true,
+          "sha256": "d8428edc256c17fa0594c6589ead90a357eddd564b93b926a5e145c7d5e0eeb3"
         }
       ]
     },
@@ -1195,6 +1600,15 @@
           "sizeBytes": 1767624,
           "hasInterior": false,
           "sha256": "952446258652b6fcb0735b9a510fae9b069da11b050ec46685011a84cc477248"
+        },
+        {
+          "level": "interior",
+          "label": "Interieur",
+          "modelUrl": "https://github.com/elios134/asset-3d/releases/download/sc-4.1/ANVL_Hornet_F7CR_Mk2.interior.glb",
+          "tris": 206637,
+          "sizeBytes": 4658288,
+          "hasInterior": true,
+          "sha256": "0e1a431859e675bdb2ac19f850e969d1001f1f6e69733c02436681bcce906ed5"
         }
       ]
     },
@@ -1219,6 +1633,15 @@
           "sizeBytes": 1484088,
           "hasInterior": false,
           "sha256": "6c2acf4a910f2b132a7d23a094b670161187f143b9b6fbe7d27b4c309f0f6b50"
+        },
+        {
+          "level": "interior",
+          "label": "Interieur",
+          "modelUrl": "https://github.com/elios134/asset-3d/releases/download/sc-4.1/ANVL_Hornet_F7CS.interior.glb",
+          "tris": 145183,
+          "sizeBytes": 3368840,
+          "hasInterior": true,
+          "sha256": "30c09716ab7f1821aac6b3d7a49694555d18f3c1e728368e5e4f972d5b5aabed"
         }
       ]
     },
@@ -1243,6 +1666,15 @@
           "sizeBytes": 1626116,
           "hasInterior": false,
           "sha256": "ef72053b6d64537d8c1f1903cf902eac1d2da19c4b7d57fc1205bcefcd4e2f71"
+        },
+        {
+          "level": "interior",
+          "label": "Interieur",
+          "modelUrl": "https://github.com/elios134/asset-3d/releases/download/sc-4.1/ANVL_Hornet_F7CS_Mk2.interior.glb",
+          "tris": 191668,
+          "sizeBytes": 4165844,
+          "hasInterior": true,
+          "sha256": "33720ee74bc6245f1b0700469f0d2a854f053ce879f26a975220e2ab631ccaef"
         }
       ]
     },
@@ -1291,6 +1723,15 @@
           "sizeBytes": 2485308,
           "hasInterior": false,
           "sha256": "66bef1f03b05a74e3759931838650316244a84c6090b7746f85e84b711850426"
+        },
+        {
+          "level": "interior",
+          "label": "Interieur",
+          "modelUrl": "https://github.com/elios134/asset-3d/releases/download/sc-4.1/ANVL_Lightning_F8.interior.glb",
+          "tris": 286940,
+          "sizeBytes": 4979852,
+          "hasInterior": true,
+          "sha256": "b423296afa6d6f2e7d9846cc47bc255b02cec066772245f2fb00926a68af3526"
         }
       ]
     },
@@ -1315,6 +1756,15 @@
           "sizeBytes": 2421300,
           "hasInterior": false,
           "sha256": "e57648454f1fb020499ffcabcfd8e7f947f76961b98f9be727caeaae727ac6e3"
+        },
+        {
+          "level": "interior",
+          "label": "Interieur",
+          "modelUrl": "https://github.com/elios134/asset-3d/releases/download/sc-4.1/ANVL_Lightning_F8C.interior.glb",
+          "tris": 280635,
+          "sizeBytes": 5170104,
+          "hasInterior": true,
+          "sha256": "2783afcc0b25783553b722e70edfdf7d69f0fe9d046b08b5f78e80bd427919c7"
         }
       ]
     },
@@ -1363,6 +1813,15 @@
           "sizeBytes": 1456140,
           "hasInterior": false,
           "sha256": "e80f0ee9a5f13735704298c2c4cccce1e8538d7a4b829aaf16ec9f4682789639"
+        },
+        {
+          "level": "interior",
+          "label": "Interieur",
+          "modelUrl": "https://github.com/elios134/asset-3d/releases/download/sc-4.1/ANVL_Spartan.interior.glb",
+          "tris": 165949,
+          "sizeBytes": 4349748,
+          "hasInterior": true,
+          "sha256": "22e0757fa5805637577271e38f13ad1b8da24445e79cfd92d4a701657427b4b6"
         }
       ]
     },
@@ -1387,6 +1846,15 @@
           "sizeBytes": 3282740,
           "hasInterior": false,
           "sha256": "2fee4460f4807bd33ee3340d39c89018de49e877055e2e2dfa77799747889ffe"
+        },
+        {
+          "level": "interior",
+          "label": "Interieur",
+          "modelUrl": "https://github.com/elios134/asset-3d/releases/download/sc-4.1/ANVL_Terrapin.interior.glb",
+          "tris": 473286,
+          "sizeBytes": 10671372,
+          "hasInterior": true,
+          "sha256": "6b3d7dcd100273a17a1fc4267e5f7d6e1d020e36582c176f912eb18ba13bae83"
         }
       ]
     },
@@ -1411,6 +1879,15 @@
           "sizeBytes": 3448956,
           "hasInterior": false,
           "sha256": "9a16756a1da1d4bc06bc7fe92038d0f128ac25bb98fd3396db19f4776b7e277f"
+        },
+        {
+          "level": "interior",
+          "label": "Interieur",
+          "modelUrl": "https://github.com/elios134/asset-3d/releases/download/sc-4.1/ANVL_Terrapin_Medic.interior.glb",
+          "tris": 479783,
+          "sizeBytes": 10953448,
+          "hasInterior": true,
+          "sha256": "338128d3bc99f212ab986ced5266336158bfef1d6312f8ea7e4ff2926e82cb95"
         }
       ]
     },
@@ -1435,6 +1912,15 @@
           "sizeBytes": 4438684,
           "hasInterior": false,
           "sha256": "f61725011bead0c3a84899cc95a0034d0cc00a5aedc12c071cdf9c175ee59a20"
+        },
+        {
+          "level": "interior",
+          "label": "Interieur",
+          "modelUrl": "https://github.com/elios134/asset-3d/releases/download/sc-4.1/ANVL_Valkyrie.interior.glb",
+          "tris": 378296,
+          "sizeBytes": 10125664,
+          "hasInterior": true,
+          "sha256": "b4a2baa0e5161ffd92694ec77a8cd3a8097bd70db6edb1a9ab20dc02a8c8b496"
         }
       ]
     },
@@ -1459,6 +1945,15 @@
           "sizeBytes": 942296,
           "hasInterior": false,
           "sha256": "1a4c9823bf996cac32b566a38ff0b314930a68bc4483fabbeffeb8c57518291b"
+        },
+        {
+          "level": "interior",
+          "label": "Interieur",
+          "modelUrl": "https://github.com/elios134/asset-3d/releases/download/sc-4.1/ARGO_ATLS.interior.glb",
+          "tris": 119611,
+          "sizeBytes": 2189524,
+          "hasInterior": true,
+          "sha256": "6bb41912d9ccf37a7eab213fef1268ec17a29b937f27b3406ceb7ce61237aea8"
         }
       ]
     },
@@ -1483,6 +1978,15 @@
           "sizeBytes": 1507376,
           "hasInterior": false,
           "sha256": "12e21cd7e03d42f073800907d6b408034a793047fba548e7096177411b5bbd9d"
+        },
+        {
+          "level": "interior",
+          "label": "Interieur",
+          "modelUrl": "https://github.com/elios134/asset-3d/releases/download/sc-4.1/ARGO_ATLS_GEO.interior.glb",
+          "tris": 160892,
+          "sizeBytes": 3127908,
+          "hasInterior": true,
+          "sha256": "6315fbb465625b9d45827ddbb7ba386e907a673fc20608d0a75fdbec1899a068"
         }
       ]
     },
@@ -1507,6 +2011,15 @@
           "sizeBytes": 1507844,
           "hasInterior": false,
           "sha256": "268ebec8415c6aae64d36d6cd81c2b7bfec7343e371984d1c3b6aeede953b8b2"
+        },
+        {
+          "level": "interior",
+          "label": "Interieur",
+          "modelUrl": "https://github.com/elios134/asset-3d/releases/download/sc-4.1/ARGO_ATLS_GEO_Collector_Grad01.interior.glb",
+          "tris": 160892,
+          "sizeBytes": 3128388,
+          "hasInterior": true,
+          "sha256": "2245568ec666267fe713f22094a17247592405769315fcd3484babcfe8db9ec6"
         }
       ]
     },
@@ -1531,6 +2044,15 @@
           "sizeBytes": 1507872,
           "hasInterior": false,
           "sha256": "222a65fb1486cfad35e3d74a04d4505a3146e5176a807064cab9026e95614e33"
+        },
+        {
+          "level": "interior",
+          "label": "Interieur",
+          "modelUrl": "https://github.com/elios134/asset-3d/releases/download/sc-4.1/ARGO_ATLS_GEO_Collector_Grad02.interior.glb",
+          "tris": 160892,
+          "sizeBytes": 3128412,
+          "hasInterior": true,
+          "sha256": "3447b7eb8b6385c3910747378b598bf003b2a785c81bdd91dc216e75d2c6f3e2"
         }
       ]
     },
@@ -1555,6 +2077,15 @@
           "sizeBytes": 1507928,
           "hasInterior": false,
           "sha256": "cae033b9a82b2b74cc2ac7e2d4f9a1cc544900ebf1e900f02a012943e4c8a041"
+        },
+        {
+          "level": "interior",
+          "label": "Interieur",
+          "modelUrl": "https://github.com/elios134/asset-3d/releases/download/sc-4.1/ARGO_ATLS_GEO_Collector_Grad03.interior.glb",
+          "tris": 160892,
+          "sizeBytes": 3128476,
+          "hasInterior": true,
+          "sha256": "9d3169d05c6246b6c4cd59aaa17edca051ec99271c0677e8c8e8757ba646eecd"
         }
       ]
     },
@@ -1579,6 +2110,15 @@
           "sizeBytes": 1642744,
           "hasInterior": false,
           "sha256": "c487f58a1c9de550c1b53ffc9f97cc34c38f04f389aea268fcd3321f35538bd8"
+        },
+        {
+          "level": "interior",
+          "label": "Interieur",
+          "modelUrl": "https://github.com/elios134/asset-3d/releases/download/sc-4.1/ARGO_ATLS_GEO_IKTI.interior.glb",
+          "tris": 185505,
+          "sizeBytes": 3286572,
+          "hasInterior": true,
+          "sha256": "405d0c53165586731a05207ff1367b58a1e1165f7c7e862c45d8a41311b6b63c"
         }
       ]
     },
@@ -1603,6 +2143,15 @@
           "sizeBytes": 1200692,
           "hasInterior": false,
           "sha256": "f0d84b6348411d00998fca62ddec4f5f66c18b249c6ccabb15accedcca029b33"
+        },
+        {
+          "level": "interior",
+          "label": "Interieur",
+          "modelUrl": "https://github.com/elios134/asset-3d/releases/download/sc-4.1/ARGO_ATLS_IKTI.interior.glb",
+          "tris": 143996,
+          "sizeBytes": 2477212,
+          "hasInterior": true,
+          "sha256": "32f4498681941975e7d488d0c2b02bc810cce1c8c55c5dd43fa854bdea582d57"
         }
       ]
     },
@@ -1627,6 +2176,15 @@
           "sizeBytes": 1674124,
           "hasInterior": false,
           "sha256": "d39b20e7b284597cfa9eb1005ad05b262650435932a083a1432add196de32fc7"
+        },
+        {
+          "level": "interior",
+          "label": "Interieur",
+          "modelUrl": "https://github.com/elios134/asset-3d/releases/download/sc-4.1/ARGO_ATLS_IKTI_ARGOS.interior.glb",
+          "tris": 184880,
+          "sizeBytes": 3324616,
+          "hasInterior": true,
+          "sha256": "13da20295f036e69b64433037c3af6a8e909c20c6f259bbe2e7933c37338fb31"
         }
       ]
     },
@@ -1651,6 +2209,15 @@
           "sizeBytes": 1620428,
           "hasInterior": false,
           "sha256": "a310ca1a3935b9b88e7f469e3c695654910e67f91825dd1e57ca2fc61ae0c154"
+        },
+        {
+          "level": "interior",
+          "label": "Interieur",
+          "modelUrl": "https://github.com/elios134/asset-3d/releases/download/sc-4.1/ARGO_CSV_Cargo.interior.glb",
+          "tris": 232520,
+          "sizeBytes": 5074384,
+          "hasInterior": true,
+          "sha256": "a651b6cfe10cf280ef6a1fb20b96a0359a9a53dd4f12021247691eaad12715b2"
         }
       ]
     },
@@ -1675,6 +2242,15 @@
           "sizeBytes": 5320160,
           "hasInterior": false,
           "sha256": "7c3b57beb0d40e4b6391bc9c7868b37ea095b8073adfc7ff392b064b99aa7443"
+        },
+        {
+          "level": "interior",
+          "label": "Interieur",
+          "modelUrl": "https://github.com/elios134/asset-3d/releases/download/sc-4.1/ARGO_MOLE.interior.glb",
+          "tris": 536176,
+          "sizeBytes": 11793116,
+          "hasInterior": true,
+          "sha256": "a8aceaeefef42361cf7ea82f06b89a9e342a6cb03096a723498290cd98e6f426"
         }
       ]
     },
@@ -1723,6 +2299,15 @@
           "sizeBytes": 748288,
           "hasInterior": false,
           "sha256": "7a6d302e292f9da2a837de905ac30edbe06b7eae2756af5177dd5e7b89ce051f"
+        },
+        {
+          "level": "interior",
+          "label": "Interieur",
+          "modelUrl": "https://github.com/elios134/asset-3d/releases/download/sc-4.1/ARGO_MPUV.interior.glb",
+          "tris": 140053,
+          "sizeBytes": 2889564,
+          "hasInterior": true,
+          "sha256": "051a99ee058f8e92768ddde1998b5a419122de6a196a5b0bb76bf84fb917922a"
         }
       ]
     },
@@ -1747,6 +2332,15 @@
           "sizeBytes": 1524156,
           "hasInterior": false,
           "sha256": "0ab45ae03a9887103b8271398e0de5dc940a1b5d1fdcdc05090229ecace7acc6"
+        },
+        {
+          "level": "interior",
+          "label": "Interieur",
+          "modelUrl": "https://github.com/elios134/asset-3d/releases/download/sc-4.1/ARGO_MPUV_1T.interior.glb",
+          "tris": 164841,
+          "sizeBytes": 4075720,
+          "hasInterior": true,
+          "sha256": "290665870ba9c0468503a3b10f81c02de3f9e51afe0e149538f6871c1d97891f"
         }
       ]
     },
@@ -1771,6 +2365,15 @@
           "sizeBytes": 996860,
           "hasInterior": false,
           "sha256": "0a1ee8cbaf1a1d759970ca18ad5d224a6b2d8493d12e1fcaf2839696e4b48a99"
+        },
+        {
+          "level": "interior",
+          "label": "Interieur",
+          "modelUrl": "https://github.com/elios134/asset-3d/releases/download/sc-4.1/ARGO_MPUV_Transport.interior.glb",
+          "tris": 161927,
+          "sizeBytes": 3679460,
+          "hasInterior": true,
+          "sha256": "ce1d364fecb412ff81254439b81b7efd9ac17033db3fe13ffa146b44550b5abe"
         }
       ]
     },
@@ -1795,6 +2398,15 @@
           "sizeBytes": 4122996,
           "hasInterior": false,
           "sha256": "73aad412598e969802eaeb900ef8fd2a8600fd1229ad46f589788bf71bf01c0d"
+        },
+        {
+          "level": "interior",
+          "label": "Interieur",
+          "modelUrl": "https://github.com/elios134/asset-3d/releases/download/sc-4.1/ARGO_RAFT.interior.glb",
+          "tris": 442360,
+          "sizeBytes": 12549836,
+          "hasInterior": true,
+          "sha256": "2b7a4e75ac15118526a95756dadea7d64b27cf120a73a356e677aa2a5aa409ba"
         }
       ]
     },
@@ -1819,6 +2431,15 @@
           "sizeBytes": 3876980,
           "hasInterior": false,
           "sha256": "894af6d01ffe057564a31d69540d83f8d7a5ae3636d60040bf703e0016f5f8d4"
+        },
+        {
+          "level": "interior",
+          "label": "Interieur",
+          "modelUrl": "https://github.com/elios134/asset-3d/releases/download/sc-4.1/ARGO_SRV.interior.glb",
+          "tris": 353656,
+          "sizeBytes": 9160148,
+          "hasInterior": true,
+          "sha256": "89fd37b18d5c76981e2c9d4f3959491b358aaa3674869b8fb237fa1f30147ba5"
         }
       ]
     },
@@ -1843,6 +2464,15 @@
           "sizeBytes": 2656340,
           "hasInterior": false,
           "sha256": "7b8960a7f7baac59250106bdbba3764f305b8dea217f313fa608b605df6c75eb"
+        },
+        {
+          "level": "interior",
+          "label": "Interieur",
+          "modelUrl": "https://github.com/elios134/asset-3d/releases/download/sc-4.1/BANU_Defender.interior.glb",
+          "tris": 410489,
+          "sizeBytes": 8428584,
+          "hasInterior": true,
+          "sha256": "a4a2440a514778e4afb6cf42778d2b7ca447d8c113c62befb32a5369aef18d3c"
         }
       ]
     },
@@ -1867,6 +2497,15 @@
           "sizeBytes": 968992,
           "hasInterior": false,
           "sha256": "587b74ab1e6a20c67a9422ead96dd4985568bea2698ffc7b8b18f1b59a0fca3f"
+        },
+        {
+          "level": "interior",
+          "label": "Interieur",
+          "modelUrl": "https://github.com/elios134/asset-3d/releases/download/sc-4.1/CNOU_HoverQuad.interior.glb",
+          "tris": 96892,
+          "sizeBytes": 3364544,
+          "hasInterior": true,
+          "sha256": "e8ae23d7e7f137c6a88c6f1fc1428978415431e849f73d080860fa266675e5cc"
         }
       ]
     },
@@ -1891,6 +2530,15 @@
           "sizeBytes": 1732016,
           "hasInterior": false,
           "sha256": "1501424ce2435628a292b2bf3b99a112bc9f26a8f15d559202fa15073b7125cf"
+        },
+        {
+          "level": "interior",
+          "label": "Interieur",
+          "modelUrl": "https://github.com/elios134/asset-3d/releases/download/sc-4.1/CNOU_Mustang_Alpha.interior.glb",
+          "tris": 182323,
+          "sizeBytes": 5026272,
+          "hasInterior": true,
+          "sha256": "841fb708a55aae1aeab3bba4918ac372f3e8c8e6a473a0f15d3370e8f63b57bf"
         }
       ]
     },
@@ -1915,6 +2563,15 @@
           "sizeBytes": 1748792,
           "hasInterior": false,
           "sha256": "5e391502ddc52efdd583c126816f16114b25eed128243b24be6a3f8df6b1a567"
+        },
+        {
+          "level": "interior",
+          "label": "Interieur",
+          "modelUrl": "https://github.com/elios134/asset-3d/releases/download/sc-4.1/CNOU_Mustang_Alpha_CitizenCon2018.interior.glb",
+          "tris": 182403,
+          "sizeBytes": 5072604,
+          "hasInterior": true,
+          "sha256": "df5e9c83692b75322cc94da65d0928d3b62f4bf331c843c00aca2c8b5912abb7"
         }
       ]
     },
@@ -1939,6 +2596,15 @@
           "sizeBytes": 1732604,
           "hasInterior": false,
           "sha256": "f4c92f03f9012d4b63173db7852bbb8ac5bf74a5c785358cba1f6a6fe4b6bbd4"
+        },
+        {
+          "level": "interior",
+          "label": "Interieur",
+          "modelUrl": "https://github.com/elios134/asset-3d/releases/download/sc-4.1/CNOU_Mustang_Beta.interior.glb",
+          "tris": 195007,
+          "sizeBytes": 5387556,
+          "hasInterior": true,
+          "sha256": "54d1aff04808b6fe66606cf6faefc75195aeb178ad0ffcced08d0684f3d6c66f"
         }
       ]
     },
@@ -1963,6 +2629,15 @@
           "sizeBytes": 2070076,
           "hasInterior": false,
           "sha256": "0b53527f411f45f91b7b75e8c2f2c2880a97266882b2ac8c3982c91f4eff50c2"
+        },
+        {
+          "level": "interior",
+          "label": "Interieur",
+          "modelUrl": "https://github.com/elios134/asset-3d/releases/download/sc-4.1/CNOU_Mustang_Delta.interior.glb",
+          "tris": 211471,
+          "sizeBytes": 5114808,
+          "hasInterior": true,
+          "sha256": "bb68d29d2d860995eab989631ee4fc1904bf7ba7b4ca7c7103dba0cb6fe1ec4b"
         }
       ]
     },
@@ -1987,6 +2662,15 @@
           "sizeBytes": 1817380,
           "hasInterior": false,
           "sha256": "d8a5009774481289fd9e2d5f7f9497735bdc088a7a9015be79a6b40345ddf38b"
+        },
+        {
+          "level": "interior",
+          "label": "Interieur",
+          "modelUrl": "https://github.com/elios134/asset-3d/releases/download/sc-4.1/CNOU_Mustang_Gamma.interior.glb",
+          "tris": 192989,
+          "sizeBytes": 5017776,
+          "hasInterior": true,
+          "sha256": "f7c052e63c7d757ba0f73ee110470a75d291d1a56dc35665339f095a4fba83c4"
         }
       ]
     },
@@ -2011,6 +2695,15 @@
           "sizeBytes": 1820292,
           "hasInterior": false,
           "sha256": "63425bbcb980894c81511f6295a5f253bf01fc31b4c200e3945ed33dcdb1796b"
+        },
+        {
+          "level": "interior",
+          "label": "Interieur",
+          "modelUrl": "https://github.com/elios134/asset-3d/releases/download/sc-4.1/CNOU_Mustang_Omega.interior.glb",
+          "tris": 192989,
+          "sizeBytes": 5020740,
+          "hasInterior": true,
+          "sha256": "656884c29a4a2a72514726f2e0cc7244f36dd1ab82a43912ce87f790b1b1f048"
         }
       ]
     },
@@ -2035,6 +2728,15 @@
           "sizeBytes": 2216972,
           "hasInterior": false,
           "sha256": "68fefa3dd45913a159388d53ec2155180a0550c68c983332f6b0503991595aef"
+        },
+        {
+          "level": "interior",
+          "label": "Interieur",
+          "modelUrl": "https://github.com/elios134/asset-3d/releases/download/sc-4.1/CNOU_Nomad.interior.glb",
+          "tris": 212887,
+          "sizeBytes": 5320488,
+          "hasInterior": true,
+          "sha256": "8e8d16633ebe8f744f33e57fbfa093cbd5aa611ee9a81d226757bbc8540d1c7c"
         }
       ]
     },
@@ -2059,6 +2761,15 @@
           "sizeBytes": 4896152,
           "hasInterior": false,
           "sha256": "159b3fa87ee4584d88e78d8781ce17783cce84c2d930ff613d43e042a54a29c9"
+        },
+        {
+          "level": "interior",
+          "label": "Interieur",
+          "modelUrl": "https://github.com/elios134/asset-3d/releases/download/sc-4.1/CRUS_Intrepid.interior.glb",
+          "tris": 813349,
+          "sizeBytes": 19023920,
+          "hasInterior": true,
+          "sha256": "1bb5e7a657c3a071d81c885f96c023aa9f5e027d0f17add1729374f6646831c0"
         }
       ]
     },
@@ -2083,6 +2794,15 @@
           "sizeBytes": 5563924,
           "hasInterior": false,
           "sha256": "bb527fa136eb5d6777a526451945ab9e99c45a06715aaf16a39015558870e1e8"
+        },
+        {
+          "level": "interior",
+          "label": "Interieur",
+          "modelUrl": "https://github.com/elios134/asset-3d/releases/download/sc-4.1/CRUS_Spirit_A1.interior.glb",
+          "tris": 460589,
+          "sizeBytes": 11402944,
+          "hasInterior": true,
+          "sha256": "6b53afe07c8cb932b2647df188ee32a7edb7401791e0d8ba358b6cd82406c708"
         }
       ]
     },
@@ -2107,6 +2827,15 @@
           "sizeBytes": 4456740,
           "hasInterior": false,
           "sha256": "27f2b4c29e7b209040af666581d97391e977feeb36074224ac1d7c1245ac9c8b"
+        },
+        {
+          "level": "interior",
+          "label": "Interieur",
+          "modelUrl": "https://github.com/elios134/asset-3d/releases/download/sc-4.1/CRUS_Spirit_C1.interior.glb",
+          "tris": 386791,
+          "sizeBytes": 10874280,
+          "hasInterior": true,
+          "sha256": "497348ab9559fafdc8911416fed015e310fb3826ac7baf726c38ba8bf45a5ddb"
         }
       ]
     },
@@ -2131,6 +2860,15 @@
           "sizeBytes": 4194720,
           "hasInterior": false,
           "sha256": "e2733eaa6e49bd35f6addb19aff41775b0e634e53f44eaf318ceb9901c0da857"
+        },
+        {
+          "level": "interior",
+          "label": "Interieur",
+          "modelUrl": "https://github.com/elios134/asset-3d/releases/download/sc-4.1/CRUS_Star_Runner.interior.glb",
+          "tris": 588188,
+          "sizeBytes": 14420400,
+          "hasInterior": true,
+          "sha256": "2d4e9743c8efb92db9993b61798d617eb5f49de6abbc810f2a506275662605bc"
         }
       ]
     },
@@ -2155,6 +2893,15 @@
           "sizeBytes": 3035740,
           "hasInterior": false,
           "sha256": "4ac251d068ff6cf5ceb4ead441faf705e679abd9616001da340ad88bc555f8f5"
+        },
+        {
+          "level": "interior",
+          "label": "Interieur",
+          "modelUrl": "https://github.com/elios134/asset-3d/releases/download/sc-4.1/CRUS_Starfighter_Inferno.interior.glb",
+          "tris": 132804,
+          "sizeBytes": 4581376,
+          "hasInterior": true,
+          "sha256": "a16776ca270db036f1696b95c7ff7b17e1e4fa3cc566feac9389c67c426c81aa"
         }
       ]
     },
@@ -2179,6 +2926,15 @@
           "sizeBytes": 2853368,
           "hasInterior": false,
           "sha256": "1e3bbcc51e626400ace4a725cc131419b798f562f8b2561b9a7d326ae966a59e"
+        },
+        {
+          "level": "interior",
+          "label": "Interieur",
+          "modelUrl": "https://github.com/elios134/asset-3d/releases/download/sc-4.1/CRUS_Starfighter_Ion.interior.glb",
+          "tris": 135675,
+          "sizeBytes": 4458368,
+          "hasInterior": true,
+          "sha256": "1952eb0ec28d4239056d874cd99aed567beb7f6d0b57bad3c561de04f3430ae2"
         }
       ]
     },
@@ -2203,6 +2959,15 @@
           "sizeBytes": 6625288,
           "hasInterior": false,
           "sha256": "b6fa6cd0bd3cbac19d3c159a683bddcc837a0e7e4a1499168302647bda179ba1"
+        },
+        {
+          "level": "interior",
+          "label": "Interieur",
+          "modelUrl": "https://github.com/elios134/asset-3d/releases/download/sc-4.1/CRUS_Starlifter_A2.interior.glb",
+          "tris": 326386,
+          "sizeBytes": 10719424,
+          "hasInterior": true,
+          "sha256": "ffb8e3891a045be60bc22455f1862301429d163c20bb6fa2d45c81cd5d888421"
         }
       ]
     },
@@ -2227,6 +2992,15 @@
           "sizeBytes": 5109384,
           "hasInterior": false,
           "sha256": "df27328e1a05f94cca32fe0f8b3335e315547e8e298b9b9d1e5bc7b3732c78f2"
+        },
+        {
+          "level": "interior",
+          "label": "Interieur",
+          "modelUrl": "https://github.com/elios134/asset-3d/releases/download/sc-4.1/CRUS_Starlifter_C2.interior.glb",
+          "tris": 281497,
+          "sizeBytes": 10384056,
+          "hasInterior": true,
+          "sha256": "0534c511ff419d35ff76ba782740dff4ee43777075e762b001fde297f7344aa6"
         }
       ]
     },
@@ -2251,6 +3025,15 @@
           "sizeBytes": 5388504,
           "hasInterior": false,
           "sha256": "67d56b515c443a3432c93f92502a9ba50a65aa73b8fc636787d924599805dcbc"
+        },
+        {
+          "level": "interior",
+          "label": "Interieur",
+          "modelUrl": "https://github.com/elios134/asset-3d/releases/download/sc-4.1/CRUS_Starlifter_M2.interior.glb",
+          "tris": 299429,
+          "sizeBytes": 10963212,
+          "hasInterior": true,
+          "sha256": "8cfaf7e1e4f48cbffeb54d0ccc0d40d86a526c32c1e03d7cea5264c11c9b24d7"
         }
       ]
     },
@@ -2275,6 +3058,15 @@
           "sizeBytes": 1925464,
           "hasInterior": false,
           "sha256": "a96755a9cbf8895427e47c9b5449572f9cdda585ca4a067073fb5f13bde5a43e"
+        },
+        {
+          "level": "interior",
+          "label": "Interieur",
+          "modelUrl": "https://github.com/elios134/asset-3d/releases/download/sc-4.1/DRAK_Buccaneer.interior.glb",
+          "tris": 205958,
+          "sizeBytes": 4330788,
+          "hasInterior": true,
+          "sha256": "6e2ace9e04df56122627aacea2b812c6dbbf0caef07d2dc05bd5ab48bb9e79c3"
         }
       ]
     },
@@ -2299,6 +3091,15 @@
           "sizeBytes": 6179708,
           "hasInterior": false,
           "sha256": "c7ae49c9b565f2ab71731444d56805ff33846f29ee574ad201fb2409aa709cfb"
+        },
+        {
+          "level": "interior",
+          "label": "Interieur",
+          "modelUrl": "https://github.com/elios134/asset-3d/releases/download/sc-4.1/DRAK_Caterpillar.interior.glb",
+          "tris": 702216,
+          "sizeBytes": 19566580,
+          "hasInterior": true,
+          "sha256": "8b369a94bc542d56693f4520a85c7b09ccf02f2c54bcdaf7258c2f0a30a69193"
         }
       ]
     },
@@ -2323,6 +3124,15 @@
           "sizeBytes": 6180824,
           "hasInterior": false,
           "sha256": "b09271129d5769245a788f4405e25150881deb6d2f3f339d3b1ce0d982a775b6"
+        },
+        {
+          "level": "interior",
+          "label": "Interieur",
+          "modelUrl": "https://github.com/elios134/asset-3d/releases/download/sc-4.1/DRAK_Caterpillar_Pirate.interior.glb",
+          "tris": 750111,
+          "sizeBytes": 20525752,
+          "hasInterior": true,
+          "sha256": "1cd5fd3d280d0d820de3060d2da47ee9c608b86e1718e6543eb10e0ddc46c11c"
         }
       ]
     },
@@ -2347,6 +3157,15 @@
           "sizeBytes": 6086404,
           "hasInterior": false,
           "sha256": "b3374fbfbd258f0d089c1987191085e0b17f3f7989624b729726663634d7ae73"
+        },
+        {
+          "level": "interior",
+          "label": "Interieur",
+          "modelUrl": "https://github.com/elios134/asset-3d/releases/download/sc-4.1/DRAK_Clipper.interior.glb",
+          "tris": 1201258,
+          "sizeBytes": 25653368,
+          "hasInterior": true,
+          "sha256": "7fb140ced7677ee8b06ed692bc7e2310e7cf74b28664f6a60aa6e515712fd78a"
         }
       ]
     },
@@ -2371,6 +3190,15 @@
           "sizeBytes": 4741864,
           "hasInterior": false,
           "sha256": "0871f17d5b203ddf4a7602338275c96b7169b19b323ca093069b67f117084473"
+        },
+        {
+          "level": "interior",
+          "label": "Interieur",
+          "modelUrl": "https://github.com/elios134/asset-3d/releases/download/sc-4.1/DRAK_Command_Module.interior.glb",
+          "tris": 1083092,
+          "sizeBytes": 18697020,
+          "hasInterior": true,
+          "sha256": "6b1026a5fca7d0d1f4a68344695f9fbd4543dae8c63ae986f63a667699ace13b"
         }
       ]
     },
@@ -2395,6 +3223,15 @@
           "sizeBytes": 7643484,
           "hasInterior": false,
           "sha256": "e5de14f919074a4d0b66b196587e4c4d84f15e3cc1c9d6af52532c093d297ea7"
+        },
+        {
+          "level": "interior",
+          "label": "Interieur",
+          "modelUrl": "https://github.com/elios134/asset-3d/releases/download/sc-4.1/DRAK_Corsair.interior.glb",
+          "tris": 755384,
+          "sizeBytes": 15867100,
+          "hasInterior": true,
+          "sha256": "c60c76d6eef2f660cc3e2f262ecb18396156b854819664dde627e894fdce5f3f"
         }
       ]
     },
@@ -2452,6 +3289,15 @@
           "sizeBytes": 4550184,
           "hasInterior": false,
           "sha256": "8e8932bedce8b4fbc0a209218fb3646161da5db31ed8984e34aeb9ded7d2b0c1"
+        },
+        {
+          "level": "interior",
+          "label": "Interieur",
+          "modelUrl": "https://github.com/elios134/asset-3d/releases/download/sc-4.1/DRAK_Cutlass_Blue.interior.glb",
+          "tris": 357164,
+          "sizeBytes": 9312896,
+          "hasInterior": true,
+          "sha256": "71da4c5f4c0d66b4ea5e96dff1e9ebf0f1d2257c795c104276886986a323703d"
         }
       ]
     },
@@ -2476,6 +3322,15 @@
           "sizeBytes": 3596220,
           "hasInterior": false,
           "sha256": "ea481753bfb01bdd5ece86972394cdf4988f23415a7d98d42016091abe0a095f"
+        },
+        {
+          "level": "interior",
+          "label": "Interieur",
+          "modelUrl": "https://github.com/elios134/asset-3d/releases/download/sc-4.1/DRAK_Cutlass_Red.interior.glb",
+          "tris": 311796,
+          "sizeBytes": 8076988,
+          "hasInterior": true,
+          "sha256": "53466f87ffcbfb28f6d4cf798c5de5aaec4d7c3abe27eb6024b37d1612cd2972"
         }
       ]
     },
@@ -2500,6 +3355,15 @@
           "sizeBytes": 4811652,
           "hasInterior": false,
           "sha256": "f41f78275224028f3fa8c0e07dfc6aa32902d0fd4c079d1c844fce5cf409d035"
+        },
+        {
+          "level": "interior",
+          "label": "Interieur",
+          "modelUrl": "https://github.com/elios134/asset-3d/releases/download/sc-4.1/DRAK_Cutlass_Steel.interior.glb",
+          "tris": 336950,
+          "sizeBytes": 8168424,
+          "hasInterior": true,
+          "sha256": "fd63ebdb471d5e7ab820cdb257685dd6520a871059b553b25fe7602fd14c9e20"
         }
       ]
     },
@@ -2524,6 +3388,15 @@
           "sizeBytes": 3955800,
           "hasInterior": false,
           "sha256": "22323842f18fb44c15fe38fcc3625ecd37637d1bd47c9b7a5987be9d32ab9140"
+        },
+        {
+          "level": "interior",
+          "label": "Interieur",
+          "modelUrl": "https://github.com/elios134/asset-3d/releases/download/sc-4.1/DRAK_Cutter.interior.glb",
+          "tris": 627805,
+          "sizeBytes": 12646536,
+          "hasInterior": true,
+          "sha256": "174b431e6241c7211c3c8ec58b0bea8cc36dc2a716492284b3c263f611cba64a"
         }
       ]
     },
@@ -2548,6 +3421,15 @@
           "sizeBytes": 4078296,
           "hasInterior": false,
           "sha256": "802b30253a8cbe9062eafb0406ae4d6b4e954f9cfbd5e0fd682c781bd016fc80"
+        },
+        {
+          "level": "interior",
+          "label": "Interieur",
+          "modelUrl": "https://github.com/elios134/asset-3d/releases/download/sc-4.1/DRAK_Cutter_Rambler.interior.glb",
+          "tris": 646932,
+          "sizeBytes": 13448156,
+          "hasInterior": true,
+          "sha256": "651fa1b46cddd1a5c6b2277edd0e8742a790a88239bd223b0fffcb708d88e741"
         }
       ]
     },
@@ -2572,6 +3454,15 @@
           "sizeBytes": 3365616,
           "hasInterior": false,
           "sha256": "38f4491428ed6b21de62a34bdb2cc1b9f356cd7b9f23ecd5430b856a3a584b76"
+        },
+        {
+          "level": "interior",
+          "label": "Interieur",
+          "modelUrl": "https://github.com/elios134/asset-3d/releases/download/sc-4.1/DRAK_Cutter_Scout.interior.glb",
+          "tris": 645831,
+          "sizeBytes": 13226856,
+          "hasInterior": true,
+          "sha256": "c5271753a62e75e466fa8ea61104450cd28aa60a4d0aa2d63a5905b7a44c90fd"
         }
       ]
     },
@@ -2596,6 +3487,15 @@
           "sizeBytes": 1054752,
           "hasInterior": false,
           "sha256": "f6d236cf124a30d09a0a8fafca03df15147fef2c6399088c4fd7e4b5e672cb0d"
+        },
+        {
+          "level": "interior",
+          "label": "Interieur",
+          "modelUrl": "https://github.com/elios134/asset-3d/releases/download/sc-4.1/DRAK_Dragonfly.interior.glb",
+          "tris": 139867,
+          "sizeBytes": 2592744,
+          "hasInterior": true,
+          "sha256": "1d40bd97c475cbfdc78f85f7a5a626ce89883aca6e84aaba0f7ad05c10795625"
         }
       ]
     },
@@ -2620,6 +3520,15 @@
           "sizeBytes": 1065292,
           "hasInterior": false,
           "sha256": "e58cf25880f8194c5e158c15dc496e8bb7eca154dd1ea68de99a0bd2a74868ca"
+        },
+        {
+          "level": "interior",
+          "label": "Interieur",
+          "modelUrl": "https://github.com/elios134/asset-3d/releases/download/sc-4.1/DRAK_Dragonfly_Pink.interior.glb",
+          "tris": 138068,
+          "sizeBytes": 2585176,
+          "hasInterior": true,
+          "sha256": "de40e285ff7c09559d35c576b405e67ef2835648e6df9949789820b032a443e0"
         }
       ]
     },
@@ -2644,6 +3553,15 @@
           "sizeBytes": 1080648,
           "hasInterior": false,
           "sha256": "93a47b4c58720af60954921523effe18835c41175785c1d73de8f3847d3d0b39"
+        },
+        {
+          "level": "interior",
+          "label": "Interieur",
+          "modelUrl": "https://github.com/elios134/asset-3d/releases/download/sc-4.1/DRAK_Dragonfly_Yellow.interior.glb",
+          "tris": 139867,
+          "sizeBytes": 2609684,
+          "hasInterior": true,
+          "sha256": "84ef9b50e43925ae7def41724b770d8a2f43d81fe74a98a2c1fb244e934c5102"
         }
       ]
     },
@@ -2668,6 +3586,15 @@
           "sizeBytes": 4375880,
           "hasInterior": false,
           "sha256": "2a2a282d3f4388eaf86166a9926353985421c3000d718193edc89d3b301720f0"
+        },
+        {
+          "level": "interior",
+          "label": "Interieur",
+          "modelUrl": "https://github.com/elios134/asset-3d/releases/download/sc-4.1/DRAK_Golem.interior.glb",
+          "tris": 520055,
+          "sizeBytes": 11010832,
+          "hasInterior": true,
+          "sha256": "a76619124be0f385d12cb68cc3f18922cf1983eeeacd791e8e9c696f6a9b5f3a"
         }
       ]
     },
@@ -2692,6 +3619,15 @@
           "sizeBytes": 4046740,
           "hasInterior": false,
           "sha256": "9e4c6a8bef2817957c511cab8fa6046cceed9f383259312cfb5362511975af77"
+        },
+        {
+          "level": "interior",
+          "label": "Interieur",
+          "modelUrl": "https://github.com/elios134/asset-3d/releases/download/sc-4.1/DRAK_Golem_OX.interior.glb",
+          "tris": 430982,
+          "sizeBytes": 10386024,
+          "hasInterior": true,
+          "sha256": "b42c865588171aed497048dcefa2c7f6bc2d04de5a0ae6f534fbfe47ad48fbee"
         }
       ]
     },
@@ -2716,6 +3652,15 @@
           "sizeBytes": 2301376,
           "hasInterior": false,
           "sha256": "75487d7b4760d4e46908934be647b3eda0034df0994079e3eb12be0c773ead73"
+        },
+        {
+          "level": "interior",
+          "label": "Interieur",
+          "modelUrl": "https://github.com/elios134/asset-3d/releases/download/sc-4.1/DRAK_Herald.interior.glb",
+          "tris": 315330,
+          "sizeBytes": 6826428,
+          "hasInterior": true,
+          "sha256": "622f3d4f0e4199ddb99805bfaa6a951e56aa8e1c96331a9b69c5622ae61d3e90"
         }
       ]
     },
@@ -2740,6 +3685,15 @@
           "sizeBytes": 9164732,
           "hasInterior": false,
           "sha256": "62048cf3ef9333e5e40fbeba54912c2c9f008276720da4140010e9986a2be8c4"
+        },
+        {
+          "level": "interior",
+          "label": "Interieur",
+          "modelUrl": "https://github.com/elios134/asset-3d/releases/download/sc-4.1/DRAK_Ironclad.interior.glb",
+          "tris": 1224190,
+          "sizeBytes": 33910600,
+          "hasInterior": true,
+          "sha256": "f23cda7fde6cd7e527993a9c7aaeb530e0fc7c7a94e26180c098e3c68ff74acd"
         }
       ]
     },
@@ -2764,6 +3718,15 @@
           "sizeBytes": 11052616,
           "hasInterior": false,
           "sha256": "45e6acefebc0148399630b8fb062d82e30f85259c9317e89a072b8d4456fded7"
+        },
+        {
+          "level": "interior",
+          "label": "Interieur",
+          "modelUrl": "https://github.com/elios134/asset-3d/releases/download/sc-4.1/DRAK_Ironclad_Assault.interior.glb",
+          "tris": 1297299,
+          "sizeBytes": 34664400,
+          "hasInterior": true,
+          "sha256": "9b71aec2013748d6e19bcce18e723f44dd81727d50d7930e3687107e751a2369"
         }
       ]
     },
@@ -2788,6 +3751,15 @@
           "sizeBytes": 1602904,
           "hasInterior": false,
           "sha256": "ea9835b3585e4ed6eeb50c21f744f7947229a09389e7656e81815b0d4b2766ce"
+        },
+        {
+          "level": "interior",
+          "label": "Interieur",
+          "modelUrl": "https://github.com/elios134/asset-3d/releases/download/sc-4.1/DRAK_Mule.interior.glb",
+          "tris": 213839,
+          "sizeBytes": 4482692,
+          "hasInterior": true,
+          "sha256": "dbcab0611f802d7176791570061940a1c427ed03199073cc700c332522c3d5a5"
         }
       ]
     },
@@ -2812,6 +3784,15 @@
           "sizeBytes": 3518224,
           "hasInterior": false,
           "sha256": "ac27d66ff31c64f1bf787d1b6a717ae5fab15f6ebc03cea551d51ba019981777"
+        },
+        {
+          "level": "interior",
+          "label": "Interieur",
+          "modelUrl": "https://github.com/elios134/asset-3d/releases/download/sc-4.1/DRAK_Pitbull.interior.glb",
+          "tris": 521944,
+          "sizeBytes": 7328328,
+          "hasInterior": true,
+          "sha256": "8d7c00289f7cd5d35ca49d8420be49b159d17c021912164cdd1eecbfc383450f"
         }
       ]
     },
@@ -2836,6 +3817,15 @@
           "sizeBytes": 4600800,
           "hasInterior": false,
           "sha256": "15dbfb6e532f646dffcbe4b5e39115a99ed26ebcd4f5d4a3957b8e25e63a0655"
+        },
+        {
+          "level": "interior",
+          "label": "Interieur",
+          "modelUrl": "https://github.com/elios134/asset-3d/releases/download/sc-4.1/DRAK_Vulture.interior.glb",
+          "tris": 350498,
+          "sizeBytes": 9350456,
+          "hasInterior": true,
+          "sha256": "7edcec459a8f2049156f8c68a185c096c8f3ca70647bedd4b657ea75fe157127"
         }
       ]
     },
@@ -2860,6 +3850,15 @@
           "sizeBytes": 3953136,
           "hasInterior": false,
           "sha256": "8b5d4c07bd549b91f7c1998956a73ec9c13151d14de3246b77717f4037c4a4f3"
+        },
+        {
+          "level": "interior",
+          "label": "Interieur",
+          "modelUrl": "https://github.com/elios134/asset-3d/releases/download/sc-4.1/ESPR_Prowler.interior.glb",
+          "tris": 278012,
+          "sizeBytes": 10332040,
+          "hasInterior": true,
+          "sha256": "7415302d5aa65046efc78a038596976f9e49f6d9eefa45a4daed24093682037f"
         }
       ]
     },
@@ -2884,6 +3883,15 @@
           "sizeBytes": 5190788,
           "hasInterior": false,
           "sha256": "991bafca128bc5d8f3d5a7917f1721b7f7d18a30f51f6e6493695272b033b504"
+        },
+        {
+          "level": "interior",
+          "label": "Interieur",
+          "modelUrl": "https://github.com/elios134/asset-3d/releases/download/sc-4.1/ESPR_Prowler_Utility.interior.glb",
+          "tris": 347589,
+          "sizeBytes": 15211020,
+          "hasInterior": true,
+          "sha256": "4000147b5c018a1a438b7fbc5148361c24157f1076bf2beb7d54f751e9e3075a"
         }
       ]
     },
@@ -2908,6 +3916,15 @@
           "sizeBytes": 2952840,
           "hasInterior": false,
           "sha256": "087f7f614e9dc65234cad8ed6f4f2a2f9dc71ce019e1da102b0dff369524e090"
+        },
+        {
+          "level": "interior",
+          "label": "Interieur",
+          "modelUrl": "https://github.com/elios134/asset-3d/releases/download/sc-4.1/ESPR_Talon.interior.glb",
+          "tris": 258606,
+          "sizeBytes": 7899740,
+          "hasInterior": true,
+          "sha256": "2aadf5d69471af8befc258ebb06acf29a0cb8f62c3317ad5f4c74570f161babc"
         }
       ]
     },
@@ -2932,6 +3949,15 @@
           "sizeBytes": 2984264,
           "hasInterior": false,
           "sha256": "efc5ec70760a259835b7b07cc70d890b6fde2be7213ebbf510eda260eed70388"
+        },
+        {
+          "level": "interior",
+          "label": "Interieur",
+          "modelUrl": "https://github.com/elios134/asset-3d/releases/download/sc-4.1/ESPR_Talon_Shrike.interior.glb",
+          "tris": 254062,
+          "sizeBytes": 7863752,
+          "hasInterior": true,
+          "sha256": "428238ab88a881fb36820ea8e6f1f08535e0f20fb57bfd03a74a8d1b16c6ca97"
         }
       ]
     },
@@ -2956,6 +3982,15 @@
           "sizeBytes": 6216536,
           "hasInterior": false,
           "sha256": "526c4cd8e811f2f1bd982077affce7f74d931657304cac661425dfd251ec86a3"
+        },
+        {
+          "level": "interior",
+          "label": "Interieur",
+          "modelUrl": "https://github.com/elios134/asset-3d/releases/download/sc-4.1/GAMA_Railen.interior.glb",
+          "tris": 744926,
+          "sizeBytes": 15910460,
+          "hasInterior": true,
+          "sha256": "b393c3d98e7588cacfda23ef15e31766e0e110b1e8f3c989a6f24f97fb88d726"
         }
       ]
     },
@@ -3004,6 +4039,15 @@
           "sizeBytes": 7163016,
           "hasInterior": false,
           "sha256": "9703cf5d87859f5e379975e2902748f664a714aa9f93f5cb01909f8723a0bb45"
+        },
+        {
+          "level": "interior",
+          "label": "Interieur",
+          "modelUrl": "https://github.com/elios134/asset-3d/releases/download/sc-4.1/GAMA_Tyilui.interior.glb",
+          "tris": 833668,
+          "sizeBytes": 17886512,
+          "hasInterior": true,
+          "sha256": "2948479023a93a9a2fd35a13b9d4913368ec669ff5da9a741f6611aa80996d89"
         }
       ]
     },
@@ -3028,6 +4072,15 @@
           "sizeBytes": 5811440,
           "hasInterior": false,
           "sha256": "2c22470c6213e100c33e29e0afabdb8dc6902a1c4bb8bdbd44d0814add7c925e"
+        },
+        {
+          "level": "interior",
+          "label": "Interieur",
+          "modelUrl": "https://github.com/elios134/asset-3d/releases/download/sc-4.1/GLSN_Shiv.interior.glb",
+          "tris": 391350,
+          "sizeBytes": 11731780,
+          "hasInterior": true,
+          "sha256": "ce96c795193e73da2ae4174ea8d340de972a36139b560a3fd40dd5c4437999a4"
         }
       ]
     },
@@ -3052,6 +4105,15 @@
           "sizeBytes": 1861388,
           "hasInterior": false,
           "sha256": "3b72b06e1a66db9dd5ff67c296fbf2b2e2478bdcd4b5a7dc000e9dd2285c697e"
+        },
+        {
+          "level": "interior",
+          "label": "Interieur",
+          "modelUrl": "https://github.com/elios134/asset-3d/releases/download/sc-4.1/GRIN_MDC.interior.glb",
+          "tris": 206419,
+          "sizeBytes": 5879140,
+          "hasInterior": true,
+          "sha256": "633b8ddbef742f16f611bf39618e14a9a5a51ee5513ce9575c3b656c92e30fa7"
         }
       ]
     },
@@ -3076,6 +4138,15 @@
           "sizeBytes": 2041604,
           "hasInterior": false,
           "sha256": "866477c00aa123f9b49471cafe0f6bfa956d50cb4da28d02a0b34d6bf04408f9"
+        },
+        {
+          "level": "interior",
+          "label": "Interieur",
+          "modelUrl": "https://github.com/elios134/asset-3d/releases/download/sc-4.1/GRIN_MTC.interior.glb",
+          "tris": 240703,
+          "sizeBytes": 6209268,
+          "hasInterior": true,
+          "sha256": "5bc8640565a4b7aae5d522b2d2143e380020ee8f6772911850266c940aaef964"
         }
       ]
     },
@@ -3100,6 +4171,15 @@
           "sizeBytes": 208760,
           "hasInterior": false,
           "sha256": "7b3ef9f5ffacf6ced92988cd866716485228955fb9ad176f080d10fb4f20b090"
+        },
+        {
+          "level": "interior",
+          "label": "Interieur",
+          "modelUrl": "https://github.com/elios134/asset-3d/releases/download/sc-4.1/GRIN_PTV.interior.glb",
+          "tris": 25174,
+          "sizeBytes": 423580,
+          "hasInterior": true,
+          "sha256": "012fef8d7b5778b6e9be1bf9647bf775fb6673340c54e86100b7f8d328a335c6"
         }
       ]
     },
@@ -3124,6 +4204,15 @@
           "sizeBytes": 644376,
           "hasInterior": false,
           "sha256": "914f9a5c6d789e7c1c708ec5e1267ca59727b30e07fd1001b9164bd0c629c57f"
+        },
+        {
+          "level": "interior",
+          "label": "Interieur",
+          "modelUrl": "https://github.com/elios134/asset-3d/releases/download/sc-4.1/GRIN_ROC.interior.glb",
+          "tris": 102457,
+          "sizeBytes": 2371736,
+          "hasInterior": true,
+          "sha256": "5119930a302b1597e9b1ce88c4821d901420e19fc185c19ee52b7ecd0799b829"
         }
       ]
     },
@@ -3148,6 +4237,15 @@
           "sizeBytes": 1221536,
           "hasInterior": false,
           "sha256": "2d8513b7e6cd9394f1d42f4d9566ebe188e5188eb70249c988ad2a4a05e33251"
+        },
+        {
+          "level": "interior",
+          "label": "Interieur",
+          "modelUrl": "https://github.com/elios134/asset-3d/releases/download/sc-4.1/GRIN_ROC_DS.interior.glb",
+          "tris": 201742,
+          "sizeBytes": 3806480,
+          "hasInterior": true,
+          "sha256": "93917515f7f3c9c721956b2367b916416d7e719780ab61a3078b56524453677a"
         }
       ]
     },
@@ -3172,6 +4270,15 @@
           "sizeBytes": 1214764,
           "hasInterior": false,
           "sha256": "96e4641083da82d062e302300c68ca9cdbcdf049d07aefc6828833c00caff7c8"
+        },
+        {
+          "level": "interior",
+          "label": "Interieur",
+          "modelUrl": "https://github.com/elios134/asset-3d/releases/download/sc-4.1/GRIN_STV.interior.glb",
+          "tris": 129849,
+          "sizeBytes": 3406572,
+          "hasInterior": true,
+          "sha256": "e6d5159f7f5212a9c57a32d90e99ef12209eaf51a6569b9acdf4f1fbdf994d38"
         }
       ]
     },
@@ -3196,6 +4303,15 @@
           "sizeBytes": 1664000,
           "hasInterior": false,
           "sha256": "feb20942d0622a1aea37cba3d823d6bbd81ace8fbbbf2d86af7c445d961a0ae0"
+        },
+        {
+          "level": "interior",
+          "label": "Interieur",
+          "modelUrl": "https://github.com/elios134/asset-3d/releases/download/sc-4.1/GRIN_UTV.interior.glb",
+          "tris": 274663,
+          "sizeBytes": 4479600,
+          "hasInterior": true,
+          "sha256": "94743f11171d72a227a9e7ba9899d08f17f3f876b9ed11bca46615eab420da0d"
         }
       ]
     },
@@ -3220,6 +4336,15 @@
           "sizeBytes": 4392364,
           "hasInterior": false,
           "sha256": "f9f935c6b6b4793496ae2d087505ce1c80bbbacef35caf14da09d1cdda93e79e"
+        },
+        {
+          "level": "interior",
+          "label": "Interieur",
+          "modelUrl": "https://github.com/elios134/asset-3d/releases/download/sc-4.1/KRIG_L21_Wolf.interior.glb",
+          "tris": 492470,
+          "sizeBytes": 10811500,
+          "hasInterior": true,
+          "sha256": "95bfbd8cd0b80bc3ddd1bbce43255bcbd31b1eb2db5781eec57a8a45a7ae885d"
         }
       ]
     },
@@ -3244,6 +4369,15 @@
           "sizeBytes": 4470660,
           "hasInterior": false,
           "sha256": "a5aab0b39eff383da9442063f052f9065fbe58cd5b172be519027fa981d13f30"
+        },
+        {
+          "level": "interior",
+          "label": "Interieur",
+          "modelUrl": "https://github.com/elios134/asset-3d/releases/download/sc-4.1/KRIG_L22_AlphaWolf.interior.glb",
+          "tris": 519493,
+          "sizeBytes": 13085636,
+          "hasInterior": true,
+          "sha256": "cfb364ebbccadd6e0f6d10b4f057555bc5d1addb7ae72441669c5c689ef1063d"
         }
       ]
     },
@@ -3268,6 +4402,15 @@
           "sizeBytes": 2188404,
           "hasInterior": false,
           "sha256": "518575b026d9fe0f4305b08b359ce166daadde18afa82f05f56d55dc2492401d"
+        },
+        {
+          "level": "interior",
+          "label": "Interieur",
+          "modelUrl": "https://github.com/elios134/asset-3d/releases/download/sc-4.1/KRIG_P52_Merlin.interior.glb",
+          "tris": 258683,
+          "sizeBytes": 5102352,
+          "hasInterior": true,
+          "sha256": "a4868894102bf546ac4dec416cabd3fff1f789c0d7f7876a5ac2b8cce447807a"
         }
       ]
     },
@@ -3292,6 +4435,15 @@
           "sizeBytes": 2473716,
           "hasInterior": false,
           "sha256": "a8537a3015ecb01723b14aa162ac526afdc889f69ad5b7a8e4d773cf7be6ea63"
+        },
+        {
+          "level": "interior",
+          "label": "Interieur",
+          "modelUrl": "https://github.com/elios134/asset-3d/releases/download/sc-4.1/KRIG_P72_Archimedes.interior.glb",
+          "tris": 315782,
+          "sizeBytes": 5758688,
+          "hasInterior": true,
+          "sha256": "e9d69d158f4e4c3f0f678c779252d8e41adf8532cb92f353dedde07d4ec35f9c"
         }
       ]
     },
@@ -3316,6 +4468,15 @@
           "sizeBytes": 2474428,
           "hasInterior": false,
           "sha256": "799a713fe6a44439757b4131f312b58300f3a96c23ca54a9d8ab3b0aefe67fa4"
+        },
+        {
+          "level": "interior",
+          "label": "Interieur",
+          "modelUrl": "https://github.com/elios134/asset-3d/releases/download/sc-4.1/KRIG_P72_Archimedes_Emerald.interior.glb",
+          "tris": 315782,
+          "sizeBytes": 5759420,
+          "hasInterior": true,
+          "sha256": "3528b6ff1bb63eaa5202958008810fc523dabd7951f99fc18b023626882b167a"
         }
       ]
     },
@@ -3340,6 +4501,15 @@
           "sizeBytes": 5095816,
           "hasInterior": false,
           "sha256": "9aa9c03c3f48bcbe2b3a0c37111fb35c4f4afb4c227599de2bea51ec509e653e"
+        },
+        {
+          "level": "interior",
+          "label": "Interieur",
+          "modelUrl": "https://github.com/elios134/asset-3d/releases/download/sc-4.1/MISC_Fortune.interior.glb",
+          "tris": 744777,
+          "sizeBytes": 14799464,
+          "hasInterior": true,
+          "sha256": "d8ffe7bb48aceeb796ca368bb5e8d1479a085174e776412d628676dfbd05a5a1"
         }
       ]
     },
@@ -3364,6 +4534,15 @@
           "sizeBytes": 3675976,
           "hasInterior": false,
           "sha256": "8368fad3a0548785fe986ab57c22749d4ddfce683ebe4c4a6fb261f44ad9a6c8"
+        },
+        {
+          "level": "interior",
+          "label": "Interieur",
+          "modelUrl": "https://github.com/elios134/asset-3d/releases/download/sc-4.1/MISC_Freelancer.interior.glb",
+          "tris": 275211,
+          "sizeBytes": 7019144,
+          "hasInterior": true,
+          "sha256": "c9c57b488bf1279b5eb5e02a6ee4826199cdce116734df31d26ef9765e8c206f"
         }
       ]
     },
@@ -3388,6 +4567,15 @@
           "sizeBytes": 3420132,
           "hasInterior": false,
           "sha256": "ba7a2266f2955df28a9d6189cc722643908e0e99d71a5d3975856bdf0faae672"
+        },
+        {
+          "level": "interior",
+          "label": "Interieur",
+          "modelUrl": "https://github.com/elios134/asset-3d/releases/download/sc-4.1/MISC_Freelancer_DUR.interior.glb",
+          "tris": 247840,
+          "sizeBytes": 6836372,
+          "hasInterior": true,
+          "sha256": "1a0881cfbde888f08ef0bb58139ad5439fe0f70b4755907992d69c707aed7ca1"
         }
       ]
     },
@@ -3412,6 +4600,15 @@
           "sizeBytes": 3191888,
           "hasInterior": false,
           "sha256": "d04b7ea45c1b10af235f882beffc8c216fe1a10115bd479ad07eae29292a5447"
+        },
+        {
+          "level": "interior",
+          "label": "Interieur",
+          "modelUrl": "https://github.com/elios134/asset-3d/releases/download/sc-4.1/MISC_Freelancer_MAX.interior.glb",
+          "tris": 255789,
+          "sizeBytes": 6424388,
+          "hasInterior": true,
+          "sha256": "5abbea45cc98a8554dfb1b6d287845424ed77111ee5eaf4d61f5c6aaeb9ee000"
         }
       ]
     },
@@ -3436,6 +4633,15 @@
           "sizeBytes": 4041284,
           "hasInterior": false,
           "sha256": "80541028e4ac0ffec88735f642f8853f4837586a025929534143458251b45737"
+        },
+        {
+          "level": "interior",
+          "label": "Interieur",
+          "modelUrl": "https://github.com/elios134/asset-3d/releases/download/sc-4.1/MISC_Freelancer_MIS.interior.glb",
+          "tris": 296069,
+          "sizeBytes": 7129004,
+          "hasInterior": true,
+          "sha256": "892be7a67355614e1dfa8a69564bcc2b2eba009dd50af816ff4cb8ed9c0e2232"
         }
       ]
     },
@@ -3460,6 +4666,15 @@
           "sizeBytes": 2918136,
           "hasInterior": false,
           "sha256": "685ba135d4d8a5aa5666976ea9b156dbf4ac452fcaaf7e8d3d92edcafacd1f4c"
+        },
+        {
+          "level": "interior",
+          "label": "Interieur",
+          "modelUrl": "https://github.com/elios134/asset-3d/releases/download/sc-4.1/MISC_Fury.interior.glb",
+          "tris": 328262,
+          "sizeBytes": 6651096,
+          "hasInterior": true,
+          "sha256": "a9cf265ca7e572023b0f5229d8c84142f9f8f294232722efabcd6193d74ed46f"
         }
       ]
     },
@@ -3484,6 +4699,15 @@
           "sizeBytes": 2494364,
           "hasInterior": false,
           "sha256": "9941b1b47f01357d22d8dce8fd982dfddc59d3e27527b27af0adb22a0f4606be"
+        },
+        {
+          "level": "interior",
+          "label": "Interieur",
+          "modelUrl": "https://github.com/elios134/asset-3d/releases/download/sc-4.1/MISC_Fury_LX.interior.glb",
+          "tris": 264436,
+          "sizeBytes": 6613064,
+          "hasInterior": true,
+          "sha256": "1a0b310a7e0c69e1fbf0466e61e0f98482454d667bd3865f2a6dc0a94b529f3c"
         }
       ]
     },
@@ -3508,6 +4732,15 @@
           "sizeBytes": 2471572,
           "hasInterior": false,
           "sha256": "fd9a7be5302913e54afc9fcb304b1d68cd37ef2d8c661fa963a6c576a6c5f465"
+        },
+        {
+          "level": "interior",
+          "label": "Interieur",
+          "modelUrl": "https://github.com/elios134/asset-3d/releases/download/sc-4.1/MISC_Fury_Miru.interior.glb",
+          "tris": 275916,
+          "sizeBytes": 6435732,
+          "hasInterior": true,
+          "sha256": "51d7e172aeb1bafc8f60b03f2c43d3e4361dc606b4ece438cea06d96f7413cca"
         }
       ]
     },
@@ -3532,6 +4765,15 @@
           "sizeBytes": 3394176,
           "hasInterior": false,
           "sha256": "ab6907f87173f6f03e0a5e629479ccf91e2efcdc8ea3e60d9434b69f6575f9d8"
+        },
+        {
+          "level": "interior",
+          "label": "Interieur",
+          "modelUrl": "https://github.com/elios134/asset-3d/releases/download/sc-4.1/MISC_Hull_A.interior.glb",
+          "tris": 223450,
+          "sizeBytes": 6698368,
+          "hasInterior": true,
+          "sha256": "e8941f4ece9715042957aa797739f5f14f0b24bf346557b6d2067e3793a43a24"
         }
       ]
     },
@@ -3556,6 +4798,15 @@
           "sizeBytes": 8192024,
           "hasInterior": false,
           "sha256": "f3fddb77b0856c83edb48ad3d13e6c518a180f2526a0f49131c2e591a9b00f1a"
+        },
+        {
+          "level": "interior",
+          "label": "Interieur",
+          "modelUrl": "https://github.com/elios134/asset-3d/releases/download/sc-4.1/MISC_Hull_B.interior.glb",
+          "tris": 404253,
+          "sizeBytes": 13480760,
+          "hasInterior": true,
+          "sha256": "fcfbbae7dadef070fd1827e5c666a94d59c9f1ceb9d4595e935cd164ce32610c"
         }
       ]
     },
@@ -3580,6 +4831,15 @@
           "sizeBytes": 5493628,
           "hasInterior": false,
           "sha256": "a436f95be0fa659f6eabd1d7dd7e3a1db3fe200b0c6f61dc6eb92e400a591468"
+        },
+        {
+          "level": "interior",
+          "label": "Interieur",
+          "modelUrl": "https://github.com/elios134/asset-3d/releases/download/sc-4.1/MISC_Hull_C.interior.glb",
+          "tris": 233890,
+          "sizeBytes": 7843192,
+          "hasInterior": true,
+          "sha256": "88a2510930867b07a93908a9c29a42c356a31910bcc30ce95d2c9bb2ce1de31d"
         }
       ]
     },
@@ -3604,6 +4864,15 @@
           "sizeBytes": 2428320,
           "hasInterior": false,
           "sha256": "856fea88ad1a523a0d162c510ba19b89299c22d852db7b98d5de8f37e99ebfc5"
+        },
+        {
+          "level": "interior",
+          "label": "Interieur",
+          "modelUrl": "https://github.com/elios134/asset-3d/releases/download/sc-4.1/MISC_Prospector.interior.glb",
+          "tris": 335826,
+          "sizeBytes": 7391392,
+          "hasInterior": true,
+          "sha256": "d9e58b6e4dd544ab7040afef1065121776d005b8c3a5673394eaf51cb39a0dc9"
         }
       ]
     },
@@ -3628,6 +4897,15 @@
           "sizeBytes": 1971764,
           "hasInterior": false,
           "sha256": "0805a1144603c0e05f94e9d2227be26cce98c37cc2aa12bc5011e8ea66d98f34"
+        },
+        {
+          "level": "interior",
+          "label": "Interieur",
+          "modelUrl": "https://github.com/elios134/asset-3d/releases/download/sc-4.1/MISC_Razor.interior.glb",
+          "tris": 198194,
+          "sizeBytes": 3761300,
+          "hasInterior": true,
+          "sha256": "214ef7091bb60e42ccb926a006b221c525e8c5fe2643a68636ee19db3088b79b"
         }
       ]
     },
@@ -3652,6 +4930,15 @@
           "sizeBytes": 1824264,
           "hasInterior": false,
           "sha256": "5889dc3f3f8babe833ec310c8ce4db94bdfb8264b65ade59fb6ba27b2d25b9c9"
+        },
+        {
+          "level": "interior",
+          "label": "Interieur",
+          "modelUrl": "https://github.com/elios134/asset-3d/releases/download/sc-4.1/MISC_Razor_EX.interior.glb",
+          "tris": 195142,
+          "sizeBytes": 3759784,
+          "hasInterior": true,
+          "sha256": "d7975acd04793c118c51a085f09a7cb61e05cb0723964b46f7012444c8df0fb2"
         }
       ]
     },
@@ -3676,6 +4963,15 @@
           "sizeBytes": 1998284,
           "hasInterior": false,
           "sha256": "beba86485799425390c6403bd182ffecbfd4b9a362675bf15c20dfc9916aa870"
+        },
+        {
+          "level": "interior",
+          "label": "Interieur",
+          "modelUrl": "https://github.com/elios134/asset-3d/releases/download/sc-4.1/MISC_Razor_LX.interior.glb",
+          "tris": 198194,
+          "sizeBytes": 3777096,
+          "hasInterior": true,
+          "sha256": "c5d0a6b56c2994b051f153952c097a549a2417ca282cb233572e20a68b48c6aa"
         }
       ]
     },
@@ -3700,6 +4996,15 @@
           "sizeBytes": 2562488,
           "hasInterior": false,
           "sha256": "b9280032322a3b0621599d5e9107da184d3ce2b913e76f8c091b1533accf234b"
+        },
+        {
+          "level": "interior",
+          "label": "Interieur",
+          "modelUrl": "https://github.com/elios134/asset-3d/releases/download/sc-4.1/MISC_Reliant.interior.glb",
+          "tris": 295190,
+          "sizeBytes": 6451596,
+          "hasInterior": true,
+          "sha256": "1ab5cd72b426f83276412f96215e90462a02f0cb266cbafb751efec75be4c5a2"
         }
       ]
     },
@@ -3724,6 +5029,15 @@
           "sizeBytes": 2271376,
           "hasInterior": false,
           "sha256": "c0e145e4f23a6af8d2e921c106f2850cb1879b5f619e3ad2a45704e71e54fa16"
+        },
+        {
+          "level": "interior",
+          "label": "Interieur",
+          "modelUrl": "https://github.com/elios134/asset-3d/releases/download/sc-4.1/MISC_Reliant_Mako.interior.glb",
+          "tris": 283573,
+          "sizeBytes": 6508228,
+          "hasInterior": true,
+          "sha256": "92f6e6a0f00b27f36d9b66354f216f34e4e733f6beebd344f67affa159ffea59"
         }
       ]
     },
@@ -3748,6 +5062,15 @@
           "sizeBytes": 2353620,
           "hasInterior": false,
           "sha256": "319a4199bcceeebd54a09a9b4f961434fca9f910b6b935c4bb21af99a34ac379"
+        },
+        {
+          "level": "interior",
+          "label": "Interieur",
+          "modelUrl": "https://github.com/elios134/asset-3d/releases/download/sc-4.1/MISC_Reliant_Sen.interior.glb",
+          "tris": 295442,
+          "sizeBytes": 6821124,
+          "hasInterior": true,
+          "sha256": "5a19310cb0664a1e25051192fcd34a38d19b5c37efcc62cbd87d264a0b2e8108"
         }
       ]
     },
@@ -3772,6 +5095,15 @@
           "sizeBytes": 2501412,
           "hasInterior": false,
           "sha256": "c857e3ed0eed695e071a132741281448cf28bf29a7777f0f04aa5236a41fb44c"
+        },
+        {
+          "level": "interior",
+          "label": "Interieur",
+          "modelUrl": "https://github.com/elios134/asset-3d/releases/download/sc-4.1/MISC_Reliant_Tana.interior.glb",
+          "tris": 305015,
+          "sizeBytes": 6606548,
+          "hasInterior": true,
+          "sha256": "41990ea3edfce2c1994d72c8886f0ea23ceaf52aca7cd4ce7905367f5ab05e01"
         }
       ]
     },
@@ -3796,6 +5128,15 @@
           "sizeBytes": 2770096,
           "hasInterior": false,
           "sha256": "f48dfbd611ecc21ecedf4e0f36e3334dabeea7af9cd3f0444deb08f43410e77b"
+        },
+        {
+          "level": "interior",
+          "label": "Interieur",
+          "modelUrl": "https://github.com/elios134/asset-3d/releases/download/sc-4.1/MISC_Starfarer.interior.glb",
+          "tris": 442573,
+          "sizeBytes": 8521392,
+          "hasInterior": true,
+          "sha256": "10423a68b2ded66891dac979fc8112cabf3f38db8af21e076c497548279a26b9"
         }
       ]
     },
@@ -3820,6 +5161,15 @@
           "sizeBytes": 2941320,
           "hasInterior": false,
           "sha256": "58a122cdc22d7e4fe3a5554d8b487e67747b37a8b18b095bec6f07ea3bf16412"
+        },
+        {
+          "level": "interior",
+          "label": "Interieur",
+          "modelUrl": "https://github.com/elios134/asset-3d/releases/download/sc-4.1/MISC_Starfarer_Gemini.interior.glb",
+          "tris": 445737,
+          "sizeBytes": 8522824,
+          "hasInterior": true,
+          "sha256": "d21232010c5bd51bef52102fda46f6567dfb41a22bdf2012b95f0ade1ef9a84e"
         }
       ]
     },
@@ -3844,6 +5194,15 @@
           "sizeBytes": 8396636,
           "hasInterior": false,
           "sha256": "f90c349513e149a5c24f314d5adff2749cc793ea827fe0bc68038cdf18fbe31e"
+        },
+        {
+          "level": "interior",
+          "label": "Interieur",
+          "modelUrl": "https://github.com/elios134/asset-3d/releases/download/sc-4.1/MISC_Starlancer_Max.interior.glb",
+          "tris": 587108,
+          "sizeBytes": 17936056,
+          "hasInterior": true,
+          "sha256": "d166fe44bdf084d03836b39b990fe209d021e0d2b1d899f086b5a566b097ac41"
         }
       ]
     },
@@ -3868,6 +5227,15 @@
           "sizeBytes": 10908936,
           "hasInterior": false,
           "sha256": "6c9196599b6e99d9e97fc74be13565d6db3b9c6d21509bbcdab06e48e8f12589"
+        },
+        {
+          "level": "interior",
+          "label": "Interieur",
+          "modelUrl": "https://github.com/elios134/asset-3d/releases/download/sc-4.1/MISC_Starlancer_TAC.interior.glb",
+          "tris": 695618,
+          "sizeBytes": 20919020,
+          "hasInterior": true,
+          "sha256": "4015505638e0dad5d1e4be3d837bb5576a18a436406144bbd24077bb8c48e864"
         }
       ]
     },
@@ -3892,6 +5260,15 @@
           "sizeBytes": 5914720,
           "hasInterior": false,
           "sha256": "18f99cc46d7087e9c76abd01c4fe7f10ae399f3e28fa252466146f301b4d15f1"
+        },
+        {
+          "level": "interior",
+          "label": "Interieur",
+          "modelUrl": "https://github.com/elios134/asset-3d/releases/download/sc-4.1/MISC_Starlite.interior.glb",
+          "tris": 469902,
+          "sizeBytes": 11424420,
+          "hasInterior": true,
+          "sha256": "be263b322dd2b7bbdb7b336d50006305233ad328320c600eadbc6da683fb9803"
         }
       ]
     },
@@ -3916,6 +5293,15 @@
           "sizeBytes": 5378180,
           "hasInterior": false,
           "sha256": "d3eda29bd6ed21e0cb3d234efd31a79908bb3609d16ef92282daeba885dd0462"
+        },
+        {
+          "level": "interior",
+          "label": "Interieur",
+          "modelUrl": "https://github.com/elios134/asset-3d/releases/download/sc-4.1/MRAI_Guardian.interior.glb",
+          "tris": 869207,
+          "sizeBytes": 19551904,
+          "hasInterior": true,
+          "sha256": "dec033a3538172674129698d02265e0e6cc5869d9f64d0e18a135182c3c39ee2"
         }
       ]
     },
@@ -3940,6 +5326,15 @@
           "sizeBytes": 6607952,
           "hasInterior": false,
           "sha256": "236fac1946637d6303bd4cc4ebce52c05ebb118fab12a5306d3214b9ba134c29"
+        },
+        {
+          "level": "interior",
+          "label": "Interieur",
+          "modelUrl": "https://github.com/elios134/asset-3d/releases/download/sc-4.1/MRAI_Guardian_MX.interior.glb",
+          "tris": 1339605,
+          "sizeBytes": 29343984,
+          "hasInterior": true,
+          "sha256": "aae0d408a1b7a54fae6f119bead5054cae4630497d7521f095c27c2a10298877"
         }
       ]
     },
@@ -3964,6 +5359,15 @@
           "sizeBytes": 5464144,
           "hasInterior": false,
           "sha256": "a4cdbc0b69bff5698399cefd4ccdbd90732de4f1232b014eb5ff1f8fc1329523"
+        },
+        {
+          "level": "interior",
+          "label": "Interieur",
+          "modelUrl": "https://github.com/elios134/asset-3d/releases/download/sc-4.1/MRAI_Guardian_QI.interior.glb",
+          "tris": 876898,
+          "sizeBytes": 19941824,
+          "hasInterior": true,
+          "sha256": "c6fe56b7a96d858b44a98db41b9181a928888e5ec20278f5ee08e23e584f9586"
         }
       ]
     },
@@ -3988,6 +5392,15 @@
           "sizeBytes": 1168688,
           "hasInterior": false,
           "sha256": "fa9b02a5857e9336069b22566d217885ceef4d4ce27fa7f14ed891999cbb8a8a"
+        },
+        {
+          "level": "interior",
+          "label": "Interieur",
+          "modelUrl": "https://github.com/elios134/asset-3d/releases/download/sc-4.1/MRAI_Pulse.interior.glb",
+          "tris": 104592,
+          "sizeBytes": 3055052,
+          "hasInterior": true,
+          "sha256": "198e95ba31c900bdf90aa1011d3372702474622193f3ab26c2603bb36c3edf14"
         }
       ]
     },
@@ -4012,6 +5425,15 @@
           "sizeBytes": 1175512,
           "hasInterior": false,
           "sha256": "909f77f493379e883481b7fb170b1334dc623517963e99655955d7c42874b8cf"
+        },
+        {
+          "level": "interior",
+          "label": "Interieur",
+          "modelUrl": "https://github.com/elios134/asset-3d/releases/download/sc-4.1/MRAI_Pulse_LX.interior.glb",
+          "tris": 104193,
+          "sizeBytes": 3117376,
+          "hasInterior": true,
+          "sha256": "bf20c345ca54312468903c28b9cf93e881edac3285e4b783bd7f1185b323168d"
         }
       ]
     },
@@ -4036,6 +5458,15 @@
           "sizeBytes": 1970672,
           "hasInterior": false,
           "sha256": "b00e0022b03dc1c58a4d031d083818a491b11e612cf2cd9e389814129ca1df83"
+        },
+        {
+          "level": "interior",
+          "label": "Interieur",
+          "modelUrl": "https://github.com/elios134/asset-3d/releases/download/sc-4.1/ORIG_100i.interior.glb",
+          "tris": 204466,
+          "sizeBytes": 4371924,
+          "hasInterior": true,
+          "sha256": "7036311a578325889b44b40160310a9f4ec13b954482cba7ea2a84840d088ce7"
         }
       ]
     },
@@ -4060,6 +5491,15 @@
           "sizeBytes": 2101896,
           "hasInterior": false,
           "sha256": "476418d940bc99c88050292ee76a7b25f5b70059f17ee9408403b8c0cd14d501"
+        },
+        {
+          "level": "interior",
+          "label": "Interieur",
+          "modelUrl": "https://github.com/elios134/asset-3d/releases/download/sc-4.1/ORIG_125a.interior.glb",
+          "tris": 208742,
+          "sizeBytes": 4521848,
+          "hasInterior": true,
+          "sha256": "f7f8fd2058400b3e6b1af5c2e0cc4be5c47b146bca7b9fe499ebd194354d6808"
         }
       ]
     },
@@ -4084,6 +5524,15 @@
           "sizeBytes": 2093584,
           "hasInterior": false,
           "sha256": "9cc646519bbe7e818516bd3fd1aa5422fdd8a885e7141de6f2afd1c0a2365b8f"
+        },
+        {
+          "level": "interior",
+          "label": "Interieur",
+          "modelUrl": "https://github.com/elios134/asset-3d/releases/download/sc-4.1/ORIG_135c.interior.glb",
+          "tris": 218915,
+          "sizeBytes": 4646056,
+          "hasInterior": true,
+          "sha256": "549815e8a61edec1218dcd8426c084b878dce6cb3d1b7c726eb587baac086e28"
         }
       ]
     },
@@ -4108,6 +5557,15 @@
           "sizeBytes": 1452340,
           "hasInterior": false,
           "sha256": "8c4611152b023672bc1a19202e715aa2510e110f08c27b317690d2b67e32dad5"
+        },
+        {
+          "level": "interior",
+          "label": "Interieur",
+          "modelUrl": "https://github.com/elios134/asset-3d/releases/download/sc-4.1/ORIG_300i.interior.glb",
+          "tris": 163118,
+          "sizeBytes": 3557000,
+          "hasInterior": true,
+          "sha256": "ebc2ca006d837c6074f499b84e9af795b8289a98c3d54372eab6d9a647cf1ae3"
         }
       ]
     },
@@ -4132,6 +5590,15 @@
           "sizeBytes": 1644212,
           "hasInterior": false,
           "sha256": "be0bbbe564ec6bc45da36c7870133f946cdda97200421d9fb50c09ce1b9236b3"
+        },
+        {
+          "level": "interior",
+          "label": "Interieur",
+          "modelUrl": "https://github.com/elios134/asset-3d/releases/download/sc-4.1/ORIG_315p.interior.glb",
+          "tris": 179806,
+          "sizeBytes": 4037532,
+          "hasInterior": true,
+          "sha256": "62c676964423edf91fbeb52078c7bf031521c64dc85c82ba0b4a0327f49d9276"
         }
       ]
     },
@@ -4156,6 +5623,15 @@
           "sizeBytes": 1700196,
           "hasInterior": false,
           "sha256": "0b447fa7936a6519b6f57ccce27d472c5f82c757a69c09b7d921a221eb42f9ad"
+        },
+        {
+          "level": "interior",
+          "label": "Interieur",
+          "modelUrl": "https://github.com/elios134/asset-3d/releases/download/sc-4.1/ORIG_325a.interior.glb",
+          "tris": 176946,
+          "sizeBytes": 4054708,
+          "hasInterior": true,
+          "sha256": "2c06c5c11c1b38ad4c088ae7c5d7e3eaaad3655a5f62c92cc3a191afb7a87881"
         }
       ]
     },
@@ -4180,6 +5656,15 @@
           "sizeBytes": 1348816,
           "hasInterior": false,
           "sha256": "49a0b84d4db5d3462456162f50a87056d5ddb6ce2f4fca83946c551dd342a590"
+        },
+        {
+          "level": "interior",
+          "label": "Interieur",
+          "modelUrl": "https://github.com/elios134/asset-3d/releases/download/sc-4.1/ORIG_350r.interior.glb",
+          "tris": 177083,
+          "sizeBytes": 3774104,
+          "hasInterior": true,
+          "sha256": "95e8915471eec4d3c7deee131ae1029a7d34c3cb4a81d557a156978ab8f87ef6"
         }
       ]
     },
@@ -4204,6 +5689,15 @@
           "sizeBytes": 4020264,
           "hasInterior": false,
           "sha256": "9f90ed117a3ce628c0c5ca24806d17c4a7987fc9f50928c36edafed79d558fba"
+        },
+        {
+          "level": "interior",
+          "label": "Interieur",
+          "modelUrl": "https://github.com/elios134/asset-3d/releases/download/sc-4.1/ORIG_400i.interior.glb",
+          "tris": 330456,
+          "sizeBytes": 9596440,
+          "hasInterior": true,
+          "sha256": "e91006111e68dcc735e8e408f1162f3927c74d2b77ee337508cca4ce96b2bfb5"
         }
       ]
     },
@@ -4228,6 +5722,15 @@
           "sizeBytes": 3935940,
           "hasInterior": false,
           "sha256": "108ebc949c85b2377cbf3b95e280c3d41988ea6945ca4c88c9e87f08fff3e648"
+        },
+        {
+          "level": "interior",
+          "label": "Interieur",
+          "modelUrl": "https://github.com/elios134/asset-3d/releases/download/sc-4.1/ORIG_600i.interior.glb",
+          "tris": 330466,
+          "sizeBytes": 9688392,
+          "hasInterior": true,
+          "sha256": "74155683d661f63981abec69c8a9ec99c2ac6d88e0072b127a72585a91f09ad5"
         }
       ]
     },
@@ -4252,6 +5755,15 @@
           "sizeBytes": 3711132,
           "hasInterior": false,
           "sha256": "e29d702d63e37371babb7fe09db4b9a78d5c1246dcb003a2f1ecf3554c57e77a"
+        },
+        {
+          "level": "interior",
+          "label": "Interieur",
+          "modelUrl": "https://github.com/elios134/asset-3d/releases/download/sc-4.1/ORIG_600i_Touring.interior.glb",
+          "tris": 295471,
+          "sizeBytes": 8800004,
+          "hasInterior": true,
+          "sha256": "d318890495922964a6fffe73c12d2ed4ecf930688a50d940338fbce4ce4c20d6"
         }
       ]
     },
@@ -4276,6 +5788,15 @@
           "sizeBytes": 1379348,
           "hasInterior": false,
           "sha256": "7112f9adb471f0b1f2dfb9d2696d79ed23fd7d3681e2aed31f841e722013d25f"
+        },
+        {
+          "level": "interior",
+          "label": "Interieur",
+          "modelUrl": "https://github.com/elios134/asset-3d/releases/download/sc-4.1/ORIG_85X.interior.glb",
+          "tris": 191784,
+          "sizeBytes": 3066596,
+          "hasInterior": true,
+          "sha256": "9bab857decad577078aaec4029a491d6a8adf8c29bbbed576fb2a87a74508c17"
         }
       ]
     },
@@ -4300,6 +5821,15 @@
           "sizeBytes": 3518808,
           "hasInterior": false,
           "sha256": "cb7a85a60c739349fa2be3547f394b3b0118c3e6ba80fb3a4cc497f3ac4442f7"
+        },
+        {
+          "level": "interior",
+          "label": "Interieur",
+          "modelUrl": "https://github.com/elios134/asset-3d/releases/download/sc-4.1/ORIG_890Jump.interior.glb",
+          "tris": 356496,
+          "sizeBytes": 13025832,
+          "hasInterior": true,
+          "sha256": "49f4841c48125415e9de967fda7482a96e7e6ed840b8d862ad8cf10b462af560"
         }
       ]
     },
@@ -4324,6 +5854,15 @@
           "sizeBytes": 1823384,
           "hasInterior": false,
           "sha256": "e77d60a5a938316cfe9d70fddaf9ba48d68cfd567f38e63e77f727335ad71b80"
+        },
+        {
+          "level": "interior",
+          "label": "Interieur",
+          "modelUrl": "https://github.com/elios134/asset-3d/releases/download/sc-4.1/ORIG_m50.interior.glb",
+          "tris": 182352,
+          "sizeBytes": 3547768,
+          "hasInterior": true,
+          "sha256": "f2f7ac12562b3541d9eb28736dd26a8bd3da9a51d145443e7dfe231b6d8ef456"
         }
       ]
     },
@@ -4348,6 +5887,15 @@
           "sizeBytes": 4661696,
           "hasInterior": false,
           "sha256": "a574084c3faa8c5b2df35572b253c713a7a84dace4ffe7b6db82285f4829c212"
+        },
+        {
+          "level": "interior",
+          "label": "Interieur",
+          "modelUrl": "https://github.com/elios134/asset-3d/releases/download/sc-4.1/ORIG_m80.interior.glb",
+          "tris": 670425,
+          "sizeBytes": 11385352,
+          "hasInterior": true,
+          "sha256": "94fb57248cc29026849173e8c5b43fde93ba75ce83d11dc178f51a57b72941bc"
         }
       ]
     },
@@ -4372,6 +5920,15 @@
           "sizeBytes": 1299824,
           "hasInterior": false,
           "sha256": "d30a867e3e957fb6d53b97934e353c46b534d3e1ccf83e52b95dd9badbf10d6a"
+        },
+        {
+          "level": "interior",
+          "label": "Interieur",
+          "modelUrl": "https://github.com/elios134/asset-3d/releases/download/sc-4.1/ORIG_X1.interior.glb",
+          "tris": 166649,
+          "sizeBytes": 3884904,
+          "hasInterior": true,
+          "sha256": "29d6e5251b9b5898e4996392be1585085bc924a40e13e4407b6ce7e22e61f8fa"
         }
       ]
     },
@@ -4396,6 +5953,15 @@
           "sizeBytes": 1397244,
           "hasInterior": false,
           "sha256": "c304b7d4d8bb204317845a36b0d17e1e6c92fa8ee9e2582356e5e42b2cc5d21b"
+        },
+        {
+          "level": "interior",
+          "label": "Interieur",
+          "modelUrl": "https://github.com/elios134/asset-3d/releases/download/sc-4.1/ORIG_X1_Force.interior.glb",
+          "tris": 168825,
+          "sizeBytes": 4019180,
+          "hasInterior": true,
+          "sha256": "dbca961d9f7350d67af41e111fd5adaf19a6892bac888193a379b98c24107db9"
         }
       ]
     },
@@ -4420,6 +5986,15 @@
           "sizeBytes": 1381956,
           "hasInterior": false,
           "sha256": "9b5a4917d5d27294f5476eafcf279717a7aea6590f4075fb7c3b91c62939bcb9"
+        },
+        {
+          "level": "interior",
+          "label": "Interieur",
+          "modelUrl": "https://github.com/elios134/asset-3d/releases/download/sc-4.1/ORIG_X1_Velocity.interior.glb",
+          "tris": 167562,
+          "sizeBytes": 4168288,
+          "hasInterior": true,
+          "sha256": "4a9e0ece8d952b27e84581f45b19e4bbc37f762e47cb4616ece8c6debb3c89ab"
         }
       ]
     },
@@ -4444,6 +6019,15 @@
           "sizeBytes": 8138968,
           "hasInterior": false,
           "sha256": "365f1735fc64f82be7f208a6fdecca6404d3fcbef731e72cd6577aaae77cadc8"
+        },
+        {
+          "level": "interior",
+          "label": "Interieur",
+          "modelUrl": "https://github.com/elios134/asset-3d/releases/download/sc-4.1/RSI_Apollo_Medivac.interior.glb",
+          "tris": 264030,
+          "sizeBytes": 12784772,
+          "hasInterior": true,
+          "sha256": "cb4c4fba6552285c64349912db7675ea210bf9f12fa241ea0e6ee331ffc04835"
         }
       ]
     },
@@ -4468,6 +6052,15 @@
           "sizeBytes": 8200516,
           "hasInterior": false,
           "sha256": "93ca4fe8911c1104e152bffbc9af729c1056787c978f3a8f32338e5ef6a9eb63"
+        },
+        {
+          "level": "interior",
+          "label": "Interieur",
+          "modelUrl": "https://github.com/elios134/asset-3d/releases/download/sc-4.1/RSI_Apollo_Triage.interior.glb",
+          "tris": 269912,
+          "sizeBytes": 12808916,
+          "hasInterior": true,
+          "sha256": "879c25049716b10eae79bf65a8dbe865e027d4649363f5340d142083e0fe7dfa"
         }
       ]
     },
@@ -4492,6 +6085,15 @@
           "sizeBytes": 2701688,
           "hasInterior": false,
           "sha256": "6543eff5d141d2c2469fb67d9b4d9b7a6493e5fe8935a8e6a29c3c0bc92752ff"
+        },
+        {
+          "level": "interior",
+          "label": "Interieur",
+          "modelUrl": "https://github.com/elios134/asset-3d/releases/download/sc-4.1/RSI_Aurora_GS_CL.interior.glb",
+          "tris": 305404,
+          "sizeBytes": 7061824,
+          "hasInterior": true,
+          "sha256": "352265b3bae19905000517a40c5c1f5597e33a7f0f78798c3181ced779ee5820"
         }
       ]
     },
@@ -4516,6 +6118,15 @@
           "sizeBytes": 2682944,
           "hasInterior": false,
           "sha256": "748bdc050a111d0531d9006b62452bd263b2a67e377638e73bd5dc8ea45f323a"
+        },
+        {
+          "level": "interior",
+          "label": "Interieur",
+          "modelUrl": "https://github.com/elios134/asset-3d/releases/download/sc-4.1/RSI_Aurora_GS_ES.interior.glb",
+          "tris": 290161,
+          "sizeBytes": 7114984,
+          "hasInterior": true,
+          "sha256": "e9c0bfdd43799a8d838f46c551c4a682b8d42cbb6b67f604f2aa85ce8a09c813"
         }
       ]
     },
@@ -4540,6 +6151,15 @@
           "sizeBytes": 2906548,
           "hasInterior": false,
           "sha256": "83ca7b4cfd25809b6d2a5199a26ad0f8dc59cd7514b3a5f24cc79bd932598168"
+        },
+        {
+          "level": "interior",
+          "label": "Interieur",
+          "modelUrl": "https://github.com/elios134/asset-3d/releases/download/sc-4.1/RSI_Aurora_GS_LN.interior.glb",
+          "tris": 341053,
+          "sizeBytes": 7141076,
+          "hasInterior": true,
+          "sha256": "a3c0c61ecd745d646a904ed3059391a4d563af38ce3886090a3fdd271b49041a"
         }
       ]
     },
@@ -4564,6 +6184,15 @@
           "sizeBytes": 3013476,
           "hasInterior": false,
           "sha256": "166773c4d23816744c79f53435d7fcc9972fb6e7e543d40b56b7854a0c428fe3"
+        },
+        {
+          "level": "interior",
+          "label": "Interieur",
+          "modelUrl": "https://github.com/elios134/asset-3d/releases/download/sc-4.1/RSI_Aurora_GS_LX.interior.glb",
+          "tris": 301526,
+          "sizeBytes": 7330840,
+          "hasInterior": true,
+          "sha256": "5d70943c0496cff2fcc3809c492ddc32808f9efe94174ffe3fc4d0ccaf81f224"
         }
       ]
     },
@@ -4588,6 +6217,15 @@
           "sizeBytes": 2687796,
           "hasInterior": false,
           "sha256": "2d7c4d71e1edeff03b3af353b83e170d8544f478ee7a30d059ea74de366f2cca"
+        },
+        {
+          "level": "interior",
+          "label": "Interieur",
+          "modelUrl": "https://github.com/elios134/asset-3d/releases/download/sc-4.1/RSI_Aurora_GS_MR.interior.glb",
+          "tris": 304415,
+          "sizeBytes": 7032952,
+          "hasInterior": true,
+          "sha256": "0a66ec87be35f29861de4361026a2efaa969970ee791ec9b561fc47121e9caa2"
         }
       ]
     },
@@ -4612,6 +6250,15 @@
           "sizeBytes": 3038208,
           "hasInterior": false,
           "sha256": "ec7e76de8770f3ff8c8a00a90d0dbbb65bc60982657a803d9379821dfa6da464"
+        },
+        {
+          "level": "interior",
+          "label": "Interieur",
+          "modelUrl": "https://github.com/elios134/asset-3d/releases/download/sc-4.1/RSI_Aurora_GS_SE.interior.glb",
+          "tris": 345573,
+          "sizeBytes": 7345968,
+          "hasInterior": true,
+          "sha256": "64a9a9d29a9b9bc631e5ceac8216986634d5da7bbbca0474e3538d6ee811d6a7"
         }
       ]
     },
@@ -4636,6 +6283,15 @@
           "sizeBytes": 5868280,
           "hasInterior": false,
           "sha256": "7f7a1a5154f0ae69f96d4a9e6589d56c37a46d664d994460590f7f8b0f689f60"
+        },
+        {
+          "level": "interior",
+          "label": "Interieur",
+          "modelUrl": "https://github.com/elios134/asset-3d/releases/download/sc-4.1/RSI_Aurora_Mk2.interior.glb",
+          "tris": 791485,
+          "sizeBytes": 16529820,
+          "hasInterior": true,
+          "sha256": "7937e4a09c9ae119b0c05c9c090e81b1161e8e02a294f1aed51473ce1ded52f6"
         }
       ]
     },
@@ -4660,6 +6316,15 @@
           "sizeBytes": 6002556,
           "hasInterior": false,
           "sha256": "600a9b5865be93646aa6f11ed47f63f5f58a63e5636b11b4c78c0d7cbf90ca80"
+        },
+        {
+          "level": "interior",
+          "label": "Interieur",
+          "modelUrl": "https://github.com/elios134/asset-3d/releases/download/sc-4.1/RSI_Constellation_Andromeda.interior.glb",
+          "tris": 473594,
+          "sizeBytes": 10848776,
+          "hasInterior": true,
+          "sha256": "d6fd68991ed622d85bdafd2ab3f48f67b222365760c4fbc6a848f5020dec1591"
         }
       ]
     },
@@ -4684,6 +6349,15 @@
           "sizeBytes": 5213748,
           "hasInterior": false,
           "sha256": "26c04312455ffd567eaa3f1ff932ce4a47eaa684af54096f486b96a9234f1f3c"
+        },
+        {
+          "level": "interior",
+          "label": "Interieur",
+          "modelUrl": "https://github.com/elios134/asset-3d/releases/download/sc-4.1/RSI_Constellation_Aquila.interior.glb",
+          "tris": 451398,
+          "sizeBytes": 11178728,
+          "hasInterior": true,
+          "sha256": "6c55191bd85dad12a9bfcfb06d737e312c21d4ace9602a248529b7348d0b0667"
         }
       ]
     },
@@ -4708,6 +6382,15 @@
           "sizeBytes": 5418528,
           "hasInterior": false,
           "sha256": "2378d22db0f68221fa9f015a36fa63af4221a3a5c042d4b9a0ac8b8916ef97d2"
+        },
+        {
+          "level": "interior",
+          "label": "Interieur",
+          "modelUrl": "https://github.com/elios134/asset-3d/releases/download/sc-4.1/RSI_Constellation_Phoenix.interior.glb",
+          "tris": 470556,
+          "sizeBytes": 11475804,
+          "hasInterior": true,
+          "sha256": "a23aedcaf8941b2fb6c1d68e0daca21fce7a088e8943501a60825caeb6da59e9"
         }
       ]
     },
@@ -4732,6 +6415,15 @@
           "sizeBytes": 5493244,
           "hasInterior": false,
           "sha256": "7baecf896a9cec15713e8729aa7ac5961a6a63b228f2c40019d8057a0e3bb017"
+        },
+        {
+          "level": "interior",
+          "label": "Interieur",
+          "modelUrl": "https://github.com/elios134/asset-3d/releases/download/sc-4.1/RSI_Constellation_Phoenix_Emerald.interior.glb",
+          "tris": 470556,
+          "sizeBytes": 11542224,
+          "hasInterior": true,
+          "sha256": "e100cefe8a8e74f5df97b9f00b3a81d9ba25f58942d0ccffe6391ba345e59bcc"
         }
       ]
     },
@@ -4756,6 +6448,15 @@
           "sizeBytes": 4438096,
           "hasInterior": false,
           "sha256": "999f4e578b303b2ec280247e4026d4a43450fcc0a7daef1aafdaa16e69ae2821"
+        },
+        {
+          "level": "interior",
+          "label": "Interieur",
+          "modelUrl": "https://github.com/elios134/asset-3d/releases/download/sc-4.1/RSI_Constellation_Taurus.interior.glb",
+          "tris": 130261,
+          "sizeBytes": 4762140,
+          "hasInterior": true,
+          "sha256": "9d58cde4f75433b8c8909415a7d57720bc28de53df324b45979b18fda9049aa3"
         }
       ]
     },
@@ -4780,6 +6481,15 @@
           "sizeBytes": 7965068,
           "hasInterior": false,
           "sha256": "5bf636b0ef0d5c3b421ddd6173ed4df774dbd5a09f97050905cf073843c74ecc"
+        },
+        {
+          "level": "interior",
+          "label": "Interieur",
+          "modelUrl": "https://github.com/elios134/asset-3d/releases/download/sc-4.1/RSI_Hermes.interior.glb",
+          "tris": 274642,
+          "sizeBytes": 11865780,
+          "hasInterior": true,
+          "sha256": "4d7950df53b8ed7d51616bae8e47e718f7baec7aa10a52b1de6b95508a11fb28"
         }
       ]
     },
@@ -4804,6 +6514,15 @@
           "sizeBytes": 1722812,
           "hasInterior": false,
           "sha256": "30a0dca3d8944a4eb55c011a7bc2227c3ab30972b1aba68e517979111739bffa"
+        },
+        {
+          "level": "interior",
+          "label": "Interieur",
+          "modelUrl": "https://github.com/elios134/asset-3d/releases/download/sc-4.1/RSI_Lynx.interior.glb",
+          "tris": 226613,
+          "sizeBytes": 4657792,
+          "hasInterior": true,
+          "sha256": "5d24d750acff3e5a3b3450d9b2f34625925223590bc8ea6233013e3c4fa62631"
         }
       ]
     },
@@ -4828,6 +6547,15 @@
           "sizeBytes": 2361484,
           "hasInterior": false,
           "sha256": "91ca1004a6cf108904b058c646976bbfaab145aad2b370a067199e3e5011a96d"
+        },
+        {
+          "level": "interior",
+          "label": "Interieur",
+          "modelUrl": "https://github.com/elios134/asset-3d/releases/download/sc-4.1/RSI_Mantis.interior.glb",
+          "tris": 129903,
+          "sizeBytes": 4586340,
+          "hasInterior": true,
+          "sha256": "3652b58671dae8354a3b7cb906a2f676f078c947a4be46255c8b7716fe7ac111"
         }
       ]
     },
@@ -4852,6 +6580,15 @@
           "sizeBytes": 3496148,
           "hasInterior": false,
           "sha256": "a9392f7215b19677aa0ebec4d5083d85f0386a4759e02e59b7ddf502dba88435"
+        },
+        {
+          "level": "interior",
+          "label": "Interieur",
+          "modelUrl": "https://github.com/elios134/asset-3d/releases/download/sc-4.1/RSI_Meteor.interior.glb",
+          "tris": 170305,
+          "sizeBytes": 6312448,
+          "hasInterior": true,
+          "sha256": "924b53b87db9fe11290e72d3a87db45c41ee0f7027df51ba1aa65895f8425be2"
         }
       ]
     },
@@ -4876,6 +6613,15 @@
           "sizeBytes": 8888076,
           "hasInterior": false,
           "sha256": "cb55d86e61ceca52f58b2c551ca234b01db325602e727163e4e7066bb95e8ace"
+        },
+        {
+          "level": "interior",
+          "label": "Interieur",
+          "modelUrl": "https://github.com/elios134/asset-3d/releases/download/sc-4.1/RSI_Perseus.interior.glb",
+          "tris": 888337,
+          "sizeBytes": 32625288,
+          "hasInterior": true,
+          "sha256": "56ccf62946b3839896b3103940ec5680da6fdb4653d44dcb5f1c6e256e991d53"
         }
       ]
     },
@@ -4900,6 +6646,15 @@
           "sizeBytes": 8680788,
           "hasInterior": false,
           "sha256": "52473f5bffccfd0986b11d546b36321143de6432860d691773865f5224d90780"
+        },
+        {
+          "level": "interior",
+          "label": "Interieur",
+          "modelUrl": "https://github.com/elios134/asset-3d/releases/download/sc-4.1/RSI_Polaris.interior.glb",
+          "tris": 982798,
+          "sizeBytes": 33604968,
+          "hasInterior": true,
+          "sha256": "8b99c04786d3416d4c140c7981eb98d481c9986ef8da043c02af850e788a40bc"
         }
       ]
     },
@@ -4924,6 +6679,15 @@
           "sizeBytes": 3442364,
           "hasInterior": false,
           "sha256": "e5e0331cae6373fe5a164c49263f57c110f8101a7c06c892c9e5be7849960d01"
+        },
+        {
+          "level": "interior",
+          "label": "Interieur",
+          "modelUrl": "https://github.com/elios134/asset-3d/releases/download/sc-4.1/RSI_Salvation.interior.glb",
+          "tris": 349206,
+          "sizeBytes": 7801072,
+          "hasInterior": true,
+          "sha256": "2dc6a1524e72fad1492701622524aaaf7e0c46141226f521d906de68cf852dd7"
         }
       ]
     },
@@ -4948,6 +6712,15 @@
           "sizeBytes": 4254672,
           "hasInterior": false,
           "sha256": "0220044ab60ca7f05826ae212e0dfb8151b5d686592825a776e915a302dd3187"
+        },
+        {
+          "level": "interior",
+          "label": "Interieur",
+          "modelUrl": "https://github.com/elios134/asset-3d/releases/download/sc-4.1/RSI_Scorpius.interior.glb",
+          "tris": 239483,
+          "sizeBytes": 6626916,
+          "hasInterior": true,
+          "sha256": "81d4e7f7c8915499270faadec5bbf1c21e06af206403349a15a8f3354badd56d"
         }
       ]
     },
@@ -4972,6 +6745,15 @@
           "sizeBytes": 3875264,
           "hasInterior": false,
           "sha256": "56d816b309a75a989bf56c320311ed5665739bdf3a04b4c307bef0d0ad823ae2"
+        },
+        {
+          "level": "interior",
+          "label": "Interieur",
+          "modelUrl": "https://github.com/elios134/asset-3d/releases/download/sc-4.1/RSI_Scorpius_Antares.interior.glb",
+          "tris": 216051,
+          "sizeBytes": 6764548,
+          "hasInterior": true,
+          "sha256": "bb3c60aadeebbc0c3d82fd461f56b9626a9d8d46891c40402000dfde1c3af655"
         }
       ]
     },
@@ -4996,6 +6778,15 @@
           "sizeBytes": 1638828,
           "hasInterior": false,
           "sha256": "9a03db27b74030c5d4cb4944d745dbb00643c2282db8c419f27237349a65fd7c"
+        },
+        {
+          "level": "interior",
+          "label": "Interieur",
+          "modelUrl": "https://github.com/elios134/asset-3d/releases/download/sc-4.1/RSI_Ursa_Medivac.interior.glb",
+          "tris": 223595,
+          "sizeBytes": 4925032,
+          "hasInterior": true,
+          "sha256": "574f111c4244f56f2ec6fae29b1b82ec370a48423c6af6308539fe67fe5fd41c"
         }
       ]
     },
@@ -5020,6 +6811,15 @@
           "sizeBytes": 1424264,
           "hasInterior": false,
           "sha256": "7fb489854fdbfcf8dee9ca38dd4c77bab064cae907939ea9a19fdafee87271b7"
+        },
+        {
+          "level": "interior",
+          "label": "Interieur",
+          "modelUrl": "https://github.com/elios134/asset-3d/releases/download/sc-4.1/RSI_Ursa_Rover.interior.glb",
+          "tris": 147989,
+          "sizeBytes": 3505564,
+          "hasInterior": true,
+          "sha256": "53ef301e55a26711e489559c6e503089bf96f8f74843178299aeeffb6f5d3039"
         }
       ]
     },
@@ -5044,6 +6844,15 @@
           "sizeBytes": 1530836,
           "hasInterior": false,
           "sha256": "a13694899787623ab58decfe55e9ed602b526c86c5dd1040447bbc5c23cf5e61"
+        },
+        {
+          "level": "interior",
+          "label": "Interieur",
+          "modelUrl": "https://github.com/elios134/asset-3d/releases/download/sc-4.1/RSI_Ursa_Rover_Emerald.interior.glb",
+          "tris": 145687,
+          "sizeBytes": 3601968,
+          "hasInterior": true,
+          "sha256": "f8f406a1f88fb1b765819d66d17ba873ebcb9e540215b8ae51501a2ab6dd31cf"
         }
       ]
     },
@@ -5068,6 +6877,15 @@
           "sizeBytes": 5709056,
           "hasInterior": false,
           "sha256": "b42c9687cd0499eea8c6f02e9f9d0b3be7d8bf309c292afb29c2ada770ab1b25"
+        },
+        {
+          "level": "interior",
+          "label": "Interieur",
+          "modelUrl": "https://github.com/elios134/asset-3d/releases/download/sc-4.1/RSI_Zeus_CL.interior.glb",
+          "tris": 464871,
+          "sizeBytes": 13367948,
+          "hasInterior": true,
+          "sha256": "c8743a89a379a1d7f9629b4f44df573f19573c1b3b8340c9b4c288336f3336b6"
         }
       ]
     },
@@ -5092,6 +6910,15 @@
           "sizeBytes": 5159908,
           "hasInterior": false,
           "sha256": "429c61229bd4c2cd196b2de4045ff9ee422906516c28928788a129fe07e5f5a1"
+        },
+        {
+          "level": "interior",
+          "label": "Interieur",
+          "modelUrl": "https://github.com/elios134/asset-3d/releases/download/sc-4.1/RSI_Zeus_ES.interior.glb",
+          "tris": 445760,
+          "sizeBytes": 13246260,
+          "hasInterior": true,
+          "sha256": "5ed2eb3ef6a6222c12c058ba4a7897d6a5d1001efaed454ef6d234ae225e6a73"
         }
       ]
     },
@@ -5116,6 +6943,15 @@
           "sizeBytes": 1108592,
           "hasInterior": false,
           "sha256": "b66da31f4532e060baae307bc1753b2316cddb79ee4cddf5f59a54d76f4e25fd"
+        },
+        {
+          "level": "interior",
+          "label": "Interieur",
+          "modelUrl": "https://github.com/elios134/asset-3d/releases/download/sc-4.1/TMBL_Cyclone.interior.glb",
+          "tris": 118116,
+          "sizeBytes": 2851968,
+          "hasInterior": true,
+          "sha256": "852b570f816a3fd1716d4cc1e37596c0f2faee5182dc357665aa59116a614c51"
         }
       ]
     },
@@ -5140,6 +6976,15 @@
           "sizeBytes": 1259060,
           "hasInterior": false,
           "sha256": "836e347d26cc4f3ed6f8c602df4ecd484f94720efe8d4b03a47574c3c04e7c01"
+        },
+        {
+          "level": "interior",
+          "label": "Interieur",
+          "modelUrl": "https://github.com/elios134/asset-3d/releases/download/sc-4.1/TMBL_Cyclone_AA.interior.glb",
+          "tris": 133019,
+          "sizeBytes": 3166256,
+          "hasInterior": true,
+          "sha256": "0aa69848055b8d2b85ca81b5482032bc8952a353bfbb0fef98e668f410cb13cd"
         }
       ]
     },
@@ -5164,6 +7009,15 @@
           "sizeBytes": 1444648,
           "hasInterior": false,
           "sha256": "a38e471e79f89615c0deb64272e9731c2232aea382da8dbfec63e2922cf4ae42"
+        },
+        {
+          "level": "interior",
+          "label": "Interieur",
+          "modelUrl": "https://github.com/elios134/asset-3d/releases/download/sc-4.1/TMBL_Cyclone_MT.interior.glb",
+          "tris": 153267,
+          "sizeBytes": 3738776,
+          "hasInterior": true,
+          "sha256": "7ce7f192740dc8040ac0ac10eda52be599f8aa7583629279259fb5410368e3d7"
         }
       ]
     },
@@ -5188,6 +7042,15 @@
           "sizeBytes": 1205584,
           "hasInterior": false,
           "sha256": "922bd76a7f0af0a84d1d5488f957a643bc22abaf4d0d92f83978bd66d560eaa6"
+        },
+        {
+          "level": "interior",
+          "label": "Interieur",
+          "modelUrl": "https://github.com/elios134/asset-3d/releases/download/sc-4.1/TMBL_Cyclone_RC.interior.glb",
+          "tris": 125638,
+          "sizeBytes": 3011168,
+          "hasInterior": true,
+          "sha256": "c75b0b5b85416f960fb0041de68302592535e0dc352e6a211ef862a5509e2c09"
         }
       ]
     },
@@ -5212,6 +7075,15 @@
           "sizeBytes": 1151516,
           "hasInterior": false,
           "sha256": "0c575bf37a99bc241ddca8bd1af4e7f82ab0880e62348668aef8102716033960"
+        },
+        {
+          "level": "interior",
+          "label": "Interieur",
+          "modelUrl": "https://github.com/elios134/asset-3d/releases/download/sc-4.1/TMBL_Cyclone_RN.interior.glb",
+          "tris": 131699,
+          "sizeBytes": 3073552,
+          "hasInterior": true,
+          "sha256": "a419276c43b5e1ef985dc07cd77d1d33e32321d85c294c8fed5e7c9f55cccaa1"
         }
       ]
     },
@@ -5236,6 +7108,15 @@
           "sizeBytes": 1272964,
           "hasInterior": false,
           "sha256": "1261ad98e6f2121e9bfa9cfa0c51bda5b1b8ecc5037cb77bc4157bbf2224f5c9"
+        },
+        {
+          "level": "interior",
+          "label": "Interieur",
+          "modelUrl": "https://github.com/elios134/asset-3d/releases/download/sc-4.1/TMBL_Cyclone_TR.interior.glb",
+          "tris": 133425,
+          "sizeBytes": 3244088,
+          "hasInterior": true,
+          "sha256": "ccb39bb70a35dee09a71bb8ce9f0a3054645ab9a948552fa5451b22f5a924749"
         }
       ]
     },
@@ -5260,6 +7141,15 @@
           "sizeBytes": 2140296,
           "hasInterior": false,
           "sha256": "1f977e2bb02bb34f47a7c4f202530514cd6f702aaff22d625770bb68423f32ed"
+        },
+        {
+          "level": "interior",
+          "label": "Interieur",
+          "modelUrl": "https://github.com/elios134/asset-3d/releases/download/sc-4.1/TMBL_Nova.interior.glb",
+          "tris": 258714,
+          "sizeBytes": 4957976,
+          "hasInterior": true,
+          "sha256": "ec5ebd4a558a9179447247d59cf92c8548a611bd5dfde6b49e7f851095b020fa"
         }
       ]
     },
@@ -5284,6 +7174,15 @@
           "sizeBytes": 2571684,
           "hasInterior": false,
           "sha256": "0a18120b2f3a8c71a3ad8483e6143ac11a21aeb72c67b8e2cfdd74341aadd3bc"
+        },
+        {
+          "level": "interior",
+          "label": "Interieur",
+          "modelUrl": "https://github.com/elios134/asset-3d/releases/download/sc-4.1/TMBL_Storm.interior.glb",
+          "tris": 437546,
+          "sizeBytes": 9505656,
+          "hasInterior": true,
+          "sha256": "73174a3df3636e158ae6c41fa8ec713340469d9c7e4894adc2989829891c3b3f"
         }
       ]
     },
@@ -5308,6 +7207,15 @@
           "sizeBytes": 3731632,
           "hasInterior": false,
           "sha256": "972ffa714b40d87e14606fc45938f4ef6191b07045127fe44d2a33e7ee0b9a3d"
+        },
+        {
+          "level": "interior",
+          "label": "Interieur",
+          "modelUrl": "https://github.com/elios134/asset-3d/releases/download/sc-4.1/TMBL_Storm_AA.interior.glb",
+          "tris": 573719,
+          "sizeBytes": 9941720,
+          "hasInterior": true,
+          "sha256": "1226305f2aeebdc8bec8800f4f4d8febe495967604f7291e4a057529d82fa747"
         }
       ]
     },
@@ -5332,6 +7240,15 @@
           "sizeBytes": 2285680,
           "hasInterior": false,
           "sha256": "ff5e63c3120af02af0068a2b40919142032f407ec04d72b66d3e382a5d3d2a12"
+        },
+        {
+          "level": "interior",
+          "label": "Interieur",
+          "modelUrl": "https://github.com/elios134/asset-3d/releases/download/sc-4.1/VNCL_Blade.interior.glb",
+          "tris": 255238,
+          "sizeBytes": 4104024,
+          "hasInterior": true,
+          "sha256": "22fc6380aa6c9ab1536b934a910bf629145450bcff7da9d74578e5f355a52b51"
         }
       ]
     },
@@ -5356,6 +7273,15 @@
           "sizeBytes": 1356040,
           "hasInterior": false,
           "sha256": "cb83b66acb183c8587dbdf46982f1c227fd8cf77d430196487bece7df0ddbf9f"
+        },
+        {
+          "level": "interior",
+          "label": "Interieur",
+          "modelUrl": "https://github.com/elios134/asset-3d/releases/download/sc-4.1/VNCL_Glaive.interior.glb",
+          "tris": 86166,
+          "sizeBytes": 2554840,
+          "hasInterior": true,
+          "sha256": "533c1df8267649b75da3590b834c66083cdb84439282de29c25806af5fa664ad"
         }
       ]
     },
@@ -5380,6 +7306,15 @@
           "sizeBytes": 5292468,
           "hasInterior": false,
           "sha256": "fd808517735bf5813d9f34a51ff6a6ac1c142fa6b7a21f673a8577fb39b7c581"
+        },
+        {
+          "level": "interior",
+          "label": "Interieur",
+          "modelUrl": "https://github.com/elios134/asset-3d/releases/download/sc-4.1/VNCL_Mauler.interior.glb",
+          "tris": 272698,
+          "sizeBytes": 5773848,
+          "hasInterior": true,
+          "sha256": "124a117cb99220ca1091a16ede180574c4811f1a6e3dd59cf72418e51a0492dc"
         }
       ]
     },
@@ -5404,6 +7339,15 @@
           "sizeBytes": 1461328,
           "hasInterior": false,
           "sha256": "40250db73fad8cd6d105fe241e1052c95dddc1b18df31393ee3abb50d4f9a0f4"
+        },
+        {
+          "level": "interior",
+          "label": "Interieur",
+          "modelUrl": "https://github.com/elios134/asset-3d/releases/download/sc-4.1/VNCL_Scythe.interior.glb",
+          "tris": 84069,
+          "sizeBytes": 2238364,
+          "hasInterior": true,
+          "sha256": "ea0da01e038968c43807667bf00081cfc5e71f0305d600b30c4645c6511397f0"
         }
       ]
     },
@@ -5428,6 +7372,15 @@
           "sizeBytes": 3904496,
           "hasInterior": false,
           "sha256": "c37355ceb3b936555854a1eb075ada5aab3945b927ccae8ca79bb15b75d33991"
+        },
+        {
+          "level": "interior",
+          "label": "Interieur",
+          "modelUrl": "https://github.com/elios134/asset-3d/releases/download/sc-4.1/VNCL_Stinger.interior.glb",
+          "tris": 190987,
+          "sizeBytes": 6733496,
+          "hasInterior": true,
+          "sha256": "cb1994a95bdb0fc9973949a42f4498cd94005356d526d65ba6c10df67b8afabb"
         }
       ]
     },
@@ -5452,6 +7405,15 @@
           "sizeBytes": 971952,
           "hasInterior": false,
           "sha256": "074b01fc8f8219841de7efba33963f5d8f35f488e4655f52ad210e269dadbe41"
+        },
+        {
+          "level": "interior",
+          "label": "Interieur",
+          "modelUrl": "https://github.com/elios134/asset-3d/releases/download/sc-4.1/XIAN_Nox.interior.glb",
+          "tris": 86339,
+          "sizeBytes": 1851104,
+          "hasInterior": true,
+          "sha256": "e71bef7727d2ef88fad0fca65450b4018979e0ca266e37ccba563136d4be715e"
         }
       ]
     },
@@ -5476,6 +7438,15 @@
           "sizeBytes": 624492,
           "hasInterior": false,
           "sha256": "429015f98724d500005495e6b7f11d5aa79e68300424067a9755cc7d645768d0"
+        },
+        {
+          "level": "interior",
+          "label": "Interieur",
+          "modelUrl": "https://github.com/elios134/asset-3d/releases/download/sc-4.1/XIAN_Nox_Kue.interior.glb",
+          "tris": 45568,
+          "sizeBytes": 1486844,
+          "hasInterior": true,
+          "sha256": "24859dd1d17edcd2ff1399c29b0c1c99f5a25ea29f8cc5aba83af6a236d6e7f6"
         }
       ]
     },
@@ -5500,6 +7471,15 @@
           "sizeBytes": 1594028,
           "hasInterior": false,
           "sha256": "f69151eb214599778997dac1f9ce4ee0e8bf4024575178aba679f79d0088f090"
+        },
+        {
+          "level": "interior",
+          "label": "Interieur",
+          "modelUrl": "https://github.com/elios134/asset-3d/releases/download/sc-4.1/XIAN_Scout.interior.glb",
+          "tris": 72283,
+          "sizeBytes": 2679200,
+          "hasInterior": true,
+          "sha256": "87b575b90f57c259b2914557164c2cb44b7197f51ea94b7cef563a757a917e7f"
         }
       ]
     },
@@ -5524,6 +7504,15 @@
           "sizeBytes": 3587108,
           "hasInterior": false,
           "sha256": "71e9b09f8a19babfee68f360c77367a819b5e809db2fca09ddf748aa4163739c"
+        },
+        {
+          "level": "interior",
+          "label": "Interieur",
+          "modelUrl": "https://github.com/elios134/asset-3d/releases/download/sc-4.1/XNAA_SanTokYai.interior.glb",
+          "tris": 559500,
+          "sizeBytes": 9261260,
+          "hasInterior": true,
+          "sha256": "f606f711be364a245520bc851455beb845646b8f407248f756d44cfb27396185"
         }
       ]
     }
