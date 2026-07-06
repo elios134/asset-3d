@@ -1,0 +1,19 @@
+{
+  "_comment": "Metadonnees par vaisseau, clef = className CIG (= nom du fichier models/<key>.glb). name/manufacturer/dims proviennent de la table ShipData de l'app (peuvent etre exportes automatiquement). materials: 'flat' (couleurs a plat) ou 'baked'.",
+
+  "DRAK_Cutlass_Black": {
+    "name": "Cutlass Black",
+    "manufacturer": "Drake Interplanetary",
+    "classification": "medium_freight",
+    "dims": { "l": 38, "b": 26.8, "h": 10.5 },
+    "materials": "flat"
+  },
+
+  "AEGS_Idris_P": {
+    "name": "Idris-P",
+    "manufacturer": "Aegis Dynamics",
+    "classification": "capital_frigate",
+    "dims": { "l": 239.5, "b": 96.75, "h": 43.3 },
+    "materials": "flat"
+  }
+}

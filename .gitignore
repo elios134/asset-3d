@@ -1,0 +1,12 @@
+# Les binaires .glb ne sont PAS versionnés dans git.
+# Ils sont hébergés en GitHub Releases (un tag par patch SC).
+# models/ est un dossier de préparation local uniquement.
+models/*.glb
+
+# Node
+node_modules/
+npm-debug.log*
+
+# OS
+.DS_Store
+Thumbs.db

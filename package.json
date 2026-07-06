@@ -1,0 +1,12 @@
+{
+  "name": "asset-3d",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "description": "Mini-API statique de modeles 3D 'lite' des vaisseaux Star Citizen pour SC Fleet Manager.",
+  "scripts": {
+    "build": "node scripts/build-index.mjs",
+    "build:strict": "node scripts/build-index.mjs --strict"
+  },
+  "license": "SEE README.md"
+}

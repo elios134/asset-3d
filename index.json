@@ -1,0 +1,41 @@
+{
+  "schemaVersion": 1,
+  "generatedAt": "2026-07-06T00:27:55.923Z",
+  "patchVersion": "sc-4.1",
+  "ships": [
+    {
+      "key": "AEGS_Idris_P",
+      "name": "Idris-P",
+      "manufacturer": "Aegis Dynamics",
+      "classification": "capital_frigate",
+      "modelUrl": "https://github.com/elios134/asset-3d/releases/download/sc-4.1/AEGS_Idris_P.glb",
+      "dims": {
+        "l": 239.5,
+        "b": 96.75,
+        "h": 43.3
+      },
+      "tris": 41243,
+      "sizeBytes": 3995304,
+      "materials": "flat",
+      "sha256": "7076ad94767c704f3ac85f9aea02d7f6b5a53132e4a749fa01e0488972d8944b",
+      "patchVersion": "sc-4.1"
+    },
+    {
+      "key": "DRAK_Cutlass_Black",
+      "name": "Cutlass Black",
+      "manufacturer": "Drake Interplanetary",
+      "classification": "medium_freight",
+      "modelUrl": "https://github.com/elios134/asset-3d/releases/download/sc-4.1/DRAK_Cutlass_Black.glb",
+      "dims": {
+        "l": 38,
+        "b": 26.8,
+        "h": 10.5
+      },
+      "tris": 48076,
+      "sizeBytes": 5937744,
+      "materials": "flat",
+      "sha256": "29df64fb29879cdbc1d060a55f9440533bca567192055c2f5df1a6979e006c4a",
+      "patchVersion": "sc-4.1"
+    }
+  ]
+}
