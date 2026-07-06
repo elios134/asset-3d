@@ -1,6 +1,6 @@
 {
   "schemaVersion": 2,
-  "generatedAt": "2026-07-06T10:58:19.619Z",
+  "generatedAt": "2026-07-06T11:09:52.465Z",
   "patchVersion": "sc-4.1",
   "levels": [
     {
@@ -2425,9 +2425,9 @@
           "label": "Interieur",
           "modelUrl": "https://github.com/elios134/asset-3d/releases/download/sc-4.1/DRAK_Cutlass_Black.interior.glb",
           "tris": 642743,
-          "sizeBytes": 44489812,
+          "sizeBytes": 44457892,
           "hasInterior": true,
-          "sha256": "53f2d28edd46a31ed8a3480524ad05a606029de6d6be8b34e142f7a41434117b"
+          "sha256": "1281aa5833c916e9d6a3271ad7e27d60ee7ca023013a515a314622a0f4cbd197"
         }
       ]
     },
