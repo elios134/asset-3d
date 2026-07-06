@@ -1,6 +1,6 @@
 {
   "schemaVersion": 2,
-  "generatedAt": "2026-07-06T12:01:03.187Z",
+  "generatedAt": "2026-07-06T13:06:57.246Z",
   "patchVersion": "sc-4.1",
   "levels": [
     {
@@ -2427,7 +2427,7 @@
           "tris": 642743,
           "sizeBytes": 11568500,
           "hasInterior": true,
-          "sha256": "33e0e797a52ea9459f61dac4cfa317b7cce52dde223e3216c013ebb95af552c8"
+          "sha256": "d39582ea5f29d32f954034a67289a809aef8d5e7513003cead1f1e6a3a7d73cf"
         }
       ]
     },

@@ -106,7 +106,8 @@ for (const [moduleName, cfg] of Object.entries(mapping)) {
   if (cfg.floorTo) {
     const fy = hardpointWorld(cfg.floorTo);
     if (!fy) { console.log(`  ⚠ ${moduleName} : floorTo ${cfg.floorTo} absent`); continue; }
-    dy = fy[1] - shell.minY; yMode = `plancher->${cfg.floorTo}.y=${fy[1].toFixed(2)}`;
+    const target = fy[1] + (cfg.floorOffset || 0); // floorOffset : ajustement fin (min_y bbox vs plancher walkable), mesure par le harnais app
+    dy = target - shell.minY; yMode = `plancher->${cfg.floorTo}.y${cfg.floorOffset ? (cfg.floorOffset > 0 ? "+" : "") + cfg.floorOffset : ""}=${target.toFixed(2)}`;
   } else {
     dy = hp[1] - c[1]; yMode = "centre->hardpoint.y";
   }
@@ -133,9 +134,10 @@ for (const [moduleName, cfg] of Object.entries(mapping)) {
   let floorLine = "", floorOk = true;
   if (cfg.floorTo) {
     const fy = hardpointWorld(cfg.floorTo);
-    const dFloor = Math.abs(shell.minY - fy[1]); // plancher vs pont
+    const target = fy[1] + (cfg.floorOffset || 0);
+    const dFloor = Math.abs(shell.minY - target); // plancher vs cible (pont + offset)
     floorOk = dFloor <= 0.3;
-    floorLine = ` | plancher ecart ${dFloor.toFixed(2)}m ${floorOk ? "OK" : "FAIL"}`;
+    floorLine = ` | plancher ${shell.minY.toFixed(2)} vs cible ${target.toFixed(2)} ecart ${dFloor.toFixed(2)}m ${floorOk ? "OK" : "FAIL"}`;
   }
   const xzOk = dXZ <= 0.5;
   const pass = xzOk && floorOk;

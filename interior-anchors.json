@@ -3,6 +3,6 @@
 
   "DRAK_Cutlass_Black": {
     "interior_base_int_cockpit_main": { "shell": "int_cockpit", "hardpoint": "hardpoint_int_cockpit" },
-    "interior_base_int_body_main":    { "shell": "int_rear",    "hardpoint": "hardpoint_int_body", "floorTo": "hardpoint_cargogrid_main" }
+    "interior_base_int_body_main":    { "shell": "int_rear",    "hardpoint": "hardpoint_int_body", "floorTo": "hardpoint_cargogrid_main", "floorOffset": -0.49 }
   }
 }
