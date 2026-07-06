@@ -1,6 +1,6 @@
 {
   "schemaVersion": 2,
-  "generatedAt": "2026-07-06T03:18:59.913Z",
+  "generatedAt": "2026-07-06T03:48:03.302Z",
   "patchVersion": "sc-4.1",
   "levels": [
     {
@@ -30,10 +30,10 @@
           "level": "exterior",
           "label": "Detaille",
           "modelUrl": "https://github.com/elios134/asset-3d/releases/download/sc-4.1/AEGS_Idris_P.exterior.glb",
-          "tris": 332260,
-          "sizeBytes": 14699804,
+          "tris": 486544,
+          "sizeBytes": 7135936,
           "hasInterior": false,
-          "sha256": "cb95e4e7b630c77138ae075d3acbc89957f3358da8b06ba3628e507650ed6391"
+          "sha256": "df4a7eb21e9ea85d6a99798e069cb05b8347cbd6e30bde5ee0c6da1fdf2fcd4b"
         },
         {
           "level": "interior",
@@ -63,10 +63,10 @@
           "level": "exterior",
           "label": "Detaille",
           "modelUrl": "https://github.com/elios134/asset-3d/releases/download/sc-4.1/DRAK_Cutlass_Black.exterior.glb",
-          "tris": 227016,
-          "sizeBytes": 17241828,
+          "tris": 272835,
+          "sizeBytes": 4379612,
           "hasInterior": false,
-          "sha256": "655e8d8bfed51fb4dd144b22b91834d81ff3f1b039f60de7d56b139ae9e5e966"
+          "sha256": "e226b4b0678a14648a4c412b90e878ade0f5a0f1a47a64843e6c22838ecc6ac6"
         },
         {
           "level": "interior",

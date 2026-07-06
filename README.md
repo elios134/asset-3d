@@ -75,6 +75,11 @@ $KEY = "DRAK_Cutlass_Black"; $M = "…\asset-3D\models"
 
 # 2) renseigner le vaisseau dans ships.meta.json (name, manufacturer, dims depuis ShipData)
 
+# 2b) optimiser le rendu : fusion des meshes (draw calls) + compression meshopt
+#     -> ~90% de draw calls en moins (fluidite en orbite), fichiers plus legers, sans perte visuelle.
+#     ATTENTION : produit du EXT_meshopt_compression -> l'app doit activer le decodeur meshopt.
+node scripts/optimize.mjs models/$KEY.exterior.glb   # ecrit .opt.glb, verifier puis remplacer le .glb
+
 # 3) generer le catalogue (regroupe les variantes, calcule tris + taille + sha256)
 node scripts/build-index.mjs
 

@@ -7,7 +7,7 @@
     { "id": "interior", "label": "Interieur" }
   ],
   "budget": {
-    "exterior": { "maxTris": 400000, "maxSizeBytes": 20971520 },
+    "exterior": { "maxTris": 600000, "maxSizeBytes": 20971520 },
     "interior": { "maxTris": 1200000, "maxSizeBytes": 67108864 }
   }
 }

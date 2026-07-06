@@ -3,6 +3,19 @@
 Document de handoff pour l'intégration app (SC Fleet Manager). Décrit les 3 niveaux de détail
 servis par l'API `asset-3d` et le comportement UX attendu pour la maquette.
 
+## ⚠️ PRÉREQUIS : décodeur meshopt obligatoire
+
+Les `.glb` sont compressés avec **`EXT_meshopt_compression`** (perf + poids). Sans le décodeur,
+`useGLTF` échoue à charger. Configure le loader une fois avec le `MeshoptDecoder` de three :
+
+```ts
+import { MeshoptDecoder } from "three/examples/jsm/libs/meshopt_decoder.module.js";
+// avec drei :
+useGLTF(url, undefined, undefined, (loader) => loader.setMeshoptDecoder(MeshoptDecoder));
+// ou preload :
+useGLTF.preload(url, undefined, undefined, (loader) => loader.setMeshoptDecoder(MeshoptDecoder));
+```
+
 ## Point d'entrée API
 
 ```

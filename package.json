@@ -8,7 +8,14 @@
     "build": "node scripts/build-index.mjs",
     "build:strict": "node scripts/build-index.mjs --strict",
     "qa": "node scripts/qa.mjs",
-    "qa:strict": "node scripts/qa.mjs --strict"
+    "qa:strict": "node scripts/qa.mjs --strict",
+    "optimize": "node scripts/optimize.mjs"
   },
-  "license": "SEE README.md"
+  "license": "SEE README.md",
+  "devDependencies": {
+    "@gltf-transform/core": "^4.4.1",
+    "@gltf-transform/extensions": "^4.4.1",
+    "@gltf-transform/functions": "^4.4.1",
+    "meshoptimizer": "^1.2.0"
+  }
 }
