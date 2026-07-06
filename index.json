@@ -1,6 +1,6 @@
 {
   "schemaVersion": 2,
-  "generatedAt": "2026-07-06T17:07:29.933Z",
+  "generatedAt": "2026-07-06T18:02:32.709Z",
   "patchVersion": "sc-4.1",
   "levels": [
     {
@@ -4869,10 +4869,10 @@
           "level": "interior",
           "label": "Interieur",
           "modelUrl": "https://github.com/elios134/asset-3d/releases/download/sc-4.1/MISC_Prospector.interior.glb",
-          "tris": 335826,
-          "sizeBytes": 7391392,
+          "tris": 335786,
+          "sizeBytes": 4850976,
           "hasInterior": true,
-          "sha256": "d9e58b6e4dd544ab7040afef1065121776d005b8c3a5673394eaf51cb39a0dc9"
+          "sha256": "067e45574a50b2ed4af14e711f6946efb6c673c7a27de80132ac06f3c312eb42"
         }
       ]
     },
@@ -6816,10 +6816,10 @@
           "level": "interior",
           "label": "Interieur",
           "modelUrl": "https://github.com/elios134/asset-3d/releases/download/sc-4.1/RSI_Ursa_Rover.interior.glb",
-          "tris": 147989,
-          "sizeBytes": 3505564,
+          "tris": 147949,
+          "sizeBytes": 2537184,
           "hasInterior": true,
-          "sha256": "53ef301e55a26711e489559c6e503089bf96f8f74843178299aeeffb6f5d3039"
+          "sha256": "33b499f5387094866ffd8980fe4465e420c67b5e37a6660c5a4ab16ff8d386ef"
         }
       ]
     },
@@ -6849,10 +6849,10 @@
           "level": "interior",
           "label": "Interieur",
           "modelUrl": "https://github.com/elios134/asset-3d/releases/download/sc-4.1/RSI_Ursa_Rover_Emerald.interior.glb",
-          "tris": 145687,
-          "sizeBytes": 3601968,
+          "tris": 145647,
+          "sizeBytes": 2629188,
           "hasInterior": true,
-          "sha256": "f8f406a1f88fb1b765819d66d17ba873ebcb9e540215b8ae51501a2ab6dd31cf"
+          "sha256": "a072f9900ffa8b9b2605e757f601a1883f5ff7a47280af8f02f0439522dfddb8"
         }
       ]
     },

@@ -1,0 +1,980 @@
+{
+  "protruding": [
+    {
+      "key": "AEGS_Idris_M",
+      "name": "Idris-M",
+      "hasHp": false,
+      "modules": 8,
+      "bad": [
+        {
+          "module": "interior_base_int_stairsr_main",
+          "over": 7.6
+        },
+        {
+          "module": "interior_base_int_mdback_main",
+          "over": 3.8
+        },
+        {
+          "module": "interior_base_int_mdmid_main",
+          "over": 3.6
+        },
+        {
+          "module": "interior_base_int_bridge_main",
+          "over": 15.4
+        },
+        {
+          "module": "interior_base_int_stairsl_main",
+          "over": 7.6
+        },
+        {
+          "module": "interior_base_int_mdfront_main",
+          "over": 23.3
+        }
+      ]
+    },
+    {
+      "key": "AEGS_Idris_P",
+      "name": "Idris-P",
+      "hasHp": false,
+      "modules": 8,
+      "bad": [
+        {
+          "module": "interior_base_int_stairsr_main",
+          "over": 7.6
+        },
+        {
+          "module": "interior_base_int_mdback_main",
+          "over": 3.8
+        },
+        {
+          "module": "interior_base_int_mdmid_main",
+          "over": 3.6
+        },
+        {
+          "module": "interior_base_int_bridge_main",
+          "over": 15.4
+        },
+        {
+          "module": "interior_base_int_stairsl_main",
+          "over": 7.6
+        },
+        {
+          "module": "interior_base_int_mdfront_main",
+          "over": 23.3
+        }
+      ]
+    },
+    {
+      "key": "MISC_Prospector",
+      "name": "MISC Prospector",
+      "hasHp": false,
+      "modules": 1,
+      "bad": [
+        {
+          "module": "interior_base_int_all_main",
+          "over": 62.2
+        }
+      ]
+    },
+    {
+      "key": "RSI_Ursa_Rover",
+      "name": "Ursa",
+      "hasHp": false,
+      "modules": 1,
+      "bad": [
+        {
+          "module": "interior_base_int_all_main",
+          "over": 1018.6
+        }
+      ]
+    },
+    {
+      "key": "RSI_Ursa_Rover_Emerald",
+      "name": "Ursa Fortuna",
+      "hasHp": false,
+      "modules": 1,
+      "bad": [
+        {
+          "module": "interior_base_int_all_main",
+          "over": 1018.6
+        }
+      ]
+    }
+  ],
+  "ok": [
+    {
+      "key": "AEGS_Avenger_Stalker",
+      "modules": 0
+    },
+    {
+      "key": "AEGS_Avenger_Titan",
+      "modules": 0
+    },
+    {
+      "key": "AEGS_Avenger_Titan_Renegade",
+      "modules": 0
+    },
+    {
+      "key": "AEGS_Avenger_Warlock",
+      "modules": 0
+    },
+    {
+      "key": "AEGS_Eclipse",
+      "modules": 0
+    },
+    {
+      "key": "AEGS_Gladius",
+      "modules": 1
+    },
+    {
+      "key": "AEGS_Gladius_PIR",
+      "modules": 1
+    },
+    {
+      "key": "AEGS_Gladius_Valiant",
+      "modules": 1
+    },
+    {
+      "key": "AEGS_Hammerhead",
+      "modules": 0
+    },
+    {
+      "key": "AEGS_Reclaimer",
+      "modules": 0
+    },
+    {
+      "key": "AEGS_Redeemer",
+      "modules": 0
+    },
+    {
+      "key": "AEGS_Retaliator",
+      "modules": 2
+    },
+    {
+      "key": "AEGS_Sabre",
+      "modules": 1
+    },
+    {
+      "key": "AEGS_Sabre_Comet",
+      "modules": 1
+    },
+    {
+      "key": "AEGS_Sabre_Firebird",
+      "modules": 0
+    },
+    {
+      "key": "AEGS_Sabre_Peregrine",
+      "modules": 0
+    },
+    {
+      "key": "AEGS_Sabre_Raven",
+      "modules": 0
+    },
+    {
+      "key": "AEGS_Tiburon",
+      "modules": 0
+    },
+    {
+      "key": "AEGS_Vanguard",
+      "modules": 0
+    },
+    {
+      "key": "AEGS_Vanguard_Harbinger",
+      "modules": 0
+    },
+    {
+      "key": "AEGS_Vanguard_Hoplite",
+      "modules": 0
+    },
+    {
+      "key": "AEGS_Vanguard_Sentinel",
+      "modules": 0
+    },
+    {
+      "key": "ANVL_Arrow",
+      "modules": 1
+    },
+    {
+      "key": "ANVL_Asgard",
+      "modules": 0
+    },
+    {
+      "key": "ANVL_Ballista",
+      "modules": 1
+    },
+    {
+      "key": "ANVL_Ballista_Dunestalker",
+      "modules": 1
+    },
+    {
+      "key": "ANVL_Ballista_Snowblind",
+      "modules": 1
+    },
+    {
+      "key": "ANVL_C8_Pisces",
+      "modules": 0
+    },
+    {
+      "key": "ANVL_C8R_Pisces",
+      "modules": 0
+    },
+    {
+      "key": "ANVL_C8X_Pisces_Expedition",
+      "modules": 0
+    },
+    {
+      "key": "ANVL_Carrack",
+      "modules": 0
+    },
+    {
+      "key": "ANVL_Carrack_Expedition",
+      "modules": 0
+    },
+    {
+      "key": "ANVL_Centurion",
+      "modules": 1
+    },
+    {
+      "key": "ANVL_Gladiator",
+      "modules": 0
+    },
+    {
+      "key": "ANVL_Hornet_F7A_Mk1",
+      "modules": 0
+    },
+    {
+      "key": "ANVL_Hornet_F7A_Mk2",
+      "modules": 0
+    },
+    {
+      "key": "ANVL_Hornet_F7C",
+      "modules": 1
+    },
+    {
+      "key": "ANVL_Hornet_F7C_Mk2",
+      "modules": 0
+    },
+    {
+      "key": "ANVL_Hornet_F7C_Wildfire",
+      "modules": 1
+    },
+    {
+      "key": "ANVL_Hornet_F7CM",
+      "modules": 0
+    },
+    {
+      "key": "ANVL_Hornet_F7CM_Heartseeker",
+      "modules": 0
+    },
+    {
+      "key": "ANVL_Hornet_F7CM_Mk2",
+      "modules": 0
+    },
+    {
+      "key": "ANVL_Hornet_F7CM_Mk2_Heartseeker",
+      "modules": 0
+    },
+    {
+      "key": "ANVL_Hornet_F7CR",
+      "modules": 1
+    },
+    {
+      "key": "ANVL_Hornet_F7CR_Mk2",
+      "modules": 0
+    },
+    {
+      "key": "ANVL_Hornet_F7CS",
+      "modules": 1
+    },
+    {
+      "key": "ANVL_Hornet_F7CS_Mk2",
+      "modules": 0
+    },
+    {
+      "key": "ANVL_Lightning_F8",
+      "modules": 1
+    },
+    {
+      "key": "ANVL_Lightning_F8C",
+      "modules": 1
+    },
+    {
+      "key": "ANVL_Spartan",
+      "modules": 2
+    },
+    {
+      "key": "ANVL_Terrapin",
+      "modules": 1
+    },
+    {
+      "key": "ANVL_Terrapin_Medic",
+      "modules": 0
+    },
+    {
+      "key": "ANVL_Valkyrie",
+      "modules": 0
+    },
+    {
+      "key": "ARGO_ATLS",
+      "modules": 0
+    },
+    {
+      "key": "ARGO_ATLS_GEO",
+      "modules": 0
+    },
+    {
+      "key": "ARGO_ATLS_GEO_Collector_Grad01",
+      "modules": 0
+    },
+    {
+      "key": "ARGO_ATLS_GEO_Collector_Grad02",
+      "modules": 0
+    },
+    {
+      "key": "ARGO_ATLS_GEO_Collector_Grad03",
+      "modules": 0
+    },
+    {
+      "key": "ARGO_ATLS_GEO_IKTI",
+      "modules": 0
+    },
+    {
+      "key": "ARGO_ATLS_IKTI",
+      "modules": 0
+    },
+    {
+      "key": "ARGO_ATLS_IKTI_ARGOS",
+      "modules": 0
+    },
+    {
+      "key": "ARGO_CSV_Cargo",
+      "modules": 0
+    },
+    {
+      "key": "ARGO_MOLE",
+      "modules": 0
+    },
+    {
+      "key": "ARGO_MPUV",
+      "modules": 1
+    },
+    {
+      "key": "ARGO_MPUV_1T",
+      "modules": 0
+    },
+    {
+      "key": "ARGO_MPUV_Transport",
+      "modules": 1
+    },
+    {
+      "key": "ARGO_RAFT",
+      "modules": 0
+    },
+    {
+      "key": "ARGO_SRV",
+      "modules": 0
+    },
+    {
+      "key": "BANU_Defender",
+      "modules": 3
+    },
+    {
+      "key": "CNOU_HoverQuad",
+      "modules": 1
+    },
+    {
+      "key": "CNOU_Mustang_Alpha",
+      "modules": 2
+    },
+    {
+      "key": "CNOU_Mustang_Alpha_CitizenCon2018",
+      "modules": 2
+    },
+    {
+      "key": "CNOU_Mustang_Beta",
+      "modules": 1
+    },
+    {
+      "key": "CNOU_Mustang_Delta",
+      "modules": 2
+    },
+    {
+      "key": "CNOU_Mustang_Gamma",
+      "modules": 2
+    },
+    {
+      "key": "CNOU_Mustang_Omega",
+      "modules": 2
+    },
+    {
+      "key": "CNOU_Nomad",
+      "modules": 3
+    },
+    {
+      "key": "CRUS_Intrepid",
+      "modules": 0
+    },
+    {
+      "key": "CRUS_Spirit_A1",
+      "modules": 0
+    },
+    {
+      "key": "CRUS_Spirit_C1",
+      "modules": 0
+    },
+    {
+      "key": "CRUS_Star_Runner",
+      "modules": 2
+    },
+    {
+      "key": "CRUS_Starfighter_Inferno",
+      "modules": 0
+    },
+    {
+      "key": "CRUS_Starfighter_Ion",
+      "modules": 0
+    },
+    {
+      "key": "CRUS_Starlifter_A2",
+      "modules": 0
+    },
+    {
+      "key": "CRUS_Starlifter_C2",
+      "modules": 0
+    },
+    {
+      "key": "CRUS_Starlifter_M2",
+      "modules": 0
+    },
+    {
+      "key": "DRAK_Buccaneer",
+      "modules": 1
+    },
+    {
+      "key": "DRAK_Caterpillar",
+      "modules": 3
+    },
+    {
+      "key": "DRAK_Caterpillar_Pirate",
+      "modules": 3
+    },
+    {
+      "key": "DRAK_Clipper",
+      "modules": 1
+    },
+    {
+      "key": "DRAK_Command_Module",
+      "modules": 0
+    },
+    {
+      "key": "DRAK_Corsair",
+      "modules": 3
+    },
+    {
+      "key": "DRAK_Cutlass_Black",
+      "modules": 2
+    },
+    {
+      "key": "DRAK_Cutlass_Blue",
+      "modules": 0
+    },
+    {
+      "key": "DRAK_Cutlass_Red",
+      "modules": 0
+    },
+    {
+      "key": "DRAK_Cutlass_Steel",
+      "modules": 0
+    },
+    {
+      "key": "DRAK_Cutter",
+      "modules": 0
+    },
+    {
+      "key": "DRAK_Cutter_Rambler",
+      "modules": 0
+    },
+    {
+      "key": "DRAK_Cutter_Scout",
+      "modules": 0
+    },
+    {
+      "key": "DRAK_Dragonfly",
+      "modules": 1
+    },
+    {
+      "key": "DRAK_Dragonfly_Pink",
+      "modules": 1
+    },
+    {
+      "key": "DRAK_Dragonfly_Yellow",
+      "modules": 1
+    },
+    {
+      "key": "DRAK_Golem",
+      "modules": 0
+    },
+    {
+      "key": "DRAK_Golem_OX",
+      "modules": 0
+    },
+    {
+      "key": "DRAK_Herald",
+      "modules": 1
+    },
+    {
+      "key": "DRAK_Ironclad",
+      "modules": 0
+    },
+    {
+      "key": "DRAK_Ironclad_Assault",
+      "modules": 0
+    },
+    {
+      "key": "DRAK_Mule",
+      "modules": 0
+    },
+    {
+      "key": "DRAK_Pitbull",
+      "modules": 1
+    },
+    {
+      "key": "DRAK_Vulture",
+      "modules": 2
+    },
+    {
+      "key": "ESPR_Prowler",
+      "modules": 1
+    },
+    {
+      "key": "ESPR_Prowler_Utility",
+      "modules": 1
+    },
+    {
+      "key": "ESPR_Talon",
+      "modules": 1
+    },
+    {
+      "key": "ESPR_Talon_Shrike",
+      "modules": 1
+    },
+    {
+      "key": "GAMA_Railen",
+      "modules": 0
+    },
+    {
+      "key": "GAMA_Tyilui",
+      "modules": 0
+    },
+    {
+      "key": "GLSN_Shiv",
+      "modules": 2
+    },
+    {
+      "key": "GRIN_MDC",
+      "modules": 0
+    },
+    {
+      "key": "GRIN_MTC",
+      "modules": 0
+    },
+    {
+      "key": "GRIN_PTV",
+      "modules": 0
+    },
+    {
+      "key": "GRIN_ROC",
+      "modules": 1
+    },
+    {
+      "key": "GRIN_ROC_DS",
+      "modules": 1
+    },
+    {
+      "key": "GRIN_STV",
+      "modules": 0
+    },
+    {
+      "key": "GRIN_UTV",
+      "modules": 0
+    },
+    {
+      "key": "KRIG_L21_Wolf",
+      "modules": 0
+    },
+    {
+      "key": "KRIG_L22_AlphaWolf",
+      "modules": 0
+    },
+    {
+      "key": "KRIG_P52_Merlin",
+      "modules": 1
+    },
+    {
+      "key": "KRIG_P72_Archimedes",
+      "modules": 0
+    },
+    {
+      "key": "KRIG_P72_Archimedes_Emerald",
+      "modules": 0
+    },
+    {
+      "key": "MISC_Fortune",
+      "modules": 0
+    },
+    {
+      "key": "MISC_Freelancer",
+      "modules": 3
+    },
+    {
+      "key": "MISC_Freelancer_DUR",
+      "modules": 2
+    },
+    {
+      "key": "MISC_Freelancer_MAX",
+      "modules": 2
+    },
+    {
+      "key": "MISC_Freelancer_MIS",
+      "modules": 2
+    },
+    {
+      "key": "MISC_Fury",
+      "modules": 0
+    },
+    {
+      "key": "MISC_Fury_LX",
+      "modules": 0
+    },
+    {
+      "key": "MISC_Fury_Miru",
+      "modules": 0
+    },
+    {
+      "key": "MISC_Hull_A",
+      "modules": 0
+    },
+    {
+      "key": "MISC_Hull_B",
+      "modules": 0
+    },
+    {
+      "key": "MISC_Hull_C",
+      "modules": 2
+    },
+    {
+      "key": "MISC_Razor",
+      "modules": 0
+    },
+    {
+      "key": "MISC_Razor_EX",
+      "modules": 0
+    },
+    {
+      "key": "MISC_Razor_LX",
+      "modules": 0
+    },
+    {
+      "key": "MISC_Reliant",
+      "modules": 2
+    },
+    {
+      "key": "MISC_Reliant_Mako",
+      "modules": 1
+    },
+    {
+      "key": "MISC_Reliant_Sen",
+      "modules": 1
+    },
+    {
+      "key": "MISC_Reliant_Tana",
+      "modules": 1
+    },
+    {
+      "key": "MISC_Starfarer",
+      "modules": 5
+    },
+    {
+      "key": "MISC_Starfarer_Gemini",
+      "modules": 0
+    },
+    {
+      "key": "MISC_Starlancer_Max",
+      "modules": 0
+    },
+    {
+      "key": "MISC_Starlancer_TAC",
+      "modules": 0
+    },
+    {
+      "key": "MISC_Starlite",
+      "modules": 0
+    },
+    {
+      "key": "MRAI_Guardian",
+      "modules": 0
+    },
+    {
+      "key": "MRAI_Guardian_MX",
+      "modules": 0
+    },
+    {
+      "key": "MRAI_Guardian_QI",
+      "modules": 0
+    },
+    {
+      "key": "MRAI_Pulse",
+      "modules": 0
+    },
+    {
+      "key": "MRAI_Pulse_LX",
+      "modules": 0
+    },
+    {
+      "key": "ORIG_100i",
+      "modules": 0
+    },
+    {
+      "key": "ORIG_125a",
+      "modules": 0
+    },
+    {
+      "key": "ORIG_135c",
+      "modules": 0
+    },
+    {
+      "key": "ORIG_300i",
+      "modules": 1
+    },
+    {
+      "key": "ORIG_315p",
+      "modules": 1
+    },
+    {
+      "key": "ORIG_325a",
+      "modules": 0
+    },
+    {
+      "key": "ORIG_350r",
+      "modules": 0
+    },
+    {
+      "key": "ORIG_400i",
+      "modules": 0
+    },
+    {
+      "key": "ORIG_600i",
+      "modules": 0
+    },
+    {
+      "key": "ORIG_600i_Touring",
+      "modules": 0
+    },
+    {
+      "key": "ORIG_85X",
+      "modules": 1
+    },
+    {
+      "key": "ORIG_890Jump",
+      "modules": 0
+    },
+    {
+      "key": "ORIG_m50",
+      "modules": 1
+    },
+    {
+      "key": "ORIG_m80",
+      "modules": 0
+    },
+    {
+      "key": "ORIG_X1",
+      "modules": 1
+    },
+    {
+      "key": "ORIG_X1_Force",
+      "modules": 1
+    },
+    {
+      "key": "ORIG_X1_Velocity",
+      "modules": 1
+    },
+    {
+      "key": "RSI_Apollo_Medivac",
+      "modules": 0
+    },
+    {
+      "key": "RSI_Apollo_Triage",
+      "modules": 0
+    },
+    {
+      "key": "RSI_Aurora_GS_CL",
+      "modules": 1
+    },
+    {
+      "key": "RSI_Aurora_GS_ES",
+      "modules": 1
+    },
+    {
+      "key": "RSI_Aurora_GS_LN",
+      "modules": 1
+    },
+    {
+      "key": "RSI_Aurora_GS_LX",
+      "modules": 1
+    },
+    {
+      "key": "RSI_Aurora_GS_MR",
+      "modules": 1
+    },
+    {
+      "key": "RSI_Aurora_GS_SE",
+      "modules": 0
+    },
+    {
+      "key": "RSI_Aurora_Mk2",
+      "modules": 0
+    },
+    {
+      "key": "RSI_Constellation_Andromeda",
+      "modules": 5
+    },
+    {
+      "key": "RSI_Constellation_Aquila",
+      "modules": 1
+    },
+    {
+      "key": "RSI_Constellation_Phoenix",
+      "modules": 0
+    },
+    {
+      "key": "RSI_Constellation_Phoenix_Emerald",
+      "modules": 0
+    },
+    {
+      "key": "RSI_Constellation_Taurus",
+      "modules": 0
+    },
+    {
+      "key": "RSI_Hermes",
+      "modules": 0
+    },
+    {
+      "key": "RSI_Lynx",
+      "modules": 0
+    },
+    {
+      "key": "RSI_Mantis",
+      "modules": 1
+    },
+    {
+      "key": "RSI_Meteor",
+      "modules": 1
+    },
+    {
+      "key": "RSI_Perseus",
+      "modules": 0
+    },
+    {
+      "key": "RSI_Polaris",
+      "modules": 0
+    },
+    {
+      "key": "RSI_Salvation",
+      "modules": 0
+    },
+    {
+      "key": "RSI_Scorpius",
+      "modules": 0
+    },
+    {
+      "key": "RSI_Scorpius_Antares",
+      "modules": 0
+    },
+    {
+      "key": "RSI_Ursa_Medivac",
+      "modules": 0
+    },
+    {
+      "key": "RSI_Zeus_CL",
+      "modules": 0
+    },
+    {
+      "key": "RSI_Zeus_ES",
+      "modules": 0
+    },
+    {
+      "key": "TMBL_Cyclone",
+      "modules": 1
+    },
+    {
+      "key": "TMBL_Cyclone_AA",
+      "modules": 1
+    },
+    {
+      "key": "TMBL_Cyclone_MT",
+      "modules": 1
+    },
+    {
+      "key": "TMBL_Cyclone_RC",
+      "modules": 1
+    },
+    {
+      "key": "TMBL_Cyclone_RN",
+      "modules": 1
+    },
+    {
+      "key": "TMBL_Cyclone_TR",
+      "modules": 1
+    },
+    {
+      "key": "TMBL_Nova",
+      "modules": 0
+    },
+    {
+      "key": "TMBL_Storm",
+      "modules": 0
+    },
+    {
+      "key": "TMBL_Storm_AA",
+      "modules": 0
+    },
+    {
+      "key": "VNCL_Blade",
+      "modules": 0
+    },
+    {
+      "key": "VNCL_Glaive",
+      "modules": 1
+    },
+    {
+      "key": "VNCL_Mauler",
+      "modules": 0
+    },
+    {
+      "key": "VNCL_Scythe",
+      "modules": 1
+    },
+    {
+      "key": "VNCL_Stinger",
+      "modules": 0
+    },
+    {
+      "key": "XIAN_Nox",
+      "modules": 1
+    },
+    {
+      "key": "XIAN_Nox_Kue",
+      "modules": 1
+    },
+    {
+      "key": "XIAN_Scout",
+      "modules": 1
+    },
+    {
+      "key": "XNAA_SanTokYai",
+      "modules": 1
+    }
+  ],
+  "noExterior": [],
+  "error": []
+}
