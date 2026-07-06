@@ -18,7 +18,11 @@ import { dirname, join as pjoin } from "node:path";
 
 const ROOT = pjoin(dirname(fileURLToPath(import.meta.url)), "..");
 
-let inputs = process.argv.slice(2);
+// --compress-only : uniquement compression meshopt (preserve noms de mesh + structure + placement).
+//   Pour les INTERIEURS : le harnais app filtre par nom de mesh (int_rear/...) et verifie le
+//   placement -> on NE DOIT PAS join/flatten (detruit les noms) ni bouger la geometrie.
+const COMPRESS_ONLY = process.argv.includes("--compress-only");
+let inputs = process.argv.slice(2).filter((a) => !a.startsWith("--"));
 if (inputs.length === 0) {
   const dir = pjoin(ROOT, "models");
   inputs = readdirSync(dir).filter((f) => f.endsWith(".exterior.glb")).map((f) => pjoin(dir, f));
@@ -35,12 +39,17 @@ for (const path of inputs) {
   const sizeBefore = statSync(path).size;
 
   await doc.transform(
-    dedup(),                      // fusionne accessors/materiaux/meshes dupliques
-    weld({ tolerance: 0.0001 }),  // soude les sommets colocalises
-    flatten(),                    // aplatit la hierarchie de noeuds
-    join(),                       // FUSIONNE les primitives par materiau -> moins de draw calls
-    prune(),                      // retire ce qui n'est plus reference
-    meshopt({ encoder: MeshoptEncoder, level: "high" }) // compression (poids)
+    ...(COMPRESS_ONLY
+      ? [ weld({ tolerance: 0.0001 }),                          // nettoie les bounds sans renommer/deplacer/supprimer de noeud (pas de prune: garde les hardpoints locators dont le harnais a besoin)
+          meshopt({ encoder: MeshoptEncoder, level: "high" }) ] // interieurs : compression, noms/placement/hardpoints intacts
+      : [
+          dedup(),                      // fusionne accessors/materiaux/meshes dupliques
+          weld({ tolerance: 0.0001 }),  // soude les sommets colocalises
+          flatten(),                    // aplatit la hierarchie de noeuds
+          join(),                       // FUSIONNE les primitives par materiau -> moins de draw calls
+          prune(),                      // retire ce qui n'est plus reference
+          meshopt({ encoder: MeshoptEncoder, level: "high" }), // compression (poids)
+        ])
   );
 
   const after = stats(doc);
