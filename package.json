@@ -6,7 +6,9 @@
   "description": "Mini-API statique de modeles 3D 'lite' des vaisseaux Star Citizen pour SC Fleet Manager.",
   "scripts": {
     "build": "node scripts/build-index.mjs",
-    "build:strict": "node scripts/build-index.mjs --strict"
+    "build:strict": "node scripts/build-index.mjs --strict",
+    "qa": "node scripts/qa.mjs",
+    "qa:strict": "node scripts/qa.mjs --strict"
   },
   "license": "SEE README.md"
 }
