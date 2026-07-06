@@ -3,7 +3,7 @@
   "githubRepo": "asset-3d",
   "patchVersion": "sc-4.1",
   "levels": [
-    { "id": "exterior", "label": "Detaille" },
+    { "id": "exterior", "label": "Apercu" },
     { "id": "interior", "label": "Interieur" }
   ],
   "budget": {

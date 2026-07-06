@@ -41,9 +41,12 @@ for (const key of batch) {
       const dims = [b.max[0] - b.min[0], b.max[1] - b.min[1], b.max[2] - b.min[2]];
       const minDim = Math.min(...dims);
       const name = n.getName() || "";
-      const anon = !name || /^[?]|^mesh[_.]?\d*$|^\d+$/i.test(name);
+      // parasite = anonyme OU nom GENERIQUE (primitive Blender / Object export), ET loin hors coque (deja filtre)
+      const GENERIC = /^(box|cube|plane|cylinder|sphere|cone|circle|icosphere|object|empty)[._]?\d+$/i;
+      const generic = !name || /^[?]/.test(name) || GENERIC.test(name);
       const rec = { key, name: name || "(anonyme)", over: +over.toFixed(0), minDim: +minDim.toFixed(2), dims: dims.map((d) => d.toFixed(0)).join("x") };
-      if (anon && minDim < DEGEN) parasites.push(rec); else keep.push(rec);
+      // named-specific (mur/pièce nommé) hors coque -> A GARDER (verif manuelle) ; generique hors coque -> parasite
+      if (generic) parasites.push(rec); else keep.push(rec);
     }
   } catch (e) { console.log(`  ⚠ ${key} : ${e.message.split("\n")[0]}`); }
 }

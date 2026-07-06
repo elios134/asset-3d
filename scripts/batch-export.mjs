@@ -29,6 +29,7 @@ const keys = Object.keys(meta).filter((k) => k !== "_comment");
 
 // --- selection du batch ---
 const NO_OPTIMIZE = process.argv.includes("--no-optimize");
+const SILHOUETTE = process.argv.includes("--silhouette"); // coque epuree : --no-attachments (sans armes/pieces/nozzles qui depassent)
 const args = process.argv.slice(2).filter((a) => !a.startsWith("--"));
 const ALL = process.argv.includes("--all");
 let batch;
@@ -70,7 +71,8 @@ for (const key of batch) {
   try {
     // 1) export exterieur detaille
     execFileSync(STARBREAKER, ["entity", "export", key, out,
-      "--materials", "colors", "--no-interior", "--lod", String(lod), "--mip", "4"],
+      "--materials", "colors", "--no-interior", "--lod", String(lod), "--mip", "4",
+      ...(SILHOUETTE ? ["--no-attachments"] : [])],
       { env: { ...process.env, SC_DATA_P4K: P4K }, stdio: "ignore", timeout: 120000 });
     if (!existsSync(out)) throw new Error("aucun .glb produit");
     const rawSize = statSync(out).size;
