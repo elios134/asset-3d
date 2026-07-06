@@ -28,9 +28,11 @@ const meta = JSON.parse(readFileSync(pjoin(ROOT, "ships.meta.json"), "utf8"));
 const keys = Object.keys(meta).filter((k) => k !== "_comment");
 
 // --- selection du batch ---
+const NO_OPTIMIZE = process.argv.includes("--no-optimize");
+const args = process.argv.slice(2).filter((a) => !a.startsWith("--"));
+const ALL = process.argv.includes("--all");
 let batch;
-const args = process.argv.slice(2);
-if (args[0] === "--all") batch = keys;
+if (ALL) batch = keys;
 else if (args.length) batch = args;
 else {
   // 15 vaisseaux repartis sur toute la plage de tailles (longueur)
@@ -73,19 +75,25 @@ for (const key of batch) {
     if (!existsSync(out)) throw new Error("aucun .glb produit");
     const rawSize = statSync(out).size;
 
-    // 2) optimisation
-    const doc = await io.read(out);
-    const primsBefore = countPrims(doc);
-    await doc.transform(dedup(), weld({ tolerance: 0.0001 }), flatten(), join(), prune(),
-      meshopt({ encoder: MeshoptEncoder, level: "high" }));
-    const tmp = out.replace(/\.glb$/, ".opt.glb");
-    await io.write(tmp, doc);
-    rmSync(out); renameSync(tmp, out);
-
-    const size = statSync(out).size;
-    const s = stats(doc);
-    results.push({ key, name: m.name, ok: true, lod, primsBefore, prims: s.prims, tris: s.tris, rawMB: mb(rawSize), mb: mb(size) });
-    console.log(`  ✓ ${label.padEnd(48)} draw ${primsBefore}->${s.prims}, ${s.tris.toLocaleString()} tris, ${mb(rawSize)}->${mb(size)}`);
+    // 2) optimisation (sauf --no-optimize : garde le brut pour passer la QA dessus avant compression)
+    if (NO_OPTIMIZE) {
+      const doc = await io.read(out);
+      const s = stats(doc);
+      results.push({ key, name: m.name, ok: true, lod, prims: s.prims, tris: s.tris, mb: mb(rawSize) });
+      console.log(`  ✓ ${label.padEnd(48)} BRUT ${s.prims} draw, ${s.tris.toLocaleString()} tris, ${mb(rawSize)} Mo`);
+    } else {
+      const doc = await io.read(out);
+      const primsBefore = countPrims(doc);
+      await doc.transform(dedup(), weld({ tolerance: 0.0001 }), flatten(), join(), prune(),
+        meshopt({ encoder: MeshoptEncoder, level: "high" }));
+      const tmp = out.replace(/\.glb$/, ".opt.glb");
+      await io.write(tmp, doc);
+      rmSync(out); renameSync(tmp, out);
+      const size = statSync(out).size;
+      const s = stats(doc);
+      results.push({ key, name: m.name, ok: true, lod, primsBefore, prims: s.prims, tris: s.tris, rawMB: mb(rawSize), mb: mb(size) });
+      console.log(`  ✓ ${label.padEnd(48)} draw ${primsBefore}->${s.prims}, ${s.tris.toLocaleString()} tris, ${mb(rawSize)}->${mb(size)}`);
+    }
   } catch (e) {
     results.push({ key, name: m.name, ok: false, err: e.message.split("\n")[0] });
     console.log(`  ✗ ${label.padEnd(48)} ECHEC : ${e.message.split("\n")[0]}`);

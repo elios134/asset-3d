@@ -119,6 +119,31 @@ for (const [moduleName, cfg] of Object.entries(mapping)) {
   fixed++;
 }
 
+// ---------- auto-verification (memes criteres que le harnais app) ----------
+let allPass = true;
+console.log("\n--- verification (criteres app) ---");
+for (const [moduleName, cfg] of Object.entries(mapping)) {
+  const mi = nodeIndexByName(moduleName);
+  if (mi < 0) continue;
+  const shell = shellBBoxCenter(cfg.shell);
+  const hp = hardpointWorld(cfg.hardpoint);
+  if (!shell || !hp) continue;
+  const c = shell.center;
+  const dXZ = Math.hypot(c[0] - hp[0], c[2] - hp[2]); // centre X/Z vs hardpoint
+  let floorLine = "", floorOk = true;
+  if (cfg.floorTo) {
+    const fy = hardpointWorld(cfg.floorTo);
+    const dFloor = Math.abs(shell.minY - fy[1]); // plancher vs pont
+    floorOk = dFloor <= 0.3;
+    floorLine = ` | plancher ecart ${dFloor.toFixed(2)}m ${floorOk ? "OK" : "FAIL"}`;
+  }
+  const xzOk = dXZ <= 0.5;
+  const pass = xzOk && floorOk;
+  allPass = allPass && pass;
+  console.log(`  ${pass ? "PASS" : "FAIL"} ${moduleName.padEnd(34)} centreXZ ecart ${dXZ.toFixed(3)}m ${xzOk ? "OK" : "FAIL"}${floorLine}`);
+}
+console.log(allPass ? "QA reposition : CONFORME ✓" : "QA reposition : NON CONFORME ✗");
+
 // ---------- re-serialisation GLB ----------
 const newJson = Buffer.from(JSON.stringify(json), "utf8");
 const jsonChunk = Buffer.concat([newJson, Buffer.alloc((4 - (newJson.length % 4)) % 4, 0x20)]);

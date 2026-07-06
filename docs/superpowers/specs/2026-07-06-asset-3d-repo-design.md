@@ -1,7 +1,9 @@
 # Spec — Dépôt `asset-3d` (mini-API statique de modèles 3D)
 
 Date : 2026-07-06
-Statut : validé, POC en cours
+Statut : **LIVRÉ** (POC dépassé). Ce document est le design initial ; l'état réel et le pipeline
+complet sont dans [README](../../../README.md) + [RUNBOOK](../../RUNBOOK.md). Livré : 229 vaisseaux
+extérieurs + intérieur Cutlass corrigé/validé, schéma v2 multi-variantes, pipeline reproductible par patch.
 
 ## Objectif
 

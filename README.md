@@ -2,8 +2,12 @@
 
 Mini-API statique de modèles 3D **« lite »** des vaisseaux Star Citizen, pour l'application
 [SC Fleet Manager](https://github.com/elios134). Chaque vaisseau est un `.glb` basse-poly
-(couleurs à plat, extérieur seul) destiné à **identifier, survoler et comparer les tailles** —
+(couleurs à plat) destiné à **identifier, survoler, comparer les tailles et explorer l'intérieur** —
 pas à faire du rendu photoréaliste.
+
+**État** : **229 vaisseaux** extérieurs publiés (optimisés, ~3 Mo/vaisseau), plus un intérieur
+corrigé et validé (Cutlass Black). Éditions spéciales/peintures (wikelo, pyam, best-in-show, exec)
+exclues. Voir **[docs/RUNBOOK.md](docs/RUNBOOK.md)** pour tout régénérer/publier.
 
 ## Comment ça marche
 
@@ -58,43 +62,22 @@ celles présentes dans `variants`.
 
 ## Alimenter l'API (mainteneur)
 
-Pré-requis : Node.js, [GitHub CLI](https://cli.github.com/) (`gh`), StarBreaker, et le `Data.p4k`
-du jeu installé localement.
+Le pipeline complet (pré-requis, séquence par patch, ajout d'un intérieur, critères de validation)
+est décrit dans **[docs/RUNBOOK.md](docs/RUNBOOK.md)**. En bref :
 
 ```powershell
-# 0) une fois : indiquer le Data.p4k
 $env:SC_DATA_P4K = "D:\Program Files\RSI Launcher\StarCitizen\LIVE\Data.p4k"
-
-# 1) exporter les 3 variantes 'lite' avec StarBreaker (couleurs a plat, sans textures)
-#    fichier = models/<key>.<level>.glb
-$KEY = "DRAK_Cutlass_Black"; $M = "…\asset-3D\models"
-#  exterior : exterieur + portes/hardpoints (attachments inclus)
-.\starbreaker.exe entity export "Cutlass_Black" "$M\$KEY.exterior.glb"  --materials colors --no-interior --lod 2 --mip 4
-#  interior : coque complete + interieur (LOD plus fin ; baisser le LOD si trop lourd sur un capital)
-.\starbreaker.exe entity export "Cutlass_Black" "$M\$KEY.interior.glb"  --materials colors --lod 1 --mip 4
-
-# 2) renseigner le vaisseau dans ships.meta.json (name, manufacturer, dims depuis ShipData)
-
-# 2b) optimiser le rendu : fusion des meshes (draw calls) + compression meshopt
-#     -> ~90% de draw calls en moins (fluidite en orbite), fichiers plus legers, sans perte visuelle.
-#     ATTENTION : produit du EXT_meshopt_compression -> l'app doit activer le decodeur meshopt.
-node scripts/optimize.mjs models/$KEY.exterior.glb   # ecrit .opt.glb, verifier puis remplacer le .glb
-
-# 3) generer le catalogue (regroupe les variantes, calcule tris + taille + sha256)
-node scripts/build-index.mjs
-
-# 4) publier : index.json sur main + les .glb en Release
-git add index.json ships.meta.json && git commit -m "Ajout Cutlass Black" && git push
-gh release upload sc-4.1 models/$KEY.*.glb --clobber
+# 1) mettre a jour patchVersion dans config.json, puis :
+node scripts/release-patch.mjs   # gen-meta -> batch-export --all -> build-index (toute la flotte)
+# 2) publier (commandes affichees par le script) : gh release upload + git commit/push
 ```
 
-Réglage du LOD par variante/vaisseau selon le poids mesuré (StarBreaker n'a pas de palier
-intermédiaire propre : les niveaux `--lod` sont brutaux). Repères POC : Cutlass exterior LOD2+attachments /
-interior LOD1 ; Idris exterior LOD3 / interior LOD3.
+Scripts (`scripts/`) : `gen-meta` (ShipData → méta), `batch-export` (export+optimisation en masse),
+`optimize` (`--compress-only` pour les intérieurs), `qa` (contrôle géométrique sur exports bruts),
+`reposition-interior` (fix placement intérieur), `build-index` (catalogue), `release-patch` (orchestrateur).
 
-Le script `build-index.mjs` **ne modifie jamais** `index.json` à la main : il le régénère
-entièrement et valide le budget (`config.json` → `budget.maxTris`, `budget.maxSizeBytes`).
-Ajouter `--strict` fait échouer le build si un vaisseau dépasse le budget.
+Les intérieurs se font **au cas par cas** (la convention d'ancrage varie selon le vaisseau) — voir le RUNBOOK.
+`build-index.mjs` régénère toujours `index.json` entièrement et valide le budget (`config.json`).
 
 ## Périmètre
 
