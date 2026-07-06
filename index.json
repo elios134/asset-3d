@@ -1,6 +1,6 @@
 {
   "schemaVersion": 2,
-  "generatedAt": "2026-07-06T03:48:03.302Z",
+  "generatedAt": "2026-07-06T04:00:42.247Z",
   "patchVersion": "sc-4.1",
   "levels": [
     {
@@ -17,11 +17,11 @@
       "key": "AEGS_Idris_P",
       "name": "Idris-P",
       "manufacturer": "Aegis Dynamics",
-      "classification": "capital_frigate",
+      "classification": "Frigate",
       "dims": {
-        "l": 239.5,
-        "b": 96.75,
-        "h": 43.3
+        "l": 243,
+        "b": 127,
+        "h": 57.5
       },
       "materials": "flat",
       "patchVersion": "sc-4.1",
@@ -50,11 +50,11 @@
       "key": "DRAK_Cutlass_Black",
       "name": "Cutlass Black",
       "manufacturer": "Drake Interplanetary",
-      "classification": "medium_freight",
+      "classification": "Light Freight / Medium Fighter",
       "dims": {
-        "l": 38,
-        "b": 26.8,
-        "h": 10.5
+        "l": 37.5,
+        "b": 26.5,
+        "h": 11.5
       },
       "materials": "flat",
       "patchVersion": "sc-4.1",
