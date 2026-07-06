@@ -9,34 +9,53 @@ pas à faire du rendu photoréaliste.
 
 - Les **binaires `.glb`** sont hébergés en **GitHub Releases** (un tag par patch SC, ex. `sc-4.1`).
   Ils ne sont **pas** versionnés dans le dépôt git.
-- Le fichier **[`index.json`](index.json)** est le catalogue (le « contrat » que l'app lit) :
-  la liste des vaisseaux disponibles avec leur `modelUrl`, dimensions, nombre de triangles et `sha256`.
-- L'app récupère `index.json`, puis télécharge et met en cache les `.glb` à la demande.
+- Le fichier **[`index.json`](index.json)** est le catalogue (le « contrat » que l'app lit).
+- Chaque vaisseau expose plusieurs **variantes** (niveaux de détail), une par bouton côté app :
+  `silhouette` (Aperçu, léger, chargé par défaut), `exterior` (Détaillé, avec portes/hardpoints),
+  `interior` (Intérieur, coque complète). Fichier = `models/<key>.<level>.glb`.
+- L'app récupère `index.json`, puis télécharge et met en cache le `.glb` d'une variante **à la demande**
+  (quand l'utilisateur clique son bouton). App desktop → gros fichiers tolérés (cache local).
 
-### Schéma de `index.json`
+### Schéma de `index.json` (schemaVersion 2)
 
 ```jsonc
 {
-  "schemaVersion": 1,
+  "schemaVersion": 2,
   "generatedAt": "2026-07-06T12:00:00Z",
   "patchVersion": "sc-4.1",
+  "levels": [                              // ordre + libelles par defaut (l'app peut localiser via l'id)
+    { "id": "silhouette", "label": "Apercu" },
+    { "id": "exterior",   "label": "Detaille" },
+    { "id": "interior",   "label": "Interieur" }
+  ],
   "ships": [
     {
-      "key": "DRAK_Cutlass_Black",      // className CIG = nom du fichier .glb
-      "name": "Cutlass Black",          // = ShipData.name (clef de jointure cote app)
+      "key": "DRAK_Cutlass_Black",         // className CIG = prefixe du nom de fichier
+      "name": "Cutlass Black",             // = ShipData.name (clef de jointure cote app)
       "manufacturer": "Drake Interplanetary",
       "classification": "medium_freight",
-      "modelUrl": "https://github.com/elios134/asset-3d/releases/download/sc-4.1/DRAK_Cutlass_Black.glb",
       "dims": { "l": 38, "b": 26.8, "h": 10.5 },
-      "tris": 18420,
-      "sizeBytes": 1533221,
-      "materials": "flat",              // flat | baked
-      "sha256": "…",                    // sert aussi de clef de cache cote app
-      "patchVersion": "sc-4.1"
+      "materials": "flat",                 // flat | baked
+      "patchVersion": "sc-4.1",
+      "variants": [
+        {
+          "level": "silhouette",           // = un id de `levels`
+          "label": "Apercu",
+          "modelUrl": "https://github.com/elios134/asset-3d/releases/download/sc-4.1/DRAK_Cutlass_Black.silhouette.glb",
+          "tris": 48076,
+          "sizeBytes": 5937744,
+          "hasInterior": false,
+          "sha256": "…"                    // sert aussi de clef de cache cote app
+        }
+        // + exterior, + interior…
+      ]
     }
   ]
 }
 ```
+
+Un vaisseau peut n'avoir qu'une partie des variantes : l'app n'affiche des boutons que pour
+celles présentes dans `variants`.
 
 ## Alimenter l'API (mainteneur)
 
@@ -47,20 +66,29 @@ du jeu installé localement.
 # 0) une fois : indiquer le Data.p4k
 $env:SC_DATA_P4K = "D:\Program Files\RSI Launcher\StarCitizen\LIVE\Data.p4k"
 
-# 1) exporter un vaisseau 'lite' avec StarBreaker (exterieur seul, couleurs a plat, LOD bas)
-.\starbreaker.exe entity export "Cutlass_Black" `
-  "…\asset-3D\models\DRAK_Cutlass_Black.glb" `
-  --materials colors --no-interior --no-attachments --lod 2 --mip 4
+# 1) exporter les 3 variantes 'lite' avec StarBreaker (couleurs a plat, sans textures)
+#    fichier = models/<key>.<level>.glb
+$KEY = "DRAK_Cutlass_Black"; $M = "…\asset-3D\models"
+#  silhouette : exterieur simple, sans attachments (leger)
+.\starbreaker.exe entity export "Cutlass_Black" "$M\$KEY.silhouette.glb" --materials colors --no-interior --no-attachments --lod 2 --mip 4
+#  exterior : exterieur + portes/hardpoints (attachments inclus)
+.\starbreaker.exe entity export "Cutlass_Black" "$M\$KEY.exterior.glb"   --materials colors --no-interior --lod 2 --mip 4
+#  interior : coque complete + interieur (LOD plus fin ; baisser le LOD si trop lourd sur un capital)
+.\starbreaker.exe entity export "Cutlass_Black" "$M\$KEY.interior.glb"   --materials colors --lod 1 --mip 4
 
 # 2) renseigner le vaisseau dans ships.meta.json (name, manufacturer, dims depuis ShipData)
 
-# 3) generer le catalogue (calcule tris + taille + sha256)
+# 3) generer le catalogue (regroupe les variantes, calcule tris + taille + sha256)
 node scripts/build-index.mjs
 
-# 4) publier : index.json sur main + le .glb en Release
+# 4) publier : index.json sur main + les .glb en Release
 git add index.json ships.meta.json && git commit -m "Ajout Cutlass Black" && git push
-gh release upload sc-4.1 models/DRAK_Cutlass_Black.glb --clobber
+gh release upload sc-4.1 models/$KEY.*.glb --clobber
 ```
+
+Réglage du LOD par variante/vaisseau selon le poids mesuré (StarBreaker n'a pas de palier
+intermédiaire propre : les niveaux `--lod` sont brutaux). Repères POC : Cutlass silhouette LOD2 /
+exterior LOD2+attachments / interior LOD1 ; Idris silhouette LOD3 / exterior LOD3 / interior LOD3.
 
 Le script `build-index.mjs` **ne modifie jamais** `index.json` à la main : il le régénère
 entièrement et valide le budget (`config.json` → `budget.maxTris`, `budget.maxSizeBytes`).

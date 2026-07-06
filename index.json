@@ -1,41 +1,105 @@
 {
-  "schemaVersion": 1,
-  "generatedAt": "2026-07-06T00:27:55.923Z",
+  "schemaVersion": 2,
+  "generatedAt": "2026-07-06T00:54:27.874Z",
   "patchVersion": "sc-4.1",
+  "levels": [
+    {
+      "id": "silhouette",
+      "label": "Apercu"
+    },
+    {
+      "id": "exterior",
+      "label": "Detaille"
+    },
+    {
+      "id": "interior",
+      "label": "Interieur"
+    }
+  ],
   "ships": [
     {
       "key": "AEGS_Idris_P",
       "name": "Idris-P",
       "manufacturer": "Aegis Dynamics",
       "classification": "capital_frigate",
-      "modelUrl": "https://github.com/elios134/asset-3d/releases/download/sc-4.1/AEGS_Idris_P.glb",
       "dims": {
         "l": 239.5,
         "b": 96.75,
         "h": 43.3
       },
-      "tris": 41243,
-      "sizeBytes": 3995304,
       "materials": "flat",
-      "sha256": "7076ad94767c704f3ac85f9aea02d7f6b5a53132e4a749fa01e0488972d8944b",
-      "patchVersion": "sc-4.1"
+      "patchVersion": "sc-4.1",
+      "variants": [
+        {
+          "level": "silhouette",
+          "label": "Apercu",
+          "modelUrl": "https://github.com/elios134/asset-3d/releases/download/sc-4.1/AEGS_Idris_P.silhouette.glb",
+          "tris": 41243,
+          "sizeBytes": 3995304,
+          "hasInterior": false,
+          "sha256": "7076ad94767c704f3ac85f9aea02d7f6b5a53132e4a749fa01e0488972d8944b"
+        },
+        {
+          "level": "exterior",
+          "label": "Detaille",
+          "modelUrl": "https://github.com/elios134/asset-3d/releases/download/sc-4.1/AEGS_Idris_P.exterior.glb",
+          "tris": 332260,
+          "sizeBytes": 14699804,
+          "hasInterior": false,
+          "sha256": "cb95e4e7b630c77138ae075d3acbc89957f3358da8b06ba3628e507650ed6391"
+        },
+        {
+          "level": "interior",
+          "label": "Interieur",
+          "modelUrl": "https://github.com/elios134/asset-3d/releases/download/sc-4.1/AEGS_Idris_P.interior.glb",
+          "tris": 1064858,
+          "sizeBytes": 61963756,
+          "hasInterior": true,
+          "sha256": "8f2c3fc1e9c67179b3f66c26345f3a532f283c7b3e14f8a293aab143d1cfc9be"
+        }
+      ]
     },
     {
       "key": "DRAK_Cutlass_Black",
       "name": "Cutlass Black",
       "manufacturer": "Drake Interplanetary",
       "classification": "medium_freight",
-      "modelUrl": "https://github.com/elios134/asset-3d/releases/download/sc-4.1/DRAK_Cutlass_Black.glb",
       "dims": {
         "l": 38,
         "b": 26.8,
         "h": 10.5
       },
-      "tris": 48076,
-      "sizeBytes": 5937744,
       "materials": "flat",
-      "sha256": "29df64fb29879cdbc1d060a55f9440533bca567192055c2f5df1a6979e006c4a",
-      "patchVersion": "sc-4.1"
+      "patchVersion": "sc-4.1",
+      "variants": [
+        {
+          "level": "silhouette",
+          "label": "Apercu",
+          "modelUrl": "https://github.com/elios134/asset-3d/releases/download/sc-4.1/DRAK_Cutlass_Black.silhouette.glb",
+          "tris": 48076,
+          "sizeBytes": 5937744,
+          "hasInterior": false,
+          "sha256": "29df64fb29879cdbc1d060a55f9440533bca567192055c2f5df1a6979e006c4a"
+        },
+        {
+          "level": "exterior",
+          "label": "Detaille",
+          "modelUrl": "https://github.com/elios134/asset-3d/releases/download/sc-4.1/DRAK_Cutlass_Black.exterior.glb",
+          "tris": 227016,
+          "sizeBytes": 17241828,
+          "hasInterior": false,
+          "sha256": "655e8d8bfed51fb4dd144b22b91834d81ff3f1b039f60de7d56b139ae9e5e966"
+        },
+        {
+          "level": "interior",
+          "label": "Interieur",
+          "modelUrl": "https://github.com/elios134/asset-3d/releases/download/sc-4.1/DRAK_Cutlass_Black.interior.glb",
+          "tris": 642743,
+          "sizeBytes": 44489812,
+          "hasInterior": true,
+          "sha256": "24977186df57e23a6bf9e0a90f31e262d31db076b26328caa6fb3db43fb05773"
+        }
+      ]
     }
   ]
 }

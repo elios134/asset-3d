@@ -1,30 +1,34 @@
 #!/usr/bin/env node
 // build-index.mjs — genere index.json a partir des .glb presents dans models/.
 //
-// Pour chaque models/<key>.glb :
-//   - calcule sha256, taille (octets), nombre de triangles (parse le GLB, zero dependance)
-//   - joint les metadonnees de ships.meta.json (name, manufacturer, dims, classification, materials)
-//   - construit modelUrl vers l'asset de Release GitHub du patch courant
-//   - valide le budget (tris / taille) : avertit, ou echoue avec --strict
-// Sortie deterministe (clefs triees) pour des diffs propres.
+// Convention de nommage : models/<key>.<level>.glb
+//   ex. DRAK_Cutlass_Black.silhouette.glb, DRAK_Cutlass_Black.exterior.glb, DRAK_Cutlass_Black.interior.glb
+// key   = className CIG (peut contenir des underscores, jamais de point)
+// level = un id declare dans config.json > levels (silhouette | exterior | interior)
+//
+// Pour chaque fichier : sha256, taille (octets), triangles (parse GLB, zero dependance).
+// Les fichiers sont regroupes par key ; chaque vaisseau expose un tableau `variants`
+// (un par bouton de niveau de detail cote app), ordonne selon config.levels.
 //
 // Usage : node scripts/build-index.mjs [--strict]
 
 import { createHash } from "node:crypto";
 import { readFileSync, writeFileSync, readdirSync, statSync } from "node:fs";
 import { fileURLToPath } from "node:url";
-import { dirname, join, basename } from "node:path";
+import { dirname, join } from "node:path";
 
 const ROOT = join(dirname(fileURLToPath(import.meta.url)), "..");
 const STRICT = process.argv.includes("--strict");
-const SCHEMA_VERSION = 1;
+const SCHEMA_VERSION = 2;
 
 const config = readJson(join(ROOT, "config.json"));
 const meta = readJson(join(ROOT, "ships.meta.json"));
 const modelsDir = join(ROOT, "models");
 
-const { githubOwner, githubRepo, patchVersion, budget } = config;
+const { githubOwner, githubRepo, patchVersion, levels, budget } = config;
 const releaseBase = `https://github.com/${githubOwner}/${githubRepo}/releases/download/${patchVersion}`;
+const levelOrder = levels.map((l) => l.id);
+const labelOf = Object.fromEntries(levels.map((l) => [l.id, l.label]));
 
 const glbFiles = readdirSync(modelsDir).filter((f) => f.toLowerCase().endsWith(".glb"));
 if (glbFiles.length === 0) {
@@ -32,13 +36,24 @@ if (glbFiles.length === 0) {
   process.exit(0);
 }
 
-const ships = [];
+const byKey = new Map(); // key -> [variant, ...]
 const problems = [];
 
 for (const file of glbFiles.sort()) {
-  const key = basename(file, ".glb");
-  const shipMeta = meta[key];
-  if (!shipMeta) {
+  const stem = file.slice(0, -4); // enleve .glb
+  const dot = stem.lastIndexOf(".");
+  if (dot < 0) {
+    problems.push(`[NOM] ${file} : attendu <key>.<level>.glb (ex. DRAK_Cutlass_Black.silhouette.glb)`);
+    continue;
+  }
+  const key = stem.slice(0, dot);
+  const level = stem.slice(dot + 1);
+
+  if (!levelOrder.includes(level)) {
+    problems.push(`[LEVEL] ${file} : niveau "${level}" inconnu (config.levels = ${levelOrder.join(", ")})`);
+    continue;
+  }
+  if (!meta[key]) {
     problems.push(`[META MANQUANTE] ${file} : ajoute une entree "${key}" dans ships.meta.json`);
     continue;
   }
@@ -48,39 +63,56 @@ for (const file of glbFiles.sort()) {
   const sizeBytes = statSync(join(modelsDir, file)).size;
   const tris = countTriangles(buf);
 
-  if (tris > budget.maxTris) {
-    problems.push(`[BUDGET TRIS] ${file} : ${tris.toLocaleString()} tris > max ${budget.maxTris.toLocaleString()}`);
+  const b = budget[level];
+  if (b && tris > b.maxTris) {
+    problems.push(`[BUDGET TRIS] ${file} : ${tris.toLocaleString()} > max ${b.maxTris.toLocaleString()} (${level})`);
   }
-  if (sizeBytes > budget.maxSizeBytes) {
-    problems.push(`[BUDGET TAILLE] ${file} : ${fmtMB(sizeBytes)} > max ${fmtMB(budget.maxSizeBytes)}`);
+  if (b && sizeBytes > b.maxSizeBytes) {
+    problems.push(`[BUDGET TAILLE] ${file} : ${fmtMB(sizeBytes)} > max ${fmtMB(b.maxSizeBytes)} (${level})`);
   }
 
-  ships.push({
-    key,
-    name: shipMeta.name,
-    manufacturer: shipMeta.manufacturer,
-    classification: shipMeta.classification ?? null,
+  if (!byKey.has(key)) byKey.set(key, []);
+  byKey.get(key).push({
+    level,
+    label: labelOf[level],
     modelUrl: `${releaseBase}/${file}`,
-    dims: shipMeta.dims ?? null,
     tris,
     sizeBytes,
-    materials: shipMeta.materials ?? "flat",
+    hasInterior: level === "interior",
     sha256,
-    patchVersion: shipMeta.patchVersion ?? patchVersion,
   });
 
-  console.log(`  ${file.padEnd(34)} ${String(tris).padStart(7)} tris  ${fmtMB(sizeBytes).padStart(9)}`);
+  console.log(`  ${file.padEnd(40)} ${String(tris).padStart(9)} tris  ${fmtMB(sizeBytes).padStart(9)}`);
 }
+
+const ships = [];
+for (const [key, variants] of byKey) {
+  const m = meta[key];
+  variants.sort((a, b) => levelOrder.indexOf(a.level) - levelOrder.indexOf(b.level));
+  ships.push({
+    key,
+    name: m.name,
+    manufacturer: m.manufacturer,
+    classification: m.classification ?? null,
+    dims: m.dims ?? null,
+    materials: m.materials ?? "flat",
+    patchVersion: m.patchVersion ?? patchVersion,
+    variants,
+  });
+}
+ships.sort((a, b) => a.key.localeCompare(b.key));
 
 const index = {
   schemaVersion: SCHEMA_VERSION,
   generatedAt: new Date().toISOString(),
   patchVersion,
-  ships: ships.sort((a, b) => a.key.localeCompare(b.key)),
+  levels, // ordre + libelles par defaut (l'app peut les localiser via l'id)
+  ships,
 };
 
 writeFileSync(join(ROOT, "index.json"), JSON.stringify(index, null, 2) + "\n");
-console.log(`\nindex.json ecrit : ${ships.length} vaisseau(x), patch ${patchVersion}.`);
+const totalVariants = ships.reduce((n, s) => n + s.variants.length, 0);
+console.log(`\nindex.json ecrit : ${ships.length} vaisseau(x), ${totalVariants} variante(s), patch ${patchVersion}.`);
 
 if (problems.length > 0) {
   console.warn(`\n${problems.length} avertissement(s) :`);
@@ -105,7 +137,6 @@ function fmtMB(bytes) {
 function countTriangles(buf) {
   const magic = buf.readUInt32LE(0);
   if (magic !== 0x46546c67) throw new Error("Pas un fichier GLB valide (magic).");
-  // Chunks : [uint32 length][uint32 type][data...]
   let offset = 12;
   let json = null;
   while (offset < buf.length) {
@@ -113,7 +144,6 @@ function countTriangles(buf) {
     const chunkType = buf.readUInt32LE(offset + 4);
     const start = offset + 8;
     if (chunkType === 0x4e4f534a) {
-      // "JSON"
       json = JSON.parse(buf.subarray(start, start + chunkLen).toString("utf8"));
       break;
     }
@@ -125,18 +155,13 @@ function countTriangles(buf) {
   let tris = 0;
   for (const mesh of json.meshes ?? []) {
     for (const prim of mesh.primitives ?? []) {
-      const mode = prim.mode ?? 4; // 4 = TRIANGLES par defaut
+      const mode = prim.mode ?? 4;
       let count;
-      if (prim.indices != null) {
-        count = accessors[prim.indices]?.count ?? 0;
-      } else if (prim.attributes?.POSITION != null) {
-        count = accessors[prim.attributes.POSITION]?.count ?? 0;
-      } else {
-        count = 0;
-      }
+      if (prim.indices != null) count = accessors[prim.indices]?.count ?? 0;
+      else if (prim.attributes?.POSITION != null) count = accessors[prim.attributes.POSITION]?.count ?? 0;
+      else count = 0;
       if (mode === 4) tris += Math.floor(count / 3);
-      else if (mode === 5 || mode === 6) tris += Math.max(0, count - 2); // strip / fan
-      // autres modes (points, lignes) : 0 triangle
+      else if (mode === 5 || mode === 6) tris += Math.max(0, count - 2);
     }
   }
   return tris;
