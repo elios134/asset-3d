@@ -1,6 +1,6 @@
 {
   "schemaVersion": 2,
-  "generatedAt": "2026-07-06T06:38:21.529Z",
+  "generatedAt": "2026-07-06T10:58:19.619Z",
   "patchVersion": "sc-4.1",
   "levels": [
     {
@@ -13,6 +13,246 @@
     }
   ],
   "ships": [
+    {
+      "key": "AEGS_Avenger_Stalker",
+      "name": "Avenger Stalker",
+      "manufacturer": "Aegis Dynamics",
+      "classification": "Interceptor",
+      "dims": {
+        "l": 20,
+        "b": 15,
+        "h": 6.5
+      },
+      "materials": "flat",
+      "patchVersion": "sc-4.1",
+      "variants": [
+        {
+          "level": "exterior",
+          "label": "Detaille",
+          "modelUrl": "https://github.com/elios134/asset-3d/releases/download/sc-4.1/AEGS_Avenger_Stalker.exterior.glb",
+          "tris": 70662,
+          "sizeBytes": 1567212,
+          "hasInterior": false,
+          "sha256": "213e457471f3a4f8601c1731d015861cd311cc09f4b859f326cbbfe15c2d117d"
+        }
+      ]
+    },
+    {
+      "key": "AEGS_Avenger_Titan",
+      "name": "Avenger Titan",
+      "manufacturer": "Aegis Dynamics",
+      "classification": "Light Freight",
+      "dims": {
+        "l": 20,
+        "b": 15,
+        "h": 6.5
+      },
+      "materials": "flat",
+      "patchVersion": "sc-4.1",
+      "variants": [
+        {
+          "level": "exterior",
+          "label": "Detaille",
+          "modelUrl": "https://github.com/elios134/asset-3d/releases/download/sc-4.1/AEGS_Avenger_Titan.exterior.glb",
+          "tris": 71606,
+          "sizeBytes": 1569324,
+          "hasInterior": false,
+          "sha256": "c0f8ea61c656848286a56ad7b27e13f3f828ed78f449d9a91b01d19500db814e"
+        }
+      ]
+    },
+    {
+      "key": "AEGS_Avenger_Titan_Renegade",
+      "name": "Avenger Titan Renegade",
+      "manufacturer": "Aegis Dynamics",
+      "classification": "Light Freight",
+      "dims": {
+        "l": 20,
+        "b": 15,
+        "h": 6.5
+      },
+      "materials": "flat",
+      "patchVersion": "sc-4.1",
+      "variants": [
+        {
+          "level": "exterior",
+          "label": "Detaille",
+          "modelUrl": "https://github.com/elios134/asset-3d/releases/download/sc-4.1/AEGS_Avenger_Titan_Renegade.exterior.glb",
+          "tris": 65499,
+          "sizeBytes": 1468184,
+          "hasInterior": false,
+          "sha256": "7673637d723a30460ec98672a2e596a09286fc0311ff65e914405de28f6b22b8"
+        }
+      ]
+    },
+    {
+      "key": "AEGS_Avenger_Warlock",
+      "name": "Avenger Warlock",
+      "manufacturer": "Aegis Dynamics",
+      "classification": "Interdiction",
+      "dims": {
+        "l": 20,
+        "b": 15,
+        "h": 6.5
+      },
+      "materials": "flat",
+      "patchVersion": "sc-4.1",
+      "variants": [
+        {
+          "level": "exterior",
+          "label": "Detaille",
+          "modelUrl": "https://github.com/elios134/asset-3d/releases/download/sc-4.1/AEGS_Avenger_Warlock.exterior.glb",
+          "tris": 94784,
+          "sizeBytes": 1799952,
+          "hasInterior": false,
+          "sha256": "9e650d71b31f2a397dd3eaf7be0cb4ac1b1e8c8fd08df74a66ebde5cdbc8e1bd"
+        }
+      ]
+    },
+    {
+      "key": "AEGS_Eclipse",
+      "name": "Eclipse",
+      "manufacturer": "Aegis Dynamics",
+      "classification": "Stealth Bomber",
+      "dims": {
+        "l": 24.5,
+        "b": 24.5,
+        "h": 5
+      },
+      "materials": "flat",
+      "patchVersion": "sc-4.1",
+      "variants": [
+        {
+          "level": "exterior",
+          "label": "Detaille",
+          "modelUrl": "https://github.com/elios134/asset-3d/releases/download/sc-4.1/AEGS_Eclipse.exterior.glb",
+          "tris": 81313,
+          "sizeBytes": 1462184,
+          "hasInterior": false,
+          "sha256": "7f50974b1d86bcb121a869db1457d37a17919d684ede6efa89e8f08ba5ed7f9c"
+        }
+      ]
+    },
+    {
+      "key": "AEGS_Gladius",
+      "name": "Gladius",
+      "manufacturer": "Aegis Dynamics",
+      "classification": "Light Fighter",
+      "dims": {
+        "l": 21,
+        "b": 17.5,
+        "h": 5.5
+      },
+      "materials": "flat",
+      "patchVersion": "sc-4.1",
+      "variants": [
+        {
+          "level": "exterior",
+          "label": "Detaille",
+          "modelUrl": "https://github.com/elios134/asset-3d/releases/download/sc-4.1/AEGS_Gladius.exterior.glb",
+          "tris": 187970,
+          "sizeBytes": 3212592,
+          "hasInterior": false,
+          "sha256": "6b6e6deb6c9ade4f4f57fea070bb5846da566630470556e7f6ace3995de49956"
+        }
+      ]
+    },
+    {
+      "key": "AEGS_Gladius_PIR",
+      "name": "Gladius Pirate",
+      "manufacturer": "Aegis Dynamics",
+      "classification": "Light Fighter",
+      "dims": {
+        "l": 21,
+        "b": 17.5,
+        "h": 5.5
+      },
+      "materials": "flat",
+      "patchVersion": "sc-4.1",
+      "variants": [
+        {
+          "level": "exterior",
+          "label": "Detaille",
+          "modelUrl": "https://github.com/elios134/asset-3d/releases/download/sc-4.1/AEGS_Gladius_PIR.exterior.glb",
+          "tris": 199155,
+          "sizeBytes": 3457612,
+          "hasInterior": false,
+          "sha256": "12e58c4200397cef63d2a78029505b0eddc5028841d7ccc9f831bb95def993d6"
+        }
+      ]
+    },
+    {
+      "key": "AEGS_Gladius_Valiant",
+      "name": "Gladius Valiant",
+      "manufacturer": "Aegis Dynamics",
+      "classification": "Light Fighter",
+      "dims": {
+        "l": 21,
+        "b": 17.5,
+        "h": 5.5
+      },
+      "materials": "flat",
+      "patchVersion": "sc-4.1",
+      "variants": [
+        {
+          "level": "exterior",
+          "label": "Detaille",
+          "modelUrl": "https://github.com/elios134/asset-3d/releases/download/sc-4.1/AEGS_Gladius_Valiant.exterior.glb",
+          "tris": 190422,
+          "sizeBytes": 3282988,
+          "hasInterior": false,
+          "sha256": "cb8ea36b9461fbb1eadb3e258dc1ecfab3d34ca00f44fb1f8094a1e3cc516244"
+        }
+      ]
+    },
+    {
+      "key": "AEGS_Hammerhead",
+      "name": "Hammerhead",
+      "manufacturer": "Aegis Dynamics",
+      "classification": "Heavy Gunship",
+      "dims": {
+        "l": 120,
+        "b": 72,
+        "h": 16
+      },
+      "materials": "flat",
+      "patchVersion": "sc-4.1",
+      "variants": [
+        {
+          "level": "exterior",
+          "label": "Detaille",
+          "modelUrl": "https://github.com/elios134/asset-3d/releases/download/sc-4.1/AEGS_Hammerhead.exterior.glb",
+          "tris": 307547,
+          "sizeBytes": 4864520,
+          "hasInterior": false,
+          "sha256": "486fa2086a9a36f40272cb4405700b703271df25d830423a29deb435c50fa5b5"
+        }
+      ]
+    },
+    {
+      "key": "AEGS_Idris_M",
+      "name": "Idris-M",
+      "manufacturer": "Aegis Dynamics",
+      "classification": "Frigate",
+      "dims": {
+        "l": 243,
+        "b": 127,
+        "h": 57.5
+      },
+      "materials": "flat",
+      "patchVersion": "sc-4.1",
+      "variants": [
+        {
+          "level": "exterior",
+          "label": "Detaille",
+          "modelUrl": "https://github.com/elios134/asset-3d/releases/download/sc-4.1/AEGS_Idris_M.exterior.glb",
+          "tris": 463051,
+          "sizeBytes": 7006796,
+          "hasInterior": false,
+          "sha256": "462c8f6a15bf4151ffd30d6ef98c15de0af789c07416fac582b63e3437d90f12"
+        }
+      ]
+    },
     {
       "key": "AEGS_Idris_P",
       "name": "Idris-P",
@@ -33,7 +273,7 @@
           "tris": 486544,
           "sizeBytes": 7135936,
           "hasInterior": false,
-          "sha256": "df4a7eb21e9ea85d6a99798e069cb05b8347cbd6e30bde5ee0c6da1fdf2fcd4b"
+          "sha256": "13e506d59940fc1c642a5f4258210b597b6cbdec4dcd3261b59b1b8e447e9c34"
         },
         {
           "level": "interior",
@@ -43,6 +283,78 @@
           "sizeBytes": 61963756,
           "hasInterior": true,
           "sha256": "1d49aadc6c94a307758bf77032dd2af75282b1815658dc04f49f20f6e0814b19"
+        }
+      ]
+    },
+    {
+      "key": "AEGS_Javelin",
+      "name": "Javelin",
+      "manufacturer": "Aegis Dynamics",
+      "classification": "Destroyer",
+      "dims": {
+        "l": 0,
+        "b": 0,
+        "h": 0
+      },
+      "materials": "flat",
+      "patchVersion": "sc-4.1",
+      "variants": [
+        {
+          "level": "exterior",
+          "label": "Detaille",
+          "modelUrl": "https://github.com/elios134/asset-3d/releases/download/sc-4.1/AEGS_Javelin.exterior.glb",
+          "tris": 369739,
+          "sizeBytes": 4343508,
+          "hasInterior": false,
+          "sha256": "6ea61fa9ecd2994638c94cbae5df50b7d062f766837036768886b4002ef30d94"
+        }
+      ]
+    },
+    {
+      "key": "AEGS_Reclaimer",
+      "name": "Reclaimer",
+      "manufacturer": "Aegis Dynamics",
+      "classification": "Heavy Salvage",
+      "dims": {
+        "l": 160,
+        "b": 120,
+        "h": 55
+      },
+      "materials": "flat",
+      "patchVersion": "sc-4.1",
+      "variants": [
+        {
+          "level": "exterior",
+          "label": "Detaille",
+          "modelUrl": "https://github.com/elios134/asset-3d/releases/download/sc-4.1/AEGS_Reclaimer.exterior.glb",
+          "tris": 232151,
+          "sizeBytes": 3757800,
+          "hasInterior": false,
+          "sha256": "ccfc6aeff979dd3a319bf8ced119e667892580ad8c036bccd3ae32ae4cb1c506"
+        }
+      ]
+    },
+    {
+      "key": "AEGS_Redeemer",
+      "name": "Redeemer",
+      "manufacturer": "Aegis Dynamics",
+      "classification": "Gunship",
+      "dims": {
+        "l": 51,
+        "b": 25,
+        "h": 14
+      },
+      "materials": "flat",
+      "patchVersion": "sc-4.1",
+      "variants": [
+        {
+          "level": "exterior",
+          "label": "Detaille",
+          "modelUrl": "https://github.com/elios134/asset-3d/releases/download/sc-4.1/AEGS_Redeemer.exterior.glb",
+          "tris": 462033,
+          "sizeBytes": 6359292,
+          "hasInterior": false,
+          "sha256": "db7675ae55e63100f56ad7d90ed7e6f9137c4df768bd99ee1f5410fc7018e239"
         }
       ]
     },
@@ -66,13 +378,85 @@
           "tris": 517849,
           "sizeBytes": 6810156,
           "hasInterior": false,
-          "sha256": "e7d7ca4557ec8f6500825fe5c916826c9b68a1d104ee22c6762e81c5b250e885"
+          "sha256": "f817500428bdbbe5def92dadb901c0d526ab6c6bb8a4d6375a5cd2dd06ab8e50"
         }
       ]
     },
     {
-      "key": "AEGS_Sabre_Peregrine_Collector_Competition",
-      "name": "Sabre Peregrine Wikelo Speedy Special",
+      "key": "AEGS_Sabre",
+      "name": "Sabre",
+      "manufacturer": "Aegis Dynamics",
+      "classification": "Stealth Fighter",
+      "dims": {
+        "l": 24.5,
+        "b": 24.5,
+        "h": 5
+      },
+      "materials": "flat",
+      "patchVersion": "sc-4.1",
+      "variants": [
+        {
+          "level": "exterior",
+          "label": "Detaille",
+          "modelUrl": "https://github.com/elios134/asset-3d/releases/download/sc-4.1/AEGS_Sabre.exterior.glb",
+          "tris": 145805,
+          "sizeBytes": 2557968,
+          "hasInterior": false,
+          "sha256": "af0d1a931c2e59bca4d29b89b1dc4b037a366a377c4920fc6d2f74516a263809"
+        }
+      ]
+    },
+    {
+      "key": "AEGS_Sabre_Comet",
+      "name": "Sabre Comet",
+      "manufacturer": "Aegis Dynamics",
+      "classification": "Stealth Fighter",
+      "dims": {
+        "l": 24.5,
+        "b": 24.5,
+        "h": 5
+      },
+      "materials": "flat",
+      "patchVersion": "sc-4.1",
+      "variants": [
+        {
+          "level": "exterior",
+          "label": "Detaille",
+          "modelUrl": "https://github.com/elios134/asset-3d/releases/download/sc-4.1/AEGS_Sabre_Comet.exterior.glb",
+          "tris": 121385,
+          "sizeBytes": 2548376,
+          "hasInterior": false,
+          "sha256": "38dda8bd5050dbee48488b5e7ec862466bc41a882897112e7a2a3e08393604cd"
+        }
+      ]
+    },
+    {
+      "key": "AEGS_Sabre_Firebird",
+      "name": "Sabre Firebird",
+      "manufacturer": "Aegis Dynamics",
+      "classification": "Stealth Fighter",
+      "dims": {
+        "l": 24.5,
+        "b": 24.5,
+        "h": 5
+      },
+      "materials": "flat",
+      "patchVersion": "sc-4.1",
+      "variants": [
+        {
+          "level": "exterior",
+          "label": "Detaille",
+          "modelUrl": "https://github.com/elios134/asset-3d/releases/download/sc-4.1/AEGS_Sabre_Firebird.exterior.glb",
+          "tris": 124387,
+          "sizeBytes": 2850664,
+          "hasInterior": false,
+          "sha256": "bc267ff3cf2dc344fd1a4fe51c140855d1609b8ee36882c9a3c79d48102cf54a"
+        }
+      ]
+    },
+    {
+      "key": "AEGS_Sabre_Peregrine",
+      "name": "Sabre Peregrine",
       "manufacturer": "Aegis Dynamics",
       "classification": "Racing",
       "dims": {
@@ -86,11 +470,83 @@
         {
           "level": "exterior",
           "label": "Detaille",
-          "modelUrl": "https://github.com/elios134/asset-3d/releases/download/sc-4.1/AEGS_Sabre_Peregrine_Collector_Competition.exterior.glb",
-          "tris": 89380,
-          "sizeBytes": 2301308,
+          "modelUrl": "https://github.com/elios134/asset-3d/releases/download/sc-4.1/AEGS_Sabre_Peregrine.exterior.glb",
+          "tris": 104465,
+          "sizeBytes": 2360004,
           "hasInterior": false,
-          "sha256": "10d8f2c3fb8bbb3f012ed7dfad1e49e35d0b90dd793fec4969ef615b8580cb52"
+          "sha256": "9e2fa67b96319e12971180890e4558709927ac2605953f4268ba5e3ccb5056c2"
+        }
+      ]
+    },
+    {
+      "key": "AEGS_Sabre_Raven",
+      "name": "Sabre Raven",
+      "manufacturer": "Aegis Dynamics",
+      "classification": "Interdiction",
+      "dims": {
+        "l": 24.5,
+        "b": 24.5,
+        "h": 5
+      },
+      "materials": "flat",
+      "patchVersion": "sc-4.1",
+      "variants": [
+        {
+          "level": "exterior",
+          "label": "Detaille",
+          "modelUrl": "https://github.com/elios134/asset-3d/releases/download/sc-4.1/AEGS_Sabre_Raven.exterior.glb",
+          "tris": 128596,
+          "sizeBytes": 2579816,
+          "hasInterior": false,
+          "sha256": "52cb31426184a20000bb940b266a31f76613fe12e9f457c009868e52d60e0f57"
+        }
+      ]
+    },
+    {
+      "key": "AEGS_Tiburon",
+      "name": "Tiburon",
+      "manufacturer": "Aegis Dynamics",
+      "classification": "Heavy Gunship",
+      "dims": {
+        "l": 121,
+        "b": 68,
+        "h": 20
+      },
+      "materials": "flat",
+      "patchVersion": "sc-4.1",
+      "variants": [
+        {
+          "level": "exterior",
+          "label": "Detaille",
+          "modelUrl": "https://github.com/elios134/asset-3d/releases/download/sc-4.1/AEGS_Tiburon.exterior.glb",
+          "tris": 372508,
+          "sizeBytes": 5736456,
+          "hasInterior": false,
+          "sha256": "4b8010d88c2e05d1fd274eb00629b2092444be57458e7dc493c0413fe1593804"
+        }
+      ]
+    },
+    {
+      "key": "AEGS_Vanguard",
+      "name": "Vanguard Warden",
+      "manufacturer": "Aegis Dynamics",
+      "classification": "Heavy Fighter",
+      "dims": {
+        "l": 48,
+        "b": 40,
+        "h": 9.5
+      },
+      "materials": "flat",
+      "patchVersion": "sc-4.1",
+      "variants": [
+        {
+          "level": "exterior",
+          "label": "Detaille",
+          "modelUrl": "https://github.com/elios134/asset-3d/releases/download/sc-4.1/AEGS_Vanguard.exterior.glb",
+          "tris": 162548,
+          "sizeBytes": 3426364,
+          "hasInterior": false,
+          "sha256": "dcc7fd60865ddd2988516b05e02f80fc17d927e7b2656d41b6fec74bf11bf7f8"
         }
       ]
     },
@@ -114,7 +570,319 @@
           "tris": 159090,
           "sizeBytes": 3111496,
           "hasInterior": false,
-          "sha256": "e1a86770ba67558a4e79772877a43b7d611839c15f39b1a5dd68b00289eecc59"
+          "sha256": "fdcc7109d1027cdd8a1d88ec3ca4e75a97c3d67068c1f0fde1021b1c80ade7b4"
+        }
+      ]
+    },
+    {
+      "key": "AEGS_Vanguard_Hoplite",
+      "name": "Vanguard Hoplite",
+      "manufacturer": "Aegis Dynamics",
+      "classification": "Dropship",
+      "dims": {
+        "l": 48,
+        "b": 40,
+        "h": 9.5
+      },
+      "materials": "flat",
+      "patchVersion": "sc-4.1",
+      "variants": [
+        {
+          "level": "exterior",
+          "label": "Detaille",
+          "modelUrl": "https://github.com/elios134/asset-3d/releases/download/sc-4.1/AEGS_Vanguard_Hoplite.exterior.glb",
+          "tris": 154296,
+          "sizeBytes": 3317896,
+          "hasInterior": false,
+          "sha256": "0d3484d051e4c676f10de2646e1d20d1978ac01252f7b5817563cd31eef1d2d9"
+        }
+      ]
+    },
+    {
+      "key": "AEGS_Vanguard_Sentinel",
+      "name": "Vanguard Sentinel",
+      "manufacturer": "Aegis Dynamics",
+      "classification": "Heavy Fighter / Bomber",
+      "dims": {
+        "l": 48,
+        "b": 40,
+        "h": 9.5
+      },
+      "materials": "flat",
+      "patchVersion": "sc-4.1",
+      "variants": [
+        {
+          "level": "exterior",
+          "label": "Detaille",
+          "modelUrl": "https://github.com/elios134/asset-3d/releases/download/sc-4.1/AEGS_Vanguard_Sentinel.exterior.glb",
+          "tris": 162025,
+          "sizeBytes": 3676360,
+          "hasInterior": false,
+          "sha256": "00a8d84875f6f5622f29442d924e29c89f97652dabbbcfa9022689abbbf9c708"
+        }
+      ]
+    },
+    {
+      "key": "ANVL_Arrow",
+      "name": "Arrow",
+      "manufacturer": "Anvil Aerospace",
+      "classification": "Light Fighter",
+      "dims": {
+        "l": 17.25,
+        "b": 12.25,
+        "h": 4.5
+      },
+      "materials": "flat",
+      "patchVersion": "sc-4.1",
+      "variants": [
+        {
+          "level": "exterior",
+          "label": "Detaille",
+          "modelUrl": "https://github.com/elios134/asset-3d/releases/download/sc-4.1/ANVL_Arrow.exterior.glb",
+          "tris": 71050,
+          "sizeBytes": 1426528,
+          "hasInterior": false,
+          "sha256": "48df8b23006a380596eb5f4faca4092812923462937f55e9dd202e52f6525074"
+        }
+      ]
+    },
+    {
+      "key": "ANVL_Asgard",
+      "name": "Asgard",
+      "manufacturer": "Anvil Aerospace",
+      "classification": "Dropship",
+      "dims": {
+        "l": 48,
+        "b": 38,
+        "h": 12
+      },
+      "materials": "flat",
+      "patchVersion": "sc-4.1",
+      "variants": [
+        {
+          "level": "exterior",
+          "label": "Detaille",
+          "modelUrl": "https://github.com/elios134/asset-3d/releases/download/sc-4.1/ANVL_Asgard.exterior.glb",
+          "tris": 412158,
+          "sizeBytes": 6565696,
+          "hasInterior": false,
+          "sha256": "29fe31bfc39b87d5322a3b7fb3fffba31af9711c437530cce1d3ac4d9aecf363"
+        }
+      ]
+    },
+    {
+      "key": "ANVL_Ballista",
+      "name": "Ballista",
+      "manufacturer": "Anvil Aerospace",
+      "classification": "Anti-Air",
+      "dims": {
+        "l": 17,
+        "b": 7,
+        "h": 5.5
+      },
+      "materials": "flat",
+      "patchVersion": "sc-4.1",
+      "variants": [
+        {
+          "level": "exterior",
+          "label": "Detaille",
+          "modelUrl": "https://github.com/elios134/asset-3d/releases/download/sc-4.1/ANVL_Ballista.exterior.glb",
+          "tris": 69488,
+          "sizeBytes": 1268296,
+          "hasInterior": false,
+          "sha256": "fafd31858172580772799fa98c3f5f3684ea2e002ec8f08e794bd79746ce712f"
+        }
+      ]
+    },
+    {
+      "key": "ANVL_Ballista_Dunestalker",
+      "name": "Ballista Dunestalker",
+      "manufacturer": "Anvil Aerospace",
+      "classification": "Anti-Air",
+      "dims": {
+        "l": 17,
+        "b": 7,
+        "h": 5.5
+      },
+      "materials": "flat",
+      "patchVersion": "sc-4.1",
+      "variants": [
+        {
+          "level": "exterior",
+          "label": "Detaille",
+          "modelUrl": "https://github.com/elios134/asset-3d/releases/download/sc-4.1/ANVL_Ballista_Dunestalker.exterior.glb",
+          "tris": 69488,
+          "sizeBytes": 1268296,
+          "hasInterior": false,
+          "sha256": "6cfbacd2fce3e9a48799473c38cf944dd60c3983b4d4134bbbd3f789ddeaf16e"
+        }
+      ]
+    },
+    {
+      "key": "ANVL_Ballista_Snowblind",
+      "name": "Ballista Snowblind",
+      "manufacturer": "Anvil Aerospace",
+      "classification": "Anti-Air",
+      "dims": {
+        "l": 17,
+        "b": 7,
+        "h": 5.5
+      },
+      "materials": "flat",
+      "patchVersion": "sc-4.1",
+      "variants": [
+        {
+          "level": "exterior",
+          "label": "Detaille",
+          "modelUrl": "https://github.com/elios134/asset-3d/releases/download/sc-4.1/ANVL_Ballista_Snowblind.exterior.glb",
+          "tris": 69488,
+          "sizeBytes": 1268296,
+          "hasInterior": false,
+          "sha256": "389e6b1ee80beb7d1296b23a3683c13da46a527c36e05d045ed4103e06d46b7f"
+        }
+      ]
+    },
+    {
+      "key": "ANVL_C8_Pisces",
+      "name": "C8 Pisces",
+      "manufacturer": "Anvil Aerospace",
+      "classification": "Pathfinder",
+      "dims": {
+        "l": 16,
+        "b": 12,
+        "h": 8
+      },
+      "materials": "flat",
+      "patchVersion": "sc-4.1",
+      "variants": [
+        {
+          "level": "exterior",
+          "label": "Detaille",
+          "modelUrl": "https://github.com/elios134/asset-3d/releases/download/sc-4.1/ANVL_C8_Pisces.exterior.glb",
+          "tris": 69463,
+          "sizeBytes": 1296696,
+          "hasInterior": false,
+          "sha256": "8d99652dda4da4e98183c60e643e91fd9fc1efd7c392dc7b6ece2ba5ceae8de9"
+        }
+      ]
+    },
+    {
+      "key": "ANVL_C8R_Pisces",
+      "name": "C8R Pisces Rescue",
+      "manufacturer": "Anvil Aerospace",
+      "classification": "Medical",
+      "dims": {
+        "l": 16,
+        "b": 12,
+        "h": 8
+      },
+      "materials": "flat",
+      "patchVersion": "sc-4.1",
+      "variants": [
+        {
+          "level": "exterior",
+          "label": "Detaille",
+          "modelUrl": "https://github.com/elios134/asset-3d/releases/download/sc-4.1/ANVL_C8R_Pisces.exterior.glb",
+          "tris": 80697,
+          "sizeBytes": 1536316,
+          "hasInterior": false,
+          "sha256": "66830dd3ce87a9cf58eb561d7233c56112be71d6f1a79b27bd9bc483d83d58f3"
+        }
+      ]
+    },
+    {
+      "key": "ANVL_C8X_Pisces_Expedition",
+      "name": "C8X Pisces Expedition",
+      "manufacturer": "Anvil Aerospace",
+      "classification": "Pathfinder",
+      "dims": {
+        "l": 16,
+        "b": 12,
+        "h": 8
+      },
+      "materials": "flat",
+      "patchVersion": "sc-4.1",
+      "variants": [
+        {
+          "level": "exterior",
+          "label": "Detaille",
+          "modelUrl": "https://github.com/elios134/asset-3d/releases/download/sc-4.1/ANVL_C8X_Pisces_Expedition.exterior.glb",
+          "tris": 80225,
+          "sizeBytes": 1487020,
+          "hasInterior": false,
+          "sha256": "3fa099f8bcecad71838ee6a7295e8e25655f14441ffca873ebbda5484e4eb83d"
+        }
+      ]
+    },
+    {
+      "key": "ANVL_Carrack",
+      "name": "Carrack",
+      "manufacturer": "Anvil Aerospace",
+      "classification": "Expedition",
+      "dims": {
+        "l": 126,
+        "b": 74,
+        "h": 30
+      },
+      "materials": "flat",
+      "patchVersion": "sc-4.1",
+      "variants": [
+        {
+          "level": "exterior",
+          "label": "Detaille",
+          "modelUrl": "https://github.com/elios134/asset-3d/releases/download/sc-4.1/ANVL_Carrack.exterior.glb",
+          "tris": 214829,
+          "sizeBytes": 4291044,
+          "hasInterior": false,
+          "sha256": "1915693e48c024eb6845556c026037982ccd8bc317410bdf0d416d0091ac8faf"
+        }
+      ]
+    },
+    {
+      "key": "ANVL_Carrack_Expedition",
+      "name": "Carrack Expedition",
+      "manufacturer": "Anvil Aerospace",
+      "classification": "Expedition",
+      "dims": {
+        "l": 126,
+        "b": 74,
+        "h": 30
+      },
+      "materials": "flat",
+      "patchVersion": "sc-4.1",
+      "variants": [
+        {
+          "level": "exterior",
+          "label": "Detaille",
+          "modelUrl": "https://github.com/elios134/asset-3d/releases/download/sc-4.1/ANVL_Carrack_Expedition.exterior.glb",
+          "tris": 214829,
+          "sizeBytes": 4290280,
+          "hasInterior": false,
+          "sha256": "82df4a74524f59cc8f647b99ef2ad77b2e74c76101f622a3b0960bc17f1eb4de"
+        }
+      ]
+    },
+    {
+      "key": "ANVL_Centurion",
+      "name": "Centurion",
+      "manufacturer": "Anvil Aerospace",
+      "classification": "Anti-Air",
+      "dims": {
+        "l": 17,
+        "b": 7,
+        "h": 5.5
+      },
+      "materials": "flat",
+      "patchVersion": "sc-4.1",
+      "variants": [
+        {
+          "level": "exterior",
+          "label": "Detaille",
+          "modelUrl": "https://github.com/elios134/asset-3d/releases/download/sc-4.1/ANVL_Centurion.exterior.glb",
+          "tris": 162836,
+          "sizeBytes": 3283388,
+          "hasInterior": false,
+          "sha256": "53350472ead66a65cbffe9776c97dcac8848af725f246e0d7023ec7aa0410ece"
         }
       ]
     },
@@ -138,7 +906,439 @@
           "tris": 114482,
           "sizeBytes": 1989304,
           "hasInterior": false,
-          "sha256": "76f81f22a3ed945cb6ef09141420fdf5bbb36b37c880ff402a95a7e7c0494338"
+          "sha256": "9b53c12ac610a4909db3d84598b3c6cc0e839bf3095e2755de204c58a960f3c1"
+        }
+      ]
+    },
+    {
+      "key": "ANVL_Hawk",
+      "name": "Hawk",
+      "manufacturer": "Anvil Aerospace",
+      "classification": "Light Fighter",
+      "dims": {
+        "l": 0,
+        "b": 0,
+        "h": 0
+      },
+      "materials": "flat",
+      "patchVersion": "sc-4.1",
+      "variants": [
+        {
+          "level": "exterior",
+          "label": "Detaille",
+          "modelUrl": "https://github.com/elios134/asset-3d/releases/download/sc-4.1/ANVL_Hawk.exterior.glb",
+          "tris": 160556,
+          "sizeBytes": 2699216,
+          "hasInterior": false,
+          "sha256": "086a587e9cc41e7f5b88626ac5da7bdb0664ef952aeb9a8a22d5bd97b51e6e9d"
+        }
+      ]
+    },
+    {
+      "key": "ANVL_Hornet_F7A_Mk1",
+      "name": "F7A Hornet Mk I",
+      "manufacturer": "Anvil Aerospace",
+      "classification": "Medium Fighter",
+      "dims": {
+        "l": 28.25,
+        "b": 25.5,
+        "h": 7.5
+      },
+      "materials": "flat",
+      "patchVersion": "sc-4.1",
+      "variants": [
+        {
+          "level": "exterior",
+          "label": "Detaille",
+          "modelUrl": "https://github.com/elios134/asset-3d/releases/download/sc-4.1/ANVL_Hornet_F7A_Mk1.exterior.glb",
+          "tris": 172258,
+          "sizeBytes": 2500444,
+          "hasInterior": false,
+          "sha256": "781a9ac760a11979a1cacfaa271a5ca87f1d3158301b934ed63a7c73f061f5e5"
+        }
+      ]
+    },
+    {
+      "key": "ANVL_Hornet_F7A_Mk2",
+      "name": "F7A Hornet Mk II",
+      "manufacturer": "Anvil Aerospace",
+      "classification": "Medium Fighter",
+      "dims": {
+        "l": 22.5,
+        "b": 22,
+        "h": 6.5
+      },
+      "materials": "flat",
+      "patchVersion": "sc-4.1",
+      "variants": [
+        {
+          "level": "exterior",
+          "label": "Detaille",
+          "modelUrl": "https://github.com/elios134/asset-3d/releases/download/sc-4.1/ANVL_Hornet_F7A_Mk2.exterior.glb",
+          "tris": 88134,
+          "sizeBytes": 1820052,
+          "hasInterior": false,
+          "sha256": "be498d4c35f3a08a794d727fafa19a5d2e7b0d74eb38d0d6f567c4dbc5c9db03"
+        }
+      ]
+    },
+    {
+      "key": "ANVL_Hornet_F7C",
+      "name": "F7C Hornet Mk I",
+      "manufacturer": "Anvil Aerospace",
+      "classification": "Medium Fighter",
+      "dims": {
+        "l": 28.25,
+        "b": 25.5,
+        "h": 7.5
+      },
+      "materials": "flat",
+      "patchVersion": "sc-4.1",
+      "variants": [
+        {
+          "level": "exterior",
+          "label": "Detaille",
+          "modelUrl": "https://github.com/elios134/asset-3d/releases/download/sc-4.1/ANVL_Hornet_F7C.exterior.glb",
+          "tris": 100686,
+          "sizeBytes": 1642332,
+          "hasInterior": false,
+          "sha256": "6f04a7ceff937ae429523b255476f8e6c317e484f16676a2921f059eac0a543b"
+        }
+      ]
+    },
+    {
+      "key": "ANVL_Hornet_F7C_Mk2",
+      "name": "F7C Hornet Mk II",
+      "manufacturer": "Anvil Aerospace",
+      "classification": "Medium Fighter",
+      "dims": {
+        "l": 22.5,
+        "b": 22,
+        "h": 6.5
+      },
+      "materials": "flat",
+      "patchVersion": "sc-4.1",
+      "variants": [
+        {
+          "level": "exterior",
+          "label": "Detaille",
+          "modelUrl": "https://github.com/elios134/asset-3d/releases/download/sc-4.1/ANVL_Hornet_F7C_Mk2.exterior.glb",
+          "tris": 81511,
+          "sizeBytes": 1660976,
+          "hasInterior": false,
+          "sha256": "97a80c761407fef004017193d259268cb96cb231276747f27cab7abfdce5c99e"
+        }
+      ]
+    },
+    {
+      "key": "ANVL_Hornet_F7C_Wildfire",
+      "name": "F7C Hornet Wildfire Mk I",
+      "manufacturer": "Anvil Aerospace",
+      "classification": "Medium Fighter",
+      "dims": {
+        "l": 28.25,
+        "b": 25.5,
+        "h": 7.5
+      },
+      "materials": "flat",
+      "patchVersion": "sc-4.1",
+      "variants": [
+        {
+          "level": "exterior",
+          "label": "Detaille",
+          "modelUrl": "https://github.com/elios134/asset-3d/releases/download/sc-4.1/ANVL_Hornet_F7C_Wildfire.exterior.glb",
+          "tris": 93683,
+          "sizeBytes": 1836180,
+          "hasInterior": false,
+          "sha256": "6865ef6396d709849ce8b440e9d2e27f5bd8995c3cd2dc7bd2f44d994236b0a2"
+        }
+      ]
+    },
+    {
+      "key": "ANVL_Hornet_F7CM",
+      "name": "F7C-M Super Hornet Mk I",
+      "manufacturer": "Anvil Aerospace",
+      "classification": "Medium Fighter",
+      "dims": {
+        "l": 28.25,
+        "b": 25.5,
+        "h": 7.5
+      },
+      "materials": "flat",
+      "patchVersion": "sc-4.1",
+      "variants": [
+        {
+          "level": "exterior",
+          "label": "Detaille",
+          "modelUrl": "https://github.com/elios134/asset-3d/releases/download/sc-4.1/ANVL_Hornet_F7CM.exterior.glb",
+          "tris": 134404,
+          "sizeBytes": 1972692,
+          "hasInterior": false,
+          "sha256": "a4e6b686b0107fb1b7fdbed1ece7d5961d37cd0a5b35764d06800c32c011b94a"
+        }
+      ]
+    },
+    {
+      "key": "ANVL_Hornet_F7CM_Heartseeker",
+      "name": "F7C-M Hornet Heartseeker Mk I",
+      "manufacturer": "Anvil Aerospace",
+      "classification": "Medium Fighter",
+      "dims": {
+        "l": 28.25,
+        "b": 25.5,
+        "h": 7.5
+      },
+      "materials": "flat",
+      "patchVersion": "sc-4.1",
+      "variants": [
+        {
+          "level": "exterior",
+          "label": "Detaille",
+          "modelUrl": "https://github.com/elios134/asset-3d/releases/download/sc-4.1/ANVL_Hornet_F7CM_Heartseeker.exterior.glb",
+          "tris": 113579,
+          "sizeBytes": 1868240,
+          "hasInterior": false,
+          "sha256": "5bd06ad299dac4bd6587b3f8759699228826d2fda2ff424f8a75d06200c68bed"
+        }
+      ]
+    },
+    {
+      "key": "ANVL_Hornet_F7CM_Mk2",
+      "name": "F7C-M Super Hornet Mk II",
+      "manufacturer": "Anvil Aerospace",
+      "classification": "Medium Fighter",
+      "dims": {
+        "l": 24,
+        "b": 24,
+        "h": 6.5
+      },
+      "materials": "flat",
+      "patchVersion": "sc-4.1",
+      "variants": [
+        {
+          "level": "exterior",
+          "label": "Detaille",
+          "modelUrl": "https://github.com/elios134/asset-3d/releases/download/sc-4.1/ANVL_Hornet_F7CM_Mk2.exterior.glb",
+          "tris": 161048,
+          "sizeBytes": 2713940,
+          "hasInterior": false,
+          "sha256": "f3e1728fa5e403d8cf2733d29a9f2af3c66650364e67e71f440e15ab37529717"
+        }
+      ]
+    },
+    {
+      "key": "ANVL_Hornet_F7CM_Mk2_Heartseeker",
+      "name": "F7C-M Hornet Heartseeker Mk II",
+      "manufacturer": "Anvil Aerospace",
+      "classification": "Medium Fighter",
+      "dims": {
+        "l": 24,
+        "b": 24,
+        "h": 6.5
+      },
+      "materials": "flat",
+      "patchVersion": "sc-4.1",
+      "variants": [
+        {
+          "level": "exterior",
+          "label": "Detaille",
+          "modelUrl": "https://github.com/elios134/asset-3d/releases/download/sc-4.1/ANVL_Hornet_F7CM_Mk2_Heartseeker.exterior.glb",
+          "tris": 133884,
+          "sizeBytes": 2435780,
+          "hasInterior": false,
+          "sha256": "ede2d7856dc54bf57d5f94fd33af21f2818224b18d96fd2982a087b7a6ecd5fa"
+        }
+      ]
+    },
+    {
+      "key": "ANVL_Hornet_F7CR",
+      "name": "F7C-R Hornet Tracker Mk I",
+      "manufacturer": "Anvil Aerospace",
+      "classification": "Pathfinder",
+      "dims": {
+        "l": 28.25,
+        "b": 25.5,
+        "h": 7.5
+      },
+      "materials": "flat",
+      "patchVersion": "sc-4.1",
+      "variants": [
+        {
+          "level": "exterior",
+          "label": "Detaille",
+          "modelUrl": "https://github.com/elios134/asset-3d/releases/download/sc-4.1/ANVL_Hornet_F7CR.exterior.glb",
+          "tris": 96371,
+          "sizeBytes": 1610016,
+          "hasInterior": false,
+          "sha256": "19e82983ad35ab25a7e194cf918544abb3633f8863d0d40920f60e575314b180"
+        }
+      ]
+    },
+    {
+      "key": "ANVL_Hornet_F7CR_Mk2",
+      "name": "F7C-R Hornet Tracker Mk II",
+      "manufacturer": "Anvil Aerospace",
+      "classification": "Pathfinder",
+      "dims": {
+        "l": 22.5,
+        "b": 22,
+        "h": 6.5
+      },
+      "materials": "flat",
+      "patchVersion": "sc-4.1",
+      "variants": [
+        {
+          "level": "exterior",
+          "label": "Detaille",
+          "modelUrl": "https://github.com/elios134/asset-3d/releases/download/sc-4.1/ANVL_Hornet_F7CR_Mk2.exterior.glb",
+          "tris": 93059,
+          "sizeBytes": 1767624,
+          "hasInterior": false,
+          "sha256": "952446258652b6fcb0735b9a510fae9b069da11b050ec46685011a84cc477248"
+        }
+      ]
+    },
+    {
+      "key": "ANVL_Hornet_F7CS",
+      "name": "F7C-S Hornet Ghost Mk I",
+      "manufacturer": "Anvil Aerospace",
+      "classification": "Stealth Fighter",
+      "dims": {
+        "l": 28.25,
+        "b": 25.5,
+        "h": 7.5
+      },
+      "materials": "flat",
+      "patchVersion": "sc-4.1",
+      "variants": [
+        {
+          "level": "exterior",
+          "label": "Detaille",
+          "modelUrl": "https://github.com/elios134/asset-3d/releases/download/sc-4.1/ANVL_Hornet_F7CS.exterior.glb",
+          "tris": 82351,
+          "sizeBytes": 1484088,
+          "hasInterior": false,
+          "sha256": "6c2acf4a910f2b132a7d23a094b670161187f143b9b6fbe7d27b4c309f0f6b50"
+        }
+      ]
+    },
+    {
+      "key": "ANVL_Hornet_F7CS_Mk2",
+      "name": "F7C-S Hornet Ghost Mk II",
+      "manufacturer": "Anvil Aerospace",
+      "classification": "Stealth Fighter",
+      "dims": {
+        "l": 22.5,
+        "b": 22,
+        "h": 6.5
+      },
+      "materials": "flat",
+      "patchVersion": "sc-4.1",
+      "variants": [
+        {
+          "level": "exterior",
+          "label": "Detaille",
+          "modelUrl": "https://github.com/elios134/asset-3d/releases/download/sc-4.1/ANVL_Hornet_F7CS_Mk2.exterior.glb",
+          "tris": 85262,
+          "sizeBytes": 1626116,
+          "hasInterior": false,
+          "sha256": "ef72053b6d64537d8c1f1903cf902eac1d2da19c4b7d57fc1205bcefcd4e2f71"
+        }
+      ]
+    },
+    {
+      "key": "ANVL_Hurricane",
+      "name": "Hurricane",
+      "manufacturer": "Anvil Aerospace",
+      "classification": "Heavy Fighter",
+      "dims": {
+        "l": 0,
+        "b": 0,
+        "h": 0
+      },
+      "materials": "flat",
+      "patchVersion": "sc-4.1",
+      "variants": [
+        {
+          "level": "exterior",
+          "label": "Detaille",
+          "modelUrl": "https://github.com/elios134/asset-3d/releases/download/sc-4.1/ANVL_Hurricane.exterior.glb",
+          "tris": 165582,
+          "sizeBytes": 2734740,
+          "hasInterior": false,
+          "sha256": "51d551d0114caa17fe41c19730a9a5992d64cff5c22d7d6801eda44077b1a976"
+        }
+      ]
+    },
+    {
+      "key": "ANVL_Lightning_F8",
+      "name": "F8A Lightning",
+      "manufacturer": "Anvil Aerospace",
+      "classification": "Heavy Fighter",
+      "dims": {
+        "l": 26,
+        "b": 25,
+        "h": 8
+      },
+      "materials": "flat",
+      "patchVersion": "sc-4.1",
+      "variants": [
+        {
+          "level": "exterior",
+          "label": "Detaille",
+          "modelUrl": "https://github.com/elios134/asset-3d/releases/download/sc-4.1/ANVL_Lightning_F8.exterior.glb",
+          "tris": 189925,
+          "sizeBytes": 2485308,
+          "hasInterior": false,
+          "sha256": "66bef1f03b05a74e3759931838650316244a84c6090b7746f85e84b711850426"
+        }
+      ]
+    },
+    {
+      "key": "ANVL_Lightning_F8C",
+      "name": "F8C Lightning",
+      "manufacturer": "Anvil Aerospace",
+      "classification": "Heavy Fighter",
+      "dims": {
+        "l": 26,
+        "b": 25,
+        "h": 8
+      },
+      "materials": "flat",
+      "patchVersion": "sc-4.1",
+      "variants": [
+        {
+          "level": "exterior",
+          "label": "Detaille",
+          "modelUrl": "https://github.com/elios134/asset-3d/releases/download/sc-4.1/ANVL_Lightning_F8C.exterior.glb",
+          "tris": 155486,
+          "sizeBytes": 2421300,
+          "hasInterior": false,
+          "sha256": "e57648454f1fb020499ffcabcfd8e7f947f76961b98f9be727caeaae727ac6e3"
+        }
+      ]
+    },
+    {
+      "key": "ANVL_Paladin",
+      "name": "Paladin",
+      "manufacturer": "Anvil Aerospace",
+      "classification": "Gunship",
+      "dims": {
+        "l": 0,
+        "b": 0,
+        "h": 0
+      },
+      "materials": "flat",
+      "patchVersion": "sc-4.1",
+      "variants": [
+        {
+          "level": "exterior",
+          "label": "Detaille",
+          "modelUrl": "https://github.com/elios134/asset-3d/releases/download/sc-4.1/ANVL_Paladin.exterior.glb",
+          "tris": 499058,
+          "sizeBytes": 7862424,
+          "hasInterior": false,
+          "sha256": "57b9e7d5386eee650809995cec86e156f41c02862d4e02a25bb43d4d4ce14f8e"
         }
       ]
     },
@@ -162,7 +1362,79 @@
           "tris": 58704,
           "sizeBytes": 1456140,
           "hasInterior": false,
-          "sha256": "e5b4f925290a41d8c543bb17891156cc3b22193ccc7a7a0b2b31de1fc102dff6"
+          "sha256": "e80f0ee9a5f13735704298c2c4cccce1e8538d7a4b829aaf16ec9f4682789639"
+        }
+      ]
+    },
+    {
+      "key": "ANVL_Terrapin",
+      "name": "Terrapin",
+      "manufacturer": "Anvil Aerospace",
+      "classification": "Pathfinder",
+      "dims": {
+        "l": 20,
+        "b": 16.5,
+        "h": 7.5
+      },
+      "materials": "flat",
+      "patchVersion": "sc-4.1",
+      "variants": [
+        {
+          "level": "exterior",
+          "label": "Detaille",
+          "modelUrl": "https://github.com/elios134/asset-3d/releases/download/sc-4.1/ANVL_Terrapin.exterior.glb",
+          "tris": 170922,
+          "sizeBytes": 3282740,
+          "hasInterior": false,
+          "sha256": "2fee4460f4807bd33ee3340d39c89018de49e877055e2e2dfa77799747889ffe"
+        }
+      ]
+    },
+    {
+      "key": "ANVL_Terrapin_Medic",
+      "name": "Terrapin Medic",
+      "manufacturer": "Anvil Aerospace",
+      "classification": "Medical",
+      "dims": {
+        "l": 20,
+        "b": 16.5,
+        "h": 7.5
+      },
+      "materials": "flat",
+      "patchVersion": "sc-4.1",
+      "variants": [
+        {
+          "level": "exterior",
+          "label": "Detaille",
+          "modelUrl": "https://github.com/elios134/asset-3d/releases/download/sc-4.1/ANVL_Terrapin_Medic.exterior.glb",
+          "tris": 165345,
+          "sizeBytes": 3448956,
+          "hasInterior": false,
+          "sha256": "9a16756a1da1d4bc06bc7fe92038d0f128ac25bb98fd3396db19f4776b7e277f"
+        }
+      ]
+    },
+    {
+      "key": "ANVL_Valkyrie",
+      "name": "Valkyrie",
+      "manufacturer": "Anvil Aerospace",
+      "classification": "Dropship",
+      "dims": {
+        "l": 48,
+        "b": 38,
+        "h": 12
+      },
+      "materials": "flat",
+      "patchVersion": "sc-4.1",
+      "variants": [
+        {
+          "level": "exterior",
+          "label": "Detaille",
+          "modelUrl": "https://github.com/elios134/asset-3d/releases/download/sc-4.1/ANVL_Valkyrie.exterior.glb",
+          "tris": 309518,
+          "sizeBytes": 4438684,
+          "hasInterior": false,
+          "sha256": "f61725011bead0c3a84899cc95a0034d0cc00a5aedc12c071cdf9c175ee59a20"
         }
       ]
     },
@@ -186,7 +1458,943 @@
           "tris": 46781,
           "sizeBytes": 942296,
           "hasInterior": false,
-          "sha256": "4f4c6643b559815ab3f409ca7629614437b5304c9a2f5866f65ffeccf4a58ade"
+          "sha256": "1a4c9823bf996cac32b566a38ff0b314930a68bc4483fabbeffeb8c57518291b"
+        }
+      ]
+    },
+    {
+      "key": "ARGO_ATLS_GEO",
+      "name": "ATLS GEO",
+      "manufacturer": "Argo Astronautics",
+      "classification": "Mining",
+      "dims": {
+        "l": 3.2,
+        "b": 1.6,
+        "h": 1.6
+      },
+      "materials": "flat",
+      "patchVersion": "sc-4.1",
+      "variants": [
+        {
+          "level": "exterior",
+          "label": "Detaille",
+          "modelUrl": "https://github.com/elios134/asset-3d/releases/download/sc-4.1/ARGO_ATLS_GEO.exterior.glb",
+          "tris": 62629,
+          "sizeBytes": 1507376,
+          "hasInterior": false,
+          "sha256": "12e21cd7e03d42f073800907d6b408034a793047fba548e7096177411b5bbd9d"
+        }
+      ]
+    },
+    {
+      "key": "ARGO_ATLS_GEO_Collector_Grad01",
+      "name": "ATLS Snowland Color",
+      "manufacturer": "Argo Astronautics",
+      "classification": "Mining",
+      "dims": {
+        "l": 3.2,
+        "b": 1.6,
+        "h": 1.6
+      },
+      "materials": "flat",
+      "patchVersion": "sc-4.1",
+      "variants": [
+        {
+          "level": "exterior",
+          "label": "Detaille",
+          "modelUrl": "https://github.com/elios134/asset-3d/releases/download/sc-4.1/ARGO_ATLS_GEO_Collector_Grad01.exterior.glb",
+          "tris": 62629,
+          "sizeBytes": 1507844,
+          "hasInterior": false,
+          "sha256": "268ebec8415c6aae64d36d6cd81c2b7bfec7343e371984d1c3b6aeede953b8b2"
+        }
+      ]
+    },
+    {
+      "key": "ARGO_ATLS_GEO_Collector_Grad02",
+      "name": "ATLS Orange Line",
+      "manufacturer": "Argo Astronautics",
+      "classification": "Mining",
+      "dims": {
+        "l": 3.2,
+        "b": 1.6,
+        "h": 1.6
+      },
+      "materials": "flat",
+      "patchVersion": "sc-4.1",
+      "variants": [
+        {
+          "level": "exterior",
+          "label": "Detaille",
+          "modelUrl": "https://github.com/elios134/asset-3d/releases/download/sc-4.1/ARGO_ATLS_GEO_Collector_Grad02.exterior.glb",
+          "tris": 62629,
+          "sizeBytes": 1507872,
+          "hasInterior": false,
+          "sha256": "222a65fb1486cfad35e3d74a04d4505a3146e5176a807064cab9026e95614e33"
+        }
+      ]
+    },
+    {
+      "key": "ARGO_ATLS_GEO_Collector_Grad03",
+      "name": "ATLS Cool Metal Color",
+      "manufacturer": "Argo Astronautics",
+      "classification": "Mining",
+      "dims": {
+        "l": 3.2,
+        "b": 1.6,
+        "h": 1.6
+      },
+      "materials": "flat",
+      "patchVersion": "sc-4.1",
+      "variants": [
+        {
+          "level": "exterior",
+          "label": "Detaille",
+          "modelUrl": "https://github.com/elios134/asset-3d/releases/download/sc-4.1/ARGO_ATLS_GEO_Collector_Grad03.exterior.glb",
+          "tris": 62629,
+          "sizeBytes": 1507928,
+          "hasInterior": false,
+          "sha256": "cae033b9a82b2b74cc2ac7e2d4f9a1cc544900ebf1e900f02a012943e4c8a041"
+        }
+      ]
+    },
+    {
+      "key": "ARGO_ATLS_GEO_IKTI",
+      "name": "Argo ATLS GEO IKTI",
+      "manufacturer": "Banu Souli",
+      "classification": "<= PLACEHOLDER =>",
+      "dims": {
+        "l": 3.2,
+        "b": 1.6,
+        "h": 1.6
+      },
+      "materials": "flat",
+      "patchVersion": "sc-4.1",
+      "variants": [
+        {
+          "level": "exterior",
+          "label": "Detaille",
+          "modelUrl": "https://github.com/elios134/asset-3d/releases/download/sc-4.1/ARGO_ATLS_GEO_IKTI.exterior.glb",
+          "tris": 78251,
+          "sizeBytes": 1642744,
+          "hasInterior": false,
+          "sha256": "c487f58a1c9de550c1b53ffc9f97cc34c38f04f389aea268fcd3321f35538bd8"
+        }
+      ]
+    },
+    {
+      "key": "ARGO_ATLS_IKTI",
+      "name": "Argo ATLS IKTI",
+      "manufacturer": "Banu Souli",
+      "classification": "Combat",
+      "dims": {
+        "l": 3.2,
+        "b": 1.6,
+        "h": 1.6
+      },
+      "materials": "flat",
+      "patchVersion": "sc-4.1",
+      "variants": [
+        {
+          "level": "exterior",
+          "label": "Detaille",
+          "modelUrl": "https://github.com/elios134/asset-3d/releases/download/sc-4.1/ARGO_ATLS_IKTI.exterior.glb",
+          "tris": 61059,
+          "sizeBytes": 1200692,
+          "hasInterior": false,
+          "sha256": "f0d84b6348411d00998fca62ddec4f5f66c18b249c6ccabb15accedcca029b33"
+        }
+      ]
+    },
+    {
+      "key": "ARGO_ATLS_IKTI_ARGOS",
+      "name": "Argo ATLS IKTI Rad",
+      "manufacturer": "Banu Souli",
+      "classification": "Combat",
+      "dims": {
+        "l": 3.2,
+        "b": 1.6,
+        "h": 1.6
+      },
+      "materials": "flat",
+      "patchVersion": "sc-4.1",
+      "variants": [
+        {
+          "level": "exterior",
+          "label": "Detaille",
+          "modelUrl": "https://github.com/elios134/asset-3d/releases/download/sc-4.1/ARGO_ATLS_IKTI_ARGOS.exterior.glb",
+          "tris": 78086,
+          "sizeBytes": 1674124,
+          "hasInterior": false,
+          "sha256": "d39b20e7b284597cfa9eb1005ad05b262650435932a083a1432add196de32fc7"
+        }
+      ]
+    },
+    {
+      "key": "ARGO_CSV_Cargo",
+      "name": "CSV-SM",
+      "manufacturer": "Argo Astronautics",
+      "classification": "Light Freight",
+      "dims": {
+        "l": 8.75,
+        "b": 6,
+        "h": 3.5
+      },
+      "materials": "flat",
+      "patchVersion": "sc-4.1",
+      "variants": [
+        {
+          "level": "exterior",
+          "label": "Detaille",
+          "modelUrl": "https://github.com/elios134/asset-3d/releases/download/sc-4.1/ARGO_CSV_Cargo.exterior.glb",
+          "tris": 92072,
+          "sizeBytes": 1620428,
+          "hasInterior": false,
+          "sha256": "a310ca1a3935b9b88e7f469e3c695654910e67f91825dd1e57ca2fc61ae0c154"
+        }
+      ]
+    },
+    {
+      "key": "ARGO_MOLE",
+      "name": "MOLE",
+      "manufacturer": "Argo Astronautics",
+      "classification": "Medium Mining",
+      "dims": {
+        "l": 45,
+        "b": 26,
+        "h": 15
+      },
+      "materials": "flat",
+      "patchVersion": "sc-4.1",
+      "variants": [
+        {
+          "level": "exterior",
+          "label": "Detaille",
+          "modelUrl": "https://github.com/elios134/asset-3d/releases/download/sc-4.1/ARGO_MOLE.exterior.glb",
+          "tris": 368225,
+          "sizeBytes": 5320160,
+          "hasInterior": false,
+          "sha256": "7c3b57beb0d40e4b6391bc9c7868b37ea095b8073adfc7ff392b064b99aa7443"
+        }
+      ]
+    },
+    {
+      "key": "ARGO_MOTH",
+      "name": "MOTH",
+      "manufacturer": "Argo Astronautics",
+      "classification": "Medium Salvage",
+      "dims": {
+        "l": 0,
+        "b": 0,
+        "h": 0
+      },
+      "materials": "flat",
+      "patchVersion": "sc-4.1",
+      "variants": [
+        {
+          "level": "exterior",
+          "label": "Detaille",
+          "modelUrl": "https://github.com/elios134/asset-3d/releases/download/sc-4.1/ARGO_MOTH.exterior.glb",
+          "tris": 466772,
+          "sizeBytes": 6344360,
+          "hasInterior": false,
+          "sha256": "952bea83b9315dc09021a2b9309c30c0e986251211ad0b2245b2e802488a99ad"
+        }
+      ]
+    },
+    {
+      "key": "ARGO_MPUV",
+      "name": "MPUV Cargo",
+      "manufacturer": "Argo Astronautics",
+      "classification": "Light Freight",
+      "dims": {
+        "l": 10.5,
+        "b": 9,
+        "h": 5
+      },
+      "materials": "flat",
+      "patchVersion": "sc-4.1",
+      "variants": [
+        {
+          "level": "exterior",
+          "label": "Detaille",
+          "modelUrl": "https://github.com/elios134/asset-3d/releases/download/sc-4.1/ARGO_MPUV.exterior.glb",
+          "tris": 42381,
+          "sizeBytes": 748288,
+          "hasInterior": false,
+          "sha256": "7a6d302e292f9da2a837de905ac30edbe06b7eae2756af5177dd5e7b89ce051f"
+        }
+      ]
+    },
+    {
+      "key": "ARGO_MPUV_1T",
+      "name": "MPUV Tractor",
+      "manufacturer": "Argo Astronautics",
+      "classification": "Light Freight",
+      "dims": {
+        "l": 10.5,
+        "b": 9,
+        "h": 5.5
+      },
+      "materials": "flat",
+      "patchVersion": "sc-4.1",
+      "variants": [
+        {
+          "level": "exterior",
+          "label": "Detaille",
+          "modelUrl": "https://github.com/elios134/asset-3d/releases/download/sc-4.1/ARGO_MPUV_1T.exterior.glb",
+          "tris": 71144,
+          "sizeBytes": 1524156,
+          "hasInterior": false,
+          "sha256": "0ab45ae03a9887103b8271398e0de5dc940a1b5d1fdcdc05090229ecace7acc6"
+        }
+      ]
+    },
+    {
+      "key": "ARGO_MPUV_Transport",
+      "name": "MPUV Personnel",
+      "manufacturer": "Argo Astronautics",
+      "classification": "Passenger",
+      "dims": {
+        "l": 10.5,
+        "b": 9,
+        "h": 5
+      },
+      "materials": "flat",
+      "patchVersion": "sc-4.1",
+      "variants": [
+        {
+          "level": "exterior",
+          "label": "Detaille",
+          "modelUrl": "https://github.com/elios134/asset-3d/releases/download/sc-4.1/ARGO_MPUV_Transport.exterior.glb",
+          "tris": 52509,
+          "sizeBytes": 996860,
+          "hasInterior": false,
+          "sha256": "0a1ee8cbaf1a1d759970ca18ad5d224a6b2d8493d12e1fcaf2839696e4b48a99"
+        }
+      ]
+    },
+    {
+      "key": "ARGO_RAFT",
+      "name": "RAFT",
+      "manufacturer": "Argo Astronautics",
+      "classification": "Medium Freight",
+      "dims": {
+        "l": 39.5,
+        "b": 23,
+        "h": 12
+      },
+      "materials": "flat",
+      "patchVersion": "sc-4.1",
+      "variants": [
+        {
+          "level": "exterior",
+          "label": "Detaille",
+          "modelUrl": "https://github.com/elios134/asset-3d/releases/download/sc-4.1/ARGO_RAFT.exterior.glb",
+          "tris": 261251,
+          "sizeBytes": 4122996,
+          "hasInterior": false,
+          "sha256": "73aad412598e969802eaeb900ef8fd2a8600fd1229ad46f589788bf71bf01c0d"
+        }
+      ]
+    },
+    {
+      "key": "ARGO_SRV",
+      "name": "SRV",
+      "manufacturer": "Argo Astronautics",
+      "classification": "Recovery",
+      "dims": {
+        "l": 31.5,
+        "b": 21.5,
+        "h": 9.5
+      },
+      "materials": "flat",
+      "patchVersion": "sc-4.1",
+      "variants": [
+        {
+          "level": "exterior",
+          "label": "Detaille",
+          "modelUrl": "https://github.com/elios134/asset-3d/releases/download/sc-4.1/ARGO_SRV.exterior.glb",
+          "tris": 271297,
+          "sizeBytes": 3876980,
+          "hasInterior": false,
+          "sha256": "894af6d01ffe057564a31d69540d83f8d7a5ae3636d60040bf703e0016f5f8d4"
+        }
+      ]
+    },
+    {
+      "key": "BANU_Defender",
+      "name": "Defender",
+      "manufacturer": "Banu Souli",
+      "classification": "Light Fighter",
+      "dims": {
+        "l": 24.5,
+        "b": 24.5,
+        "h": 5
+      },
+      "materials": "flat",
+      "patchVersion": "sc-4.1",
+      "variants": [
+        {
+          "level": "exterior",
+          "label": "Detaille",
+          "modelUrl": "https://github.com/elios134/asset-3d/releases/download/sc-4.1/BANU_Defender.exterior.glb",
+          "tris": 157597,
+          "sizeBytes": 2656340,
+          "hasInterior": false,
+          "sha256": "7b8960a7f7baac59250106bdbba3764f305b8dea217f313fa608b605df6c75eb"
+        }
+      ]
+    },
+    {
+      "key": "CNOU_HoverQuad",
+      "name": "HoverQuad",
+      "manufacturer": "Consolidated Outland",
+      "classification": "Passenger",
+      "dims": {
+        "l": 5.15,
+        "b": 1.45,
+        "h": 1.32
+      },
+      "materials": "flat",
+      "patchVersion": "sc-4.1",
+      "variants": [
+        {
+          "level": "exterior",
+          "label": "Detaille",
+          "modelUrl": "https://github.com/elios134/asset-3d/releases/download/sc-4.1/CNOU_HoverQuad.exterior.glb",
+          "tris": 34194,
+          "sizeBytes": 968992,
+          "hasInterior": false,
+          "sha256": "587b74ab1e6a20c67a9422ead96dd4985568bea2698ffc7b8b18f1b59a0fca3f"
+        }
+      ]
+    },
+    {
+      "key": "CNOU_Mustang_Alpha",
+      "name": "Mustang Alpha",
+      "manufacturer": "Consolidated Outland",
+      "classification": "Starter / Light Freight",
+      "dims": {
+        "l": 21.5,
+        "b": 18,
+        "h": 9
+      },
+      "materials": "flat",
+      "patchVersion": "sc-4.1",
+      "variants": [
+        {
+          "level": "exterior",
+          "label": "Detaille",
+          "modelUrl": "https://github.com/elios134/asset-3d/releases/download/sc-4.1/CNOU_Mustang_Alpha.exterior.glb",
+          "tris": 81376,
+          "sizeBytes": 1732016,
+          "hasInterior": false,
+          "sha256": "1501424ce2435628a292b2bf3b99a112bc9f26a8f15d559202fa15073b7125cf"
+        }
+      ]
+    },
+    {
+      "key": "CNOU_Mustang_Alpha_CitizenCon2018",
+      "name": "Mustang CitizenCon 2948 Edition",
+      "manufacturer": "Consolidated Outland",
+      "classification": "Starter / Light Freight",
+      "dims": {
+        "l": 21.5,
+        "b": 18,
+        "h": 9
+      },
+      "materials": "flat",
+      "patchVersion": "sc-4.1",
+      "variants": [
+        {
+          "level": "exterior",
+          "label": "Detaille",
+          "modelUrl": "https://github.com/elios134/asset-3d/releases/download/sc-4.1/CNOU_Mustang_Alpha_CitizenCon2018.exterior.glb",
+          "tris": 81442,
+          "sizeBytes": 1748792,
+          "hasInterior": false,
+          "sha256": "5e391502ddc52efdd583c126816f16114b25eed128243b24be6a3f8df6b1a567"
+        }
+      ]
+    },
+    {
+      "key": "CNOU_Mustang_Beta",
+      "name": "Mustang Beta",
+      "manufacturer": "Consolidated Outland",
+      "classification": "Pathfinder",
+      "dims": {
+        "l": 21.5,
+        "b": 18,
+        "h": 9
+      },
+      "materials": "flat",
+      "patchVersion": "sc-4.1",
+      "variants": [
+        {
+          "level": "exterior",
+          "label": "Detaille",
+          "modelUrl": "https://github.com/elios134/asset-3d/releases/download/sc-4.1/CNOU_Mustang_Beta.exterior.glb",
+          "tris": 79817,
+          "sizeBytes": 1732604,
+          "hasInterior": false,
+          "sha256": "f4c92f03f9012d4b63173db7852bbb8ac5bf74a5c785358cba1f6a6fe4b6bbd4"
+        }
+      ]
+    },
+    {
+      "key": "CNOU_Mustang_Delta",
+      "name": "Mustang Delta",
+      "manufacturer": "Consolidated Outland",
+      "classification": "Light Fighter",
+      "dims": {
+        "l": 21.5,
+        "b": 18,
+        "h": 9
+      },
+      "materials": "flat",
+      "patchVersion": "sc-4.1",
+      "variants": [
+        {
+          "level": "exterior",
+          "label": "Detaille",
+          "modelUrl": "https://github.com/elios134/asset-3d/releases/download/sc-4.1/CNOU_Mustang_Delta.exterior.glb",
+          "tris": 106133,
+          "sizeBytes": 2070076,
+          "hasInterior": false,
+          "sha256": "0b53527f411f45f91b7b75e8c2f2c2880a97266882b2ac8c3982c91f4eff50c2"
+        }
+      ]
+    },
+    {
+      "key": "CNOU_Mustang_Gamma",
+      "name": "Mustang Gamma",
+      "manufacturer": "Consolidated Outland",
+      "classification": "Racing",
+      "dims": {
+        "l": 21.5,
+        "b": 18,
+        "h": 9
+      },
+      "materials": "flat",
+      "patchVersion": "sc-4.1",
+      "variants": [
+        {
+          "level": "exterior",
+          "label": "Detaille",
+          "modelUrl": "https://github.com/elios134/asset-3d/releases/download/sc-4.1/CNOU_Mustang_Gamma.exterior.glb",
+          "tris": 91450,
+          "sizeBytes": 1817380,
+          "hasInterior": false,
+          "sha256": "d8a5009774481289fd9e2d5f7f9497735bdc088a7a9015be79a6b40345ddf38b"
+        }
+      ]
+    },
+    {
+      "key": "CNOU_Mustang_Omega",
+      "name": "Mustang Omega",
+      "manufacturer": "Consolidated Outland",
+      "classification": "Racing",
+      "dims": {
+        "l": 21.5,
+        "b": 18,
+        "h": 9
+      },
+      "materials": "flat",
+      "patchVersion": "sc-4.1",
+      "variants": [
+        {
+          "level": "exterior",
+          "label": "Detaille",
+          "modelUrl": "https://github.com/elios134/asset-3d/releases/download/sc-4.1/CNOU_Mustang_Omega.exterior.glb",
+          "tris": 91450,
+          "sizeBytes": 1820292,
+          "hasInterior": false,
+          "sha256": "63425bbcb980894c81511f6295a5f253bf01fc31b4c200e3945ed33dcdb1796b"
+        }
+      ]
+    },
+    {
+      "key": "CNOU_Nomad",
+      "name": "Nomad",
+      "manufacturer": "Consolidated Outland",
+      "classification": "Starter / Light Freight",
+      "dims": {
+        "l": 27,
+        "b": 19,
+        "h": 10
+      },
+      "materials": "flat",
+      "patchVersion": "sc-4.1",
+      "variants": [
+        {
+          "level": "exterior",
+          "label": "Detaille",
+          "modelUrl": "https://github.com/elios134/asset-3d/releases/download/sc-4.1/CNOU_Nomad.exterior.glb",
+          "tris": 108355,
+          "sizeBytes": 2216972,
+          "hasInterior": false,
+          "sha256": "68fefa3dd45913a159388d53ec2155180a0550c68c983332f6b0503991595aef"
+        }
+      ]
+    },
+    {
+      "key": "CRUS_Intrepid",
+      "name": "Intrepid",
+      "manufacturer": "Crusader Industries",
+      "classification": "Starter / Light Freight",
+      "dims": {
+        "l": 23.07,
+        "b": 20.18,
+        "h": 6.13
+      },
+      "materials": "flat",
+      "patchVersion": "sc-4.1",
+      "variants": [
+        {
+          "level": "exterior",
+          "label": "Detaille",
+          "modelUrl": "https://github.com/elios134/asset-3d/releases/download/sc-4.1/CRUS_Intrepid.exterior.glb",
+          "tris": 233683,
+          "sizeBytes": 4896152,
+          "hasInterior": false,
+          "sha256": "159b3fa87ee4584d88e78d8781ce17783cce84c2d930ff613d43e042a54a29c9"
+        }
+      ]
+    },
+    {
+      "key": "CRUS_Spirit_A1",
+      "name": "A1 Spirit",
+      "manufacturer": "Crusader Industries",
+      "classification": "Bomber",
+      "dims": {
+        "l": 47.5,
+        "b": 44,
+        "h": 10
+      },
+      "materials": "flat",
+      "patchVersion": "sc-4.1",
+      "variants": [
+        {
+          "level": "exterior",
+          "label": "Detaille",
+          "modelUrl": "https://github.com/elios134/asset-3d/releases/download/sc-4.1/CRUS_Spirit_A1.exterior.glb",
+          "tris": 352423,
+          "sizeBytes": 5563924,
+          "hasInterior": false,
+          "sha256": "bb527fa136eb5d6777a526451945ab9e99c45a06715aaf16a39015558870e1e8"
+        }
+      ]
+    },
+    {
+      "key": "CRUS_Spirit_C1",
+      "name": "C1 Spirit",
+      "manufacturer": "Crusader Industries",
+      "classification": "Light Freight",
+      "dims": {
+        "l": 47.5,
+        "b": 44,
+        "h": 10
+      },
+      "materials": "flat",
+      "patchVersion": "sc-4.1",
+      "variants": [
+        {
+          "level": "exterior",
+          "label": "Detaille",
+          "modelUrl": "https://github.com/elios134/asset-3d/releases/download/sc-4.1/CRUS_Spirit_C1.exterior.glb",
+          "tris": 259246,
+          "sizeBytes": 4456740,
+          "hasInterior": false,
+          "sha256": "27f2b4c29e7b209040af666581d97391e977feeb36074224ac1d7c1245ac9c8b"
+        }
+      ]
+    },
+    {
+      "key": "CRUS_Star_Runner",
+      "name": "Mercury Star Runner",
+      "manufacturer": "Crusader Industries",
+      "classification": "Medium Freight",
+      "dims": {
+        "l": 55,
+        "b": 51,
+        "h": 19
+      },
+      "materials": "flat",
+      "patchVersion": "sc-4.1",
+      "variants": [
+        {
+          "level": "exterior",
+          "label": "Detaille",
+          "modelUrl": "https://github.com/elios134/asset-3d/releases/download/sc-4.1/CRUS_Star_Runner.exterior.glb",
+          "tris": 281784,
+          "sizeBytes": 4194720,
+          "hasInterior": false,
+          "sha256": "e2733eaa6e49bd35f6addb19aff41775b0e634e53f44eaf318ceb9901c0da857"
+        }
+      ]
+    },
+    {
+      "key": "CRUS_Starfighter_Inferno",
+      "name": "Ares Star Fighter Inferno",
+      "manufacturer": "Crusader Industries",
+      "classification": "Heavy Fighter",
+      "dims": {
+        "l": 30,
+        "b": 27,
+        "h": 6
+      },
+      "materials": "flat",
+      "patchVersion": "sc-4.1",
+      "variants": [
+        {
+          "level": "exterior",
+          "label": "Detaille",
+          "modelUrl": "https://github.com/elios134/asset-3d/releases/download/sc-4.1/CRUS_Starfighter_Inferno.exterior.glb",
+          "tris": 153981,
+          "sizeBytes": 3035740,
+          "hasInterior": false,
+          "sha256": "4ac251d068ff6cf5ceb4ead441faf705e679abd9616001da340ad88bc555f8f5"
+        }
+      ]
+    },
+    {
+      "key": "CRUS_Starfighter_Ion",
+      "name": "Ares Star Fighter Ion",
+      "manufacturer": "Crusader Industries",
+      "classification": "Heavy Fighter",
+      "dims": {
+        "l": 30,
+        "b": 27,
+        "h": 6
+      },
+      "materials": "flat",
+      "patchVersion": "sc-4.1",
+      "variants": [
+        {
+          "level": "exterior",
+          "label": "Detaille",
+          "modelUrl": "https://github.com/elios134/asset-3d/releases/download/sc-4.1/CRUS_Starfighter_Ion.exterior.glb",
+          "tris": 156852,
+          "sizeBytes": 2853368,
+          "hasInterior": false,
+          "sha256": "1e3bbcc51e626400ace4a725cc131419b798f562f8b2561b9a7d326ae966a59e"
+        }
+      ]
+    },
+    {
+      "key": "CRUS_Starlifter_A2",
+      "name": "A2 Hercules Starlifter",
+      "manufacturer": "Crusader Industries",
+      "classification": "Heavy Bomber",
+      "dims": {
+        "l": 94,
+        "b": 70,
+        "h": 23
+      },
+      "materials": "flat",
+      "patchVersion": "sc-4.1",
+      "variants": [
+        {
+          "level": "exterior",
+          "label": "Detaille",
+          "modelUrl": "https://github.com/elios134/asset-3d/releases/download/sc-4.1/CRUS_Starlifter_A2.exterior.glb",
+          "tris": 463224,
+          "sizeBytes": 6625288,
+          "hasInterior": false,
+          "sha256": "b6fa6cd0bd3cbac19d3c159a683bddcc837a0e7e4a1499168302647bda179ba1"
+        }
+      ]
+    },
+    {
+      "key": "CRUS_Starlifter_C2",
+      "name": "C2 Hercules Starlifter",
+      "manufacturer": "Crusader Industries",
+      "classification": "Medium Freight",
+      "dims": {
+        "l": 94,
+        "b": 70,
+        "h": 23
+      },
+      "materials": "flat",
+      "patchVersion": "sc-4.1",
+      "variants": [
+        {
+          "level": "exterior",
+          "label": "Detaille",
+          "modelUrl": "https://github.com/elios134/asset-3d/releases/download/sc-4.1/CRUS_Starlifter_C2.exterior.glb",
+          "tris": 357241,
+          "sizeBytes": 5109384,
+          "hasInterior": false,
+          "sha256": "df27328e1a05f94cca32fe0f8b3335e315547e8e298b9b9d1e5bc7b3732c78f2"
+        }
+      ]
+    },
+    {
+      "key": "CRUS_Starlifter_M2",
+      "name": "M2 Hercules Starlifter",
+      "manufacturer": "Crusader Industries",
+      "classification": "Medium Freight",
+      "dims": {
+        "l": 94,
+        "b": 70,
+        "h": 23
+      },
+      "materials": "flat",
+      "patchVersion": "sc-4.1",
+      "variants": [
+        {
+          "level": "exterior",
+          "label": "Detaille",
+          "modelUrl": "https://github.com/elios134/asset-3d/releases/download/sc-4.1/CRUS_Starlifter_M2.exterior.glb",
+          "tris": 371285,
+          "sizeBytes": 5388504,
+          "hasInterior": false,
+          "sha256": "67d56b515c443a3432c93f92502a9ba50a65aa73b8fc636787d924599805dcbc"
+        }
+      ]
+    },
+    {
+      "key": "DRAK_Buccaneer",
+      "name": "Buccaneer",
+      "manufacturer": "Drake Interplanetary",
+      "classification": "Light Fighter",
+      "dims": {
+        "l": 16.75,
+        "b": 15.25,
+        "h": 5.5
+      },
+      "materials": "flat",
+      "patchVersion": "sc-4.1",
+      "variants": [
+        {
+          "level": "exterior",
+          "label": "Detaille",
+          "modelUrl": "https://github.com/elios134/asset-3d/releases/download/sc-4.1/DRAK_Buccaneer.exterior.glb",
+          "tris": 103407,
+          "sizeBytes": 1925464,
+          "hasInterior": false,
+          "sha256": "a96755a9cbf8895427e47c9b5449572f9cdda585ca4a067073fb5f13bde5a43e"
+        }
+      ]
+    },
+    {
+      "key": "DRAK_Caterpillar",
+      "name": "Caterpillar",
+      "manufacturer": "Drake Interplanetary",
+      "classification": "Medium Freight",
+      "dims": {
+        "l": 111.5,
+        "b": 39.5,
+        "h": 13.4
+      },
+      "materials": "flat",
+      "patchVersion": "sc-4.1",
+      "variants": [
+        {
+          "level": "exterior",
+          "label": "Detaille",
+          "modelUrl": "https://github.com/elios134/asset-3d/releases/download/sc-4.1/DRAK_Caterpillar.exterior.glb",
+          "tris": 333486,
+          "sizeBytes": 6179708,
+          "hasInterior": false,
+          "sha256": "c7ae49c9b565f2ab71731444d56805ff33846f29ee574ad201fb2409aa709cfb"
+        }
+      ]
+    },
+    {
+      "key": "DRAK_Caterpillar_Pirate",
+      "name": "Caterpillar Pirate",
+      "manufacturer": "Drake Interplanetary",
+      "classification": "Medium Freight",
+      "dims": {
+        "l": 111.5,
+        "b": 39.5,
+        "h": 13.4
+      },
+      "materials": "flat",
+      "patchVersion": "sc-4.1",
+      "variants": [
+        {
+          "level": "exterior",
+          "label": "Detaille",
+          "modelUrl": "https://github.com/elios134/asset-3d/releases/download/sc-4.1/DRAK_Caterpillar_Pirate.exterior.glb",
+          "tris": 333486,
+          "sizeBytes": 6180824,
+          "hasInterior": false,
+          "sha256": "b09271129d5769245a788f4405e25150881deb6d2f3f339d3b1ce0d982a775b6"
+        }
+      ]
+    },
+    {
+      "key": "DRAK_Clipper",
+      "name": "Clipper",
+      "manufacturer": "Drake Interplanetary",
+      "classification": "Generalist",
+      "dims": {
+        "l": 26.5,
+        "b": 21,
+        "h": 18
+      },
+      "materials": "flat",
+      "patchVersion": "sc-4.1",
+      "variants": [
+        {
+          "level": "exterior",
+          "label": "Detaille",
+          "modelUrl": "https://github.com/elios134/asset-3d/releases/download/sc-4.1/DRAK_Clipper.exterior.glb",
+          "tris": 338374,
+          "sizeBytes": 6086404,
+          "hasInterior": false,
+          "sha256": "b3374fbfbd258f0d089c1987191085e0b17f3f7989624b729726663634d7ae73"
+        }
+      ]
+    },
+    {
+      "key": "DRAK_Command_Module",
+      "name": "Command Module",
+      "manufacturer": "Drake Interplanetary",
+      "classification": "Transport",
+      "dims": {
+        "l": 20,
+        "b": 16,
+        "h": 6
+      },
+      "materials": "flat",
+      "patchVersion": "sc-4.1",
+      "variants": [
+        {
+          "level": "exterior",
+          "label": "Detaille",
+          "modelUrl": "https://github.com/elios134/asset-3d/releases/download/sc-4.1/DRAK_Command_Module.exterior.glb",
+          "tris": 285494,
+          "sizeBytes": 4741864,
+          "hasInterior": false,
+          "sha256": "0871f17d5b203ddf4a7602338275c96b7169b19b323ca093069b67f117084473"
+        }
+      ]
+    },
+    {
+      "key": "DRAK_Corsair",
+      "name": "Corsair",
+      "manufacturer": "Drake Interplanetary",
+      "classification": "Expedition",
+      "dims": {
+        "l": 53,
+        "b": 30,
+        "h": 25
+      },
+      "materials": "flat",
+      "patchVersion": "sc-4.1",
+      "variants": [
+        {
+          "level": "exterior",
+          "label": "Detaille",
+          "modelUrl": "https://github.com/elios134/asset-3d/releases/download/sc-4.1/DRAK_Corsair.exterior.glb",
+          "tris": 634485,
+          "sizeBytes": 7643484,
+          "hasInterior": false,
+          "sha256": "e5de14f919074a4d0b66b196587e4c4d84f15e3cc1c9d6af52532c093d297ea7"
         }
       ]
     },
@@ -210,7 +2418,7 @@
           "tris": 272835,
           "sizeBytes": 4379612,
           "hasInterior": false,
-          "sha256": "e226b4b0678a14648a4c412b90e878ade0f5a0f1a47a64843e6c22838ecc6ac6"
+          "sha256": "b3c891c63f8fa6b5c152d71fd67fe9f4ffe0e3701995b39ea39a19f52cfde9fc"
         },
         {
           "level": "interior",
@@ -224,10 +2432,10 @@
       ]
     },
     {
-      "key": "DRAK_Cutlass_Black_Exec_Stealth",
-      "name": "Cutlass Black PYAM Exec",
+      "key": "DRAK_Cutlass_Blue",
+      "name": "Cutlass Blue",
       "manufacturer": "Drake Interplanetary",
-      "classification": "Light Freight / Medium Fighter",
+      "classification": "Interdiction",
       "dims": {
         "l": 37.5,
         "b": 26.5,
@@ -239,11 +2447,59 @@
         {
           "level": "exterior",
           "label": "Detaille",
-          "modelUrl": "https://github.com/elios134/asset-3d/releases/download/sc-4.1/DRAK_Cutlass_Black_Exec_Stealth.exterior.glb",
-          "tris": 267914,
-          "sizeBytes": 4607640,
+          "modelUrl": "https://github.com/elios134/asset-3d/releases/download/sc-4.1/DRAK_Cutlass_Blue.exterior.glb",
+          "tris": 279937,
+          "sizeBytes": 4550184,
           "hasInterior": false,
-          "sha256": "77ab55d4ca883f7411c59568929461cc9ae50ef6f913c493db4b8bec038d999b"
+          "sha256": "8e8932bedce8b4fbc0a209218fb3646161da5db31ed8984e34aeb9ded7d2b0c1"
+        }
+      ]
+    },
+    {
+      "key": "DRAK_Cutlass_Red",
+      "name": "Cutlass Red",
+      "manufacturer": "Drake Interplanetary",
+      "classification": "Medical",
+      "dims": {
+        "l": 37.5,
+        "b": 26.5,
+        "h": 11.5
+      },
+      "materials": "flat",
+      "patchVersion": "sc-4.1",
+      "variants": [
+        {
+          "level": "exterior",
+          "label": "Detaille",
+          "modelUrl": "https://github.com/elios134/asset-3d/releases/download/sc-4.1/DRAK_Cutlass_Red.exterior.glb",
+          "tris": 223502,
+          "sizeBytes": 3596220,
+          "hasInterior": false,
+          "sha256": "ea481753bfb01bdd5ece86972394cdf4988f23415a7d98d42016091abe0a095f"
+        }
+      ]
+    },
+    {
+      "key": "DRAK_Cutlass_Steel",
+      "name": "Cutlass Steel",
+      "manufacturer": "Drake Interplanetary",
+      "classification": "Dropship",
+      "dims": {
+        "l": 37.5,
+        "b": 26.5,
+        "h": 11.5
+      },
+      "materials": "flat",
+      "patchVersion": "sc-4.1",
+      "variants": [
+        {
+          "level": "exterior",
+          "label": "Detaille",
+          "modelUrl": "https://github.com/elios134/asset-3d/releases/download/sc-4.1/DRAK_Cutlass_Steel.exterior.glb",
+          "tris": 317951,
+          "sizeBytes": 4811652,
+          "hasInterior": false,
+          "sha256": "f41f78275224028f3fa8c0e07dfc6aa32902d0fd4c079d1c844fce5cf409d035"
         }
       ]
     },
@@ -267,7 +2523,727 @@
           "tris": 224961,
           "sizeBytes": 3955800,
           "hasInterior": false,
-          "sha256": "88457a44919d654896fb1cb5a43a5d9d7415688899c1c4cc69d77a4aebc907e6"
+          "sha256": "22323842f18fb44c15fe38fcc3625ecd37637d1bd47c9b7a5987be9d32ab9140"
+        }
+      ]
+    },
+    {
+      "key": "DRAK_Cutter_Rambler",
+      "name": "Cutter Rambler",
+      "manufacturer": "Drake Interplanetary",
+      "classification": "Expedition",
+      "dims": {
+        "l": 20,
+        "b": 16,
+        "h": 6
+      },
+      "materials": "flat",
+      "patchVersion": "sc-4.1",
+      "variants": [
+        {
+          "level": "exterior",
+          "label": "Detaille",
+          "modelUrl": "https://github.com/elios134/asset-3d/releases/download/sc-4.1/DRAK_Cutter_Rambler.exterior.glb",
+          "tris": 235151,
+          "sizeBytes": 4078296,
+          "hasInterior": false,
+          "sha256": "802b30253a8cbe9062eafb0406ae4d6b4e954f9cfbd5e0fd682c781bd016fc80"
+        }
+      ]
+    },
+    {
+      "key": "DRAK_Cutter_Scout",
+      "name": "Cutter Scout",
+      "manufacturer": "Drake Interplanetary",
+      "classification": "Pathfinder",
+      "dims": {
+        "l": 20,
+        "b": 16,
+        "h": 6
+      },
+      "materials": "flat",
+      "patchVersion": "sc-4.1",
+      "variants": [
+        {
+          "level": "exterior",
+          "label": "Detaille",
+          "modelUrl": "https://github.com/elios134/asset-3d/releases/download/sc-4.1/DRAK_Cutter_Scout.exterior.glb",
+          "tris": 208917,
+          "sizeBytes": 3365616,
+          "hasInterior": false,
+          "sha256": "38f4491428ed6b21de62a34bdb2cc1b9f356cd7b9f23ecd5430b856a3a584b76"
+        }
+      ]
+    },
+    {
+      "key": "DRAK_Dragonfly",
+      "name": "Dragonfly",
+      "manufacturer": "Drake Interplanetary",
+      "classification": "Racing",
+      "dims": {
+        "l": 7,
+        "b": 2.5,
+        "h": 2
+      },
+      "materials": "flat",
+      "patchVersion": "sc-4.1",
+      "variants": [
+        {
+          "level": "exterior",
+          "label": "Detaille",
+          "modelUrl": "https://github.com/elios134/asset-3d/releases/download/sc-4.1/DRAK_Dragonfly.exterior.glb",
+          "tris": 68452,
+          "sizeBytes": 1054752,
+          "hasInterior": false,
+          "sha256": "f6d236cf124a30d09a0a8fafca03df15147fef2c6399088c4fd7e4b5e672cb0d"
+        }
+      ]
+    },
+    {
+      "key": "DRAK_Dragonfly_Pink",
+      "name": "Dragonfly Star Kitten",
+      "manufacturer": "Drake Interplanetary",
+      "classification": "Racing",
+      "dims": {
+        "l": 7,
+        "b": 2.5,
+        "h": 2
+      },
+      "materials": "flat",
+      "patchVersion": "sc-4.1",
+      "variants": [
+        {
+          "level": "exterior",
+          "label": "Detaille",
+          "modelUrl": "https://github.com/elios134/asset-3d/releases/download/sc-4.1/DRAK_Dragonfly_Pink.exterior.glb",
+          "tris": 67603,
+          "sizeBytes": 1065292,
+          "hasInterior": false,
+          "sha256": "e58cf25880f8194c5e158c15dc496e8bb7eca154dd1ea68de99a0bd2a74868ca"
+        }
+      ]
+    },
+    {
+      "key": "DRAK_Dragonfly_Yellow",
+      "name": "Dragonfly Yellowjacket",
+      "manufacturer": "Drake Interplanetary",
+      "classification": "Racing",
+      "dims": {
+        "l": 7,
+        "b": 2.5,
+        "h": 2
+      },
+      "materials": "flat",
+      "patchVersion": "sc-4.1",
+      "variants": [
+        {
+          "level": "exterior",
+          "label": "Detaille",
+          "modelUrl": "https://github.com/elios134/asset-3d/releases/download/sc-4.1/DRAK_Dragonfly_Yellow.exterior.glb",
+          "tris": 68452,
+          "sizeBytes": 1080648,
+          "hasInterior": false,
+          "sha256": "93a47b4c58720af60954921523effe18835c41175785c1d73de8f3847d3d0b39"
+        }
+      ]
+    },
+    {
+      "key": "DRAK_Golem",
+      "name": "Golem",
+      "manufacturer": "Drake Interplanetary",
+      "classification": "Starter / Light Mining",
+      "dims": {
+        "l": 15.5,
+        "b": 7,
+        "h": 5
+      },
+      "materials": "flat",
+      "patchVersion": "sc-4.1",
+      "variants": [
+        {
+          "level": "exterior",
+          "label": "Detaille",
+          "modelUrl": "https://github.com/elios134/asset-3d/releases/download/sc-4.1/DRAK_Golem.exterior.glb",
+          "tris": 246521,
+          "sizeBytes": 4375880,
+          "hasInterior": false,
+          "sha256": "2a2a282d3f4388eaf86166a9926353985421c3000d718193edc89d3b301720f0"
+        }
+      ]
+    },
+    {
+      "key": "DRAK_Golem_OX",
+      "name": "Golem OX",
+      "manufacturer": "Drake Interplanetary",
+      "classification": "Light Freight",
+      "dims": {
+        "l": 15.5,
+        "b": 7,
+        "h": 5
+      },
+      "materials": "flat",
+      "patchVersion": "sc-4.1",
+      "variants": [
+        {
+          "level": "exterior",
+          "label": "Detaille",
+          "modelUrl": "https://github.com/elios134/asset-3d/releases/download/sc-4.1/DRAK_Golem_OX.exterior.glb",
+          "tris": 204707,
+          "sizeBytes": 4046740,
+          "hasInterior": false,
+          "sha256": "9e4c6a8bef2817957c511cab8fa6046cceed9f383259312cfb5362511975af77"
+        }
+      ]
+    },
+    {
+      "key": "DRAK_Herald",
+      "name": "Herald",
+      "manufacturer": "Drake Interplanetary",
+      "classification": "Medium Data",
+      "dims": {
+        "l": 24.75,
+        "b": 12.5,
+        "h": 9
+      },
+      "materials": "flat",
+      "patchVersion": "sc-4.1",
+      "variants": [
+        {
+          "level": "exterior",
+          "label": "Detaille",
+          "modelUrl": "https://github.com/elios134/asset-3d/releases/download/sc-4.1/DRAK_Herald.exterior.glb",
+          "tris": 131226,
+          "sizeBytes": 2301376,
+          "hasInterior": false,
+          "sha256": "75487d7b4760d4e46908934be647b3eda0034df0994079e3eb12be0c773ead73"
+        }
+      ]
+    },
+    {
+      "key": "DRAK_Ironclad",
+      "name": "Ironclad",
+      "manufacturer": "Drake Interplanetary",
+      "classification": "Heavy Freight",
+      "dims": {
+        "l": 111.5,
+        "b": 39.5,
+        "h": 13.4
+      },
+      "materials": "flat",
+      "patchVersion": "sc-4.1",
+      "variants": [
+        {
+          "level": "exterior",
+          "label": "Detaille",
+          "modelUrl": "https://github.com/elios134/asset-3d/releases/download/sc-4.1/DRAK_Ironclad.exterior.glb",
+          "tris": 583538,
+          "sizeBytes": 9164732,
+          "hasInterior": false,
+          "sha256": "62048cf3ef9333e5e40fbeba54912c2c9f008276720da4140010e9986a2be8c4"
+        }
+      ]
+    },
+    {
+      "key": "DRAK_Ironclad_Assault",
+      "name": "Ironclad Assault",
+      "manufacturer": "Drake Interplanetary",
+      "classification": "Heavy Dropship",
+      "dims": {
+        "l": 111.5,
+        "b": 39.5,
+        "h": 13.4
+      },
+      "materials": "flat",
+      "patchVersion": "sc-4.1",
+      "variants": [
+        {
+          "level": "exterior",
+          "label": "Detaille",
+          "modelUrl": "https://github.com/elios134/asset-3d/releases/download/sc-4.1/DRAK_Ironclad_Assault.exterior.glb",
+          "tris": 716146,
+          "sizeBytes": 11052616,
+          "hasInterior": false,
+          "sha256": "45e6acefebc0148399630b8fb062d82e30f85259c9317e89a072b8d4456fded7"
+        }
+      ]
+    },
+    {
+      "key": "DRAK_Mule",
+      "name": "Mule",
+      "manufacturer": "Drake Interplanetary",
+      "classification": "Light Freight",
+      "dims": {
+        "l": 8.75,
+        "b": 6,
+        "h": 3.5
+      },
+      "materials": "flat",
+      "patchVersion": "sc-4.1",
+      "variants": [
+        {
+          "level": "exterior",
+          "label": "Detaille",
+          "modelUrl": "https://github.com/elios134/asset-3d/releases/download/sc-4.1/DRAK_Mule.exterior.glb",
+          "tris": 90129,
+          "sizeBytes": 1602904,
+          "hasInterior": false,
+          "sha256": "ea9835b3585e4ed6eeb50c21f744f7947229a09389e7656e81815b0d4b2766ce"
+        }
+      ]
+    },
+    {
+      "key": "DRAK_Pitbull",
+      "name": "Pitbull",
+      "manufacturer": "Drake Interplanetary",
+      "classification": "Snub Fighter",
+      "dims": {
+        "l": 6,
+        "b": 6,
+        "h": 3
+      },
+      "materials": "flat",
+      "patchVersion": "sc-4.1",
+      "variants": [
+        {
+          "level": "exterior",
+          "label": "Detaille",
+          "modelUrl": "https://github.com/elios134/asset-3d/releases/download/sc-4.1/DRAK_Pitbull.exterior.glb",
+          "tris": 284475,
+          "sizeBytes": 3518224,
+          "hasInterior": false,
+          "sha256": "ac27d66ff31c64f1bf787d1b6a717ae5fab15f6ebc03cea551d51ba019981777"
+        }
+      ]
+    },
+    {
+      "key": "DRAK_Vulture",
+      "name": "Vulture",
+      "manufacturer": "Drake Interplanetary",
+      "classification": "Light Salvage",
+      "dims": {
+        "l": 34,
+        "b": 16,
+        "h": 9
+      },
+      "materials": "flat",
+      "patchVersion": "sc-4.1",
+      "variants": [
+        {
+          "level": "exterior",
+          "label": "Detaille",
+          "modelUrl": "https://github.com/elios134/asset-3d/releases/download/sc-4.1/DRAK_Vulture.exterior.glb",
+          "tris": 317935,
+          "sizeBytes": 4600800,
+          "hasInterior": false,
+          "sha256": "15dbfb6e532f646dffcbe4b5e39115a99ed26ebcd4f5d4a3957b8e25e63a0655"
+        }
+      ]
+    },
+    {
+      "key": "ESPR_Prowler",
+      "name": "Prowler",
+      "manufacturer": "Esperia",
+      "classification": "Dropship",
+      "dims": {
+        "l": 34,
+        "b": 32,
+        "h": 15
+      },
+      "materials": "flat",
+      "patchVersion": "sc-4.1",
+      "variants": [
+        {
+          "level": "exterior",
+          "label": "Detaille",
+          "modelUrl": "https://github.com/elios134/asset-3d/releases/download/sc-4.1/ESPR_Prowler.exterior.glb",
+          "tris": 216473,
+          "sizeBytes": 3953136,
+          "hasInterior": false,
+          "sha256": "8b5d4c07bd549b91f7c1998956a73ec9c13151d14de3246b77717f4037c4a4f3"
+        }
+      ]
+    },
+    {
+      "key": "ESPR_Prowler_Utility",
+      "name": "Prowler Utility",
+      "manufacturer": "Esperia",
+      "classification": "Light Freight",
+      "dims": {
+        "l": 34,
+        "b": 32,
+        "h": 15
+      },
+      "materials": "flat",
+      "patchVersion": "sc-4.1",
+      "variants": [
+        {
+          "level": "exterior",
+          "label": "Detaille",
+          "modelUrl": "https://github.com/elios134/asset-3d/releases/download/sc-4.1/ESPR_Prowler_Utility.exterior.glb",
+          "tris": 274623,
+          "sizeBytes": 5190788,
+          "hasInterior": false,
+          "sha256": "991bafca128bc5d8f3d5a7917f1721b7f7d18a30f51f6e6493695272b033b504"
+        }
+      ]
+    },
+    {
+      "key": "ESPR_Talon",
+      "name": "Talon",
+      "manufacturer": "Esperia",
+      "classification": "Light Fighter",
+      "dims": {
+        "l": 24,
+        "b": 15,
+        "h": 8
+      },
+      "materials": "flat",
+      "patchVersion": "sc-4.1",
+      "variants": [
+        {
+          "level": "exterior",
+          "label": "Detaille",
+          "modelUrl": "https://github.com/elios134/asset-3d/releases/download/sc-4.1/ESPR_Talon.exterior.glb",
+          "tris": 152017,
+          "sizeBytes": 2952840,
+          "hasInterior": false,
+          "sha256": "087f7f614e9dc65234cad8ed6f4f2a2f9dc71ce019e1da102b0dff369524e090"
+        }
+      ]
+    },
+    {
+      "key": "ESPR_Talon_Shrike",
+      "name": "Talon Shrike",
+      "manufacturer": "Esperia",
+      "classification": "Light Fighter",
+      "dims": {
+        "l": 24,
+        "b": 15,
+        "h": 8
+      },
+      "materials": "flat",
+      "patchVersion": "sc-4.1",
+      "variants": [
+        {
+          "level": "exterior",
+          "label": "Detaille",
+          "modelUrl": "https://github.com/elios134/asset-3d/releases/download/sc-4.1/ESPR_Talon_Shrike.exterior.glb",
+          "tris": 158512,
+          "sizeBytes": 2984264,
+          "hasInterior": false,
+          "sha256": "efc5ec70760a259835b7b07cc70d890b6fde2be7213ebbf510eda260eed70388"
+        }
+      ]
+    },
+    {
+      "key": "GAMA_Railen",
+      "name": "Railen",
+      "manufacturer": "Gatac Manufacture",
+      "classification": "Medium Freight",
+      "dims": {
+        "l": 67,
+        "b": 53,
+        "h": 52
+      },
+      "materials": "flat",
+      "patchVersion": "sc-4.1",
+      "variants": [
+        {
+          "level": "exterior",
+          "label": "Detaille",
+          "modelUrl": "https://github.com/elios134/asset-3d/releases/download/sc-4.1/GAMA_Railen.exterior.glb",
+          "tris": 500163,
+          "sizeBytes": 6216536,
+          "hasInterior": false,
+          "sha256": "526c4cd8e811f2f1bd982077affce7f74d931657304cac661425dfd251ec86a3"
+        }
+      ]
+    },
+    {
+      "key": "GAMA_Syulen",
+      "name": "Syulen",
+      "manufacturer": "Gatac Manufacture",
+      "classification": "Starter / Pathfinder",
+      "dims": {
+        "l": 0,
+        "b": 0,
+        "h": 0
+      },
+      "materials": "flat",
+      "patchVersion": "sc-4.1",
+      "variants": [
+        {
+          "level": "exterior",
+          "label": "Detaille",
+          "modelUrl": "https://github.com/elios134/asset-3d/releases/download/sc-4.1/GAMA_Syulen.exterior.glb",
+          "tris": 161400,
+          "sizeBytes": 2851900,
+          "hasInterior": false,
+          "sha256": "316cc550fb92e9139647a752ef6fcb19116a4b799587bce3e6a90d86464d1dea"
+        }
+      ]
+    },
+    {
+      "key": "GAMA_Tyilui",
+      "name": "Tyilui",
+      "manufacturer": "Gatac Manufacture",
+      "classification": "Carrier",
+      "dims": {
+        "l": 67.25,
+        "b": 58.75,
+        "h": 52
+      },
+      "materials": "flat",
+      "patchVersion": "sc-4.1",
+      "variants": [
+        {
+          "level": "exterior",
+          "label": "Detaille",
+          "modelUrl": "https://github.com/elios134/asset-3d/releases/download/sc-4.1/GAMA_Tyilui.exterior.glb",
+          "tris": 573120,
+          "sizeBytes": 7163016,
+          "hasInterior": false,
+          "sha256": "9703cf5d87859f5e379975e2902748f664a714aa9f93f5cb01909f8723a0bb45"
+        }
+      ]
+    },
+    {
+      "key": "GLSN_Shiv",
+      "name": "Shiv",
+      "manufacturer": "Grey's Market",
+      "classification": "Heavy Fighter",
+      "dims": {
+        "l": 37.5,
+        "b": 26.5,
+        "h": 11.5
+      },
+      "materials": "flat",
+      "patchVersion": "sc-4.1",
+      "variants": [
+        {
+          "level": "exterior",
+          "label": "Detaille",
+          "modelUrl": "https://github.com/elios134/asset-3d/releases/download/sc-4.1/GLSN_Shiv.exterior.glb",
+          "tris": 306362,
+          "sizeBytes": 5811440,
+          "hasInterior": false,
+          "sha256": "2c22470c6213e100c33e29e0afabdb8dc6902a1c4bb8bdbd44d0814add7c925e"
+        }
+      ]
+    },
+    {
+      "key": "GRIN_MDC",
+      "name": "MDC",
+      "manufacturer": "Greycat Industrial",
+      "classification": "Anti-Air",
+      "dims": {
+        "l": 8.75,
+        "b": 6,
+        "h": 5
+      },
+      "materials": "flat",
+      "patchVersion": "sc-4.1",
+      "variants": [
+        {
+          "level": "exterior",
+          "label": "Detaille",
+          "modelUrl": "https://github.com/elios134/asset-3d/releases/download/sc-4.1/GRIN_MDC.exterior.glb",
+          "tris": 70549,
+          "sizeBytes": 1861388,
+          "hasInterior": false,
+          "sha256": "3b72b06e1a66db9dd5ff67c296fbf2b2e2478bdcd4b5a7dc000e9dd2285c697e"
+        }
+      ]
+    },
+    {
+      "key": "GRIN_MTC",
+      "name": "MTC",
+      "manufacturer": "Greycat Industrial",
+      "classification": "Passenger",
+      "dims": {
+        "l": 8.75,
+        "b": 6,
+        "h": 5
+      },
+      "materials": "flat",
+      "patchVersion": "sc-4.1",
+      "variants": [
+        {
+          "level": "exterior",
+          "label": "Detaille",
+          "modelUrl": "https://github.com/elios134/asset-3d/releases/download/sc-4.1/GRIN_MTC.exterior.glb",
+          "tris": 85369,
+          "sizeBytes": 2041604,
+          "hasInterior": false,
+          "sha256": "866477c00aa123f9b49471cafe0f6bfa956d50cb4da28d02a0b34d6bf04408f9"
+        }
+      ]
+    },
+    {
+      "key": "GRIN_PTV",
+      "name": "PTV",
+      "manufacturer": "Greycat Industrial",
+      "classification": "Passenger",
+      "dims": {
+        "l": 3.5,
+        "b": 2.5,
+        "h": 2.2
+      },
+      "materials": "flat",
+      "patchVersion": "sc-4.1",
+      "variants": [
+        {
+          "level": "exterior",
+          "label": "Detaille",
+          "modelUrl": "https://github.com/elios134/asset-3d/releases/download/sc-4.1/GRIN_PTV.exterior.glb",
+          "tris": 12177,
+          "sizeBytes": 208760,
+          "hasInterior": false,
+          "sha256": "7b3ef9f5ffacf6ced92988cd866716485228955fb9ad176f080d10fb4f20b090"
+        }
+      ]
+    },
+    {
+      "key": "GRIN_ROC",
+      "name": "ROC",
+      "manufacturer": "Greycat Industrial",
+      "classification": "Light Mining",
+      "dims": {
+        "l": 6,
+        "b": 3.9,
+        "h": 3.5
+      },
+      "materials": "flat",
+      "patchVersion": "sc-4.1",
+      "variants": [
+        {
+          "level": "exterior",
+          "label": "Detaille",
+          "modelUrl": "https://github.com/elios134/asset-3d/releases/download/sc-4.1/GRIN_ROC.exterior.glb",
+          "tris": 37781,
+          "sizeBytes": 644376,
+          "hasInterior": false,
+          "sha256": "914f9a5c6d789e7c1c708ec5e1267ca59727b30e07fd1001b9164bd0c629c57f"
+        }
+      ]
+    },
+    {
+      "key": "GRIN_ROC_DS",
+      "name": "ROC-DS",
+      "manufacturer": "Greycat Industrial",
+      "classification": "Light Mining",
+      "dims": {
+        "l": 6.6,
+        "b": 5,
+        "h": 3.5
+      },
+      "materials": "flat",
+      "patchVersion": "sc-4.1",
+      "variants": [
+        {
+          "level": "exterior",
+          "label": "Detaille",
+          "modelUrl": "https://github.com/elios134/asset-3d/releases/download/sc-4.1/GRIN_ROC_DS.exterior.glb",
+          "tris": 93800,
+          "sizeBytes": 1221536,
+          "hasInterior": false,
+          "sha256": "2d8513b7e6cd9394f1d42f4d9566ebe188e5188eb70249c988ad2a4a05e33251"
+        }
+      ]
+    },
+    {
+      "key": "GRIN_STV",
+      "name": "STV",
+      "manufacturer": "Greycat Industrial",
+      "classification": "Passenger",
+      "dims": {
+        "l": 8.75,
+        "b": 6,
+        "h": 3.5
+      },
+      "materials": "flat",
+      "patchVersion": "sc-4.1",
+      "variants": [
+        {
+          "level": "exterior",
+          "label": "Detaille",
+          "modelUrl": "https://github.com/elios134/asset-3d/releases/download/sc-4.1/GRIN_STV.exterior.glb",
+          "tris": 58873,
+          "sizeBytes": 1214764,
+          "hasInterior": false,
+          "sha256": "96e4641083da82d062e302300c68ca9cdbcdf049d07aefc6828833c00caff7c8"
+        }
+      ]
+    },
+    {
+      "key": "GRIN_UTV",
+      "name": "UTV",
+      "manufacturer": "Greycat Industrial",
+      "classification": "Passenger",
+      "dims": {
+        "l": 4,
+        "b": 2.6,
+        "h": 2.5
+      },
+      "materials": "flat",
+      "patchVersion": "sc-4.1",
+      "variants": [
+        {
+          "level": "exterior",
+          "label": "Detaille",
+          "modelUrl": "https://github.com/elios134/asset-3d/releases/download/sc-4.1/GRIN_UTV.exterior.glb",
+          "tris": 110194,
+          "sizeBytes": 1664000,
+          "hasInterior": false,
+          "sha256": "feb20942d0622a1aea37cba3d823d6bbd81ace8fbbbf2d86af7c445d961a0ae0"
+        }
+      ]
+    },
+    {
+      "key": "KRIG_L21_Wolf",
+      "name": "L-21 Wolf",
+      "manufacturer": "Kruger Intergalactic",
+      "classification": "Light Fighter",
+      "dims": {
+        "l": 12,
+        "b": 5.25,
+        "h": 3
+      },
+      "materials": "flat",
+      "patchVersion": "sc-4.1",
+      "variants": [
+        {
+          "level": "exterior",
+          "label": "Detaille",
+          "modelUrl": "https://github.com/elios134/asset-3d/releases/download/sc-4.1/KRIG_L21_Wolf.exterior.glb",
+          "tris": 253700,
+          "sizeBytes": 4392364,
+          "hasInterior": false,
+          "sha256": "f9f935c6b6b4793496ae2d087505ce1c80bbbacef35caf14da09d1cdda93e79e"
+        }
+      ]
+    },
+    {
+      "key": "KRIG_L22_AlphaWolf",
+      "name": "L-22 Alpha Wolf",
+      "manufacturer": "Kruger Intergalactic",
+      "classification": "Light Fighter",
+      "dims": {
+        "l": 12,
+        "b": 5.25,
+        "h": 3
+      },
+      "materials": "flat",
+      "patchVersion": "sc-4.1",
+      "variants": [
+        {
+          "level": "exterior",
+          "label": "Detaille",
+          "modelUrl": "https://github.com/elios134/asset-3d/releases/download/sc-4.1/KRIG_L22_AlphaWolf.exterior.glb",
+          "tris": 262242,
+          "sizeBytes": 4470660,
+          "hasInterior": false,
+          "sha256": "a5aab0b39eff383da9442063f052f9065fbe58cd5b172be519027fa981d13f30"
         }
       ]
     },
@@ -291,7 +3267,247 @@
           "tris": 149945,
           "sizeBytes": 2188404,
           "hasInterior": false,
-          "sha256": "90343d63203b47974436bf0f9df8611f7b49c16331316a95dc997f2974a84dcf"
+          "sha256": "518575b026d9fe0f4305b08b359ce166daadde18afa82f05f56d55dc2492401d"
+        }
+      ]
+    },
+    {
+      "key": "KRIG_P72_Archimedes",
+      "name": "P-72 Archimedes",
+      "manufacturer": "Kruger Intergalactic",
+      "classification": "Racing",
+      "dims": {
+        "l": 12,
+        "b": 5.25,
+        "h": 3
+      },
+      "materials": "flat",
+      "patchVersion": "sc-4.1",
+      "variants": [
+        {
+          "level": "exterior",
+          "label": "Detaille",
+          "modelUrl": "https://github.com/elios134/asset-3d/releases/download/sc-4.1/KRIG_P72_Archimedes.exterior.glb",
+          "tris": 184380,
+          "sizeBytes": 2473716,
+          "hasInterior": false,
+          "sha256": "a8537a3015ecb01723b14aa162ac526afdc889f69ad5b7a8e4d773cf7be6ea63"
+        }
+      ]
+    },
+    {
+      "key": "KRIG_P72_Archimedes_Emerald",
+      "name": "P-72 Archimedes Emerald",
+      "manufacturer": "Kruger Intergalactic",
+      "classification": "Racing",
+      "dims": {
+        "l": 12,
+        "b": 5.25,
+        "h": 3
+      },
+      "materials": "flat",
+      "patchVersion": "sc-4.1",
+      "variants": [
+        {
+          "level": "exterior",
+          "label": "Detaille",
+          "modelUrl": "https://github.com/elios134/asset-3d/releases/download/sc-4.1/KRIG_P72_Archimedes_Emerald.exterior.glb",
+          "tris": 184380,
+          "sizeBytes": 2474428,
+          "hasInterior": false,
+          "sha256": "799a713fe6a44439757b4131f312b58300f3a96c23ca54a9d8ab3b0aefe67fa4"
+        }
+      ]
+    },
+    {
+      "key": "MISC_Fortune",
+      "name": "MISC Fortune",
+      "manufacturer": "Musashi Industrial and Starflight Concern",
+      "classification": "Light Salvage",
+      "dims": {
+        "l": 26.5,
+        "b": 16.5,
+        "h": 8
+      },
+      "materials": "flat",
+      "patchVersion": "sc-4.1",
+      "variants": [
+        {
+          "level": "exterior",
+          "label": "Detaille",
+          "modelUrl": "https://github.com/elios134/asset-3d/releases/download/sc-4.1/MISC_Fortune.exterior.glb",
+          "tris": 348688,
+          "sizeBytes": 5095816,
+          "hasInterior": false,
+          "sha256": "9aa9c03c3f48bcbe2b3a0c37111fb35c4f4afb4c227599de2bea51ec509e653e"
+        }
+      ]
+    },
+    {
+      "key": "MISC_Freelancer",
+      "name": "MISC Freelancer",
+      "manufacturer": "Musashi Industrial and Starflight Concern",
+      "classification": "Light Freight",
+      "dims": {
+        "l": 38,
+        "b": 23.5,
+        "h": 9.5
+      },
+      "materials": "flat",
+      "patchVersion": "sc-4.1",
+      "variants": [
+        {
+          "level": "exterior",
+          "label": "Detaille",
+          "modelUrl": "https://github.com/elios134/asset-3d/releases/download/sc-4.1/MISC_Freelancer.exterior.glb",
+          "tris": 247284,
+          "sizeBytes": 3675976,
+          "hasInterior": false,
+          "sha256": "8368fad3a0548785fe986ab57c22749d4ddfce683ebe4c4a6fb261f44ad9a6c8"
+        }
+      ]
+    },
+    {
+      "key": "MISC_Freelancer_DUR",
+      "name": "MISC Freelancer DUR",
+      "manufacturer": "Musashi Industrial and Starflight Concern",
+      "classification": "Expedition",
+      "dims": {
+        "l": 38,
+        "b": 23.5,
+        "h": 9.5
+      },
+      "materials": "flat",
+      "patchVersion": "sc-4.1",
+      "variants": [
+        {
+          "level": "exterior",
+          "label": "Detaille",
+          "modelUrl": "https://github.com/elios134/asset-3d/releases/download/sc-4.1/MISC_Freelancer_DUR.exterior.glb",
+          "tris": 184766,
+          "sizeBytes": 3420132,
+          "hasInterior": false,
+          "sha256": "ba7a2266f2955df28a9d6189cc722643908e0e99d71a5d3975856bdf0faae672"
+        }
+      ]
+    },
+    {
+      "key": "MISC_Freelancer_MAX",
+      "name": "MISC Freelancer MAX",
+      "manufacturer": "Musashi Industrial and Starflight Concern",
+      "classification": "Medium Freight",
+      "dims": {
+        "l": 38,
+        "b": 34,
+        "h": 9.5
+      },
+      "materials": "flat",
+      "patchVersion": "sc-4.1",
+      "variants": [
+        {
+          "level": "exterior",
+          "label": "Detaille",
+          "modelUrl": "https://github.com/elios134/asset-3d/releases/download/sc-4.1/MISC_Freelancer_MAX.exterior.glb",
+          "tris": 188582,
+          "sizeBytes": 3191888,
+          "hasInterior": false,
+          "sha256": "d04b7ea45c1b10af235f882beffc8c216fe1a10115bd479ad07eae29292a5447"
+        }
+      ]
+    },
+    {
+      "key": "MISC_Freelancer_MIS",
+      "name": "MISC Freelancer MIS",
+      "manufacturer": "Musashi Industrial and Starflight Concern",
+      "classification": "Gunship",
+      "dims": {
+        "l": 38,
+        "b": 23.5,
+        "h": 9.5
+      },
+      "materials": "flat",
+      "patchVersion": "sc-4.1",
+      "variants": [
+        {
+          "level": "exterior",
+          "label": "Detaille",
+          "modelUrl": "https://github.com/elios134/asset-3d/releases/download/sc-4.1/MISC_Freelancer_MIS.exterior.glb",
+          "tris": 280855,
+          "sizeBytes": 4041284,
+          "hasInterior": false,
+          "sha256": "80541028e4ac0ffec88735f642f8853f4837586a025929534143458251b45737"
+        }
+      ]
+    },
+    {
+      "key": "MISC_Fury",
+      "name": "Fury",
+      "manufacturer": "Mirai",
+      "classification": "Snub Fighter",
+      "dims": {
+        "l": 7,
+        "b": 5.4,
+        "h": 3
+      },
+      "materials": "flat",
+      "patchVersion": "sc-4.1",
+      "variants": [
+        {
+          "level": "exterior",
+          "label": "Detaille",
+          "modelUrl": "https://github.com/elios134/asset-3d/releases/download/sc-4.1/MISC_Fury.exterior.glb",
+          "tris": 192626,
+          "sizeBytes": 2918136,
+          "hasInterior": false,
+          "sha256": "685ba135d4d8a5aa5666976ea9b156dbf4ac452fcaaf7e8d3d92edcafacd1f4c"
+        }
+      ]
+    },
+    {
+      "key": "MISC_Fury_LX",
+      "name": "Fury LX",
+      "manufacturer": "Mirai",
+      "classification": "Racing",
+      "dims": {
+        "l": 7,
+        "b": 5.4,
+        "h": 3
+      },
+      "materials": "flat",
+      "patchVersion": "sc-4.1",
+      "variants": [
+        {
+          "level": "exterior",
+          "label": "Detaille",
+          "modelUrl": "https://github.com/elios134/asset-3d/releases/download/sc-4.1/MISC_Fury_LX.exterior.glb",
+          "tris": 148128,
+          "sizeBytes": 2494364,
+          "hasInterior": false,
+          "sha256": "9941b1b47f01357d22d8dce8fd982dfddc59d3e27527b27af0adb22a0f4606be"
+        }
+      ]
+    },
+    {
+      "key": "MISC_Fury_Miru",
+      "name": "Fury MX",
+      "manufacturer": "Mirai",
+      "classification": "Snub Fighter",
+      "dims": {
+        "l": 7,
+        "b": 5.4,
+        "h": 3
+      },
+      "materials": "flat",
+      "patchVersion": "sc-4.1",
+      "variants": [
+        {
+          "level": "exterior",
+          "label": "Detaille",
+          "modelUrl": "https://github.com/elios134/asset-3d/releases/download/sc-4.1/MISC_Fury_Miru.exterior.glb",
+          "tris": 162732,
+          "sizeBytes": 2471572,
+          "hasInterior": false,
+          "sha256": "fd9a7be5302913e54afc9fcb304b1d68cd37ef2d8c661fa963a6c576a6c5f465"
         }
       ]
     },
@@ -315,7 +3531,583 @@
           "tris": 188786,
           "sizeBytes": 3394176,
           "hasInterior": false,
-          "sha256": "409e5ada48114f4965241ac40ac4ea2d79d4b379f7eb2515649eed63dc4939a0"
+          "sha256": "ab6907f87173f6f03e0a5e629479ccf91e2efcdc8ea3e60d9434b69f6575f9d8"
+        }
+      ]
+    },
+    {
+      "key": "MISC_Hull_B",
+      "name": "MISC Hull B",
+      "manufacturer": "Musashi Industrial and Starflight Concern",
+      "classification": "Medium Freight",
+      "dims": {
+        "l": 71,
+        "b": 16.7,
+        "h": 10.7
+      },
+      "materials": "flat",
+      "patchVersion": "sc-4.1",
+      "variants": [
+        {
+          "level": "exterior",
+          "label": "Detaille",
+          "modelUrl": "https://github.com/elios134/asset-3d/releases/download/sc-4.1/MISC_Hull_B.exterior.glb",
+          "tris": 568553,
+          "sizeBytes": 8192024,
+          "hasInterior": false,
+          "sha256": "f3fddb77b0856c83edb48ad3d13e6c518a180f2526a0f49131c2e591a9b00f1a"
+        }
+      ]
+    },
+    {
+      "key": "MISC_Hull_C",
+      "name": "MISC Hull C",
+      "manufacturer": "Musashi Industrial and Starflight Concern",
+      "classification": "Heavy Freight",
+      "dims": {
+        "l": 91.17,
+        "b": 36.05,
+        "h": 26.28
+      },
+      "materials": "flat",
+      "patchVersion": "sc-4.1",
+      "variants": [
+        {
+          "level": "exterior",
+          "label": "Detaille",
+          "modelUrl": "https://github.com/elios134/asset-3d/releases/download/sc-4.1/MISC_Hull_C.exterior.glb",
+          "tris": 439380,
+          "sizeBytes": 5493628,
+          "hasInterior": false,
+          "sha256": "a436f95be0fa659f6eabd1d7dd7e3a1db3fe200b0c6f61dc6eb92e400a591468"
+        }
+      ]
+    },
+    {
+      "key": "MISC_Prospector",
+      "name": "MISC Prospector",
+      "manufacturer": "Musashi Industrial and Starflight Concern",
+      "classification": "Light Mining",
+      "dims": {
+        "l": 26.5,
+        "b": 16.5,
+        "h": 8
+      },
+      "materials": "flat",
+      "patchVersion": "sc-4.1",
+      "variants": [
+        {
+          "level": "exterior",
+          "label": "Detaille",
+          "modelUrl": "https://github.com/elios134/asset-3d/releases/download/sc-4.1/MISC_Prospector.exterior.glb",
+          "tris": 158265,
+          "sizeBytes": 2428320,
+          "hasInterior": false,
+          "sha256": "856fea88ad1a523a0d162c510ba19b89299c22d852db7b98d5de8f37e99ebfc5"
+        }
+      ]
+    },
+    {
+      "key": "MISC_Razor",
+      "name": "Razor",
+      "manufacturer": "Mirai",
+      "classification": "Racing",
+      "dims": {
+        "l": 12.5,
+        "b": 9,
+        "h": 3
+      },
+      "materials": "flat",
+      "patchVersion": "sc-4.1",
+      "variants": [
+        {
+          "level": "exterior",
+          "label": "Detaille",
+          "modelUrl": "https://github.com/elios134/asset-3d/releases/download/sc-4.1/MISC_Razor.exterior.glb",
+          "tris": 109870,
+          "sizeBytes": 1971764,
+          "hasInterior": false,
+          "sha256": "0805a1144603c0e05f94e9d2227be26cce98c37cc2aa12bc5011e8ea66d98f34"
+        }
+      ]
+    },
+    {
+      "key": "MISC_Razor_EX",
+      "name": "Razor EX",
+      "manufacturer": "Mirai",
+      "classification": "Stealth Fighter",
+      "dims": {
+        "l": 12.5,
+        "b": 9,
+        "h": 3
+      },
+      "materials": "flat",
+      "patchVersion": "sc-4.1",
+      "variants": [
+        {
+          "level": "exterior",
+          "label": "Detaille",
+          "modelUrl": "https://github.com/elios134/asset-3d/releases/download/sc-4.1/MISC_Razor_EX.exterior.glb",
+          "tris": 102796,
+          "sizeBytes": 1824264,
+          "hasInterior": false,
+          "sha256": "5889dc3f3f8babe833ec310c8ce4db94bdfb8264b65ade59fb6ba27b2d25b9c9"
+        }
+      ]
+    },
+    {
+      "key": "MISC_Razor_LX",
+      "name": "Razor LX",
+      "manufacturer": "Mirai",
+      "classification": "Racing",
+      "dims": {
+        "l": 12.5,
+        "b": 9,
+        "h": 3
+      },
+      "materials": "flat",
+      "patchVersion": "sc-4.1",
+      "variants": [
+        {
+          "level": "exterior",
+          "label": "Detaille",
+          "modelUrl": "https://github.com/elios134/asset-3d/releases/download/sc-4.1/MISC_Razor_LX.exterior.glb",
+          "tris": 109870,
+          "sizeBytes": 1998284,
+          "hasInterior": false,
+          "sha256": "beba86485799425390c6403bd182ffecbfd4b9a362675bf15c20dfc9916aa870"
+        }
+      ]
+    },
+    {
+      "key": "MISC_Reliant",
+      "name": "MISC Reliant Kore",
+      "manufacturer": "Musashi Industrial and Starflight Concern",
+      "classification": "Starter / Light Freight",
+      "dims": {
+        "l": 28.5,
+        "b": 14.75,
+        "h": 4.5
+      },
+      "materials": "flat",
+      "patchVersion": "sc-4.1",
+      "variants": [
+        {
+          "level": "exterior",
+          "label": "Detaille",
+          "modelUrl": "https://github.com/elios134/asset-3d/releases/download/sc-4.1/MISC_Reliant.exterior.glb",
+          "tris": 126225,
+          "sizeBytes": 2562488,
+          "hasInterior": false,
+          "sha256": "b9280032322a3b0621599d5e9107da184d3ce2b913e76f8c091b1533accf234b"
+        }
+      ]
+    },
+    {
+      "key": "MISC_Reliant_Mako",
+      "name": "MISC Reliant Mako",
+      "manufacturer": "Musashi Industrial and Starflight Concern",
+      "classification": "Reporting",
+      "dims": {
+        "l": 28.5,
+        "b": 14.75,
+        "h": 4.5
+      },
+      "materials": "flat",
+      "patchVersion": "sc-4.1",
+      "variants": [
+        {
+          "level": "exterior",
+          "label": "Detaille",
+          "modelUrl": "https://github.com/elios134/asset-3d/releases/download/sc-4.1/MISC_Reliant_Mako.exterior.glb",
+          "tris": 111701,
+          "sizeBytes": 2271376,
+          "hasInterior": false,
+          "sha256": "c0e145e4f23a6af8d2e921c106f2850cb1879b5f619e3ad2a45704e71e54fa16"
+        }
+      ]
+    },
+    {
+      "key": "MISC_Reliant_Sen",
+      "name": "MISC Reliant Sen",
+      "manufacturer": "Musashi Industrial and Starflight Concern",
+      "classification": "Light Science",
+      "dims": {
+        "l": 28.5,
+        "b": 14.75,
+        "h": 4.5
+      },
+      "materials": "flat",
+      "patchVersion": "sc-4.1",
+      "variants": [
+        {
+          "level": "exterior",
+          "label": "Detaille",
+          "modelUrl": "https://github.com/elios134/asset-3d/releases/download/sc-4.1/MISC_Reliant_Sen.exterior.glb",
+          "tris": 113751,
+          "sizeBytes": 2353620,
+          "hasInterior": false,
+          "sha256": "319a4199bcceeebd54a09a9b4f961434fca9f910b6b935c4bb21af99a34ac379"
+        }
+      ]
+    },
+    {
+      "key": "MISC_Reliant_Tana",
+      "name": "MISC Reliant Tana",
+      "manufacturer": "Musashi Industrial and Starflight Concern",
+      "classification": "Light Fighter",
+      "dims": {
+        "l": 28.5,
+        "b": 14.75,
+        "h": 4.5
+      },
+      "materials": "flat",
+      "patchVersion": "sc-4.1",
+      "variants": [
+        {
+          "level": "exterior",
+          "label": "Detaille",
+          "modelUrl": "https://github.com/elios134/asset-3d/releases/download/sc-4.1/MISC_Reliant_Tana.exterior.glb",
+          "tris": 135480,
+          "sizeBytes": 2501412,
+          "hasInterior": false,
+          "sha256": "c857e3ed0eed695e071a132741281448cf28bf29a7777f0f04aa5236a41fb44c"
+        }
+      ]
+    },
+    {
+      "key": "MISC_Starfarer",
+      "name": "MISC Starfarer",
+      "manufacturer": "Musashi Industrial and Starflight Concern",
+      "classification": "Heavy Refueling",
+      "dims": {
+        "l": 102,
+        "b": 48.5,
+        "h": 24.5
+      },
+      "materials": "flat",
+      "patchVersion": "sc-4.1",
+      "variants": [
+        {
+          "level": "exterior",
+          "label": "Detaille",
+          "modelUrl": "https://github.com/elios134/asset-3d/releases/download/sc-4.1/MISC_Starfarer.exterior.glb",
+          "tris": 159426,
+          "sizeBytes": 2770096,
+          "hasInterior": false,
+          "sha256": "f48dfbd611ecc21ecedf4e0f36e3334dabeea7af9cd3f0444deb08f43410e77b"
+        }
+      ]
+    },
+    {
+      "key": "MISC_Starfarer_Gemini",
+      "name": "MISC Starfarer Gemini",
+      "manufacturer": "Musashi Industrial and Starflight Concern",
+      "classification": "Heavy Refueling",
+      "dims": {
+        "l": 102,
+        "b": 48.5,
+        "h": 24.5
+      },
+      "materials": "flat",
+      "patchVersion": "sc-4.1",
+      "variants": [
+        {
+          "level": "exterior",
+          "label": "Detaille",
+          "modelUrl": "https://github.com/elios134/asset-3d/releases/download/sc-4.1/MISC_Starfarer_Gemini.exterior.glb",
+          "tris": 166882,
+          "sizeBytes": 2941320,
+          "hasInterior": false,
+          "sha256": "58a122cdc22d7e4fe3a5554d8b487e67747b37a8b18b095bec6f07ea3bf16412"
+        }
+      ]
+    },
+    {
+      "key": "MISC_Starlancer_Max",
+      "name": "MISC Starlancer MAX",
+      "manufacturer": "Musashi Industrial and Starflight Concern",
+      "classification": "Medium Freight",
+      "dims": {
+        "l": 90,
+        "b": 60,
+        "h": 20
+      },
+      "materials": "flat",
+      "patchVersion": "sc-4.1",
+      "variants": [
+        {
+          "level": "exterior",
+          "label": "Detaille",
+          "modelUrl": "https://github.com/elios134/asset-3d/releases/download/sc-4.1/MISC_Starlancer_Max.exterior.glb",
+          "tris": 629416,
+          "sizeBytes": 8396636,
+          "hasInterior": false,
+          "sha256": "f90c349513e149a5c24f314d5adff2749cc793ea827fe0bc68038cdf18fbe31e"
+        }
+      ]
+    },
+    {
+      "key": "MISC_Starlancer_TAC",
+      "name": "MISC Starlancer TAC",
+      "manufacturer": "Musashi Industrial and Starflight Concern",
+      "classification": "Gunship",
+      "dims": {
+        "l": 90,
+        "b": 60,
+        "h": 20
+      },
+      "materials": "flat",
+      "patchVersion": "sc-4.1",
+      "variants": [
+        {
+          "level": "exterior",
+          "label": "Detaille",
+          "modelUrl": "https://github.com/elios134/asset-3d/releases/download/sc-4.1/MISC_Starlancer_TAC.exterior.glb",
+          "tris": 778964,
+          "sizeBytes": 10908936,
+          "hasInterior": false,
+          "sha256": "6c9196599b6e99d9e97fc74be13565d6db3b9c6d21509bbcdab06e48e8f12589"
+        }
+      ]
+    },
+    {
+      "key": "MISC_Starlite",
+      "name": "MISC Starlite",
+      "manufacturer": "Musashi Industrial and Starflight Concern",
+      "classification": "Light Refueling",
+      "dims": {
+        "l": 32,
+        "b": 19.9,
+        "h": 9.07
+      },
+      "materials": "flat",
+      "patchVersion": "sc-4.1",
+      "variants": [
+        {
+          "level": "exterior",
+          "label": "Detaille",
+          "modelUrl": "https://github.com/elios134/asset-3d/releases/download/sc-4.1/MISC_Starlite.exterior.glb",
+          "tris": 419373,
+          "sizeBytes": 5914720,
+          "hasInterior": false,
+          "sha256": "18f99cc46d7087e9c76abd01c4fe7f10ae399f3e28fa252466146f301b4d15f1"
+        }
+      ]
+    },
+    {
+      "key": "MRAI_Guardian",
+      "name": "Guardian",
+      "manufacturer": "Mirai",
+      "classification": "Heavy Fighter",
+      "dims": {
+        "l": 24.3,
+        "b": 16.3,
+        "h": 9.1
+      },
+      "materials": "flat",
+      "patchVersion": "sc-4.1",
+      "variants": [
+        {
+          "level": "exterior",
+          "label": "Detaille",
+          "modelUrl": "https://github.com/elios134/asset-3d/releases/download/sc-4.1/MRAI_Guardian.exterior.glb",
+          "tris": 321469,
+          "sizeBytes": 5378180,
+          "hasInterior": false,
+          "sha256": "d3eda29bd6ed21e0cb3d234efd31a79908bb3609d16ef92282daeba885dd0462"
+        }
+      ]
+    },
+    {
+      "key": "MRAI_Guardian_MX",
+      "name": "Guardian MX",
+      "manufacturer": "Mirai",
+      "classification": "Heavy Fighter",
+      "dims": {
+        "l": 26,
+        "b": 17,
+        "h": 10
+      },
+      "materials": "flat",
+      "patchVersion": "sc-4.1",
+      "variants": [
+        {
+          "level": "exterior",
+          "label": "Detaille",
+          "modelUrl": "https://github.com/elios134/asset-3d/releases/download/sc-4.1/MRAI_Guardian_MX.exterior.glb",
+          "tris": 422691,
+          "sizeBytes": 6607952,
+          "hasInterior": false,
+          "sha256": "236fac1946637d6303bd4cc4ebce52c05ebb118fab12a5306d3214b9ba134c29"
+        }
+      ]
+    },
+    {
+      "key": "MRAI_Guardian_QI",
+      "name": "Guardian QI",
+      "manufacturer": "Mirai",
+      "classification": "Interdiction",
+      "dims": {
+        "l": 24.3,
+        "b": 16.3,
+        "h": 9.1
+      },
+      "materials": "flat",
+      "patchVersion": "sc-4.1",
+      "variants": [
+        {
+          "level": "exterior",
+          "label": "Detaille",
+          "modelUrl": "https://github.com/elios134/asset-3d/releases/download/sc-4.1/MRAI_Guardian_QI.exterior.glb",
+          "tris": 315453,
+          "sizeBytes": 5464144,
+          "hasInterior": false,
+          "sha256": "a4cdbc0b69bff5698399cefd4ccdbd90732de4f1232b014eb5ff1f8fc1329523"
+        }
+      ]
+    },
+    {
+      "key": "MRAI_Pulse",
+      "name": "Pulse",
+      "manufacturer": "Mirai",
+      "classification": "Pathfinder",
+      "dims": {
+        "l": 3.5,
+        "b": 2.5,
+        "h": 1.5
+      },
+      "materials": "flat",
+      "patchVersion": "sc-4.1",
+      "variants": [
+        {
+          "level": "exterior",
+          "label": "Detaille",
+          "modelUrl": "https://github.com/elios134/asset-3d/releases/download/sc-4.1/MRAI_Pulse.exterior.glb",
+          "tris": 40534,
+          "sizeBytes": 1168688,
+          "hasInterior": false,
+          "sha256": "fa9b02a5857e9336069b22566d217885ceef4d4ce27fa7f14ed891999cbb8a8a"
+        }
+      ]
+    },
+    {
+      "key": "MRAI_Pulse_LX",
+      "name": "Pulse LX",
+      "manufacturer": "Mirai",
+      "classification": "Racing",
+      "dims": {
+        "l": 3.5,
+        "b": 2.5,
+        "h": 1.5
+      },
+      "materials": "flat",
+      "patchVersion": "sc-4.1",
+      "variants": [
+        {
+          "level": "exterior",
+          "label": "Detaille",
+          "modelUrl": "https://github.com/elios134/asset-3d/releases/download/sc-4.1/MRAI_Pulse_LX.exterior.glb",
+          "tris": 39053,
+          "sizeBytes": 1175512,
+          "hasInterior": false,
+          "sha256": "909f77f493379e883481b7fb170b1334dc623517963e99655955d7c42874b8cf"
+        }
+      ]
+    },
+    {
+      "key": "ORIG_100i",
+      "name": "100i",
+      "manufacturer": "Origin Jumpworks",
+      "classification": "Starter / Pathfinder",
+      "dims": {
+        "l": 19,
+        "b": 12,
+        "h": 5
+      },
+      "materials": "flat",
+      "patchVersion": "sc-4.1",
+      "variants": [
+        {
+          "level": "exterior",
+          "label": "Detaille",
+          "modelUrl": "https://github.com/elios134/asset-3d/releases/download/sc-4.1/ORIG_100i.exterior.glb",
+          "tris": 98612,
+          "sizeBytes": 1970672,
+          "hasInterior": false,
+          "sha256": "b00e0022b03dc1c58a4d031d083818a491b11e612cf2cd9e389814129ca1df83"
+        }
+      ]
+    },
+    {
+      "key": "ORIG_125a",
+      "name": "125a",
+      "manufacturer": "Origin Jumpworks",
+      "classification": "Light Fighter",
+      "dims": {
+        "l": 19,
+        "b": 12,
+        "h": 5
+      },
+      "materials": "flat",
+      "patchVersion": "sc-4.1",
+      "variants": [
+        {
+          "level": "exterior",
+          "label": "Detaille",
+          "modelUrl": "https://github.com/elios134/asset-3d/releases/download/sc-4.1/ORIG_125a.exterior.glb",
+          "tris": 108817,
+          "sizeBytes": 2101896,
+          "hasInterior": false,
+          "sha256": "476418d940bc99c88050292ee76a7b25f5b70059f17ee9408403b8c0cd14d501"
+        }
+      ]
+    },
+    {
+      "key": "ORIG_135c",
+      "name": "135c",
+      "manufacturer": "Origin Jumpworks",
+      "classification": "Light Freight",
+      "dims": {
+        "l": 19,
+        "b": 12,
+        "h": 5
+      },
+      "materials": "flat",
+      "patchVersion": "sc-4.1",
+      "variants": [
+        {
+          "level": "exterior",
+          "label": "Detaille",
+          "modelUrl": "https://github.com/elios134/asset-3d/releases/download/sc-4.1/ORIG_135c.exterior.glb",
+          "tris": 111742,
+          "sizeBytes": 2093584,
+          "hasInterior": false,
+          "sha256": "9cc646519bbe7e818516bd3fd1aa5422fdd8a885e7141de6f2afd1c0a2365b8f"
+        }
+      ]
+    },
+    {
+      "key": "ORIG_300i",
+      "name": "300i",
+      "manufacturer": "Origin Jumpworks",
+      "classification": "Luxury Touring",
+      "dims": {
+        "l": 27,
+        "b": 17,
+        "h": 8
+      },
+      "materials": "flat",
+      "patchVersion": "sc-4.1",
+      "variants": [
+        {
+          "level": "exterior",
+          "label": "Detaille",
+          "modelUrl": "https://github.com/elios134/asset-3d/releases/download/sc-4.1/ORIG_300i.exterior.glb",
+          "tris": 73791,
+          "sizeBytes": 1452340,
+          "hasInterior": false,
+          "sha256": "8c4611152b023672bc1a19202e715aa2510e110f08c27b317690d2b67e32dad5"
         }
       ]
     },
@@ -339,7 +4131,271 @@
           "tris": 80242,
           "sizeBytes": 1644212,
           "hasInterior": false,
-          "sha256": "91ab6e1674720c37193fe53216462e725c8d99a80f433154cbaae63ab3957d7d"
+          "sha256": "be0bbbe564ec6bc45da36c7870133f946cdda97200421d9fb50c09ce1b9236b3"
+        }
+      ]
+    },
+    {
+      "key": "ORIG_325a",
+      "name": "325a",
+      "manufacturer": "Origin Jumpworks",
+      "classification": "Interceptor",
+      "dims": {
+        "l": 27.5,
+        "b": 17,
+        "h": 8
+      },
+      "materials": "flat",
+      "patchVersion": "sc-4.1",
+      "variants": [
+        {
+          "level": "exterior",
+          "label": "Detaille",
+          "modelUrl": "https://github.com/elios134/asset-3d/releases/download/sc-4.1/ORIG_325a.exterior.glb",
+          "tris": 80982,
+          "sizeBytes": 1700196,
+          "hasInterior": false,
+          "sha256": "0b447fa7936a6519b6f57ccce27d472c5f82c757a69c09b7d921a221eb42f9ad"
+        }
+      ]
+    },
+    {
+      "key": "ORIG_350r",
+      "name": "350r",
+      "manufacturer": "Origin Jumpworks",
+      "classification": "Racing",
+      "dims": {
+        "l": 27,
+        "b": 17,
+        "h": 8
+      },
+      "materials": "flat",
+      "patchVersion": "sc-4.1",
+      "variants": [
+        {
+          "level": "exterior",
+          "label": "Detaille",
+          "modelUrl": "https://github.com/elios134/asset-3d/releases/download/sc-4.1/ORIG_350r.exterior.glb",
+          "tris": 84913,
+          "sizeBytes": 1348816,
+          "hasInterior": false,
+          "sha256": "49a0b84d4db5d3462456162f50a87056d5ddb6ce2f4fca83946c551dd342a590"
+        }
+      ]
+    },
+    {
+      "key": "ORIG_400i",
+      "name": "400i",
+      "manufacturer": "Origin Jumpworks",
+      "classification": "Expedition",
+      "dims": {
+        "l": 56,
+        "b": 32,
+        "h": 12.5
+      },
+      "materials": "flat",
+      "patchVersion": "sc-4.1",
+      "variants": [
+        {
+          "level": "exterior",
+          "label": "Detaille",
+          "modelUrl": "https://github.com/elios134/asset-3d/releases/download/sc-4.1/ORIG_400i.exterior.glb",
+          "tris": 275391,
+          "sizeBytes": 4020264,
+          "hasInterior": false,
+          "sha256": "9f90ed117a3ce628c0c5ca24806d17c4a7987fc9f50928c36edafed79d558fba"
+        }
+      ]
+    },
+    {
+      "key": "ORIG_600i",
+      "name": "600i",
+      "manufacturer": "Origin Jumpworks",
+      "classification": "Expedition",
+      "dims": {
+        "l": 91.5,
+        "b": 52,
+        "h": 17
+      },
+      "materials": "flat",
+      "patchVersion": "sc-4.1",
+      "variants": [
+        {
+          "level": "exterior",
+          "label": "Detaille",
+          "modelUrl": "https://github.com/elios134/asset-3d/releases/download/sc-4.1/ORIG_600i.exterior.glb",
+          "tris": 360791,
+          "sizeBytes": 3935940,
+          "hasInterior": false,
+          "sha256": "108ebc949c85b2377cbf3b95e280c3d41988ea6945ca4c88c9e87f08fff3e648"
+        }
+      ]
+    },
+    {
+      "key": "ORIG_600i_Touring",
+      "name": "600i Touring",
+      "manufacturer": "Origin Jumpworks",
+      "classification": "Luxury Touring",
+      "dims": {
+        "l": 91.5,
+        "b": 52,
+        "h": 17
+      },
+      "materials": "flat",
+      "patchVersion": "sc-4.1",
+      "variants": [
+        {
+          "level": "exterior",
+          "label": "Detaille",
+          "modelUrl": "https://github.com/elios134/asset-3d/releases/download/sc-4.1/ORIG_600i_Touring.exterior.glb",
+          "tris": 343085,
+          "sizeBytes": 3711132,
+          "hasInterior": false,
+          "sha256": "e29d702d63e37371babb7fe09db4b9a78d5c1246dcb003a2f1ecf3554c57e77a"
+        }
+      ]
+    },
+    {
+      "key": "ORIG_85X",
+      "name": "85X Limited",
+      "manufacturer": "Origin Jumpworks",
+      "classification": "Touring",
+      "dims": {
+        "l": 14,
+        "b": 13.5,
+        "h": 4
+      },
+      "materials": "flat",
+      "patchVersion": "sc-4.1",
+      "variants": [
+        {
+          "level": "exterior",
+          "label": "Detaille",
+          "modelUrl": "https://github.com/elios134/asset-3d/releases/download/sc-4.1/ORIG_85X.exterior.glb",
+          "tris": 92248,
+          "sizeBytes": 1379348,
+          "hasInterior": false,
+          "sha256": "7112f9adb471f0b1f2dfb9d2696d79ed23fd7d3681e2aed31f841e722013d25f"
+        }
+      ]
+    },
+    {
+      "key": "ORIG_890Jump",
+      "name": "890 Jump",
+      "manufacturer": "Origin Jumpworks",
+      "classification": "Luxury Touring",
+      "dims": {
+        "l": 210,
+        "b": 80,
+        "h": 45
+      },
+      "materials": "flat",
+      "patchVersion": "sc-4.1",
+      "variants": [
+        {
+          "level": "exterior",
+          "label": "Detaille",
+          "modelUrl": "https://github.com/elios134/asset-3d/releases/download/sc-4.1/ORIG_890Jump.exterior.glb",
+          "tris": 207150,
+          "sizeBytes": 3518808,
+          "hasInterior": false,
+          "sha256": "cb7a85a60c739349fa2be3547f394b3b0118c3e6ba80fb3a4cc497f3ac4442f7"
+        }
+      ]
+    },
+    {
+      "key": "ORIG_m50",
+      "name": "M50 Interceptor",
+      "manufacturer": "Origin Jumpworks",
+      "classification": "Racing",
+      "dims": {
+        "l": 11.5,
+        "b": 11,
+        "h": 3.5
+      },
+      "materials": "flat",
+      "patchVersion": "sc-4.1",
+      "variants": [
+        {
+          "level": "exterior",
+          "label": "Detaille",
+          "modelUrl": "https://github.com/elios134/asset-3d/releases/download/sc-4.1/ORIG_m50.exterior.glb",
+          "tris": 107400,
+          "sizeBytes": 1823384,
+          "hasInterior": false,
+          "sha256": "e77d60a5a938316cfe9d70fddaf9ba48d68cfd567f38e63e77f727335ad71b80"
+        }
+      ]
+    },
+    {
+      "key": "ORIG_m80",
+      "name": "M80",
+      "manufacturer": "Origin Jumpworks",
+      "classification": "Heavy Fighter",
+      "dims": {
+        "l": 11.5,
+        "b": 11,
+        "h": 3.5
+      },
+      "materials": "flat",
+      "patchVersion": "sc-4.1",
+      "variants": [
+        {
+          "level": "exterior",
+          "label": "Detaille",
+          "modelUrl": "https://github.com/elios134/asset-3d/releases/download/sc-4.1/ORIG_m80.exterior.glb",
+          "tris": 296847,
+          "sizeBytes": 4661696,
+          "hasInterior": false,
+          "sha256": "a574084c3faa8c5b2df35572b253c713a7a84dace4ffe7b6db82285f4829c212"
+        }
+      ]
+    },
+    {
+      "key": "ORIG_X1",
+      "name": "X1",
+      "manufacturer": "Origin Jumpworks",
+      "classification": "Passenger",
+      "dims": {
+        "l": 5.19,
+        "b": 1.87,
+        "h": 1.55
+      },
+      "materials": "flat",
+      "patchVersion": "sc-4.1",
+      "variants": [
+        {
+          "level": "exterior",
+          "label": "Detaille",
+          "modelUrl": "https://github.com/elios134/asset-3d/releases/download/sc-4.1/ORIG_X1.exterior.glb",
+          "tris": 66647,
+          "sizeBytes": 1299824,
+          "hasInterior": false,
+          "sha256": "d30a867e3e957fb6d53b97934e353c46b534d3e1ccf83e52b95dd9badbf10d6a"
+        }
+      ]
+    },
+    {
+      "key": "ORIG_X1_Force",
+      "name": "X1 Force",
+      "manufacturer": "Origin Jumpworks",
+      "classification": "Passenger",
+      "dims": {
+        "l": 5.19,
+        "b": 1.87,
+        "h": 1.55
+      },
+      "materials": "flat",
+      "patchVersion": "sc-4.1",
+      "variants": [
+        {
+          "level": "exterior",
+          "label": "Detaille",
+          "modelUrl": "https://github.com/elios134/asset-3d/releases/download/sc-4.1/ORIG_X1_Force.exterior.glb",
+          "tris": 67112,
+          "sizeBytes": 1397244,
+          "hasInterior": false,
+          "sha256": "c304b7d4d8bb204317845a36b0d17e1e6c92fa8ee9e2582356e5e42b2cc5d21b"
         }
       ]
     },
@@ -363,7 +4419,439 @@
           "tris": 63795,
           "sizeBytes": 1381956,
           "hasInterior": false,
-          "sha256": "4729a796e09358f954cdf16848f38de83345ef3bed9f4e0ba09343aae63efa8b"
+          "sha256": "9b5a4917d5d27294f5476eafcf279717a7aea6590f4075fb7c3b91c62939bcb9"
+        }
+      ]
+    },
+    {
+      "key": "RSI_Apollo_Medivac",
+      "name": "Apollo Medivac",
+      "manufacturer": "Roberts Space Industries",
+      "classification": "Medical",
+      "dims": {
+        "l": 73,
+        "b": 54,
+        "h": 14
+      },
+      "materials": "flat",
+      "patchVersion": "sc-4.1",
+      "variants": [
+        {
+          "level": "exterior",
+          "label": "Detaille",
+          "modelUrl": "https://github.com/elios134/asset-3d/releases/download/sc-4.1/RSI_Apollo_Medivac.exterior.glb",
+          "tris": 498915,
+          "sizeBytes": 8138968,
+          "hasInterior": false,
+          "sha256": "365f1735fc64f82be7f208a6fdecca6404d3fcbef731e72cd6577aaae77cadc8"
+        }
+      ]
+    },
+    {
+      "key": "RSI_Apollo_Triage",
+      "name": "Apollo Triage",
+      "manufacturer": "Roberts Space Industries",
+      "classification": "Medical",
+      "dims": {
+        "l": 73,
+        "b": 54,
+        "h": 14
+      },
+      "materials": "flat",
+      "patchVersion": "sc-4.1",
+      "variants": [
+        {
+          "level": "exterior",
+          "label": "Detaille",
+          "modelUrl": "https://github.com/elios134/asset-3d/releases/download/sc-4.1/RSI_Apollo_Triage.exterior.glb",
+          "tris": 513244,
+          "sizeBytes": 8200516,
+          "hasInterior": false,
+          "sha256": "93ca4fe8911c1104e152bffbc9af729c1056787c978f3a8f32338e5ef6a9eb63"
+        }
+      ]
+    },
+    {
+      "key": "RSI_Aurora_GS_CL",
+      "name": "Aurora Mk I CL",
+      "manufacturer": "Roberts Space Industries",
+      "classification": "Light Freight",
+      "dims": {
+        "l": 19,
+        "b": 8.75,
+        "h": 4.5
+      },
+      "materials": "flat",
+      "patchVersion": "sc-4.1",
+      "variants": [
+        {
+          "level": "exterior",
+          "label": "Detaille",
+          "modelUrl": "https://github.com/elios134/asset-3d/releases/download/sc-4.1/RSI_Aurora_GS_CL.exterior.glb",
+          "tris": 138829,
+          "sizeBytes": 2701688,
+          "hasInterior": false,
+          "sha256": "6543eff5d141d2c2469fb67d9b4d9b7a6493e5fe8935a8e6a29c3c0bc92752ff"
+        }
+      ]
+    },
+    {
+      "key": "RSI_Aurora_GS_ES",
+      "name": "Aurora Mk I ES",
+      "manufacturer": "Roberts Space Industries",
+      "classification": "Starter / Pathfinder",
+      "dims": {
+        "l": 19,
+        "b": 8.75,
+        "h": 4.5
+      },
+      "materials": "flat",
+      "patchVersion": "sc-4.1",
+      "variants": [
+        {
+          "level": "exterior",
+          "label": "Detaille",
+          "modelUrl": "https://github.com/elios134/asset-3d/releases/download/sc-4.1/RSI_Aurora_GS_ES.exterior.glb",
+          "tris": 122745,
+          "sizeBytes": 2682944,
+          "hasInterior": false,
+          "sha256": "748bdc050a111d0531d9006b62452bd263b2a67e377638e73bd5dc8ea45f323a"
+        }
+      ]
+    },
+    {
+      "key": "RSI_Aurora_GS_LN",
+      "name": "Aurora Mk I LN",
+      "manufacturer": "Roberts Space Industries",
+      "classification": "Light Fighter",
+      "dims": {
+        "l": 19,
+        "b": 8.75,
+        "h": 4.5
+      },
+      "materials": "flat",
+      "patchVersion": "sc-4.1",
+      "variants": [
+        {
+          "level": "exterior",
+          "label": "Detaille",
+          "modelUrl": "https://github.com/elios134/asset-3d/releases/download/sc-4.1/RSI_Aurora_GS_LN.exterior.glb",
+          "tris": 172442,
+          "sizeBytes": 2906548,
+          "hasInterior": false,
+          "sha256": "83ca7b4cfd25809b6d2a5199a26ad0f8dc59cd7514b3a5f24cc79bd932598168"
+        }
+      ]
+    },
+    {
+      "key": "RSI_Aurora_GS_LX",
+      "name": "Aurora Mk I LX",
+      "manufacturer": "Roberts Space Industries",
+      "classification": "Pathfinder",
+      "dims": {
+        "l": 19,
+        "b": 8.75,
+        "h": 4.5
+      },
+      "materials": "flat",
+      "patchVersion": "sc-4.1",
+      "variants": [
+        {
+          "level": "exterior",
+          "label": "Detaille",
+          "modelUrl": "https://github.com/elios134/asset-3d/releases/download/sc-4.1/RSI_Aurora_GS_LX.exterior.glb",
+          "tris": 137884,
+          "sizeBytes": 3013476,
+          "hasInterior": false,
+          "sha256": "166773c4d23816744c79f53435d7fcc9972fb6e7e543d40b56b7854a0c428fe3"
+        }
+      ]
+    },
+    {
+      "key": "RSI_Aurora_GS_MR",
+      "name": "Aurora Mk I MR",
+      "manufacturer": "Roberts Space Industries",
+      "classification": "Light Fighter",
+      "dims": {
+        "l": 19,
+        "b": 8.75,
+        "h": 4.5
+      },
+      "materials": "flat",
+      "patchVersion": "sc-4.1",
+      "variants": [
+        {
+          "level": "exterior",
+          "label": "Detaille",
+          "modelUrl": "https://github.com/elios134/asset-3d/releases/download/sc-4.1/RSI_Aurora_GS_MR.exterior.glb",
+          "tris": 137211,
+          "sizeBytes": 2687796,
+          "hasInterior": false,
+          "sha256": "2d7c4d71e1edeff03b3af353b83e170d8544f478ee7a30d059ea74de366f2cca"
+        }
+      ]
+    },
+    {
+      "key": "RSI_Aurora_GS_SE",
+      "name": "Aurora Mk I SE",
+      "manufacturer": "Roberts Space Industries",
+      "classification": "Light Fighter",
+      "dims": {
+        "l": 19,
+        "b": 8.75,
+        "h": 4.5
+      },
+      "materials": "flat",
+      "patchVersion": "sc-4.1",
+      "variants": [
+        {
+          "level": "exterior",
+          "label": "Detaille",
+          "modelUrl": "https://github.com/elios134/asset-3d/releases/download/sc-4.1/RSI_Aurora_GS_SE.exterior.glb",
+          "tris": 175783,
+          "sizeBytes": 3038208,
+          "hasInterior": false,
+          "sha256": "ec7e76de8770f3ff8c8a00a90d0dbbb65bc60982657a803d9379821dfa6da464"
+        }
+      ]
+    },
+    {
+      "key": "RSI_Aurora_Mk2",
+      "name": "Aurora Mk II",
+      "manufacturer": "Roberts Space Industries",
+      "classification": "Starter / Light Fighter",
+      "dims": {
+        "l": 27.7,
+        "b": 27.4,
+        "h": 8
+      },
+      "materials": "flat",
+      "patchVersion": "sc-4.1",
+      "variants": [
+        {
+          "level": "exterior",
+          "label": "Detaille",
+          "modelUrl": "https://github.com/elios134/asset-3d/releases/download/sc-4.1/RSI_Aurora_Mk2.exterior.glb",
+          "tris": 367103,
+          "sizeBytes": 5868280,
+          "hasInterior": false,
+          "sha256": "7f7a1a5154f0ae69f96d4a9e6589d56c37a46d664d994460590f7f8b0f689f60"
+        }
+      ]
+    },
+    {
+      "key": "RSI_Constellation_Andromeda",
+      "name": "Constellation Andromeda",
+      "manufacturer": "Roberts Space Industries",
+      "classification": "Medium Freight / Gun Ship",
+      "dims": {
+        "l": 63.5,
+        "b": 27.75,
+        "h": 15.25
+      },
+      "materials": "flat",
+      "patchVersion": "sc-4.1",
+      "variants": [
+        {
+          "level": "exterior",
+          "label": "Detaille",
+          "modelUrl": "https://github.com/elios134/asset-3d/releases/download/sc-4.1/RSI_Constellation_Andromeda.exterior.glb",
+          "tris": 459413,
+          "sizeBytes": 6002556,
+          "hasInterior": false,
+          "sha256": "600a9b5865be93646aa6f11ed47f63f5f58a63e5636b11b4c78c0d7cbf90ca80"
+        }
+      ]
+    },
+    {
+      "key": "RSI_Constellation_Aquila",
+      "name": "Constellation Aquila",
+      "manufacturer": "Roberts Space Industries",
+      "classification": "Expedition",
+      "dims": {
+        "l": 63.5,
+        "b": 27.75,
+        "h": 15.25
+      },
+      "materials": "flat",
+      "patchVersion": "sc-4.1",
+      "variants": [
+        {
+          "level": "exterior",
+          "label": "Detaille",
+          "modelUrl": "https://github.com/elios134/asset-3d/releases/download/sc-4.1/RSI_Constellation_Aquila.exterior.glb",
+          "tris": 378279,
+          "sizeBytes": 5213748,
+          "hasInterior": false,
+          "sha256": "26c04312455ffd567eaa3f1ff932ce4a47eaa684af54096f486b96a9234f1f3c"
+        }
+      ]
+    },
+    {
+      "key": "RSI_Constellation_Phoenix",
+      "name": "Constellation Phoenix",
+      "manufacturer": "Roberts Space Industries",
+      "classification": "Luxury Touring",
+      "dims": {
+        "l": 63.5,
+        "b": 27.75,
+        "h": 15.25
+      },
+      "materials": "flat",
+      "patchVersion": "sc-4.1",
+      "variants": [
+        {
+          "level": "exterior",
+          "label": "Detaille",
+          "modelUrl": "https://github.com/elios134/asset-3d/releases/download/sc-4.1/RSI_Constellation_Phoenix.exterior.glb",
+          "tris": 415358,
+          "sizeBytes": 5418528,
+          "hasInterior": false,
+          "sha256": "2378d22db0f68221fa9f015a36fa63af4221a3a5c042d4b9a0ac8b8916ef97d2"
+        }
+      ]
+    },
+    {
+      "key": "RSI_Constellation_Phoenix_Emerald",
+      "name": "Constellation Phoenix Emerald",
+      "manufacturer": "Roberts Space Industries",
+      "classification": "Luxury Touring",
+      "dims": {
+        "l": 63.5,
+        "b": 27.75,
+        "h": 15.25
+      },
+      "materials": "flat",
+      "patchVersion": "sc-4.1",
+      "variants": [
+        {
+          "level": "exterior",
+          "label": "Detaille",
+          "modelUrl": "https://github.com/elios134/asset-3d/releases/download/sc-4.1/RSI_Constellation_Phoenix_Emerald.exterior.glb",
+          "tris": 415358,
+          "sizeBytes": 5493244,
+          "hasInterior": false,
+          "sha256": "7baecf896a9cec15713e8729aa7ac5961a6a63b228f2c40019d8057a0e3bb017"
+        }
+      ]
+    },
+    {
+      "key": "RSI_Constellation_Taurus",
+      "name": "Constellation Taurus",
+      "manufacturer": "Roberts Space Industries",
+      "classification": "Medium Freight",
+      "dims": {
+        "l": 70,
+        "b": 27.75,
+        "h": 15.25
+      },
+      "materials": "flat",
+      "patchVersion": "sc-4.1",
+      "variants": [
+        {
+          "level": "exterior",
+          "label": "Detaille",
+          "modelUrl": "https://github.com/elios134/asset-3d/releases/download/sc-4.1/RSI_Constellation_Taurus.exterior.glb",
+          "tris": 314348,
+          "sizeBytes": 4438096,
+          "hasInterior": false,
+          "sha256": "999f4e578b303b2ec280247e4026d4a43450fcc0a7daef1aafdaa16e69ae2821"
+        }
+      ]
+    },
+    {
+      "key": "RSI_Hermes",
+      "name": "Hermes",
+      "manufacturer": "Roberts Space Industries",
+      "classification": "Medium Freight",
+      "dims": {
+        "l": 73,
+        "b": 58,
+        "h": 14
+      },
+      "materials": "flat",
+      "patchVersion": "sc-4.1",
+      "variants": [
+        {
+          "level": "exterior",
+          "label": "Detaille",
+          "modelUrl": "https://github.com/elios134/asset-3d/releases/download/sc-4.1/RSI_Hermes.exterior.glb",
+          "tris": 508798,
+          "sizeBytes": 7965068,
+          "hasInterior": false,
+          "sha256": "5bf636b0ef0d5c3b421ddd6173ed4df774dbd5a09f97050905cf073843c74ecc"
+        }
+      ]
+    },
+    {
+      "key": "RSI_Lynx",
+      "name": "Lynx",
+      "manufacturer": "Roberts Space Industries",
+      "classification": "Luxury Touring",
+      "dims": {
+        "l": 7.75,
+        "b": 5.7,
+        "h": 3.5
+      },
+      "materials": "flat",
+      "patchVersion": "sc-4.1",
+      "variants": [
+        {
+          "level": "exterior",
+          "label": "Detaille",
+          "modelUrl": "https://github.com/elios134/asset-3d/releases/download/sc-4.1/RSI_Lynx.exterior.glb",
+          "tris": 81218,
+          "sizeBytes": 1722812,
+          "hasInterior": false,
+          "sha256": "30a0dca3d8944a4eb55c011a7bc2227c3ab30972b1aba68e517979111739bffa"
+        }
+      ]
+    },
+    {
+      "key": "RSI_Mantis",
+      "name": "Mantis",
+      "manufacturer": "Roberts Space Industries",
+      "classification": "Interdiction",
+      "dims": {
+        "l": 30,
+        "b": 17,
+        "h": 7.5
+      },
+      "materials": "flat",
+      "patchVersion": "sc-4.1",
+      "variants": [
+        {
+          "level": "exterior",
+          "label": "Detaille",
+          "modelUrl": "https://github.com/elios134/asset-3d/releases/download/sc-4.1/RSI_Mantis.exterior.glb",
+          "tris": 117065,
+          "sizeBytes": 2361484,
+          "hasInterior": false,
+          "sha256": "91ca1004a6cf108904b058c646976bbfaab145aad2b370a067199e3e5011a96d"
+        }
+      ]
+    },
+    {
+      "key": "RSI_Meteor",
+      "name": "Meteor",
+      "manufacturer": "Roberts Space Industries",
+      "classification": "Medium Fighter",
+      "dims": {
+        "l": 30,
+        "b": 17,
+        "h": 7.5
+      },
+      "materials": "flat",
+      "patchVersion": "sc-4.1",
+      "variants": [
+        {
+          "level": "exterior",
+          "label": "Detaille",
+          "modelUrl": "https://github.com/elios134/asset-3d/releases/download/sc-4.1/RSI_Meteor.exterior.glb",
+          "tris": 162933,
+          "sizeBytes": 3496148,
+          "hasInterior": false,
+          "sha256": "a9392f7215b19677aa0ebec4d5083d85f0386a4759e02e59b7ddf502dba88435"
         }
       ]
     },
@@ -387,7 +4875,151 @@
           "tris": 460002,
           "sizeBytes": 8888076,
           "hasInterior": false,
-          "sha256": "4b69bc3988d089097c2d644fd2c50064dfa393a4c33fe41db47488b5607f95d9"
+          "sha256": "cb55d86e61ceca52f58b2c551ca234b01db325602e727163e4e7066bb95e8ace"
+        }
+      ]
+    },
+    {
+      "key": "RSI_Polaris",
+      "name": "Polaris",
+      "manufacturer": "Roberts Space Industries",
+      "classification": "Corvette",
+      "dims": {
+        "l": 181,
+        "b": 87,
+        "h": 40
+      },
+      "materials": "flat",
+      "patchVersion": "sc-4.1",
+      "variants": [
+        {
+          "level": "exterior",
+          "label": "Detaille",
+          "modelUrl": "https://github.com/elios134/asset-3d/releases/download/sc-4.1/RSI_Polaris.exterior.glb",
+          "tris": 411977,
+          "sizeBytes": 8680788,
+          "hasInterior": false,
+          "sha256": "52473f5bffccfd0986b11d546b36321143de6432860d691773865f5224d90780"
+        }
+      ]
+    },
+    {
+      "key": "RSI_Salvation",
+      "name": "Salvation",
+      "manufacturer": "Roberts Space Industries",
+      "classification": "Starter / Light Salvage",
+      "dims": {
+        "l": 14.5,
+        "b": 8.5,
+        "h": 4
+      },
+      "materials": "flat",
+      "patchVersion": "sc-4.1",
+      "variants": [
+        {
+          "level": "exterior",
+          "label": "Detaille",
+          "modelUrl": "https://github.com/elios134/asset-3d/releases/download/sc-4.1/RSI_Salvation.exterior.glb",
+          "tris": 170145,
+          "sizeBytes": 3442364,
+          "hasInterior": false,
+          "sha256": "e5e0331cae6373fe5a164c49263f57c110f8101a7c06c892c9e5be7849960d01"
+        }
+      ]
+    },
+    {
+      "key": "RSI_Scorpius",
+      "name": "Scorpius",
+      "manufacturer": "Roberts Space Industries",
+      "classification": "Heavy Fighter",
+      "dims": {
+        "l": 32,
+        "b": 24,
+        "h": 13
+      },
+      "materials": "flat",
+      "patchVersion": "sc-4.1",
+      "variants": [
+        {
+          "level": "exterior",
+          "label": "Detaille",
+          "modelUrl": "https://github.com/elios134/asset-3d/releases/download/sc-4.1/RSI_Scorpius.exterior.glb",
+          "tris": 296267,
+          "sizeBytes": 4254672,
+          "hasInterior": false,
+          "sha256": "0220044ab60ca7f05826ae212e0dfb8151b5d686592825a776e915a302dd3187"
+        }
+      ]
+    },
+    {
+      "key": "RSI_Scorpius_Antares",
+      "name": "Scorpius Antares",
+      "manufacturer": "Roberts Space Industries",
+      "classification": "Heavy Fighter",
+      "dims": {
+        "l": 32,
+        "b": 24,
+        "h": 13
+      },
+      "materials": "flat",
+      "patchVersion": "sc-4.1",
+      "variants": [
+        {
+          "level": "exterior",
+          "label": "Detaille",
+          "modelUrl": "https://github.com/elios134/asset-3d/releases/download/sc-4.1/RSI_Scorpius_Antares.exterior.glb",
+          "tris": 251043,
+          "sizeBytes": 3875264,
+          "hasInterior": false,
+          "sha256": "56d816b309a75a989bf56c320311ed5665739bdf3a04b4c307bef0d0ad823ae2"
+        }
+      ]
+    },
+    {
+      "key": "RSI_Ursa_Medivac",
+      "name": "Ursa Medivac",
+      "manufacturer": "Roberts Space Industries",
+      "classification": "Medical",
+      "dims": {
+        "l": 8.75,
+        "b": 6,
+        "h": 3.5
+      },
+      "materials": "flat",
+      "patchVersion": "sc-4.1",
+      "variants": [
+        {
+          "level": "exterior",
+          "label": "Detaille",
+          "modelUrl": "https://github.com/elios134/asset-3d/releases/download/sc-4.1/RSI_Ursa_Medivac.exterior.glb",
+          "tris": 74654,
+          "sizeBytes": 1638828,
+          "hasInterior": false,
+          "sha256": "9a03db27b74030c5d4cb4944d745dbb00643c2282db8c419f27237349a65fd7c"
+        }
+      ]
+    },
+    {
+      "key": "RSI_Ursa_Rover",
+      "name": "Ursa",
+      "manufacturer": "Roberts Space Industries",
+      "classification": "Pathfinder",
+      "dims": {
+        "l": 8.75,
+        "b": 6,
+        "h": 3.5
+      },
+      "materials": "flat",
+      "patchVersion": "sc-4.1",
+      "variants": [
+        {
+          "level": "exterior",
+          "label": "Detaille",
+          "modelUrl": "https://github.com/elios134/asset-3d/releases/download/sc-4.1/RSI_Ursa_Rover.exterior.glb",
+          "tris": 69735,
+          "sizeBytes": 1424264,
+          "hasInterior": false,
+          "sha256": "7fb489854fdbfcf8dee9ca38dd4c77bab064cae907939ea9a19fdafee87271b7"
         }
       ]
     },
@@ -411,7 +5043,319 @@
           "tris": 74828,
           "sizeBytes": 1530836,
           "hasInterior": false,
-          "sha256": "9751e6156eed35ce12917e5a35daabaab564bce303499e883d8846e930d2755e"
+          "sha256": "a13694899787623ab58decfe55e9ed602b526c86c5dd1040447bbc5c23cf5e61"
+        }
+      ]
+    },
+    {
+      "key": "RSI_Zeus_CL",
+      "name": "Zeus Mk II CL",
+      "manufacturer": "Roberts Space Industries",
+      "classification": "Medium Freight",
+      "dims": {
+        "l": 46,
+        "b": 35,
+        "h": 9
+      },
+      "materials": "flat",
+      "patchVersion": "sc-4.1",
+      "variants": [
+        {
+          "level": "exterior",
+          "label": "Detaille",
+          "modelUrl": "https://github.com/elios134/asset-3d/releases/download/sc-4.1/RSI_Zeus_CL.exterior.glb",
+          "tris": 323825,
+          "sizeBytes": 5709056,
+          "hasInterior": false,
+          "sha256": "b42c9687cd0499eea8c6f02e9f9d0b3be7d8bf309c292afb29c2ada770ab1b25"
+        }
+      ]
+    },
+    {
+      "key": "RSI_Zeus_ES",
+      "name": "Zeus Mk II ES",
+      "manufacturer": "Roberts Space Industries",
+      "classification": "Expedition",
+      "dims": {
+        "l": 46,
+        "b": 35,
+        "h": 9
+      },
+      "materials": "flat",
+      "patchVersion": "sc-4.1",
+      "variants": [
+        {
+          "level": "exterior",
+          "label": "Detaille",
+          "modelUrl": "https://github.com/elios134/asset-3d/releases/download/sc-4.1/RSI_Zeus_ES.exterior.glb",
+          "tris": 308882,
+          "sizeBytes": 5159908,
+          "hasInterior": false,
+          "sha256": "429c61229bd4c2cd196b2de4045ff9ee422906516c28928788a129fe07e5f5a1"
+        }
+      ]
+    },
+    {
+      "key": "TMBL_Cyclone",
+      "name": "Cyclone",
+      "manufacturer": "Tumbril Land Systems",
+      "classification": "Passenger",
+      "dims": {
+        "l": 8.75,
+        "b": 6,
+        "h": 3.5
+      },
+      "materials": "flat",
+      "patchVersion": "sc-4.1",
+      "variants": [
+        {
+          "level": "exterior",
+          "label": "Detaille",
+          "modelUrl": "https://github.com/elios134/asset-3d/releases/download/sc-4.1/TMBL_Cyclone.exterior.glb",
+          "tris": 80652,
+          "sizeBytes": 1108592,
+          "hasInterior": false,
+          "sha256": "b66da31f4532e060baae307bc1753b2316cddb79ee4cddf5f59a54d76f4e25fd"
+        }
+      ]
+    },
+    {
+      "key": "TMBL_Cyclone_AA",
+      "name": "Cyclone AA",
+      "manufacturer": "Tumbril Land Systems",
+      "classification": "Anti-Air",
+      "dims": {
+        "l": 8.75,
+        "b": 6,
+        "h": 3.5
+      },
+      "materials": "flat",
+      "patchVersion": "sc-4.1",
+      "variants": [
+        {
+          "level": "exterior",
+          "label": "Detaille",
+          "modelUrl": "https://github.com/elios134/asset-3d/releases/download/sc-4.1/TMBL_Cyclone_AA.exterior.glb",
+          "tris": 91488,
+          "sizeBytes": 1259060,
+          "hasInterior": false,
+          "sha256": "836e347d26cc4f3ed6f8c602df4ecd484f94720efe8d4b03a47574c3c04e7c01"
+        }
+      ]
+    },
+    {
+      "key": "TMBL_Cyclone_MT",
+      "name": "Cyclone MT",
+      "manufacturer": "Tumbril Land Systems",
+      "classification": "Anti-Air",
+      "dims": {
+        "l": 8.75,
+        "b": 6,
+        "h": 3.5
+      },
+      "materials": "flat",
+      "patchVersion": "sc-4.1",
+      "variants": [
+        {
+          "level": "exterior",
+          "label": "Detaille",
+          "modelUrl": "https://github.com/elios134/asset-3d/releases/download/sc-4.1/TMBL_Cyclone_MT.exterior.glb",
+          "tris": 101162,
+          "sizeBytes": 1444648,
+          "hasInterior": false,
+          "sha256": "a38e471e79f89615c0deb64272e9731c2232aea382da8dbfec63e2922cf4ae42"
+        }
+      ]
+    },
+    {
+      "key": "TMBL_Cyclone_RC",
+      "name": "Cyclone RC",
+      "manufacturer": "Tumbril Land Systems",
+      "classification": "Racing",
+      "dims": {
+        "l": 8.75,
+        "b": 6,
+        "h": 3.5
+      },
+      "materials": "flat",
+      "patchVersion": "sc-4.1",
+      "variants": [
+        {
+          "level": "exterior",
+          "label": "Detaille",
+          "modelUrl": "https://github.com/elios134/asset-3d/releases/download/sc-4.1/TMBL_Cyclone_RC.exterior.glb",
+          "tris": 84671,
+          "sizeBytes": 1205584,
+          "hasInterior": false,
+          "sha256": "922bd76a7f0af0a84d1d5488f957a643bc22abaf4d0d92f83978bd66d560eaa6"
+        }
+      ]
+    },
+    {
+      "key": "TMBL_Cyclone_RN",
+      "name": "Cyclone RN",
+      "manufacturer": "Tumbril Land Systems",
+      "classification": "Pathfinder",
+      "dims": {
+        "l": 8.75,
+        "b": 6,
+        "h": 3.5
+      },
+      "materials": "flat",
+      "patchVersion": "sc-4.1",
+      "variants": [
+        {
+          "level": "exterior",
+          "label": "Detaille",
+          "modelUrl": "https://github.com/elios134/asset-3d/releases/download/sc-4.1/TMBL_Cyclone_RN.exterior.glb",
+          "tris": 85217,
+          "sizeBytes": 1151516,
+          "hasInterior": false,
+          "sha256": "0c575bf37a99bc241ddca8bd1af4e7f82ab0880e62348668aef8102716033960"
+        }
+      ]
+    },
+    {
+      "key": "TMBL_Cyclone_TR",
+      "name": "Cyclone TR",
+      "manufacturer": "Tumbril Land Systems",
+      "classification": "Anti-Vehicle",
+      "dims": {
+        "l": 8.75,
+        "b": 6,
+        "h": 3.5
+      },
+      "materials": "flat",
+      "patchVersion": "sc-4.1",
+      "variants": [
+        {
+          "level": "exterior",
+          "label": "Detaille",
+          "modelUrl": "https://github.com/elios134/asset-3d/releases/download/sc-4.1/TMBL_Cyclone_TR.exterior.glb",
+          "tris": 90398,
+          "sizeBytes": 1272964,
+          "hasInterior": false,
+          "sha256": "1261ad98e6f2121e9bfa9cfa0c51bda5b1b8ecc5037cb77bc4157bbf2224f5c9"
+        }
+      ]
+    },
+    {
+      "key": "TMBL_Nova",
+      "name": "Nova",
+      "manufacturer": "Tumbril Land Systems",
+      "classification": "Heavy Tank",
+      "dims": {
+        "l": 20,
+        "b": 12,
+        "h": 11
+      },
+      "materials": "flat",
+      "patchVersion": "sc-4.1",
+      "variants": [
+        {
+          "level": "exterior",
+          "label": "Detaille",
+          "modelUrl": "https://github.com/elios134/asset-3d/releases/download/sc-4.1/TMBL_Nova.exterior.glb",
+          "tris": 118958,
+          "sizeBytes": 2140296,
+          "hasInterior": false,
+          "sha256": "1f977e2bb02bb34f47a7c4f202530514cd6f702aaff22d625770bb68423f32ed"
+        }
+      ]
+    },
+    {
+      "key": "TMBL_Storm",
+      "name": "Storm",
+      "manufacturer": "Tumbril Land Systems",
+      "classification": "Light Tank",
+      "dims": {
+        "l": 10.25,
+        "b": 7.65,
+        "h": 4
+      },
+      "materials": "flat",
+      "patchVersion": "sc-4.1",
+      "variants": [
+        {
+          "level": "exterior",
+          "label": "Detaille",
+          "modelUrl": "https://github.com/elios134/asset-3d/releases/download/sc-4.1/TMBL_Storm.exterior.glb",
+          "tris": 160923,
+          "sizeBytes": 2571684,
+          "hasInterior": false,
+          "sha256": "0a18120b2f3a8c71a3ad8483e6143ac11a21aeb72c67b8e2cfdd74341aadd3bc"
+        }
+      ]
+    },
+    {
+      "key": "TMBL_Storm_AA",
+      "name": "Storm AA",
+      "manufacturer": "Tumbril Land Systems",
+      "classification": "Light Tank",
+      "dims": {
+        "l": 10.25,
+        "b": 7.65,
+        "h": 4
+      },
+      "materials": "flat",
+      "patchVersion": "sc-4.1",
+      "variants": [
+        {
+          "level": "exterior",
+          "label": "Detaille",
+          "modelUrl": "https://github.com/elios134/asset-3d/releases/download/sc-4.1/TMBL_Storm_AA.exterior.glb",
+          "tris": 274387,
+          "sizeBytes": 3731632,
+          "hasInterior": false,
+          "sha256": "972ffa714b40d87e14606fc45938f4ef6191b07045127fe44d2a33e7ee0b9a3d"
+        }
+      ]
+    },
+    {
+      "key": "VNCL_Blade",
+      "name": "Blade",
+      "manufacturer": "Esperia",
+      "classification": "Light Fighter",
+      "dims": {
+        "l": 20.5,
+        "b": 16.5,
+        "h": 5.5
+      },
+      "materials": "flat",
+      "patchVersion": "sc-4.1",
+      "variants": [
+        {
+          "level": "exterior",
+          "label": "Detaille",
+          "modelUrl": "https://github.com/elios134/asset-3d/releases/download/sc-4.1/VNCL_Blade.exterior.glb",
+          "tris": 145948,
+          "sizeBytes": 2285680,
+          "hasInterior": false,
+          "sha256": "ff5e63c3120af02af0068a2b40919142032f407ec04d72b66d3e382a5d3d2a12"
+        }
+      ]
+    },
+    {
+      "key": "VNCL_Glaive",
+      "name": "Glaive",
+      "manufacturer": "Esperia",
+      "classification": "Medium Fighter",
+      "dims": {
+        "l": 33,
+        "b": 24,
+        "h": 9
+      },
+      "materials": "flat",
+      "patchVersion": "sc-4.1",
+      "variants": [
+        {
+          "level": "exterior",
+          "label": "Detaille",
+          "modelUrl": "https://github.com/elios134/asset-3d/releases/download/sc-4.1/VNCL_Glaive.exterior.glb",
+          "tris": 91204,
+          "sizeBytes": 1356040,
+          "hasInterior": false,
+          "sha256": "cb83b66acb183c8587dbdf46982f1c227fd8cf77d430196487bece7df0ddbf9f"
         }
       ]
     },
@@ -435,7 +5379,151 @@
           "tris": 350207,
           "sizeBytes": 5292468,
           "hasInterior": false,
-          "sha256": "886608878b118d99e41df1e3b6134aa2592892ab710ef62d10cfea47ffc5fc30"
+          "sha256": "fd808517735bf5813d9f34a51ff6a6ac1c142fa6b7a21f673a8577fb39b7c581"
+        }
+      ]
+    },
+    {
+      "key": "VNCL_Scythe",
+      "name": "Vanduul Scythe",
+      "manufacturer": "Esperia",
+      "classification": "Medium Fighter",
+      "dims": {
+        "l": 33,
+        "b": 24,
+        "h": 9
+      },
+      "materials": "flat",
+      "patchVersion": "sc-4.1",
+      "variants": [
+        {
+          "level": "exterior",
+          "label": "Detaille",
+          "modelUrl": "https://github.com/elios134/asset-3d/releases/download/sc-4.1/VNCL_Scythe.exterior.glb",
+          "tris": 106208,
+          "sizeBytes": 1461328,
+          "hasInterior": false,
+          "sha256": "40250db73fad8cd6d105fe241e1052c95dddc1b18df31393ee3abb50d4f9a0f4"
+        }
+      ]
+    },
+    {
+      "key": "VNCL_Stinger",
+      "name": "Stinger",
+      "manufacturer": "Esperia",
+      "classification": "Heavy Fighter",
+      "dims": {
+        "l": 36,
+        "b": 32,
+        "h": 11
+      },
+      "materials": "flat",
+      "patchVersion": "sc-4.1",
+      "variants": [
+        {
+          "level": "exterior",
+          "label": "Detaille",
+          "modelUrl": "https://github.com/elios134/asset-3d/releases/download/sc-4.1/VNCL_Stinger.exterior.glb",
+          "tris": 198951,
+          "sizeBytes": 3904496,
+          "hasInterior": false,
+          "sha256": "c37355ceb3b936555854a1eb075ada5aab3945b927ccae8ca79bb15b75d33991"
+        }
+      ]
+    },
+    {
+      "key": "XIAN_Nox",
+      "name": "Nox",
+      "manufacturer": "Aopoa",
+      "classification": "Racing",
+      "dims": {
+        "l": 5.15,
+        "b": 1.45,
+        "h": 1.32
+      },
+      "materials": "flat",
+      "patchVersion": "sc-4.1",
+      "variants": [
+        {
+          "level": "exterior",
+          "label": "Detaille",
+          "modelUrl": "https://github.com/elios134/asset-3d/releases/download/sc-4.1/XIAN_Nox.exterior.glb",
+          "tris": 55939,
+          "sizeBytes": 971952,
+          "hasInterior": false,
+          "sha256": "074b01fc8f8219841de7efba33963f5d8f35f488e4655f52ad210e269dadbe41"
+        }
+      ]
+    },
+    {
+      "key": "XIAN_Nox_Kue",
+      "name": "Nox Kue",
+      "manufacturer": "Aopoa",
+      "classification": "Racing",
+      "dims": {
+        "l": 5.15,
+        "b": 1.45,
+        "h": 1.32
+      },
+      "materials": "flat",
+      "patchVersion": "sc-4.1",
+      "variants": [
+        {
+          "level": "exterior",
+          "label": "Detaille",
+          "modelUrl": "https://github.com/elios134/asset-3d/releases/download/sc-4.1/XIAN_Nox_Kue.exterior.glb",
+          "tris": 27841,
+          "sizeBytes": 624492,
+          "hasInterior": false,
+          "sha256": "429015f98724d500005495e6b7f11d5aa79e68300424067a9755cc7d645768d0"
+        }
+      ]
+    },
+    {
+      "key": "XIAN_Scout",
+      "name": "Khartu-al",
+      "manufacturer": "Aopoa",
+      "classification": "Light Fighter",
+      "dims": {
+        "l": 32,
+        "b": 13.5,
+        "h": 8.75
+      },
+      "materials": "flat",
+      "patchVersion": "sc-4.1",
+      "variants": [
+        {
+          "level": "exterior",
+          "label": "Detaille",
+          "modelUrl": "https://github.com/elios134/asset-3d/releases/download/sc-4.1/XIAN_Scout.exterior.glb",
+          "tris": 84353,
+          "sizeBytes": 1594028,
+          "hasInterior": false,
+          "sha256": "f69151eb214599778997dac1f9ce4ee0e8bf4024575178aba679f79d0088f090"
+        }
+      ]
+    },
+    {
+      "key": "XNAA_SanTokYai",
+      "name": "San'tok.yāi",
+      "manufacturer": "Aopoa",
+      "classification": "Medium Fighter",
+      "dims": {
+        "l": 24,
+        "b": 23,
+        "h": 23
+      },
+      "materials": "flat",
+      "patchVersion": "sc-4.1",
+      "variants": [
+        {
+          "level": "exterior",
+          "label": "Detaille",
+          "modelUrl": "https://github.com/elios134/asset-3d/releases/download/sc-4.1/XNAA_SanTokYai.exterior.glb",
+          "tris": 286221,
+          "sizeBytes": 3587108,
+          "hasInterior": false,
+          "sha256": "71e9b09f8a19babfee68f360c77367a819b5e809db2fca09ddf748aa4163739c"
         }
       ]
     }

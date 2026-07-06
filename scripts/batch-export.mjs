@@ -39,6 +39,15 @@ else {
   batch = [...new Set(batch)];
 }
 
+// Exclusion des editions speciales / peintures (teste sur name + classNameCig, underscores -> espaces)
+const EXCLUDE = /\bwikelo\b|\bpyam\b|best in show|\bbis\d*\b|\bexecutive\b|\bexec\b/;
+const isExcluded = (k) => EXCLUDE.test(`${meta[k]?.name ?? ""} ${k}`.replace(/_/g, " ").toLowerCase());
+{
+  const before = batch.length;
+  batch = batch.filter((k) => !isExcluded(k));
+  if (before - batch.length > 0) console.log(`Exclus (editions wikelo/pyam/bis/exec) : ${before - batch.length}`);
+}
+
 // LOD selon la longueur (paliers bruts de StarBreaker)
 const lodFor = (l) => (l >= 100 ? 3 : 2);
 
