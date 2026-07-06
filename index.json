@@ -1,6 +1,6 @@
 {
   "schemaVersion": 2,
-  "generatedAt": "2026-07-06T16:26:09.754Z",
+  "generatedAt": "2026-07-06T17:07:29.933Z",
   "patchVersion": "sc-4.1",
   "levels": [
     {
@@ -195,10 +195,10 @@
           "level": "exterior",
           "label": "Detaille",
           "modelUrl": "https://github.com/elios134/asset-3d/releases/download/sc-4.1/AEGS_Gladius.exterior.glb",
-          "tris": 187354,
-          "sizeBytes": 3195868,
+          "tris": 187322,
+          "sizeBytes": 3190568,
           "hasInterior": false,
-          "sha256": "be078397ee606daef1755b6b5a0901aadf9b16e2bd22f609837916114c544232"
+          "sha256": "0cdf745929eac4a2326ebb9a057c2a3a53f6fc13d4929cbd7282d5fd8faf9545"
         },
         {
           "level": "interior",
@@ -228,10 +228,10 @@
           "level": "exterior",
           "label": "Detaille",
           "modelUrl": "https://github.com/elios134/asset-3d/releases/download/sc-4.1/AEGS_Gladius_PIR.exterior.glb",
-          "tris": 198539,
-          "sizeBytes": 3440756,
+          "tris": 198507,
+          "sizeBytes": 3435388,
           "hasInterior": false,
-          "sha256": "89b86a454cd554438de29455989095883b92bf13b358e2fbe131a59044175357"
+          "sha256": "cf9e3c2d0a5823752b67c6da8ac129300958c63cc99c7a19a2d6bcb0e689ebe6"
         },
         {
           "level": "interior",
@@ -261,10 +261,10 @@
           "level": "exterior",
           "label": "Detaille",
           "modelUrl": "https://github.com/elios134/asset-3d/releases/download/sc-4.1/AEGS_Gladius_Valiant.exterior.glb",
-          "tris": 189806,
-          "sizeBytes": 3266372,
+          "tris": 189774,
+          "sizeBytes": 3261116,
           "hasInterior": false,
-          "sha256": "c8598ca304c0f138327309eb1aee17d48b7c415ebf421f202b8c2477efff92b3"
+          "sha256": "e5d2920fcc5cd5eb9b097e943b5a452db999784c6d8aa219f03fac9b561504b8"
         },
         {
           "level": "interior",
@@ -417,10 +417,10 @@
           "level": "exterior",
           "label": "Detaille",
           "modelUrl": "https://github.com/elios134/asset-3d/releases/download/sc-4.1/AEGS_Reclaimer.exterior.glb",
-          "tris": 210656,
-          "sizeBytes": 3386460,
+          "tris": 205316,
+          "sizeBytes": 3317716,
           "hasInterior": false,
-          "sha256": "d24491a9fc3c6ee13a3a6a1f81bcef9f78becef1883a07f6094bd830ab0ade2c"
+          "sha256": "b74911dc201b04f9cc93fa91da83be922a21de8db76dd56fe76709a96d098adc"
         },
         {
           "level": "interior",
@@ -714,10 +714,10 @@
           "level": "exterior",
           "label": "Detaille",
           "modelUrl": "https://github.com/elios134/asset-3d/releases/download/sc-4.1/AEGS_Vanguard.exterior.glb",
-          "tris": 154656,
-          "sizeBytes": 3277108,
+          "tris": 154060,
+          "sizeBytes": 3264460,
           "hasInterior": false,
-          "sha256": "8f17dbb6a4e8a89e2199ba0b1f67feef3f558a79717d2bcc39455ca9fdb45abd"
+          "sha256": "c55605d6962a885c4c696a04f00c5ee398cac40b4fa2e934b12bf69c220f7e93"
         },
         {
           "level": "interior",
@@ -747,10 +747,10 @@
           "level": "exterior",
           "label": "Detaille",
           "modelUrl": "https://github.com/elios134/asset-3d/releases/download/sc-4.1/AEGS_Vanguard_Harbinger.exterior.glb",
-          "tris": 152544,
-          "sizeBytes": 2998912,
+          "tris": 151367,
+          "sizeBytes": 2972060,
           "hasInterior": false,
-          "sha256": "24b18383292d901ed71040e8c668a0fa77d8951defdae21eaf51d60b00b64c1e"
+          "sha256": "23ccc3ed8858a55c5f39643afe9238d43accc7c19d64af03365582dfbe4b4f46"
         },
         {
           "level": "interior",
@@ -813,10 +813,10 @@
           "level": "exterior",
           "label": "Detaille",
           "modelUrl": "https://github.com/elios134/asset-3d/releases/download/sc-4.1/AEGS_Vanguard_Sentinel.exterior.glb",
-          "tris": 154327,
-          "sizeBytes": 3535472,
+          "tris": 153731,
+          "sizeBytes": 3522844,
           "hasInterior": false,
-          "sha256": "604a1fb4aca548899b1571d83e9a94232677a7cd645116d0af1d13842ebdd644"
+          "sha256": "ea9f85d77fccc8780efdf1a620e9b90b100b4ad25472882bc8b5ba8be977e388"
         },
         {
           "level": "interior",
@@ -1242,10 +1242,10 @@
           "level": "exterior",
           "label": "Detaille",
           "modelUrl": "https://github.com/elios134/asset-3d/releases/download/sc-4.1/ANVL_Hawk.exterior.glb",
-          "tris": 160026,
-          "sizeBytes": 2687752,
+          "tris": 158137,
+          "sizeBytes": 2642036,
           "hasInterior": false,
-          "sha256": "baea3d49786db6ea843b44bafb99f6ccac86f6b3cb9b33620665c0cc6735ed03"
+          "sha256": "74f93206e20fd503de08d46f5380bab6e7902bb55a8cb4563a619812b77f3623"
         }
       ]
     },
@@ -1299,10 +1299,10 @@
           "level": "exterior",
           "label": "Detaille",
           "modelUrl": "https://github.com/elios134/asset-3d/releases/download/sc-4.1/ANVL_Hornet_F7A_Mk2.exterior.glb",
-          "tris": 85692,
-          "sizeBytes": 1760928,
+          "tris": 85663,
+          "sizeBytes": 1757212,
           "hasInterior": false,
-          "sha256": "797c9fb0efc8eff941e27a3ba2cca624c46d14d808019925714091af8455f14d"
+          "sha256": "8ecb406a1b7cc3bb890e28c82dd0ef5fba33500b6ad968e400e3e2cb37c84b07"
         },
         {
           "level": "interior",
@@ -1365,10 +1365,10 @@
           "level": "exterior",
           "label": "Detaille",
           "modelUrl": "https://github.com/elios134/asset-3d/releases/download/sc-4.1/ANVL_Hornet_F7C_Mk2.exterior.glb",
-          "tris": 79069,
-          "sizeBytes": 1601824,
+          "tris": 79040,
+          "sizeBytes": 1598156,
           "hasInterior": false,
-          "sha256": "5062a2afad8ce8e93f5b6bde80f85c85575fcdb4a616b8599e0d481f4ee51ade"
+          "sha256": "0f1a588baa7f9fa60032c3c3460d9d3cb66549e02ab4a56e516999fdde8cd370"
         },
         {
           "level": "interior",
@@ -1497,10 +1497,10 @@
           "level": "exterior",
           "label": "Detaille",
           "modelUrl": "https://github.com/elios134/asset-3d/releases/download/sc-4.1/ANVL_Hornet_F7CM_Mk2.exterior.glb",
-          "tris": 152442,
-          "sizeBytes": 2566352,
+          "tris": 152344,
+          "sizeBytes": 2552884,
           "hasInterior": false,
-          "sha256": "dd18ba1c59eb9bb59b063baac35e0c1a0bd771fb2bb47fddf694f9d783334f50"
+          "sha256": "32931cb909b7c0a58a57b27a09872d4ce3b1d8e3bf51b5763eaf0139deafdd08"
         },
         {
           "level": "interior",
@@ -1530,10 +1530,10 @@
           "level": "exterior",
           "label": "Detaille",
           "modelUrl": "https://github.com/elios134/asset-3d/releases/download/sc-4.1/ANVL_Hornet_F7CM_Mk2_Heartseeker.exterior.glb",
-          "tris": 125278,
-          "sizeBytes": 2280580,
+          "tris": 125180,
+          "sizeBytes": 2266852,
           "hasInterior": false,
-          "sha256": "ff66aa37d0fa5924b757bc2ae6e85b198bebd595028846afc6157f0c1931f970"
+          "sha256": "beeed32f7e22c0def3719b0ae9f1991c4911e1406c5f4738405c7260b21d6faf"
         },
         {
           "level": "interior",
@@ -1596,10 +1596,10 @@
           "level": "exterior",
           "label": "Detaille",
           "modelUrl": "https://github.com/elios134/asset-3d/releases/download/sc-4.1/ANVL_Hornet_F7CR_Mk2.exterior.glb",
-          "tris": 90617,
-          "sizeBytes": 1715396,
+          "tris": 90588,
+          "sizeBytes": 1713832,
           "hasInterior": false,
-          "sha256": "e8aad1dbab79bad77fd8f59eab397357cfec9e044718d02458f4f79dd27236a6"
+          "sha256": "7a30caf484fa9ce1f554a89321e7e8d4bcea1470c3b42f6334015a622f0f54b2"
         },
         {
           "level": "interior",
@@ -1662,10 +1662,10 @@
           "level": "exterior",
           "label": "Detaille",
           "modelUrl": "https://github.com/elios134/asset-3d/releases/download/sc-4.1/ANVL_Hornet_F7CS_Mk2.exterior.glb",
-          "tris": 82820,
-          "sizeBytes": 1574180,
+          "tris": 82791,
+          "sizeBytes": 1572428,
           "hasInterior": false,
-          "sha256": "beee17fffad4084b107165f8420e895806747d403adb79180fcd40068efb4df5"
+          "sha256": "22a3dea168d1724170e6d85d274594d10b3a4e9316b2f184a52ca2e63cd93acf"
         },
         {
           "level": "interior",
@@ -2295,10 +2295,10 @@
           "level": "exterior",
           "label": "Detaille",
           "modelUrl": "https://github.com/elios134/asset-3d/releases/download/sc-4.1/ARGO_MPUV.exterior.glb",
-          "tris": 38850,
-          "sizeBytes": 667104,
+          "tris": 38672,
+          "sizeBytes": 658252,
           "hasInterior": false,
-          "sha256": "e7f9e55866497ce2beaa079e5e0ef143f4407630c111f5589c755c0b2b72de45"
+          "sha256": "295f2f2ebde2d73f0ccb89ea72f2410cd8a9b882be65cafdd77886052c520532"
         },
         {
           "level": "interior",
@@ -2328,10 +2328,10 @@
           "level": "exterior",
           "label": "Detaille",
           "modelUrl": "https://github.com/elios134/asset-3d/releases/download/sc-4.1/ARGO_MPUV_1T.exterior.glb",
-          "tris": 68742,
-          "sizeBytes": 1469964,
+          "tris": 67435,
+          "sizeBytes": 1434984,
           "hasInterior": false,
-          "sha256": "8d9c5ab9eab101e5efa04c9bb28b854edb3f60aa111784ef85e2ec7a5e5f5db2"
+          "sha256": "553e0639ebabed0a71f993b9da6ddedf19d6ab3ab06c4913961f5164aba6adf8"
         },
         {
           "level": "interior",
@@ -2361,10 +2361,10 @@
           "level": "exterior",
           "label": "Detaille",
           "modelUrl": "https://github.com/elios134/asset-3d/releases/download/sc-4.1/ARGO_MPUV_Transport.exterior.glb",
-          "tris": 50107,
-          "sizeBytes": 927956,
+          "tris": 48800,
+          "sizeBytes": 893040,
           "hasInterior": false,
-          "sha256": "1785c5c25960ec0fd3d74c099804605a31d1dfc9acc73a86d69475bb9480606c"
+          "sha256": "1fb0a585477481c436037dfd3d9d9a23182ef7163737141843e6ba3c67c95e98"
         },
         {
           "level": "interior",
@@ -3087,10 +3087,10 @@
           "level": "exterior",
           "label": "Detaille",
           "modelUrl": "https://github.com/elios134/asset-3d/releases/download/sc-4.1/DRAK_Caterpillar.exterior.glb",
-          "tris": 328332,
-          "sizeBytes": 5913288,
+          "tris": 327465,
+          "sizeBytes": 5874192,
           "hasInterior": false,
-          "sha256": "034801cfca8bf6d3155d96d5d0fcbd51a9fab0fcd7f2171fb213b9a621b76395"
+          "sha256": "a22aac539e51807f20e54bc74499d00a698da91861bdee067e964a414bded8d7"
         },
         {
           "level": "interior",
@@ -3120,10 +3120,10 @@
           "level": "exterior",
           "label": "Detaille",
           "modelUrl": "https://github.com/elios134/asset-3d/releases/download/sc-4.1/DRAK_Caterpillar_Pirate.exterior.glb",
-          "tris": 328332,
-          "sizeBytes": 5914336,
+          "tris": 327465,
+          "sizeBytes": 5875224,
           "hasInterior": false,
-          "sha256": "7aaa58cc82d573f8c4ddeb08432b0036afe9c6017f55cb4024c92e66c6d3c0bb"
+          "sha256": "c6d820b88cac9f19f78ac9dfb2cd575d63fee63ef91af21adaed31ce64d9f6ba"
         },
         {
           "level": "interior",
@@ -3186,10 +3186,10 @@
           "level": "exterior",
           "label": "Detaille",
           "modelUrl": "https://github.com/elios134/asset-3d/releases/download/sc-4.1/DRAK_Command_Module.exterior.glb",
-          "tris": 285276,
-          "sizeBytes": 4724764,
+          "tris": 283494,
+          "sizeBytes": 4677704,
           "hasInterior": false,
-          "sha256": "df8db7bcd8dacac8b86921131e1175287a68db0d390aa5bfed0499bddc01a8ac"
+          "sha256": "54e7a030c26af568ff0ba193d8306956d261d6fe1609049fda14ff218933f003"
         },
         {
           "level": "interior",
@@ -3681,10 +3681,10 @@
           "level": "exterior",
           "label": "Detaille",
           "modelUrl": "https://github.com/elios134/asset-3d/releases/download/sc-4.1/DRAK_Ironclad.exterior.glb",
-          "tris": 503170,
-          "sizeBytes": 8267988,
+          "tris": 502303,
+          "sizeBytes": 8225560,
           "hasInterior": false,
-          "sha256": "20cf14850e19d2d5c3c14f3aebc831cd46dbc78081ae53b3b646eee019140603"
+          "sha256": "0898db6379fd714f14964471d3b3597792a3a2a4409d4f5cb35e87e013479b9c"
         },
         {
           "level": "interior",
@@ -3714,10 +3714,10 @@
           "level": "exterior",
           "label": "Detaille",
           "modelUrl": "https://github.com/elios134/asset-3d/releases/download/sc-4.1/DRAK_Ironclad_Assault.exterior.glb",
-          "tris": 688811,
-          "sizeBytes": 10681968,
+          "tris": 687944,
+          "sizeBytes": 10640616,
           "hasInterior": false,
-          "sha256": "a6c2928d726a11b17294a6e4e6f7ae463d834594ce0382d77bafd269eb5d1162"
+          "sha256": "3df5f6aa7dd89ef49133fa2cb052e7a987783ccda4413720571a5c2057fdd947"
         },
         {
           "level": "interior",
@@ -3780,10 +3780,10 @@
           "level": "exterior",
           "label": "Detaille",
           "modelUrl": "https://github.com/elios134/asset-3d/releases/download/sc-4.1/DRAK_Pitbull.exterior.glb",
-          "tris": 283515,
-          "sizeBytes": 3505128,
+          "tris": 277277,
+          "sizeBytes": 3448936,
           "hasInterior": false,
-          "sha256": "146fe0d4b2a74fe75a0310f3a8968b1529fbba346bc475c14987aeb139f6202c"
+          "sha256": "cf264268bdcd4a0e8637e455eab25f44c44af507189e9bff242b3e402323e878"
         },
         {
           "level": "interior",
@@ -4497,10 +4497,10 @@
           "level": "exterior",
           "label": "Detaille",
           "modelUrl": "https://github.com/elios134/asset-3d/releases/download/sc-4.1/MISC_Fortune.exterior.glb",
-          "tris": 348665,
-          "sizeBytes": 5089604,
+          "tris": 346999,
+          "sizeBytes": 5061628,
           "hasInterior": false,
-          "sha256": "00c82cb0c7e918f2164c304f05ae6b7edeb9b7b12b33c302ba4ce11c74b4c4c5"
+          "sha256": "7ef0a582cdf78db1d3895c97b721e0f3b368aabdfcb7d94405bf34b6074fcfd0"
         },
         {
           "level": "interior",
@@ -4827,10 +4827,10 @@
           "level": "exterior",
           "label": "Detaille",
           "modelUrl": "https://github.com/elios134/asset-3d/releases/download/sc-4.1/MISC_Hull_C.exterior.glb",
-          "tris": 433566,
-          "sizeBytes": 5415100,
+          "tris": 429503,
+          "sizeBytes": 5366552,
           "hasInterior": false,
-          "sha256": "313823736f0697fc9290376cc3be86c27eac837023f3ba5bd8dc7663fbb4a7a5"
+          "sha256": "397f70f2954ab5efea16ad133768b7161f3b43395ed0802b6eb01a39037fe168"
         },
         {
           "level": "interior",
@@ -5553,10 +5553,10 @@
           "level": "exterior",
           "label": "Detaille",
           "modelUrl": "https://github.com/elios134/asset-3d/releases/download/sc-4.1/ORIG_300i.exterior.glb",
-          "tris": 73791,
-          "sizeBytes": 1452752,
+          "tris": 73518,
+          "sizeBytes": 1417744,
           "hasInterior": false,
-          "sha256": "06aabe5609f40080c39c16911d6ca760bec81730188213af4760f41022dd06c4"
+          "sha256": "29e5a4f1d88a20fa8fcb80cb46ae11c0f22ac44aac99a2ac23e0646a818170b8"
         },
         {
           "level": "interior",
@@ -5586,10 +5586,10 @@
           "level": "exterior",
           "label": "Detaille",
           "modelUrl": "https://github.com/elios134/asset-3d/releases/download/sc-4.1/ORIG_315p.exterior.glb",
-          "tris": 80242,
-          "sizeBytes": 1644576,
+          "tris": 79969,
+          "sizeBytes": 1609604,
           "hasInterior": false,
-          "sha256": "6b820aefc10b3a7b35a41b5906460631b5d30fd29cd4463c0390cd64ec5dd550"
+          "sha256": "91a9b4b20cb87be8da0a8cffa5afd2c4d61a53c4b9fe3772bdfcba41e63241a8"
         },
         {
           "level": "interior",
@@ -5619,10 +5619,10 @@
           "level": "exterior",
           "label": "Detaille",
           "modelUrl": "https://github.com/elios134/asset-3d/releases/download/sc-4.1/ORIG_325a.exterior.glb",
-          "tris": 80657,
-          "sizeBytes": 1682200,
+          "tris": 80384,
+          "sizeBytes": 1647144,
           "hasInterior": false,
-          "sha256": "fcf22570c039f801882d7c99181ba1c302e0ac62ed32534b8cad0f4ba9a2edf9"
+          "sha256": "ae564607f9a384d563d0aca98bb0fdce457268c7fd97ebd39cad375313211867"
         },
         {
           "level": "interior",
@@ -6609,10 +6609,10 @@
           "level": "exterior",
           "label": "Detaille",
           "modelUrl": "https://github.com/elios134/asset-3d/releases/download/sc-4.1/RSI_Perseus.exterior.glb",
-          "tris": 456003,
-          "sizeBytes": 8721128,
+          "tris": 455126,
+          "sizeBytes": 8698492,
           "hasInterior": false,
-          "sha256": "d4ede496e5633518d1b1f29602441861bb234ab7306f65ccff6c5d163dcd88ad"
+          "sha256": "6ec47e48053e22afd64a0159ef7ac031643009b628b0919e40ca2dc219833b71"
         },
         {
           "level": "interior",
@@ -6675,10 +6675,10 @@
           "level": "exterior",
           "label": "Detaille",
           "modelUrl": "https://github.com/elios134/asset-3d/releases/download/sc-4.1/RSI_Salvation.exterior.glb",
-          "tris": 168269,
-          "sizeBytes": 3384864,
+          "tris": 168169,
+          "sizeBytes": 3380812,
           "hasInterior": false,
-          "sha256": "0b57f8d2007740b52bcbe6c6b4da78328832a651e90957743b9f3c53f5b31407"
+          "sha256": "e993b36344be340f2b57f8825a302c3a02ca58347b5ec52966ca2e51c7825159"
         },
         {
           "level": "interior",
@@ -6873,10 +6873,10 @@
           "level": "exterior",
           "label": "Detaille",
           "modelUrl": "https://github.com/elios134/asset-3d/releases/download/sc-4.1/RSI_Zeus_CL.exterior.glb",
-          "tris": 315308,
-          "sizeBytes": 5462288,
+          "tris": 313718,
+          "sizeBytes": 5434480,
           "hasInterior": false,
-          "sha256": "e7bee07aa52bc39d88c76c82a5e75add27a0b98031117284cf05ed5f4c4d4820"
+          "sha256": "6e376369703c46461a84b67edb76958aa9491846c18545c81af20659057c0cea"
         },
         {
           "level": "interior",
@@ -6906,10 +6906,10 @@
           "level": "exterior",
           "label": "Detaille",
           "modelUrl": "https://github.com/elios134/asset-3d/releases/download/sc-4.1/RSI_Zeus_ES.exterior.glb",
-          "tris": 300365,
-          "sizeBytes": 4912956,
+          "tris": 298775,
+          "sizeBytes": 4885408,
           "hasInterior": false,
-          "sha256": "6d85ad71d8db9a6578e217270c898003e15e3d605e3f686db12c6112bd7613b7"
+          "sha256": "e2119b37e721d134d81d6de816ddbbe560bdb0de5c7bc32dd44ebc76e64e6931"
         },
         {
           "level": "interior",

@@ -22,10 +22,11 @@ import { dirname, join as pjoin } from "node:path";
 const ROOT = pjoin(dirname(fileURLToPath(import.meta.url)), "..");
 const IN_PLACE = process.argv.includes("--in-place");
 
-// artefacts orphelins (regex de l'app, 0 faux positif constate)
+// artefacts orphelins (Box204, Cube.109186186... y compris numeros tres longs)
 const ORPHAN = /^(box|cube|plane|cylinder|sphere|cone|circle|icosphere|object|empty)[._]?\d+$/i;
-// mobilier interieur (retire de la vitrine exterieure) ; NE PAS toucher aux composants fonctionnels
-const FURNITURE = /(^|_)(bed|seat|console|screen_ui|btn|hud|monitor|keyboard|mousepad|cushion|blanket|pillow)(_|$|\d)/i;
+// mobilier interieur (retire de la vitrine) ; pluriels/suffixes inclus (monitors, bedding, consoles...)
+// NE PAS toucher aux composants fonctionnels (powr/qdrv/cool/life)
+const FURNITURE = /(^|_)(beds?|bedding|duvet|mattress|monitors?|arm_consoles?|cushions?|pillows?|blankets?|pilot_seat|copilot_seat|passenger_seat|seat_mesh|screen_ui|bed_)/i;
 
 let inputs = process.argv.slice(2).filter((a) => !a.startsWith("--"));
 if (inputs.length === 0) inputs = readdirSync(pjoin(ROOT, "models")).filter((f) => f.endsWith(".exterior.glb")).map((f) => pjoin(ROOT, "models", f));
@@ -40,10 +41,14 @@ for (const path of inputs) {
   const doc = await io.read(path);
   const root = doc.getRoot();
   const removed = [];
+  // marque les noeuds parasites ET tout leur sous-arbre (gere les GROUPES vides type Cube.109186186)
+  const toRemove = new Set();
+  const mark = (node) => { toRemove.add(node); for (const c of node.listChildren()) mark(c); };
   for (const node of root.listNodes()) {
     const name = node.getName() || "";
-    if (node.getMesh() && (ORPHAN.test(name) || FURNITURE.test(name))) { removed.push(name); node.dispose(); }
+    if (ORPHAN.test(name) || FURNITURE.test(name)) mark(node);
   }
+  for (const node of toRemove) { removed.push(node.getName() || "?"); node.dispose(); }
   await doc.transform(prune(), meshopt({ encoder: MeshoptEncoder, level: "high" }));
   const sizeBefore = statSync(path).size;
   const out = IN_PLACE ? path.replace(/\.glb$/, ".culled.glb") : path.replace(/\.glb$/, ".culled.glb");
