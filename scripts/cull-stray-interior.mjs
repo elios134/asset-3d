@@ -42,13 +42,13 @@ for (const key of keys) {
       hull.min[1] - b.max[1], b.min[1] - hull.max[1],
       hull.min[2] - b.max[2], b.min[2] - hull.max[2],
     ); // >0 = mesh entierement hors coque de tant sur une face
-    if (over <= THRESHOLD) continue;
-    // CRITERE SUR : un parasite doit etre ANONYME ET DEGENERE (aire ~nulle). Jamais un mesh nomme
-    // (tuyere/nacelle...) ni volumineux, meme s'il depasse.
+    if (over <= THRESHOLD) continue; // uniquement les meshes LOIN hors coque
+    // CRITERE SUR : parasite = ANONYME ou nom GENERIQUE (primitive Blender / Object export) ET loin hors coque.
+    // Un nom SPECIFIQUE (piece nommee, ex geo_cover_detail) hors coque = GARDE (verif manuelle) — jamais culle par distance seule.
     const name = node.getName() || "";
-    const anon = !name || /^[?]|^mesh[_.]?\d*$|^\d+$/i.test(name);
-    const minDim = Math.min(b.max[0] - b.min[0], b.max[1] - b.min[1], b.max[2] - b.min[2]);
-    if (!(anon && minDim < 0.5)) continue; // garde nomme OU volumineux
+    const GENERIC = /^(box|cube|plane|cylinder|sphere|cone|circle|icosphere|object|empty)[._]?\d+$/i;
+    const generic = !name || /^[?]/.test(name) || GENERIC.test(name);
+    if (!generic) continue; // garde les meshes a nom specifique
     removed.push({ name: name || "?", over: over.toFixed(0) });
     node.dispose();
   }

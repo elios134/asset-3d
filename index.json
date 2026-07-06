@@ -1,6 +1,6 @@
 {
   "schemaVersion": 2,
-  "generatedAt": "2026-07-06T19:46:02.777Z",
+  "generatedAt": "2026-07-06T19:50:44.575Z",
   "patchVersion": "sc-4.1",
   "levels": [
     {
@@ -691,9 +691,9 @@
           "label": "Interieur",
           "modelUrl": "https://github.com/elios134/asset-3d/releases/download/sc-4.1/AEGS_Tiburon.interior.glb",
           "tris": 747517,
-          "sizeBytes": 18947652,
+          "sizeBytes": 13849496,
           "hasInterior": true,
-          "sha256": "e6659fc46b82c3a4aa0fd894c31a7ec8b6ad886844326bd4fe571b7a7f562a3f"
+          "sha256": "aa2c33da29e1ac4d6e15c3e271a92cfa99fec3f5dc9c29a1d2d4a23516af302f"
         }
       ]
     },
