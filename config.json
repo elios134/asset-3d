@@ -3,12 +3,10 @@
   "githubRepo": "asset-3d",
   "patchVersion": "sc-4.1",
   "levels": [
-    { "id": "silhouette", "label": "Apercu" },
     { "id": "exterior", "label": "Detaille" },
     { "id": "interior", "label": "Interieur" }
   ],
   "budget": {
-    "silhouette": { "maxTris": 80000, "maxSizeBytes": 8388608 },
     "exterior": { "maxTris": 400000, "maxSizeBytes": 20971520 },
     "interior": { "maxTris": 1200000, "maxSizeBytes": 67108864 }
   }

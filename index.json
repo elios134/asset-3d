@@ -1,12 +1,8 @@
 {
   "schemaVersion": 2,
-  "generatedAt": "2026-07-06T00:54:27.874Z",
+  "generatedAt": "2026-07-06T01:19:38.075Z",
   "patchVersion": "sc-4.1",
   "levels": [
-    {
-      "id": "silhouette",
-      "label": "Apercu"
-    },
     {
       "id": "exterior",
       "label": "Detaille"
@@ -30,15 +26,6 @@
       "materials": "flat",
       "patchVersion": "sc-4.1",
       "variants": [
-        {
-          "level": "silhouette",
-          "label": "Apercu",
-          "modelUrl": "https://github.com/elios134/asset-3d/releases/download/sc-4.1/AEGS_Idris_P.silhouette.glb",
-          "tris": 41243,
-          "sizeBytes": 3995304,
-          "hasInterior": false,
-          "sha256": "7076ad94767c704f3ac85f9aea02d7f6b5a53132e4a749fa01e0488972d8944b"
-        },
         {
           "level": "exterior",
           "label": "Detaille",
@@ -72,15 +59,6 @@
       "materials": "flat",
       "patchVersion": "sc-4.1",
       "variants": [
-        {
-          "level": "silhouette",
-          "label": "Apercu",
-          "modelUrl": "https://github.com/elios134/asset-3d/releases/download/sc-4.1/DRAK_Cutlass_Black.silhouette.glb",
-          "tris": 48076,
-          "sizeBytes": 5937744,
-          "hasInterior": false,
-          "sha256": "29df64fb29879cdbc1d060a55f9440533bca567192055c2f5df1a6979e006c4a"
-        },
         {
           "level": "exterior",
           "label": "Detaille",
