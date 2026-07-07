@@ -130,6 +130,13 @@ for (const key of batch) {
     if (anchored.has(key)) { const fx = tmpInt.replace(/\.glb$/, ".fixed.glb"); execFileSync("node", ["scripts/reposition-interior.mjs", tmpInt, fx, `--key=${key}`], { cwd: ROOT, stdio: "ignore" }); intPath = fx; }
     const intDoc = await io.read(intPath);
     stripLights(intDoc);
+    // L'export interieur contient TOUTE la geometrie du vaisseau, y compris les elements GLOW
+    // exterieurs (feux, tuyeres, liseres emissifs) qui, vus de l'interieur, apparaissent comme des
+    // blocs emissifs flottants dans la coque (retour app : bloc saumon Carrack, mesh_16_1/28_1,
+    // anvl_carrack_ext_mtl_glow_010 ; 35/62 vaisseaux touches, 166 prims). On retire ces prims du
+    // build interieur ; le SHELL garde les siens (liseres sur la silhouette, vus par les trous = ok).
+    const EXT_GLOW = /(_ext_|_exterior_)mtl_glow/i;
+    for (const mesh of intDoc.getRoot().listMeshes()) for (const pr of mesh.listPrimitives()) if (EXT_GLOW.test(pr.getMaterial()?.getName() || "")) pr.dispose();
     // cull strays (generique/anonyme, loin hors coque) — bbox manuelle cycle-safe
     const nodes = intDoc.getRoot().listNodes(); const pm = new Map(); for (const n of nodes) for (const c of n.listChildren()) pm.set(c, n);
     const wm = (n) => { let mm = n.getMatrix(), p = pm.get(n), seen = new Set([n]), d = 0; while (p && !seen.has(p) && d < 200) { mm = mul(p.getMatrix(), mm); seen.add(p); p = pm.get(p); d++; } return mm; };
