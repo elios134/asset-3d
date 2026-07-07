@@ -15,7 +15,7 @@ import { dedup, prune, textureCompress, meshopt, mergeDocuments, unpartition, ge
 import { MeshoptEncoder, MeshoptDecoder, MeshoptSimplifier } from "meshoptimizer";
 import sharp from "sharp";
 import { execFileSync } from "node:child_process";
-import { readFileSync, existsSync, statSync, rmSync, renameSync } from "node:fs";
+import { readFileSync, existsSync, statSync, rmSync, renameSync, mkdirSync } from "node:fs";
 import { fileURLToPath } from "node:url";
 import { dirname, join } from "node:path";
 
@@ -50,6 +50,13 @@ const docTris = (doc) => { let t = 0; for (const m of doc.getRoot().listMeshes()
 
 const EXT_ONLY = process.argv.includes("--exteriors-only");
 const INT_ONLY = process.argv.includes("--interiors-only");
+// Overrides de test (proto LOD, fichiers hors index) :
+//   --int-lod=N     force le LOD interieur (sinon regle intLod)
+//   --no-simplify   saute la passe simplify meme au-dessus du budget tris
+//   --out-suffix=X  ecrit models/X/<key>.X-interior.glb au lieu de models/<key>.interior.glb
+const INT_LOD_OVERRIDE = (() => { const a = process.argv.find((x) => x.startsWith("--int-lod=")); return a ? parseInt(a.split("=")[1], 10) : null; })();
+const NO_SIMPLIFY = process.argv.includes("--no-simplify");
+const OUT_SUFFIX = (() => { const a = process.argv.find((x) => x.startsWith("--out-suffix=")); return a ? a.split("=")[1] : null; })();
 const tryReadJson = (p) => { try { return JSON.parse(readFileSync(p, "utf8")); } catch { return null; } };
 const keys = Object.keys(meta).filter((k) => k !== "_comment" && !isExcluded(k) && meta[k].dims?.l);
 // En mode --interiors-only --all, on ne batit que les interieurs HABITABLES (interior-kinds.json,
@@ -85,7 +92,9 @@ const results = [];
 console.log(`Pipeline HD : ${batch.length} vaisseaux\n`);
 for (const key of batch) {
   const m = meta[key], l = m.dims?.l ?? 25; // defaut 25m si dims absentes (ships sans cote ShipData)
-  const extOut = join(MODELS, `${key}.exterior.glb`), intOut = join(MODELS, `${key}.interior.glb`);
+  const extOut = join(MODELS, `${key}.exterior.glb`);
+  const intOut = OUT_SUFFIX ? join(MODELS, OUT_SUFFIX, `${key}.${OUT_SUFFIX}-interior.glb`) : join(MODELS, `${key}.interior.glb`);
+  if (OUT_SUFFIX) mkdirSync(join(MODELS, OUT_SUFFIX), { recursive: true });
   const tmpExt = join(MODELS, `_hd_${key}_ext.glb`), tmpInt = join(MODELS, `_hd_${key}_int.glb`);
   try {
     let hull;
@@ -116,7 +125,7 @@ for (const key of batch) {
     if (INT_ONLY) hull = getBounds((await io.read(extOut)).getRoot().listScenes()[0]);
 
     // 2) INTERIEUR texture -> reposition (si ancre) -> cull strays -> webp -> shell
-    exp(key, tmpInt, ["--lod", String(intLod(l))]);
+    exp(key, tmpInt, ["--lod", String(INT_LOD_OVERRIDE ?? intLod(l))]);
     let intPath = tmpInt;
     if (anchored.has(key)) { const fx = tmpInt.replace(/\.glb$/, ".fixed.glb"); execFileSync("node", ["scripts/reposition-interior.mjs", tmpInt, fx, `--key=${key}`], { cwd: ROOT, stdio: "ignore" }); intPath = fx; }
     const intDoc = await io.read(intPath);
@@ -163,7 +172,7 @@ for (const key of batch) {
     // les capitaux au-dessus du budget tris etaient touches par CE point de corruption-la).
     unshareAccessors(intDoc);
     const it = docTris(intDoc);
-    if (it > BUDGET.interior.maxTris) {
+    if (!NO_SIMPLIFY && it > BUDGET.interior.maxTris) {
       await MeshoptSimplifier.ready;
       await intDoc.transform(simplify({ simplifier: MeshoptSimplifier, ratio: (BUDGET.interior.maxTris / it) * 0.95, error: 0.01 }));
     }
