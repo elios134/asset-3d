@@ -1,6 +1,6 @@
 {
   "schemaVersion": 2,
-  "generatedAt": "2026-07-06T20:07:47.580Z",
+  "generatedAt": "2026-07-07T11:11:00.997Z",
   "patchVersion": "sc-4.1",
   "levels": [
     {
@@ -306,7 +306,9 @@
           "tris": 407801,
           "sizeBytes": 10945132,
           "hasInterior": true,
-          "sha256": "cc86478dcddfcff7a265069f4d1bfa97fb7954bdd1a9dbcb7fc20985d151f64b"
+          "sha256": "cc86478dcddfcff7a265069f4d1bfa97fb7954bdd1a9dbcb7fc20985d151f64b",
+          "interiorKind": "habitable",
+          "interiorWalkableM2": 1644
         }
       ]
     },
@@ -339,7 +341,9 @@
           "tris": 1104993,
           "sizeBytes": 20768732,
           "hasInterior": true,
-          "sha256": "ba84724c4190aedd46e6833c5876f5184ea1d91f735ccb9677547b267417877d"
+          "sha256": "ba84724c4190aedd46e6833c5876f5184ea1d91f735ccb9677547b267417877d",
+          "interiorKind": "habitable",
+          "interiorWalkableM2": 6612
         }
       ]
     },
@@ -372,7 +376,9 @@
           "tris": 1064858,
           "sizeBytes": 20051780,
           "hasInterior": true,
-          "sha256": "3b4bf4fe6fca1e473a97ba7173d70d8414d89a1550ff44416d2c75da28ae3aeb"
+          "sha256": "3b4bf4fe6fca1e473a97ba7173d70d8414d89a1550ff44416d2c75da28ae3aeb",
+          "interiorKind": "habitable",
+          "interiorWalkableM2": 5908
         }
       ]
     },
@@ -429,7 +435,9 @@
           "tris": 494425,
           "sizeBytes": 14694600,
           "hasInterior": true,
-          "sha256": "7fc2d77df07bd5f4bd009931cf16485ff985eafdb019b789966de99856f3d442"
+          "sha256": "7fc2d77df07bd5f4bd009931cf16485ff985eafdb019b789966de99856f3d442",
+          "interiorKind": "habitable",
+          "interiorWalkableM2": 2437
         }
       ]
     },
@@ -462,7 +470,9 @@
           "tris": 548313,
           "sizeBytes": 13075276,
           "hasInterior": true,
-          "sha256": "dc2020ff503c84d214f24fdebb66229d9aba4d3bb7a46b41c2a462d03e83683a"
+          "sha256": "dc2020ff503c84d214f24fdebb66229d9aba4d3bb7a46b41c2a462d03e83683a",
+          "interiorKind": "habitable",
+          "interiorWalkableM2": 273
         }
       ]
     },
@@ -495,7 +505,9 @@
           "tris": 296633,
           "sizeBytes": 7210268,
           "hasInterior": true,
-          "sha256": "f224a4d5721430a0804c876529e5c92a030a5bffb045ad200d4bf4364b82eb1c"
+          "sha256": "f224a4d5721430a0804c876529e5c92a030a5bffb045ad200d4bf4364b82eb1c",
+          "interiorKind": "habitable",
+          "interiorWalkableM2": 326
         }
       ]
     },
@@ -693,7 +705,9 @@
           "tris": 747517,
           "sizeBytes": 13849496,
           "hasInterior": true,
-          "sha256": "aa2c33da29e1ac4d6e15c3e271a92cfa99fec3f5dc9c29a1d2d4a23516af302f"
+          "sha256": "aa2c33da29e1ac4d6e15c3e271a92cfa99fec3f5dc9c29a1d2d4a23516af302f",
+          "interiorKind": "habitable",
+          "interiorWalkableM2": 1656
         }
       ]
     },
@@ -726,7 +740,9 @@
           "tris": 260926,
           "sizeBytes": 7779088,
           "hasInterior": true,
-          "sha256": "5d5d8fa92767c64f62e628f07d4f07e63a88d1e0620a34768da5deb6a1e73069"
+          "sha256": "5d5d8fa92767c64f62e628f07d4f07e63a88d1e0620a34768da5deb6a1e73069",
+          "interiorKind": "habitable",
+          "interiorWalkableM2": 138
         }
       ]
     },
@@ -759,7 +775,9 @@
           "tris": 262360,
           "sizeBytes": 7579204,
           "hasInterior": true,
-          "sha256": "67bcece28b630355fff8c6fdb25735525d747568b5c0647ff385f2e1882ab7e3"
+          "sha256": "67bcece28b630355fff8c6fdb25735525d747568b5c0647ff385f2e1882ab7e3",
+          "interiorKind": "habitable",
+          "interiorWalkableM2": 136
         }
       ]
     },
@@ -792,7 +810,9 @@
           "tris": 265163,
           "sizeBytes": 7881136,
           "hasInterior": true,
-          "sha256": "e76b2bb6241032f7959d2812df18857d0fbc750c203809dc7d41b02acb008657"
+          "sha256": "e76b2bb6241032f7959d2812df18857d0fbc750c203809dc7d41b02acb008657",
+          "interiorKind": "habitable",
+          "interiorWalkableM2": 133
         }
       ]
     },
@@ -825,7 +845,9 @@
           "tris": 259040,
           "sizeBytes": 8209776,
           "hasInterior": true,
-          "sha256": "79cda245d70d8802157ed1166f10b964b1262d47d20990dff20000559805382f"
+          "sha256": "79cda245d70d8802157ed1166f10b964b1262d47d20990dff20000559805382f",
+          "interiorKind": "habitable",
+          "interiorWalkableM2": 134
         }
       ]
     },
@@ -891,7 +913,9 @@
           "tris": 522654,
           "sizeBytes": 14826648,
           "hasInterior": true,
-          "sha256": "a331895889a3bc18f8c0fe38f2452c8b2ebe198b55858223b2c96a187cda8401"
+          "sha256": "a331895889a3bc18f8c0fe38f2452c8b2ebe198b55858223b2c96a187cda8401",
+          "interiorKind": "habitable",
+          "interiorWalkableM2": 487
         }
       ]
     },
@@ -924,7 +948,9 @@
           "tris": 169429,
           "sizeBytes": 3393148,
           "hasInterior": true,
-          "sha256": "9e89aa380841b60ef3a67e77a5c5412c99a917a42a51cc5e6211750a65a0ec14"
+          "sha256": "9e89aa380841b60ef3a67e77a5c5412c99a917a42a51cc5e6211750a65a0ec14",
+          "interiorKind": "cockpit",
+          "interiorWalkableM2": 9
         }
       ]
     },
@@ -957,7 +983,9 @@
           "tris": 169429,
           "sizeBytes": 3393160,
           "hasInterior": true,
-          "sha256": "3d05be3bd71935bd933026d715d1ea7e01e652f308269e4ca2b35c324a4596f1"
+          "sha256": "3d05be3bd71935bd933026d715d1ea7e01e652f308269e4ca2b35c324a4596f1",
+          "interiorKind": "cockpit",
+          "interiorWalkableM2": 9
         }
       ]
     },
@@ -990,7 +1018,9 @@
           "tris": 169429,
           "sizeBytes": 3393156,
           "hasInterior": true,
-          "sha256": "27eab10ca92d12f89fd213f9a1e805b8fa1f0d38dc26d3e536c641b412c7a8af"
+          "sha256": "27eab10ca92d12f89fd213f9a1e805b8fa1f0d38dc26d3e536c641b412c7a8af",
+          "interiorKind": "cockpit",
+          "interiorWalkableM2": 9
         }
       ]
     },
@@ -1122,7 +1152,9 @@
           "tris": 434224,
           "sizeBytes": 14811340,
           "hasInterior": true,
-          "sha256": "05710ddf351e3de31b5979c1aac1eb3895aa97b0620c67d33293d2d29716a57f"
+          "sha256": "05710ddf351e3de31b5979c1aac1eb3895aa97b0620c67d33293d2d29716a57f",
+          "interiorKind": "habitable",
+          "interiorWalkableM2": 1900
         }
       ]
     },
@@ -1155,7 +1187,9 @@
           "tris": 434224,
           "sizeBytes": 14810532,
           "hasInterior": true,
-          "sha256": "f33de421bca3d123caeb9a6bd4f1157ceb00b78d1f17c14eab375d6fd927d410"
+          "sha256": "f33de421bca3d123caeb9a6bd4f1157ceb00b78d1f17c14eab375d6fd927d410",
+          "interiorKind": "habitable",
+          "interiorWalkableM2": 1900
         }
       ]
     },
@@ -1188,7 +1222,9 @@
           "tris": 339773,
           "sizeBytes": 6546460,
           "hasInterior": true,
-          "sha256": "97707fe6188812f4057969f098326515d279ff13d2adb28362da0d15acad7b40"
+          "sha256": "97707fe6188812f4057969f098326515d279ff13d2adb28362da0d15acad7b40",
+          "interiorKind": "cockpit",
+          "interiorWalkableM2": 13
         }
       ]
     },
@@ -1221,7 +1257,9 @@
           "tris": 230555,
           "sizeBytes": 4344416,
           "hasInterior": true,
-          "sha256": "a127828bc54bfa3524a6723d888a4181b5b2d4344b816fa1b708cc78885d4a2f"
+          "sha256": "a127828bc54bfa3524a6723d888a4181b5b2d4344b816fa1b708cc78885d4a2f",
+          "interiorKind": "cockpit",
+          "interiorWalkableM2": 14
         }
       ]
     },
@@ -1443,7 +1481,9 @@
           "tris": 230029,
           "sizeBytes": 4400664,
           "hasInterior": true,
-          "sha256": "2d195a7ac16d10ee79ae6f89e132000d1c1f158d142a5dfa85e975a01b1f7044"
+          "sha256": "2d195a7ac16d10ee79ae6f89e132000d1c1f158d142a5dfa85e975a01b1f7044",
+          "interiorKind": "cockpit",
+          "interiorWalkableM2": 9
         }
       ]
     },
@@ -1476,7 +1516,9 @@
           "tris": 202247,
           "sizeBytes": 4402392,
           "hasInterior": true,
-          "sha256": "0980b7a16224a41e08e0f64765e395a3d62898aadcf938ee88d7cf06bcee62ab"
+          "sha256": "0980b7a16224a41e08e0f64765e395a3d62898aadcf938ee88d7cf06bcee62ab",
+          "interiorKind": "cockpit",
+          "interiorWalkableM2": 11
         }
       ]
     },
@@ -1509,7 +1551,9 @@
           "tris": 308827,
           "sizeBytes": 6258200,
           "hasInterior": true,
-          "sha256": "152f3ca59e0b6ebf1eca42186a587bb9161ad2f78d203104672e1449ff2da2cb"
+          "sha256": "152f3ca59e0b6ebf1eca42186a587bb9161ad2f78d203104672e1449ff2da2cb",
+          "interiorKind": "cockpit",
+          "interiorWalkableM2": 14
         }
       ]
     },
@@ -1542,7 +1586,9 @@
           "tris": 282947,
           "sizeBytes": 6278620,
           "hasInterior": true,
-          "sha256": "30b5853b9c048f7a5f1a150d60fc55a8ddb3a35bbf4a07f2c486bc3b83581216"
+          "sha256": "30b5853b9c048f7a5f1a150d60fc55a8ddb3a35bbf4a07f2c486bc3b83581216",
+          "interiorKind": "cockpit",
+          "interiorWalkableM2": 14
         }
       ]
     },
@@ -1854,7 +1900,9 @@
           "tris": 473286,
           "sizeBytes": 10671372,
           "hasInterior": true,
-          "sha256": "6b3d7dcd100273a17a1fc4267e5f7d6e1d020e36582c176f912eb18ba13bae83"
+          "sha256": "6b3d7dcd100273a17a1fc4267e5f7d6e1d020e36582c176f912eb18ba13bae83",
+          "interiorKind": "cockpit",
+          "interiorWalkableM2": 37
         }
       ]
     },
@@ -1920,7 +1968,9 @@
           "tris": 378296,
           "sizeBytes": 10125664,
           "hasInterior": true,
-          "sha256": "b4a2baa0e5161ffd92694ec77a8cd3a8097bd70db6edb1a9ab20dc02a8c8b496"
+          "sha256": "b4a2baa0e5161ffd92694ec77a8cd3a8097bd70db6edb1a9ab20dc02a8c8b496",
+          "interiorKind": "habitable",
+          "interiorWalkableM2": 402
         }
       ]
     },
@@ -2250,7 +2300,9 @@
           "tris": 536176,
           "sizeBytes": 11793116,
           "hasInterior": true,
-          "sha256": "a8aceaeefef42361cf7ea82f06b89a9e342a6cb03096a723498290cd98e6f426"
+          "sha256": "a8aceaeefef42361cf7ea82f06b89a9e342a6cb03096a723498290cd98e6f426",
+          "interiorKind": "habitable",
+          "interiorWalkableM2": 401
         }
       ]
     },
@@ -2406,7 +2458,9 @@
           "tris": 442360,
           "sizeBytes": 12549836,
           "hasInterior": true,
-          "sha256": "2b7a4e75ac15118526a95756dadea7d64b27cf120a73a356e677aa2a5aa409ba"
+          "sha256": "2b7a4e75ac15118526a95756dadea7d64b27cf120a73a356e677aa2a5aa409ba",
+          "interiorKind": "habitable",
+          "interiorWalkableM2": 280
         }
       ]
     },
@@ -2472,7 +2526,9 @@
           "tris": 410489,
           "sizeBytes": 8428584,
           "hasInterior": true,
-          "sha256": "a4a2440a514778e4afb6cf42778d2b7ca447d8c113c62befb32a5369aef18d3c"
+          "sha256": "a4a2440a514778e4afb6cf42778d2b7ca447d8c113c62befb32a5369aef18d3c",
+          "interiorKind": "cockpit",
+          "interiorWalkableM2": 65
         }
       ]
     },
@@ -2802,7 +2858,9 @@
           "tris": 460589,
           "sizeBytes": 11402944,
           "hasInterior": true,
-          "sha256": "6b53afe07c8cb932b2647df188ee32a7edb7401791e0d8ba358b6cd82406c708"
+          "sha256": "6b53afe07c8cb932b2647df188ee32a7edb7401791e0d8ba358b6cd82406c708",
+          "interiorKind": "habitable",
+          "interiorWalkableM2": 247
         }
       ]
     },
@@ -2835,7 +2893,9 @@
           "tris": 386791,
           "sizeBytes": 10874280,
           "hasInterior": true,
-          "sha256": "497348ab9559fafdc8911416fed015e310fb3826ac7baf726c38ba8bf45a5ddb"
+          "sha256": "497348ab9559fafdc8911416fed015e310fb3826ac7baf726c38ba8bf45a5ddb",
+          "interiorKind": "habitable",
+          "interiorWalkableM2": 261
         }
       ]
     },
@@ -2868,7 +2928,9 @@
           "tris": 588188,
           "sizeBytes": 14420400,
           "hasInterior": true,
-          "sha256": "2d4e9743c8efb92db9993b61798d617eb5f49de6abbc810f2a506275662605bc"
+          "sha256": "2d4e9743c8efb92db9993b61798d617eb5f49de6abbc810f2a506275662605bc",
+          "interiorKind": "habitable",
+          "interiorWalkableM2": 758
         }
       ]
     },
@@ -2967,7 +3029,9 @@
           "tris": 326386,
           "sizeBytes": 10719424,
           "hasInterior": true,
-          "sha256": "ffb8e3891a045be60bc22455f1862301429d163c20bb6fa2d45c81cd5d888421"
+          "sha256": "ffb8e3891a045be60bc22455f1862301429d163c20bb6fa2d45c81cd5d888421",
+          "interiorKind": "habitable",
+          "interiorWalkableM2": 1183
         }
       ]
     },
@@ -3000,7 +3064,9 @@
           "tris": 281497,
           "sizeBytes": 10384056,
           "hasInterior": true,
-          "sha256": "0534c511ff419d35ff76ba782740dff4ee43777075e762b001fde297f7344aa6"
+          "sha256": "0534c511ff419d35ff76ba782740dff4ee43777075e762b001fde297f7344aa6",
+          "interiorKind": "habitable",
+          "interiorWalkableM2": 1127
         }
       ]
     },
@@ -3033,7 +3099,9 @@
           "tris": 299429,
           "sizeBytes": 10963212,
           "hasInterior": true,
-          "sha256": "8cfaf7e1e4f48cbffeb54d0ccc0d40d86a526c32c1e03d7cea5264c11c9b24d7"
+          "sha256": "8cfaf7e1e4f48cbffeb54d0ccc0d40d86a526c32c1e03d7cea5264c11c9b24d7",
+          "interiorKind": "habitable",
+          "interiorWalkableM2": 1164
         }
       ]
     },
@@ -3099,7 +3167,9 @@
           "tris": 702216,
           "sizeBytes": 19566580,
           "hasInterior": true,
-          "sha256": "8b369a94bc542d56693f4520a85c7b09ccf02f2c54bcdaf7258c2f0a30a69193"
+          "sha256": "8b369a94bc542d56693f4520a85c7b09ccf02f2c54bcdaf7258c2f0a30a69193",
+          "interiorKind": "habitable",
+          "interiorWalkableM2": 863
         }
       ]
     },
@@ -3132,7 +3202,9 @@
           "tris": 750111,
           "sizeBytes": 20525752,
           "hasInterior": true,
-          "sha256": "1cd5fd3d280d0d820de3060d2da47ee9c608b86e1718e6543eb10e0ddc46c11c"
+          "sha256": "1cd5fd3d280d0d820de3060d2da47ee9c608b86e1718e6543eb10e0ddc46c11c",
+          "interiorKind": "habitable",
+          "interiorWalkableM2": 877
         }
       ]
     },
@@ -3198,7 +3270,9 @@
           "tris": 1083092,
           "sizeBytes": 18697020,
           "hasInterior": true,
-          "sha256": "6b1026a5fca7d0d1f4a68344695f9fbd4543dae8c63ae986f63a667699ace13b"
+          "sha256": "6b1026a5fca7d0d1f4a68344695f9fbd4543dae8c63ae986f63a667699ace13b",
+          "interiorKind": "cockpit",
+          "interiorWalkableM2": 82
         }
       ]
     },
@@ -3231,7 +3305,9 @@
           "tris": 755384,
           "sizeBytes": 15867100,
           "hasInterior": true,
-          "sha256": "c60c76d6eef2f660cc3e2f262ecb18396156b854819664dde627e894fdce5f3f"
+          "sha256": "c60c76d6eef2f660cc3e2f262ecb18396156b854819664dde627e894fdce5f3f",
+          "interiorKind": "habitable",
+          "interiorWalkableM2": 457
         }
       ]
     },
@@ -3264,7 +3340,9 @@
           "tris": 642743,
           "sizeBytes": 11568500,
           "hasInterior": true,
-          "sha256": "d39582ea5f29d32f954034a67289a809aef8d5e7513003cead1f1e6a3a7d73cf"
+          "sha256": "d39582ea5f29d32f954034a67289a809aef8d5e7513003cead1f1e6a3a7d73cf",
+          "interiorKind": "habitable",
+          "interiorWalkableM2": 198
         }
       ]
     },
@@ -3297,7 +3375,9 @@
           "tris": 357164,
           "sizeBytes": 9312896,
           "hasInterior": true,
-          "sha256": "71da4c5f4c0d66b4ea5e96dff1e9ebf0f1d2257c795c104276886986a323703d"
+          "sha256": "71da4c5f4c0d66b4ea5e96dff1e9ebf0f1d2257c795c104276886986a323703d",
+          "interiorKind": "habitable",
+          "interiorWalkableM2": 166
         }
       ]
     },
@@ -3330,7 +3410,9 @@
           "tris": 311796,
           "sizeBytes": 8076988,
           "hasInterior": true,
-          "sha256": "53466f87ffcbfb28f6d4cf798c5de5aaec4d7c3abe27eb6024b37d1612cd2972"
+          "sha256": "53466f87ffcbfb28f6d4cf798c5de5aaec4d7c3abe27eb6024b37d1612cd2972",
+          "interiorKind": "habitable",
+          "interiorWalkableM2": 163
         }
       ]
     },
@@ -3363,7 +3445,9 @@
           "tris": 336950,
           "sizeBytes": 8168424,
           "hasInterior": true,
-          "sha256": "fd63ebdb471d5e7ab820cdb257685dd6520a871059b553b25fe7602fd14c9e20"
+          "sha256": "fd63ebdb471d5e7ab820cdb257685dd6520a871059b553b25fe7602fd14c9e20",
+          "interiorKind": "habitable",
+          "interiorWalkableM2": 220
         }
       ]
     },
@@ -3462,7 +3546,9 @@
           "tris": 645819,
           "sizeBytes": 8982016,
           "hasInterior": true,
-          "sha256": "ad936ba45c7a616cc83839b8e43f640a9fdcdf359be7211cf4f5ba2beb78c3bb"
+          "sha256": "ad936ba45c7a616cc83839b8e43f640a9fdcdf359be7211cf4f5ba2beb78c3bb",
+          "interiorKind": "cockpit",
+          "interiorWalkableM2": 35
         }
       ]
     },
@@ -3495,7 +3581,9 @@
           "tris": 139867,
           "sizeBytes": 2592744,
           "hasInterior": true,
-          "sha256": "1d40bd97c475cbfdc78f85f7a5a626ce89883aca6e84aaba0f7ad05c10795625"
+          "sha256": "1d40bd97c475cbfdc78f85f7a5a626ce89883aca6e84aaba0f7ad05c10795625",
+          "interiorKind": "cockpit",
+          "interiorWalkableM2": 0
         }
       ]
     },
@@ -3528,7 +3616,9 @@
           "tris": 138068,
           "sizeBytes": 2585176,
           "hasInterior": true,
-          "sha256": "de40e285ff7c09559d35c576b405e67ef2835648e6df9949789820b032a443e0"
+          "sha256": "de40e285ff7c09559d35c576b405e67ef2835648e6df9949789820b032a443e0",
+          "interiorKind": "cockpit",
+          "interiorWalkableM2": 0
         }
       ]
     },
@@ -3561,7 +3651,9 @@
           "tris": 139867,
           "sizeBytes": 2609684,
           "hasInterior": true,
-          "sha256": "84ef9b50e43925ae7def41724b770d8a2f43d81fe74a98a2c1fb244e934c5102"
+          "sha256": "84ef9b50e43925ae7def41724b770d8a2f43d81fe74a98a2c1fb244e934c5102",
+          "interiorKind": "cockpit",
+          "interiorWalkableM2": 0
         }
       ]
     },
@@ -3660,7 +3752,9 @@
           "tris": 315330,
           "sizeBytes": 6826428,
           "hasInterior": true,
-          "sha256": "622f3d4f0e4199ddb99805bfaa6a951e56aa8e1c96331a9b69c5622ae61d3e90"
+          "sha256": "622f3d4f0e4199ddb99805bfaa6a951e56aa8e1c96331a9b69c5622ae61d3e90",
+          "interiorKind": "cockpit",
+          "interiorWalkableM2": 42
         }
       ]
     },
@@ -3693,7 +3787,9 @@
           "tris": 1224190,
           "sizeBytes": 33910600,
           "hasInterior": true,
-          "sha256": "f23cda7fde6cd7e527993a9c7aaeb530e0fc7c7a94e26180c098e3c68ff74acd"
+          "sha256": "f23cda7fde6cd7e527993a9c7aaeb530e0fc7c7a94e26180c098e3c68ff74acd",
+          "interiorKind": "habitable",
+          "interiorWalkableM2": 2279
         }
       ]
     },
@@ -3726,7 +3822,9 @@
           "tris": 1297299,
           "sizeBytes": 34664400,
           "hasInterior": true,
-          "sha256": "9b71aec2013748d6e19bcce18e723f44dd81727d50d7930e3687107e751a2369"
+          "sha256": "9b71aec2013748d6e19bcce18e723f44dd81727d50d7930e3687107e751a2369",
+          "interiorKind": "habitable",
+          "interiorWalkableM2": 2271
         }
       ]
     },
@@ -3858,7 +3956,9 @@
           "tris": 278012,
           "sizeBytes": 10332040,
           "hasInterior": true,
-          "sha256": "7415302d5aa65046efc78a038596976f9e49f6d9eefa45a4daed24093682037f"
+          "sha256": "7415302d5aa65046efc78a038596976f9e49f6d9eefa45a4daed24093682037f",
+          "interiorKind": "cockpit",
+          "interiorWalkableM2": 68
         }
       ]
     },
@@ -3891,7 +3991,9 @@
           "tris": 347589,
           "sizeBytes": 15211020,
           "hasInterior": true,
-          "sha256": "4000147b5c018a1a438b7fbc5148361c24157f1076bf2beb7d54f751e9e3075a"
+          "sha256": "4000147b5c018a1a438b7fbc5148361c24157f1076bf2beb7d54f751e9e3075a",
+          "interiorKind": "cockpit",
+          "interiorWalkableM2": 80
         }
       ]
     },
@@ -3990,7 +4092,9 @@
           "tris": 744926,
           "sizeBytes": 15910460,
           "hasInterior": true,
-          "sha256": "b393c3d98e7588cacfda23ef15e31766e0e110b1e8f3c989a6f24f97fb88d726"
+          "sha256": "b393c3d98e7588cacfda23ef15e31766e0e110b1e8f3c989a6f24f97fb88d726",
+          "interiorKind": "habitable",
+          "interiorWalkableM2": 898
         }
       ]
     },
@@ -4047,7 +4151,9 @@
           "tris": 833668,
           "sizeBytes": 17886512,
           "hasInterior": true,
-          "sha256": "2948479023a93a9a2fd35a13b9d4913368ec669ff5da9a741f6611aa80996d89"
+          "sha256": "2948479023a93a9a2fd35a13b9d4913368ec669ff5da9a741f6611aa80996d89",
+          "interiorKind": "habitable",
+          "interiorWalkableM2": 1106
         }
       ]
     },
@@ -4080,7 +4186,9 @@
           "tris": 391350,
           "sizeBytes": 11731780,
           "hasInterior": true,
-          "sha256": "ce96c795193e73da2ae4174ea8d340de972a36139b560a3fd40dd5c4437999a4"
+          "sha256": "ce96c795193e73da2ae4174ea8d340de972a36139b560a3fd40dd5c4437999a4",
+          "interiorKind": "habitable",
+          "interiorWalkableM2": 161
         }
       ]
     },
@@ -4146,7 +4254,9 @@
           "tris": 240703,
           "sizeBytes": 6209268,
           "hasInterior": true,
-          "sha256": "5bc8640565a4b7aae5d522b2d2143e380020ee8f6772911850266c940aaef964"
+          "sha256": "5bc8640565a4b7aae5d522b2d2143e380020ee8f6772911850266c940aaef964",
+          "interiorKind": "cockpit",
+          "interiorWalkableM2": 4
         }
       ]
     },
@@ -4179,7 +4289,9 @@
           "tris": 25174,
           "sizeBytes": 423580,
           "hasInterior": true,
-          "sha256": "012fef8d7b5778b6e9be1bf9647bf775fb6673340c54e86100b7f8d328a335c6"
+          "sha256": "012fef8d7b5778b6e9be1bf9647bf775fb6673340c54e86100b7f8d328a335c6",
+          "interiorKind": "cockpit",
+          "interiorWalkableM2": 0
         }
       ]
     },
@@ -4278,7 +4390,9 @@
           "tris": 129849,
           "sizeBytes": 3406572,
           "hasInterior": true,
-          "sha256": "e6d5159f7f5212a9c57a32d90e99ef12209eaf51a6569b9acdf4f1fbdf994d38"
+          "sha256": "e6d5159f7f5212a9c57a32d90e99ef12209eaf51a6569b9acdf4f1fbdf994d38",
+          "interiorKind": "cockpit",
+          "interiorWalkableM2": 0
         }
       ]
     },
@@ -4311,7 +4425,9 @@
           "tris": 274663,
           "sizeBytes": 4479600,
           "hasInterior": true,
-          "sha256": "94743f11171d72a227a9e7ba9899d08f17f3f876b9ed11bca46615eab420da0d"
+          "sha256": "94743f11171d72a227a9e7ba9899d08f17f3f876b9ed11bca46615eab420da0d",
+          "interiorKind": "cockpit",
+          "interiorWalkableM2": 0
         }
       ]
     },
@@ -4542,7 +4658,9 @@
           "tris": 275211,
           "sizeBytes": 7019144,
           "hasInterior": true,
-          "sha256": "c9c57b488bf1279b5eb5e02a6ee4826199cdce116734df31d26ef9765e8c206f"
+          "sha256": "c9c57b488bf1279b5eb5e02a6ee4826199cdce116734df31d26ef9765e8c206f",
+          "interiorKind": "habitable",
+          "interiorWalkableM2": 120
         }
       ]
     },
@@ -4575,7 +4693,9 @@
           "tris": 247840,
           "sizeBytes": 5166932,
           "hasInterior": true,
-          "sha256": "9cf27271c1981b1e6137b61beec36bca06a170b2f8b62b05912bb8cf1c1b4863"
+          "sha256": "9cf27271c1981b1e6137b61beec36bca06a170b2f8b62b05912bb8cf1c1b4863",
+          "interiorKind": "habitable",
+          "interiorWalkableM2": 151
         }
       ]
     },
@@ -4608,7 +4728,9 @@
           "tris": 255789,
           "sizeBytes": 4839840,
           "hasInterior": true,
-          "sha256": "17df78eb6736795fc50239038d8dd171b0a46f32f3168eb80946919b2355dc03"
+          "sha256": "17df78eb6736795fc50239038d8dd171b0a46f32f3168eb80946919b2355dc03",
+          "interiorKind": "habitable",
+          "interiorWalkableM2": 179
         }
       ]
     },
@@ -4641,7 +4763,9 @@
           "tris": 296069,
           "sizeBytes": 5367176,
           "hasInterior": true,
-          "sha256": "f0925ff494e04e0a20c60bd0ad1c70d2a22f803d2e9cfa6f3fffc65509f598e6"
+          "sha256": "f0925ff494e04e0a20c60bd0ad1c70d2a22f803d2e9cfa6f3fffc65509f598e6",
+          "interiorKind": "habitable",
+          "interiorWalkableM2": 113
         }
       ]
     },
@@ -4806,7 +4930,9 @@
           "tris": 404253,
           "sizeBytes": 13480760,
           "hasInterior": true,
-          "sha256": "fcfbbae7dadef070fd1827e5c666a94d59c9f1ceb9d4595e935cd164ce32610c"
+          "sha256": "fcfbbae7dadef070fd1827e5c666a94d59c9f1ceb9d4595e935cd164ce32610c",
+          "interiorKind": "habitable",
+          "interiorWalkableM2": 266
         }
       ]
     },
@@ -4839,7 +4965,9 @@
           "tris": 233890,
           "sizeBytes": 7843192,
           "hasInterior": true,
-          "sha256": "88a2510930867b07a93908a9c29a42c356a31910bcc30ce95d2c9bb2ce1de31d"
+          "sha256": "88a2510930867b07a93908a9c29a42c356a31910bcc30ce95d2c9bb2ce1de31d",
+          "interiorKind": "habitable",
+          "interiorWalkableM2": 895
         }
       ]
     },
@@ -5004,7 +5132,9 @@
           "tris": 295190,
           "sizeBytes": 6451596,
           "hasInterior": true,
-          "sha256": "1ab5cd72b426f83276412f96215e90462a02f0cb266cbafb751efec75be4c5a2"
+          "sha256": "1ab5cd72b426f83276412f96215e90462a02f0cb266cbafb751efec75be4c5a2",
+          "interiorKind": "cockpit",
+          "interiorWalkableM2": 16
         }
       ]
     },
@@ -5037,7 +5167,9 @@
           "tris": 283573,
           "sizeBytes": 6508228,
           "hasInterior": true,
-          "sha256": "92f6e6a0f00b27f36d9b66354f216f34e4e733f6beebd344f67affa159ffea59"
+          "sha256": "92f6e6a0f00b27f36d9b66354f216f34e4e733f6beebd344f67affa159ffea59",
+          "interiorKind": "cockpit",
+          "interiorWalkableM2": 7
         }
       ]
     },
@@ -5070,7 +5202,9 @@
           "tris": 295442,
           "sizeBytes": 6821124,
           "hasInterior": true,
-          "sha256": "5a19310cb0664a1e25051192fcd34a38d19b5c37efcc62cbd87d264a0b2e8108"
+          "sha256": "5a19310cb0664a1e25051192fcd34a38d19b5c37efcc62cbd87d264a0b2e8108",
+          "interiorKind": "cockpit",
+          "interiorWalkableM2": 7
         }
       ]
     },
@@ -5103,7 +5237,9 @@
           "tris": 305015,
           "sizeBytes": 6606548,
           "hasInterior": true,
-          "sha256": "41990ea3edfce2c1994d72c8886f0ea23ceaf52aca7cd4ce7905367f5ab05e01"
+          "sha256": "41990ea3edfce2c1994d72c8886f0ea23ceaf52aca7cd4ce7905367f5ab05e01",
+          "interiorKind": "cockpit",
+          "interiorWalkableM2": 8
         }
       ]
     },
@@ -5136,7 +5272,9 @@
           "tris": 442573,
           "sizeBytes": 8521392,
           "hasInterior": true,
-          "sha256": "10423a68b2ded66891dac979fc8112cabf3f38db8af21e076c497548279a26b9"
+          "sha256": "10423a68b2ded66891dac979fc8112cabf3f38db8af21e076c497548279a26b9",
+          "interiorKind": "habitable",
+          "interiorWalkableM2": 1436
         }
       ]
     },
@@ -5169,7 +5307,9 @@
           "tris": 445737,
           "sizeBytes": 8522824,
           "hasInterior": true,
-          "sha256": "d21232010c5bd51bef52102fda46f6567dfb41a22bdf2012b95f0ade1ef9a84e"
+          "sha256": "d21232010c5bd51bef52102fda46f6567dfb41a22bdf2012b95f0ade1ef9a84e",
+          "interiorKind": "habitable",
+          "interiorWalkableM2": 1430
         }
       ]
     },
@@ -5202,7 +5342,9 @@
           "tris": 587108,
           "sizeBytes": 17936056,
           "hasInterior": true,
-          "sha256": "d166fe44bdf084d03836b39b990fe209d021e0d2b1d899f086b5a566b097ac41"
+          "sha256": "d166fe44bdf084d03836b39b990fe209d021e0d2b1d899f086b5a566b097ac41",
+          "interiorKind": "habitable",
+          "interiorWalkableM2": 1211
         }
       ]
     },
@@ -5235,7 +5377,9 @@
           "tris": 695618,
           "sizeBytes": 20919020,
           "hasInterior": true,
-          "sha256": "4015505638e0dad5d1e4be3d837bb5576a18a436406144bbd24077bb8c48e864"
+          "sha256": "4015505638e0dad5d1e4be3d837bb5576a18a436406144bbd24077bb8c48e864",
+          "interiorKind": "habitable",
+          "interiorWalkableM2": 1224
         }
       ]
     },
@@ -5565,7 +5709,9 @@
           "tris": 163118,
           "sizeBytes": 3557000,
           "hasInterior": true,
-          "sha256": "ebc2ca006d837c6074f499b84e9af795b8289a98c3d54372eab6d9a647cf1ae3"
+          "sha256": "ebc2ca006d837c6074f499b84e9af795b8289a98c3d54372eab6d9a647cf1ae3",
+          "interiorKind": "cockpit",
+          "interiorWalkableM2": 38
         }
       ]
     },
@@ -5598,7 +5744,9 @@
           "tris": 179806,
           "sizeBytes": 4037532,
           "hasInterior": true,
-          "sha256": "62c676964423edf91fbeb52078c7bf031521c64dc85c82ba0b4a0327f49d9276"
+          "sha256": "62c676964423edf91fbeb52078c7bf031521c64dc85c82ba0b4a0327f49d9276",
+          "interiorKind": "cockpit",
+          "interiorWalkableM2": 38
         }
       ]
     },
@@ -5631,7 +5779,9 @@
           "tris": 176906,
           "sizeBytes": 2915528,
           "hasInterior": true,
-          "sha256": "93ddac64251c745a5dc09c3b5a45c29f5e7f138485e037dde497057db46071fa"
+          "sha256": "93ddac64251c745a5dc09c3b5a45c29f5e7f138485e037dde497057db46071fa",
+          "interiorKind": "cockpit",
+          "interiorWalkableM2": 36
         }
       ]
     },
@@ -5664,7 +5814,9 @@
           "tris": 177043,
           "sizeBytes": 2533748,
           "hasInterior": true,
-          "sha256": "f667ae54fbc82e10fa9f20af6b35409d7dd85d40abdbc68ded871f8bf2b1060c"
+          "sha256": "f667ae54fbc82e10fa9f20af6b35409d7dd85d40abdbc68ded871f8bf2b1060c",
+          "interiorKind": "cockpit",
+          "interiorWalkableM2": 40
         }
       ]
     },
@@ -5697,7 +5849,9 @@
           "tris": 330456,
           "sizeBytes": 9596440,
           "hasInterior": true,
-          "sha256": "e91006111e68dcc735e8e408f1162f3927c74d2b77ee337508cca4ce96b2bfb5"
+          "sha256": "e91006111e68dcc735e8e408f1162f3927c74d2b77ee337508cca4ce96b2bfb5",
+          "interiorKind": "habitable",
+          "interiorWalkableM2": 330
         }
       ]
     },
@@ -5730,7 +5884,9 @@
           "tris": 330466,
           "sizeBytes": 9688392,
           "hasInterior": true,
-          "sha256": "74155683d661f63981abec69c8a9ec99c2ac6d88e0072b127a72585a91f09ad5"
+          "sha256": "74155683d661f63981abec69c8a9ec99c2ac6d88e0072b127a72585a91f09ad5",
+          "interiorKind": "habitable",
+          "interiorWalkableM2": 1404
         }
       ]
     },
@@ -5763,7 +5919,9 @@
           "tris": 295471,
           "sizeBytes": 8800004,
           "hasInterior": true,
-          "sha256": "d318890495922964a6fffe73c12d2ed4ecf930688a50d940338fbce4ce4c20d6"
+          "sha256": "d318890495922964a6fffe73c12d2ed4ecf930688a50d940338fbce4ce4c20d6",
+          "interiorKind": "habitable",
+          "interiorWalkableM2": 1302
         }
       ]
     },
@@ -5796,7 +5954,9 @@
           "tris": 191784,
           "sizeBytes": 3066596,
           "hasInterior": true,
-          "sha256": "9bab857decad577078aaec4029a491d6a8adf8c29bbbed576fb2a87a74508c17"
+          "sha256": "9bab857decad577078aaec4029a491d6a8adf8c29bbbed576fb2a87a74508c17",
+          "interiorKind": "cockpit",
+          "interiorWalkableM2": 1
         }
       ]
     },
@@ -5829,7 +5989,9 @@
           "tris": 356496,
           "sizeBytes": 13025832,
           "hasInterior": true,
-          "sha256": "49f4841c48125415e9de967fda7482a96e7e6ed840b8d862ad8cf10b462af560"
+          "sha256": "49f4841c48125415e9de967fda7482a96e7e6ed840b8d862ad8cf10b462af560",
+          "interiorKind": "habitable",
+          "interiorWalkableM2": 2675
         }
       ]
     },
@@ -6027,7 +6189,9 @@
           "tris": 264030,
           "sizeBytes": 12784772,
           "hasInterior": true,
-          "sha256": "cb4c4fba6552285c64349912db7675ea210bf9f12fa241ea0e6ee331ffc04835"
+          "sha256": "cb4c4fba6552285c64349912db7675ea210bf9f12fa241ea0e6ee331ffc04835",
+          "interiorKind": "habitable",
+          "interiorWalkableM2": 831
         }
       ]
     },
@@ -6060,7 +6224,9 @@
           "tris": 269912,
           "sizeBytes": 12808916,
           "hasInterior": true,
-          "sha256": "879c25049716b10eae79bf65a8dbe865e027d4649363f5340d142083e0fe7dfa"
+          "sha256": "879c25049716b10eae79bf65a8dbe865e027d4649363f5340d142083e0fe7dfa",
+          "interiorKind": "habitable",
+          "interiorWalkableM2": 831
         }
       ]
     },
@@ -6324,7 +6490,9 @@
           "tris": 473594,
           "sizeBytes": 10848776,
           "hasInterior": true,
-          "sha256": "d6fd68991ed622d85bdafd2ab3f48f67b222365760c4fbc6a848f5020dec1591"
+          "sha256": "d6fd68991ed622d85bdafd2ab3f48f67b222365760c4fbc6a848f5020dec1591",
+          "interiorKind": "habitable",
+          "interiorWalkableM2": 491
         }
       ]
     },
@@ -6357,7 +6525,9 @@
           "tris": 451398,
           "sizeBytes": 11178728,
           "hasInterior": true,
-          "sha256": "6c55191bd85dad12a9bfcfb06d737e312c21d4ace9602a248529b7348d0b0667"
+          "sha256": "6c55191bd85dad12a9bfcfb06d737e312c21d4ace9602a248529b7348d0b0667",
+          "interiorKind": "habitable",
+          "interiorWalkableM2": 491
         }
       ]
     },
@@ -6390,7 +6560,9 @@
           "tris": 470554,
           "sizeBytes": 8174352,
           "hasInterior": true,
-          "sha256": "6bafb19520404305321390a5b4ef0209c784317fde46424ecf2e8409893f33c3"
+          "sha256": "6bafb19520404305321390a5b4ef0209c784317fde46424ecf2e8409893f33c3",
+          "interiorKind": "habitable",
+          "interiorWalkableM2": 522
         }
       ]
     },
@@ -6423,7 +6595,9 @@
           "tris": 470554,
           "sizeBytes": 8240772,
           "hasInterior": true,
-          "sha256": "7bb9dde1cc38bed1bfd721bca2035035126fb829c37f5c3aa1702aec166307a2"
+          "sha256": "7bb9dde1cc38bed1bfd721bca2035035126fb829c37f5c3aa1702aec166307a2",
+          "interiorKind": "habitable",
+          "interiorWalkableM2": 522
         }
       ]
     },
@@ -6456,7 +6630,9 @@
           "tris": 130261,
           "sizeBytes": 4762140,
           "hasInterior": true,
-          "sha256": "9d58cde4f75433b8c8909415a7d57720bc28de53df324b45979b18fda9049aa3"
+          "sha256": "9d58cde4f75433b8c8909415a7d57720bc28de53df324b45979b18fda9049aa3",
+          "interiorKind": "habitable",
+          "interiorWalkableM2": 390
         }
       ]
     },
@@ -6489,7 +6665,9 @@
           "tris": 274642,
           "sizeBytes": 11865780,
           "hasInterior": true,
-          "sha256": "4d7950df53b8ed7d51616bae8e47e718f7baec7aa10a52b1de6b95508a11fb28"
+          "sha256": "4d7950df53b8ed7d51616bae8e47e718f7baec7aa10a52b1de6b95508a11fb28",
+          "interiorKind": "habitable",
+          "interiorWalkableM2": 871
         }
       ]
     },
@@ -6522,7 +6700,9 @@
           "tris": 226613,
           "sizeBytes": 4657792,
           "hasInterior": true,
-          "sha256": "5d24d750acff3e5a3b3450d9b2f34625925223590bc8ea6233013e3c4fa62631"
+          "sha256": "5d24d750acff3e5a3b3450d9b2f34625925223590bc8ea6233013e3c4fa62631",
+          "interiorKind": "cockpit",
+          "interiorWalkableM2": 3
         }
       ]
     },
@@ -6621,7 +6801,9 @@
           "tris": 888337,
           "sizeBytes": 32625288,
           "hasInterior": true,
-          "sha256": "56ccf62946b3839896b3103940ec5680da6fdb4653d44dcb5f1c6e256e991d53"
+          "sha256": "56ccf62946b3839896b3103940ec5680da6fdb4653d44dcb5f1c6e256e991d53",
+          "interiorKind": "habitable",
+          "interiorWalkableM2": 1638
         }
       ]
     },
@@ -6654,7 +6836,9 @@
           "tris": 982798,
           "sizeBytes": 33604968,
           "hasInterior": true,
-          "sha256": "8b99c04786d3416d4c140c7981eb98d481c9986ef8da043c02af850e788a40bc"
+          "sha256": "8b99c04786d3416d4c140c7981eb98d481c9986ef8da043c02af850e788a40bc",
+          "interiorKind": "habitable",
+          "interiorWalkableM2": 4343
         }
       ]
     },
@@ -6720,7 +6904,9 @@
           "tris": 239483,
           "sizeBytes": 6626916,
           "hasInterior": true,
-          "sha256": "81d4e7f7c8915499270faadec5bbf1c21e06af206403349a15a8f3354badd56d"
+          "sha256": "81d4e7f7c8915499270faadec5bbf1c21e06af206403349a15a8f3354badd56d",
+          "interiorKind": "cockpit",
+          "interiorWalkableM2": 63
         }
       ]
     },
@@ -6753,7 +6939,9 @@
           "tris": 216051,
           "sizeBytes": 6764548,
           "hasInterior": true,
-          "sha256": "bb3c60aadeebbc0c3d82fd461f56b9626a9d8d46891c40402000dfde1c3af655"
+          "sha256": "bb3c60aadeebbc0c3d82fd461f56b9626a9d8d46891c40402000dfde1c3af655",
+          "interiorKind": "cockpit",
+          "interiorWalkableM2": 63
         }
       ]
     },
@@ -6786,7 +6974,9 @@
           "tris": 223595,
           "sizeBytes": 4925032,
           "hasInterior": true,
-          "sha256": "574f111c4244f56f2ec6fae29b1b82ec370a48423c6af6308539fe67fe5fd41c"
+          "sha256": "574f111c4244f56f2ec6fae29b1b82ec370a48423c6af6308539fe67fe5fd41c",
+          "interiorKind": "cockpit",
+          "interiorWalkableM2": 3
         }
       ]
     },
@@ -6819,7 +7009,9 @@
           "tris": 147949,
           "sizeBytes": 2537184,
           "hasInterior": true,
-          "sha256": "33b499f5387094866ffd8980fe4465e420c67b5e37a6660c5a4ab16ff8d386ef"
+          "sha256": "33b499f5387094866ffd8980fe4465e420c67b5e37a6660c5a4ab16ff8d386ef",
+          "interiorKind": "cockpit",
+          "interiorWalkableM2": 3
         }
       ]
     },
@@ -6852,7 +7044,9 @@
           "tris": 145647,
           "sizeBytes": 2629188,
           "hasInterior": true,
-          "sha256": "a072f9900ffa8b9b2605e757f601a1883f5ff7a47280af8f02f0439522dfddb8"
+          "sha256": "a072f9900ffa8b9b2605e757f601a1883f5ff7a47280af8f02f0439522dfddb8",
+          "interiorKind": "cockpit",
+          "interiorWalkableM2": 3
         }
       ]
     },
@@ -6885,7 +7079,9 @@
           "tris": 464871,
           "sizeBytes": 13367948,
           "hasInterior": true,
-          "sha256": "c8743a89a379a1d7f9629b4f44df573f19573c1b3b8340c9b4c288336f3336b6"
+          "sha256": "c8743a89a379a1d7f9629b4f44df573f19573c1b3b8340c9b4c288336f3336b6",
+          "interiorKind": "habitable",
+          "interiorWalkableM2": 201
         }
       ]
     },
@@ -6918,7 +7114,9 @@
           "tris": 445760,
           "sizeBytes": 13246260,
           "hasInterior": true,
-          "sha256": "5ed2eb3ef6a6222c12c058ba4a7897d6a5d1001efaed454ef6d234ae225e6a73"
+          "sha256": "5ed2eb3ef6a6222c12c058ba4a7897d6a5d1001efaed454ef6d234ae225e6a73",
+          "interiorKind": "habitable",
+          "interiorWalkableM2": 198
         }
       ]
     },
@@ -6951,7 +7149,9 @@
           "tris": 118116,
           "sizeBytes": 2851968,
           "hasInterior": true,
-          "sha256": "852b570f816a3fd1716d4cc1e37596c0f2faee5182dc357665aa59116a614c51"
+          "sha256": "852b570f816a3fd1716d4cc1e37596c0f2faee5182dc357665aa59116a614c51",
+          "interiorKind": "cockpit",
+          "interiorWalkableM2": 0
         }
       ]
     },
@@ -6984,7 +7184,9 @@
           "tris": 133019,
           "sizeBytes": 3166256,
           "hasInterior": true,
-          "sha256": "0aa69848055b8d2b85ca81b5482032bc8952a353bfbb0fef98e668f410cb13cd"
+          "sha256": "0aa69848055b8d2b85ca81b5482032bc8952a353bfbb0fef98e668f410cb13cd",
+          "interiorKind": "cockpit",
+          "interiorWalkableM2": 0
         }
       ]
     },
@@ -7017,7 +7219,9 @@
           "tris": 153267,
           "sizeBytes": 3738776,
           "hasInterior": true,
-          "sha256": "7ce7f192740dc8040ac0ac10eda52be599f8aa7583629279259fb5410368e3d7"
+          "sha256": "7ce7f192740dc8040ac0ac10eda52be599f8aa7583629279259fb5410368e3d7",
+          "interiorKind": "cockpit",
+          "interiorWalkableM2": 0
         }
       ]
     },
@@ -7050,7 +7254,9 @@
           "tris": 125638,
           "sizeBytes": 3011168,
           "hasInterior": true,
-          "sha256": "c75b0b5b85416f960fb0041de68302592535e0dc352e6a211ef862a5509e2c09"
+          "sha256": "c75b0b5b85416f960fb0041de68302592535e0dc352e6a211ef862a5509e2c09",
+          "interiorKind": "cockpit",
+          "interiorWalkableM2": 0
         }
       ]
     },
@@ -7083,7 +7289,9 @@
           "tris": 131699,
           "sizeBytes": 3073552,
           "hasInterior": true,
-          "sha256": "a419276c43b5e1ef985dc07cd77d1d33e32321d85c294c8fed5e7c9f55cccaa1"
+          "sha256": "a419276c43b5e1ef985dc07cd77d1d33e32321d85c294c8fed5e7c9f55cccaa1",
+          "interiorKind": "cockpit",
+          "interiorWalkableM2": 0
         }
       ]
     },
@@ -7116,7 +7324,9 @@
           "tris": 133425,
           "sizeBytes": 3244088,
           "hasInterior": true,
-          "sha256": "ccb39bb70a35dee09a71bb8ce9f0a3054645ab9a948552fa5451b22f5a924749"
+          "sha256": "ccb39bb70a35dee09a71bb8ce9f0a3054645ab9a948552fa5451b22f5a924749",
+          "interiorKind": "cockpit",
+          "interiorWalkableM2": 0
         }
       ]
     },
@@ -7149,7 +7359,9 @@
           "tris": 258714,
           "sizeBytes": 3546852,
           "hasInterior": true,
-          "sha256": "b171e9d120763faf2652274662093d1282e6a2c62fe58f0e2c12307e5cd26274"
+          "sha256": "b171e9d120763faf2652274662093d1282e6a2c62fe58f0e2c12307e5cd26274",
+          "interiorKind": "cockpit",
+          "interiorWalkableM2": 12
         }
       ]
     },
@@ -7314,7 +7526,9 @@
           "tris": 272698,
           "sizeBytes": 5773848,
           "hasInterior": true,
-          "sha256": "124a117cb99220ca1091a16ede180574c4811f1a6e3dd59cf72418e51a0492dc"
+          "sha256": "124a117cb99220ca1091a16ede180574c4811f1a6e3dd59cf72418e51a0492dc",
+          "interiorKind": "habitable",
+          "interiorWalkableM2": 2162
         }
       ]
     },

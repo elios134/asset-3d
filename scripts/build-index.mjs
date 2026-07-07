@@ -24,6 +24,8 @@ const SCHEMA_VERSION = 2;
 const config = readJson(join(ROOT, "config.json"));
 const meta = readJson(join(ROOT, "ships.meta.json"));
 const modelsDir = join(ROOT, "models");
+// classification d'habitabilite (surface de plancher praticable) — optionnelle
+const interiorKinds = tryReadJson(join(ROOT, "interior-kinds.json"))?.kinds ?? {};
 
 const { githubOwner, githubRepo, patchVersion, levels, budget } = config;
 const releaseBase = `https://github.com/${githubOwner}/${githubRepo}/releases/download/${patchVersion}`;
@@ -72,7 +74,7 @@ for (const file of glbFiles.sort()) {
   }
 
   if (!byKey.has(key)) byKey.set(key, []);
-  byKey.get(key).push({
+  const variant = {
     level,
     label: labelOf[level],
     modelUrl: `${releaseBase}/${file}`,
@@ -80,7 +82,12 @@ for (const file of glbFiles.sort()) {
     sizeBytes,
     hasInterior: level === "interior",
     sha256,
-  });
+  };
+  if (level === "interior" && interiorKinds[key]) {
+    variant.interiorKind = interiorKinds[key].kind;              // "habitable" | "cockpit"
+    variant.interiorWalkableM2 = interiorKinds[key].walkableM2;  // surface plancher praticable (m2) — pour reglage du seuil cote app
+  }
+  byKey.get(key).push(variant);
 
   console.log(`  ${file.padEnd(40)} ${String(tris).padStart(9)} tris  ${fmtMB(sizeBytes).padStart(9)}`);
 }
@@ -127,6 +134,10 @@ if (problems.length > 0) {
 
 function readJson(path) {
   return JSON.parse(readFileSync(path, "utf8"));
+}
+
+function tryReadJson(path) {
+  try { return JSON.parse(readFileSync(path, "utf8")); } catch { return null; }
 }
 
 function fmtMB(bytes) {

@@ -18,9 +18,12 @@ import { fileURLToPath } from "node:url";
 import { dirname, join, basename } from "node:path";
 
 const ROOT = join(dirname(fileURLToPath(import.meta.url)), "..");
-const inPath = process.argv[2];
-const outPath = process.argv[3] || inPath.replace(/\.glb$/i, ".fixed.glb");
-const shipKey = basename(inPath).replace(/\.interior\.glb$/i, "");
+const args = process.argv.slice(2).filter((a) => !a.startsWith("--"));
+const keyArg = process.argv.find((a) => a.startsWith("--key="));
+const inPath = args[0];
+const outPath = args[1] || inPath.replace(/\.glb$/i, ".fixed.glb");
+// clef = --key=... si fournie (fichiers temporaires du pipeline HD), sinon derivee du nom <key>.interior.glb
+const shipKey = keyArg ? keyArg.split("=")[1] : basename(inPath).replace(/\.interior\.glb$/i, "");
 const EXCL = /door|hydro|hydraulic|ramp|pole/i;
 
 const anchorTable = JSON.parse(readFileSync(join(ROOT, "interior-anchors.json"), "utf8"));

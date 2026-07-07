@@ -8,23 +8,23 @@
       "bad": [
         {
           "module": "interior_base_int_stairsr_main",
-          "over": 7.6
+          "over": 8.5
         },
         {
           "module": "interior_base_int_mdback_main",
-          "over": 3.8
+          "over": 4.7
         },
         {
           "module": "interior_base_int_mdmid_main",
-          "over": 3.6
+          "over": 4.5
         },
         {
           "module": "interior_base_int_bridge_main",
-          "over": 15.4
+          "over": 16.4
         },
         {
           "module": "interior_base_int_stairsl_main",
-          "over": 7.6
+          "over": 8.5
         },
         {
           "module": "interior_base_int_mdfront_main",
@@ -40,63 +40,23 @@
       "bad": [
         {
           "module": "interior_base_int_stairsr_main",
-          "over": 7.6
+          "over": 8.5
         },
         {
           "module": "interior_base_int_mdback_main",
-          "over": 3.8
+          "over": 4.7
         },
         {
           "module": "interior_base_int_mdmid_main",
-          "over": 3.6
-        },
-        {
-          "module": "interior_base_int_bridge_main",
-          "over": 15.4
+          "over": 4.5
         },
         {
           "module": "interior_base_int_stairsl_main",
-          "over": 7.6
+          "over": 8.5
         },
         {
           "module": "interior_base_int_mdfront_main",
-          "over": 23.3
-        }
-      ]
-    },
-    {
-      "key": "MISC_Prospector",
-      "name": "MISC Prospector",
-      "hasHp": false,
-      "modules": 1,
-      "bad": [
-        {
-          "module": "interior_base_int_all_main",
-          "over": 62.2
-        }
-      ]
-    },
-    {
-      "key": "RSI_Ursa_Rover",
-      "name": "Ursa",
-      "hasHp": false,
-      "modules": 1,
-      "bad": [
-        {
-          "module": "interior_base_int_all_main",
-          "over": 1018.6
-        }
-      ]
-    },
-    {
-      "key": "RSI_Ursa_Rover_Emerald",
-      "name": "Ursa Fortuna",
-      "hasHp": false,
-      "modules": 1,
-      "bad": [
-        {
-          "module": "interior_base_int_all_main",
-          "over": 1018.6
+          "over": 6.7
         }
       ]
     }
@@ -663,6 +623,10 @@
       "modules": 2
     },
     {
+      "key": "MISC_Prospector",
+      "modules": 1
+    },
+    {
       "key": "MISC_Razor",
       "modules": 0
     },
@@ -893,6 +857,14 @@
     {
       "key": "RSI_Ursa_Medivac",
       "modules": 0
+    },
+    {
+      "key": "RSI_Ursa_Rover",
+      "modules": 1
+    },
+    {
+      "key": "RSI_Ursa_Rover_Emerald",
+      "modules": 1
     },
     {
       "key": "RSI_Zeus_CL",

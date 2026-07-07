@@ -1,0 +1,318 @@
+{
+  "clean": [],
+  "broken": [
+    {
+      "key": "ORIG_350r",
+      "worst": 17.6,
+      "th": 3,
+      "offenders": [
+        {
+          "name": "nose",
+          "over": 10.4
+        },
+        {
+          "name": "LeftBodyLadderUpperPiece",
+          "over": 16.1
+        },
+        {
+          "name": "landinggear_door_front_left",
+          "over": 12.8
+        },
+        {
+          "name": "landinggear_door_front_right",
+          "over": 5.2
+        },
+        {
+          "name": "ladder_door",
+          "over": 11.7
+        },
+        {
+          "name": "glass_canopy_front",
+          "over": 15.4
+        },
+        {
+          "name": "glass_canopy_rear",
+          "over": 15.4
+        },
+        {
+          "name": "landinggear_door_rear_right",
+          "over": 13
+        }
+      ]
+    },
+    {
+      "key": "DRAK_Cutlass_Black",
+      "worst": 10.2,
+      "th": 3,
+      "offenders": [
+        {
+          "name": "Body",
+          "over": 4.1
+        },
+        {
+          "name": "Wing_Left",
+          "over": 4
+        },
+        {
+          "name": "Wing_Right",
+          "over": 4
+        },
+        {
+          "name": "Canopy",
+          "over": 10.2
+        },
+        {
+          "name": "Missile_Housing_Right",
+          "over": 3.3
+        },
+        {
+          "name": "Missile_Housing_Left",
+          "over": 3.3
+        },
+        {
+          "name": "Thruster_Main_Right",
+          "over": 3.5
+        },
+        {
+          "name": "Thruster_Main_Left",
+          "over": 3.4
+        }
+      ]
+    },
+    {
+      "key": "ANVL_Hornet_F7CM",
+      "worst": 7.9,
+      "th": 3,
+      "offenders": [
+        {
+          "name": "LG_Door_Rear_R",
+          "over": 3.3
+        },
+        {
+          "name": "Canopy",
+          "over": 7.9
+        },
+        {
+          "name": "Canopy_Rear",
+          "over": 5.8
+        },
+        {
+          "name": "cockpit_canopy_02_pistons_right",
+          "over": 6.3
+        },
+        {
+          "name": "cockpit_canopy_02_pistons_left",
+          "over": 6.5
+        },
+        {
+          "name": "Ladder_mount_Trackpivot",
+          "over": 6.9
+        },
+        {
+          "name": "Ladder_Mount_Trusses",
+          "over": 6.9
+        },
+        {
+          "name": "Ladder_Platform",
+          "over": 6.9
+        }
+      ]
+    },
+    {
+      "key": "AEGS_Gladius",
+      "worst": 6.4,
+      "th": 3,
+      "offenders": [
+        {
+          "name": "Rudder_Right",
+          "over": 3.3
+        },
+        {
+          "name": "RearWingRight",
+          "over": 4.5
+        },
+        {
+          "name": "RearWingLeft",
+          "over": 4.5
+        },
+        {
+          "name": "Rudder_Left",
+          "over": 3.3
+        },
+        {
+          "name": "Entrance_panel",
+          "over": 5.6
+        },
+        {
+          "name": "Nose",
+          "over": 4.5
+        },
+        {
+          "name": "FrontWing_Right",
+          "over": 3.6
+        },
+        {
+          "name": "FrontWing_Left",
+          "over": 3.6
+        }
+      ]
+    },
+    {
+      "key": "MISC_Freelancer",
+      "worst": 4.9,
+      "th": 3,
+      "offenders": [
+        {
+          "name": "Nose",
+          "over": 4
+        },
+        {
+          "name": "WingFlap_Right",
+          "over": 4.8
+        },
+        {
+          "name": "Wingflap_Left",
+          "over": 4.8
+        },
+        {
+          "name": "BONE_topfrontlefthousing",
+          "over": 4.9
+        },
+        {
+          "name": "BONE_topfrontrighthousing",
+          "over": 4.9
+        },
+        {
+          "name": "BONE_toprearlefthousing",
+          "over": 4
+        },
+        {
+          "name": "BONE_toprearrighthousing",
+          "over": 4
+        },
+        {
+          "name": "BONE_topfrontlefthousing_piston",
+          "over": 4.6
+        }
+      ]
+    },
+    {
+      "key": "RSI_Constellation_Andromeda",
+      "worst": 11.4,
+      "th": 3.8,
+      "offenders": [
+        {
+          "name": "tail",
+          "over": 7.1
+        },
+        {
+          "name": "nacelle_bottom_left",
+          "over": 6
+        },
+        {
+          "name": "nacelle_bottom_right",
+          "over": 6
+        },
+        {
+          "name": "LandingGear_Housing_Right",
+          "over": 5.9
+        },
+        {
+          "name": "dmg_nacelle_bottom_right",
+          "over": 6
+        },
+        {
+          "name": "turbine_cover_naceller_bot_front_in",
+          "over": 6
+        },
+        {
+          "name": "turbine_cover_naceller_bot_rear_in",
+          "over": 6
+        },
+        {
+          "name": "turbine_cover_naceller_bot_front_out",
+          "over": 7
+        }
+      ]
+    },
+    {
+      "key": "AEGS_Vanguard",
+      "worst": 22.1,
+      "th": 3,
+      "offenders": [
+        {
+          "name": "Nose",
+          "over": 12.3
+        },
+        {
+          "name": "Arm_Right",
+          "over": 5.8
+        },
+        {
+          "name": "Arm_Left",
+          "over": 5.8
+        },
+        {
+          "name": "Engine_R",
+          "over": 3
+        },
+        {
+          "name": "Light_Geo_Flap",
+          "over": 9.7
+        },
+        {
+          "name": "Light_Geo",
+          "over": 9.1
+        },
+        {
+          "name": "Tail_Fin_Left_Upper",
+          "over": 17.3
+        },
+        {
+          "name": "Tail_Fin_Left_Lower",
+          "over": 15.7
+        }
+      ]
+    },
+    {
+      "key": "ANVL_Carrack",
+      "worst": 28.2,
+      "th": 7.6,
+      "offenders": [
+        {
+          "name": "middle",
+          "over": 8.6
+        },
+        {
+          "name": "damage_middle",
+          "over": 8.6
+        },
+        {
+          "name": "rear",
+          "over": 8.8
+        },
+        {
+          "name": "mesh_ANVL_Carrack_Antenna_l_004",
+          "over": 27.8
+        },
+        {
+          "name": "mesh_ANVL_Carrack_Antenna_l_005",
+          "over": 27.9
+        },
+        {
+          "name": "mesh_ANVL_Carrack_Antenna_s_004",
+          "over": 28.2
+        },
+        {
+          "name": "mesh_ANVL_Carrack_Antenna_s_005",
+          "over": 28.2
+        },
+        {
+          "name": "Door_L",
+          "over": 12.9
+        }
+      ]
+    }
+  ],
+  "failed": []
+}

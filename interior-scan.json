@@ -1,0 +1,44 @@
+{
+  "convention": [],
+  "modulesNoHp": [
+    {
+      "key": "AEGS_Gladius",
+      "name": "Gladius",
+      "hp": 0,
+      "mod": 1
+    }
+  ],
+  "none": [
+    {
+      "key": "AEGS_Avenger_Stalker",
+      "name": "Avenger Stalker",
+      "hp": 0,
+      "mod": 0
+    },
+    {
+      "key": "AEGS_Avenger_Titan",
+      "name": "Avenger Titan",
+      "hp": 0,
+      "mod": 0
+    },
+    {
+      "key": "AEGS_Avenger_Titan_Renegade",
+      "name": "Avenger Titan Renegade",
+      "hp": 0,
+      "mod": 0
+    },
+    {
+      "key": "AEGS_Avenger_Warlock",
+      "name": "Avenger Warlock",
+      "hp": 0,
+      "mod": 0
+    },
+    {
+      "key": "AEGS_Eclipse",
+      "name": "Eclipse",
+      "hp": 0,
+      "mod": 0
+    }
+  ],
+  "failed": []
+}

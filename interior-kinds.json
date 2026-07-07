@@ -1,0 +1,434 @@
+{
+  "_comment": "Genere par classify-interiors.mjs. Seuil 100 m2 de plancher praticable. kind=habitable si walkableM2>=seuil.",
+  "seuil": 100,
+  "kinds": {
+    "AEGS_Hammerhead": {
+      "walkableM2": 1644,
+      "kind": "habitable"
+    },
+    "AEGS_Idris_M": {
+      "walkableM2": 6612,
+      "kind": "habitable"
+    },
+    "AEGS_Idris_P": {
+      "walkableM2": 5908,
+      "kind": "habitable"
+    },
+    "AEGS_Reclaimer": {
+      "walkableM2": 2437,
+      "kind": "habitable"
+    },
+    "AEGS_Redeemer": {
+      "walkableM2": 273,
+      "kind": "habitable"
+    },
+    "AEGS_Retaliator": {
+      "walkableM2": 326,
+      "kind": "habitable"
+    },
+    "AEGS_Tiburon": {
+      "walkableM2": 1656,
+      "kind": "habitable"
+    },
+    "AEGS_Vanguard": {
+      "walkableM2": 138,
+      "kind": "habitable"
+    },
+    "AEGS_Vanguard_Harbinger": {
+      "walkableM2": 136,
+      "kind": "habitable"
+    },
+    "AEGS_Vanguard_Hoplite": {
+      "walkableM2": 133,
+      "kind": "habitable"
+    },
+    "AEGS_Vanguard_Sentinel": {
+      "walkableM2": 134,
+      "kind": "habitable"
+    },
+    "ANVL_Asgard": {
+      "walkableM2": 487,
+      "kind": "habitable"
+    },
+    "ANVL_Ballista": {
+      "walkableM2": 9,
+      "kind": "cockpit"
+    },
+    "ANVL_Ballista_Dunestalker": {
+      "walkableM2": 9,
+      "kind": "cockpit"
+    },
+    "ANVL_Ballista_Snowblind": {
+      "walkableM2": 9,
+      "kind": "cockpit"
+    },
+    "ANVL_Carrack": {
+      "walkableM2": 1900,
+      "kind": "habitable"
+    },
+    "ANVL_Carrack_Expedition": {
+      "walkableM2": 1900,
+      "kind": "habitable"
+    },
+    "ANVL_Centurion": {
+      "walkableM2": 13,
+      "kind": "cockpit"
+    },
+    "ANVL_Gladiator": {
+      "walkableM2": 14,
+      "kind": "cockpit"
+    },
+    "ANVL_Hornet_F7CM": {
+      "walkableM2": 9,
+      "kind": "cockpit"
+    },
+    "ANVL_Hornet_F7CM_Heartseeker": {
+      "walkableM2": 11,
+      "kind": "cockpit"
+    },
+    "ANVL_Hornet_F7CM_Mk2": {
+      "walkableM2": 14,
+      "kind": "cockpit"
+    },
+    "ANVL_Hornet_F7CM_Mk2_Heartseeker": {
+      "walkableM2": 14,
+      "kind": "cockpit"
+    },
+    "ANVL_Terrapin": {
+      "walkableM2": 37,
+      "kind": "cockpit"
+    },
+    "ANVL_Valkyrie": {
+      "walkableM2": 402,
+      "kind": "habitable"
+    },
+    "ARGO_MOLE": {
+      "walkableM2": 401,
+      "kind": "habitable"
+    },
+    "ARGO_RAFT": {
+      "walkableM2": 280,
+      "kind": "habitable"
+    },
+    "BANU_Defender": {
+      "walkableM2": 65,
+      "kind": "cockpit"
+    },
+    "CRUS_Spirit_A1": {
+      "walkableM2": 247,
+      "kind": "habitable"
+    },
+    "CRUS_Spirit_C1": {
+      "walkableM2": 261,
+      "kind": "habitable"
+    },
+    "CRUS_Star_Runner": {
+      "walkableM2": 758,
+      "kind": "habitable"
+    },
+    "CRUS_Starlifter_A2": {
+      "walkableM2": 1183,
+      "kind": "habitable"
+    },
+    "CRUS_Starlifter_C2": {
+      "walkableM2": 1127,
+      "kind": "habitable"
+    },
+    "CRUS_Starlifter_M2": {
+      "walkableM2": 1164,
+      "kind": "habitable"
+    },
+    "DRAK_Caterpillar": {
+      "walkableM2": 863,
+      "kind": "habitable"
+    },
+    "DRAK_Caterpillar_Pirate": {
+      "walkableM2": 877,
+      "kind": "habitable"
+    },
+    "DRAK_Command_Module": {
+      "walkableM2": 82,
+      "kind": "cockpit"
+    },
+    "DRAK_Corsair": {
+      "walkableM2": 457,
+      "kind": "habitable"
+    },
+    "DRAK_Cutlass_Black": {
+      "walkableM2": 198,
+      "kind": "habitable"
+    },
+    "DRAK_Cutlass_Blue": {
+      "walkableM2": 166,
+      "kind": "habitable"
+    },
+    "DRAK_Cutlass_Red": {
+      "walkableM2": 163,
+      "kind": "habitable"
+    },
+    "DRAK_Cutlass_Steel": {
+      "walkableM2": 220,
+      "kind": "habitable"
+    },
+    "DRAK_Cutter_Scout": {
+      "walkableM2": 35,
+      "kind": "cockpit"
+    },
+    "DRAK_Dragonfly": {
+      "walkableM2": 0,
+      "kind": "cockpit"
+    },
+    "DRAK_Dragonfly_Pink": {
+      "walkableM2": 0,
+      "kind": "cockpit"
+    },
+    "DRAK_Dragonfly_Yellow": {
+      "walkableM2": 0,
+      "kind": "cockpit"
+    },
+    "DRAK_Herald": {
+      "walkableM2": 42,
+      "kind": "cockpit"
+    },
+    "DRAK_Ironclad": {
+      "walkableM2": 2279,
+      "kind": "habitable"
+    },
+    "DRAK_Ironclad_Assault": {
+      "walkableM2": 2271,
+      "kind": "habitable"
+    },
+    "ESPR_Prowler": {
+      "walkableM2": 68,
+      "kind": "cockpit"
+    },
+    "ESPR_Prowler_Utility": {
+      "walkableM2": 80,
+      "kind": "cockpit"
+    },
+    "GAMA_Railen": {
+      "walkableM2": 898,
+      "kind": "habitable"
+    },
+    "GAMA_Tyilui": {
+      "walkableM2": 1106,
+      "kind": "habitable"
+    },
+    "GLSN_Shiv": {
+      "walkableM2": 161,
+      "kind": "habitable"
+    },
+    "GRIN_MTC": {
+      "walkableM2": 4,
+      "kind": "cockpit"
+    },
+    "GRIN_PTV": {
+      "walkableM2": 0,
+      "kind": "cockpit"
+    },
+    "GRIN_STV": {
+      "walkableM2": 0,
+      "kind": "cockpit"
+    },
+    "GRIN_UTV": {
+      "walkableM2": 0,
+      "kind": "cockpit"
+    },
+    "MISC_Freelancer": {
+      "walkableM2": 120,
+      "kind": "habitable"
+    },
+    "MISC_Freelancer_DUR": {
+      "walkableM2": 151,
+      "kind": "habitable"
+    },
+    "MISC_Freelancer_MAX": {
+      "walkableM2": 179,
+      "kind": "habitable"
+    },
+    "MISC_Freelancer_MIS": {
+      "walkableM2": 113,
+      "kind": "habitable"
+    },
+    "MISC_Hull_B": {
+      "walkableM2": 266,
+      "kind": "habitable"
+    },
+    "MISC_Hull_C": {
+      "walkableM2": 895,
+      "kind": "habitable"
+    },
+    "MISC_Reliant": {
+      "walkableM2": 16,
+      "kind": "cockpit"
+    },
+    "MISC_Reliant_Mako": {
+      "walkableM2": 7,
+      "kind": "cockpit"
+    },
+    "MISC_Reliant_Sen": {
+      "walkableM2": 7,
+      "kind": "cockpit"
+    },
+    "MISC_Reliant_Tana": {
+      "walkableM2": 8,
+      "kind": "cockpit"
+    },
+    "MISC_Starfarer": {
+      "walkableM2": 1436,
+      "kind": "habitable"
+    },
+    "MISC_Starfarer_Gemini": {
+      "walkableM2": 1430,
+      "kind": "habitable"
+    },
+    "MISC_Starlancer_Max": {
+      "walkableM2": 1211,
+      "kind": "habitable"
+    },
+    "MISC_Starlancer_TAC": {
+      "walkableM2": 1224,
+      "kind": "habitable"
+    },
+    "ORIG_300i": {
+      "walkableM2": 38,
+      "kind": "cockpit"
+    },
+    "ORIG_315p": {
+      "walkableM2": 38,
+      "kind": "cockpit"
+    },
+    "ORIG_325a": {
+      "walkableM2": 36,
+      "kind": "cockpit"
+    },
+    "ORIG_350r": {
+      "walkableM2": 40,
+      "kind": "cockpit"
+    },
+    "ORIG_400i": {
+      "walkableM2": 330,
+      "kind": "habitable"
+    },
+    "ORIG_600i": {
+      "walkableM2": 1404,
+      "kind": "habitable"
+    },
+    "ORIG_600i_Touring": {
+      "walkableM2": 1302,
+      "kind": "habitable"
+    },
+    "ORIG_85X": {
+      "walkableM2": 1,
+      "kind": "cockpit"
+    },
+    "ORIG_890Jump": {
+      "walkableM2": 2675,
+      "kind": "habitable"
+    },
+    "RSI_Apollo_Medivac": {
+      "walkableM2": 831,
+      "kind": "habitable"
+    },
+    "RSI_Apollo_Triage": {
+      "walkableM2": 831,
+      "kind": "habitable"
+    },
+    "RSI_Constellation_Andromeda": {
+      "walkableM2": 491,
+      "kind": "habitable"
+    },
+    "RSI_Constellation_Aquila": {
+      "walkableM2": 491,
+      "kind": "habitable"
+    },
+    "RSI_Constellation_Phoenix": {
+      "walkableM2": 522,
+      "kind": "habitable"
+    },
+    "RSI_Constellation_Phoenix_Emerald": {
+      "walkableM2": 522,
+      "kind": "habitable"
+    },
+    "RSI_Constellation_Taurus": {
+      "walkableM2": 390,
+      "kind": "habitable"
+    },
+    "RSI_Hermes": {
+      "walkableM2": 871,
+      "kind": "habitable"
+    },
+    "RSI_Lynx": {
+      "walkableM2": 3,
+      "kind": "cockpit"
+    },
+    "RSI_Perseus": {
+      "walkableM2": 1638,
+      "kind": "habitable"
+    },
+    "RSI_Polaris": {
+      "walkableM2": 4343,
+      "kind": "habitable"
+    },
+    "RSI_Scorpius": {
+      "walkableM2": 63,
+      "kind": "cockpit"
+    },
+    "RSI_Scorpius_Antares": {
+      "walkableM2": 63,
+      "kind": "cockpit"
+    },
+    "RSI_Ursa_Medivac": {
+      "walkableM2": 3,
+      "kind": "cockpit"
+    },
+    "RSI_Ursa_Rover": {
+      "walkableM2": 3,
+      "kind": "cockpit"
+    },
+    "RSI_Ursa_Rover_Emerald": {
+      "walkableM2": 3,
+      "kind": "cockpit"
+    },
+    "RSI_Zeus_CL": {
+      "walkableM2": 201,
+      "kind": "habitable"
+    },
+    "RSI_Zeus_ES": {
+      "walkableM2": 198,
+      "kind": "habitable"
+    },
+    "TMBL_Cyclone": {
+      "walkableM2": 0,
+      "kind": "cockpit"
+    },
+    "TMBL_Cyclone_AA": {
+      "walkableM2": 0,
+      "kind": "cockpit"
+    },
+    "TMBL_Cyclone_MT": {
+      "walkableM2": 0,
+      "kind": "cockpit"
+    },
+    "TMBL_Cyclone_RC": {
+      "walkableM2": 0,
+      "kind": "cockpit"
+    },
+    "TMBL_Cyclone_RN": {
+      "walkableM2": 0,
+      "kind": "cockpit"
+    },
+    "TMBL_Cyclone_TR": {
+      "walkableM2": 0,
+      "kind": "cockpit"
+    },
+    "TMBL_Nova": {
+      "walkableM2": 12,
+      "kind": "cockpit"
+    },
+    "VNCL_Mauler": {
+      "walkableM2": 2162,
+      "kind": "habitable"
+    }
+  }
+}
