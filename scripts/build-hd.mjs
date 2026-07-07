@@ -10,7 +10,7 @@
 //         node scripts/build-hd.mjs --all
 
 import { NodeIO } from "@gltf-transform/core";
-import { EXTMeshoptCompression } from "@gltf-transform/extensions";
+import { ALL_EXTENSIONS } from "@gltf-transform/extensions";
 import { dedup, prune, textureCompress, meshopt, mergeDocuments, unpartition, getBounds, flatten, join as joinPrims, simplify } from "@gltf-transform/functions";
 import { MeshoptEncoder, MeshoptDecoder, MeshoptSimplifier } from "meshoptimizer";
 import sharp from "sharp";
@@ -63,7 +63,12 @@ else if (args.length) batch = args;
 else { const s = keys.slice().sort((a, b) => meta[a].dims.l - meta[b].dims.l); batch = [...new Set(Array.from({ length: 8 }, (_, i) => s[Math.floor(i * (s.length - 1) / 7)]))]; }
 
 await MeshoptEncoder.ready;
-const io = new NodeIO().registerExtensions([EXTMeshoptCompression]).registerDependencies({ "meshopt.decoder": MeshoptDecoder, "meshopt.encoder": MeshoptEncoder });
+// TOUTES les extensions : les exports StarBreaker utilisent KHR_materials_transmission/ior/volume
+// (verre) et KHR_texture_transform (tiling UV, ~la moitie des materiaux). Ne PAS les enregistrer
+// = suppression silencieuse a l'ecriture -> vitres opaques + UV casses ("textures bizarres").
+const io = new NodeIO().registerExtensions(ALL_EXTENSIONS).registerDependencies({ "meshopt.decoder": MeshoptDecoder, "meshopt.encoder": MeshoptEncoder });
+// ...sauf les lumieres : 2181 KHR_lights_punctual sur le Carrack, three.js ne survivrait pas.
+const stripLights = (doc) => { for (const e of doc.getRoot().listExtensionsUsed()) if (e.extensionName === "KHR_lights_punctual") e.dispose(); };
 const exp = (key, out, extra) => execFileSync(STARBREAKER, ["entity", "export", key, out, "--materials", "textures", "--mip", "4", ...extra], { env: { ...process.env, SC_DATA_P4K: P4K }, stdio: "ignore", timeout: 600000 });
 const mul = (a, b) => { const o = new Array(16); for (let c = 0; c < 4; c++) for (let r = 0; r < 4; r++) { let s = 0; for (let k = 0; k < 4; k++) s += a[k * 4 + r] * b[c * 4 + k]; o[c * 4 + r] = s; } return o; };
 const ap = (m, x, y, z) => [m[0]*x+m[4]*y+m[8]*z+m[12], m[1]*x+m[5]*y+m[9]*z+m[13], m[2]*x+m[6]*y+m[10]*z+m[14]];
@@ -86,6 +91,7 @@ for (const key of batch) {
         if (glbTris(tmpExt) <= BUDGET.exterior.maxTris) break;
       }
       const extDoc = await io.read(tmpExt);
+      stripLights(extDoc);
       await extDoc.transform(dedup(), prune(), textureCompress({ encoder: sharp, targetFormat: "webp", resize: [512, 512], quality: 80 }), meshopt({ encoder: MeshoptEncoder, level: "high" }));
       await io.write(extOut, extDoc);
       hull = getBounds(extDoc.getRoot().listScenes()[0]);
@@ -104,6 +110,7 @@ for (const key of batch) {
     let intPath = tmpInt;
     if (anchored.has(key)) { const fx = tmpInt.replace(/\.glb$/, ".fixed.glb"); execFileSync("node", ["scripts/reposition-interior.mjs", tmpInt, fx, `--key=${key}`], { cwd: ROOT, stdio: "ignore" }); intPath = fx; }
     const intDoc = await io.read(intPath);
+    stripLights(intDoc);
     // cull strays (generique/anonyme, loin hors coque) — bbox manuelle cycle-safe
     const nodes = intDoc.getRoot().listNodes(); const pm = new Map(); for (const n of nodes) for (const c of n.listChildren()) pm.set(c, n);
     const wm = (n) => { let mm = n.getMatrix(), p = pm.get(n), seen = new Set([n]), d = 0; while (p && !seen.has(p) && d < 200) { mm = mul(p.getMatrix(), mm); seen.add(p); p = pm.get(p); d++; } return mm; };
