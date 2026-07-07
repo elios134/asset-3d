@@ -108,8 +108,20 @@ for (const key of batch) {
     const nodes = intDoc.getRoot().listNodes(); const pm = new Map(); for (const n of nodes) for (const c of n.listChildren()) pm.set(c, n);
     const wm = (n) => { let mm = n.getMatrix(), p = pm.get(n), seen = new Set([n]), d = 0; while (p && !seen.has(p) && d < 200) { mm = mul(p.getMatrix(), mm); seen.add(p); p = pm.get(p); d++; } return mm; };
     for (const node of nodes) { const mesh = node.getMesh(); if (!mesh) continue; let xn=1/0,yn=1/0,zn=1/0,xx=-1/0,yx=-1/0,zx=-1/0; for (const pr of mesh.listPrimitives()) { const a = pr.getAttribute("POSITION"); if (!a) continue; const mn = a.getMinNormalized([]), mx = a.getMaxNormalized([]); if (!mn) continue; const M = wm(node); for (const c of [[mn[0],mn[1],mn[2]],[mx[0],mx[1],mx[2]],[mn[0],mx[1],mn[2]],[mx[0],mn[1],mx[2]]]) { const w = ap(M, ...c); xn=Math.min(xn,w[0]);yn=Math.min(yn,w[1]);zn=Math.min(zn,w[2]);xx=Math.max(xx,w[0]);yx=Math.max(yx,w[1]);zx=Math.max(zx,w[2]); } } if (!isFinite(xn)) continue; const over = Math.max(hull.min[0]-xx, xn-hull.max[0], hull.min[1]-yx, yn-hull.max[1], hull.min[2]-zx, zn-hull.max[2]); const nm = node.getName() || ""; if (over > 10 && (!nm || /^[?]/.test(nm) || GENERIC.test(nm))) node.dispose(); }
-    // flatten+join : draw calls /10-20 (retour user : lag Visite sur les capitaux — Polaris 7754 draws)
-    await intDoc.transform(dedup(), prune(), flatten(), joinPrims());
+    // Preserver les PORTES du join : l'app les masque/rend franchissables PAR NOM (isSkippedTree).
+    // 1) propager le token porte des groupes (Anim_Door_L) vers leurs meshes descendants (flatten
+    //    supprime les parents) ; 2) anonymiser tout le reste pour que join() fusionne un maximum.
+    {
+      const DOOR = /door|hatch|bulkhead/i, DOOR_EXCL = /wall|frame/i;
+      const isDoor = (nm) => DOOR.test(nm) && !DOOR_EXCL.test(nm);
+      const tag = (node, name) => { if (node.getMesh() && !isDoor(node.getName() || "")) node.setName(name); for (const c of node.listChildren()) tag(c, name); };
+      for (const n of intDoc.getRoot().listNodes()) { const nm = n.getName() || ""; if (isDoor(nm)) tag(n, nm); }
+      for (const n of intDoc.getRoot().listNodes()) if (!isDoor(n.getName() || "")) n.setName("");
+      for (const m of intDoc.getRoot().listMeshes()) if (!isDoor(m.getName() || "")) m.setName("");
+    }
+    // flatten+join : draw calls /10-20 (retour user : lag Visite sur les capitaux — Polaris 7754 draws).
+    // keepNamed : seuls les noeuds encore nommes (= portes) echappent a la fusion.
+    await intDoc.transform(dedup(), prune(), flatten(), joinPrims({ keepNamed: true }));
     // budget tris : LOD2 des capitaux peut deborder -> simplify meshopt (preserve les murs, contrairement au LOD3 CIG)
     const it = docTris(intDoc);
     if (it > BUDGET.interior.maxTris) {
@@ -117,12 +129,16 @@ for (const key of batch) {
       await intDoc.transform(simplify({ simplifier: MeshoptSimplifier, ratio: (BUDGET.interior.maxTris / it) * 0.95, error: 0.01 }));
     }
     await intDoc.transform(textureCompress({ encoder: sharp, targetFormat: "webp", resize: [1024, 1024], quality: 80 }), meshopt({ encoder: MeshoptEncoder, level: "high" }));
-    // shell occulteur : fusionner la silhouette exterieure
+    // shell occulteur : fusionner la silhouette exterieure. ANONYMISER la coque : (1) l'app masque
+    // les meshes nommes door/hatch -> des trappes exterieures nommees perceraient la coque ; (2) sans
+    // noms, le join final fusionne tout le shell (draw calls). Les portes INTERIEURES restent nommees.
     const shellDoc = await io.read(extOut);
+    for (const n of shellDoc.getRoot().listNodes()) n.setName("");
+    for (const m of shellDoc.getRoot().listMeshes()) m.setName("");
     mergeDocuments(intDoc, shellDoc);
     const r = intDoc.getRoot(); const scenes = r.listScenes(); const def = r.getDefaultScene() || scenes[0];
     for (const sc of scenes) { if (sc === def) continue; for (const n of sc.listChildren()) def.addChild(n); sc.dispose(); }
-    await intDoc.transform(unpartition(), meshopt({ encoder: MeshoptEncoder, level: "high" }));
+    await intDoc.transform(unpartition(), flatten(), joinPrims({ keepNamed: true }), meshopt({ encoder: MeshoptEncoder, level: "high" }));
     await io.write(intOut, intDoc);
 
     for (const f of [tmpExt, tmpInt, tmpInt.replace(/\.glb$/, ".fixed.glb")]) if (existsSync(f)) rmSync(f);
