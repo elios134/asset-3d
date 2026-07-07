@@ -8,6 +8,6 @@
   ],
   "budget": {
     "exterior": { "maxTris": 800000, "maxSizeBytes": 20971520 },
-    "interior": { "maxTris": 1200000, "maxSizeBytes": 67108864 }
+    "interior": { "maxTris": 2500000, "maxSizeBytes": 100663296 }
   }
 }
