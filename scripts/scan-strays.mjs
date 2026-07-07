@@ -1,58 +1,55 @@
 #!/usr/bin/env node
-// scan-strays.mjs — RE-SCAN DE CONTROLE (lecture seule) des meshes loin de la coque dans les interieurs.
+// scan-strays.mjs — QA (lecture seule) : detecte les meshes "hors coque" d'un interieur construit.
 //
-// Classe chaque mesh qui depasse la coque (exterior) de plus de FAR m en :
-//   - PARASITE  : anonyme ET degenere (plus petite dim < 0.5m) -> candidat au cull
-//   - A GARDER  : nomme OU volumineux (min dim >= 0.5m) -> pièce legitime (tuyere/nacelle...), NE PAS toucher
-// Ne modifie RIEN. Sert a valider le critere avant d'appliquer le culler.
-//
-// Usage : node scripts/scan-strays.mjs [--far=10] [max]
+// Mesure les VRAIS sommets (decodes meshopt) de chaque noeud-mesh de models/<KEY>.interior.glb
+// contre l'enveloppe reelle de models/<KEY>.exterior.glb. Tout mesh qui deborde de plus de
+// SEUIL metres est un artefact (bug reorder+quantize gltf-transform sur accessors partages,
+// module mal place, debris). Ne PAS se fier a accessor.min/max ni a getBounds sur les noeuds
+// individuels d'un fichier quantize (grille de quantization mensongere).
+// Usage : node scripts/scan-strays.mjs KEY [KEY...] | --all   (exit 1 si au moins un debordant)
 
-import { NodeIO, getBounds } from "@gltf-transform/core";
-import { EXTMeshoptCompression } from "@gltf-transform/extensions";
+import { NodeIO } from "@gltf-transform/core";
+import { ALL_EXTENSIONS } from "@gltf-transform/extensions";
+import { getBounds } from "@gltf-transform/functions";
 import { MeshoptDecoder } from "meshoptimizer";
-import { readFileSync, existsSync } from "node:fs";
+import { readdirSync, existsSync } from "node:fs";
 import { fileURLToPath } from "node:url";
 import { dirname, join } from "node:path";
 
 const ROOT = join(dirname(fileURLToPath(import.meta.url)), "..");
 const MODELS = join(ROOT, "models");
-const farArg = process.argv.find((a) => a.startsWith("--far="));
-const FAR = farArg ? parseFloat(farArg.split("=")[1]) : 10;
-const DEGEN = 0.5; // plus petite dimension bbox en dessous = degenere (plat/sliver/point)
-const io = new NodeIO().registerExtensions([EXTMeshoptCompression]).registerDependencies({ "meshopt.decoder": MeshoptDecoder });
+const SEUIL = 2;
 
-const meta = JSON.parse(readFileSync(join(ROOT, "ships.meta.json"), "utf8"));
-const maxArg = process.argv.slice(2).find((a) => !a.startsWith("--"));
-const keys = Object.keys(meta).filter((k) => k !== "_comment" && existsSync(join(MODELS, `${k}.interior.glb`)) && existsSync(join(MODELS, `${k}.exterior.glb`)));
-const batch = maxArg ? keys.slice(0, parseInt(maxArg)) : keys;
+let keys = process.argv.slice(2).filter((a) => !a.startsWith("--"));
+if (process.argv.includes("--all") || !keys.length)
+  keys = readdirSync(MODELS).filter((f) => f.endsWith(".interior.glb")).map((f) => f.replace(/\.interior\.glb$/, ""));
 
-const parasites = [], keep = [];
-for (const key of batch) {
-  try {
-    const hull = getBounds((await io.read(join(MODELS, `${key}.exterior.glb`))).getRoot().listScenes()[0]);
-    const doc = await io.read(join(MODELS, `${key}.interior.glb`));
-    for (const n of doc.getRoot().listNodes()) {
-      if (!n.getMesh()) continue;
-      const b = getBounds(n);
-      if (!b || !isFinite(b.min[0])) continue;
-      const over = Math.max(hull.min[0] - b.max[0], b.min[0] - hull.max[0], hull.min[1] - b.max[1], b.min[1] - hull.max[1], hull.min[2] - b.max[2], b.min[2] - hull.max[2]);
-      if (over <= FAR) continue;
-      const dims = [b.max[0] - b.min[0], b.max[1] - b.min[1], b.max[2] - b.min[2]];
-      const minDim = Math.min(...dims);
-      const name = n.getName() || "";
-      // parasite = anonyme OU nom GENERIQUE (primitive Blender / Object export), ET loin hors coque (deja filtre)
-      const GENERIC = /^(box|cube|plane|cylinder|sphere|cone|circle|icosphere|object|empty)[._]?\d+$/i;
-      const generic = !name || /^[?]/.test(name) || GENERIC.test(name);
-      const rec = { key, name: name || "(anonyme)", over: +over.toFixed(0), minDim: +minDim.toFixed(2), dims: dims.map((d) => d.toFixed(0)).join("x") };
-      // named-specific (mur/pièce nommé) hors coque -> A GARDER (verif manuelle) ; generique hors coque -> parasite
-      if (generic) parasites.push(rec); else keep.push(rec);
-    }
-  } catch (e) { console.log(`  ⚠ ${key} : ${e.message.split("\n")[0]}`); }
+const io = new NodeIO().registerExtensions(ALL_EXTENSIONS).registerDependencies({ "meshopt.decoder": MeshoptDecoder });
+const mul = (a, b) => { const o = new Array(16); for (let c = 0; c < 4; c++) for (let r = 0; r < 4; r++) { let s = 0; for (let k = 0; k < 4; k++) s += a[k * 4 + r] * b[c * 4 + k]; o[c * 4 + r] = s; } return o; };
+const ap = (m, x, y, z) => [m[0]*x+m[4]*y+m[8]*z+m[12], m[1]*x+m[5]*y+m[9]*z+m[13], m[2]*x+m[6]*y+m[10]*z+m[14]];
+
+let totalBad = 0;
+for (const key of keys) {
+  const extF = join(MODELS, `${key}.exterior.glb`), intF = join(MODELS, `${key}.interior.glb`);
+  if (!existsSync(extF) || !existsSync(intF)) { console.log(`- ${key} : fichier manquant, ignore`); continue; }
+  const hull = getBounds((await io.read(extF)).getRoot().listScenes()[0]);
+  const doc = await io.read(intF);
+  const nodes = doc.getRoot().listNodes();
+  const pm = new Map(); for (const n of nodes) for (const c of n.listChildren()) pm.set(c, n);
+  const wm = (n) => { let mm = n.getMatrix(), p = pm.get(n), seen = new Set([n]), d = 0; while (p && !seen.has(p) && d < 200) { mm = mul(p.getMatrix(), mm); seen.add(p); p = pm.get(p); d++; } return mm; };
+  const PT = [0, 0, 0]; const bad = []; let mc = 0;
+  for (const node of nodes) { const mesh = node.getMesh(); if (!mesh) continue; mc++;
+    let xn=1/0,yn=1/0,zn=1/0,xx=-1/0,yx=-1/0,zx=-1/0; const M = wm(node);
+    for (const pr of mesh.listPrimitives()) { const a = pr.getAttribute("POSITION"); if (!a) continue;
+      const cn = a.getCount(); for (let i = 0; i < cn; i++) { a.getElement(i, PT); const w = ap(M, PT[0], PT[1], PT[2]);
+        xn=Math.min(xn,w[0]);yn=Math.min(yn,w[1]);zn=Math.min(zn,w[2]);xx=Math.max(xx,w[0]);yx=Math.max(yx,w[1]);zx=Math.max(zx,w[2]); } }
+    if (!isFinite(xn)) continue;
+    const prot = Math.max(hull.min[0]-xn, xx-hull.max[0], hull.min[1]-yn, yx-hull.max[1], hull.min[2]-zn, zx-hull.max[2]);
+    if (prot > SEUIL) { const mats = [...new Set(mesh.listPrimitives().map((p) => p.getMaterial()?.getName() || "?"))]; bad.push({ prot, name: node.getName() || "·", mats: mats.slice(0, 2).join("|") }); } }
+  bad.sort((a, b) => b.prot - a.prot);
+  totalBad += bad.length;
+  console.log(`${bad.length ? "✗" : "✓"} ${key.padEnd(30)} ${bad.length}/${mc} meshes hors coque (>${SEUIL}m)`);
+  for (const b of bad.slice(0, 5)) console.log(`    ${b.prot.toFixed(1)}m "${b.name}" ${b.mats}`);
 }
-
-console.log(`\n=== PARASITES (anonyme + degenere + >${FAR}m) — candidats au cull : ${parasites.length} ===`);
-for (const p of parasites) console.log(`  ${p.key.padEnd(26)} +${p.over}m  minDim=${p.minDim}m  ${p.dims}m  "${p.name}"`);
-console.log(`\n=== A GARDER (nomme OU volumineux, meme s'ils depassent >${FAR}m) : ${keep.length} ===`);
-for (const k of keep.slice(0, 40)) console.log(`  ${k.key.padEnd(26)} +${k.over}m  minDim=${k.minDim}m  ${k.dims}m  "${k.name}"`);
-if (keep.length > 40) console.log(`  … +${keep.length - 40} autres`);
+if (keys.length > 1) console.log(`\nTotal : ${totalBad} meshes hors coque sur ${keys.length} vaisseaux`);
+process.exit(totalBad ? 1 : 0);

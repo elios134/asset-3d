@@ -11,7 +11,7 @@
 
 import { NodeIO } from "@gltf-transform/core";
 import { ALL_EXTENSIONS } from "@gltf-transform/extensions";
-import { dedup, prune, textureCompress, meshopt, mergeDocuments, unpartition, getBounds, flatten, join as joinPrims, simplify } from "@gltf-transform/functions";
+import { dedup, prune, textureCompress, meshopt, mergeDocuments, unpartition, getBounds, flatten, join as joinPrims, simplify, dequantize } from "@gltf-transform/functions";
 import { MeshoptEncoder, MeshoptDecoder, MeshoptSimplifier } from "meshoptimizer";
 import sharp from "sharp";
 import { execFileSync } from "node:child_process";
@@ -69,6 +69,14 @@ await MeshoptEncoder.ready;
 const io = new NodeIO().registerExtensions(ALL_EXTENSIONS).registerDependencies({ "meshopt.decoder": MeshoptDecoder, "meshopt.encoder": MeshoptEncoder });
 // ...sauf les lumieres : 2181 KHR_lights_punctual sur le Carrack, three.js ne survivrait pas.
 const stripLights = (doc) => { for (const e of doc.getRoot().listExtensionsUsed()) if (e.extensionName === "KHR_lights_punctual") e.dispose(); };
+// Bug gltf-transform 4.4.1 : reorder()+quantize() (l'interieur de meshopt()) corrompt les positions
+// des primitives dont les accessors sont PARTAGES entre plusieurs prims (props instancies
+// StarBreaker : bouteilles, vitrages...) -> geometrie projetee sur tout le volume de quantization
+// (= les "modules mal places"/vitres geantes du triage app, 282 meshes sur 49 vaisseaux).
+// Chaque etape isolee est saine ; seule la combinaison corrompt. Parade : donner a chaque prim son
+// propre clone de tout accessor partage AVANT meshopt ; le dedup interne de quantize() re-fusionne
+// les clones identiques ensuite (cout final nul, valide : 3->0 debordants sur le Carrack).
+const unshareAccessors = (doc) => { const seen = new Set(); for (const mesh of doc.getRoot().listMeshes()) for (const pr of mesh.listPrimitives()) { for (const sem of pr.listSemantics()) { const a = pr.getAttribute(sem); if (!a) continue; if (seen.has(a)) pr.setAttribute(sem, a.clone()); else seen.add(a); } const idx = pr.getIndices(); if (idx) { if (seen.has(idx)) pr.setIndices(idx.clone()); else seen.add(idx); } } };
 const exp = (key, out, extra) => execFileSync(STARBREAKER, ["entity", "export", key, out, "--materials", "textures", "--mip", "4", ...extra], { env: { ...process.env, SC_DATA_P4K: P4K }, stdio: "ignore", timeout: 600000 });
 const mul = (a, b) => { const o = new Array(16); for (let c = 0; c < 4; c++) for (let r = 0; r < 4; r++) { let s = 0; for (let k = 0; k < 4; k++) s += a[k * 4 + r] * b[c * 4 + k]; o[c * 4 + r] = s; } return o; };
 const ap = (m, x, y, z) => [m[0]*x+m[4]*y+m[8]*z+m[12], m[1]*x+m[5]*y+m[9]*z+m[13], m[2]*x+m[6]*y+m[10]*z+m[14]];
@@ -92,7 +100,9 @@ for (const key of batch) {
       }
       const extDoc = await io.read(tmpExt);
       stripLights(extDoc);
-      await extDoc.transform(dedup(), prune(), textureCompress({ encoder: sharp, targetFormat: "webp", resize: [512, 512], quality: 80 }), meshopt({ encoder: MeshoptEncoder, level: "high" }));
+      await extDoc.transform(dedup(), prune(), textureCompress({ encoder: sharp, targetFormat: "webp", resize: [512, 512], quality: 80 }));
+      unshareAccessors(extDoc);
+      await extDoc.transform(meshopt({ encoder: MeshoptEncoder, level: "high" }));
       await io.write(extOut, extDoc);
       hull = getBounds(extDoc.getRoot().listScenes()[0]);
     }
@@ -148,12 +158,21 @@ for (const key of batch) {
     // keepNamed : seuls les noeuds encore nommes (= portes) echappent a la fusion.
     await intDoc.transform(dedup(), prune(), flatten(), joinPrims({ keepNamed: true }));
     // budget tris : LOD2 des capitaux peut deborder -> simplify meshopt (preserve les murs, contrairement au LOD3 CIG)
+    // unshare AVANT simplify : simplify remappe les sommets et corrompt les accessors partages
+    // exactement comme reorder+quantize (constate : vitres Valkyrie/bouteille du Carrack, seuls
+    // les capitaux au-dessus du budget tris etaient touches par CE point de corruption-la).
+    unshareAccessors(intDoc);
     const it = docTris(intDoc);
     if (it > BUDGET.interior.maxTris) {
       await MeshoptSimplifier.ready;
       await intDoc.transform(simplify({ simplifier: MeshoptSimplifier, ratio: (BUDGET.interior.maxTris / it) * 0.95, error: 0.01 }));
     }
-    await intDoc.transform(textureCompress({ encoder: sharp, targetFormat: "webp", resize: [1024, 1024], quality: 80 }), meshopt({ encoder: MeshoptEncoder, level: "high" }));
+    await intDoc.transform(textureCompress({ encoder: sharp, targetFormat: "webp", resize: [1024, 1024], quality: 80 }));
+    // PAS de meshopt ici : la quantization ne doit passer qu'UNE fois, tout a la fin. Re-quantizer
+    // des donnees deja quantizees (l'ancien schema : meshopt interieur PUIS meshopt final apres
+    // fusion du shell) reintroduisait la corruption sur les prims instanciees (vitres Valkyrie /
+    // bouteille du Carrack) malgre l'unshare — seul le schema "unshare + quantization unique"
+    // est valide propre (0 debordant).
     // shell occulteur : fusionner la silhouette exterieure. (1) anonymiser (aucun nom door/hatch
     // du shell ne doit matcher le masquage app) ; (2) pre-joindre le shell SEUL (fusion maximale) ;
     // (3) tagger "occluder_shell" : CONTRAT APP = render-only, EXCLU du collider (le shell ne doit
@@ -164,13 +183,17 @@ for (const key of batch) {
     const shellDoc = await io.read(extOut);
     for (const n of shellDoc.getRoot().listNodes()) n.setName("");
     for (const m of shellDoc.getRoot().listMeshes()) m.setName("");
-    await shellDoc.transform(prune(), flatten(), joinPrims());
+    // dequantize d'abord : extOut est deja quantize (int16 normalises + transforms de dequantization) ;
+    // le laisser tel quel ferait passer ses prims par une 2e quantization au meshopt final.
+    await shellDoc.transform(dequantize(), prune(), flatten(), joinPrims());
     for (const n of shellDoc.getRoot().listNodes()) if (n.getMesh()) n.setName("occluder_shell");
     for (const m of shellDoc.getRoot().listMeshes()) m.setName("occluder_shell");
     mergeDocuments(intDoc, shellDoc);
     const r = intDoc.getRoot(); const scenes = r.listScenes(); const def = r.getDefaultScene() || scenes[0];
     for (const sc of scenes) { if (sc === def) continue; for (const n of sc.listChildren()) def.addChild(n); sc.dispose(); }
-    await intDoc.transform(dedup(), unpartition(), meshopt({ encoder: MeshoptEncoder, level: "high" }));
+    await intDoc.transform(dedup(), unpartition());
+    unshareAccessors(intDoc);
+    await intDoc.transform(meshopt({ encoder: MeshoptEncoder, level: "high" }));
     await io.write(intOut, intDoc);
 
     for (const f of [tmpExt, tmpInt, tmpInt.replace(/\.glb$/, ".fixed.glb")]) if (existsSync(f)) rmSync(f);
