@@ -114,13 +114,25 @@ for (const key of batch) {
     // cull strays (generique/anonyme, loin hors coque) — bbox manuelle cycle-safe
     const nodes = intDoc.getRoot().listNodes(); const pm = new Map(); for (const n of nodes) for (const c of n.listChildren()) pm.set(c, n);
     const wm = (n) => { let mm = n.getMatrix(), p = pm.get(n), seen = new Set([n]), d = 0; while (p && !seen.has(p) && d < 200) { mm = mul(p.getMatrix(), mm); seen.add(p); p = pm.get(p); d++; } return mm; };
-    for (const node of nodes) { const mesh = node.getMesh(); if (!mesh) continue; let xn=1/0,yn=1/0,zn=1/0,xx=-1/0,yx=-1/0,zx=-1/0; for (const pr of mesh.listPrimitives()) { const a = pr.getAttribute("POSITION"); if (!a) continue; const mn = a.getMinNormalized([]), mx = a.getMaxNormalized([]); if (!mn) continue; const M = wm(node); for (const c of [[mn[0],mn[1],mn[2]],[mx[0],mx[1],mx[2]],[mn[0],mx[1],mn[2]],[mx[0],mn[1],mx[2]]]) { const w = ap(M, ...c); xn=Math.min(xn,w[0]);yn=Math.min(yn,w[1]);zn=Math.min(zn,w[2]);xx=Math.max(xx,w[0]);yx=Math.max(yx,w[1]);zx=Math.max(zx,w[2]); } } if (!isFinite(xn)) continue; const over = Math.max(hull.min[0]-xx, xn-hull.max[0], hull.min[1]-yx, yn-hull.max[1], hull.min[2]-zx, zn-hull.max[2]); const nm = node.getName() || "";
-      // cull 1 : generique/anonyme ET loin hors coque (>10m, critere historique prudent)
-      if (over > 10 && (!nm || /^[?]/.test(nm) || GENERIC.test(nm))) { node.dispose(); continue; }
-      // cull 2 : ENTIEREMENT disjoint de la coque (>2m de separation), quel que soit le nom — de la
-      // geometrie INTERIEURE totalement hors coque est defective par construction (bloc sombre flottant
-      // vu par l'user ; la lecon 350r ne vaut que pour l'exterieur ou depasser est legitime)
-      if (over > 2) node.dispose(); }
+    // L'interieur DOIT tenir dans l'enveloppe exterieure : tout mesh qui en DEBORDE de plus de 2m est
+    // defectueux par construction (module englobant "bol saumon", piece chevauchante, debris flottant),
+    // quel que soit son nom. Critere valide par le scan app (57/62 vaisseaux touches par les modules
+    // chevauchants que l'ancien critere "disjoint" ratait). Soupape : si >30% des meshes partiraient,
+    // le shell/l'export est anormal -> on ne culle rien (meme garde-fou que le cull runtime app).
+    const candidates = [];
+    let meshCount = 0;
+    // bornes par ECHANTILLONNAGE DE SOMMETS (1/13), pas par min/max d'accessor : certains exports
+    // StarBreaker ont des min/max mensongers (plus petits que les sommets reels) -> slivers a -48m
+    // qui echappaient au cull.
+    const PT = [0, 0, 0];
+    for (const node of nodes) { const mesh = node.getMesh(); if (!mesh) continue; meshCount++; let xn=1/0,yn=1/0,zn=1/0,xx=-1/0,yx=-1/0,zx=-1/0; const M = wm(node); for (const pr of mesh.listPrimitives()) { const a = pr.getAttribute("POSITION"); if (!a) continue; const cn = a.getCount(); for (let i = 0; i < cn; i += 13) { a.getElement(i, PT); const w = ap(M, PT[0], PT[1], PT[2]); xn=Math.min(xn,w[0]);yn=Math.min(yn,w[1]);zn=Math.min(zn,w[2]);xx=Math.max(xx,w[0]);yx=Math.max(yx,w[1]);zx=Math.max(zx,w[2]); } } if (!isFinite(xn)) continue;
+      const prot = Math.max(hull.min[0]-xn, xx-hull.max[0], hull.min[1]-yn, yx-hull.max[1], hull.min[2]-zn, zx-hull.max[2]);
+      if (prot > 2) candidates.push(node); }
+    // setMesh(null), PAS dispose() : disposer un noeud DETACHE ses enfants qui perdent la transform
+    // parentale et sautent a des positions absurdes (constate : +245 nouveaux debordants apres un cull
+    // par dispose sur le Carrack). Retirer le mesh preserve la hierarchie ; prune() nettoie ensuite.
+    if (candidates.length <= meshCount * 0.3) { for (const n of candidates) n.setMesh(null); }
+    else console.log(`  ⚠ ${key} : cull suspendu (${candidates.length}/${meshCount} meshes deborderaient — shell anormal ?)`);
     // Preserver les PORTES du join : l'app les masque/rend franchissables PAR NOM (isSkippedTree).
     // 1) propager le token porte des groupes (Anim_Door_L) vers leurs meshes descendants (flatten
     //    supprime les parents) ; 2) anonymiser tout le reste pour que join() fusionne un maximum.
