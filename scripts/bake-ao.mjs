@@ -30,7 +30,10 @@ await MeshoptEncoder.ready;
 const io = new NodeIO().registerExtensions(ALL_EXTENSIONS).registerDependencies({ "meshopt.decoder": MeshoptDecoder, "meshopt.encoder": MeshoptEncoder });
 
 console.log(`[1/3] decompression meshopt -> ${dec}`);
-const doc = await io.read(file); // lu+decode ; ecrit SANS transform meshopt = non compresse
+const doc = await io.read(file);
+// retirer l'extension meshopt du document, sinon l'ecriture RE-compresse (encodeur enregistre)
+// et Blender ne sait pas lire EXT_meshopt_compression
+for (const e of doc.getRoot().listExtensionsUsed()) if (e.extensionName === "EXT_meshopt_compression") e.dispose();
 await io.write(dec, doc);
 
 console.log(`[2/3] bake AO Blender (${samples} samples)...`);

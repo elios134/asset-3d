@@ -1,6 +1,6 @@
 {
   "schemaVersion": 2,
-  "generatedAt": "2026-07-07T18:40:10.568Z",
+  "generatedAt": "2026-07-07T20:32:42.035Z",
   "patchVersion": "sc-4.1",
   "levels": [
     {
@@ -231,10 +231,10 @@
           "level": "interior",
           "label": "Interieur",
           "modelUrl": "https://github.com/elios134/asset-3d/releases/download/sc-4.1/AEGS_Hammerhead.interior.glb",
-          "tris": 1173724,
-          "sizeBytes": 22800056,
+          "tris": 1167582,
+          "sizeBytes": 23430248,
           "hasInterior": true,
-          "sha256": "fef789504184f10021998a2736d02e27874328fcea17dfb862ccbb0e31c3fec7",
+          "sha256": "7b64fb319d1ef92d6d22ae311ec862d14234597b21fefadaa4b77d8228b1833d",
           "interiorKind": "habitable",
           "interiorWalkableM2": 1644
         }
@@ -266,10 +266,10 @@
           "level": "interior",
           "label": "Interieur",
           "modelUrl": "https://github.com/elios134/asset-3d/releases/download/sc-4.1/AEGS_Idris_M.interior.glb",
-          "tris": 2921157,
-          "sizeBytes": 51231664,
+          "tris": 2882514,
+          "sizeBytes": 52858040,
           "hasInterior": true,
-          "sha256": "86747fffc66e839a364a2abe58a4b27baab5339214ce9a2083d8d385d96eb75b",
+          "sha256": "9206665b08d63837dadfb580ddaa0a9938d137d844eda25bfb1ed81ee345ff20",
           "interiorKind": "habitable",
           "interiorWalkableM2": 6612
         }
@@ -301,10 +301,10 @@
           "level": "interior",
           "label": "Interieur",
           "modelUrl": "https://github.com/elios134/asset-3d/releases/download/sc-4.1/AEGS_Idris_P.interior.glb",
-          "tris": 2856042,
-          "sizeBytes": 49757584,
+          "tris": 2816958,
+          "sizeBytes": 51371648,
           "hasInterior": true,
-          "sha256": "f0636c30820735b5869e25c293a2652bb913fa55f3640f9b306b55722cc8dc87",
+          "sha256": "eee99a138e9d3ec590ce6e97ffbcd6853a91038f8a82abe193f6622502422153",
           "interiorKind": "habitable",
           "interiorWalkableM2": 5908
         }
@@ -360,10 +360,10 @@
           "level": "interior",
           "label": "Interieur",
           "modelUrl": "https://github.com/elios134/asset-3d/releases/download/sc-4.1/AEGS_Reclaimer.interior.glb",
-          "tris": 1259309,
-          "sizeBytes": 23406556,
+          "tris": 1238097,
+          "sizeBytes": 24200356,
           "hasInterior": true,
-          "sha256": "c060009c7def4e7a15911e43feb3e295601de7374d9660acd2e15cd85bee8514",
+          "sha256": "de0c12b2b6d5390a06d079193910ea7b8f5f673f855a263d941a903614528e10",
           "interiorKind": "habitable",
           "interiorWalkableM2": 2437
         }
@@ -395,10 +395,10 @@
           "level": "interior",
           "label": "Interieur",
           "modelUrl": "https://github.com/elios134/asset-3d/releases/download/sc-4.1/AEGS_Redeemer.interior.glb",
-          "tris": 780505,
-          "sizeBytes": 14962588,
+          "tris": 777310,
+          "sizeBytes": 15679980,
           "hasInterior": true,
-          "sha256": "56ff94813cf6b3675fd423d77cb36f752591b36f735d249615eb1cbd7edac8bf",
+          "sha256": "54e44fb19baff27ed445732c9d13b18fb6f4546eb93be01742ec2e226d14d796",
           "interiorKind": "habitable",
           "interiorWalkableM2": 273
         }
@@ -430,10 +430,10 @@
           "level": "interior",
           "label": "Interieur",
           "modelUrl": "https://github.com/elios134/asset-3d/releases/download/sc-4.1/AEGS_Retaliator.interior.glb",
-          "tris": 774546,
-          "sizeBytes": 14657036,
+          "tris": 774238,
+          "sizeBytes": 15867912,
           "hasInterior": true,
-          "sha256": "b985cffebccd3dc640facac8110c5bc5ba439b8bc8f95f27963248cf9961e51b",
+          "sha256": "e1f8ea59ca7ca772d66bfc7583aec8b4b17cafca617ca0c37d588458cded2994",
           "interiorKind": "habitable",
           "interiorWalkableM2": 326
         }
@@ -585,10 +585,10 @@
           "level": "interior",
           "label": "Interieur",
           "modelUrl": "https://github.com/elios134/asset-3d/releases/download/sc-4.1/AEGS_Tiburon.interior.glb",
-          "tris": 2549868,
-          "sizeBytes": 36503340,
+          "tris": 2512583,
+          "sizeBytes": 37579212,
           "hasInterior": true,
-          "sha256": "6ae7a6d61bf4b4b6846a3d55ec047e6653ee50657fb21b484e03aa80a74ffcc7",
+          "sha256": "e363c1649f7956c1978f04bd38d15d1a0594549d0c7e62eb6ee8765b18628ba3",
           "interiorKind": "habitable",
           "interiorWalkableM2": 1656
         }
@@ -620,10 +620,10 @@
           "level": "interior",
           "label": "Interieur",
           "modelUrl": "https://github.com/elios134/asset-3d/releases/download/sc-4.1/AEGS_Vanguard.interior.glb",
-          "tris": 364038,
-          "sizeBytes": 8493956,
+          "tris": 362384,
+          "sizeBytes": 9090868,
           "hasInterior": true,
-          "sha256": "32393945cd1d33bf5c17d7bc19ae3977bd76944dbcc4c0c778b44ac2d6cc2824",
+          "sha256": "c675d464c4188b585b2a7cf81934ab6c6d3d826543a5047245b95e8b9743ff8a",
           "interiorKind": "habitable",
           "interiorWalkableM2": 138
         }
@@ -655,10 +655,10 @@
           "level": "interior",
           "label": "Interieur",
           "modelUrl": "https://github.com/elios134/asset-3d/releases/download/sc-4.1/AEGS_Vanguard_Harbinger.interior.glb",
-          "tris": 361923,
-          "sizeBytes": 8176408,
+          "tris": 359753,
+          "sizeBytes": 8858620,
           "hasInterior": true,
-          "sha256": "443be88240f84f490748ac2e34163f80973bde51fcc7ab3df826550aa139e498",
+          "sha256": "7f15659b275114fcc555852e15dcc7439dc8c8bfabf2b352dbade99220004146",
           "interiorKind": "habitable",
           "interiorWalkableM2": 136
         }
@@ -690,10 +690,10 @@
           "level": "interior",
           "label": "Interieur",
           "modelUrl": "https://github.com/elios134/asset-3d/releases/download/sc-4.1/AEGS_Vanguard_Hoplite.interior.glb",
-          "tris": 396681,
-          "sizeBytes": 9174816,
+          "tris": 395027,
+          "sizeBytes": 9772984,
           "hasInterior": true,
-          "sha256": "b158c4901b1a65edf4260bae8c6c5c3dcc7ff33981153c47e785c2abd99f2116",
+          "sha256": "95436d24279a59a8a3b7009b0a93826b086be7d5f981f07153d13dfc219ed3e5",
           "interiorKind": "habitable",
           "interiorWalkableM2": 133
         }
@@ -725,10 +725,10 @@
           "level": "interior",
           "label": "Interieur",
           "modelUrl": "https://github.com/elios134/asset-3d/releases/download/sc-4.1/AEGS_Vanguard_Sentinel.interior.glb",
-          "tris": 367744,
-          "sizeBytes": 8949684,
+          "tris": 366090,
+          "sizeBytes": 9547568,
           "hasInterior": true,
-          "sha256": "75d2df45124bf9dc104cfc1544a0745eb51f5c16c88429f0919c8fd59d215b5b",
+          "sha256": "803a2c3f5d3c2fe15f5f2d429c45639f413298015fe79cf95dea94630d92716d",
           "interiorKind": "habitable",
           "interiorWalkableM2": 134
         }
@@ -784,10 +784,10 @@
           "level": "interior",
           "label": "Interieur",
           "modelUrl": "https://github.com/elios134/asset-3d/releases/download/sc-4.1/ANVL_Asgard.interior.glb",
-          "tris": 864480,
-          "sizeBytes": 17089444,
+          "tris": 862189,
+          "sizeBytes": 18578704,
           "hasInterior": true,
-          "sha256": "27af6eaac26d456c53de905d0a01a674040dcae87fca6b14b21fd536975ea059",
+          "sha256": "38a597250e212f9462ba8b005521bbb723bd4b653f04341a3798467ea47903bb",
           "interiorKind": "habitable",
           "interiorWalkableM2": 487
         }
@@ -963,10 +963,10 @@
           "level": "interior",
           "label": "Interieur",
           "modelUrl": "https://github.com/elios134/asset-3d/releases/download/sc-4.1/ANVL_Carrack.interior.glb",
-          "tris": 1937942,
-          "sizeBytes": 37913408,
+          "tris": 1921558,
+          "sizeBytes": 38817840,
           "hasInterior": true,
-          "sha256": "bb77e1619842f43fb3cd362298d71063d6f4620c0981f8aa4672900a9840c7e0",
+          "sha256": "a0aea0aa6799af04a1c367d4241883c0cdab5b74eeb70fe2a5deb2cc06b37ec2",
           "interiorKind": "habitable",
           "interiorWalkableM2": 1900
         }
@@ -998,10 +998,10 @@
           "level": "interior",
           "label": "Interieur",
           "modelUrl": "https://github.com/elios134/asset-3d/releases/download/sc-4.1/ANVL_Carrack_Expedition.interior.glb",
-          "tris": 1937942,
-          "sizeBytes": 37913364,
+          "tris": 1921558,
+          "sizeBytes": 38763208,
           "hasInterior": true,
-          "sha256": "6f34344ccadfe30aaeaed87feb550ec5eb1bc74b15c8c4e52b6cbe8a8fc4e457",
+          "sha256": "eb6ed71cf1ab0c6e798df657651afc336587d48536b6286112dfa77436d8070f",
           "interiorKind": "habitable",
           "interiorWalkableM2": 1900
         }
@@ -1585,10 +1585,10 @@
           "level": "interior",
           "label": "Interieur",
           "modelUrl": "https://github.com/elios134/asset-3d/releases/download/sc-4.1/ANVL_Valkyrie.interior.glb",
-          "tris": 703019,
-          "sizeBytes": 12858368,
+          "tris": 701855,
+          "sizeBytes": 13833064,
           "hasInterior": true,
-          "sha256": "5bcbbc2c5bdf52564da6fe161b467fa2a9a153a12ec083a069f6fc7e0fd848e8",
+          "sha256": "52598db87e93154af579ec6ac064323093e1f23116ef35c73041139ca70ea9e8",
           "interiorKind": "habitable",
           "interiorWalkableM2": 402
         }
@@ -1836,10 +1836,10 @@
           "level": "interior",
           "label": "Interieur",
           "modelUrl": "https://github.com/elios134/asset-3d/releases/download/sc-4.1/ARGO_MOLE.interior.glb",
-          "tris": 778081,
-          "sizeBytes": 12685780,
+          "tris": 772018,
+          "sizeBytes": 13868968,
           "hasInterior": true,
-          "sha256": "757c9dad46ccc97144a50f8db9a0e56f6908972ff5ef79053b7f0474d5af5f6c",
+          "sha256": "8803e3f760955b58fbe88d06ce96de9dc6d023f95fe58c86b4e58e77b7d1cf03",
           "interiorKind": "habitable",
           "interiorWalkableM2": 401
         }
@@ -1967,10 +1967,10 @@
           "level": "interior",
           "label": "Interieur",
           "modelUrl": "https://github.com/elios134/asset-3d/releases/download/sc-4.1/ARGO_RAFT.interior.glb",
-          "tris": 733592,
-          "sizeBytes": 13198520,
+          "tris": 727757,
+          "sizeBytes": 14885628,
           "hasInterior": true,
-          "sha256": "e93a3958657002652cc2eb5c7ac43216ad49114a031301efbefb6888ebe861a7",
+          "sha256": "9ef382fa6c8b2036660e864c566a48880972576ebb225eb7650d994020c536b2",
           "interiorKind": "habitable",
           "interiorWalkableM2": 280
         }
@@ -2266,10 +2266,10 @@
           "level": "interior",
           "label": "Interieur",
           "modelUrl": "https://github.com/elios134/asset-3d/releases/download/sc-4.1/CRUS_Spirit_A1.interior.glb",
-          "tris": 830332,
-          "sizeBytes": 15086648,
+          "tris": 827287,
+          "sizeBytes": 16573004,
           "hasInterior": true,
-          "sha256": "b40020489e2f5f7369a5176e9376bf6f87d67d10191b1272ba4d783404687567",
+          "sha256": "5cc9eeb3de9392469695bbb8b7f3bf47abcbb374f4b0b081817a23677ff0b9dd",
           "interiorKind": "habitable",
           "interiorWalkableM2": 247
         }
@@ -2301,10 +2301,10 @@
           "level": "interior",
           "label": "Interieur",
           "modelUrl": "https://github.com/elios134/asset-3d/releases/download/sc-4.1/CRUS_Spirit_C1.interior.glb",
-          "tris": 727660,
-          "sizeBytes": 13069352,
+          "tris": 724615,
+          "sizeBytes": 14538912,
           "hasInterior": true,
-          "sha256": "1d6018fdde85974c065b5b5458d106f2ac32d1d769ed3f9ce82170ca0131f381",
+          "sha256": "83e7d0a169214cb097116ad2b2ad34d24dc3df31ec9a6ac7513a737da604ff39",
           "interiorKind": "habitable",
           "interiorWalkableM2": 261
         }
@@ -2336,10 +2336,10 @@
           "level": "interior",
           "label": "Interieur",
           "modelUrl": "https://github.com/elios134/asset-3d/releases/download/sc-4.1/CRUS_Star_Runner.interior.glb",
-          "tris": 1048870,
-          "sizeBytes": 18238776,
+          "tris": 1040322,
+          "sizeBytes": 18948860,
           "hasInterior": true,
-          "sha256": "5dcc309520fe9eb710f83d971b89a1119d14651899a202cc00f05aedd0c506df",
+          "sha256": "d0af89fee0623bb4714332198eec9803773ffff517500155ef70a339bd9d27a7",
           "interiorKind": "habitable",
           "interiorWalkableM2": 758
         }
@@ -2419,10 +2419,10 @@
           "level": "interior",
           "label": "Interieur",
           "modelUrl": "https://github.com/elios134/asset-3d/releases/download/sc-4.1/CRUS_Starlifter_A2.interior.glb",
-          "tris": 1281880,
-          "sizeBytes": 21774288,
+          "tris": 1261162,
+          "sizeBytes": 22470080,
           "hasInterior": true,
-          "sha256": "4e8dbee295318516cf2d3532deccb5913b5faa913f8c43ef16552456e6c9e230",
+          "sha256": "10473bc297f0e85d6173c3c86aed90664932f1a4ef7f2ff1268a54547bf39785",
           "interiorKind": "habitable",
           "interiorWalkableM2": 1183
         }
@@ -2454,10 +2454,10 @@
           "level": "interior",
           "label": "Interieur",
           "modelUrl": "https://github.com/elios134/asset-3d/releases/download/sc-4.1/CRUS_Starlifter_C2.interior.glb",
-          "tris": 1132906,
-          "sizeBytes": 19830092,
+          "tris": 1118649,
+          "sizeBytes": 20531176,
           "hasInterior": true,
-          "sha256": "2c5038aa86f4cf4071783136494e1b74af79c2f41080c2b5a02df54917929674",
+          "sha256": "383428e507208ab38a7ae572eda0733b5c8231e5e42272a451dbb5c62b173754",
           "interiorKind": "habitable",
           "interiorWalkableM2": 1127
         }
@@ -2489,10 +2489,10 @@
           "level": "interior",
           "label": "Interieur",
           "modelUrl": "https://github.com/elios134/asset-3d/releases/download/sc-4.1/CRUS_Starlifter_M2.interior.glb",
-          "tris": 1231991,
-          "sizeBytes": 21299668,
+          "tris": 1211270,
+          "sizeBytes": 21974164,
           "hasInterior": true,
-          "sha256": "824f12eef499e3282356fb570a6481b7a93df002657475cf7c49d4754cfa791e",
+          "sha256": "45bd0949e8c4e221b92515afa2da57e2b7615b053c51c8c333878c8af66251dc",
           "interiorKind": "habitable",
           "interiorWalkableM2": 1164
         }
@@ -2548,10 +2548,10 @@
           "level": "interior",
           "label": "Interieur",
           "modelUrl": "https://github.com/elios134/asset-3d/releases/download/sc-4.1/DRAK_Caterpillar.interior.glb",
-          "tris": 2093453,
-          "sizeBytes": 34536816,
+          "tris": 2065138,
+          "sizeBytes": 35351840,
           "hasInterior": true,
-          "sha256": "c7fab5156b202158e193012ac1c9933d733f989aaf5a965443fc024acaf48370",
+          "sha256": "325c60b136e202ec426e923c96779aaa8fa05085fb27fff87c3f587e7b26ecfd",
           "interiorKind": "habitable",
           "interiorWalkableM2": 863
         }
@@ -2583,10 +2583,10 @@
           "level": "interior",
           "label": "Interieur",
           "modelUrl": "https://github.com/elios134/asset-3d/releases/download/sc-4.1/DRAK_Caterpillar_Pirate.interior.glb",
-          "tris": 2200031,
-          "sizeBytes": 36281812,
+          "tris": 2171716,
+          "sizeBytes": 37091908,
           "hasInterior": true,
-          "sha256": "3721cba9f8be574abd9277b19c6ae6b2efa00a4f8fbc990122026ab5e2021521",
+          "sha256": "c6521417b7f23f3ab18f7f4535449102815c85ef110f8576c8e2cc769ae8477a",
           "interiorKind": "habitable",
           "interiorWalkableM2": 877
         }
@@ -2666,10 +2666,10 @@
           "level": "interior",
           "label": "Interieur",
           "modelUrl": "https://github.com/elios134/asset-3d/releases/download/sc-4.1/DRAK_Corsair.interior.glb",
-          "tris": 1297379,
-          "sizeBytes": 18575096,
+          "tris": 1296277,
+          "sizeBytes": 20874856,
           "hasInterior": true,
-          "sha256": "28dad46f09cb7f0029a3341486fd2034c330c40b777d7bc73b32c1922292c196",
+          "sha256": "305628d39488aaa497153eb2091c803d57f32c72dde6bae131ad86aaafd516b6",
           "interiorKind": "habitable",
           "interiorWalkableM2": 457
         }
@@ -2702,9 +2702,9 @@
           "label": "Interieur",
           "modelUrl": "https://github.com/elios134/asset-3d/releases/download/sc-4.1/DRAK_Cutlass_Black.interior.glb",
           "tris": 484162,
-          "sizeBytes": 9956384,
+          "sizeBytes": 10868136,
           "hasInterior": true,
-          "sha256": "1c603c7b1ea145a5c5be2a1bcc4ce0c5f4037bb254f65db0bf4ab7fb35e265c6",
+          "sha256": "652566b2f42965a4586292a7c9f75427b4e0d32708743a93badb08c5c8ef95f0",
           "interiorKind": "habitable",
           "interiorWalkableM2": 198
         }
@@ -2736,10 +2736,10 @@
           "level": "interior",
           "label": "Interieur",
           "modelUrl": "https://github.com/elios134/asset-3d/releases/download/sc-4.1/DRAK_Cutlass_Blue.interior.glb",
-          "tris": 597106,
-          "sizeBytes": 12030364,
+          "tris": 596826,
+          "sizeBytes": 13237980,
           "hasInterior": true,
-          "sha256": "3ca4cce725221510074fbeb782b2893e73bfab5f27c98d7de12d58c82d7fd5ab",
+          "sha256": "e636b6a0a4e68b1443b479cb6f3aa92b1b950a0eb56e754a36d6c194bb7bb64d",
           "interiorKind": "habitable",
           "interiorWalkableM2": 166
         }
@@ -2772,9 +2772,9 @@
           "label": "Interieur",
           "modelUrl": "https://github.com/elios134/asset-3d/releases/download/sc-4.1/DRAK_Cutlass_Red.interior.glb",
           "tris": 462288,
-          "sizeBytes": 9409284,
+          "sizeBytes": 10523700,
           "hasInterior": true,
-          "sha256": "84a3ec6de0b3228951e0aff136f4829307c92a7ab6fb29eac59eb474687ffb8b",
+          "sha256": "5d98b60cede3ce569997c879b69a8ca3e0cd0917f8e7240f09c4fd50ff1384e7",
           "interiorKind": "habitable",
           "interiorWalkableM2": 163
         }
@@ -2807,9 +2807,9 @@
           "label": "Interieur",
           "modelUrl": "https://github.com/elios134/asset-3d/releases/download/sc-4.1/DRAK_Cutlass_Steel.interior.glb",
           "tris": 534501,
-          "sizeBytes": 10765016,
+          "sizeBytes": 11684036,
           "hasInterior": true,
-          "sha256": "0ac45e644d90080ab3f845d87e6aadb37fb439af09cf1c8e60e1b9d2a2105ad4",
+          "sha256": "fba7762b817104ba6eb1049ce4f92f2ce96244a451a495b1024400380975702f",
           "interiorKind": "habitable",
           "interiorWalkableM2": 220
         }
@@ -3057,10 +3057,10 @@
           "level": "interior",
           "label": "Interieur",
           "modelUrl": "https://github.com/elios134/asset-3d/releases/download/sc-4.1/DRAK_Ironclad.interior.glb",
-          "tris": 4694133,
-          "sizeBytes": 76740616,
+          "tris": 4678784,
+          "sizeBytes": 79495296,
           "hasInterior": true,
-          "sha256": "57ce792aeaeb0af19398e6b6b30d0def0d2becbc1e70559d662aaac6133fc63c",
+          "sha256": "2ddb64379c43bf976afdf8e993ef0479703b434c11c448ec7d1754801e02a98f",
           "interiorKind": "habitable",
           "interiorWalkableM2": 2279
         }
@@ -3092,10 +3092,10 @@
           "level": "interior",
           "label": "Interieur",
           "modelUrl": "https://github.com/elios134/asset-3d/releases/download/sc-4.1/DRAK_Ironclad_Assault.interior.glb",
-          "tris": 4845913,
-          "sizeBytes": 79702808,
+          "tris": 4828134,
+          "sizeBytes": 82464872,
           "hasInterior": true,
-          "sha256": "1701c94073670689b1c4d7fcfd1e73b0e1e8df0e310a416790e9f2571620e7a8",
+          "sha256": "923cda93f1e648da0e399889d504b77727bc25b13ef248cc1c8079210d9a820e",
           "interiorKind": "habitable",
           "interiorWalkableM2": 2271
         }
@@ -3295,10 +3295,10 @@
           "level": "interior",
           "label": "Interieur",
           "modelUrl": "https://github.com/elios134/asset-3d/releases/download/sc-4.1/GAMA_Railen.interior.glb",
-          "tris": 1163211,
-          "sizeBytes": 19161372,
+          "tris": 1161515,
+          "sizeBytes": 20033088,
           "hasInterior": true,
-          "sha256": "2520d9413ad5b3d675017475893b035708873846fb08040950d926f5b07df8b0",
+          "sha256": "b344b1ac1118a8bc342df9e2ee0b4cf94129698c52e89b01f5b4a29783be07b4",
           "interiorKind": "habitable",
           "interiorWalkableM2": 898
         }
@@ -3354,10 +3354,10 @@
           "level": "interior",
           "label": "Interieur",
           "modelUrl": "https://github.com/elios134/asset-3d/releases/download/sc-4.1/GAMA_Tyilui.interior.glb",
-          "tris": 1330223,
-          "sizeBytes": 20619136,
+          "tris": 1327039,
+          "sizeBytes": 21906592,
           "hasInterior": true,
-          "sha256": "5d25b14e675d5b258bb3aa8a374299c8923937e12ff83f90c7421af108809035",
+          "sha256": "5da0478444f05d176ede2f34addfff511c2a63004dcadb1783304fa6a2d0b196",
           "interiorKind": "habitable",
           "interiorWalkableM2": 1106
         }
@@ -3390,9 +3390,9 @@
           "label": "Interieur",
           "modelUrl": "https://github.com/elios134/asset-3d/releases/download/sc-4.1/GLSN_Shiv.interior.glb",
           "tris": 573611,
-          "sizeBytes": 12498604,
+          "sizeBytes": 13904788,
           "hasInterior": true,
-          "sha256": "f1b6d76c13411e67799456496aa5e290e75b57b5dd3d8c36a91cb715728293d1",
+          "sha256": "8c0115a73e333ee8c8864098d64cbbc3b651c371770ba1e09e52778a79a11f66",
           "interiorKind": "habitable",
           "interiorWalkableM2": 161
         }
@@ -3736,10 +3736,10 @@
           "level": "interior",
           "label": "Interieur",
           "modelUrl": "https://github.com/elios134/asset-3d/releases/download/sc-4.1/MISC_Freelancer.interior.glb",
-          "tris": 443516,
-          "sizeBytes": 9315368,
+          "tris": 443508,
+          "sizeBytes": 9733160,
           "hasInterior": true,
-          "sha256": "635f3f107258ed65bc6b8a78f0eae95962a237a975f684e6de9d62abae0cc951",
+          "sha256": "dd71af70a61478d16155c6796be84c7324ee5b982804787d14ce3e5e748be1d3",
           "interiorKind": "habitable",
           "interiorWalkableM2": 120
         }
@@ -3771,10 +3771,10 @@
           "level": "interior",
           "label": "Interieur",
           "modelUrl": "https://github.com/elios134/asset-3d/releases/download/sc-4.1/MISC_Freelancer_DUR.interior.glb",
-          "tris": 362855,
-          "sizeBytes": 8292356,
+          "tris": 362847,
+          "sizeBytes": 8779064,
           "hasInterior": true,
-          "sha256": "1a1c6c19cab979465a39dd1efd82233311cb3dba9415f20bb793bd679edee109",
+          "sha256": "6cbc108691fc4a67e1dcb46da51f25ee7717cba78d235b4c38a2c6afc0cea42f",
           "interiorKind": "habitable",
           "interiorWalkableM2": 151
         }
@@ -3806,10 +3806,10 @@
           "level": "interior",
           "label": "Interieur",
           "modelUrl": "https://github.com/elios134/asset-3d/releases/download/sc-4.1/MISC_Freelancer_MAX.interior.glb",
-          "tris": 376148,
-          "sizeBytes": 8337028,
+          "tris": 376144,
+          "sizeBytes": 8786824,
           "hasInterior": true,
-          "sha256": "809e41f784ed41de4b9262569fbc8d96bf8292ac8cd7a1a8046f3f0621e947e6",
+          "sha256": "598451190e5f82e0ddaf02b6940deb33762dfd85e20dfea06783741694c36191",
           "interiorKind": "habitable",
           "interiorWalkableM2": 179
         }
@@ -3841,10 +3841,10 @@
           "level": "interior",
           "label": "Interieur",
           "modelUrl": "https://github.com/elios134/asset-3d/releases/download/sc-4.1/MISC_Freelancer_MIS.interior.glb",
-          "tris": 476854,
-          "sizeBytes": 9771796,
+          "tris": 476846,
+          "sizeBytes": 10245748,
           "hasInterior": true,
-          "sha256": "8a3382c6dccfba8c0ecfb990d1d449ca43bd721a89eeadbf518df552452029ce",
+          "sha256": "2e3eac5a35b69ee1e686f4df791d62bcf8cd4425a0b6df6335a07dbe7ec6bd19",
           "interiorKind": "habitable",
           "interiorWalkableM2": 113
         }
@@ -3972,10 +3972,10 @@
           "level": "interior",
           "label": "Interieur",
           "modelUrl": "https://github.com/elios134/asset-3d/releases/download/sc-4.1/MISC_Hull_B.interior.glb",
-          "tris": 1290288,
-          "sizeBytes": 18779796,
+          "tris": 1287219,
+          "sizeBytes": 22212996,
           "hasInterior": true,
-          "sha256": "02bef492af5af9d143796a553e97a99f9dd41913f13ff3ffa51a2cd2b9817b77",
+          "sha256": "e126b37870216e211de0139881e7ba3d0f06dcee528a695593c384121a4615da",
           "interiorKind": "habitable",
           "interiorWalkableM2": 266
         }
@@ -4007,10 +4007,10 @@
           "level": "interior",
           "label": "Interieur",
           "modelUrl": "https://github.com/elios134/asset-3d/releases/download/sc-4.1/MISC_Hull_C.interior.glb",
-          "tris": 666464,
-          "sizeBytes": 11941024,
+          "tris": 665644,
+          "sizeBytes": 13203088,
           "hasInterior": true,
-          "sha256": "6299683b2cffb054608070a2189b655f37d5bd32015789edcf2d954ee05ee0cd",
+          "sha256": "585dde3954ca33e39c9bdb75a329ff102eaca6c58355ee862cc9ffa9b1d2d4c4",
           "interiorKind": "habitable",
           "interiorWalkableM2": 895
         }
@@ -4234,10 +4234,10 @@
           "level": "interior",
           "label": "Interieur",
           "modelUrl": "https://github.com/elios134/asset-3d/releases/download/sc-4.1/MISC_Starfarer.interior.glb",
-          "tris": 843412,
-          "sizeBytes": 14227056,
+          "tris": 835646,
+          "sizeBytes": 15421168,
           "hasInterior": true,
-          "sha256": "23f88047e48eea9b38a8974d8a4a9b3d6ba947ad319abf57f6992d51e20adc5a",
+          "sha256": "8044054ec7a40edd78f674d1395169f6f045d301d494bfe2fd29e80b334d4b48",
           "interiorKind": "habitable",
           "interiorWalkableM2": 1436
         }
@@ -4269,10 +4269,10 @@
           "level": "interior",
           "label": "Interieur",
           "modelUrl": "https://github.com/elios134/asset-3d/releases/download/sc-4.1/MISC_Starfarer_Gemini.interior.glb",
-          "tris": 845078,
-          "sizeBytes": 14317216,
+          "tris": 837486,
+          "sizeBytes": 15513432,
           "hasInterior": true,
-          "sha256": "3ca9025fc0ee2fdea6c33249e6e413ddc1d5a4d079082cf825d296eb595e6220",
+          "sha256": "c7d3605e179f0ee910d9c4a007233465506945dc5d54ea8717108c45e12a139d",
           "interiorKind": "habitable",
           "interiorWalkableM2": 1430
         }
@@ -4304,10 +4304,10 @@
           "level": "interior",
           "label": "Interieur",
           "modelUrl": "https://github.com/elios134/asset-3d/releases/download/sc-4.1/MISC_Starlancer_Max.interior.glb",
-          "tris": 1879566,
-          "sizeBytes": 29499308,
+          "tris": 1872463,
+          "sizeBytes": 32206596,
           "hasInterior": true,
-          "sha256": "22502fca49fbd156efe3a0d0bf33800436400e33c90be9f04d64a22ffea4804c",
+          "sha256": "49c2c872c35b9ed39e8bcbd4a08acfe3d0e75ef6f3ca66c493c30740be75aa72",
           "interiorKind": "habitable",
           "interiorWalkableM2": 1211
         }
@@ -4339,10 +4339,10 @@
           "level": "interior",
           "label": "Interieur",
           "modelUrl": "https://github.com/elios134/asset-3d/releases/download/sc-4.1/MISC_Starlancer_TAC.interior.glb",
-          "tris": 2458122,
-          "sizeBytes": 35942412,
+          "tris": 2446278,
+          "sizeBytes": 39464524,
           "hasInterior": true,
-          "sha256": "406c1e6b1ef2ed4e5267ed279f9bf598bbc6217b4f5b8a23ccbe48decab0b015",
+          "sha256": "50ce6a3071d2adb898786809c1c80ac3279a68827ce875ae68f34a0d84763e00",
           "interiorKind": "habitable",
           "interiorWalkableM2": 1224
         }
@@ -4686,10 +4686,10 @@
           "level": "interior",
           "label": "Interieur",
           "modelUrl": "https://github.com/elios134/asset-3d/releases/download/sc-4.1/ORIG_400i.interior.glb",
-          "tris": 525795,
-          "sizeBytes": 12228280,
+          "tris": 521259,
+          "sizeBytes": 12777852,
           "hasInterior": true,
-          "sha256": "7c6dd9688096982ea3411031fa6ac5ed3a38532cb0d491b74ec757ae62ade4d8",
+          "sha256": "c85e56b08bff95ae3978da43d7f9158a768d46c1ef172bab24cd0fb8dfbf8ff2",
           "interiorKind": "habitable",
           "interiorWalkableM2": 330
         }
@@ -4721,10 +4721,10 @@
           "level": "interior",
           "label": "Interieur",
           "modelUrl": "https://github.com/elios134/asset-3d/releases/download/sc-4.1/ORIG_600i.interior.glb",
-          "tris": 904230,
-          "sizeBytes": 15501800,
+          "tris": 894621,
+          "sizeBytes": 16777264,
           "hasInterior": true,
-          "sha256": "08ed50dfd4516cea27fa7a732d991d1a3029a038ef1669134f09ef5e5a891ec0",
+          "sha256": "d30fd8e84486da9f766d610425a00be87da9d6a4c68d30ad8d31832d74ef629c",
           "interiorKind": "habitable",
           "interiorWalkableM2": 1404
         }
@@ -4756,10 +4756,10 @@
           "level": "interior",
           "label": "Interieur",
           "modelUrl": "https://github.com/elios134/asset-3d/releases/download/sc-4.1/ORIG_600i_Touring.interior.glb",
-          "tris": 827253,
-          "sizeBytes": 14133732,
+          "tris": 817554,
+          "sizeBytes": 15338728,
           "hasInterior": true,
-          "sha256": "1c3db11d1251f027ef33c158256b9714fdde30970b98e427409f802d4e0a2e3b",
+          "sha256": "499b91271450df597eda4bfb8d8e259707423c1d60bb06cda92d6356fe2e1cdf",
           "interiorKind": "habitable",
           "interiorWalkableM2": 1302
         }
@@ -4815,10 +4815,10 @@
           "level": "interior",
           "label": "Interieur",
           "modelUrl": "https://github.com/elios134/asset-3d/releases/download/sc-4.1/ORIG_890Jump.interior.glb",
-          "tris": 1835334,
-          "sizeBytes": 30252768,
+          "tris": 1809666,
+          "sizeBytes": 31927840,
           "hasInterior": true,
-          "sha256": "bd7e6bdf89feebad89441e91bcc3e9590ff21f52aea5a789249f4183ed477e6f",
+          "sha256": "642010abdb5e4bb4e8d96993d2a01b6fa283a46eff5c8ad9e1ec9edf2d53a984",
           "interiorKind": "habitable",
           "interiorWalkableM2": 2675
         }
@@ -4970,10 +4970,10 @@
           "level": "interior",
           "label": "Interieur",
           "modelUrl": "https://github.com/elios134/asset-3d/releases/download/sc-4.1/RSI_Apollo_Medivac.interior.glb",
-          "tris": 1042010,
-          "sizeBytes": 20712664,
+          "tris": 1041464,
+          "sizeBytes": 23218796,
           "hasInterior": true,
-          "sha256": "5d0e516144fae210c91480113010d2869f4ac456366a5e58762856bd98d6afbb",
+          "sha256": "cabf58ba3798efd8b68417e5a145d8bf3b5cfd4d37a2482a583cdfbee1202459",
           "interiorKind": "habitable",
           "interiorWalkableM2": 831
         }
@@ -5005,10 +5005,10 @@
           "level": "interior",
           "label": "Interieur",
           "modelUrl": "https://github.com/elios134/asset-3d/releases/download/sc-4.1/RSI_Apollo_Triage.interior.glb",
-          "tris": 1064457,
-          "sizeBytes": 20941072,
+          "tris": 1063911,
+          "sizeBytes": 23454428,
           "hasInterior": true,
-          "sha256": "351ed8697c3290c075d780910564b9fabe39fafdad0f9ed6342bfeb2c7c3a858",
+          "sha256": "52439cc0ff7b2f596d303408dc9b1132aec367dfa1cdb00d9ac4052fd982cdd9",
           "interiorKind": "habitable",
           "interiorWalkableM2": 831
         }
@@ -5208,10 +5208,10 @@
           "level": "interior",
           "label": "Interieur",
           "modelUrl": "https://github.com/elios134/asset-3d/releases/download/sc-4.1/RSI_Constellation_Andromeda.interior.glb",
-          "tris": 833919,
-          "sizeBytes": 15186524,
+          "tris": 833797,
+          "sizeBytes": 17032216,
           "hasInterior": true,
-          "sha256": "1ff35f9b5dd883c0c3c87a4dbd9fd0d7cd49d0ad9733ba7fc51086c5dee91614",
+          "sha256": "1874ceb92cd4596bb55abc531c47ef58f5b814cd5a35e52de19ce11c0df70ecb",
           "interiorKind": "habitable",
           "interiorWalkableM2": 491
         }
@@ -5243,10 +5243,10 @@
           "level": "interior",
           "label": "Interieur",
           "modelUrl": "https://github.com/elios134/asset-3d/releases/download/sc-4.1/RSI_Constellation_Aquila.interior.glb",
-          "tris": 754793,
-          "sizeBytes": 13474444,
+          "tris": 754725,
+          "sizeBytes": 15349380,
           "hasInterior": true,
-          "sha256": "a6f28616b85a503dac0687ad4dc3826e95be6383a5e3342c0fc135d4affe8989",
+          "sha256": "598792cbdafbf4f2f402f2467039b2c687c57fcd20d1e89f10734546f9781559",
           "interiorKind": "habitable",
           "interiorWalkableM2": 491
         }
@@ -5278,10 +5278,10 @@
           "level": "interior",
           "label": "Interieur",
           "modelUrl": "https://github.com/elios134/asset-3d/releases/download/sc-4.1/RSI_Constellation_Phoenix.interior.glb",
-          "tris": 797468,
-          "sizeBytes": 15158636,
+          "tris": 793304,
+          "sizeBytes": 16753936,
           "hasInterior": true,
-          "sha256": "908bc36abafcfececd8a8b7318acb247aa01eadf35890a8cc93758bf00b03714",
+          "sha256": "d074ac83d972d00cc48ff460aa6cc777f378ede1a84c2cf48486087b0f6c838c",
           "interiorKind": "habitable",
           "interiorWalkableM2": 522
         }
@@ -5313,10 +5313,10 @@
           "level": "interior",
           "label": "Interieur",
           "modelUrl": "https://github.com/elios134/asset-3d/releases/download/sc-4.1/RSI_Constellation_Phoenix_Emerald.interior.glb",
-          "tris": 797468,
-          "sizeBytes": 15236384,
+          "tris": 793304,
+          "sizeBytes": 16831188,
           "hasInterior": true,
-          "sha256": "083b5b3e4d2d352bd839abab1241f48a4d37838b4d26e19d2a1e64ee7206b543",
+          "sha256": "ad00f241ef3ef8d7d0463ce2a53b7370400f7dceef0efac09fed8e7e008ba579",
           "interiorKind": "habitable",
           "interiorWalkableM2": 522
         }
@@ -5348,10 +5348,10 @@
           "level": "interior",
           "label": "Interieur",
           "modelUrl": "https://github.com/elios134/asset-3d/releases/download/sc-4.1/RSI_Constellation_Taurus.interior.glb",
-          "tris": 580370,
-          "sizeBytes": 10640568,
+          "tris": 580208,
+          "sizeBytes": 12287116,
           "hasInterior": true,
-          "sha256": "3aa9a3465e467237a746a346044c6f495966a086f89e16f86c57e428baad2f21",
+          "sha256": "a5f2321856c5006829d4e13001f528f2a6d9ed6548dc9f2f5553c03e3c73b303",
           "interiorKind": "habitable",
           "interiorWalkableM2": 390
         }
@@ -5383,10 +5383,10 @@
           "level": "interior",
           "label": "Interieur",
           "modelUrl": "https://github.com/elios134/asset-3d/releases/download/sc-4.1/RSI_Hermes.interior.glb",
-          "tris": 1020338,
-          "sizeBytes": 18538672,
+          "tris": 1019197,
+          "sizeBytes": 21031324,
           "hasInterior": true,
-          "sha256": "20c9022badc305fb79802375b5df8b4120b8e6282ca70ea7161ff4c5a2efd1c9",
+          "sha256": "7dff4b1be0d9229a5320d94b6ef454eab2488e46b1b50b8b97385b9a1537632b",
           "interiorKind": "habitable",
           "interiorWalkableM2": 871
         }
@@ -5490,10 +5490,10 @@
           "level": "interior",
           "label": "Interieur",
           "modelUrl": "https://github.com/elios134/asset-3d/releases/download/sc-4.1/RSI_Perseus.interior.glb",
-          "tris": 2567511,
-          "sizeBytes": 51665596,
+          "tris": 2533680,
+          "sizeBytes": 54537484,
           "hasInterior": true,
-          "sha256": "5f2b5d5f465a8adb3dd519be27caa6579254d0ff31152a5121a4a9ec672c098b",
+          "sha256": "ac8f250cdbbb0c90f7b71bd6407b245a8b51b001d70ea98c1b193e677b95385b",
           "interiorKind": "habitable",
           "interiorWalkableM2": 1638
         }
@@ -5525,10 +5525,10 @@
           "level": "interior",
           "label": "Interieur",
           "modelUrl": "https://github.com/elios134/asset-3d/releases/download/sc-4.1/RSI_Polaris.interior.glb",
-          "tris": 3414616,
-          "sizeBytes": 73350248,
+          "tris": 3336555,
+          "sizeBytes": 79704816,
           "hasInterior": true,
-          "sha256": "81c28d6eeb74d22e56e30c77e4ee33c0d889557b52c49915d8bb5b025e67b004",
+          "sha256": "3538aa3be6629dfecb251da3e987de00af98e7133d1fe78004aa7771c2bda6b1",
           "interiorKind": "habitable",
           "interiorWalkableM2": 4343
         }
@@ -5704,10 +5704,10 @@
           "level": "interior",
           "label": "Interieur",
           "modelUrl": "https://github.com/elios134/asset-3d/releases/download/sc-4.1/RSI_Zeus_CL.interior.glb",
-          "tris": 697913,
-          "sizeBytes": 13052536,
+          "tris": 694879,
+          "sizeBytes": 14379228,
           "hasInterior": true,
-          "sha256": "87ad9c00c2a2cf4b0894afffa47e8be64487db580d14c08653d54a36961f0894",
+          "sha256": "3cac5248a10c4f7a2e2c36af081d7823c5faed20f20254f0e57a0e1e9f238b2d",
           "interiorKind": "habitable",
           "interiorWalkableM2": 201
         }
@@ -5739,10 +5739,10 @@
           "level": "interior",
           "label": "Interieur",
           "modelUrl": "https://github.com/elios134/asset-3d/releases/download/sc-4.1/RSI_Zeus_ES.interior.glb",
-          "tris": 667592,
-          "sizeBytes": 12996052,
+          "tris": 664558,
+          "sizeBytes": 14345580,
           "hasInterior": true,
-          "sha256": "5a8f81b8093d7b8faafeeae8da7b54335e7cdd85b26494df6e661d12fe7a493c",
+          "sha256": "71a203b3f07abbeb678868f8dd26363e8d2cca97fe051566571188bf30bb8337",
           "interiorKind": "habitable",
           "interiorWalkableM2": 198
         }
@@ -6038,10 +6038,10 @@
           "level": "interior",
           "label": "Interieur",
           "modelUrl": "https://github.com/elios134/asset-3d/releases/download/sc-4.1/VNCL_Mauler.interior.glb",
-          "tris": 890531,
-          "sizeBytes": 12328864,
+          "tris": 890455,
+          "sizeBytes": 13710136,
           "hasInterior": true,
-          "sha256": "3f52a6413aad59be0cee8e8afdf0d5f3b21a339e7fc70e0e153be45aefcb203a",
+          "sha256": "695100d71470cf03391d2b97d47ac9e4a5fee10b73484f915dba4bf05eb5c308",
           "interiorKind": "habitable",
           "interiorWalkableM2": 2162
         }

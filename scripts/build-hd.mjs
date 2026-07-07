@@ -158,21 +158,19 @@ for (const key of batch) {
     // du shell ne doit matcher le masquage app) ; (2) pre-joindre le shell SEUL (fusion maximale) ;
     // (3) tagger "occluder_shell" : CONTRAT APP = render-only, EXCLU du collider (le shell ne doit
     // jamais bloquer le joueur ni porter de collision).
+    // Le shell garde ses VRAIS materiaux texture (rendu valide par l'user : « les trous montrent la
+    // coque, c'est parfait ») — l'app ne l'override plus, elle le rend tel quel (render-only via le
+    // nom). Anonymiser puis joindre (fusion par materiau), puis tag occluder_shell sur ce qui reste.
     const shellDoc = await io.read(extOut);
     for (const n of shellDoc.getRoot().listNodes()) n.setName("");
     for (const m of shellDoc.getRoot().listMeshes()) m.setName("");
-    // backdrop unique : l'app override le materiau du shell de toute facon (MeshBasicMaterial gris)
-    // -> ses textures seraient du poids mort (~30% du fichier), et un materiau unique laisse join()
-    // fusionner tout le shell en une poignee de draws.
-    const backdrop = shellDoc.createMaterial("occluder_shell").setBaseColorFactor([0.28, 0.3, 0.34, 1]).setRoughnessFactor(1).setMetallicFactor(0);
-    for (const m of shellDoc.getRoot().listMeshes()) for (const p of m.listPrimitives()) p.setMaterial(backdrop);
     await shellDoc.transform(prune(), flatten(), joinPrims());
     for (const n of shellDoc.getRoot().listNodes()) if (n.getMesh()) n.setName("occluder_shell");
     for (const m of shellDoc.getRoot().listMeshes()) m.setName("occluder_shell");
     mergeDocuments(intDoc, shellDoc);
     const r = intDoc.getRoot(); const scenes = r.listScenes(); const def = r.getDefaultScene() || scenes[0];
     for (const sc of scenes) { if (sc === def) continue; for (const n of sc.listChildren()) def.addChild(n); sc.dispose(); }
-    await intDoc.transform(unpartition(), meshopt({ encoder: MeshoptEncoder, level: "high" }));
+    await intDoc.transform(dedup(), unpartition(), meshopt({ encoder: MeshoptEncoder, level: "high" }));
     await io.write(intOut, intDoc);
 
     for (const f of [tmpExt, tmpInt, tmpInt.replace(/\.glb$/, ".fixed.glb")]) if (existsSync(f)) rmSync(f);
