@@ -1,6 +1,6 @@
 {
   "schemaVersion": 2,
-  "generatedAt": "2026-07-08T17:57:12.808Z",
+  "generatedAt": "2026-07-08T20:33:08.919Z",
   "patchVersion": "sc-4.1",
   "levels": [
     {
@@ -30,10 +30,10 @@
           "level": "exterior",
           "label": "Apercu",
           "modelUrl": "https://github.com/elios134/asset-3d/releases/download/sc-4.1/AEGS_Avenger_Stalker.clay-exterior.glb",
-          "tris": 31589,
-          "sizeBytes": 272408,
+          "tris": 144868,
+          "sizeBytes": 1186740,
           "hasInterior": false,
-          "sha256": "78706dce5cdc0c1648bf98e36078315e22a7a835123a788ee3949523e1b8bfa9",
+          "sha256": "667815240901affcaebc3f50ce6e7fa279fb14d2fc95f493a3709fc25ffc4f64",
           "render": "clay"
         }
       ]
@@ -55,10 +55,10 @@
           "level": "exterior",
           "label": "Apercu",
           "modelUrl": "https://github.com/elios134/asset-3d/releases/download/sc-4.1/AEGS_Avenger_Titan.clay-exterior.glb",
-          "tris": 31589,
-          "sizeBytes": 272408,
+          "tris": 147278,
+          "sizeBytes": 1208312,
           "hasInterior": false,
-          "sha256": "241646e9ed28b19264c2c0964d94ea574a3f557a8e9fde1cb582166eecd263b7",
+          "sha256": "4216ad4deddd5acd392cd500e3250876d7eb9deb19fff8183b4a341b25024fa3",
           "render": "clay"
         }
       ]
@@ -80,10 +80,10 @@
           "level": "exterior",
           "label": "Apercu",
           "modelUrl": "https://github.com/elios134/asset-3d/releases/download/sc-4.1/AEGS_Avenger_Titan_Renegade.clay-exterior.glb",
-          "tris": 31589,
-          "sizeBytes": 272408,
+          "tris": 134907,
+          "sizeBytes": 1086588,
           "hasInterior": false,
-          "sha256": "9aab129292b01a6047bd5dfb22919581b1a2d4a9ff500b891bd16c3b23d47534",
+          "sha256": "314db8d8c74c7482bcfcdbdf3995ca78940f756074721855220f0b9d964a514e",
           "render": "clay"
         }
       ]
@@ -105,10 +105,10 @@
           "level": "exterior",
           "label": "Apercu",
           "modelUrl": "https://github.com/elios134/asset-3d/releases/download/sc-4.1/AEGS_Avenger_Warlock.clay-exterior.glb",
-          "tris": 31589,
-          "sizeBytes": 272408,
+          "tris": 195647,
+          "sizeBytes": 1477432,
           "hasInterior": false,
-          "sha256": "403da0be84f851516c2df15835671f7ea0a21aaee62e674695375c1f1f3cc0bc",
+          "sha256": "07fba2059c3046a78d14d160edb51e9df35c0becacba15204591bc6005d14047",
           "render": "clay"
         }
       ]
@@ -130,10 +130,10 @@
           "level": "exterior",
           "label": "Apercu",
           "modelUrl": "https://github.com/elios134/asset-3d/releases/download/sc-4.1/AEGS_Eclipse.clay-exterior.glb",
-          "tris": 71446,
-          "sizeBytes": 594808,
+          "tris": 185892,
+          "sizeBytes": 1365364,
           "hasInterior": false,
-          "sha256": "dcc24e11f659fb65438228e0b70960824d8efb866af9655d557d594e339d80ad",
+          "sha256": "cfce3edf2e942b69732b4cb35d720bd754ca4ee45e7b6af36bed1b5bccdc67da",
           "render": "clay"
         }
       ]
@@ -155,10 +155,10 @@
           "level": "exterior",
           "label": "Apercu",
           "modelUrl": "https://github.com/elios134/asset-3d/releases/download/sc-4.1/AEGS_Gladius.clay-exterior.glb",
-          "tris": 140646,
-          "sizeBytes": 1102496,
+          "tris": 415679,
+          "sizeBytes": 2967352,
           "hasInterior": false,
-          "sha256": "63bbca152d7b8ca50485ca7713278aa3dc33548d42425ebe412415225b79d0f3",
+          "sha256": "bd9c492cf5bfdd8ca8836d36e88f82e61055a322302bc8c28865c3e5cf936246",
           "render": "clay"
         }
       ]
@@ -180,10 +180,10 @@
           "level": "exterior",
           "label": "Apercu",
           "modelUrl": "https://github.com/elios134/asset-3d/releases/download/sc-4.1/AEGS_Gladius_PIR.clay-exterior.glb",
-          "tris": 140646,
-          "sizeBytes": 1102496,
+          "tris": 440208,
+          "sizeBytes": 3220752,
           "hasInterior": false,
-          "sha256": "76abc45a513bf887c5626cc93d16ebd9c1dae142e2841e895c40835e65e643df",
+          "sha256": "b2832247e05c9687f7afc8cb9aa0ae2dd0f3ea4c10e7f39e185dd0bf2f0b790c",
           "render": "clay"
         }
       ]
@@ -205,10 +205,10 @@
           "level": "exterior",
           "label": "Apercu",
           "modelUrl": "https://github.com/elios134/asset-3d/releases/download/sc-4.1/AEGS_Gladius_Valiant.clay-exterior.glb",
-          "tris": 140646,
-          "sizeBytes": 1102496,
+          "tris": 419151,
+          "sizeBytes": 3071264,
           "hasInterior": false,
-          "sha256": "bfe6f4368058f2584e35c17f1704fc997a49726012e0c9e61261cf58bd35f307",
+          "sha256": "e36b396dc5f50e893601390b5b43c0c00c8cfb7f105311d2429c019390432828",
           "render": "clay"
         }
       ]
@@ -230,20 +230,20 @@
           "level": "exterior",
           "label": "Apercu",
           "modelUrl": "https://github.com/elios134/asset-3d/releases/download/sc-4.1/AEGS_Hammerhead.clay-exterior.glb",
-          "tris": 104393,
-          "sizeBytes": 869368,
+          "tris": 1078834,
+          "sizeBytes": 9165608,
           "hasInterior": false,
-          "sha256": "96e674d04bf69ffcc48ea82ec5a6e1944cf1d1e9d5ef8b9fb47c7640c729fe9a",
+          "sha256": "8b5a8e93f216103832fee321542061d37f6c2264499053f16395e774bcc0c924",
           "render": "clay"
         },
         {
           "level": "interior",
           "label": "Interieur",
           "modelUrl": "https://github.com/elios134/asset-3d/releases/download/sc-4.1/AEGS_Hammerhead.clay-interior.glb",
-          "tris": 1194984,
-          "sizeBytes": 11636724,
+          "tris": 1915885,
+          "sizeBytes": 17210004,
           "hasInterior": true,
-          "sha256": "6bd5e5e85688239494589f8e33313297d02239d5eafee659d0843f5e41aee76b",
+          "sha256": "1a8944f23b913c997dc43eb2a43fa9b3994e1d855130f63cb36d1edfbaa5da29",
           "render": "clay",
           "hasCollision": true,
           "interiorKind": "habitable",
@@ -268,20 +268,20 @@
           "level": "exterior",
           "label": "Apercu",
           "modelUrl": "https://github.com/elios134/asset-3d/releases/download/sc-4.1/AEGS_Idris_M.clay-exterior.glb",
-          "tris": 194918,
-          "sizeBytes": 1525376,
+          "tris": 1172065,
+          "sizeBytes": 9804672,
           "hasInterior": false,
-          "sha256": "60b3ca2cc09200fc55b514339b9b0fbc65d24c334667f29ede10564bc714009c",
+          "sha256": "363269ebd2018f9c43ce814a5bc49254ac536685dad641d94542f32c4acdb978",
           "render": "clay"
         },
         {
           "level": "interior",
           "label": "Interieur",
           "modelUrl": "https://github.com/elios134/asset-3d/releases/download/sc-4.1/AEGS_Idris_M.clay-interior.glb",
-          "tris": 3062269,
-          "sizeBytes": 29030076,
+          "tris": 3616300,
+          "sizeBytes": 33039616,
           "hasInterior": true,
-          "sha256": "5ed544fd318389fba64a4765ada6e57de3f5f9ddd4f2452778a1387b13e192a9",
+          "sha256": "8dd31e1d2ddb9a473fbde158dcdd4310ab15eae4923489ee5f8640f1c752f189",
           "render": "clay",
           "hasCollision": true,
           "interiorKind": "habitable",
@@ -306,20 +306,20 @@
           "level": "exterior",
           "label": "Apercu",
           "modelUrl": "https://github.com/elios134/asset-3d/releases/download/sc-4.1/AEGS_Idris_P.clay-exterior.glb",
-          "tris": 194918,
-          "sizeBytes": 1525376,
+          "tris": 1223765,
+          "sizeBytes": 10145980,
           "hasInterior": false,
-          "sha256": "c9cd5ccd175959206be1a604c5ee45410653b75964f4513d869e938df18af565",
+          "sha256": "18e8e99c3c0b44e1fde501f55ace886a1d7cd6297fccbb949b4b97c35272e7aa",
           "render": "clay"
         },
         {
           "level": "interior",
           "label": "Interieur",
           "modelUrl": "https://github.com/elios134/asset-3d/releases/download/sc-4.1/AEGS_Idris_P.clay-interior.glb",
-          "tris": 2735851,
-          "sizeBytes": 26844236,
+          "tris": 3371550,
+          "sizeBytes": 31464060,
           "hasInterior": true,
-          "sha256": "fee273a2d21c02a78cfeeef640d10c0ec8e5d164de2feda75824d56dcc967006",
+          "sha256": "f4b59cae270fa8224915fbfd3a780024ac088bf65f00e7f576836865af93a031",
           "render": "clay",
           "hasCollision": true,
           "interiorKind": "habitable",
@@ -344,10 +344,10 @@
           "level": "exterior",
           "label": "Apercu",
           "modelUrl": "https://github.com/elios134/asset-3d/releases/download/sc-4.1/AEGS_Javelin.clay-exterior.glb",
-          "tris": 150669,
-          "sizeBytes": 1359332,
+          "tris": 599654,
+          "sizeBytes": 4889712,
           "hasInterior": false,
-          "sha256": "113cca7fbd000630b70ab2c84a5913df0b12ad0873af3002210d48353b380f72",
+          "sha256": "6ca373a56127edd58e055191da53f888acd43d6a125f6cca0b723884aa5d65ae",
           "render": "clay"
         }
       ]
@@ -369,20 +369,20 @@
           "level": "exterior",
           "label": "Apercu",
           "modelUrl": "https://github.com/elios134/asset-3d/releases/download/sc-4.1/AEGS_Reclaimer.clay-exterior.glb",
-          "tris": 176224,
-          "sizeBytes": 1504304,
+          "tris": 760263,
+          "sizeBytes": 5742468,
           "hasInterior": false,
-          "sha256": "303730e0a287ea006fea55ab1ed5e153fe86015f0b00f6da527b7cf6d756b207",
+          "sha256": "1900ba4400912f3165b3be52d49a71621a5adf3637a3c700832aa0f71aae097a",
           "render": "clay"
         },
         {
           "level": "interior",
           "label": "Interieur",
           "modelUrl": "https://github.com/elios134/asset-3d/releases/download/sc-4.1/AEGS_Reclaimer.clay-interior.glb",
-          "tris": 1411514,
-          "sizeBytes": 15334076,
+          "tris": 1678646,
+          "sizeBytes": 15702732,
           "hasInterior": true,
-          "sha256": "f0d4f5b9699072f450f257e92da8b875385ad4fec295f2c8b47773e7d28cb1ce",
+          "sha256": "2af58995e6e4ff0c22ee7d75694a7b4c93bd5acc894a704caea21b6b7a306a53",
           "render": "clay",
           "hasCollision": true,
           "interiorKind": "habitable",
@@ -407,10 +407,10 @@
           "level": "exterior",
           "label": "Apercu",
           "modelUrl": "https://github.com/elios134/asset-3d/releases/download/sc-4.1/AEGS_Redeemer.clay-exterior.glb",
-          "tris": 102919,
-          "sizeBytes": 803516,
+          "tris": 599990,
+          "sizeBytes": 4644092,
           "hasInterior": false,
-          "sha256": "849fc0009b7a030e36e8b689d00bd5a193bd50f1a790c1134ddba86c50b81b94",
+          "sha256": "108e3fb686e5b622cea3866251f5814a2478c056135b518ad8da82f22c190a1f",
           "render": "clay"
         },
         {
@@ -445,10 +445,10 @@
           "level": "exterior",
           "label": "Apercu",
           "modelUrl": "https://github.com/elios134/asset-3d/releases/download/sc-4.1/AEGS_Retaliator.clay-exterior.glb",
-          "tris": 146866,
-          "sizeBytes": 1378840,
+          "tris": 634533,
+          "sizeBytes": 5143264,
           "hasInterior": false,
-          "sha256": "4f30c691cc1b33d0b5a20c0012a54ed4f7ac7eaf48f67d75a0fafbd1fa747c57",
+          "sha256": "ad6063c1dbb5f4ecaaee1e8a24df92772d5746546421fb8e8fabae3c0bc87eee",
           "render": "clay"
         },
         {
@@ -483,10 +483,10 @@
           "level": "exterior",
           "label": "Apercu",
           "modelUrl": "https://github.com/elios134/asset-3d/releases/download/sc-4.1/AEGS_Sabre.clay-exterior.glb",
-          "tris": 63613,
-          "sizeBytes": 565628,
+          "tris": 340475,
+          "sizeBytes": 2431080,
           "hasInterior": false,
-          "sha256": "cc514ace35cd532e78c02ecc2a66fa98e7424263fbef50b66eb83b73d325f062",
+          "sha256": "d45be683626f9f515788141ef0ee2e12b93d53ae8677cfc38e1ba1c482d7f593",
           "render": "clay"
         }
       ]
@@ -508,10 +508,10 @@
           "level": "exterior",
           "label": "Apercu",
           "modelUrl": "https://github.com/elios134/asset-3d/releases/download/sc-4.1/AEGS_Sabre_Comet.clay-exterior.glb",
-          "tris": 63613,
-          "sizeBytes": 565628,
+          "tris": 287815,
+          "sizeBytes": 2181296,
           "hasInterior": false,
-          "sha256": "51923ade2734adbb3764ebef4950b665c0ec22fa98a78b25f83ed2c4c284fc2d",
+          "sha256": "376f8099e9f9b0c12dfa8bc5296a7b3d809b197cfa2bec99a2cb935aa7fe4b83",
           "render": "clay"
         }
       ]
@@ -533,10 +533,10 @@
           "level": "exterior",
           "label": "Apercu",
           "modelUrl": "https://github.com/elios134/asset-3d/releases/download/sc-4.1/AEGS_Sabre_Firebird.clay-exterior.glb",
-          "tris": 60472,
-          "sizeBytes": 524456,
+          "tris": 293266,
+          "sizeBytes": 2301784,
           "hasInterior": false,
-          "sha256": "a5e0217fa0e6a7c019b34fb1a4c6bd6e5fea5328de40432abd11c590c1c7d681",
+          "sha256": "4c61beabee667d29c8b9bccc49e88efa1cf24effd4423e5cf46f678c7ebbcd82",
           "render": "clay"
         }
       ]
@@ -558,10 +558,10 @@
           "level": "exterior",
           "label": "Apercu",
           "modelUrl": "https://github.com/elios134/asset-3d/releases/download/sc-4.1/AEGS_Sabre_Peregrine.clay-exterior.glb",
-          "tris": 67914,
-          "sizeBytes": 587008,
+          "tris": 240378,
+          "sizeBytes": 1800880,
           "hasInterior": false,
-          "sha256": "33fbe10cad28c83cba127982e15e623520c3b907ba224e730357fa7b44d28fc3",
+          "sha256": "45cb3a7387b861a74fadd9254406995824309e5cf2cae667083b13fd4b1e0535",
           "render": "clay"
         }
       ]
@@ -583,10 +583,10 @@
           "level": "exterior",
           "label": "Apercu",
           "modelUrl": "https://github.com/elios134/asset-3d/releases/download/sc-4.1/AEGS_Sabre_Raven.clay-exterior.glb",
-          "tris": 70564,
-          "sizeBytes": 593048,
+          "tris": 300137,
+          "sizeBytes": 2268320,
           "hasInterior": false,
-          "sha256": "dc482b9c225af376a37db2f07ece9c980e5c4bcddb892800a5338f6d77096dee",
+          "sha256": "b61a65d50e62ca9451dcb59af81edc470e386a18133640f5751222234a05580e",
           "render": "clay"
         }
       ]
@@ -608,20 +608,20 @@
           "level": "exterior",
           "label": "Apercu",
           "modelUrl": "https://github.com/elios134/asset-3d/releases/download/sc-4.1/AEGS_Tiburon.clay-exterior.glb",
-          "tris": 297426,
-          "sizeBytes": 1756720,
+          "tris": 666573,
+          "sizeBytes": 5055660,
           "hasInterior": false,
-          "sha256": "6c215b21739060f6732b233d91b897cb1ddeb44bac3388bb9e33df8b114a8e00",
+          "sha256": "8812d72e3f2e0db51d3724ae99ea32846d1b83fb05fee67e9dc9ec063d104dba",
           "render": "clay"
         },
         {
           "level": "interior",
           "label": "Interieur",
           "modelUrl": "https://github.com/elios134/asset-3d/releases/download/sc-4.1/AEGS_Tiburon.clay-interior.glb",
-          "tris": 2430591,
-          "sizeBytes": 19040200,
+          "tris": 2199754,
+          "sizeBytes": 17003536,
           "hasInterior": true,
-          "sha256": "58330ec9e0e249c94197b8ec0bb556c0932e1f994cfe8c3efa341b161f53f344",
+          "sha256": "c5c46665eaaae7b24fd7f1373c9ffe861589364456c9cd961ec27b8f79eaa469",
           "render": "clay",
           "hasCollision": true,
           "interiorKind": "habitable",
@@ -646,10 +646,10 @@
           "level": "exterior",
           "label": "Apercu",
           "modelUrl": "https://github.com/elios134/asset-3d/releases/download/sc-4.1/AEGS_Vanguard.clay-exterior.glb",
-          "tris": 77560,
-          "sizeBytes": 645044,
+          "tris": 349438,
+          "sizeBytes": 2609396,
           "hasInterior": false,
-          "sha256": "592a57955b5d8a91d50422dfdf52c88e9b3b83789627214ed9a8270300e904a8",
+          "sha256": "232b71ec4e4c8a49059b05e2c2aa76ab5aa8ef4b7fce552b3c64fe46c668a2c0",
           "render": "clay"
         },
         {
@@ -684,10 +684,10 @@
           "level": "exterior",
           "label": "Apercu",
           "modelUrl": "https://github.com/elios134/asset-3d/releases/download/sc-4.1/AEGS_Vanguard_Harbinger.clay-exterior.glb",
-          "tris": 77560,
-          "sizeBytes": 645044,
+          "tris": 336266,
+          "sizeBytes": 2512908,
           "hasInterior": false,
-          "sha256": "9b54598959f08de60361880c6ba4ffa338e0fb550f7b3c626b2a9e8524a90a75",
+          "sha256": "f9bb37207839e3b240a8f14f5c46b40f2e8c82a590a8b85bf111f523d8210c07",
           "render": "clay"
         },
         {
@@ -722,10 +722,10 @@
           "level": "exterior",
           "label": "Apercu",
           "modelUrl": "https://github.com/elios134/asset-3d/releases/download/sc-4.1/AEGS_Vanguard_Hoplite.clay-exterior.glb",
-          "tris": 77560,
-          "sizeBytes": 645044,
+          "tris": 328565,
+          "sizeBytes": 2425212,
           "hasInterior": false,
-          "sha256": "59b944529363ee514767562a55a7a44e476c45ff017c7220a98798b798feb3ad",
+          "sha256": "91c4d94df0f51773f495351ca1ce34e319dba627ff3627d914b56d5d50baf32d",
           "render": "clay"
         },
         {
@@ -760,10 +760,10 @@
           "level": "exterior",
           "label": "Apercu",
           "modelUrl": "https://github.com/elios134/asset-3d/releases/download/sc-4.1/AEGS_Vanguard_Sentinel.clay-exterior.glb",
-          "tris": 77560,
-          "sizeBytes": 645044,
+          "tris": 375795,
+          "sizeBytes": 2821372,
           "hasInterior": false,
-          "sha256": "8353bb229ae72dda453a8c3bbac43bee06c6991bc8a0bf2c514e6ad0d4aaf0a6",
+          "sha256": "5c217c3e429cce8d068775b57fad657c9d32b4867692ab9706962bb5610e0143",
           "render": "clay"
         },
         {
@@ -798,10 +798,10 @@
           "level": "exterior",
           "label": "Apercu",
           "modelUrl": "https://github.com/elios134/asset-3d/releases/download/sc-4.1/ANVL_Arrow.clay-exterior.glb",
-          "tris": 34986,
-          "sizeBytes": 311240,
+          "tris": 167890,
+          "sizeBytes": 1319888,
           "hasInterior": false,
-          "sha256": "f3560daf77916b4a41dbbb5c4b427292d6fb39ebd104912c4751c5405f075ac8",
+          "sha256": "8ef3f2ac1c2027fa08dbf86524e874274c401f635556c9665d073e6eebf12d8a",
           "render": "clay"
         }
       ]
@@ -823,10 +823,10 @@
           "level": "exterior",
           "label": "Apercu",
           "modelUrl": "https://github.com/elios134/asset-3d/releases/download/sc-4.1/ANVL_Asgard.clay-exterior.glb",
-          "tris": 211722,
-          "sizeBytes": 1973604,
+          "tris": 599868,
+          "sizeBytes": 5410616,
           "hasInterior": false,
-          "sha256": "1a7a5c0b96e5c727ef7d5e64b2aeb45015355040ea3aef8c326490c046cef011",
+          "sha256": "c982b2e50fc56d003fb318e74d5a50f1177685411c8089d05724607e4016c7ea",
           "render": "clay"
         },
         {
@@ -861,10 +861,10 @@
           "level": "exterior",
           "label": "Apercu",
           "modelUrl": "https://github.com/elios134/asset-3d/releases/download/sc-4.1/ANVL_Ballista.clay-exterior.glb",
-          "tris": 36384,
-          "sizeBytes": 369628,
+          "tris": 165322,
+          "sizeBytes": 1356744,
           "hasInterior": false,
-          "sha256": "abe693cefaffcc586cd3840c5eb4799f3bec2eeb2f87d2cec5a6e08a455564b9",
+          "sha256": "e66a0b04427129861e513b9f1ff6b9fb05ce4008c90fce1d47dc86eef25a3d08",
           "render": "clay"
         }
       ]
@@ -886,10 +886,10 @@
           "level": "exterior",
           "label": "Apercu",
           "modelUrl": "https://github.com/elios134/asset-3d/releases/download/sc-4.1/ANVL_Ballista_Dunestalker.clay-exterior.glb",
-          "tris": 36384,
-          "sizeBytes": 369628,
+          "tris": 165322,
+          "sizeBytes": 1356744,
           "hasInterior": false,
-          "sha256": "4f53e7b9f06470b214a9919e4966e558e14377dbf8a39562801f8c2d9cdf3468",
+          "sha256": "2f985223740bdfa413d29e62b7737a1be368962193aeb7d67790671d595f628e",
           "render": "clay"
         }
       ]
@@ -911,10 +911,10 @@
           "level": "exterior",
           "label": "Apercu",
           "modelUrl": "https://github.com/elios134/asset-3d/releases/download/sc-4.1/ANVL_Ballista_Snowblind.clay-exterior.glb",
-          "tris": 36384,
-          "sizeBytes": 369628,
+          "tris": 165322,
+          "sizeBytes": 1356744,
           "hasInterior": false,
-          "sha256": "e1347bcb1d8b94a6e9b2f616a2d7d1df40303d2dd7e0beb146f0d4fbc7009cec",
+          "sha256": "1ccd39773818b5907a4ac86c50de0eeeb9792b241ec18631c8bf13c0d620afea",
           "render": "clay"
         }
       ]
@@ -936,10 +936,10 @@
           "level": "exterior",
           "label": "Apercu",
           "modelUrl": "https://github.com/elios134/asset-3d/releases/download/sc-4.1/ANVL_C8_Pisces.clay-exterior.glb",
-          "tris": 30949,
-          "sizeBytes": 282388,
+          "tris": 153964,
+          "sizeBytes": 1120720,
           "hasInterior": false,
-          "sha256": "cd5152b757d101580c6d6428d89cb9b3f603160672796b61f07a4d0c3637f601",
+          "sha256": "980127f8d05fac2085e6af4f1323f953702a3bb71f2b1ca2b4d72619905eebce",
           "render": "clay"
         }
       ]
@@ -961,10 +961,10 @@
           "level": "exterior",
           "label": "Apercu",
           "modelUrl": "https://github.com/elios134/asset-3d/releases/download/sc-4.1/ANVL_C8R_Pisces.clay-exterior.glb",
-          "tris": 30949,
-          "sizeBytes": 282388,
+          "tris": 169556,
+          "sizeBytes": 1191108,
           "hasInterior": false,
-          "sha256": "9ea9daab6894274f71157485a3ea04ee70dd102ea26e51d471f3ecc5144c14c6",
+          "sha256": "9f7658c57e8dfa135d0e2cfe79420d600a90af6d637b322e77e2258f5c25708a",
           "render": "clay"
         }
       ]
@@ -986,10 +986,10 @@
           "level": "exterior",
           "label": "Apercu",
           "modelUrl": "https://github.com/elios134/asset-3d/releases/download/sc-4.1/ANVL_C8X_Pisces_Expedition.clay-exterior.glb",
-          "tris": 30949,
-          "sizeBytes": 282388,
+          "tris": 175843,
+          "sizeBytes": 1270288,
           "hasInterior": false,
-          "sha256": "57248b40c93374aaff86a6c4394a8db2d58e530df48bcaf55ab58279e2eca8e3",
+          "sha256": "f7fad5ab2beb37356ce026313acb9a4593e378095283d1bc26e0d955ff657f32",
           "render": "clay"
         }
       ]
@@ -1011,20 +1011,20 @@
           "level": "exterior",
           "label": "Apercu",
           "modelUrl": "https://github.com/elios134/asset-3d/releases/download/sc-4.1/ANVL_Carrack.clay-exterior.glb",
-          "tris": 139740,
-          "sizeBytes": 1062360,
+          "tris": 646559,
+          "sizeBytes": 5382080,
           "hasInterior": false,
-          "sha256": "f965c8b705a5340483f21f988c1d7e641816f16a0aa2d723c8464084846f08a4",
+          "sha256": "3672f1e3e87b3c2f6316e89644e49e60927717cf70c737fd51ea167fa8d6685b",
           "render": "clay"
         },
         {
           "level": "interior",
           "label": "Interieur",
           "modelUrl": "https://github.com/elios134/asset-3d/releases/download/sc-4.1/ANVL_Carrack.clay-interior.glb",
-          "tris": 1605918,
-          "sizeBytes": 17845248,
+          "tris": 1806872,
+          "sizeBytes": 18842848,
           "hasInterior": true,
-          "sha256": "8cff2188e1540f5cd162a563d32ce367f07c8635d4d930a48eb90f94f15023d1",
+          "sha256": "d0dfb601456337568527b6ca89eca3157e9e12fdce3e40b3ee2cb1d399f47c3b",
           "render": "clay",
           "hasCollision": true,
           "interiorKind": "habitable",
@@ -1055,20 +1055,20 @@
           "level": "exterior",
           "label": "Apercu",
           "modelUrl": "https://github.com/elios134/asset-3d/releases/download/sc-4.1/ANVL_Carrack_Expedition.clay-exterior.glb",
-          "tris": 139740,
-          "sizeBytes": 1062360,
+          "tris": 646559,
+          "sizeBytes": 5382080,
           "hasInterior": false,
-          "sha256": "1fd9e92adbc7df9ce73ca3bd5e35bc767072b56cfdfba7ca417f78ae02accc10",
+          "sha256": "eac6f4daf87b0cb147f6ed45db3f692d8a9198e08d95ffee3dfbaa7a41c22580",
           "render": "clay"
         },
         {
           "level": "interior",
           "label": "Interieur",
           "modelUrl": "https://github.com/elios134/asset-3d/releases/download/sc-4.1/ANVL_Carrack_Expedition.clay-interior.glb",
-          "tris": 1605918,
-          "sizeBytes": 17845248,
+          "tris": 1806872,
+          "sizeBytes": 18842848,
           "hasInterior": true,
-          "sha256": "e094ebc2cb036854ca636ef986d18c2100899c143e0b9a18bee00acc1fd59a0c",
+          "sha256": "04cfe7b9a390262131838477b3c128cc29cfa23a8c141bafa5d5a749fa2fe3e6",
           "render": "clay",
           "hasCollision": true,
           "interiorKind": "habitable",
@@ -1093,10 +1093,10 @@
           "level": "exterior",
           "label": "Apercu",
           "modelUrl": "https://github.com/elios134/asset-3d/releases/download/sc-4.1/ANVL_Centurion.clay-exterior.glb",
-          "tris": 59368,
-          "sizeBytes": 532684,
+          "tris": 388405,
+          "sizeBytes": 3121440,
           "hasInterior": false,
-          "sha256": "e111ef7703aefe9a20c7139531d8e2bccfd6e0af84753f62b9cb8824a3b94b8f",
+          "sha256": "1bd995da207abb716c143c4a494971bd299590de871c35ef540fe03827867908",
           "render": "clay"
         }
       ]
@@ -1118,10 +1118,10 @@
           "level": "exterior",
           "label": "Apercu",
           "modelUrl": "https://github.com/elios134/asset-3d/releases/download/sc-4.1/ANVL_Gladiator.clay-exterior.glb",
-          "tris": 37458,
-          "sizeBytes": 388220,
+          "tris": 276876,
+          "sizeBytes": 2153316,
           "hasInterior": false,
-          "sha256": "da5ccce5c03ba2fe77b6a5cd205b183bf62cda7e1587a69a8e56d83d96753b72",
+          "sha256": "60dc49abd027b7af65677c34b76864bda3a35f16f23d6df0bb35b14dd311fe55",
           "render": "clay"
         }
       ]
@@ -1143,10 +1143,10 @@
           "level": "exterior",
           "label": "Apercu",
           "modelUrl": "https://github.com/elios134/asset-3d/releases/download/sc-4.1/ANVL_Hawk.clay-exterior.glb",
-          "tris": 107883,
-          "sizeBytes": 943544,
+          "tris": 360894,
+          "sizeBytes": 2757872,
           "hasInterior": false,
-          "sha256": "b8ce27fe640b02473f36f7c427037c17aebaa339f35424566ba167d3171d1536",
+          "sha256": "3ae12683cfec7379197036eacd342219984067c50e9fbc494e28f27c92327ae4",
           "render": "clay"
         }
       ]
@@ -1168,10 +1168,10 @@
           "level": "exterior",
           "label": "Apercu",
           "modelUrl": "https://github.com/elios134/asset-3d/releases/download/sc-4.1/ANVL_Hornet_F7A_Mk1.clay-exterior.glb",
-          "tris": 98676,
-          "sizeBytes": 885172,
+          "tris": 332705,
+          "sizeBytes": 2544140,
           "hasInterior": false,
-          "sha256": "26e6a55f448d1ad39def6892e55b5efbc1bf08a33e7ea3db8bcfc9248a63cebe",
+          "sha256": "4a861cae7b4db13a91f918c2772b24323e54c3be70c5a1ada444e6214c939401",
           "render": "clay"
         }
       ]
@@ -1193,10 +1193,10 @@
           "level": "exterior",
           "label": "Apercu",
           "modelUrl": "https://github.com/elios134/asset-3d/releases/download/sc-4.1/ANVL_Hornet_F7A_Mk2.clay-exterior.glb",
-          "tris": 60160,
-          "sizeBytes": 557972,
+          "tris": 215316,
+          "sizeBytes": 1884984,
           "hasInterior": false,
-          "sha256": "41ba2f229aaad2d55a7515fd79de03e68011ed2cd2621e237fcb2854a19f752b",
+          "sha256": "53b389f2add7de78a4ae4e946e2e38a1457a2e3e85f20454d5ff6af2c2a7dc30",
           "render": "clay"
         }
       ]
@@ -1218,10 +1218,10 @@
           "level": "exterior",
           "label": "Apercu",
           "modelUrl": "https://github.com/elios134/asset-3d/releases/download/sc-4.1/ANVL_Hornet_F7C.clay-exterior.glb",
-          "tris": 32324,
-          "sizeBytes": 380616,
+          "tris": 198197,
+          "sizeBytes": 1575152,
           "hasInterior": false,
-          "sha256": "598487c3239684d5b1eac3171bdc6798c2ec6266152d8f3b3f6f9db2956e10b4",
+          "sha256": "7db0dd5acbc03e23a2da491cb65c01028e34f3960e7576872ee4b84fb12fb6a5",
           "render": "clay"
         }
       ]
@@ -1243,10 +1243,10 @@
           "level": "exterior",
           "label": "Apercu",
           "modelUrl": "https://github.com/elios134/asset-3d/releases/download/sc-4.1/ANVL_Hornet_F7C_Mk2.clay-exterior.glb",
-          "tris": 60160,
-          "sizeBytes": 557972,
+          "tris": 202085,
+          "sizeBytes": 1718704,
           "hasInterior": false,
-          "sha256": "22a25ba31dd86b13d8df83fc597826af8a53b88a97ea0ffef9056ae0f73360b8",
+          "sha256": "3f98982a8f807ed7812fc5997c22365e9a5ff39f8560f564ecfb13eacaa37719",
           "render": "clay"
         }
       ]
@@ -1268,10 +1268,10 @@
           "level": "exterior",
           "label": "Apercu",
           "modelUrl": "https://github.com/elios134/asset-3d/releases/download/sc-4.1/ANVL_Hornet_F7C_Wildfire.clay-exterior.glb",
-          "tris": 32324,
-          "sizeBytes": 380616,
+          "tris": 187312,
+          "sizeBytes": 1526768,
           "hasInterior": false,
-          "sha256": "db364b7a24da3079b2ca2c61e3cbf3b3f2b4a5c7702b8aae037171e75daa087f",
+          "sha256": "ff3d7c5cd6f4c8a569a090ca83fa57ae89f27aab7eaa0e6caf4d56032cc7d9d1",
           "render": "clay"
         }
       ]
@@ -1293,10 +1293,10 @@
           "level": "exterior",
           "label": "Apercu",
           "modelUrl": "https://github.com/elios134/asset-3d/releases/download/sc-4.1/ANVL_Hornet_F7CM.clay-exterior.glb",
-          "tris": 34075,
-          "sizeBytes": 392656,
+          "tris": 274106,
+          "sizeBytes": 2021400,
           "hasInterior": false,
-          "sha256": "aaaacac03688ddefbe5f744fa58b0bbd586953bf18d8c87e5f4c92181b41d4b7",
+          "sha256": "900d0fbe8459bf753c439dbd51da545110a7ee761cb79ee5a0878fdd19e4c3ea",
           "render": "clay"
         }
       ]
@@ -1318,10 +1318,10 @@
           "level": "exterior",
           "label": "Apercu",
           "modelUrl": "https://github.com/elios134/asset-3d/releases/download/sc-4.1/ANVL_Hornet_F7CM_Heartseeker.clay-exterior.glb",
-          "tris": 34015,
-          "sizeBytes": 392036,
+          "tris": 226193,
+          "sizeBytes": 1714804,
           "hasInterior": false,
-          "sha256": "061eee80aa3c416b616b42b4d48e211410ad15df045eba4ffe41291f102367a3",
+          "sha256": "49ae7a25234838007e8fe6d654b8acdbeb75846cfe474c8ca794719182857f01",
           "render": "clay"
         }
       ]
@@ -1343,10 +1343,10 @@
           "level": "exterior",
           "label": "Apercu",
           "modelUrl": "https://github.com/elios134/asset-3d/releases/download/sc-4.1/ANVL_Hornet_F7CM_Mk2.clay-exterior.glb",
-          "tris": 98170,
-          "sizeBytes": 936084,
+          "tris": 369263,
+          "sizeBytes": 2916244,
           "hasInterior": false,
-          "sha256": "c4a0aa9e47ac921231737069fa578222c7a9718297e3dc0927841370b0948760",
+          "sha256": "f9887b6bd7b40f49948ca751dcf407304e69a434bf79ce380cdea35dae5a6f32",
           "render": "clay"
         }
       ]
@@ -1368,10 +1368,10 @@
           "level": "exterior",
           "label": "Apercu",
           "modelUrl": "https://github.com/elios134/asset-3d/releases/download/sc-4.1/ANVL_Hornet_F7CM_Mk2_Heartseeker.clay-exterior.glb",
-          "tris": 98130,
-          "sizeBytes": 935664,
+          "tris": 304451,
+          "sizeBytes": 2504208,
           "hasInterior": false,
-          "sha256": "770bacf98a992125ba66abd8ad853879b94d1e2924f726be51a282d6c73ab36b",
+          "sha256": "4453a35b89b6fbea64e7e53603170e7b6259f670686b88f46c7d835a215e2dd9",
           "render": "clay"
         }
       ]
@@ -1393,10 +1393,10 @@
           "level": "exterior",
           "label": "Apercu",
           "modelUrl": "https://github.com/elios134/asset-3d/releases/download/sc-4.1/ANVL_Hornet_F7CR.clay-exterior.glb",
-          "tris": 32324,
-          "sizeBytes": 380616,
+          "tris": 191490,
+          "sizeBytes": 1501284,
           "hasInterior": false,
-          "sha256": "c8ded6e84211485adb148f969d1e18230c9b66da00e693a89c3083a878d3d31d",
+          "sha256": "97e2714bfb894c7a1582af959ccf6cc2d74b8ab6ab314da65ee597323a06969e",
           "render": "clay"
         }
       ]
@@ -1418,10 +1418,10 @@
           "level": "exterior",
           "label": "Apercu",
           "modelUrl": "https://github.com/elios134/asset-3d/releases/download/sc-4.1/ANVL_Hornet_F7CR_Mk2.clay-exterior.glb",
-          "tris": 60160,
-          "sizeBytes": 557972,
+          "tris": 226692,
+          "sizeBytes": 1914968,
           "hasInterior": false,
-          "sha256": "96645eaf76e8ce54462398b064a53da82fb098cc4f8d9579b39d70cdc3f11d61",
+          "sha256": "637121e11e804b79a53156c756645bb5a9f81a1c993ee533e6de8c97d24d5182",
           "render": "clay"
         }
       ]
@@ -1443,10 +1443,10 @@
           "level": "exterior",
           "label": "Apercu",
           "modelUrl": "https://github.com/elios134/asset-3d/releases/download/sc-4.1/ANVL_Hornet_F7CS.clay-exterior.glb",
-          "tris": 32324,
-          "sizeBytes": 380616,
+          "tris": 156645,
+          "sizeBytes": 1294640,
           "hasInterior": false,
-          "sha256": "52822a061d09ad336bb85526bb22be9098601426666cf60d8979875bbdce2458",
+          "sha256": "09318ab77b3def129b0995cf9dfbbac9ff9f2f1c3af389708ffe3a698f5e7a5b",
           "render": "clay"
         }
       ]
@@ -1468,10 +1468,10 @@
           "level": "exterior",
           "label": "Apercu",
           "modelUrl": "https://github.com/elios134/asset-3d/releases/download/sc-4.1/ANVL_Hornet_F7CS_Mk2.clay-exterior.glb",
-          "tris": 60160,
-          "sizeBytes": 557972,
+          "tris": 211723,
+          "sizeBytes": 1781240,
           "hasInterior": false,
-          "sha256": "0849e68e0e9326f1eb5c9e8675f9cd20d276a3d6339bb5ccdfd02196e7391e59",
+          "sha256": "d72f38c1ddd9ce53ba550f48e214cd53f1a3084595a076c0a6386a504b2b59e3",
           "render": "clay"
         }
       ]
@@ -1493,10 +1493,10 @@
           "level": "exterior",
           "label": "Apercu",
           "modelUrl": "https://github.com/elios134/asset-3d/releases/download/sc-4.1/ANVL_Hurricane.clay-exterior.glb",
-          "tris": 69599,
-          "sizeBytes": 635968,
+          "tris": 402248,
+          "sizeBytes": 3147988,
           "hasInterior": false,
-          "sha256": "1d88d3964af55571343b5882be1e130df3a578fb7ccf42ec210bf4970f1cb12a",
+          "sha256": "277fbbc943498d16a95ab9088cc141c1b65b53aa231c143d8dade4d978e3a8dd",
           "render": "clay"
         }
       ]
@@ -1518,10 +1518,10 @@
           "level": "exterior",
           "label": "Apercu",
           "modelUrl": "https://github.com/elios134/asset-3d/releases/download/sc-4.1/ANVL_Lightning_F8.clay-exterior.glb",
-          "tris": 109319,
-          "sizeBytes": 934824,
+          "tris": 413899,
+          "sizeBytes": 3074344,
           "hasInterior": false,
-          "sha256": "9779b3bb4eecca71edd8e9d871a26f0ae35751fd0f54efcfa527c8c9377311fd",
+          "sha256": "375ff2db39e561e18b3aa29189f19e688a9fbdf819218dd9bd042c24f660ffc7",
           "render": "clay"
         }
       ]
@@ -1543,10 +1543,10 @@
           "level": "exterior",
           "label": "Apercu",
           "modelUrl": "https://github.com/elios134/asset-3d/releases/download/sc-4.1/ANVL_Lightning_F8C.clay-exterior.glb",
-          "tris": 109319,
-          "sizeBytes": 934824,
+          "tris": 353729,
+          "sizeBytes": 2684092,
           "hasInterior": false,
-          "sha256": "efb558dc867790acfa691049d311f9f0a71b94c2adb5ba99a3c72fe3982567f4",
+          "sha256": "3a924d462fd506c499c076bea2ede3b02e10b8c493b3cf0e64f8f4a9c1f8275d",
           "render": "clay"
         }
       ]
@@ -1568,10 +1568,10 @@
           "level": "exterior",
           "label": "Apercu",
           "modelUrl": "https://github.com/elios134/asset-3d/releases/download/sc-4.1/ANVL_Paladin.clay-exterior.glb",
-          "tris": 268731,
-          "sizeBytes": 2515740,
+          "tris": 694980,
+          "sizeBytes": 6833620,
           "hasInterior": false,
-          "sha256": "57df67c7ac1f3ff906a9c9e0ddc5074a35811fb0f838a743d3f680c108146361",
+          "sha256": "bc97b832f305fc6e4fa81055233abbb9431866d74f54aeaab2fea99ad4450719",
           "render": "clay"
         }
       ]
@@ -1593,10 +1593,10 @@
           "level": "exterior",
           "label": "Apercu",
           "modelUrl": "https://github.com/elios134/asset-3d/releases/download/sc-4.1/ANVL_Spartan.clay-exterior.glb",
-          "tris": 39139,
-          "sizeBytes": 354800,
+          "tris": 130215,
+          "sizeBytes": 1031108,
           "hasInterior": false,
-          "sha256": "421b546e748325b4d116dd62ccb7c4bcc5a87add25f74c5d6ae28eff449d994a",
+          "sha256": "b11be40bf69e436b2563d48ee1aec4b52e8cf333da2a1a85337b352724d281dd",
           "render": "clay"
         }
       ]
@@ -1618,10 +1618,10 @@
           "level": "exterior",
           "label": "Apercu",
           "modelUrl": "https://github.com/elios134/asset-3d/releases/download/sc-4.1/ANVL_Terrapin.clay-exterior.glb",
-          "tris": 151934,
-          "sizeBytes": 1570664,
+          "tris": 385058,
+          "sizeBytes": 3284540,
           "hasInterior": false,
-          "sha256": "d39def6aa78e294d4d924f70ce7c28c602181e25c66c659c3155be99c604cdce",
+          "sha256": "7b52dd21dcf6d415445e77878bcba0bebe56cb0bca25b03c418dbb3d4c239b0e",
           "render": "clay"
         }
       ]
@@ -1643,10 +1643,10 @@
           "level": "exterior",
           "label": "Apercu",
           "modelUrl": "https://github.com/elios134/asset-3d/releases/download/sc-4.1/ANVL_Terrapin_Medic.clay-exterior.glb",
-          "tris": 151782,
-          "sizeBytes": 1569020,
+          "tris": 367923,
+          "sizeBytes": 3155964,
           "hasInterior": false,
-          "sha256": "a7c88a81b0106de84448422e94b26af7d557dbcc3738e83c1bcca12d963a0b6a",
+          "sha256": "e3df9bd69e38da1069921c04dda26a8c745ca32876be9b87777376148677348f",
           "render": "clay"
         }
       ]
@@ -1668,10 +1668,10 @@
           "level": "exterior",
           "label": "Apercu",
           "modelUrl": "https://github.com/elios134/asset-3d/releases/download/sc-4.1/ANVL_Valkyrie.clay-exterior.glb",
-          "tris": 131751,
-          "sizeBytes": 1113076,
+          "tris": 599998,
+          "sizeBytes": 4600812,
           "hasInterior": false,
-          "sha256": "38d37a4b6afb6449a5f74e83641bb086d7e41ec580855ff6e307eb0997598141",
+          "sha256": "8d30e13b46c2d17b25dec523c13b6a0a20dde0d715399cba912de32c062a9d31",
           "render": "clay"
         },
         {
@@ -1706,10 +1706,10 @@
           "level": "exterior",
           "label": "Apercu",
           "modelUrl": "https://github.com/elios134/asset-3d/releases/download/sc-4.1/ARGO_ATLS.clay-exterior.glb",
-          "tris": 108781,
-          "sizeBytes": 882432,
+          "tris": 123421,
+          "sizeBytes": 1028720,
           "hasInterior": false,
-          "sha256": "0e69818f1f4452fa34bdbae968daf0475de5d9db1c066176d2fca9dea3811389",
+          "sha256": "c915a6ae73aea1f07b8734d137e5991081db880fdb1ef58d63929070034216c9",
           "render": "clay"
         }
       ]
@@ -1731,10 +1731,10 @@
           "level": "exterior",
           "label": "Apercu",
           "modelUrl": "https://github.com/elios134/asset-3d/releases/download/sc-4.1/ARGO_ATLS_GEO.clay-exterior.glb",
-          "tris": 108781,
-          "sizeBytes": 882448,
+          "tris": 167351,
+          "sizeBytes": 1385312,
           "hasInterior": false,
-          "sha256": "14696d46a90e26139721e9b0ad14abd333d1060c72d9980078288b257c8b1977",
+          "sha256": "f1cab8080a27e99c0636204d4a2cc3bb992eb9b3b53438c5c4dce42004499498",
           "render": "clay"
         }
       ]
@@ -1756,10 +1756,10 @@
           "level": "exterior",
           "label": "Apercu",
           "modelUrl": "https://github.com/elios134/asset-3d/releases/download/sc-4.1/ARGO_ATLS_GEO_Collector_Grad01.clay-exterior.glb",
-          "tris": 108781,
-          "sizeBytes": 882460,
+          "tris": 167351,
+          "sizeBytes": 1385328,
           "hasInterior": false,
-          "sha256": "3cba0e367e1c777589c8cc2ed856b70fcf732a640e988bad67646be3e648b17e",
+          "sha256": "a68a1462cdcd156d464a73cfa475bb373ffeb7f4a918095c071b3de93d15794e",
           "render": "clay"
         }
       ]
@@ -1781,10 +1781,10 @@
           "level": "exterior",
           "label": "Apercu",
           "modelUrl": "https://github.com/elios134/asset-3d/releases/download/sc-4.1/ARGO_ATLS_GEO_Collector_Grad02.clay-exterior.glb",
-          "tris": 108781,
-          "sizeBytes": 882464,
+          "tris": 167351,
+          "sizeBytes": 1385332,
           "hasInterior": false,
-          "sha256": "3551d0510fe0c49f17ec53e3c60883ffed0ccd88f23f2fbcc25727754829f973",
+          "sha256": "524a86ed6cfa8ec4bdd7788bb98ca52057e79a617db8d41a5af0d5b40b6cbea1",
           "render": "clay"
         }
       ]
@@ -1806,10 +1806,10 @@
           "level": "exterior",
           "label": "Apercu",
           "modelUrl": "https://github.com/elios134/asset-3d/releases/download/sc-4.1/ARGO_ATLS_GEO_Collector_Grad03.clay-exterior.glb",
-          "tris": 108781,
-          "sizeBytes": 882472,
+          "tris": 167351,
+          "sizeBytes": 1385336,
           "hasInterior": false,
-          "sha256": "d057a9d8cf286d32972dc69efc982b6540449614aa7105fff2f64393bd8ffbf6",
+          "sha256": "21e5b8a185b292a2f785f2bbd3ca896eabe476b8f666e882b0cc20265d0f24e6",
           "render": "clay"
         }
       ]
@@ -1831,10 +1831,10 @@
           "level": "exterior",
           "label": "Apercu",
           "modelUrl": "https://github.com/elios134/asset-3d/releases/download/sc-4.1/ARGO_ATLS_GEO_IKTI.clay-exterior.glb",
-          "tris": 111200,
-          "sizeBytes": 918140,
+          "tris": 203240,
+          "sizeBytes": 1659588,
           "hasInterior": false,
-          "sha256": "e7b7d04f9f3fe82c8676dcfbaf11f51363c2e6b774517b8e97ae5273c66d5b48",
+          "sha256": "d7f961f78a5d7171911624cb3d3026bb0f800b0ea5882d5c423d047653b23420",
           "render": "clay"
         }
       ]
@@ -1856,10 +1856,10 @@
           "level": "exterior",
           "label": "Apercu",
           "modelUrl": "https://github.com/elios134/asset-3d/releases/download/sc-4.1/ARGO_ATLS_IKTI.clay-exterior.glb",
-          "tris": 111200,
-          "sizeBytes": 918136,
+          "tris": 159082,
+          "sizeBytes": 1314304,
           "hasInterior": false,
-          "sha256": "7a5a001a3029e834d583f8383b26f075aeea07d240350ca5ed61a451ca1afd79",
+          "sha256": "2ccc5b13419eaf85a3b3f01390f1575d8ecd643eedfeaed80bedbe8705055d59",
           "render": "clay"
         }
       ]
@@ -1881,10 +1881,10 @@
           "level": "exterior",
           "label": "Apercu",
           "modelUrl": "https://github.com/elios134/asset-3d/releases/download/sc-4.1/ARGO_ATLS_IKTI_ARGOS.clay-exterior.glb",
-          "tris": 111200,
-          "sizeBytes": 917880,
+          "tris": 201046,
+          "sizeBytes": 1640948,
           "hasInterior": false,
-          "sha256": "5b5b7e7f5b63ddd252023ea1dd77d059311d0d69fe334745f5b35703c6e050f2",
+          "sha256": "74f941eb6a6cf94412158c13a5579d1b0bf99a501d08d3044a5154b1b8efa72e",
           "render": "clay"
         }
       ]
@@ -1906,10 +1906,10 @@
           "level": "exterior",
           "label": "Apercu",
           "modelUrl": "https://github.com/elios134/asset-3d/releases/download/sc-4.1/ARGO_CSV_Cargo.clay-exterior.glb",
-          "tris": 79260,
-          "sizeBytes": 633792,
+          "tris": 204917,
+          "sizeBytes": 1537076,
           "hasInterior": false,
-          "sha256": "23480744c73a6e97d390dface9d7a7839060209a03be96a5079c3c6092783751",
+          "sha256": "c0dbdc1583e571dbf279563041878fb7ba3b5d69cb9b284b2693811887fd92ae",
           "render": "clay"
         }
       ]
@@ -1931,10 +1931,10 @@
           "level": "exterior",
           "label": "Apercu",
           "modelUrl": "https://github.com/elios134/asset-3d/releases/download/sc-4.1/ARGO_MOLE.clay-exterior.glb",
-          "tris": 195195,
-          "sizeBytes": 1387284,
+          "tris": 599991,
+          "sizeBytes": 4784012,
           "hasInterior": false,
-          "sha256": "6c05816724a0534fe15cbbc5417ab15ea7a717ec2f037678e4b797dd5e8ba7df",
+          "sha256": "f2b5162e132401f4dca84b92844343c430625ff8ac05c2180c2e66ead3517aac",
           "render": "clay"
         },
         {
@@ -1969,10 +1969,10 @@
           "level": "exterior",
           "label": "Apercu",
           "modelUrl": "https://github.com/elios134/asset-3d/releases/download/sc-4.1/ARGO_MOTH.clay-exterior.glb",
-          "tris": 255693,
-          "sizeBytes": 1717444,
+          "tris": 599993,
+          "sizeBytes": 4433728,
           "hasInterior": false,
-          "sha256": "0d43bd9f3ba98aada61cf535383e2b0104145ff5cdb6661a1892e30d396766db",
+          "sha256": "a465b64084976ebdad94149baca7a35c2d1d5879e58addd5a8b26a4d9062260f",
           "render": "clay"
         }
       ]
@@ -1994,10 +1994,10 @@
           "level": "exterior",
           "label": "Apercu",
           "modelUrl": "https://github.com/elios134/asset-3d/releases/download/sc-4.1/ARGO_MPUV.clay-exterior.glb",
-          "tris": 38959,
-          "sizeBytes": 303188,
+          "tris": 95467,
+          "sizeBytes": 732292,
           "hasInterior": false,
-          "sha256": "8bbb9da976fdabdb4ac82f874a279e469fc81b5de7540bde2ed341da307e65d6",
+          "sha256": "69a09d95d813bf7ad583955bc43591012f76ded7b55f14ba7446174638742521",
           "render": "clay"
         }
       ]
@@ -2019,10 +2019,10 @@
           "level": "exterior",
           "label": "Apercu",
           "modelUrl": "https://github.com/elios134/asset-3d/releases/download/sc-4.1/ARGO_MPUV_1T.clay-exterior.glb",
-          "tris": 53193,
-          "sizeBytes": 439156,
+          "tris": 155855,
+          "sizeBytes": 1222000,
           "hasInterior": false,
-          "sha256": "815f1ebc0c923236340c39883dd07caf0782bf55bbdd79ae94301da0b0fb9369",
+          "sha256": "436dfdacb2d0a5d8a9c62ddfcb6490851f4b89d9fd2074881617e9c1dc9b99d8",
           "render": "clay"
         }
       ]
@@ -2044,10 +2044,10 @@
           "level": "exterior",
           "label": "Apercu",
           "modelUrl": "https://github.com/elios134/asset-3d/releases/download/sc-4.1/ARGO_MPUV_Transport.clay-exterior.glb",
-          "tris": 55678,
-          "sizeBytes": 460680,
+          "tris": 114695,
+          "sizeBytes": 915792,
           "hasInterior": false,
-          "sha256": "f1ccd77cd57d1704c43f11fdf27e9e7ec694688c34df3597f5103740acf5f7db",
+          "sha256": "90837c88c7fe08601d80bd6da3d1aab314d126f98d9d1607dc8ca7a13e16d26b",
           "render": "clay"
         }
       ]
@@ -2069,10 +2069,10 @@
           "level": "exterior",
           "label": "Apercu",
           "modelUrl": "https://github.com/elios134/asset-3d/releases/download/sc-4.1/ARGO_RAFT.clay-exterior.glb",
-          "tris": 311475,
-          "sizeBytes": 2371276,
+          "tris": 546167,
+          "sizeBytes": 3920860,
           "hasInterior": false,
-          "sha256": "5c130c5df599cb7fae0575d83e4008d535d71d408a4ee6beda656f99efeec94c",
+          "sha256": "05cfa91896f0c41482ff058f13f798528623fb6ca302895725325162c6aa92c6",
           "render": "clay"
         },
         {
@@ -2107,10 +2107,10 @@
           "level": "exterior",
           "label": "Apercu",
           "modelUrl": "https://github.com/elios134/asset-3d/releases/download/sc-4.1/ARGO_SRV.clay-exterior.glb",
-          "tris": 381163,
-          "sizeBytes": 2574540,
+          "tris": 571146,
+          "sizeBytes": 3914084,
           "hasInterior": false,
-          "sha256": "a8ae7e29d569bb8eba0ac77133e06f74e879290b68c1698a0c7e1e6335b5a00d",
+          "sha256": "d30c6df9b40fcfc6405656f630d7044eac342813209642542f8e62b5db12eb4e",
           "render": "clay"
         }
       ]
@@ -2132,10 +2132,10 @@
           "level": "exterior",
           "label": "Apercu",
           "modelUrl": "https://github.com/elios134/asset-3d/releases/download/sc-4.1/BANU_Defender.clay-exterior.glb",
-          "tris": 109305,
-          "sizeBytes": 1069984,
+          "tris": 355537,
+          "sizeBytes": 2690996,
           "hasInterior": false,
-          "sha256": "7a905460522fa5175adca2e9e6892a9f66caa810f17ee165736c149e92d0d94c",
+          "sha256": "9bdb1c8a4fc6080343443332b051f159652211f5608b90aa3fd6970581b5caf2",
           "render": "clay"
         }
       ]
@@ -2157,10 +2157,10 @@
           "level": "exterior",
           "label": "Apercu",
           "modelUrl": "https://github.com/elios134/asset-3d/releases/download/sc-4.1/CNOU_HoverQuad.clay-exterior.glb",
-          "tris": 82029,
-          "sizeBytes": 864580,
+          "tris": 97186,
+          "sizeBytes": 999712,
           "hasInterior": false,
-          "sha256": "071e1dab6775077a5f8a308aa510eb53197eef1033540af34b815eb9df833d8d",
+          "sha256": "53b04a733faee5ad704a7986f82d2bb07ae331e98b4fe5c9eaf2ba1cfb705dad",
           "render": "clay"
         }
       ]
@@ -2182,10 +2182,10 @@
           "level": "exterior",
           "label": "Apercu",
           "modelUrl": "https://github.com/elios134/asset-3d/releases/download/sc-4.1/CNOU_Mustang_Alpha.clay-exterior.glb",
-          "tris": 69768,
-          "sizeBytes": 746008,
+          "tris": 180394,
+          "sizeBytes": 1586988,
           "hasInterior": false,
-          "sha256": "db9007367694d10ca44fed8969bbd97fae294402369c52231c07f842fc9efac4",
+          "sha256": "f7ecdacefcd33eefe9d628d7d349a49206650192c7461aa43258925f9e29cd34",
           "render": "clay"
         }
       ]
@@ -2207,10 +2207,10 @@
           "level": "exterior",
           "label": "Apercu",
           "modelUrl": "https://github.com/elios134/asset-3d/releases/download/sc-4.1/CNOU_Mustang_Alpha_CitizenCon2018.clay-exterior.glb",
-          "tris": 69848,
-          "sizeBytes": 746876,
+          "tris": 180474,
+          "sizeBytes": 1587728,
           "hasInterior": false,
-          "sha256": "d8bc63fead5abe731ec227d9124476918d39b60573f1878da2f92a71e059b994",
+          "sha256": "606671982a0ada4cc68f6bef56e32c4ad573b894af1c05c7ce3345fd430ad9ed",
           "render": "clay"
         }
       ]
@@ -2232,10 +2232,10 @@
           "level": "exterior",
           "label": "Apercu",
           "modelUrl": "https://github.com/elios134/asset-3d/releases/download/sc-4.1/CNOU_Mustang_Beta.clay-exterior.glb",
-          "tris": 69848,
-          "sizeBytes": 746876,
+          "tris": 176416,
+          "sizeBytes": 1543664,
           "hasInterior": false,
-          "sha256": "fac4c526af8997fc9c8d02b33a6be2b634f66017215854645a503fc849c0e146",
+          "sha256": "fb00d85890b14f926e7bacaefec415265c2ad471a198746d4f018c05cfccd114",
           "render": "clay"
         }
       ]
@@ -2257,10 +2257,10 @@
           "level": "exterior",
           "label": "Apercu",
           "modelUrl": "https://github.com/elios134/asset-3d/releases/download/sc-4.1/CNOU_Mustang_Delta.clay-exterior.glb",
-          "tris": 69848,
-          "sizeBytes": 746876,
+          "tris": 237011,
+          "sizeBytes": 1963836,
           "hasInterior": false,
-          "sha256": "8e9cd618e99d40cbec9e3a1bf9bd923a5a55671ad1d27ebf5a714308a1b0b660",
+          "sha256": "f5c0d4bca2694e05b634632eedb6c6967c3219c235c63caaca4d56cd81148bc4",
           "render": "clay"
         }
       ]
@@ -2282,10 +2282,10 @@
           "level": "exterior",
           "label": "Apercu",
           "modelUrl": "https://github.com/elios134/asset-3d/releases/download/sc-4.1/CNOU_Mustang_Gamma.clay-exterior.glb",
-          "tris": 69848,
-          "sizeBytes": 746876,
+          "tris": 197785,
+          "sizeBytes": 1604292,
           "hasInterior": false,
-          "sha256": "59731e8c2fbf37c145e40f8bf77a83e9a0d00783ac2c7790a39b4941542ddac6",
+          "sha256": "94ea23d166d14c319106afbd05ad634768211e6ef5a1aa591a7e6ce1f0c2aa15",
           "render": "clay"
         }
       ]
@@ -2307,10 +2307,10 @@
           "level": "exterior",
           "label": "Apercu",
           "modelUrl": "https://github.com/elios134/asset-3d/releases/download/sc-4.1/CNOU_Mustang_Omega.clay-exterior.glb",
-          "tris": 69848,
-          "sizeBytes": 746876,
+          "tris": 197785,
+          "sizeBytes": 1604292,
           "hasInterior": false,
-          "sha256": "d5123366fc565c30affc550cf463720bfee02364b0a72d3abddbdfcbeb6dcdb2",
+          "sha256": "b699eb04e06112afb424ea8cd649707662e278c08d9310c220efbdd914ca4d0d",
           "render": "clay"
         }
       ]
@@ -2332,10 +2332,10 @@
           "level": "exterior",
           "label": "Apercu",
           "modelUrl": "https://github.com/elios134/asset-3d/releases/download/sc-4.1/CNOU_Nomad.clay-exterior.glb",
-          "tris": 27101,
-          "sizeBytes": 281136,
+          "tris": 225884,
+          "sizeBytes": 1707920,
           "hasInterior": false,
-          "sha256": "34f294fc926368317f446dc7ecf07bbf6cca93f71c89581645aefd806d197ab1",
+          "sha256": "74873fa5e5751252b325a102bc6ffa1b19bfc45793e50ea889a378ce6e41d70f",
           "render": "clay"
         }
       ]
@@ -2357,10 +2357,10 @@
           "level": "exterior",
           "label": "Apercu",
           "modelUrl": "https://github.com/elios134/asset-3d/releases/download/sc-4.1/CRUS_Intrepid.clay-exterior.glb",
-          "tris": 311418,
-          "sizeBytes": 3059168,
+          "tris": 581327,
+          "sizeBytes": 5077672,
           "hasInterior": false,
-          "sha256": "1dacb23fe3d59b6ab73f07938bb9b12b3890b47fe870954f3c15f835c19e0d5e",
+          "sha256": "e18305f3730dc82378e5d8d5503ea62bceed3d95559676d2dc94cf64eb741d4d",
           "render": "clay"
         }
       ]
@@ -2382,10 +2382,10 @@
           "level": "exterior",
           "label": "Apercu",
           "modelUrl": "https://github.com/elios134/asset-3d/releases/download/sc-4.1/CRUS_Spirit_A1.clay-exterior.glb",
-          "tris": 263172,
-          "sizeBytes": 2149396,
+          "tris": 599980,
+          "sizeBytes": 5148916,
           "hasInterior": false,
-          "sha256": "b029598bc6ae973db7214d75d7327d03cb0a417ee4f12734c6f43e897f374ec4",
+          "sha256": "30d62b0af401576d8342585afe33eda6b4940dfc18a08e464b3f943ed5dc7c07",
           "render": "clay"
         },
         {
@@ -2420,10 +2420,10 @@
           "level": "exterior",
           "label": "Apercu",
           "modelUrl": "https://github.com/elios134/asset-3d/releases/download/sc-4.1/CRUS_Spirit_C1.clay-exterior.glb",
-          "tris": 263172,
-          "sizeBytes": 2149396,
+          "tris": 599999,
+          "sizeBytes": 4609124,
           "hasInterior": false,
-          "sha256": "0ec33864248297ddc803acd355581fd6fc2e04248f14a0a5237fa851adc89856",
+          "sha256": "350a66c41af8fd7318fa6b8e35aa8f0b7e65f0b18aa71ee1b51170221fccb21a",
           "render": "clay"
         },
         {
@@ -2458,10 +2458,10 @@
           "level": "exterior",
           "label": "Apercu",
           "modelUrl": "https://github.com/elios134/asset-3d/releases/download/sc-4.1/CRUS_Star_Runner.clay-exterior.glb",
-          "tris": 101803,
-          "sizeBytes": 1112748,
+          "tris": 599934,
+          "sizeBytes": 4573768,
           "hasInterior": false,
-          "sha256": "9d93848cc66f570841b8f9a610e7b30ecb2606aae3339c1706036f2b454666c0",
+          "sha256": "409afece48722113540547ea1252a5d5797f8672f41572d979e33581fc318a23",
           "render": "clay"
         },
         {
@@ -2496,10 +2496,10 @@
           "level": "exterior",
           "label": "Apercu",
           "modelUrl": "https://github.com/elios134/asset-3d/releases/download/sc-4.1/CRUS_Starfighter_Inferno.clay-exterior.glb",
-          "tris": 113799,
-          "sizeBytes": 962192,
+          "tris": 328907,
+          "sizeBytes": 2539528,
           "hasInterior": false,
-          "sha256": "8484ff3297d5c54bcd98ae52b9489f75cfbd2723d658e7c3f10196bf03ee17e9",
+          "sha256": "538d5c62058fed19440a0fa770e1e452c139eca3e7d1baf9094f42b4955176b7",
           "render": "clay"
         }
       ]
@@ -2521,10 +2521,10 @@
           "level": "exterior",
           "label": "Apercu",
           "modelUrl": "https://github.com/elios134/asset-3d/releases/download/sc-4.1/CRUS_Starfighter_Ion.clay-exterior.glb",
-          "tris": 113799,
-          "sizeBytes": 962192,
+          "tris": 329465,
+          "sizeBytes": 2542212,
           "hasInterior": false,
-          "sha256": "a02a3dc5d02e5703df2270920a520ef637ccd14b5626e6d57c54666cd79b0000",
+          "sha256": "befcf0a0b51ff55799ee1cf69dce2f78b21d050099012b0eeafb3707f26b595d",
           "render": "clay"
         }
       ]
@@ -2546,10 +2546,10 @@
           "level": "exterior",
           "label": "Apercu",
           "modelUrl": "https://github.com/elios134/asset-3d/releases/download/sc-4.1/CRUS_Starlifter_A2.clay-exterior.glb",
-          "tris": 109313,
-          "sizeBytes": 880952,
+          "tris": 599848,
+          "sizeBytes": 5267004,
           "hasInterior": false,
-          "sha256": "e0e971f7aea93978bf0a57e852d0994414338b0864a9d8e22fd47c91c589574a",
+          "sha256": "313d723b24a6a462255a7bf56301b429adc387d1bbb88a2e4b82cc1f6aed619d",
           "render": "clay"
         },
         {
@@ -2584,10 +2584,10 @@
           "level": "exterior",
           "label": "Apercu",
           "modelUrl": "https://github.com/elios134/asset-3d/releases/download/sc-4.1/CRUS_Starlifter_C2.clay-exterior.glb",
-          "tris": 109313,
-          "sizeBytes": 880952,
+          "tris": 599996,
+          "sizeBytes": 4663312,
           "hasInterior": false,
-          "sha256": "9c45c26e32e9c065eb50ab8dba8f6239b6ac74737c0f76c5c91123a7284f50c6",
+          "sha256": "5976128bd2eaf3a557c29de4af99d57f724a18a030a5649fb406cab2a73fc3e9",
           "render": "clay"
         },
         {
@@ -2622,10 +2622,10 @@
           "level": "exterior",
           "label": "Apercu",
           "modelUrl": "https://github.com/elios134/asset-3d/releases/download/sc-4.1/CRUS_Starlifter_M2.clay-exterior.glb",
-          "tris": 109313,
-          "sizeBytes": 880952,
+          "tris": 600000,
+          "sizeBytes": 4923124,
           "hasInterior": false,
-          "sha256": "ae4ba241a806c551526747bc85fa988c3bd0c368cf317bfbf64f18b91a85353c",
+          "sha256": "b75a63f513f70520b5962a61e6c52f671fd981b26f3900582e342b20afa2c66e",
           "render": "clay"
         },
         {
@@ -2660,10 +2660,10 @@
           "level": "exterior",
           "label": "Apercu",
           "modelUrl": "https://github.com/elios134/asset-3d/releases/download/sc-4.1/DRAK_Buccaneer.clay-exterior.glb",
-          "tris": 69521,
-          "sizeBytes": 618308,
+          "tris": 220141,
+          "sizeBytes": 1756580,
           "hasInterior": false,
-          "sha256": "f06bfea9d4273282495b0a54748c2d0d7251dc366f42784cf3985b0d20b34f9d",
+          "sha256": "3cddac89ef5b665ba7c46dd7ea93dbf3d336964ef4efe5f557d877c1779c5b1e",
           "render": "clay"
         }
       ]
@@ -2685,20 +2685,20 @@
           "level": "exterior",
           "label": "Apercu",
           "modelUrl": "https://github.com/elios134/asset-3d/releases/download/sc-4.1/DRAK_Caterpillar.clay-exterior.glb",
-          "tris": 211946,
-          "sizeBytes": 1193428,
+          "tris": 726431,
+          "sizeBytes": 5684744,
           "hasInterior": false,
-          "sha256": "009c0fffc16552879dc313101b2a78c43c5df505afc59edb4a4e8748627937ed",
+          "sha256": "c110dad8f4dc593223e8377a1b6af59bab1bbb1a20422a8dcd77600e9eb67db9",
           "render": "clay"
         },
         {
           "level": "interior",
           "label": "Interieur",
           "modelUrl": "https://github.com/elios134/asset-3d/releases/download/sc-4.1/DRAK_Caterpillar.clay-interior.glb",
-          "tris": 2455743,
-          "sizeBytes": 19980288,
+          "tris": 2381481,
+          "sizeBytes": 19640916,
           "hasInterior": true,
-          "sha256": "753075128337c2f35a3230bcd3348db77760b6f227192438ca1a10ae6924f976",
+          "sha256": "d90a103d5237d1d0e282c36482d187af097485bd18f47c66494a1f2c15abf043",
           "render": "clay",
           "hasCollision": true,
           "interiorKind": "habitable",
@@ -2723,20 +2723,20 @@
           "level": "exterior",
           "label": "Apercu",
           "modelUrl": "https://github.com/elios134/asset-3d/releases/download/sc-4.1/DRAK_Caterpillar_Pirate.clay-exterior.glb",
-          "tris": 211946,
-          "sizeBytes": 1193428,
+          "tris": 726431,
+          "sizeBytes": 5684744,
           "hasInterior": false,
-          "sha256": "8bdf6cf75de39c448070e1163d38db3366007bf07678f5e8259ec321b0c7888b",
+          "sha256": "12e5a5a0db8c51ffe2eba90d4f930f7551341be4188cfba45f84387f364fb1be",
           "render": "clay"
         },
         {
           "level": "interior",
           "label": "Interieur",
           "modelUrl": "https://github.com/elios134/asset-3d/releases/download/sc-4.1/DRAK_Caterpillar_Pirate.clay-interior.glb",
-          "tris": 2615123,
-          "sizeBytes": 21322456,
+          "tris": 2544341,
+          "sizeBytes": 20998528,
           "hasInterior": true,
-          "sha256": "93bf717c0815912c15fa7848dc0255a63e91887cb564bc4296445b706bbd3bfe",
+          "sha256": "de3a58bd46d21161fc6da977e3f2840ca1a9b0bcf52194fc968ae6bb3b0a6137",
           "render": "clay",
           "hasCollision": true,
           "interiorKind": "habitable",
@@ -2761,10 +2761,10 @@
           "level": "exterior",
           "label": "Apercu",
           "modelUrl": "https://github.com/elios134/asset-3d/releases/download/sc-4.1/DRAK_Clipper.clay-exterior.glb",
-          "tris": 311001,
-          "sizeBytes": 2686960,
+          "tris": 599999,
+          "sizeBytes": 5300076,
           "hasInterior": false,
-          "sha256": "5a2f57d6060b1cd15561a519871f735dabb53d96d594c6605b1acb9922309101",
+          "sha256": "1eafef6401cc3348a25b152756490dfca895482d36e991907029338c73a46dd2",
           "render": "clay"
         }
       ]
@@ -2786,10 +2786,10 @@
           "level": "exterior",
           "label": "Apercu",
           "modelUrl": "https://github.com/elios134/asset-3d/releases/download/sc-4.1/DRAK_Command_Module.clay-exterior.glb",
-          "tris": 196304,
-          "sizeBytes": 1711544,
+          "tris": 576362,
+          "sizeBytes": 4004836,
           "hasInterior": false,
-          "sha256": "17bc27fa941a338c1d0f219896449fc8d1d9dc478262065b26ba41150766c236",
+          "sha256": "a519dae612f1385d04844bd5b8d1d7b01d098cbe9180331ae494267941ac0d56",
           "render": "clay"
         }
       ]
@@ -2811,10 +2811,10 @@
           "level": "exterior",
           "label": "Apercu",
           "modelUrl": "https://github.com/elios134/asset-3d/releases/download/sc-4.1/DRAK_Corsair.clay-exterior.glb",
-          "tris": 515137,
-          "sizeBytes": 3732416,
+          "tris": 782217,
+          "sizeBytes": 6979564,
           "hasInterior": false,
-          "sha256": "ea1c6fa8184bba1f0c5056edd04830abe38ca0988bc5540cce084d41d131d6a8",
+          "sha256": "ff9d2ed66e3e1685df721428c415bc9625f3b5746cbdab58535770f23090831f",
           "render": "clay"
         },
         {
@@ -2849,10 +2849,10 @@
           "level": "exterior",
           "label": "Apercu",
           "modelUrl": "https://github.com/elios134/asset-3d/releases/download/sc-4.1/DRAK_Cutlass_Black.clay-exterior.glb",
-          "tris": 90763,
-          "sizeBytes": 897452,
+          "tris": 523649,
+          "sizeBytes": 4028676,
           "hasInterior": false,
-          "sha256": "7939c427f3ac8d2bae08517ab82b7b5c8146ce0ac4a8fe2d95b629a533cc4993",
+          "sha256": "6d24dbc257d189fd4b665c338d8d0959afc79741a0a3944130db37e771b87a5a",
           "render": "clay"
         },
         {
@@ -2893,10 +2893,10 @@
           "level": "exterior",
           "label": "Apercu",
           "modelUrl": "https://github.com/elios134/asset-3d/releases/download/sc-4.1/DRAK_Cutlass_Blue.clay-exterior.glb",
-          "tris": 114042,
-          "sizeBytes": 1072568,
+          "tris": 553392,
+          "sizeBytes": 4413172,
           "hasInterior": false,
-          "sha256": "b0d560ed13f59a8a88170527c4e8234bffd70638eaeab68dca4cdab7fe2b5804",
+          "sha256": "690aff70c283480cce662e972664ec6ff2954d3a98d1c9e9b3f533ebe386c665",
           "render": "clay"
         },
         {
@@ -2931,10 +2931,10 @@
           "level": "exterior",
           "label": "Apercu",
           "modelUrl": "https://github.com/elios134/asset-3d/releases/download/sc-4.1/DRAK_Cutlass_Red.clay-exterior.glb",
-          "tris": 111962,
-          "sizeBytes": 1063444,
+          "tris": 417525,
+          "sizeBytes": 3280900,
           "hasInterior": false,
-          "sha256": "c94bb9a57be7179b82a5a32caf7012e1cd19643e2b8bb64ffb41749c56e6611f",
+          "sha256": "96256c80aa32ec0182a700315331bff1bd48b9a6b37f11505b51964332088e40",
           "render": "clay"
         },
         {
@@ -2969,10 +2969,10 @@
           "level": "exterior",
           "label": "Apercu",
           "modelUrl": "https://github.com/elios134/asset-3d/releases/download/sc-4.1/DRAK_Cutlass_Steel.clay-exterior.glb",
-          "tris": 90995,
-          "sizeBytes": 898504,
+          "tris": 575238,
+          "sizeBytes": 4542016,
           "hasInterior": false,
-          "sha256": "065b9be7cb4e8bd0994e75566e366011622421921805f9fd0ed94e3107c4e789",
+          "sha256": "a2fa7c8a940e2cfd0370387c4ce764a8e4a397b2908c545dd64dbc33676e4a61",
           "render": "clay"
         },
         {
@@ -3007,10 +3007,10 @@
           "level": "exterior",
           "label": "Apercu",
           "modelUrl": "https://github.com/elios134/asset-3d/releases/download/sc-4.1/DRAK_Cutter.clay-exterior.glb",
-          "tris": 176061,
-          "sizeBytes": 1516064,
+          "tris": 469891,
+          "sizeBytes": 3536780,
           "hasInterior": false,
-          "sha256": "5043698308b86389ebf05535db2cfaf74ee6467cc00403f36c560a089bbdf396",
+          "sha256": "6ae01f3ddc4f08bdd96db69cf9bb966700219aca416f31ee7e5099c9cbaad842",
           "render": "clay"
         }
       ]
@@ -3032,10 +3032,10 @@
           "level": "exterior",
           "label": "Apercu",
           "modelUrl": "https://github.com/elios134/asset-3d/releases/download/sc-4.1/DRAK_Cutter_Rambler.clay-exterior.glb",
-          "tris": 176061,
-          "sizeBytes": 1516064,
+          "tris": 487170,
+          "sizeBytes": 3779492,
           "hasInterior": false,
-          "sha256": "9da5bf6fbdad3adab7cb4edda5b229f6789bbe4636a89a0484c92a9ea668a794",
+          "sha256": "b5f3a5096c365598c1d13927408df475908ea12da0d1c97e156ff8fe5a4a8bc0",
           "render": "clay"
         }
       ]
@@ -3057,10 +3057,10 @@
           "level": "exterior",
           "label": "Apercu",
           "modelUrl": "https://github.com/elios134/asset-3d/releases/download/sc-4.1/DRAK_Cutter_Scout.clay-exterior.glb",
-          "tris": 176061,
-          "sizeBytes": 1516064,
+          "tris": 442864,
+          "sizeBytes": 3396136,
           "hasInterior": false,
-          "sha256": "29636df372d63693de6aedf5de16d84f0e4c8693fc6144929e717729fda3756a",
+          "sha256": "f40c0657f25a69c48c8c28d586905c55003094b5aba93121cbba3843dc6020a1",
           "render": "clay"
         }
       ]
@@ -3082,10 +3082,10 @@
           "level": "exterior",
           "label": "Apercu",
           "modelUrl": "https://github.com/elios134/asset-3d/releases/download/sc-4.1/DRAK_Dragonfly.clay-exterior.glb",
-          "tris": 99903,
-          "sizeBytes": 645984,
+          "tris": 150361,
+          "sizeBytes": 1003712,
           "hasInterior": false,
-          "sha256": "c7cc66b97af69f4e661bbdf75450b8e8ae76399c3cbd0073d4b6b0f8fbf3c9fc",
+          "sha256": "dfdecd543b633374daa0d41879d54a924b202cee7034cb8ba8f3fbf69f61c73b",
           "render": "clay"
         }
       ]
@@ -3107,10 +3107,10 @@
           "level": "exterior",
           "label": "Apercu",
           "modelUrl": "https://github.com/elios134/asset-3d/releases/download/sc-4.1/DRAK_Dragonfly_Pink.clay-exterior.glb",
-          "tris": 98104,
-          "sizeBytes": 636036,
+          "tris": 148562,
+          "sizeBytes": 993556,
           "hasInterior": false,
-          "sha256": "832e70c8d3de6f588d66475a8ac05482d3d231cda7674606083f5a702b0c14e6",
+          "sha256": "f2f8f9c466ef4df62125b38d3ee6f4a8a74048a29e894b67dfdeb87ec506f39b",
           "render": "clay"
         }
       ]
@@ -3132,10 +3132,10 @@
           "level": "exterior",
           "label": "Apercu",
           "modelUrl": "https://github.com/elios134/asset-3d/releases/download/sc-4.1/DRAK_Dragonfly_Yellow.clay-exterior.glb",
-          "tris": 99903,
-          "sizeBytes": 645984,
+          "tris": 150361,
+          "sizeBytes": 1003712,
           "hasInterior": false,
-          "sha256": "e4f6e5cbb6829daf1a5dad5ed7b43eb47d590292ff38f707d42a5185fdec30a7",
+          "sha256": "ed8f96380f4c5176e6193abf4c47e5a885183c9639ab20ad5ed90c0f79c42d47",
           "render": "clay"
         }
       ]
@@ -3157,10 +3157,10 @@
           "level": "exterior",
           "label": "Apercu",
           "modelUrl": "https://github.com/elios134/asset-3d/releases/download/sc-4.1/DRAK_Golem.clay-exterior.glb",
-          "tris": 226882,
-          "sizeBytes": 2022572,
+          "tris": 567610,
+          "sizeBytes": 4674600,
           "hasInterior": false,
-          "sha256": "2b3e0075844da8e4dc3af56579bc3d91fde9c7f20eebd795ae45e1bd4e68c798",
+          "sha256": "40b15d5cd5649f1fd7e707968c5cc3f1a9c1b91ea06b0abe2f0c77762570be20",
           "render": "clay"
         }
       ]
@@ -3182,10 +3182,10 @@
           "level": "exterior",
           "label": "Apercu",
           "modelUrl": "https://github.com/elios134/asset-3d/releases/download/sc-4.1/DRAK_Golem_OX.clay-exterior.glb",
-          "tris": 216188,
-          "sizeBytes": 1978304,
+          "tris": 459769,
+          "sizeBytes": 3773272,
           "hasInterior": false,
-          "sha256": "68a2b204cb66dae1cd958a094f63f2cf8aec827e456c940bc5014751754a276e",
+          "sha256": "3a67bc6d45d7d0a740f5b51b53b1494f7744279e0e6b4ce5386e24f55922764a",
           "render": "clay"
         }
       ]
@@ -3207,10 +3207,10 @@
           "level": "exterior",
           "label": "Apercu",
           "modelUrl": "https://github.com/elios134/asset-3d/releases/download/sc-4.1/DRAK_Herald.clay-exterior.glb",
-          "tris": 93320,
-          "sizeBytes": 885616,
+          "tris": 266983,
+          "sizeBytes": 2121908,
           "hasInterior": false,
-          "sha256": "4336858667401a98a62cc73382debca874b2eb6321d4bde73d359cd7c836ce6b",
+          "sha256": "cf140cb6640bc4642c0241d0fc7dcd16e6c0203c7558b6a75a553adbefe75597",
           "render": "clay"
         }
       ]
@@ -3232,20 +3232,20 @@
           "level": "exterior",
           "label": "Apercu",
           "modelUrl": "https://github.com/elios134/asset-3d/releases/download/sc-4.1/DRAK_Ironclad.clay-exterior.glb",
-          "tris": 599972,
-          "sizeBytes": 4936660,
+          "tris": 1350107,
+          "sizeBytes": 11400328,
           "hasInterior": false,
-          "sha256": "33a690ba55f520de8e3bd03f1474147ea8bf07ab7ed75d3787a35db4b03755c5",
+          "sha256": "521b9f9eb7040e351dc9bc4a491fce73727a448954e84a87392f1c7be3e028a6",
           "render": "clay"
         },
         {
           "level": "interior",
           "label": "Interieur",
           "modelUrl": "https://github.com/elios134/asset-3d/releases/download/sc-4.1/DRAK_Ironclad.clay-interior.glb",
-          "tris": 4255554,
-          "sizeBytes": 37529812,
+          "tris": 4175941,
+          "sizeBytes": 36136768,
           "hasInterior": true,
-          "sha256": "87647698c0325bd79bbadda8665d203d86a48334b0d0c2428b514906a205c589",
+          "sha256": "3a9f9aa19cdc7036ca867e78cca226935b6b7d0d9ae990126c512e711cf0db06",
           "render": "clay",
           "hasCollision": true,
           "interiorKind": "habitable",
@@ -3270,20 +3270,20 @@
           "level": "exterior",
           "label": "Apercu",
           "modelUrl": "https://github.com/elios134/asset-3d/releases/download/sc-4.1/DRAK_Ironclad_Assault.clay-exterior.glb",
-          "tris": 599972,
-          "sizeBytes": 4936660,
+          "tris": 1573804,
+          "sizeBytes": 12785808,
           "hasInterior": false,
-          "sha256": "416ce169b03ae1e5562e50142d3e5a11b2e90640d2cfa2d411dc654c7a80fbfe",
+          "sha256": "bee1f306eca23aa2cb8594285b64e415da0c9ae8ffa257b53899dd0851e7cac2",
           "render": "clay"
         },
         {
           "level": "interior",
           "label": "Interieur",
           "modelUrl": "https://github.com/elios134/asset-3d/releases/download/sc-4.1/DRAK_Ironclad_Assault.clay-interior.glb",
-          "tris": 4293419,
-          "sizeBytes": 37909628,
+          "tris": 4423287,
+          "sizeBytes": 37771680,
           "hasInterior": true,
-          "sha256": "60b03dfdcc913e15445132850698ec82aa2d78e5428e5f91a33e28be7f8b59c3",
+          "sha256": "c107b3815c156237606305bf7bba516b3780499fcc5d042571bce05b5f3a9857",
           "render": "clay",
           "hasCollision": true,
           "interiorKind": "habitable",
@@ -3308,10 +3308,10 @@
           "level": "exterior",
           "label": "Apercu",
           "modelUrl": "https://github.com/elios134/asset-3d/releases/download/sc-4.1/DRAK_Mule.clay-exterior.glb",
-          "tris": 133347,
-          "sizeBytes": 1062984,
+          "tris": 205020,
+          "sizeBytes": 1577708,
           "hasInterior": false,
-          "sha256": "de155ef77805450bf8440e4c3c3eeefd5832559cc94a5a484d113c69120599ca",
+          "sha256": "82d5b79acb863ac776df5fee4cf54f5f251dcccf74938a4a7186d3ff27e07a42",
           "render": "clay"
         }
       ]
@@ -3333,10 +3333,10 @@
           "level": "exterior",
           "label": "Apercu",
           "modelUrl": "https://github.com/elios134/asset-3d/releases/download/sc-4.1/DRAK_Pitbull.clay-exterior.glb",
-          "tris": 219146,
-          "sizeBytes": 1543968,
+          "tris": 586658,
+          "sizeBytes": 4053392,
           "hasInterior": false,
-          "sha256": "01f5754c5d364d765bcebc81f3dcb94cce89ec2658f05e1d0bef7f4cef3dda8e",
+          "sha256": "9636553c3d46baf653931d0b3612c380155c522c7d985fefd2855d9e9b578a66",
           "render": "clay"
         }
       ]
@@ -3358,10 +3358,10 @@
           "level": "exterior",
           "label": "Apercu",
           "modelUrl": "https://github.com/elios134/asset-3d/releases/download/sc-4.1/DRAK_Vulture.clay-exterior.glb",
-          "tris": 409927,
-          "sizeBytes": 3065664,
+          "tris": 599998,
+          "sizeBytes": 4531976,
           "hasInterior": false,
-          "sha256": "facc4850c4bdbb3f109deb97bfac1edb49e37c144ce5c8f1bac2dccd315a4e73",
+          "sha256": "2eb41bcd3757bb72fce669569f32a5a853237c6818560ea6301728d092438fae",
           "render": "clay"
         }
       ]
@@ -3383,10 +3383,10 @@
           "level": "exterior",
           "label": "Apercu",
           "modelUrl": "https://github.com/elios134/asset-3d/releases/download/sc-4.1/ESPR_Prowler.clay-exterior.glb",
-          "tris": 83074,
-          "sizeBytes": 829940,
+          "tris": 433119,
+          "sizeBytes": 3494964,
           "hasInterior": false,
-          "sha256": "05e402066149709ff844c9822898b2f39efdeb85b266cd32d5997ad42c88bcf0",
+          "sha256": "f0955e916355bc6d7a0d96ae79915563c232ec74bc9727d3eb57bc23cb48d304",
           "render": "clay"
         }
       ]
@@ -3408,10 +3408,10 @@
           "level": "exterior",
           "label": "Apercu",
           "modelUrl": "https://github.com/elios134/asset-3d/releases/download/sc-4.1/ESPR_Prowler_Utility.clay-exterior.glb",
-          "tris": 127101,
-          "sizeBytes": 1315492,
+          "tris": 567838,
+          "sizeBytes": 5194036,
           "hasInterior": false,
-          "sha256": "120ce6d14195dac0c2aee0a190f8cc0eb3b37440a428dbf6230dec5664dadc6d",
+          "sha256": "527a12ab483919a33334fa95c1ab87246133b43df586b39397a8c5b9622a39cb",
           "render": "clay"
         }
       ]
@@ -3433,10 +3433,10 @@
           "level": "exterior",
           "label": "Apercu",
           "modelUrl": "https://github.com/elios134/asset-3d/releases/download/sc-4.1/ESPR_Talon.clay-exterior.glb",
-          "tris": 87573,
-          "sizeBytes": 832620,
+          "tris": 300080,
+          "sizeBytes": 2396244,
           "hasInterior": false,
-          "sha256": "efba3161a73388f1bf7ab064a1225a4de7dabe6cf14f4357a6f188030990b6a1",
+          "sha256": "30026878dd30d1bc28e9e3a363019efcc696f2accb7d0e128e5cb5826b2d3df7",
           "render": "clay"
         }
       ]
@@ -3458,10 +3458,10 @@
           "level": "exterior",
           "label": "Apercu",
           "modelUrl": "https://github.com/elios134/asset-3d/releases/download/sc-4.1/ESPR_Talon_Shrike.clay-exterior.glb",
-          "tris": 87573,
-          "sizeBytes": 832620,
+          "tris": 314540,
+          "sizeBytes": 2520944,
           "hasInterior": false,
-          "sha256": "d205eebd67738f4c6d5a8c2fda58a029bfbfc91942652db463e432fde3351ead",
+          "sha256": "9fb1cd8deec4f1b28f7a542825a5db7950225852ca6341d05cd1401b7cb4c551",
           "render": "clay"
         }
       ]
@@ -3483,10 +3483,10 @@
           "level": "exterior",
           "label": "Apercu",
           "modelUrl": "https://github.com/elios134/asset-3d/releases/download/sc-4.1/GAMA_Railen.clay-exterior.glb",
-          "tris": 187249,
-          "sizeBytes": 1233500,
+          "tris": 599815,
+          "sizeBytes": 4967812,
           "hasInterior": false,
-          "sha256": "b38a54fdf30de51371c9b71e37cfacf5f65ad392e5a1e73f4f075c6f4f8f0bd8",
+          "sha256": "43b1655dfd1fc8dd399398445496f6fece9374eef964120c08b01638198584ce",
           "render": "clay"
         },
         {
@@ -3521,10 +3521,10 @@
           "level": "exterior",
           "label": "Apercu",
           "modelUrl": "https://github.com/elios134/asset-3d/releases/download/sc-4.1/GAMA_Syulen.clay-exterior.glb",
-          "tris": 109277,
-          "sizeBytes": 1121496,
+          "tris": 377025,
+          "sizeBytes": 3103516,
           "hasInterior": false,
-          "sha256": "089b29889724c800914dcd66e9ae7373ff7f520dc1118ad578b6783f40e8b751",
+          "sha256": "cd92c0b26fc5fccd4aa959e5964557b0611a4a8f43eab14e29ac8dad4557e9e1",
           "render": "clay"
         }
       ]
@@ -3546,10 +3546,10 @@
           "level": "exterior",
           "label": "Apercu",
           "modelUrl": "https://github.com/elios134/asset-3d/releases/download/sc-4.1/GAMA_Tyilui.clay-exterior.glb",
-          "tris": 319985,
-          "sizeBytes": 2074512,
+          "tris": 661990,
+          "sizeBytes": 5399576,
           "hasInterior": false,
-          "sha256": "67c6058982b927630c323b917df56dbd1877f12cede1f395e88f96a378b88077",
+          "sha256": "afa5173432b040369235e90b37175b37d456c79dff193ce455bd6ca1e12ebed8",
           "render": "clay"
         },
         {
@@ -3584,10 +3584,10 @@
           "level": "exterior",
           "label": "Apercu",
           "modelUrl": "https://github.com/elios134/asset-3d/releases/download/sc-4.1/GLSN_Shiv.clay-exterior.glb",
-          "tris": 169328,
-          "sizeBytes": 1653416,
+          "tris": 599999,
+          "sizeBytes": 5110232,
           "hasInterior": false,
-          "sha256": "a8a75b0a25b3cf567e92eae915dc2a226697e25c933c2920a1ff4cc5a72bcf13",
+          "sha256": "4d996c4068c77c0c2112f1697878dcdeaab6b89da9779490a41f827e1865744a",
           "render": "clay"
         },
         {
@@ -3622,10 +3622,10 @@
           "level": "exterior",
           "label": "Apercu",
           "modelUrl": "https://github.com/elios134/asset-3d/releases/download/sc-4.1/GRIN_MDC.clay-exterior.glb",
-          "tris": 23121,
-          "sizeBytes": 287292,
+          "tris": 161313,
+          "sizeBytes": 1610952,
           "hasInterior": false,
-          "sha256": "fdedbae85a213b5ecdc9e1ff7c4cf42df80d5f0409ff5fc3057adb6810d4d61a",
+          "sha256": "d2011883cda1d0ac01de255030cbf8c3022db89a51c84dad3ec3fab94d149168",
           "render": "clay"
         }
       ]
@@ -3647,10 +3647,10 @@
           "level": "exterior",
           "label": "Apercu",
           "modelUrl": "https://github.com/elios134/asset-3d/releases/download/sc-4.1/GRIN_MTC.clay-exterior.glb",
-          "tris": 23121,
-          "sizeBytes": 287292,
+          "tris": 193138,
+          "sizeBytes": 1792988,
           "hasInterior": false,
-          "sha256": "50042dd2a6c95b44cab1d9c7b8b916eff8f23d30f8d7dd8a7c91fd4ab976f393",
+          "sha256": "810ed96da9d91c1722898bbbd4e4f06430120748bcb1e1635520ae987f95b63f",
           "render": "clay"
         }
       ]
@@ -3672,10 +3672,10 @@
           "level": "exterior",
           "label": "Apercu",
           "modelUrl": "https://github.com/elios134/asset-3d/releases/download/sc-4.1/GRIN_PTV.clay-exterior.glb",
-          "tris": 5718,
-          "sizeBytes": 49592,
+          "tris": 26373,
+          "sizeBytes": 209872,
           "hasInterior": false,
-          "sha256": "b244b9127aac33a529a962d4346ff3bf7e583ea9ef52ee874b8306c8f2fa1318",
+          "sha256": "8bc2e180866483ef8688af6654f46f1b3b7774db108caffbfd7c2698ac5b9cf4",
           "render": "clay"
         }
       ]
@@ -3697,10 +3697,10 @@
           "level": "exterior",
           "label": "Apercu",
           "modelUrl": "https://github.com/elios134/asset-3d/releases/download/sc-4.1/GRIN_ROC.clay-exterior.glb",
-          "tris": 35070,
-          "sizeBytes": 326484,
+          "tris": 100412,
+          "sizeBytes": 834568,
           "hasInterior": false,
-          "sha256": "70b9b51d375ee1f9f22be6496a22ad5d5bd6c494ea063fcd539d11d3862a54dc",
+          "sha256": "2aefd858ea1e398ee552dfc5b6e6cdc5d643ed9ec55b624dc9e4af30cd3b65df",
           "render": "clay"
         }
       ]
@@ -3722,10 +3722,10 @@
           "level": "exterior",
           "label": "Apercu",
           "modelUrl": "https://github.com/elios134/asset-3d/releases/download/sc-4.1/GRIN_ROC_DS.clay-exterior.glb",
-          "tris": 44393,
-          "sizeBytes": 446396,
+          "tris": 199697,
+          "sizeBytes": 1494432,
           "hasInterior": false,
-          "sha256": "a62d312be0cf81e9e128e39163ec7cc3172a213876f1ea72a6cc47c280f77691",
+          "sha256": "aa4bdd40aaaa590d11e8d7dd3d9dd6ac17f4aa1850d1700965beaa2bb261d667",
           "render": "clay"
         }
       ]
@@ -3747,10 +3747,10 @@
           "level": "exterior",
           "label": "Apercu",
           "modelUrl": "https://github.com/elios134/asset-3d/releases/download/sc-4.1/GRIN_STV.clay-exterior.glb",
-          "tris": 59983,
-          "sizeBytes": 504276,
+          "tris": 129225,
+          "sizeBytes": 1046904,
           "hasInterior": false,
-          "sha256": "f1e8c943a5eacce6ae0de518848a697098d7d213a92c874c08ba705ffd3ee54c",
+          "sha256": "cb40b6ebd897acf3b541f3a08e14602da50d8064a1c23b549f4144d959687610",
           "render": "clay"
         }
       ]
@@ -3772,10 +3772,10 @@
           "level": "exterior",
           "label": "Apercu",
           "modelUrl": "https://github.com/elios134/asset-3d/releases/download/sc-4.1/GRIN_UTV.clay-exterior.glb",
-          "tris": 103671,
-          "sizeBytes": 709696,
+          "tris": 274560,
+          "sizeBytes": 1772228,
           "hasInterior": false,
-          "sha256": "198d480691a3ff0db6fa920300f210982550092a7f8d97e4ac1a87012129576a",
+          "sha256": "025d19b4607930678ae6cc4073594d61bb8221d3b0ce0a156316c373e48ee380",
           "render": "clay"
         }
       ]
@@ -3797,10 +3797,10 @@
           "level": "exterior",
           "label": "Apercu",
           "modelUrl": "https://github.com/elios134/asset-3d/releases/download/sc-4.1/KRIG_L21_Wolf.clay-exterior.glb",
-          "tris": 259318,
-          "sizeBytes": 2080712,
+          "tris": 575770,
+          "sizeBytes": 4892292,
           "hasInterior": false,
-          "sha256": "efad4aa4db4dd4e62bbd6564877f85c4bb69ffc250dbdd91fd6207bd0366643b",
+          "sha256": "77f5cda9ddd0b32ce4be1fdc360a75402e4d5e35fd21fa341289e44abf5d7569",
           "render": "clay"
         }
       ]
@@ -3822,10 +3822,10 @@
           "level": "exterior",
           "label": "Apercu",
           "modelUrl": "https://github.com/elios134/asset-3d/releases/download/sc-4.1/KRIG_L22_AlphaWolf.clay-exterior.glb",
-          "tris": 255375,
-          "sizeBytes": 2027308,
+          "tris": 587832,
+          "sizeBytes": 4955960,
           "hasInterior": false,
-          "sha256": "fa83f3c2808f56cd280e35d29d424d672053424de4bab0be94c10ef7c063503c",
+          "sha256": "6e61251500404744360a18a63f651694541d020024810b8f6d3385f7d101e622",
           "render": "clay"
         }
       ]
@@ -3847,10 +3847,10 @@
           "level": "exterior",
           "label": "Apercu",
           "modelUrl": "https://github.com/elios134/asset-3d/releases/download/sc-4.1/KRIG_P52_Merlin.clay-exterior.glb",
-          "tris": 103412,
-          "sizeBytes": 917228,
+          "tris": 303474,
+          "sizeBytes": 2254768,
           "hasInterior": false,
-          "sha256": "d16e35b19da2d317133f038f0ed46984f249d0def4257149af2a699afd0d126b",
+          "sha256": "fd70805a38c7b776190d2ce93cc324acd089cbf5a0113c0cca1ba389215a5d4d",
           "render": "clay"
         }
       ]
@@ -3872,10 +3872,10 @@
           "level": "exterior",
           "label": "Apercu",
           "modelUrl": "https://github.com/elios134/asset-3d/releases/download/sc-4.1/KRIG_P72_Archimedes.clay-exterior.glb",
-          "tris": 103412,
-          "sizeBytes": 917228,
+          "tris": 385160,
+          "sizeBytes": 2809224,
           "hasInterior": false,
-          "sha256": "8b461f0bd5ad7ff65019bb9bf1b339dec43d109d294b354382a714c5157511c5",
+          "sha256": "7d4c19e32b8ac267f6a50f147f4447bedea8675c7df1230fdec92929af599501",
           "render": "clay"
         }
       ]
@@ -3897,10 +3897,10 @@
           "level": "exterior",
           "label": "Apercu",
           "modelUrl": "https://github.com/elios134/asset-3d/releases/download/sc-4.1/KRIG_P72_Archimedes_Emerald.clay-exterior.glb",
-          "tris": 103412,
-          "sizeBytes": 917228,
+          "tris": 385160,
+          "sizeBytes": 2809224,
           "hasInterior": false,
-          "sha256": "b544ea8f45a56a9be6040538b05568b617b74d29a52140271488816d2b22817f",
+          "sha256": "29a5a44964331886f51b5e4baa648768996eaa15bfedabc55bed6d57407e0191",
           "render": "clay"
         }
       ]
@@ -3922,10 +3922,10 @@
           "level": "exterior",
           "label": "Apercu",
           "modelUrl": "https://github.com/elios134/asset-3d/releases/download/sc-4.1/MISC_Fortune.clay-exterior.glb",
-          "tris": 347610,
-          "sizeBytes": 2600956,
+          "tris": 599999,
+          "sizeBytes": 4522012,
           "hasInterior": false,
-          "sha256": "87cfd57c74c0cdf5bf535b32c7b245752ab792bd02c62d06638e8757e9200d9e",
+          "sha256": "058aea194cc8e262f87cab260512485759642d8b9844680d3cee7db20e1961f0",
           "render": "clay"
         }
       ]
@@ -3947,10 +3947,10 @@
           "level": "exterior",
           "label": "Apercu",
           "modelUrl": "https://github.com/elios134/asset-3d/releases/download/sc-4.1/MISC_Freelancer.clay-exterior.glb",
-          "tris": 34377,
-          "sizeBytes": 301908,
+          "tris": 492598,
+          "sizeBytes": 3383500,
           "hasInterior": false,
-          "sha256": "e812d25c494fd152d9d975241ca16d1afdfb576cccd5853a41c0f0fa595f7327",
+          "sha256": "834dc9624265a1679a766f8ff43caead8dc66b905952f73ac1719bef44a93801",
           "render": "clay"
         },
         {
@@ -3985,10 +3985,10 @@
           "level": "exterior",
           "label": "Apercu",
           "modelUrl": "https://github.com/elios134/asset-3d/releases/download/sc-4.1/MISC_Freelancer_DUR.clay-exterior.glb",
-          "tris": 59253,
-          "sizeBytes": 482500,
+          "tris": 418097,
+          "sizeBytes": 2933752,
           "hasInterior": false,
-          "sha256": "b67f34249a12cc03a3c1483d83e6d0d6b8d887b7267042e97e684b3c00a413f0",
+          "sha256": "d1677b76ab671ae3d7e7b4232f63abd7d2e247c1d02609e7e00cde2a516280de",
           "render": "clay"
         },
         {
@@ -4023,10 +4023,10 @@
           "level": "exterior",
           "label": "Apercu",
           "modelUrl": "https://github.com/elios134/asset-3d/releases/download/sc-4.1/MISC_Freelancer_MAX.clay-exterior.glb",
-          "tris": 55005,
-          "sizeBytes": 445328,
+          "tris": 412529,
+          "sizeBytes": 2956448,
           "hasInterior": false,
-          "sha256": "097aed05ea706b1d47b81fb51f1eb568ade47ce85d9cbdb90277cc9338f20bfb",
+          "sha256": "d9c40dda5e2815fc3e1791b327bf35b968ab4dafd51042ae95f642d332c00c79",
           "render": "clay"
         },
         {
@@ -4061,10 +4061,10 @@
           "level": "exterior",
           "label": "Apercu",
           "modelUrl": "https://github.com/elios134/asset-3d/releases/download/sc-4.1/MISC_Freelancer_MIS.clay-exterior.glb",
-          "tris": 43200,
-          "sizeBytes": 354492,
+          "tris": 549743,
+          "sizeBytes": 3858112,
           "hasInterior": false,
-          "sha256": "75a544d2b0df9f45d79c121e8a4637f25c8a01ccc54cb8e8a27ef3c9f95cb88e",
+          "sha256": "d19120eaee96f7649cb1938372b30d20fa3e1dda932977a909b5525cb0325aa1",
           "render": "clay"
         },
         {
@@ -4099,10 +4099,10 @@
           "level": "exterior",
           "label": "Apercu",
           "modelUrl": "https://github.com/elios134/asset-3d/releases/download/sc-4.1/MISC_Fury.clay-exterior.glb",
-          "tris": 164263,
-          "sizeBytes": 1302444,
+          "tris": 408064,
+          "sizeBytes": 3110764,
           "hasInterior": false,
-          "sha256": "83b2ec82ece9c8a96b220bb89fdb036cf718565f9c7a5aea0cca82f6f4825eb6",
+          "sha256": "b4b5f5d1a5bf3443786b7eda6138fc0999316f55c635e44c25beb62a6b80c32e",
           "render": "clay"
         }
       ]
@@ -4124,10 +4124,10 @@
           "level": "exterior",
           "label": "Apercu",
           "modelUrl": "https://github.com/elios134/asset-3d/releases/download/sc-4.1/MISC_Fury_LX.clay-exterior.glb",
-          "tris": 195997,
-          "sizeBytes": 1702304,
+          "tris": 286217,
+          "sizeBytes": 2332132,
           "hasInterior": false,
-          "sha256": "50af6e2c73d012ffca6bb8480031b4be0ca0e6ca7133c5b4143d2afac8ae4ab7",
+          "sha256": "bf6fc46bfffb30e3278b4adbcf10f6aff4f70b883e0f5f93c7630426ffdab061",
           "render": "clay"
         }
       ]
@@ -4149,10 +4149,10 @@
           "level": "exterior",
           "label": "Apercu",
           "modelUrl": "https://github.com/elios134/asset-3d/releases/download/sc-4.1/MISC_Fury_Miru.clay-exterior.glb",
-          "tris": 164263,
-          "sizeBytes": 1302444,
+          "tris": 341014,
+          "sizeBytes": 2636244,
           "hasInterior": false,
-          "sha256": "9e03754beab43f8c8d4a1e25f6afc93080dd5adf09b8065da723573ae6dc42d7",
+          "sha256": "50f8542e2891b930108c632188ff13a6744e174fc1fb851c59bc8999fd8d4066",
           "render": "clay"
         }
       ]
@@ -4174,10 +4174,10 @@
           "level": "exterior",
           "label": "Apercu",
           "modelUrl": "https://github.com/elios134/asset-3d/releases/download/sc-4.1/MISC_Hull_A.clay-exterior.glb",
-          "tris": 91752,
-          "sizeBytes": 834664,
+          "tris": 403609,
+          "sizeBytes": 3122192,
           "hasInterior": false,
-          "sha256": "cd5dcf84890bc29988bfd0020d46406d062961650952d1fe75eb506668ddb8b2",
+          "sha256": "6e6dbb91e4aafeba7c9813bd3d1a43b22243e263012292c645dd118b0b509778",
           "render": "clay"
         }
       ]
@@ -4199,10 +4199,10 @@
           "level": "exterior",
           "label": "Apercu",
           "modelUrl": "https://github.com/elios134/asset-3d/releases/download/sc-4.1/MISC_Hull_B.clay-exterior.glb",
-          "tris": 563760,
-          "sizeBytes": 4527960,
+          "tris": 599984,
+          "sizeBytes": 5414124,
           "hasInterior": false,
-          "sha256": "99e92dae50359d9ed2eb9918760598338423f89a21b5fa1c89d36a67c808dd6a",
+          "sha256": "ce78e80133a0d2a59718e544ab66800aba80a9db8ed917bbeb639888e0c0558b",
           "render": "clay"
         },
         {
@@ -4237,10 +4237,10 @@
           "level": "exterior",
           "label": "Apercu",
           "modelUrl": "https://github.com/elios134/asset-3d/releases/download/sc-4.1/MISC_Hull_C.clay-exterior.glb",
-          "tris": 219743,
-          "sizeBytes": 1703960,
+          "tris": 599931,
+          "sizeBytes": 4564428,
           "hasInterior": false,
-          "sha256": "b4fdfbbc6bc8f62e99d79ceba539419ffd2de5c1377f559ad54575e478b201b8",
+          "sha256": "b9d5cacd4ff08ebeca0953db92ca42db9002f12e336af6dd6e785fcf75dc6152",
           "render": "clay"
         },
         {
@@ -4275,10 +4275,10 @@
           "level": "exterior",
           "label": "Apercu",
           "modelUrl": "https://github.com/elios134/asset-3d/releases/download/sc-4.1/MISC_Prospector.clay-exterior.glb",
-          "tris": 112037,
-          "sizeBytes": 889192,
+          "tris": 355340,
+          "sizeBytes": 2671248,
           "hasInterior": false,
-          "sha256": "399868b436cee50d1bef70de6b35e0368c56f686f9233bdec3d10941310d8c7b",
+          "sha256": "bc1c13c742ed804168045a09e04ec91b8e801228c8914ab515f149dcc6ba1291",
           "render": "clay"
         }
       ]
@@ -4300,10 +4300,10 @@
           "level": "exterior",
           "label": "Apercu",
           "modelUrl": "https://github.com/elios134/asset-3d/releases/download/sc-4.1/MISC_Razor.clay-exterior.glb",
-          "tris": 67200,
-          "sizeBytes": 466540,
+          "tris": 231153,
+          "sizeBytes": 1614424,
           "hasInterior": false,
-          "sha256": "98322818347839e270608b40485d89ea8d5eed9a2da7f96515cd0fa0de70119c",
+          "sha256": "67bef96a4e95ca03c2dbad16d0b7fdbfadf42314c3d0f1a496c07489c4a47ecb",
           "render": "clay"
         }
       ]
@@ -4325,10 +4325,10 @@
           "level": "exterior",
           "label": "Apercu",
           "modelUrl": "https://github.com/elios134/asset-3d/releases/download/sc-4.1/MISC_Razor_EX.clay-exterior.glb",
-          "tris": 67200,
-          "sizeBytes": 466540,
+          "tris": 218897,
+          "sizeBytes": 1520368,
           "hasInterior": false,
-          "sha256": "857d182984df28af778bb17251af8007f60aad022120e4de2029187242ecb848",
+          "sha256": "917faa81047dc351119b4335d7cc6f3de3e27bbc0b5e78d41ae2478e090e6a02",
           "render": "clay"
         }
       ]
@@ -4350,10 +4350,10 @@
           "level": "exterior",
           "label": "Apercu",
           "modelUrl": "https://github.com/elios134/asset-3d/releases/download/sc-4.1/MISC_Razor_LX.clay-exterior.glb",
-          "tris": 67200,
-          "sizeBytes": 466540,
+          "tris": 231153,
+          "sizeBytes": 1614424,
           "hasInterior": false,
-          "sha256": "1681917d6e1a482a1db2fab424fe410fa0f48c43862e62a54369c967d7e49335",
+          "sha256": "21370af73f3a2722c6ee84a67b27b28c970102ccb00fbc5738d5e15c21ca917f",
           "render": "clay"
         }
       ]
@@ -4375,10 +4375,10 @@
           "level": "exterior",
           "label": "Apercu",
           "modelUrl": "https://github.com/elios134/asset-3d/releases/download/sc-4.1/MISC_Reliant.clay-exterior.glb",
-          "tris": 100731,
-          "sizeBytes": 874492,
+          "tris": 312519,
+          "sizeBytes": 2348628,
           "hasInterior": false,
-          "sha256": "26209655f8dbe8039781653f2b4fa7b807cf4e5353b69d7c7ad02ad2b0918e7c",
+          "sha256": "2aa821954352453f43e211e30451050193ff13d24e1123c4c8c33be18638fb2a",
           "render": "clay"
         }
       ]
@@ -4400,10 +4400,10 @@
           "level": "exterior",
           "label": "Apercu",
           "modelUrl": "https://github.com/elios134/asset-3d/releases/download/sc-4.1/MISC_Reliant_Mako.clay-exterior.glb",
-          "tris": 100731,
-          "sizeBytes": 874492,
+          "tris": 275094,
+          "sizeBytes": 2094900,
           "hasInterior": false,
-          "sha256": "c9b97a9388a977024d8ffd845e368c2a9627c4780ee50f9a50cd70bf903acea0",
+          "sha256": "4dc6ae16907ec8a8cb87a3d192dfba12a3be1df1890f732f472f5c9065e62820",
           "render": "clay"
         }
       ]
@@ -4425,10 +4425,10 @@
           "level": "exterior",
           "label": "Apercu",
           "modelUrl": "https://github.com/elios134/asset-3d/releases/download/sc-4.1/MISC_Reliant_Sen.clay-exterior.glb",
-          "tris": 100731,
-          "sizeBytes": 874492,
+          "tris": 278008,
+          "sizeBytes": 2121360,
           "hasInterior": false,
-          "sha256": "ba3310c43eea305a452147da109155cb57c33fbb657c6bf32be0d7d1678e2e5e",
+          "sha256": "56aa8c65eedaf657373d515fc4e69840ce88546e12d5eed9c49f1c2a352b0138",
           "render": "clay"
         }
       ]
@@ -4450,10 +4450,10 @@
           "level": "exterior",
           "label": "Apercu",
           "modelUrl": "https://github.com/elios134/asset-3d/releases/download/sc-4.1/MISC_Reliant_Tana.clay-exterior.glb",
-          "tris": 100731,
-          "sizeBytes": 874492,
+          "tris": 334057,
+          "sizeBytes": 2513540,
           "hasInterior": false,
-          "sha256": "1b708527d6430b0de385046f35aac4055dd90a2e3ffead8d76486629f630c6a0",
+          "sha256": "da9f43e71cad8c8ffdeb1f737c072445ddc0a8bce88d94595cf63425bd73d732",
           "render": "clay"
         }
       ]
@@ -4475,20 +4475,20 @@
           "level": "exterior",
           "label": "Apercu",
           "modelUrl": "https://github.com/elios134/asset-3d/releases/download/sc-4.1/MISC_Starfarer.clay-exterior.glb",
-          "tris": 143158,
-          "sizeBytes": 1165340,
+          "tris": 599964,
+          "sizeBytes": 4971076,
           "hasInterior": false,
-          "sha256": "2fefb67cc06fda4cad32a2e73e1af22775b02d4a87dd88cea9a96359b0a229cf",
+          "sha256": "8eeb40ee425c7282c0cc880dccda1c9f899a1c1a1d0fd4d1570f447ab13ffda3",
           "render": "clay"
         },
         {
           "level": "interior",
           "label": "Interieur",
           "modelUrl": "https://github.com/elios134/asset-3d/releases/download/sc-4.1/MISC_Starfarer.clay-interior.glb",
-          "tris": 756255,
-          "sizeBytes": 7583248,
+          "tris": 923750,
+          "sizeBytes": 8726264,
           "hasInterior": true,
-          "sha256": "d35de0415f3fd3a79c53476a681a1a5c41b2b713eb5872b943e0643bbb9123a7",
+          "sha256": "61c85a15625d882d12ae9a48774958feb102a6e10807fae2691cead0b65d6218",
           "render": "clay",
           "hasCollision": true,
           "interiorKind": "habitable",
@@ -4513,20 +4513,20 @@
           "level": "exterior",
           "label": "Apercu",
           "modelUrl": "https://github.com/elios134/asset-3d/releases/download/sc-4.1/MISC_Starfarer_Gemini.clay-exterior.glb",
-          "tris": 143158,
-          "sizeBytes": 1165340,
+          "tris": 599930,
+          "sizeBytes": 5054340,
           "hasInterior": false,
-          "sha256": "7c044d2e160068eae2d3be6ab8ca73da8a0e180b5a3d9b2cf1a21630fe3ef5f7",
+          "sha256": "7797b9a9fb19e93331cd24540d5284748d442e16773a93ede9c07b3c0e941d30",
           "render": "clay"
         },
         {
           "level": "interior",
           "label": "Interieur",
           "modelUrl": "https://github.com/elios134/asset-3d/releases/download/sc-4.1/MISC_Starfarer_Gemini.clay-interior.glb",
-          "tris": 760718,
-          "sizeBytes": 7609676,
+          "tris": 937034,
+          "sizeBytes": 8831288,
           "hasInterior": true,
-          "sha256": "76b9c83487bc0f16f7882dfa3b63a806a232f5e32773db184252ad88be2eded9",
+          "sha256": "e6cff9155fc107ed4e459f49bf108b067cf76b684dbf1ffff3363587c8f0cbed",
           "render": "clay",
           "hasCollision": true,
           "interiorKind": "habitable",
@@ -4551,10 +4551,10 @@
           "level": "exterior",
           "label": "Apercu",
           "modelUrl": "https://github.com/elios134/asset-3d/releases/download/sc-4.1/MISC_Starlancer_Max.clay-exterior.glb",
-          "tris": 599999,
-          "sizeBytes": 4736548,
+          "tris": 677221,
+          "sizeBytes": 6747252,
           "hasInterior": false,
-          "sha256": "c9af6ca6d4cad942451da3549a12c193b0b22c460fb60e596c06c2d20394bf6d",
+          "sha256": "b217582b19d14b7f7d98535fbe9c97ea46e19088640bdaaeafef97f46c4cd311",
           "render": "clay"
         },
         {
@@ -4589,10 +4589,10 @@
           "level": "exterior",
           "label": "Apercu",
           "modelUrl": "https://github.com/elios134/asset-3d/releases/download/sc-4.1/MISC_Starlancer_TAC.clay-exterior.glb",
-          "tris": 599999,
-          "sizeBytes": 4751584,
+          "tris": 867741,
+          "sizeBytes": 8354220,
           "hasInterior": false,
-          "sha256": "90fa8b7c3baa49ffc1c011e3716c3d4d7d616400e5902b037fbebb12b4c240e0",
+          "sha256": "4a951c4c7e678831b3fe5f2be7ea282ffecdd71a37a6582e2783b2b1f869f2ce",
           "render": "clay"
         },
         {
@@ -4627,10 +4627,10 @@
           "level": "exterior",
           "label": "Apercu",
           "modelUrl": "https://github.com/elios134/asset-3d/releases/download/sc-4.1/MISC_Starlite.clay-exterior.glb",
-          "tris": 320780,
-          "sizeBytes": 2509420,
+          "tris": 599987,
+          "sizeBytes": 4731372,
           "hasInterior": false,
-          "sha256": "836eaa59ebd8f82088cd7909cb41d8e1039d16aaf4a8185163fdc61acf8c000b",
+          "sha256": "6ae23567a280be01b9189a120e61af016c37e9ce01337dcc9a7af980f8aeb792",
           "render": "clay"
         }
       ]
@@ -4652,10 +4652,10 @@
           "level": "exterior",
           "label": "Apercu",
           "modelUrl": "https://github.com/elios134/asset-3d/releases/download/sc-4.1/MRAI_Guardian.clay-exterior.glb",
-          "tris": 332326,
-          "sizeBytes": 3053868,
+          "tris": 599999,
+          "sizeBytes": 5557144,
           "hasInterior": false,
-          "sha256": "b551b99cef604dd33237ee963826679ed2afa48a2d7d9ef6f13bca0d7fd84ac6",
+          "sha256": "33eff30a6ec159a9a642abfe6b6566078f37229ca29c8b5e4e31c432e1528654",
           "render": "clay"
         }
       ]
@@ -4677,10 +4677,10 @@
           "level": "exterior",
           "label": "Apercu",
           "modelUrl": "https://github.com/elios134/asset-3d/releases/download/sc-4.1/MRAI_Guardian_MX.clay-exterior.glb",
-          "tris": 435860,
-          "sizeBytes": 3849032,
+          "tris": 599999,
+          "sizeBytes": 6164620,
           "hasInterior": false,
-          "sha256": "544edf88246dd4290fb7b8fb285b6b4d43523293c195c19938c0d551d7f64982",
+          "sha256": "d4ea7fba4e7fbc9ab9f1499576aa07bcb7da6dfb2c5f9127ad83e0e178dea742",
           "render": "clay"
         }
       ]
@@ -4702,10 +4702,10 @@
           "level": "exterior",
           "label": "Apercu",
           "modelUrl": "https://github.com/elios134/asset-3d/releases/download/sc-4.1/MRAI_Guardian_QI.clay-exterior.glb",
-          "tris": 332326,
-          "sizeBytes": 3053868,
+          "tris": 599999,
+          "sizeBytes": 5432400,
           "hasInterior": false,
-          "sha256": "94311e952ed0eb3203abf504d8d38afa7c32fb1f5c6605aa1860c3a3eec9685c",
+          "sha256": "6d20feba1436d24e503217c18fabb7b7ad0f831032816bd06a1ab5bc3d565ca1",
           "render": "clay"
         }
       ]
@@ -4727,10 +4727,10 @@
           "level": "exterior",
           "label": "Apercu",
           "modelUrl": "https://github.com/elios134/asset-3d/releases/download/sc-4.1/MRAI_Pulse.clay-exterior.glb",
-          "tris": 69739,
-          "sizeBytes": 633016,
+          "tris": 105176,
+          "sizeBytes": 914364,
           "hasInterior": false,
-          "sha256": "88be355e67a4e6ce27190ecec99620b3f59d389065c0fa902c2a62a3bc4bfa47",
+          "sha256": "945805b0474d304d494e30e1c2af51f457d4f5afb935b80ee5598f1bb6524193",
           "render": "clay"
         }
       ]
@@ -4752,10 +4752,10 @@
           "level": "exterior",
           "label": "Apercu",
           "modelUrl": "https://github.com/elios134/asset-3d/releases/download/sc-4.1/MRAI_Pulse_LX.clay-exterior.glb",
-          "tris": 69739,
-          "sizeBytes": 633016,
+          "tris": 103824,
+          "sizeBytes": 900796,
           "hasInterior": false,
-          "sha256": "96f30b074b37b808c00fda839044a9b51a8cd18a6c7059015916241830042b55",
+          "sha256": "32c77e839782b439f5e83d1774a24971f7c381a2e6708fc4ab8ed56b428cb5bf",
           "render": "clay"
         }
       ]
@@ -4777,10 +4777,10 @@
           "level": "exterior",
           "label": "Apercu",
           "modelUrl": "https://github.com/elios134/asset-3d/releases/download/sc-4.1/ORIG_100i.clay-exterior.glb",
-          "tris": 52015,
-          "sizeBytes": 411928,
+          "tris": 220331,
+          "sizeBytes": 1523256,
           "hasInterior": false,
-          "sha256": "d20292bb017dc8cb6cda2ca50bc01490a19c7de3628343a7ae132c38690cc47e",
+          "sha256": "1f7b60a9c7d3fec1759d4c1cd2a2c6b0e471a38c6b6045761f5b883c63da13f3",
           "render": "clay"
         }
       ]
@@ -4802,10 +4802,10 @@
           "level": "exterior",
           "label": "Apercu",
           "modelUrl": "https://github.com/elios134/asset-3d/releases/download/sc-4.1/ORIG_125a.clay-exterior.glb",
-          "tris": 52015,
-          "sizeBytes": 411928,
+          "tris": 233347,
+          "sizeBytes": 1618804,
           "hasInterior": false,
-          "sha256": "9d6a33966e4360c2fb2ea694f88922cd457b60b6855da463c0fa5f02cd8a31a5",
+          "sha256": "5e857e0c5300d2bc3e343190aea179ba140e30af081f4e1d1976a012dfd243c2",
           "render": "clay"
         }
       ]
@@ -4827,10 +4827,10 @@
           "level": "exterior",
           "label": "Apercu",
           "modelUrl": "https://github.com/elios134/asset-3d/releases/download/sc-4.1/ORIG_135c.clay-exterior.glb",
-          "tris": 52015,
-          "sizeBytes": 411928,
+          "tris": 236727,
+          "sizeBytes": 1644724,
           "hasInterior": false,
-          "sha256": "e92d2ba9053a09fe8ba4a9af310086a94dae0166699ef52225dc939576e228cd",
+          "sha256": "418da41ff4eb7653212d62faa668200de13a8ce6a25eb14b4223990e72ad39d0",
           "render": "clay"
         }
       ]
@@ -4852,10 +4852,10 @@
           "level": "exterior",
           "label": "Apercu",
           "modelUrl": "https://github.com/elios134/asset-3d/releases/download/sc-4.1/ORIG_300i.clay-exterior.glb",
-          "tris": 38446,
-          "sizeBytes": 358840,
+          "tris": 185358,
+          "sizeBytes": 1374300,
           "hasInterior": false,
-          "sha256": "0012df9e441d56abc7a210d8af28e314e63090071eeae8c6add3eac5501c8003",
+          "sha256": "65643d9db2856a3bcc5c4844a2e2c79c0886fe1b0158105896eaa61caae71c22",
           "render": "clay"
         }
       ]
@@ -4877,10 +4877,10 @@
           "level": "exterior",
           "label": "Apercu",
           "modelUrl": "https://github.com/elios134/asset-3d/releases/download/sc-4.1/ORIG_315p.clay-exterior.glb",
-          "tris": 38446,
-          "sizeBytes": 358840,
+          "tris": 200543,
+          "sizeBytes": 1486160,
           "hasInterior": false,
-          "sha256": "1ed03fe1c50fd055f3dd58ebf827e42c6cb2e207ef880a88ecc01ac79194d460",
+          "sha256": "1d81060cf23cec81bca195cdf9604263a0148f6771897c13608a7ce9776ba67b",
           "render": "clay"
         }
       ]
@@ -4902,10 +4902,10 @@
           "level": "exterior",
           "label": "Apercu",
           "modelUrl": "https://github.com/elios134/asset-3d/releases/download/sc-4.1/ORIG_325a.clay-exterior.glb",
-          "tris": 38446,
-          "sizeBytes": 358840,
+          "tris": 205857,
+          "sizeBytes": 1593552,
           "hasInterior": false,
-          "sha256": "426dd7268c3a36d829215ab763961de91cf171ea07aef68f8f12a6fb6756e188",
+          "sha256": "690bcd76758e0e0bad86fa4db4073ef039dd8fcb80e481d430bca18675803378",
           "render": "clay"
         }
       ]
@@ -4927,10 +4927,10 @@
           "level": "exterior",
           "label": "Apercu",
           "modelUrl": "https://github.com/elios134/asset-3d/releases/download/sc-4.1/ORIG_350r.clay-exterior.glb",
-          "tris": 38446,
-          "sizeBytes": 358840,
+          "tris": 206195,
+          "sizeBytes": 1560644,
           "hasInterior": false,
-          "sha256": "0532aab49fb1555c5b908676ad0f3aa48e520b75cf35a0c2a43c1eb3e21bbeb5",
+          "sha256": "9a60cc06969477e1ea72d6188d0e4f91d9ee662f343f839869be0d78d2819793",
           "render": "clay"
         }
       ]
@@ -4952,10 +4952,10 @@
           "level": "exterior",
           "label": "Apercu",
           "modelUrl": "https://github.com/elios134/asset-3d/releases/download/sc-4.1/ORIG_400i.clay-exterior.glb",
-          "tris": 99178,
-          "sizeBytes": 729640,
+          "tris": 573743,
+          "sizeBytes": 4033852,
           "hasInterior": false,
-          "sha256": "87a1c242a295680a3b70cd762b87d892ca19aad6e67e0058b1558b882e61ea68",
+          "sha256": "df8ec84d572fe835b875daa6c79c77c8dff72d1c93cd67ddccf094c86cf45371",
           "render": "clay"
         },
         {
@@ -4990,10 +4990,10 @@
           "level": "exterior",
           "label": "Apercu",
           "modelUrl": "https://github.com/elios134/asset-3d/releases/download/sc-4.1/ORIG_600i.clay-exterior.glb",
-          "tris": 226767,
-          "sizeBytes": 1489704,
+          "tris": 599999,
+          "sizeBytes": 4083672,
           "hasInterior": false,
-          "sha256": "811fa19a14882cefa6a152d1436f8cc3cc315b3ea96dff6e52c0df253c7bbe9a",
+          "sha256": "058e11e191653ae899ac83c59213cb6de6c511934d64c98cadd7baa3db810c39",
           "render": "clay"
         },
         {
@@ -5028,10 +5028,10 @@
           "level": "exterior",
           "label": "Apercu",
           "modelUrl": "https://github.com/elios134/asset-3d/releases/download/sc-4.1/ORIG_600i_Touring.clay-exterior.glb",
-          "tris": 226767,
-          "sizeBytes": 1489704,
+          "tris": 599999,
+          "sizeBytes": 4019404,
           "hasInterior": false,
-          "sha256": "cc0a757ddedf7ad2b82135a0b2faa73409570d0a52f873e3cf8bbfd62f5202c1",
+          "sha256": "96385913bdfa7d63b0f0cb9dd9d9bf25a9dfd2aa2632bf3f4f0d2ae48869e5e9",
           "render": "clay"
         },
         {
@@ -5066,10 +5066,10 @@
           "level": "exterior",
           "label": "Apercu",
           "modelUrl": "https://github.com/elios134/asset-3d/releases/download/sc-4.1/ORIG_85X.clay-exterior.glb",
-          "tris": 51669,
-          "sizeBytes": 402392,
+          "tris": 217801,
+          "sizeBytes": 1490568,
           "hasInterior": false,
-          "sha256": "c6a6aa3925a9cf98980640dc54eb36ee1aef26fdf6a30053dbffd4f8869b8346",
+          "sha256": "9f836f6b24deb97e95f371683f48f439ca356fdc00dfd2f2b699c44c0d532952",
           "render": "clay"
         }
       ]
@@ -5091,20 +5091,20 @@
           "level": "exterior",
           "label": "Apercu",
           "modelUrl": "https://github.com/elios134/asset-3d/releases/download/sc-4.1/ORIG_890Jump.clay-exterior.glb",
-          "tris": 235448,
-          "sizeBytes": 1589276,
+          "tris": 635735,
+          "sizeBytes": 4991536,
           "hasInterior": false,
-          "sha256": "023a6688e2bd6cf6c6753bd42fc78d838a3f5b8c9f0d7d0ee0ff15bf63719cdc",
+          "sha256": "69e3b2d0d834d14339a523f34b44d4cb2f8291b48a2469e96ae9ac90622b85ae",
           "render": "clay"
         },
         {
           "level": "interior",
           "label": "Interieur",
           "modelUrl": "https://github.com/elios134/asset-3d/releases/download/sc-4.1/ORIG_890Jump.clay-interior.glb",
-          "tris": 1490917,
-          "sizeBytes": 14122812,
+          "tris": 1631854,
+          "sizeBytes": 14790492,
           "hasInterior": true,
-          "sha256": "711f608162c596b8dc38690bdf3e4d2fb9e3a6b808033d94f3578cb75b2dea75",
+          "sha256": "5a2a2bb81fd9c5409ab7dc9584f329384c6e6090a71b9e6fe72df9350684b697",
           "render": "clay",
           "hasCollision": true,
           "interiorKind": "habitable",
@@ -5129,10 +5129,10 @@
           "level": "exterior",
           "label": "Apercu",
           "modelUrl": "https://github.com/elios134/asset-3d/releases/download/sc-4.1/ORIG_m50.clay-exterior.glb",
-          "tris": 77859,
-          "sizeBytes": 635760,
+          "tris": 198843,
+          "sizeBytes": 1541660,
           "hasInterior": false,
-          "sha256": "3fbe21cc4c8e1febec566d802f3df1253ed840b4836f06dd7e416fa58dc8d185",
+          "sha256": "b96f8278fd62f6b434435b1871ffe251161fa2dbf6c4af3dd7420e95ce23f9ce",
           "render": "clay"
         }
       ]
@@ -5154,10 +5154,10 @@
           "level": "exterior",
           "label": "Apercu",
           "modelUrl": "https://github.com/elios134/asset-3d/releases/download/sc-4.1/ORIG_m80.clay-exterior.glb",
-          "tris": 229632,
-          "sizeBytes": 1745572,
+          "tris": 600035,
+          "sizeBytes": 4586328,
           "hasInterior": false,
-          "sha256": "248ef86160fd1bd59660a2be601ccf75e2e274679b1584b15d86f1c4e08df3ec",
+          "sha256": "5f7298065a931982be961cd67399e06dd5ba926cf059368f931e69329cf0f205",
           "render": "clay"
         }
       ]
@@ -5179,10 +5179,10 @@
           "level": "exterior",
           "label": "Apercu",
           "modelUrl": "https://github.com/elios134/asset-3d/releases/download/sc-4.1/ORIG_X1.clay-exterior.glb",
-          "tris": 125730,
-          "sizeBytes": 835232,
+          "tris": 166679,
+          "sizeBytes": 1122220,
           "hasInterior": false,
-          "sha256": "e83a13b0c1bd26441c2f71b0e364bfe1e2eee705f922e86ba668425d8e79c43b",
+          "sha256": "066b5cd75a86833105e5cdeb38f3a170994b7e4d3411224eb540c61017daa416",
           "render": "clay"
         }
       ]
@@ -5204,10 +5204,10 @@
           "level": "exterior",
           "label": "Apercu",
           "modelUrl": "https://github.com/elios134/asset-3d/releases/download/sc-4.1/ORIG_X1_Force.clay-exterior.glb",
-          "tris": 125730,
-          "sizeBytes": 835232,
+          "tris": 168855,
+          "sizeBytes": 1136480,
           "hasInterior": false,
-          "sha256": "2ab7a177e9f544d4fb04e8f46147c55c9ed66a14c2ccb1fc810d952ea586ebf8",
+          "sha256": "73bb1fa109486a548695bd06fa9dd72e8ddc530e83d5666de776cae841da0f13",
           "render": "clay"
         }
       ]
@@ -5229,10 +5229,10 @@
           "level": "exterior",
           "label": "Apercu",
           "modelUrl": "https://github.com/elios134/asset-3d/releases/download/sc-4.1/ORIG_X1_Velocity.clay-exterior.glb",
-          "tris": 125730,
-          "sizeBytes": 835232,
+          "tris": 167592,
+          "sizeBytes": 1160128,
           "hasInterior": false,
-          "sha256": "f5a5eedd0502d6e65be4ceff24103bb3b8f3d8e0735e40aa3e310eb2a566d922",
+          "sha256": "357bfa2c7011d8ae14ab957ae75fbcd61d106e34239f986e0569339b3c746906",
           "render": "clay"
         }
       ]
@@ -5254,10 +5254,10 @@
           "level": "exterior",
           "label": "Apercu",
           "modelUrl": "https://github.com/elios134/asset-3d/releases/download/sc-4.1/RSI_Apollo_Medivac.clay-exterior.glb",
-          "tris": 383685,
-          "sizeBytes": 3358080,
+          "tris": 599979,
+          "sizeBytes": 6057216,
           "hasInterior": false,
-          "sha256": "05ba2fbd8a09763a82ed84e5fab4066559d98ff26f9738ec4f406073c8e0ab61",
+          "sha256": "99d248cd0e3f6e6c4d6133eac658d5ed95e694d602cf7006738146446baff42c",
           "render": "clay"
         },
         {
@@ -5292,10 +5292,10 @@
           "level": "exterior",
           "label": "Apercu",
           "modelUrl": "https://github.com/elios134/asset-3d/releases/download/sc-4.1/RSI_Apollo_Triage.clay-exterior.glb",
-          "tris": 383685,
-          "sizeBytes": 3358080,
+          "tris": 611772,
+          "sizeBytes": 6004040,
           "hasInterior": false,
-          "sha256": "7f7bba7ef7008b2f95b724d0375424833acca2a75993e8f49bc700ee87b13a58",
+          "sha256": "d5ee645d5aa3713e41413947d63a3d4f10214eb5070969a32e62cc7be916e211",
           "render": "clay"
         },
         {
@@ -5330,10 +5330,10 @@
           "level": "exterior",
           "label": "Apercu",
           "modelUrl": "https://github.com/elios134/asset-3d/releases/download/sc-4.1/RSI_Aurora_GS_CL.clay-exterior.glb",
-          "tris": 102364,
-          "sizeBytes": 949092,
+          "tris": 316511,
+          "sizeBytes": 2502840,
           "hasInterior": false,
-          "sha256": "2bcde475c021c5d69aa5705fbc539d60ba59af7fb985d6c45d49397e7efeac0a",
+          "sha256": "adcf8865983799faccb59ef676462235ac9feb77e10da41d57ee05d9de96158c",
           "render": "clay"
         }
       ]
@@ -5355,10 +5355,10 @@
           "level": "exterior",
           "label": "Apercu",
           "modelUrl": "https://github.com/elios134/asset-3d/releases/download/sc-4.1/RSI_Aurora_GS_ES.clay-exterior.glb",
-          "tris": 102364,
-          "sizeBytes": 949092,
+          "tris": 285546,
+          "sizeBytes": 2451284,
           "hasInterior": false,
-          "sha256": "c7cf1513164822fe4498c6d8848c650a15745032a3f3cb7af0a9ad54bf953bbb",
+          "sha256": "525463e080f03227510557e82fe25e91700736bafbd5dec1380481276ba91eb1",
           "render": "clay"
         }
       ]
@@ -5380,10 +5380,10 @@
           "level": "exterior",
           "label": "Apercu",
           "modelUrl": "https://github.com/elios134/asset-3d/releases/download/sc-4.1/RSI_Aurora_GS_LN.clay-exterior.glb",
-          "tris": 102364,
-          "sizeBytes": 949092,
+          "tris": 390451,
+          "sizeBytes": 2914144,
           "hasInterior": false,
-          "sha256": "cfa865679891798b3a96775c767a82704bc6489522dea5a40eafa323c02fa3a5",
+          "sha256": "0728569cd1da97a50a99ffffeb20230521885ef2b769c04097eb474f18601c94",
           "render": "clay"
         }
       ]
@@ -5405,10 +5405,10 @@
           "level": "exterior",
           "label": "Apercu",
           "modelUrl": "https://github.com/elios134/asset-3d/releases/download/sc-4.1/RSI_Aurora_GS_LX.clay-exterior.glb",
-          "tris": 102364,
-          "sizeBytes": 949092,
+          "tris": 311143,
+          "sizeBytes": 2435700,
           "hasInterior": false,
-          "sha256": "38ff7372ddbe277733e5e5a1d96e467caa89392f16e4e8969d6d84010cb47666",
+          "sha256": "0a77633aec88f97acedea39de9114ebd4746e39cacfec735c0fb618474b36a76",
           "render": "clay"
         }
       ]
@@ -5430,10 +5430,10 @@
           "level": "exterior",
           "label": "Apercu",
           "modelUrl": "https://github.com/elios134/asset-3d/releases/download/sc-4.1/RSI_Aurora_GS_MR.clay-exterior.glb",
-          "tris": 102364,
-          "sizeBytes": 949092,
+          "tris": 315156,
+          "sizeBytes": 2498388,
           "hasInterior": false,
-          "sha256": "11d390b0a45803f7f3a8658fdb88334e0ea4ca7db4ca39abff098ad455b529a0",
+          "sha256": "db7eb8396a8d18d079a26603b5b9409ae57f648f9ae1e21105d3ac513ca69353",
           "render": "clay"
         }
       ]
@@ -5455,10 +5455,10 @@
           "level": "exterior",
           "label": "Apercu",
           "modelUrl": "https://github.com/elios134/asset-3d/releases/download/sc-4.1/RSI_Aurora_GS_SE.clay-exterior.glb",
-          "tris": 102364,
-          "sizeBytes": 949092,
+          "tris": 397881,
+          "sizeBytes": 2969820,
           "hasInterior": false,
-          "sha256": "7d22f40ba76c3cb2ed3a87bcd3820846d71c4fb3f5d451961240db348d0997a6",
+          "sha256": "d46ca7015b429b07ad9512947a57697bb91d6f73752c32d5efa96f44a8873de2",
           "render": "clay"
         }
       ]
@@ -5480,10 +5480,10 @@
           "level": "exterior",
           "label": "Apercu",
           "modelUrl": "https://github.com/elios134/asset-3d/releases/download/sc-4.1/RSI_Aurora_Mk2.clay-exterior.glb",
-          "tris": 364682,
-          "sizeBytes": 3509388,
+          "tris": 599997,
+          "sizeBytes": 5532420,
           "hasInterior": false,
-          "sha256": "554281ea2c5d187fe1c08f8189acebe13dd2b50827d2a116f719b4ccfd365d79",
+          "sha256": "dcc5c106c76b505ad6d1adc71e57b0b6b89f93312735974e758c9dca6dcf5912",
           "render": "clay"
         }
       ]
@@ -5505,10 +5505,10 @@
           "level": "exterior",
           "label": "Apercu",
           "modelUrl": "https://github.com/elios134/asset-3d/releases/download/sc-4.1/RSI_Constellation_Andromeda.clay-exterior.glb",
-          "tris": 244257,
-          "sizeBytes": 2278060,
+          "tris": 695070,
+          "sizeBytes": 6574444,
           "hasInterior": false,
-          "sha256": "74b833eb73c7baa8b4364c11199daa0ade93ba6b3810290d1003a5bd505405b1",
+          "sha256": "affc573e4ac3f7735799b2e49a761bcac055929b8135eda9c7a8bd6e3fc1d99c",
           "render": "clay"
         },
         {
@@ -5543,10 +5543,10 @@
           "level": "exterior",
           "label": "Apercu",
           "modelUrl": "https://github.com/elios134/asset-3d/releases/download/sc-4.1/RSI_Constellation_Aquila.clay-exterior.glb",
-          "tris": 250730,
-          "sizeBytes": 2352964,
+          "tris": 599937,
+          "sizeBytes": 5712592,
           "hasInterior": false,
-          "sha256": "0e745453f81982c5dfeb14115acb7f37e164de6bc9bde133f6e44fd3bec783e3",
+          "sha256": "8743396a88458c27fecd2ce7defdca73c1ba97a642c93dad7821814fbaf5a845",
           "render": "clay"
         },
         {
@@ -5581,10 +5581,10 @@
           "level": "exterior",
           "label": "Apercu",
           "modelUrl": "https://github.com/elios134/asset-3d/releases/download/sc-4.1/RSI_Constellation_Phoenix.clay-exterior.glb",
-          "tris": 235810,
-          "sizeBytes": 1972292,
+          "tris": 599906,
+          "sizeBytes": 5486936,
           "hasInterior": false,
-          "sha256": "2b0d2bf636979efabf43a9cd3f3f57f6afbfee296a31899ff203b9bf0c16b9db",
+          "sha256": "822ebb8369b80f06126adbcd05b7f6ec532b586fe14c4288e0046d58305eb234",
           "render": "clay"
         },
         {
@@ -5619,10 +5619,10 @@
           "level": "exterior",
           "label": "Apercu",
           "modelUrl": "https://github.com/elios134/asset-3d/releases/download/sc-4.1/RSI_Constellation_Phoenix_Emerald.clay-exterior.glb",
-          "tris": 235810,
-          "sizeBytes": 1972292,
+          "tris": 599906,
+          "sizeBytes": 5486936,
           "hasInterior": false,
-          "sha256": "5c044602b3c638683eb28255ece754164e96e81d596c9987389f015426e53067",
+          "sha256": "f479d25aa731c98c2df9af5e02ebad84149689dbe99b475b5892db69dee4e177",
           "render": "clay"
         },
         {
@@ -5657,10 +5657,10 @@
           "level": "exterior",
           "label": "Apercu",
           "modelUrl": "https://github.com/elios134/asset-3d/releases/download/sc-4.1/RSI_Constellation_Taurus.clay-exterior.glb",
-          "tris": 220812,
-          "sizeBytes": 2089284,
+          "tris": 599977,
+          "sizeBytes": 5417748,
           "hasInterior": false,
-          "sha256": "90458891bffe8ed6b0f78dc45100a71344a8307b7b7f55d6c1ecec86b22d1ac8",
+          "sha256": "efa827daeaca0519a3fadff684efbb1f460c2efc7fc81ebb0a91c7f6a72a2f98",
           "render": "clay"
         },
         {
@@ -5695,10 +5695,10 @@
           "level": "exterior",
           "label": "Apercu",
           "modelUrl": "https://github.com/elios134/asset-3d/releases/download/sc-4.1/RSI_Hermes.clay-exterior.glb",
-          "tris": 383685,
-          "sizeBytes": 3358080,
+          "tris": 604304,
+          "sizeBytes": 6066936,
           "hasInterior": false,
-          "sha256": "638b50dbbcb44d078c93661c889363b65ea527eecb9e20af8a211590f8bee94b",
+          "sha256": "ff28ad139000e7e971343e86ce14281adf5c1c0af12d541c7a32ad5e064741e1",
           "render": "clay"
         },
         {
@@ -5733,10 +5733,10 @@
           "level": "exterior",
           "label": "Apercu",
           "modelUrl": "https://github.com/elios134/asset-3d/releases/download/sc-4.1/RSI_Lynx.clay-exterior.glb",
-          "tris": 25349,
-          "sizeBytes": 255076,
+          "tris": 200081,
+          "sizeBytes": 1478852,
           "hasInterior": false,
-          "sha256": "db2f2a71728ae746ac5cd0a3f8124cb9711d1a14d459304b1b4d37c5c3e30cbe",
+          "sha256": "34284387f0a7198b9aa38052bcc6f9f6a2933cd52e84baeb9151940eb4702274",
           "render": "clay"
         }
       ]
@@ -5758,10 +5758,10 @@
           "level": "exterior",
           "label": "Apercu",
           "modelUrl": "https://github.com/elios134/asset-3d/releases/download/sc-4.1/RSI_Mantis.clay-exterior.glb",
-          "tris": 46869,
-          "sizeBytes": 503720,
+          "tris": 261094,
+          "sizeBytes": 2027496,
           "hasInterior": false,
-          "sha256": "949526aec4ee5e499f90ec73993973e393c5865ba03cfe543a1f8fef67baac06",
+          "sha256": "48e0961293414bb072c0f686329b7eb0a0ce8e980393938b952ad94d3b196938",
           "render": "clay"
         }
       ]
@@ -5783,10 +5783,10 @@
           "level": "exterior",
           "label": "Apercu",
           "modelUrl": "https://github.com/elios134/asset-3d/releases/download/sc-4.1/RSI_Meteor.clay-exterior.glb",
-          "tris": 108509,
-          "sizeBytes": 1028984,
+          "tris": 362126,
+          "sizeBytes": 2929960,
           "hasInterior": false,
-          "sha256": "9cfd6b780e4e6c8cb9684aed4db2e2981c9735f5e28eb54192eb06c9f5d92183",
+          "sha256": "17c21c6b1254dbdaecd1dbbfe9a8bf6245298d5055288bdd6d0b30f4937effa6",
           "render": "clay"
         }
       ]
@@ -5808,20 +5808,20 @@
           "level": "exterior",
           "label": "Apercu",
           "modelUrl": "https://github.com/elios134/asset-3d/releases/download/sc-4.1/RSI_Perseus.clay-exterior.glb",
-          "tris": 600000,
-          "sizeBytes": 6848960,
+          "tris": 1337571,
+          "sizeBytes": 14436900,
           "hasInterior": false,
-          "sha256": "d9a9c3aa1d16eda614ee09b3b10dc80e31dc40e4beaa13d0d14e02cdcf3732cd",
+          "sha256": "d1b674403f052130f7ecd8ed1f4c7fd81ecd95a1250904695453b2bee5016d85",
           "render": "clay"
         },
         {
           "level": "interior",
           "label": "Interieur",
           "modelUrl": "https://github.com/elios134/asset-3d/releases/download/sc-4.1/RSI_Perseus.clay-interior.glb",
-          "tris": 3503597,
-          "sizeBytes": 38164300,
+          "tris": 3402384,
+          "sizeBytes": 35066812,
           "hasInterior": true,
-          "sha256": "c637d4eb0fc7aad437995d98c16915197b406004b0f6d9ba414ae94288c473c7",
+          "sha256": "9a6183b2f168a00e7f1a20453cf535f9086d5c42444b7d16cd91a9ccefda2d44",
           "render": "clay",
           "hasCollision": true,
           "interiorKind": "habitable",
@@ -5846,20 +5846,20 @@
           "level": "exterior",
           "label": "Apercu",
           "modelUrl": "https://github.com/elios134/asset-3d/releases/download/sc-4.1/RSI_Polaris.clay-exterior.glb",
-          "tris": 575818,
-          "sizeBytes": 7331288,
+          "tris": 1590865,
+          "sizeBytes": 16213376,
           "hasInterior": false,
-          "sha256": "008ce0af2b50c9cc0e7df113719c1e36b1d52514e57c7bcbc6f4f067f230c711",
+          "sha256": "7cd2b16526818ea84828c198a85965e4fc450961b5fcf93a6b5e78829920dde2",
           "render": "clay"
         },
         {
           "level": "interior",
           "label": "Interieur",
           "modelUrl": "https://github.com/elios134/asset-3d/releases/download/sc-4.1/RSI_Polaris.clay-interior.glb",
-          "tris": 3857187,
-          "sizeBytes": 42725700,
+          "tris": 4155793,
+          "sizeBytes": 42840728,
           "hasInterior": true,
-          "sha256": "f6140a409086a5e73f23d4efb54c444ac14632ad1015e2ecef95877951195ba1",
+          "sha256": "eac26b153bdeda68bf40e5fd76e30faf35556cadaa24c9ad66a128363f56c87b",
           "render": "clay",
           "hasCollision": true,
           "interiorKind": "habitable",
@@ -5884,10 +5884,10 @@
           "level": "exterior",
           "label": "Apercu",
           "modelUrl": "https://github.com/elios134/asset-3d/releases/download/sc-4.1/RSI_Salvation.clay-exterior.glb",
-          "tris": 131663,
-          "sizeBytes": 1265696,
+          "tris": 371645,
+          "sizeBytes": 3396924,
           "hasInterior": false,
-          "sha256": "e8d12656e7d2ec8a44078f30fbd4e571ec6a5d8a44557d9f6f5df00e228d1b19",
+          "sha256": "a928d3e8cf5c8cb04b05604ec48b1e78ee1aeea109f2fd517d47ed69be98a19e",
           "render": "clay"
         }
       ]
@@ -5909,10 +5909,10 @@
           "level": "exterior",
           "label": "Apercu",
           "modelUrl": "https://github.com/elios134/asset-3d/releases/download/sc-4.1/RSI_Scorpius.clay-exterior.glb",
-          "tris": 158704,
-          "sizeBytes": 1394088,
+          "tris": 599615,
+          "sizeBytes": 4381720,
           "hasInterior": false,
-          "sha256": "f5613981e2acbe178f0f39217e2a92acb53f63e77c1ed5bfdddd8cc290ee2f57",
+          "sha256": "72c7aab78c829b9cb9e5e494d765b9e24dd27ae5259f6835ecf9081a9d1ba49f",
           "render": "clay"
         }
       ]
@@ -5934,10 +5934,10 @@
           "level": "exterior",
           "label": "Apercu",
           "modelUrl": "https://github.com/elios134/asset-3d/releases/download/sc-4.1/RSI_Scorpius_Antares.clay-exterior.glb",
-          "tris": 158704,
-          "sizeBytes": 1394088,
+          "tris": 502815,
+          "sizeBytes": 3762700,
           "hasInterior": false,
-          "sha256": "0f02e63b38b01ebfe755fa16aa6b9bdb55b3d7de9bc73cd477aab5404fb60f1e",
+          "sha256": "78b7ec77cb48389d936da7b35db77e066045e1a9673d093dbbc7013c8cc004e0",
           "render": "clay"
         }
       ]
@@ -5959,10 +5959,10 @@
           "level": "exterior",
           "label": "Apercu",
           "modelUrl": "https://github.com/elios134/asset-3d/releases/download/sc-4.1/RSI_Ursa_Medivac.clay-exterior.glb",
-          "tris": 13703,
-          "sizeBytes": 134248,
+          "tris": 152469,
+          "sizeBytes": 1122092,
           "hasInterior": false,
-          "sha256": "f29d1d413644e8c7599751c28ad24bcb4410a49de37e7c151159bc2925944ad7",
+          "sha256": "fb5c991fd2995c9a8a595141f2493dbe9290cf86a3c76fb36479c2d3670ca853",
           "render": "clay"
         }
       ]
@@ -5984,10 +5984,10 @@
           "level": "exterior",
           "label": "Apercu",
           "modelUrl": "https://github.com/elios134/asset-3d/releases/download/sc-4.1/RSI_Ursa_Rover.clay-exterior.glb",
-          "tris": 13703,
-          "sizeBytes": 134248,
+          "tris": 143363,
+          "sizeBytes": 1067364,
           "hasInterior": false,
-          "sha256": "0e97b800b8d08912036717d212b8a81277ac688011eb8db6599945f71e7b50b7",
+          "sha256": "5c6e086e22fcf4b276e1ccadb4fdf1c7eece1c418069497e6fb5ae12fa90cd4b",
           "render": "clay"
         }
       ]
@@ -6009,10 +6009,10 @@
           "level": "exterior",
           "label": "Apercu",
           "modelUrl": "https://github.com/elios134/asset-3d/releases/download/sc-4.1/RSI_Ursa_Rover_Emerald.clay-exterior.glb",
-          "tris": 13829,
-          "sizeBytes": 135140,
+          "tris": 156556,
+          "sizeBytes": 1150792,
           "hasInterior": false,
-          "sha256": "99a208258a8226cfdad5c0932712f902249f1d705df91ee741bb33c63ec74c8e",
+          "sha256": "0c2893c69e17524f935e7a29142b9d8c8ccd9f6199dc735c51e968b5b916db67",
           "render": "clay"
         }
       ]
@@ -6034,10 +6034,10 @@
           "level": "exterior",
           "label": "Apercu",
           "modelUrl": "https://github.com/elios134/asset-3d/releases/download/sc-4.1/RSI_Zeus_CL.clay-exterior.glb",
-          "tris": 196962,
-          "sizeBytes": 1715324,
+          "tris": 599999,
+          "sizeBytes": 4971696,
           "hasInterior": false,
-          "sha256": "b38f6502015cb2423dea8f6dc58e5783dd8228ebe0bb56bc72a170807a4044d8",
+          "sha256": "2d5ff855619aa9a267564b6562f7ddeafc3a82e7dd4046e52173a998ee39b230",
           "render": "clay"
         },
         {
@@ -6072,10 +6072,10 @@
           "level": "exterior",
           "label": "Apercu",
           "modelUrl": "https://github.com/elios134/asset-3d/releases/download/sc-4.1/RSI_Zeus_ES.clay-exterior.glb",
-          "tris": 196962,
-          "sizeBytes": 1715324,
+          "tris": 600000,
+          "sizeBytes": 4788480,
           "hasInterior": false,
-          "sha256": "7c32f2d30b53ea238dbf02783e6a44930c70a3c11bfce7e0921fdbf27a2ef2e1",
+          "sha256": "7d55f2c245c453ebab62315129c4895c981ff273ab5138a55307cc79ed799b5a",
           "render": "clay"
         },
         {
@@ -6110,10 +6110,10 @@
           "level": "exterior",
           "label": "Apercu",
           "modelUrl": "https://github.com/elios134/asset-3d/releases/download/sc-4.1/TMBL_Cyclone.clay-exterior.glb",
-          "tris": 25532,
-          "sizeBytes": 245684,
+          "tris": 118116,
+          "sizeBytes": 1040092,
           "hasInterior": false,
-          "sha256": "a8da9445ddeb18a40e4f22c5f97a1792094e2d54c3caebc43c1840120e5549ba",
+          "sha256": "44b5798f5d2b162b93c3825cbd988cd018efd508a44994271a2409f27820232a",
           "render": "clay"
         }
       ]
@@ -6135,10 +6135,10 @@
           "level": "exterior",
           "label": "Apercu",
           "modelUrl": "https://github.com/elios134/asset-3d/releases/download/sc-4.1/TMBL_Cyclone_AA.clay-exterior.glb",
-          "tris": 25532,
-          "sizeBytes": 245684,
+          "tris": 135557,
+          "sizeBytes": 1182648,
           "hasInterior": false,
-          "sha256": "26aae1e4413faa18f7cc7538ecc4aeddf5f248c961e9e3b8eb6e85f107d98612",
+          "sha256": "0c1a14227ae464a63dd17cae69af9f3c546e30bf7987526e4393ea1e2d462ce4",
           "render": "clay"
         }
       ]
@@ -6160,10 +6160,10 @@
           "level": "exterior",
           "label": "Apercu",
           "modelUrl": "https://github.com/elios134/asset-3d/releases/download/sc-4.1/TMBL_Cyclone_MT.clay-exterior.glb",
-          "tris": 25532,
-          "sizeBytes": 245684,
+          "tris": 157413,
+          "sizeBytes": 1427360,
           "hasInterior": false,
-          "sha256": "96b253bca5fdbb11f93e307838a3da37581077438281d220b3231a1b43592c53",
+          "sha256": "d30f64754462066c01388659994ba7aa4af1a19afa2b7ed701fcfda69c2870a6",
           "render": "clay"
         }
       ]
@@ -6185,10 +6185,10 @@
           "level": "exterior",
           "label": "Apercu",
           "modelUrl": "https://github.com/elios134/asset-3d/releases/download/sc-4.1/TMBL_Cyclone_RC.clay-exterior.glb",
-          "tris": 25532,
-          "sizeBytes": 245684,
+          "tris": 125638,
+          "sizeBytes": 1099780,
           "hasInterior": false,
-          "sha256": "e0bd45780f67ec78b632d63256362918d6b97b42de572224fd962a0de0f4dfa0",
+          "sha256": "3a1ec623138cbc5ded9d26f151cb58bbbb33fed0b1b177ef2892f5043574a9f7",
           "render": "clay"
         }
       ]
@@ -6210,10 +6210,10 @@
           "level": "exterior",
           "label": "Apercu",
           "modelUrl": "https://github.com/elios134/asset-3d/releases/download/sc-4.1/TMBL_Cyclone_RN.clay-exterior.glb",
-          "tris": 25532,
-          "sizeBytes": 245684,
+          "tris": 131699,
+          "sizeBytes": 1150236,
           "hasInterior": false,
-          "sha256": "2d5d42f3c0521f0095043d9cafaf20d641ee11d4dacdeca856719ba39d8e24ca",
+          "sha256": "fe9aa06c04ddb075aa0c38b19babeaaddd704cc911ba2851c4ea46f4e6822d4d",
           "render": "clay"
         }
       ]
@@ -6235,10 +6235,10 @@
           "level": "exterior",
           "label": "Apercu",
           "modelUrl": "https://github.com/elios134/asset-3d/releases/download/sc-4.1/TMBL_Cyclone_TR.clay-exterior.glb",
-          "tris": 25532,
-          "sizeBytes": 245684,
+          "tris": 133425,
+          "sizeBytes": 1166004,
           "hasInterior": false,
-          "sha256": "172f4331603401ad4c64ae6ac063987d08f9c360d87b170514d9f8088229543a",
+          "sha256": "5f76c894d116df3ed335a32a32ed72101e3bde5870a1dc220946c262bf3a5fad",
           "render": "clay"
         }
       ]
@@ -6260,10 +6260,10 @@
           "level": "exterior",
           "label": "Apercu",
           "modelUrl": "https://github.com/elios134/asset-3d/releases/download/sc-4.1/TMBL_Nova.clay-exterior.glb",
-          "tris": 33528,
-          "sizeBytes": 295756,
+          "tris": 268660,
+          "sizeBytes": 2113776,
           "hasInterior": false,
-          "sha256": "aa2d5f9ee7b3457739322fead657a80eea03658e72adf54a6370a451cdb92887",
+          "sha256": "627f7d3398d10e67e1ed173f5d3def15bb8221a76fc1b118563725b65b298cc2",
           "render": "clay"
         }
       ]
@@ -6285,10 +6285,10 @@
           "level": "exterior",
           "label": "Apercu",
           "modelUrl": "https://github.com/elios134/asset-3d/releases/download/sc-4.1/TMBL_Storm.clay-exterior.glb",
-          "tris": 277487,
-          "sizeBytes": 2176788,
+          "tris": 412391,
+          "sizeBytes": 3156244,
           "hasInterior": false,
-          "sha256": "c5cc5b8398cb7d7951af47e7b7655773c9174fcb45eeaab1aa3f9893b4fa1ef7",
+          "sha256": "cec44085da6f8f849352348df96f5def4ac16ee634d44571a47ed520dd11af1e",
           "render": "clay"
         }
       ]
@@ -6310,10 +6310,10 @@
           "level": "exterior",
           "label": "Apercu",
           "modelUrl": "https://github.com/elios134/asset-3d/releases/download/sc-4.1/TMBL_Storm_AA.clay-exterior.glb",
-          "tris": 277487,
-          "sizeBytes": 2176788,
+          "tris": 599999,
+          "sizeBytes": 5329952,
           "hasInterior": false,
-          "sha256": "3677f3c0cac6f6b460e669a6f5f380ce758906bff68628320e11bc2c508c558f",
+          "sha256": "a1068762761d2afe7425b59c2f6265bbd9a7694078a00c0c51b7c0b5a58b95eb",
           "render": "clay"
         }
       ]
@@ -6335,10 +6335,10 @@
           "level": "exterior",
           "label": "Apercu",
           "modelUrl": "https://github.com/elios134/asset-3d/releases/download/sc-4.1/VNCL_Blade.clay-exterior.glb",
-          "tris": 70940,
-          "sizeBytes": 627256,
+          "tris": 339895,
+          "sizeBytes": 2573500,
           "hasInterior": false,
-          "sha256": "9a138cf8299f4833d922354553e1fa6db3ac257acb5a37470321b38fbc51d6e3",
+          "sha256": "d1817f070ab14c82531ba30b7ca38158d48a699f54f92eb92317edf4dbcf3015",
           "render": "clay"
         }
       ]
@@ -6360,10 +6360,10 @@
           "level": "exterior",
           "label": "Apercu",
           "modelUrl": "https://github.com/elios134/asset-3d/releases/download/sc-4.1/VNCL_Glaive.clay-exterior.glb",
-          "tris": 86848,
-          "sizeBytes": 751616,
+          "tris": 208340,
+          "sizeBytes": 1573752,
           "hasInterior": false,
-          "sha256": "b120f0f01d44120b77b0d79383f05ed0b564bdb0b572d858e23974429b539127",
+          "sha256": "f4a0c5ed5e39ed68b2d25767f2374fb694011dabb1058b12a1659854bba95fa0",
           "render": "clay"
         }
       ]
@@ -6385,10 +6385,10 @@
           "level": "exterior",
           "label": "Apercu",
           "modelUrl": "https://github.com/elios134/asset-3d/releases/download/sc-4.1/VNCL_Mauler.clay-exterior.glb",
-          "tris": 292473,
-          "sizeBytes": 1760640,
+          "tris": 599932,
+          "sizeBytes": 4755144,
           "hasInterior": false,
-          "sha256": "b76f49a901e56159d2c408e78fe5a22db380094aae4afcd35fb71b169770d54c",
+          "sha256": "f81b42a2492a70f9df0394bee0dd34dc368ec0f051e1abbf90d8935939127256",
           "render": "clay"
         }
       ]
@@ -6410,10 +6410,10 @@
           "level": "exterior",
           "label": "Apercu",
           "modelUrl": "https://github.com/elios134/asset-3d/releases/download/sc-4.1/VNCL_Scythe.clay-exterior.glb",
-          "tris": 97482,
-          "sizeBytes": 719536,
+          "tris": 234725,
+          "sizeBytes": 1604600,
           "hasInterior": false,
-          "sha256": "9713124b7f9d4690f8c8c3b112a6fb1bad1cc1f4345ee5ec16da1fd0d154761e",
+          "sha256": "f50c4421602ce7b777ed1eae919f36605ac88a2d194719fe4dcb5086af5fe685",
           "render": "clay"
         }
       ]
@@ -6435,10 +6435,10 @@
           "level": "exterior",
           "label": "Apercu",
           "modelUrl": "https://github.com/elios134/asset-3d/releases/download/sc-4.1/VNCL_Stinger.clay-exterior.glb",
-          "tris": 184861,
-          "sizeBytes": 1444224,
+          "tris": 487465,
+          "sizeBytes": 3945288,
           "hasInterior": false,
-          "sha256": "a9af9853bba690373efe6dc2ed9ed54a6ff38e089b2cd8b2789c22bd1876c31d",
+          "sha256": "92de7a92e6bf7abaaa55e96654ad53d7cae81bd7d54926e46fdb5459a826887e",
           "render": "clay"
         }
       ]
@@ -6460,10 +6460,10 @@
           "level": "exterior",
           "label": "Apercu",
           "modelUrl": "https://github.com/elios134/asset-3d/releases/download/sc-4.1/XIAN_Nox.clay-exterior.glb",
-          "tris": 29217,
-          "sizeBytes": 303880,
+          "tris": 111148,
+          "sizeBytes": 837120,
           "hasInterior": false,
-          "sha256": "6d72262d0a14deed56de995f31c3132624d8f4890004d53ae42e7842eee8eb15",
+          "sha256": "1ea3ef79bda6895495f3d3e11fceec8a0387aa68916f05e2e32ab4118a0ea3bf",
           "render": "clay"
         }
       ]
@@ -6485,10 +6485,10 @@
           "level": "exterior",
           "label": "Apercu",
           "modelUrl": "https://github.com/elios134/asset-3d/releases/download/sc-4.1/XIAN_Nox_Kue.clay-exterior.glb",
-          "tris": 29217,
-          "sizeBytes": 303880,
+          "tris": 51938,
+          "sizeBytes": 478688,
           "hasInterior": false,
-          "sha256": "55e4c9ea7552380e9a3c439b05e5e71dedb3f53e1e121cfd118e5c1aa037c8ef",
+          "sha256": "f05fb5b02c29a39b50688f84da07b612599c5199d0894cf18446df5d13164088",
           "render": "clay"
         }
       ]
@@ -6510,10 +6510,10 @@
           "level": "exterior",
           "label": "Apercu",
           "modelUrl": "https://github.com/elios134/asset-3d/releases/download/sc-4.1/XIAN_Scout.clay-exterior.glb",
-          "tris": 89291,
-          "sizeBytes": 741980,
+          "tris": 192516,
+          "sizeBytes": 1575296,
           "hasInterior": false,
-          "sha256": "d28bc86b40de014de54f08a4a13f21a066b4eb2568736b607adb3881f71ff603",
+          "sha256": "f3cdaee12bb6724f4a80136a9bb2ed573988777b32da2cf67c254fe67489d15e",
           "render": "clay"
         }
       ]
@@ -6535,10 +6535,10 @@
           "level": "exterior",
           "label": "Apercu",
           "modelUrl": "https://github.com/elios134/asset-3d/releases/download/sc-4.1/XNAA_SanTokYai.clay-exterior.glb",
-          "tris": 278347,
-          "sizeBytes": 2004308,
+          "tris": 600000,
+          "sizeBytes": 4330324,
           "hasInterior": false,
-          "sha256": "68bd2f2257bd450d5dccc658c349e413cb572291b66acf9f942b68f8989083c3",
+          "sha256": "bd6fe2ae8b2d7abc49fb60e1d41562fbbe0ec73c8c2006ce611145491ecd5630",
           "render": "clay"
         }
       ]

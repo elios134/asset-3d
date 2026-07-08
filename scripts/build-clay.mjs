@@ -46,6 +46,7 @@ const OUT_TAG = opt("out-tag", ""); // suffixe fichier (ex. "soft" -> KEY.clay-s
 const CHUNK = process.argv.includes("--chunk"); // segmente la geo visuelle en chunks spatiaux (bulle app) ; pas de join/simplify
 const CHUNK_SIZE = parseFloat(opt("chunk-size", "10")); // taille cellule chunk (m) — contrat app = 10
 const EXT_ONLY = process.argv.includes("--ext-only"); // ne construire QUE l'exterieur clay (galerie resine ; ships sans interieur)
+const MODULES = process.argv.includes("--modules"); // inclure les attachements (armes/propulseurs/tourelles) dans l'exterieur — bug StarBreaker corrige (placement OK)
 
 const keys = Object.keys(meta).filter((k) => k !== "_comment" && meta[k].dims?.l);
 let batch;
@@ -132,7 +133,7 @@ for (const key of batch) {
   const cleanup = () => { for (const f of [tmpExt, tmpInt, tmpIntClay, tmpFloor, tmpPre, tmpInt.replace(/\.glb$/, ".fixed.glb")]) if (existsSync(f)) rmSync(f); };
   try {
     // 1) EXTERIEUR clay (sert aussi de reference coque pour le cull interieur : noms de nodes)
-    exp(key, tmpExt, ["--no-interior", "--no-attachments", "--lod", "1"]);
+    exp(key, tmpExt, ["--no-interior", ...(MODULES ? [] : ["--no-attachments"]), "--lod", "1"]);
     const extDoc = await io.read(tmpExt);
     const hullNames = new Set(); for (const n of extDoc.getRoot().listNodes()) if (n.getMesh()) hullNames.add(n.getName() || "");
     const hull = getBounds(extDoc.getRoot().listScenes()[0]);
@@ -156,6 +157,18 @@ for (const key of batch) {
     let intPath = tmpInt;
     if (anchored.has(key)) { const fx = tmpInt.replace(/\.glb$/, ".fixed.glb"); execFileSync("node", ["scripts/reposition-interior.mjs", tmpInt, fx, `--key=${key}`], { cwd: ROOT, stdio: "ignore" }); intPath = fx; }
     const intDoc = await io.read(intPath);
+
+    // INDICE SPAWN COCKPIT : position monde du siege pilote (hardpoint_seat_pilot / *_Seat_Pilot),
+    // capturee AVANT les culls/prune (noeud vide -> sinon prune). Passee a generate-floor pour ancrer
+    // spawn_point au cockpit (demande user : commencer pres du siege pilote, pas au centre d'un moteur).
+    let spawnHint = null;
+    {
+      const nn = intDoc.getRoot().listNodes();
+      const ppm = new Map(); for (const n of nn) for (const c of n.listChildren()) ppm.set(c, n);
+      const wmSeat = (n) => { let m = n.getMatrix(), p = ppm.get(n), s = new Set([n]), d = 0; while (p && !s.has(p) && d < 200) { m = mul(p.getMatrix(), m); s.add(p); p = ppm.get(p); d++; } return m; };
+      const seat = nn.find((n) => /seat_pilot/i.test(n.getName() || ""));
+      if (seat) { const M = wmSeat(seat); spawnHint = `${M[12].toFixed(2)},${M[14].toFixed(2)}`; console.log(`  ⌖ ${key} : siege pilote @ (${M[12].toFixed(1)}, ${M[14].toFixed(1)}) -> indice spawn`); }
+    }
 
     // cull coque ext leakee (identite de node ; setMesh(null) preserve la hierarchie, prune apres)
     let culledHull = 0;
@@ -224,7 +237,7 @@ for (const key of batch) {
     await io.write(tmpIntClay, intDoc);
 
     // 3) plancher collision_walk + spawn_point (generate-floor). En mode chunk : sur la geo PRE-chunk.
-    execFileSync("node", ["scripts/generate-floor.mjs", floorSrc, tmpFloor, `--lift=0`, `--ceil=${CEIL}`, `--clear=${CLEAR}`, `--cell=${CELL}`], { cwd: ROOT, stdio: "ignore" });
+    execFileSync("node", ["scripts/generate-floor.mjs", floorSrc, tmpFloor, `--lift=0`, `--ceil=${CEIL}`, `--clear=${CLEAR}`, `--cell=${CELL}`, ...(spawnHint ? [`--spawn-hint=${spawnHint}`] : [])], { cwd: ROOT, stdio: "ignore" });
     const fdoc = await io.read(tmpFloor);
     let walkTris = 0; for (const n of fdoc.getRoot().listNodes()) if (/collision_walk/i.test(n.getName() || "") && n.getMesh()) for (const p of n.getMesh().listPrimitives()) walkTris += Math.floor((p.getIndices()?.getCount() ?? 0) / 3);
     // INVARIANT : plancher vide => interieur inexploitable => SKIP (exclu du lot jouable)

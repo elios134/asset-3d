@@ -139,7 +139,19 @@ if (floorH.size) {
 // 3c) spawn_point : cellule la plus DEGAGEE (max distance au bord du plancher, erosion Chebyshev).
 // Evite le centroide geometrique qui tombe souvent sur un obstacle (colonne centrale de soute Cutlass).
 let spawn = null;
+// INDICE COCKPIT : si --spawn-hint=x,z (position monde du siege pilote), on place spawn_point sur la
+// cellule de plancher la plus proche = le joueur commence AU COCKPIT (demande user), pas au centroide
+// de la plus grande zone (qui tombe sur un moteur/soute). Fallback erosion si pas d'indice.
 {
+  const ha = args.find((x) => x.startsWith("--spawn-hint="));
+  const hint = ha ? ha.split("=")[1].split(",").map(Number) : null;
+  if (hint && hint.length >= 2 && isFinite(hint[0]) && isFinite(hint[1]) && floorH.size) {
+    let bestD = Infinity;
+    for (const ck of floorH.keys()) { const [cx, cz] = parse(ck); const wx = cx*CELL+CELL/2, wz = cz*CELL+CELL/2; const d = (wx-hint[0])**2 + (wz-hint[1])**2; if (d < bestD) { bestD = d; spawn = ck; } }
+    if (spawn != null) { const [cx, cz] = parse(spawn); const h = floorH.get(spawn) + LIFT; console.log(`spawn_point (indice siege pilote) : cellule ${spawn} @ monde (${(cx*CELL+CELL/2).toFixed(1)}, ${h.toFixed(1)}, ${(cz*CELL+CELL/2).toFixed(1)}) a ${Math.sqrt(bestD).toFixed(1)}m du siege`); }
+  }
+}
+if (spawn == null) {
   const dist = new Map();
   const has = (cx, cz) => floorH.has(`${cx},${cz}`);
   for (const ck of floorH.keys()) {
