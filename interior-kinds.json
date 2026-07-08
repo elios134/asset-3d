@@ -521,6 +521,10 @@
     "ARGO_SRV": {
       "walkableM2": 98,
       "kind": "habitable"
+    },
+    "ORIG_m80": {
+      "walkableM2": 25,
+      "kind": "habitable"
     }
   }
 }

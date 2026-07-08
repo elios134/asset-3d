@@ -1,6 +1,6 @@
 {
   "schemaVersion": 2,
-  "generatedAt": "2026-07-08T22:53:16.820Z",
+  "generatedAt": "2026-07-08T22:56:47.247Z",
   "patchVersion": "sc-4.1",
   "levels": [
     {
@@ -5482,8 +5482,21 @@
           "tris": 600035,
           "sizeBytes": 4586328,
           "hasInterior": false,
-          "sha256": "e2c386fbe02efde9e82fd7f2fda2ecdb2b2bbf5ddbfa927ae6521367f76a23fb",
+          "sha256": "1bf8c5a7815ea58a194b289f354f8520e094df491efa6c611a66dd4d02ddc5b3",
           "render": "clay"
+        },
+        {
+          "level": "interior",
+          "label": "Interieur",
+          "modelUrl": "https://github.com/elios134/asset-3d/releases/download/sc-4.1/ORIG_m80.clay-interior.glb",
+          "tris": 699111,
+          "sizeBytes": 5155032,
+          "hasInterior": true,
+          "sha256": "4858f3b724f14ba934623d301c814b7ccb4c4305b0c67e83d39d057c64bdb97f",
+          "render": "clay",
+          "hasCollision": true,
+          "interiorKind": "habitable",
+          "interiorWalkableM2": 25
         }
       ]
     },

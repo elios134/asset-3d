@@ -223,7 +223,9 @@ for (const key of batch) {
     // ici sinon le vantail drak_door_bulkhead.cga perd son nom, l'app le collisionne, il bloque le passage.
     const DOOR = /door|hatch/i;
     const isDoor = (nm) => DOOR.test(nm);
-    const tag = (node, name) => { if (node.getMesh() && !isDoor(node.getName() || "")) node.setName(name); for (const c of node.listChildren()) tag(c, name); };
+    // itératif (pile) + garde-fou anti-cycle : certains ships (ORIG_m80) ont une hiérarchie profonde/cyclique
+    // qui faisait exploser la pile en récursif (Maximum call stack size exceeded).
+    const tag = (root, name) => { const st = [root], seen = new Set(); while (st.length) { const node = st.pop(); if (seen.has(node)) continue; seen.add(node); if (node.getMesh() && !isDoor(node.getName() || "")) node.setName(name); for (const c of node.listChildren()) st.push(c); } };
     for (const n of intDoc.getRoot().listNodes()) { const nm = n.getName() || ""; if (isDoor(nm)) tag(n, nm); }
     for (const n of intDoc.getRoot().listNodes()) if (!isDoor(n.getName() || "")) n.setName("");
     for (const m of intDoc.getRoot().listMeshes()) if (!isDoor(m.getName() || "")) m.setName("");
