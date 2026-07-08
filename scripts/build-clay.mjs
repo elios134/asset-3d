@@ -19,7 +19,7 @@
 
 import { NodeIO } from "@gltf-transform/core";
 import { ALL_EXTENSIONS } from "@gltf-transform/extensions";
-import { dedup, prune, flatten, join as joinPrims, simplify, unpartition, mergeDocuments, getBounds, meshopt, dequantize } from "@gltf-transform/functions";
+import { dedup, prune, flatten, join as joinPrims, simplify, weld, unpartition, mergeDocuments, getBounds, meshopt, dequantize } from "@gltf-transform/functions";
 import { MeshoptEncoder, MeshoptDecoder, MeshoptSimplifier } from "meshoptimizer";
 import { execFileSync } from "node:child_process";
 import { readFileSync, existsSync, statSync, rmSync } from "node:fs";
@@ -45,6 +45,7 @@ const SOFT = process.argv.includes("--soft"); // simplify DOUX : lockBorder seul
 const OUT_TAG = opt("out-tag", ""); // suffixe fichier (ex. "soft" -> KEY.clay-soft-interior.glb) pour variantes hors-index
 const CHUNK = process.argv.includes("--chunk"); // segmente la geo visuelle en chunks spatiaux (bulle app) ; pas de join/simplify
 const CHUNK_SIZE = parseFloat(opt("chunk-size", "10")); // taille cellule chunk (m) — contrat app = 10
+const HULL_TRIS = parseInt(opt("hull-tris", "120000"), 10); // budget tris de collision_hull (Phase 1.5) : murs low-poly dédiés -> collider instantané. 0 = pas de hull.
 const EXT_ONLY = process.argv.includes("--ext-only"); // ne construire QUE l'exterieur clay (galerie resine ; ships sans interieur)
 const MODULES = process.argv.includes("--modules"); // inclure les attachements (armes/propulseurs/tourelles) dans l'exterieur — bug StarBreaker corrige (placement OK)
 
@@ -130,7 +131,8 @@ for (const key of batch) {
   const tmpExt = join(MODELS, `_c_${key}_ext.glb`), tmpInt = join(MODELS, `_c_${key}_int.glb`);
   const tmpIntClay = join(MODELS, `_c_${key}_intclay.glb`), tmpFloor = join(MODELS, `_c_${key}_floor.glb`);
   const tmpPre = join(MODELS, `_c_${key}_pre.glb`); // interieur PRE-chunk (pour generer le plancher : le flatten degrade la couverture)
-  const cleanup = () => { for (const f of [tmpExt, tmpInt, tmpIntClay, tmpFloor, tmpPre, tmpInt.replace(/\.glb$/, ".fixed.glb")]) if (existsSync(f)) rmSync(f); };
+  const KEEP_PRE = process.argv.includes("--keep-pre");
+  const cleanup = () => { for (const f of [tmpExt, tmpInt, tmpIntClay, tmpFloor, ...(KEEP_PRE ? [] : [tmpPre]), tmpInt.replace(/\.glb$/, ".fixed.glb")]) if (existsSync(f)) rmSync(f); };
   try {
     // 1) EXTERIEUR clay (sert aussi de reference coque pour le cull interieur : noms de nodes)
     exp(key, tmpExt, ["--no-interior", ...(MODULES ? [] : ["--no-attachments"]), "--lod", "1"]);
@@ -278,6 +280,35 @@ for (const key of batch) {
     const shellMap = mergeDocuments(main, shellDoc);
     for (const srcNode of shellDoc.getRoot().listScenes()[0].listChildren()) { const d = shellMap.get(srcNode); if (d) mainScene.addChild(d); }
 
+    // COLLISION_HULL (Phase 1.5) : couche de collision dédiée, murs low-poly + sol, render-off (nom
+    // /collision/). Contrat app : SA PRESENCE fait construire le collider depuis les couches collision
+    // SEULES (collision_hull + collision_walk + floor_patch) en EXCLUANT les ~3.6M tris des chunks visuels
+    // -> BVH quasi-instantane (supprime le hitch ~2s a l'entree Visite). Uniquement en mode CHUNK (capitaux :
+    // les seuls ou le collider sur geo visuelle est lourd). Source = tmpPre (interieur clay PRE-chunk, murs
+    // complets, positions monde). On RETIRE les portes (l'app les rend passables ; les inclure bloquerait
+    // les passages). weld() reconnecte les shells fragmentees -> simplify(lockBorder) efficace SANS percer.
+    let hullTris = 0;
+    if (CHUNK && HULL_TRIS > 0) {
+      const hullDoc = await io.read(tmpPre);
+      for (const n of hullDoc.getRoot().listNodes()) if (isDoor(n.getName() || "") && n.getMesh()) n.dispose();
+      for (const n of hullDoc.getRoot().listNodes()) n.setName("");
+      for (const m of hullDoc.getRoot().listMeshes()) m.setName("");
+      // STRIP normales (collider render-off) : weld refuse de fusionner des sommets coincidents aux normales
+      // differentes (facettes clay) -> soupe non-reductible (test : reduction x1.7 seulement). Position seule
+      // -> weld reconnecte les shells -> simplify x12 (897k -> 117k). Puis simplify SANS lockBorder (les
+      // interieurs ultra-fragmentes ont "tout en bord" -> lockBorder bloque a ~300k). Trous de murs mineurs
+      // acceptables (sol authoritatif = collision_walk+floor_patch ; capsule joueur a un rayon).
+      for (const mesh of hullDoc.getRoot().listMeshes()) for (const pr of mesh.listPrimitives()) for (const sem of pr.listSemantics()) if (sem !== "POSITION") pr.setAttribute(sem, null);
+      await hullDoc.transform(dedup(), prune(), flatten(), joinPrims(), weld({ tolerance: 0.01 }));
+      const t0 = docTris(hullDoc);
+      if (t0 > HULL_TRIS) await hullDoc.transform(simplify({ simplifier: MeshoptSimplifier, ratio: Math.max(0.005, HULL_TRIS / t0), error: 0.03, lockBorder: false }));
+      hullTris = docTris(hullDoc);
+      for (const n of hullDoc.getRoot().listNodes()) if (n.getMesh()) n.setName("collision_hull");
+      for (const m of hullDoc.getRoot().listMeshes()) m.setName("collision_hull");
+      const hullMap = mergeDocuments(main, hullDoc);
+      for (const srcNode of hullDoc.getRoot().listScenes()[0].listChildren()) { const d = hullMap.get(srcNode); if (d) mainScene.addChild(d); }
+    }
+
     for (const s of main.getRoot().listScenes()) if (s !== mainScene) s.dispose();
     main.getRoot().setDefaultScene(mainScene);
     await compress(main);
@@ -285,8 +316,8 @@ for (const key of batch) {
 
     cleanup();
     const spawn = main.getRoot().listNodes().some((n) => n.getName() === "spawn_point");
-    results.push({ key, ok: true, ext: statSync(extOut).size, int: statSync(intOut).size, extTris, intTris, walkTris, spawn });
-    console.log(`  ✓ ${key.padEnd(26)} ext ${mb(statSync(extOut).size)} (${extTris}t) · int ${mb(statSync(intOut).size)} (${intTris}t) · walk ${walkTris}t${spawn ? " +spawn" : ""}${culledHull ? ` · coque-${culledHull}` : ""}${culledMech ? ` · mech-${culledMech}` : ""}`);
+    results.push({ key, ok: true, ext: statSync(extOut).size, int: statSync(intOut).size, extTris, intTris, walkTris, hullTris, spawn });
+    console.log(`  ✓ ${key.padEnd(26)} ext ${mb(statSync(extOut).size)} (${extTris}t) · int ${mb(statSync(intOut).size)} (${intTris}t) · walk ${walkTris}t${hullTris ? ` · hull ${hullTris}t` : ""}${spawn ? " +spawn" : ""}${culledHull ? ` · coque-${culledHull}` : ""}${culledMech ? ` · mech-${culledMech}` : ""}`);
   } catch (e) {
     cleanup();
     results.push({ key, ok: false, err: e.message.split("\n")[0] });
