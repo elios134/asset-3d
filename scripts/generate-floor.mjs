@@ -185,6 +185,22 @@ const mat = out.createMaterial("floor_mat").setBaseColorFactor([0.37, 0.4, 0.44,
 const prim = out.createPrimitive().setAttribute("POSITION", acc).setAttribute("NORMAL", nrm).setIndices(idx).setMaterial(mat);
 const fnode = out.createNode("collision_walk").setMesh(out.createMesh("collision_walk").addPrimitive(prim));
 const scene = out.createScene().addChild(fnode);
+
+// 5b) FLOOR_PATCH : patch VISUEL du sol (rendu clay), memes quads mais legerement SOUS le plancher
+// (-PATCH_DROP) pour ne montrer QUE par les trous du sol visuel sans z-fighting avec le vrai sol.
+// Comble les trous de plancher que le shell (coque ext) ne couvre pas (trous vers le pont du dessous).
+// Nom distinct -> l'app le REND (matcap), contrairement a collision_walk (render-off). Desactivable --no-patch.
+if (!args.includes("--no-patch")) {
+  const PATCH_DROP = 0.03;
+  const ppos = new Float32Array(positions.length);
+  for (let i = 0; i < positions.length; i += 3) { ppos[i] = positions[i]; ppos[i+1] = positions[i+1] - PATCH_DROP; ppos[i+2] = positions[i+2]; }
+  const pacc = out.createAccessor("patchPos").setType("VEC3").setArray(ppos).setBuffer(buf);
+  const pnrm = out.createAccessor("patchNrm").setType("VEC3").setArray(new Float32Array(normals)).setBuffer(buf);
+  const pidx = out.createAccessor("patchIdx").setType("SCALAR").setArray(new Uint32Array(indices)).setBuffer(buf);
+  const pmat = out.createMaterial("floor_patch_mat").setBaseColorFactor([0.4, 0.42, 0.45, 1]).setRoughnessFactor(1).setMetallicFactor(0).setDoubleSided(true);
+  const pprim = out.createPrimitive().setAttribute("POSITION", pacc).setAttribute("NORMAL", pnrm).setIndices(pidx).setMaterial(pmat);
+  scene.addChild(out.createNode("floor_patch").setMesh(out.createMesh("floor_patch").addPrimitive(pprim)));
+}
 // noeud vide spawn_point (l'app s'y ancre par nom) au centre de la plus grande zone degagee
 if (spawn != null) { const [sx, sz] = parse(spawn); const sy = floorH.get(spawn) + LIFT; scene.addChild(out.createNode("spawn_point").setTranslation([sx*CELL+CELL/2, sy, sz*CELL+CELL/2])); }
 await io.write(outPath, out);

@@ -41,11 +41,16 @@ const INT_LOD_OVERRIDE = opt("int-lod", null) != null ? parseInt(opt("int-lod"),
 const CEIL = opt("ceil", "5.0"), CLEAR = opt("clear", "1.9"), CELL = opt("cell", "0.5");
 const TRIS = parseInt(opt("tris", "600000"), 10);
 const PROP_MIN = parseFloat(opt("prop-min", "0.4")); // cull clutter cosmetique < Nm (gobelets/boulons/boutons ; 0 = off)
+const SOFT = process.argv.includes("--soft"); // simplify DOUX : lockBorder seul, jamais la 2e passe (qui perce)
+const OUT_TAG = opt("out-tag", ""); // suffixe fichier (ex. "soft" -> KEY.clay-soft-interior.glb) pour variantes hors-index
+const CHUNK = process.argv.includes("--chunk"); // segmente la geo visuelle en chunks spatiaux (bulle app) ; pas de join/simplify
+const CHUNK_SIZE = parseFloat(opt("chunk-size", "10")); // taille cellule chunk (m) — contrat app = 10
+const EXT_ONLY = process.argv.includes("--ext-only"); // ne construire QUE l'exterieur clay (galerie resine ; ships sans interieur)
 
 const keys = Object.keys(meta).filter((k) => k !== "_comment" && meta[k].dims?.l);
 let batch;
 const args = process.argv.slice(2).filter((a) => !a.startsWith("--"));
-if (process.argv.includes("--all")) batch = habitable ? keys.filter((k) => habitable.has(k)) : keys;
+if (process.argv.includes("--all")) batch = (habitable && !EXT_ONLY) ? keys.filter((k) => habitable.has(k)) : keys; // ext-only --all = TOUS les ships (galerie resine)
 else if (args.length) batch = args;
 else { console.error("usage: build-clay.mjs [KEY...] | --all"); process.exit(1); }
 
@@ -79,23 +84,52 @@ const simplifyTo = async (doc) => {
   // -> capitaux coinces a plusieurs M de tris (Ironclad 4.3M = 33 Mo + lag Visite). 2e passe SANS
   // lockBorder au-dessus de 1.5x budget : trous visuels mineurs acceptables (collision separee via
   // collision_walk, matcap masque) vs lag ingerable. Le plancher est genere APRES, sur ce mesh.
-  if (t > TRIS * 1.5) { await doc.transform(simplify({ simplifier: MeshoptSimplifier, ratio: Math.max(0.05, TRIS / t), error: 0.03, lockBorder: false })); t = docTris(doc); }
+  if (!SOFT && t > TRIS * 1.5) { await doc.transform(simplify({ simplifier: MeshoptSimplifier, ratio: Math.max(0.05, TRIS / t), error: 0.03, lockBorder: false })); t = docTris(doc); }
   return t;
 };
 // bug gltf-transform 4.4.1 : reorder+quantize (interne meshopt) corrompt les accessors PARTAGES entre
 // prims -> donner a chaque prim son clone avant meshopt ; le dedup de quantize re-fusionne (cout nul).
 const unshareAccessors = (doc) => { const seen = new Set(); for (const mesh of doc.getRoot().listMeshes()) for (const pr of mesh.listPrimitives()) { for (const sem of pr.listSemantics()) { const a = pr.getAttribute(sem); if (!a) continue; if (seen.has(a)) pr.setAttribute(sem, a.clone()); else seen.add(a); } const idx = pr.getIndices(); if (idx) { if (seen.has(idx)) pr.setIndices(idx.clone()); else seen.add(idx); } } };
 const compress = async (doc) => { await doc.transform(dedup(), unpartition()); unshareAccessors(doc); await doc.transform(meshopt({ encoder: MeshoptEncoder, level: "high" })); };
+const ap3 = (m, x, y, z) => [m[0]*x+m[4]*y+m[8]*z, m[1]*x+m[5]*y+m[9]*z, m[2]*x+m[6]*y+m[10]*z]; // 3x3 (normales, sans translation)
+
+// CHUNKER (contrat bulle app) : segmente la geo visuelle en cellules spatiales de `cell` m. On PRESERVE
+// l'instancing (StarBreaker repete lourdement rambardes/panneaux/props ; baker = x2-3 la taille) : flatten()
+// bake les transforms parents dans le matrix LOCAL de chaque noeud-mesh (hierarchie plate, meshes toujours
+// PARTAGES) puis on REPARENTE chaque noeud-mesh sous un chunk `chunk_gx_gy_gz` selon le centroide MONDE de
+// sa bbox. Chunk = transform identite ; l'enfant garde son matrix (= monde). L'app calcule la Box3 tight par
+// chunk et toggle sa visibilite. HORS chunks : portes (isDoorFn) + specials ajoutes APRES (shell/collision_
+// walk/spawn_point/floor_patch). Pas de join/simplify -> detail max, fichier leger (instancing conserve).
+const chunkVisual = async (doc, cell, isDoorFn) => {
+  await doc.transform(flatten()); // noeuds-mesh -> enfants directs de la scene, transform monde bakee en local
+  const root = doc.getRoot();
+  const scene = root.getDefaultScene() || root.listScenes()[0];
+  const chunks = new Map(); const P = [0,0,0];
+  const targets = root.listNodes().filter((n) => n.getMesh() && !isDoorFn(n.getName() || "") && !isDoorFn(n.getMesh().getName() || ""));
+  for (const node of targets) {
+    const M = node.getMatrix(); // = monde (post-flatten)
+    const mesh = node.getMesh(); let xn = 1/0, yn = 1/0, zn = 1/0, xx = -1/0, yx = -1/0, zx = -1/0;
+    for (const pr of mesh.listPrimitives()) { const a = pr.getAttribute("POSITION"); if (!a) continue; const c = a.getCount(); const step = Math.max(1, Math.floor(c / 24)); for (let i = 0; i < c; i += step) { a.getElement(i, P); if (P[0]<xn)xn=P[0]; if (P[1]<yn)yn=P[1]; if (P[2]<zn)zn=P[2]; if (P[0]>xx)xx=P[0]; if (P[1]>yx)yx=P[1]; if (P[2]>zx)zx=P[2]; } }
+    if (!isFinite(xn)) continue;
+    const wc = ap(M, (xn+xx)/2, (yn+yx)/2, (zn+zx)/2); // centroide monde de la bbox locale
+    const key = `${Math.floor(wc[0]/cell)}_${Math.floor(wc[1]/cell)}_${Math.floor(wc[2]/cell)}`;
+    let cn = chunks.get(key); if (!cn) { cn = doc.createNode(`chunk_${key}`); scene.addChild(cn); chunks.set(key, cn); }
+    scene.removeChild(node); cn.addChild(node); // instancing preserve (mesh partage inchange)
+  }
+  return { nChunks: chunks.size, nTris: docTris(doc) };
+};
 
 const results = [];
 console.log(`Pipeline CLAY : ${batch.length} vaisseaux (tris<=${TRIS}, ceil=${CEIL})\n`);
 for (const key of batch) {
   const l = meta[key]?.dims?.l ?? 25;
-  const extOut = join(MODELS, `${key}.clay-exterior.glb`);
-  const intOut = join(MODELS, `${key}.clay-interior.glb`);
+  const tagPart = OUT_TAG ? `${OUT_TAG}-` : "";
+  const extOut = join(MODELS, `${key}.clay-${tagPart}exterior.glb`);
+  const intOut = join(MODELS, `${key}.clay-${tagPart}interior.glb`);
   const tmpExt = join(MODELS, `_c_${key}_ext.glb`), tmpInt = join(MODELS, `_c_${key}_int.glb`);
   const tmpIntClay = join(MODELS, `_c_${key}_intclay.glb`), tmpFloor = join(MODELS, `_c_${key}_floor.glb`);
-  const cleanup = () => { for (const f of [tmpExt, tmpInt, tmpIntClay, tmpFloor, tmpInt.replace(/\.glb$/, ".fixed.glb")]) if (existsSync(f)) rmSync(f); };
+  const tmpPre = join(MODELS, `_c_${key}_pre.glb`); // interieur PRE-chunk (pour generer le plancher : le flatten degrade la couverture)
+  const cleanup = () => { for (const f of [tmpExt, tmpInt, tmpIntClay, tmpFloor, tmpPre, tmpInt.replace(/\.glb$/, ".fixed.glb")]) if (existsSync(f)) rmSync(f); };
   try {
     // 1) EXTERIEUR clay (sert aussi de reference coque pour le cull interieur : noms de nodes)
     exp(key, tmpExt, ["--no-interior", "--no-attachments", "--lod", "1"]);
@@ -108,6 +142,14 @@ for (const key of batch) {
     await compress(extDoc);
     await io.write(extOut, extDoc);
 
+    // mode EXT_ONLY (galerie resine des ships sans interieur) : on s'arrete a l'exterieur
+    if (EXT_ONLY) {
+      if (existsSync(tmpExt)) rmSync(tmpExt);
+      results.push({ key, ok: true, ext: statSync(extOut).size, int: 0, extTris, extOnly: true });
+      console.log(`  ✓ ${key.padEnd(26)} ext ${mb(statSync(extOut).size)} (${extTris}t) [ext-only]`);
+      continue;
+    }
+
     // 2) INTERIEUR clay
     const lod = INT_LOD_OVERRIDE != null ? INT_LOD_OVERRIDE : intLod(l);
     exp(key, tmpInt, ["--lod", String(lod)]);
@@ -118,6 +160,14 @@ for (const key of batch) {
     // cull coque ext leakee (identite de node ; setMesh(null) preserve la hierarchie, prune apres)
     let culledHull = 0;
     for (const node of intDoc.getRoot().listNodes()) if (node.getMesh() && hullNames.has(node.getName() || "")) { node.setMesh(null); culledHull++; }
+
+    // cull MECANISMES EXTERIEURS leakes : train d'atterrissage + baies (RLG/FLG/MLG/NLG + BONE_*LG).
+    // `--no-attachments` (ref coque) SKIP le train -> ses noms ne sont pas dans hullNames -> il leake dans
+    // l'interieur en geometrie "porte batarde" mal placee (Carrack : RLG_Door_*, RLGB_Door_Hinge...).
+    // Ce ne sont PAS des portes interieures (celles-la = mesh_door_*) -> on les retire du parcours.
+    const EXT_MECH = /(^|_)(RLG|FLG|MLG|NLG)B?(_|$)|(^|_)BONE_[FRMN]LG/i;
+    let culledMech = 0;
+    for (const node of intDoc.getRoot().listNodes()) if (node.getMesh() && EXT_MECH.test(node.getName() || "")) { node.setMesh(null); culledMech++; }
 
     // cull strays : tout mesh qui deborde l'enveloppe ext de >2m (module englobant, debris flottant)
     const nodes = intDoc.getRoot().listNodes(); const pm = new Map(); for (const n of nodes) for (const c of n.listChildren()) pm.set(c, n);
@@ -154,13 +204,27 @@ for (const key of batch) {
     for (const m of intDoc.getRoot().listMeshes()) if (!isDoor(m.getName() || "")) m.setName("");
 
     toClay(intDoc);
-    await intDoc.transform(dedup(), prune(), flatten(), joinPrims({ keepNamed: true }));
-    const intTris = await simplifyTo(intDoc);
-    await intDoc.transform(prune());
+    let intTris; let floorSrc = tmpIntClay;
+    if (CHUNK) {
+      // mode BULLE : segmentation spatiale, PAS de join/simplify (detail max). Portes hors chunks.
+      await intDoc.transform(dedup(), prune());
+      // FIX plancher : le generer sur la geo PRE-chunk (le flatten du chunker fait perdre ~la moitie de la
+      // couverture ; positions monde identiques -> valide de generer avant). tmpPre = interieur non-chunke.
+      await io.write(tmpPre, intDoc);
+      floorSrc = tmpPre;
+      const { nChunks, nTris } = await chunkVisual(intDoc, CHUNK_SIZE, isDoor);
+      await intDoc.transform(prune());
+      intTris = nTris;
+      console.log(`  ▦ ${key} : ${nChunks} chunks de ${CHUNK_SIZE}m, ${nTris} tris (detail max, hors portes)`);
+    } else {
+      await intDoc.transform(dedup(), prune(), flatten(), joinPrims({ keepNamed: true }));
+      intTris = await simplifyTo(intDoc);
+      await intDoc.transform(prune());
+    }
     await io.write(tmpIntClay, intDoc);
 
-    // 3) plancher collision_walk + spawn_point (generate-floor sur le clay interieur final)
-    execFileSync("node", ["scripts/generate-floor.mjs", tmpIntClay, tmpFloor, `--lift=0`, `--ceil=${CEIL}`, `--clear=${CLEAR}`, `--cell=${CELL}`], { cwd: ROOT, stdio: "ignore" });
+    // 3) plancher collision_walk + spawn_point (generate-floor). En mode chunk : sur la geo PRE-chunk.
+    execFileSync("node", ["scripts/generate-floor.mjs", floorSrc, tmpFloor, `--lift=0`, `--ceil=${CEIL}`, `--clear=${CLEAR}`, `--cell=${CELL}`], { cwd: ROOT, stdio: "ignore" });
     const fdoc = await io.read(tmpFloor);
     let walkTris = 0; for (const n of fdoc.getRoot().listNodes()) if (/collision_walk/i.test(n.getName() || "") && n.getMesh()) for (const p of n.getMesh().listPrimitives()) walkTris += Math.floor((p.getIndices()?.getCount() ?? 0) / 3);
     // INVARIANT : plancher vide => interieur inexploitable => SKIP (exclu du lot jouable)
@@ -195,7 +259,7 @@ for (const key of batch) {
     cleanup();
     const spawn = main.getRoot().listNodes().some((n) => n.getName() === "spawn_point");
     results.push({ key, ok: true, ext: statSync(extOut).size, int: statSync(intOut).size, extTris, intTris, walkTris, spawn });
-    console.log(`  ✓ ${key.padEnd(26)} ext ${mb(statSync(extOut).size)} (${extTris}t) · int ${mb(statSync(intOut).size)} (${intTris}t) · walk ${walkTris}t${spawn ? " +spawn" : ""}${culledHull ? ` · coque-${culledHull}` : ""}`);
+    console.log(`  ✓ ${key.padEnd(26)} ext ${mb(statSync(extOut).size)} (${extTris}t) · int ${mb(statSync(intOut).size)} (${intTris}t) · walk ${walkTris}t${spawn ? " +spawn" : ""}${culledHull ? ` · coque-${culledHull}` : ""}${culledMech ? ` · mech-${culledMech}` : ""}`);
   } catch (e) {
     cleanup();
     results.push({ key, ok: false, err: e.message.split("\n")[0] });

@@ -51,13 +51,16 @@ for (const file of glbFiles.sort()) {
   const key = stem.slice(0, dot);
   let level = stem.slice(dot + 1);
 
-  // PIVOT CLAY : clay-interior devient la variante "interior" (render:clay, prioritaire sur le HD).
-  // clay-exterior JAMAIS en prod (galerie garde l'exterior HD texture ; on garde les clay-ext hors-index
-  // pour tests). Exclusions d'interieur (geometrie explosee irrecuperable, verdict QA app) : pas de visite.
+  // PIVOT CLAY : galerie ET visites en resine. clay-interior -> variante "interior" (render:clay,
+  // prioritaire sur HD) ; clay-exterior -> variante "exterior" (render:clay, prioritaire sur HD).
+  // Exclusions : interieur explose (Mauler, verdict QA app) ; editions speciales (BIS/executive/wikelo/
+  // pyam) que la flotte HD excluait deja -> garde la coherence a 229 (les clay-ext en trop = orphelins).
   const EXCLUDE_INTERIOR = new Set(["VNCL_Mauler"]);
-  let isClayInterior = false;
-  if (level === "clay-exterior") continue;
+  const EXCLUDE_EDITION = /\bwikelo\b|\bpyam\b|best in show|\bbis\d*\b|\bexecutive\b|\bexec\b/;
+  if (EXCLUDE_EDITION.test(`${meta[key]?.name ?? ""} ${key}`.replace(/_/g, " ").toLowerCase())) continue;
+  let isClayInterior = false, isClayExterior = false;
   if (level === "clay-interior") { level = "interior"; isClayInterior = true; }
+  if (level === "clay-exterior") { level = "exterior"; isClayExterior = true; }
   if (level === "interior" && EXCLUDE_INTERIOR.has(key)) continue;
 
   if (!levelOrder.includes(level)) {
@@ -94,6 +97,7 @@ for (const file of glbFiles.sort()) {
   };
   // flags pivot clay (l'app : render:"clay" -> matcap/keepMaterials off ; hasCollision -> attend collision_walk)
   if (isClayInterior) { variant.render = "clay"; variant.hasCollision = true; }
+  if (isClayExterior) { variant.render = "clay"; }
   if (level === "interior" && interiorKinds[key]) {
     variant.interiorKind = interiorKinds[key].kind;              // "habitable" | "cockpit"
     variant.interiorWalkableM2 = interiorKinds[key].walkableM2;  // surface plancher praticable (m2) — pour reglage du seuil cote app
@@ -120,7 +124,7 @@ for (const file of glbFiles.sort()) {
   const dupIdx = arr.findIndex((v) => v.level === level);
   if (dupIdx >= 0) {
     const dupIsClay = arr[dupIdx].render === "clay";
-    if (isClayInterior && !dupIsClay) arr[dupIdx] = variant; // clay remplace un HD deja present
+    if ((isClayInterior || isClayExterior) && !dupIsClay) arr[dupIdx] = variant; // clay remplace un HD deja present
     else { console.log(`  ${file.padEnd(40)} (ignore : variante ${level} deja ${dupIsClay ? "clay" : "HD"})`); continue; }
   } else {
     arr.push(variant);
