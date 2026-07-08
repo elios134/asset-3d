@@ -1,0 +1,3 @@
+{
+  "_comment": "Prims a RETIRER des builds interieurs, par vaisseau : regex (insensible a la casse) sur le NOM DE MATERIAU. Reserve aux artefacts d'extraction CONFIRMES VISUELLEMENT (app/user) que les regles generiques ne peuvent pas viser sans dommage collateral. Applique par build-hd.mjs apres le strip ext-glow. NB : les materiaux aegs_idris_* du MISC_Starfarer (consoles de pont, boutons+decals+verre depoli) sont une REUTILISATION d'assets CIG probablement legitime — ne blacklister qu'apres verdict visuel de l'app."
+}

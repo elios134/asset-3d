@@ -25,6 +25,7 @@ const STARBREAKER = "C:/Users/andre/Documents/starbreaker/starbreaker.exe";
 const P4K = "D:/Program Files/RSI Launcher/StarCitizen/LIVE/Data.p4k";
 const meta = JSON.parse(readFileSync(join(ROOT, "ships.meta.json"), "utf8"));
 const anchored = new Set(Object.keys(JSON.parse(readFileSync(join(ROOT, "interior-anchors.json"), "utf8"))).filter((k) => k !== "_comment"));
+const primBlacklist = (() => { try { const j = JSON.parse(readFileSync(join(ROOT, "interior-prim-blacklist.json"), "utf8")); delete j._comment; return j; } catch { return {}; } })();
 const EXCLUDE = /\bwikelo\b|\bpyam\b|best in show|\bbis\d*\b|\bexecutive\b|\bexec\b/;
 const isExcluded = (k) => EXCLUDE.test(`${meta[k]?.name ?? ""} ${k}`.replace(/_/g, " ").toLowerCase());
 const GENERIC = /^(box|cube|plane|cylinder|sphere|cone|circle|icosphere|object|empty)[._]?\d+$/i;
@@ -143,6 +144,11 @@ for (const key of batch) {
     // build interieur ; le SHELL garde les siens (liseres sur la silhouette, vus par les trous = ok).
     const EXT_GLOW = /(_ext_|_exterior_)mtl_glow/i;
     for (const mesh of intDoc.getRoot().listMeshes()) for (const pr of mesh.listPrimitives()) if (EXT_GLOW.test(pr.getMaterial()?.getName() || "")) pr.dispose();
+    // Blacklist ciblee par vaisseau (interior-prim-blacklist.json) : artefacts d'extraction
+    // confirmes que les regles generiques ne couvrent pas (ex. decals Idris de 5-9 m en plein
+    // milieu de la cabine du Starfarer — asset d'un AUTRE vaisseau leake par StarBreaker).
+    for (const rx of primBlacklist[key] ?? []) { const re = new RegExp(rx, "i");
+      for (const mesh of intDoc.getRoot().listMeshes()) for (const pr of mesh.listPrimitives()) if (re.test(pr.getMaterial()?.getName() || "")) pr.dispose(); }
     // cull strays (generique/anonyme, loin hors coque) — bbox manuelle cycle-safe
     const nodes = intDoc.getRoot().listNodes(); const pm = new Map(); for (const n of nodes) for (const c of n.listChildren()) pm.set(c, n);
     const wm = (n) => { let mm = n.getMatrix(), p = pm.get(n), seen = new Set([n]), d = 0; while (p && !seen.has(p) && d < 200) { mm = mul(p.getMatrix(), mm); seen.add(p); p = pm.get(p); d++; } return mm; };
