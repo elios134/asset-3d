@@ -19,7 +19,7 @@
 
 import { NodeIO } from "@gltf-transform/core";
 import { ALL_EXTENSIONS } from "@gltf-transform/extensions";
-import { dedup, prune, flatten, join as joinPrims, simplify, unpartition, mergeDocuments, getBounds, meshopt } from "@gltf-transform/functions";
+import { dedup, prune, flatten, join as joinPrims, simplify, unpartition, mergeDocuments, getBounds, meshopt, dequantize } from "@gltf-transform/functions";
 import { MeshoptEncoder, MeshoptDecoder, MeshoptSimplifier } from "meshoptimizer";
 import { execFileSync } from "node:child_process";
 import { readFileSync, existsSync, statSync, rmSync } from "node:fs";
@@ -166,11 +166,27 @@ for (const key of batch) {
     // INVARIANT : plancher vide => interieur inexploitable => SKIP (exclu du lot jouable)
     if (walkTris === 0) { if (existsSync(extOut)) rmSync(extOut); cleanup(); results.push({ key, ok: false, skip: true, err: "collision_walk vide (interieur non jouable)" }); console.log(`  ⊘ ${key.padEnd(26)} SKIP : collision_walk vide`); continue; }
 
-    // 4) merge clay interieur + plancher (collision_walk + spawn_point) -> intOut
+    // 4) merge clay interieur + plancher (collision_walk + spawn_point) + SHELL OCCULTEUR -> intOut
     const main = await io.read(tmpIntClay);
     const mainScene = main.getRoot().getDefaultScene() || main.getRoot().listScenes()[0];
     const map = mergeDocuments(main, fdoc);
     for (const srcNode of fdoc.getRoot().listScenes()[0].listChildren()) { const d = map.get(srcNode); if (d) mainScene.addChild(d); }
+
+    // SHELL OCCULTEUR (comme HD, comme le cobaye valide) : la coque ext bouche les trous vus de
+    // l'interieur (montre la coque, pas le fond etoile) ET rend le vaisseau reconnaissable de dehors.
+    // Regression corrigee : build-clay le mergeait pas -> retour user "on ne voit pas la coque + trous".
+    // Source = clay-exterior (extOut, deja clay+simplifie). dequantize AVANT merge (extOut est meshopt-
+    // quantize) sinon 2e quantization au compress final. Anonymiser (aucun nom door/hatch) + join +
+    // nommer occluder_shell (contrat app : render-only, EXCLU du collider, matcap en mode clay).
+    const shellDoc = await io.read(extOut);
+    for (const n of shellDoc.getRoot().listNodes()) n.setName("");
+    for (const m of shellDoc.getRoot().listMeshes()) m.setName("");
+    await shellDoc.transform(dequantize(), prune(), flatten(), joinPrims());
+    for (const n of shellDoc.getRoot().listNodes()) if (n.getMesh()) n.setName("occluder_shell");
+    for (const m of shellDoc.getRoot().listMeshes()) m.setName("occluder_shell");
+    const shellMap = mergeDocuments(main, shellDoc);
+    for (const srcNode of shellDoc.getRoot().listScenes()[0].listChildren()) { const d = shellMap.get(srcNode); if (d) mainScene.addChild(d); }
+
     for (const s of main.getRoot().listScenes()) if (s !== mainScene) s.dispose();
     main.getRoot().setDefaultScene(mainScene);
     await compress(main);
