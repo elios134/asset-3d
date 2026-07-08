@@ -125,7 +125,13 @@ for (const key of batch) {
     if (INT_ONLY) hull = getBounds((await io.read(extOut)).getRoot().listScenes()[0]);
 
     // 2) INTERIEUR texture -> reposition (si ancre) -> cull strays -> webp -> shell
-    exp(key, tmpInt, ["--lod", String(INT_LOD_OVERRIDE ?? intLod(l))]);
+    // LOD ADAPTATIF (round 8, decision user « 96 Mo strict ») : on tente le LOD1 (detail x2 ; gros
+    // gagnants du scan delta : Railen/Tyilui/Ironclad/Tiburon/MOLE/Starlifter) et on retombe au
+    // LOD2 (+simplify) si le fichier FINAL depasse maxSizeBytes. Pre-filtre : un export LOD1
+    // >7M tris ne tiendra jamais sous le plafond (Idris 9,6M -> 108 Mo) -> repli direct sans build.
+    const buildInterior = async (lodTry, hasFallback) => {
+    exp(key, tmpInt, ["--lod", String(lodTry)]);
+    if (lodTry === 1 && hasFallback && glbTris(tmpInt) > 7_000_000) return false;
     let intPath = tmpInt;
     if (anchored.has(key)) { const fx = tmpInt.replace(/\.glb$/, ".fixed.glb"); execFileSync("node", ["scripts/reposition-interior.mjs", tmpInt, fx, `--key=${key}`], { cwd: ROOT, stdio: "ignore" }); intPath = fx; }
     const intDoc = await io.read(intPath);
@@ -211,10 +217,21 @@ for (const key of batch) {
     unshareAccessors(intDoc);
     await intDoc.transform(meshopt({ encoder: MeshoptEncoder, level: "high" }));
     await io.write(intOut, intDoc);
+    return true;
+    };
+    const lodsToTry = INT_LOD_OVERRIDE != null ? [INT_LOD_OVERRIDE] : [...new Set([1, intLod(l)])];
+    let intLodUsed = null;
+    for (let li = 0; li < lodsToTry.length; li++) {
+      const lodTry = lodsToTry[li], hasFallback = li < lodsToTry.length - 1;
+      if (!(await buildInterior(lodTry, hasFallback))) { console.log(`  ↩ ${key} : LOD${lodTry} pre-filtre tris -> repli LOD${lodsToTry[li + 1]}`); continue; }
+      intLodUsed = lodTry;
+      if (statSync(intOut).size <= BUDGET.interior.maxSizeBytes) break;
+      if (hasFallback) console.log(`  ↩ ${key} : LOD${lodTry} = ${mb(statSync(intOut).size)} > plafond ${mb(BUDGET.interior.maxSizeBytes)} -> repli LOD${lodsToTry[li + 1]}`);
+    }
 
     for (const f of [tmpExt, tmpInt, tmpInt.replace(/\.glb$/, ".fixed.glb")]) if (existsSync(f)) rmSync(f);
     results.push({ key, ok: true, ext: statSync(extOut).size, int: statSync(intOut).size });
-    console.log(`  ✓ ${key.padEnd(28)} ext ${mb(statSync(extOut).size)} · int ${mb(statSync(intOut).size)} ${anchored.has(key) ? "(reposition)" : ""}`);
+    console.log(`  ✓ ${key.padEnd(28)} ext ${mb(statSync(extOut).size)} · int ${mb(statSync(intOut).size)} LOD${intLodUsed} ${anchored.has(key) ? "(reposition)" : ""}`);
   } catch (e) {
     for (const f of [tmpExt, tmpInt, tmpInt.replace(/\.glb$/, ".fixed.glb")]) if (existsSync(f)) rmSync(f);
     results.push({ key, ok: false, err: e.message.split("\n")[0] });

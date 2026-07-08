@@ -23,13 +23,24 @@ const kinds = JSON.parse(readFileSync(join(ROOT, "interior-kinds.json"), "utf8")
 let keys = process.argv.slice(2).filter((a) => !a.startsWith("--"));
 if (!keys.length) keys = Object.entries(kinds).filter(([, v]) => v.kind === "habitable").map(([k]) => k);
 
+// ATTENTION : StarBreaker emet TOUS les nodes a tous les LODs ; au LOD2 ce sont les GEOMETRIES
+// qui manquent (prims vides / mesh absent), pas les nodes. Le signal est donc :
+//   geomNodes = nodes pointant un mesh ayant >=1 prim non vide (c'est ce que prune() garde).
 const glbStats = (path) => {
   const buf = readFileSync(path);
   let off = 12, j = null;
   while (off < buf.length) { const len = buf.readUInt32LE(off), type = buf.readUInt32LE(off + 4), s = off + 8; if (type === 0x4e4f534a) { j = JSON.parse(buf.subarray(s, s + len).toString("utf8")); break; } off = s + len; }
-  let t = 0;
-  for (const m of j.meshes ?? []) for (const p of m.primitives ?? []) { const a = j.accessors[p.indices ?? p.attributes?.POSITION]; const c = a ? a.count : 0; t += (p.mode ?? 4) === 4 ? Math.floor(c / 3) : Math.max(0, c - 2); }
-  return { tris: t, meshes: (j.meshes || []).length, nodes: (j.nodes || []).length };
+  let t = 0, livePrims = 0; const liveMesh = new Set();
+  const meshes = j.meshes ?? [];
+  for (let mi = 0; mi < meshes.length; mi++) for (const p of meshes[mi].primitives ?? []) {
+    const a = j.accessors[p.indices ?? p.attributes?.POSITION]; const c = a ? a.count : 0;
+    const tri = (p.mode ?? 4) === 4 ? Math.floor(c / 3) : Math.max(0, c - 2);
+    if (tri > 0) { livePrims++; liveMesh.add(mi); }
+    t += tri;
+  }
+  let geomNodes = 0;
+  for (const n of j.nodes ?? []) if (n.mesh != null && liveMesh.has(n.mesh)) geomNodes++;
+  return { tris: t, prims: livePrims, geomNodes, nodes: (j.nodes || []).length };
 };
 
 const out = {};
@@ -43,10 +54,10 @@ for (const key of keys) {
       rec[`lod${lod}`] = glbStats(tmp);
       rmSync(tmp);
     }
-    rec.deltaNodes = rec.lod1.nodes - rec.lod2.nodes;
+    rec.deltaNodes = rec.lod1.geomNodes - rec.lod2.geomNodes;
     rec.trisRatio = +(rec.lod1.tris / Math.max(1, rec.lod2.tris)).toFixed(2);
-    rec.densite = rec.lengthM ? +(rec.lod1.meshes / rec.lengthM).toFixed(2) : null; // meshes/m : tres bas = interieur ~vide
-    console.log(`${key.padEnd(30)} L2 ${String(rec.lod2.nodes).padStart(5)} n / ${(rec.lod2.tris / 1e6).toFixed(2)}M  ->  L1 ${String(rec.lod1.nodes).padStart(5)} n / ${(rec.lod1.tris / 1e6).toFixed(2)}M   ΔN=${String(rec.deltaNodes).padStart(5)}  dens=${rec.densite}`);
+    rec.densite = rec.lengthM ? +(rec.lod1.geomNodes / rec.lengthM).toFixed(2) : null; // geomNodes/m : tres bas = interieur ~vide
+    console.log(`${key.padEnd(30)} L2 ${String(rec.lod2.geomNodes).padStart(5)} g / ${(rec.lod2.tris / 1e6).toFixed(2)}M  ->  L1 ${String(rec.lod1.geomNodes).padStart(5)} g / ${(rec.lod1.tris / 1e6).toFixed(2)}M   ΔN=${String(rec.deltaNodes).padStart(5)}  dens=${rec.densite}`);
   } catch (e) {
     rec.err = e.message.split("\n")[0];
     console.log(`${key.padEnd(30)} ECHEC : ${rec.err}`);
@@ -58,7 +69,7 @@ writeFileSync(join(ROOT, "lod-delta.json"), JSON.stringify(out, null, 1));
 
 const ok = Object.entries(out).filter(([, r]) => !r.err);
 console.log(`\n=== TOP delta nodes (candidats LOD1) ===`);
-for (const [k, r] of ok.slice().sort((a, b) => b[1].deltaNodes - a[1].deltaNodes).slice(0, 20)) console.log(`  ${k.padEnd(30)} ΔN=${r.deltaNodes}  (${r.lod2.nodes} -> ${r.lod1.nodes})  x${r.trisRatio} tris`);
+for (const [k, r] of ok.slice().sort((a, b) => b[1].deltaNodes - a[1].deltaNodes).slice(0, 20)) console.log(`  ${k.padEnd(30)} ΔN=${r.deltaNodes}  (${r.lod2.geomNodes} -> ${r.lod1.geomNodes})  x${r.trisRatio} tris`);
 console.log(`\n=== Densite la plus faible (candidats gate EMPTY_INTERIOR) ===`);
-for (const [k, r] of ok.filter(([, r]) => r.densite != null).sort((a, b) => a[1].densite - b[1].densite).slice(0, 15)) console.log(`  ${k.padEnd(30)} dens=${r.densite} meshes/m  (${r.lod1.meshes} meshes, ${r.lengthM} m, walkable ${r.walkableM2} m²)`);
+for (const [k, r] of ok.filter(([, r]) => r.densite != null).sort((a, b) => a[1].densite - b[1].densite).slice(0, 15)) console.log(`  ${k.padEnd(30)} dens=${r.densite} geomNodes/m  (${r.lod1.geomNodes} noeuds geom, ${r.lengthM} m, walkable ${r.walkableM2} m²)`);
 console.log(`\nlod-delta.json ecrit (${ok.length}/${keys.length} OK)`);
