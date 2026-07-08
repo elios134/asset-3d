@@ -85,6 +85,14 @@ const stripLights = (doc) => { for (const e of doc.getRoot().listExtensionsUsed(
 // propre clone de tout accessor partage AVANT meshopt ; le dedup interne de quantize() re-fusionne
 // les clones identiques ensuite (cout final nul, valide : 3->0 debordants sur le Carrack).
 const unshareAccessors = (doc) => { const seen = new Set(); for (const mesh of doc.getRoot().listMeshes()) for (const pr of mesh.listPrimitives()) { for (const sem of pr.listSemantics()) { const a = pr.getAttribute(sem); if (!a) continue; if (seen.has(a)) pr.setAttribute(sem, a.clone()); else seen.add(a); } const idx = pr.getIndices(); if (idx) { if (seen.has(idx)) pr.setIndices(idx.clone()); else seen.add(idx); } } };
+// Albedo noir errone (retour app round 8 : coques GAMA Railen/Tyilui noires). Certains materiaux ont
+// baseColorFactor ~[0,0,0] AVEC une baseColorTexture -> le facteur noir multiplie la texture a zero
+// (Metal_Raw_058, Metal_Secondary_056, Plastic_Tertiary_059...). Un facteur noir sur une texture n'est
+// jamais voulu (pourquoi attacher une texture pour l'annuler ?) -> on force [1,1,1] (garde l'alpha).
+// On EXCLUT les emissifs (glow : albedo noir + emissif = voulu). Le cas SANS texture (Paint_Base etc.,
+// facteur noir + aucun albedo = grosse surface de coque) n'est PAS recuperable ici (couleur reelle
+// perdue a l'extraction) -> laisse a la garde runtime de l'app (repli gris, choix visuel calibrable).
+const fixBlackAlbedo = (doc) => { let n = 0; for (const mat of doc.getRoot().listMaterials()) { const bf = mat.getBaseColorFactor(); if (!bf) continue; if (bf[0] >= 0.05 || bf[1] >= 0.05 || bf[2] >= 0.05) continue; const ef = mat.getEmissiveFactor(); if ((ef && (ef[0] > 0 || ef[1] > 0 || ef[2] > 0)) || mat.getEmissiveTexture()) continue; if (!mat.getBaseColorTexture()) continue; mat.setBaseColorFactor([1, 1, 1, bf[3]]); n++; } return n; };
 const exp = (key, out, extra) => execFileSync(STARBREAKER, ["entity", "export", key, out, "--materials", "textures", "--mip", "4", ...extra], { env: { ...process.env, SC_DATA_P4K: P4K }, stdio: "ignore", timeout: 600000 });
 const mul = (a, b) => { const o = new Array(16); for (let c = 0; c < 4; c++) for (let r = 0; r < 4; r++) { let s = 0; for (let k = 0; k < 4; k++) s += a[k * 4 + r] * b[c * 4 + k]; o[c * 4 + r] = s; } return o; };
 const ap = (m, x, y, z) => [m[0]*x+m[4]*y+m[8]*z+m[12], m[1]*x+m[5]*y+m[9]*z+m[13], m[2]*x+m[6]*y+m[10]*z+m[14]];
@@ -111,6 +119,7 @@ for (const key of batch) {
       }
       const extDoc = await io.read(tmpExt);
       stripLights(extDoc);
+      fixBlackAlbedo(extDoc);
       await extDoc.transform(dedup(), prune(), textureCompress({ encoder: sharp, targetFormat: "webp", resize: [512, 512], quality: 80 }));
       unshareAccessors(extDoc);
       await extDoc.transform(meshopt({ encoder: MeshoptEncoder, level: "high" }));
@@ -157,6 +166,7 @@ for (const key of batch) {
     if (anchored.has(key)) { const fx = tmpInt.replace(/\.glb$/, ".fixed.glb"); execFileSync("node", ["scripts/reposition-interior.mjs", tmpInt, fx, `--key=${key}`], { cwd: ROOT, stdio: "ignore" }); intPath = fx; }
     const intDoc = await io.read(intPath);
     stripLights(intDoc);
+    fixBlackAlbedo(intDoc);
     // EMISSIF EXTERIEUR leake. L'export interieur embarque toutes les features emissives de la coque
     // ext qui, vues de l'interieur, brillent comme des blocs orange/saumon flottants (retour app :
     // bloc saumon puis « bloc orange » Carrack round 8). Le strip round 7/8 ne visait que « mtl_glow »
