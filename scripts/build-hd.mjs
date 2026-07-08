@@ -97,6 +97,7 @@ for (const key of batch) {
   const intOut = OUT_SUFFIX ? join(MODELS, OUT_SUFFIX, `${key}.${OUT_SUFFIX}-interior.glb`) : join(MODELS, `${key}.interior.glb`);
   if (OUT_SUFFIX) mkdirSync(join(MODELS, OUT_SUFFIX), { recursive: true });
   const tmpExt = join(MODELS, `_hd_${key}_ext.glb`), tmpInt = join(MODELS, `_hd_${key}_int.glb`);
+  const tmpHull = join(MODELS, `_hd_${key}_hull.glb`);
   try {
     let hull;
     // 1) EXTERIEUR silhouette texturee (sauf --interiors-only)
@@ -130,6 +131,25 @@ for (const key of batch) {
     // gagnants du scan delta : Railen/Tyilui/Ironclad/Tiburon/MOLE/Starlifter) et on retombe au
     // LOD2 (+simplify) si le fichier FINAL depasse maxSizeBytes. Pre-filtre : un export LOD1
     // >7M tris ne tiendra jamais sous le plafond (Idris 9,6M -> 108 Mo) -> repli direct sans build.
+
+    // COQUE EXTERIEURE LEAKEE (retour app round 8 : « bloc orange » Carrack). L'export interieur
+    // contient TOUTE la geometrie du vaisseau : la coque exterieure (CGA .../Exterior/*.cga : livree,
+    // decals, chevrons de danger, antennes, portes de coque) EN PLUS des conteneurs socpak interieurs.
+    // Vue par un trou, cette coque ext apparait comme des blocs orange « plus gros que reel ». Ces
+    // nodes de coque sont EXACTEMENT ceux d'un export --no-interior --no-attachments (= ce que le SHELL
+    // occulteur fournit deja) -> on les retire de l'interieur : plus de double coque (fichier allege)
+    // ni de leak. Discriminateur = IDENTITE DE NODE (nom), PAS le materiau : l'interieur reutilise
+    // LEGITIMEMENT des materiaux _ext_mtl_ sur de vraies surfaces (train, parois) mais avec des noms
+    // ABSENTS de la coque. Valide : Carrack (51 coque cullees / 318 reuse gardees / 0 collision),
+    // Railen (69 / 181 / 0). Reference au LOD1 (noms LOD-independants : LOD1 ⊇ LOD2). Echec export
+    // (rarissime) -> set vide -> aucun cull, le build continue.
+    let hullNames = new Set();
+    try {
+      execFileSync(STARBREAKER, ["entity", "export", key, tmpHull, "--materials", "colors", "--mip", "4", "--no-interior", "--no-attachments", "--lod", "1"], { env: { ...process.env, SC_DATA_P4K: P4K }, stdio: "ignore", timeout: 600000 });
+      const hullDoc = await io.read(tmpHull);
+      for (const n of hullDoc.getRoot().listNodes()) if (n.getMesh()) hullNames.add(n.getName() || "");
+    } catch (e) { console.log(`  ⚠ ${key} : ref coque ext indisponible (${e.message.split("\n")[0]}) — pas de cull coque`); }
+
     const buildInterior = async (lodTry, hasFallback) => {
     exp(key, tmpInt, ["--lod", String(lodTry)]);
     if (lodTry === 1 && hasFallback && glbTris(tmpInt) > 7_000_000) return false;
@@ -137,18 +157,32 @@ for (const key of batch) {
     if (anchored.has(key)) { const fx = tmpInt.replace(/\.glb$/, ".fixed.glb"); execFileSync("node", ["scripts/reposition-interior.mjs", tmpInt, fx, `--key=${key}`], { cwd: ROOT, stdio: "ignore" }); intPath = fx; }
     const intDoc = await io.read(intPath);
     stripLights(intDoc);
-    // L'export interieur contient TOUTE la geometrie du vaisseau, y compris les elements GLOW
-    // exterieurs (feux, tuyeres, liseres emissifs) qui, vus de l'interieur, apparaissent comme des
-    // blocs emissifs flottants dans la coque (retour app : bloc saumon Carrack, mesh_16_1/28_1,
-    // anvl_carrack_ext_mtl_glow_010 ; 35/62 vaisseaux touches, 166 prims). On retire ces prims du
-    // build interieur ; le SHELL garde les siens (liseres sur la silhouette, vus par les trous = ok).
-    const EXT_GLOW = /(_ext_|_exterior_)mtl_glow/i;
-    for (const mesh of intDoc.getRoot().listMeshes()) for (const pr of mesh.listPrimitives()) if (EXT_GLOW.test(pr.getMaterial()?.getName() || "")) pr.dispose();
+    // EMISSIF EXTERIEUR leake. L'export interieur embarque toutes les features emissives de la coque
+    // ext qui, vues de l'interieur, brillent comme des blocs orange/saumon flottants (retour app :
+    // bloc saumon puis « bloc orange » Carrack round 8). Le strip round 7/8 ne visait que « mtl_glow »
+    // et ratait : les DECALS DE LIVREE (decal_pom_opaque_013, ef=1 = livree Anvil orange qui brille),
+    // le TEXTE DE MATRICULE (RTT_Text_To_Decal_044, ef=1) et le GLOW MOTEUR (engine_glow_012 — le nom
+    // ne contient pas « mtl_glow »). Critere robuste et generique : materiau du NAMESPACE EXTERIEUR
+    // (_ext_mtl_/_exterior_mtl_) ET EMISSIF (emissiveFactor>0 ou emissiveTexture). Les glows INTERIEURS
+    // legitimes utilisent d'autres namespaces (component_master, relay_demo_mat...) -> intacts. Per-PRIM
+    // (pas per-node) : un node mixte (tourelle habitee) garde ses prims interieurs, perd le decal ext.
+    const EXT_NS = /(_ext_|_exterior_)mtl_/i;
+    const isEmissive = (mat) => { if (!mat) return false; const ef = mat.getEmissiveFactor(); return (ef && (ef[0] > 0 || ef[1] > 0 || ef[2] > 0)) || !!mat.getEmissiveTexture(); };
+    for (const mesh of intDoc.getRoot().listMeshes()) for (const pr of mesh.listPrimitives()) { const mat = pr.getMaterial(); if (mat && EXT_NS.test(mat.getName() || "") && isEmissive(mat)) pr.dispose(); }
     // Blacklist ciblee par vaisseau (interior-prim-blacklist.json) : artefacts d'extraction
     // confirmes que les regles generiques ne couvrent pas (ex. decals Idris de 5-9 m en plein
     // milieu de la cabine du Starfarer — asset d'un AUTRE vaisseau leake par StarBreaker).
     for (const rx of primBlacklist[key] ?? []) { const re = new RegExp(rx, "i");
       for (const mesh of intDoc.getRoot().listMeshes()) for (const pr of mesh.listPrimitives()) if (re.test(pr.getMaterial()?.getName() || "")) pr.dispose(); }
+    // cull de la COQUE EXTERIEURE leakee : tout node-mesh dont le nom appartient a la coque (voir
+    // hullNames plus haut). setMesh(null) et non dispose() : disposer un node detache ses enfants
+    // (transform parentale perdue -> sauts absurdes) ; retirer le mesh preserve la hierarchie, prune()
+    // nettoie ensuite. Garde-fou : si le set est vide (ref indispo) la boucle ne fait rien.
+    if (hullNames.size) {
+      let culledHull = 0;
+      for (const node of intDoc.getRoot().listNodes()) if (node.getMesh() && hullNames.has(node.getName() || "")) { node.setMesh(null); culledHull++; }
+      if (culledHull) console.log(`  ⌫ ${key} : ${culledHull} nodes coque ext retires de l'interieur`);
+    }
     // cull strays (generique/anonyme, loin hors coque) — bbox manuelle cycle-safe
     const nodes = intDoc.getRoot().listNodes(); const pm = new Map(); for (const n of nodes) for (const c of n.listChildren()) pm.set(c, n);
     const wm = (n) => { let mm = n.getMatrix(), p = pm.get(n), seen = new Set([n]), d = 0; while (p && !seen.has(p) && d < 200) { mm = mul(p.getMatrix(), mm); seen.add(p); p = pm.get(p); d++; } return mm; };
@@ -235,11 +269,11 @@ for (const key of batch) {
       if (hasFallback) console.log(`  ↩ ${key} : LOD${lodTry} = ${mb(statSync(intOut).size)} > plafond ${mb(BUDGET.interior.maxSizeBytes)} -> repli LOD${lodsToTry[li + 1]}`);
     }
 
-    for (const f of [tmpExt, tmpInt, tmpInt.replace(/\.glb$/, ".fixed.glb")]) if (existsSync(f)) rmSync(f);
+    for (const f of [tmpExt, tmpInt, tmpHull, tmpInt.replace(/\.glb$/, ".fixed.glb")]) if (existsSync(f)) rmSync(f);
     results.push({ key, ok: true, ext: statSync(extOut).size, int: statSync(intOut).size });
     console.log(`  ✓ ${key.padEnd(28)} ext ${mb(statSync(extOut).size)} · int ${mb(statSync(intOut).size)} LOD${intLodUsed} ${anchored.has(key) ? "(reposition)" : ""}`);
   } catch (e) {
-    for (const f of [tmpExt, tmpInt, tmpInt.replace(/\.glb$/, ".fixed.glb")]) if (existsSync(f)) rmSync(f);
+    for (const f of [tmpExt, tmpInt, tmpHull, tmpInt.replace(/\.glb$/, ".fixed.glb")]) if (existsSync(f)) rmSync(f);
     results.push({ key, ok: false, err: e.message.split("\n")[0] });
     console.log(`  ✗ ${key.padEnd(28)} ECHEC : ${e.message.split("\n")[0]}`);
   }
