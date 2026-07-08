@@ -1,6 +1,6 @@
 {
   "schemaVersion": 2,
-  "generatedAt": "2026-07-08T20:33:08.919Z",
+  "generatedAt": "2026-07-08T21:13:15.557Z",
   "patchVersion": "sc-4.1",
   "levels": [
     {
@@ -271,7 +271,7 @@
           "tris": 1172065,
           "sizeBytes": 9804672,
           "hasInterior": false,
-          "sha256": "363269ebd2018f9c43ce814a5bc49254ac536685dad641d94542f32c4acdb978",
+          "sha256": "93fa72a6764b0c44f488676991eab44562d652b8aaa57788c412e2cba7fc734f",
           "render": "clay"
         },
         {
@@ -279,9 +279,9 @@
           "label": "Interieur",
           "modelUrl": "https://github.com/elios134/asset-3d/releases/download/sc-4.1/AEGS_Idris_M.clay-interior.glb",
           "tris": 3616300,
-          "sizeBytes": 33039616,
+          "sizeBytes": 33039600,
           "hasInterior": true,
-          "sha256": "8dd31e1d2ddb9a473fbde158dcdd4310ab15eae4923489ee5f8640f1c752f189",
+          "sha256": "7c60d9e02b5842a43745d80d6666b66cbe19faac6c0b96f4cf8150d628f75d80",
           "render": "clay",
           "hasCollision": true,
           "interiorKind": "habitable",
@@ -309,7 +309,7 @@
           "tris": 1223765,
           "sizeBytes": 10145980,
           "hasInterior": false,
-          "sha256": "18e8e99c3c0b44e1fde501f55ace886a1d7cd6297fccbb949b4b97c35272e7aa",
+          "sha256": "08a777499d6309a68eb54281e425bffa0189f96c1432d8a0e2a8d8650df5ea7c",
           "render": "clay"
         },
         {
@@ -317,9 +317,9 @@
           "label": "Interieur",
           "modelUrl": "https://github.com/elios134/asset-3d/releases/download/sc-4.1/AEGS_Idris_P.clay-interior.glb",
           "tris": 3371550,
-          "sizeBytes": 31464060,
+          "sizeBytes": 31464044,
           "hasInterior": true,
-          "sha256": "f4b59cae270fa8224915fbfd3a780024ac088bf65f00e7f576836865af93a031",
+          "sha256": "b3765a366d8e052550d01fc3ef751d1082df73ba5e7278d889ed233b0cd1077e",
           "render": "clay",
           "hasCollision": true,
           "interiorKind": "habitable",

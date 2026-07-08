@@ -138,20 +138,21 @@ if (floorH.size) {
 
 // 3c) spawn_point : cellule la plus DEGAGEE (max distance au bord du plancher, erosion Chebyshev).
 // Evite le centroide geometrique qui tombe souvent sur un obstacle (colonne centrale de soute Cutlass).
-let spawn = null;
-// INDICE COCKPIT : si --spawn-hint=x,z (position monde du siege pilote), on place spawn_point sur la
-// cellule de plancher la plus proche = le joueur commence AU COCKPIT (demande user), pas au centroide
-// de la plus grande zone (qui tombe sur un moteur/soute). Fallback erosion si pas d'indice.
+let spawn = null;        // cellule de plancher (fallback erosion)
+let spawnPos = null;     // position 3D explicite (indice marqueur cockpit/passerelle)
+// INDICE MARQUEUR : --spawn-hint=x,y,z (position monde du siege pilote/capitaine/console de passerelle).
+// On place spawn_point DIRECTEMENT a cette position 3D -> l'app snappe au sol du BON pont par raycast.
+// Le Y est crucial en MULTI-PONT : a une meme colonne XZ, la passerelle Idris (y=20) et le pont inferieur
+// (y=5) coexistent ; un indice XZ seul snapperait au plus bas (bug spawn Idris mi-vaisseau). Le Y desambigue.
 {
   const ha = args.find((x) => x.startsWith("--spawn-hint="));
   const hint = ha ? ha.split("=")[1].split(",").map(Number) : null;
-  if (hint && hint.length >= 2 && isFinite(hint[0]) && isFinite(hint[1]) && floorH.size) {
-    let bestD = Infinity;
-    for (const ck of floorH.keys()) { const [cx, cz] = parse(ck); const wx = cx*CELL+CELL/2, wz = cz*CELL+CELL/2; const d = (wx-hint[0])**2 + (wz-hint[1])**2; if (d < bestD) { bestD = d; spawn = ck; } }
-    if (spawn != null) { const [cx, cz] = parse(spawn); const h = floorH.get(spawn) + LIFT; console.log(`spawn_point (indice siege pilote) : cellule ${spawn} @ monde (${(cx*CELL+CELL/2).toFixed(1)}, ${h.toFixed(1)}, ${(cz*CELL+CELL/2).toFixed(1)}) a ${Math.sqrt(bestD).toFixed(1)}m du siege`); }
+  if (hint && hint.length >= 3 && hint.every((v) => isFinite(v))) {
+    spawnPos = [hint[0], hint[1], hint[2]];
+    console.log(`spawn_point (indice marqueur 3D) @ monde (${hint[0].toFixed(1)}, ${hint[1].toFixed(1)}, ${hint[2].toFixed(1)})`);
   }
 }
-if (spawn == null) {
+if (spawnPos == null) {
   const dist = new Map();
   const has = (cx, cz) => floorH.has(`${cx},${cz}`);
   for (const ck of floorH.keys()) {
@@ -213,8 +214,10 @@ if (!args.includes("--no-patch")) {
   const pprim = out.createPrimitive().setAttribute("POSITION", pacc).setAttribute("NORMAL", pnrm).setIndices(pidx).setMaterial(pmat);
   scene.addChild(out.createNode("floor_patch").setMesh(out.createMesh("floor_patch").addPrimitive(pprim)));
 }
-// noeud vide spawn_point (l'app s'y ancre par nom) au centre de la plus grande zone degagee
-if (spawn != null) { const [sx, sz] = parse(spawn); const sy = floorH.get(spawn) + LIFT; scene.addChild(out.createNode("spawn_point").setTranslation([sx*CELL+CELL/2, sy, sz*CELL+CELL/2])); }
+// noeud vide spawn_point (l'app s'y ancre par nom). Priorite : position 3D du marqueur (cockpit/passerelle),
+// sinon cellule la plus degagee (erosion). L'app snappe au sol + garde le point degage.
+if (spawnPos != null) { scene.addChild(out.createNode("spawn_point").setTranslation([spawnPos[0], spawnPos[1], spawnPos[2]])); }
+else if (spawn != null) { const [sx, sz] = parse(spawn); const sy = floorH.get(spawn) + LIFT; scene.addChild(out.createNode("spawn_point").setTranslation([sx*CELL+CELL/2, sy, sz*CELL+CELL/2])); }
 await io.write(outPath, out);
 const areaM2 = (floorH.size * CELL * CELL).toFixed(0);
 console.log(`plancher : ${floorH.size} cellules -> ${areaM2} m2 couverts · ${positions.length/3} verts · CELL=${CELL} CLEAR=${CLEAR} CEIL_MAX=${CEIL_MAX}`);

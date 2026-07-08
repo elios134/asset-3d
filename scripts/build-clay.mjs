@@ -166,8 +166,20 @@ for (const key of batch) {
       const nn = intDoc.getRoot().listNodes();
       const ppm = new Map(); for (const n of nn) for (const c of n.listChildren()) ppm.set(c, n);
       const wmSeat = (n) => { let m = n.getMatrix(), p = ppm.get(n), s = new Set([n]), d = 0; while (p && !s.has(p) && d < 200) { m = mul(p.getMatrix(), m); s.add(p); p = ppm.get(p); d++; } return m; };
-      const seat = nn.find((n) => /seat_pilot/i.test(n.getName() || ""));
-      if (seat) { const M = wmSeat(seat); spawnHint = `${M[12].toFixed(2)},${M[14].toFixed(2)}`; console.log(`  ⌖ ${key} : siege pilote @ (${M[12].toFixed(1)}, ${M[14].toFixed(1)}) -> indice spawn`); }
+      // priorite : siege CAPITAINE (passerelle capitaux) > siege PILOTE (chasseurs + helm passerelle) >
+      // console de passerelle > cockpit. Position 3D (x,y,z) : le Y desambigue le pont en multi-pont
+      // (passerelle Idris y=20 vs pont bas y=5) -> spawn sur le BON pont, pas au centre mi-hauteur.
+      const ANCHORS = [
+        /seat_captain|captains?_chair|_captain(_|\b)/i,           // siege capitaine (passerelle capitaux)
+        /seat_pilot|pilot_seat/i,                                 // siege pilote (chasseurs + helm)
+        /dashboard_captain|command_console|(^|_)helm(_|\b)/i,      // console de commandement
+        /bridge_entrance|bridge_door|bridge_elevator|bridge_captain|bridge_main/i, // entree passerelle
+        /(^|_)cockpit(_|$)/i,                                      // cockpit (petits/moyens)
+        /(^|_)bridge(_|$)/i,                                       // passerelle generique (dernier recours)
+      ];
+      let seat = null;
+      for (const re of ANCHORS) { seat = nn.find((n) => re.test(n.getName() || "")); if (seat) break; }
+      if (seat) { const M = wmSeat(seat); spawnHint = `${M[12].toFixed(2)},${M[13].toFixed(2)},${M[14].toFixed(2)}`; console.log(`  ⌖ ${key} : ancre spawn "${(seat.getName()||"").slice(0,40)}" @ (${M[12].toFixed(1)}, ${M[13].toFixed(1)}, ${M[14].toFixed(1)})`); }
     }
 
     // cull coque ext leakee (identite de node ; setMesh(null) preserve la hierarchie, prune apres)
