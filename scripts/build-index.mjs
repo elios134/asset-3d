@@ -49,7 +49,16 @@ for (const file of glbFiles.sort()) {
     continue;
   }
   const key = stem.slice(0, dot);
-  const level = stem.slice(dot + 1);
+  let level = stem.slice(dot + 1);
+
+  // PIVOT CLAY : clay-interior devient la variante "interior" (render:clay, prioritaire sur le HD).
+  // clay-exterior JAMAIS en prod (galerie garde l'exterior HD texture ; on garde les clay-ext hors-index
+  // pour tests). Exclusions d'interieur (geometrie explosee irrecuperable, verdict QA app) : pas de visite.
+  const EXCLUDE_INTERIOR = new Set(["VNCL_Mauler"]);
+  let isClayInterior = false;
+  if (level === "clay-exterior") continue;
+  if (level === "clay-interior") { level = "interior"; isClayInterior = true; }
+  if (level === "interior" && EXCLUDE_INTERIOR.has(key)) continue;
 
   if (!levelOrder.includes(level)) {
     problems.push(`[LEVEL] ${file} : niveau "${level}" inconnu (config.levels = ${levelOrder.join(", ")})`);
@@ -83,6 +92,8 @@ for (const file of glbFiles.sort()) {
     hasInterior: level === "interior",
     sha256,
   };
+  // flags pivot clay (l'app : render:"clay" -> matcap/keepMaterials off ; hasCollision -> attend collision_walk)
+  if (isClayInterior) { variant.render = "clay"; variant.hasCollision = true; }
   if (level === "interior" && interiorKinds[key]) {
     variant.interiorKind = interiorKinds[key].kind;              // "habitable" | "cockpit"
     variant.interiorWalkableM2 = interiorKinds[key].walkableM2;  // surface plancher praticable (m2) — pour reglage du seuil cote app
@@ -102,9 +113,20 @@ for (const file of glbFiles.sort()) {
       };
     } catch { /* pas de sidecar pour ce vaisseau */ }
   }
-  byKey.get(key).push(variant);
+  // dedup par niveau : clay-interior PRIORITAIRE sur le HD interior (le clay remplace le HD legacy).
+  // clay-interior est traite avant interior (ordre alpha : "clay-" < "int") -> quand le HD arrive, la
+  // variante clay existe deja et on ignore le HD.
+  const arr = byKey.get(key);
+  const dupIdx = arr.findIndex((v) => v.level === level);
+  if (dupIdx >= 0) {
+    const dupIsClay = arr[dupIdx].render === "clay";
+    if (isClayInterior && !dupIsClay) arr[dupIdx] = variant; // clay remplace un HD deja present
+    else { console.log(`  ${file.padEnd(40)} (ignore : variante ${level} deja ${dupIsClay ? "clay" : "HD"})`); continue; }
+  } else {
+    arr.push(variant);
+  }
 
-  console.log(`  ${file.padEnd(40)} ${String(tris).padStart(9)} tris  ${fmtMB(sizeBytes).padStart(9)}`);
+  console.log(`  ${file.padEnd(40)} ${String(tris).padStart(9)} tris  ${fmtMB(sizeBytes).padStart(9)}${isClayInterior ? "  [clay]" : ""}`);
 }
 
 const ships = [];
