@@ -95,8 +95,8 @@
       "kind": "cockpit"
     },
     "ANVL_Terrapin": {
-      "walkableM2": 37,
-      "kind": "cockpit"
+      "walkableM2": 80,
+      "kind": "habitable"
     },
     "ANVL_Valkyrie": {
       "walkableM2": 402,
@@ -147,8 +147,8 @@
       "kind": "habitable"
     },
     "DRAK_Command_Module": {
-      "walkableM2": 82,
-      "kind": "cockpit"
+      "walkableM2": 173,
+      "kind": "habitable"
     },
     "DRAK_Corsair": {
       "walkableM2": 457,
@@ -171,8 +171,8 @@
       "kind": "habitable"
     },
     "DRAK_Cutter_Scout": {
-      "walkableM2": 35,
-      "kind": "cockpit"
+      "walkableM2": 95,
+      "kind": "habitable"
     },
     "DRAK_Dragonfly": {
       "walkableM2": 0,
@@ -199,12 +199,12 @@
       "kind": "habitable"
     },
     "ESPR_Prowler": {
-      "walkableM2": 68,
-      "kind": "cockpit"
+      "walkableM2": 120,
+      "kind": "habitable"
     },
     "ESPR_Prowler_Utility": {
-      "walkableM2": 80,
-      "kind": "cockpit"
+      "walkableM2": 133,
+      "kind": "habitable"
     },
     "GAMA_Railen": {
       "walkableM2": 898,
@@ -428,6 +428,98 @@
     },
     "VNCL_Mauler": {
       "walkableM2": 2162,
+      "kind": "habitable"
+    },
+    "ARGO_MOTH": {
+      "walkableM2": 287,
+      "kind": "habitable"
+    },
+    "DRAK_Vulture": {
+      "walkableM2": 136,
+      "kind": "habitable"
+    },
+    "ANVL_Terrapin_Medic": {
+      "walkableM2": 78,
+      "kind": "habitable"
+    },
+    "CRUS_Intrepid": {
+      "walkableM2": 129,
+      "kind": "habitable"
+    },
+    "RSI_Mantis": {
+      "walkableM2": 71,
+      "kind": "habitable"
+    },
+    "DRAK_Cutter": {
+      "walkableM2": 98,
+      "kind": "habitable"
+    },
+    "DRAK_Cutter_Rambler": {
+      "walkableM2": 96,
+      "kind": "habitable"
+    },
+    "AEGS_Avenger_Stalker": {
+      "walkableM2": 74,
+      "kind": "habitable"
+    },
+    "AEGS_Avenger_Titan": {
+      "walkableM2": 78,
+      "kind": "habitable"
+    },
+    "AEGS_Avenger_Titan_Renegade": {
+      "walkableM2": 78,
+      "kind": "habitable"
+    },
+    "AEGS_Avenger_Warlock": {
+      "walkableM2": 73,
+      "kind": "habitable"
+    },
+    "ANVL_C8_Pisces": {
+      "walkableM2": 40,
+      "kind": "habitable"
+    },
+    "ANVL_C8R_Pisces": {
+      "walkableM2": 27,
+      "kind": "habitable"
+    },
+    "ANVL_C8X_Pisces_Expedition": {
+      "walkableM2": 40,
+      "kind": "habitable"
+    },
+    "MRAI_Guardian": {
+      "walkableM2": 82,
+      "kind": "habitable"
+    },
+    "MRAI_Guardian_MX": {
+      "walkableM2": 556,
+      "kind": "habitable"
+    },
+    "MRAI_Guardian_QI": {
+      "walkableM2": 82,
+      "kind": "habitable"
+    },
+    "RSI_Aurora_Mk2": {
+      "walkableM2": 32,
+      "kind": "habitable"
+    },
+    "DRAK_Clipper": {
+      "walkableM2": 121,
+      "kind": "habitable"
+    },
+    "RSI_Meteor": {
+      "walkableM2": 71,
+      "kind": "habitable"
+    },
+    "MISC_Fortune": {
+      "walkableM2": 123,
+      "kind": "habitable"
+    },
+    "MISC_Hull_A": {
+      "walkableM2": 75,
+      "kind": "habitable"
+    },
+    "ARGO_SRV": {
+      "walkableM2": 98,
       "kind": "habitable"
     }
   }
