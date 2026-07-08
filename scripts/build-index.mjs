@@ -87,6 +87,21 @@ for (const file of glbFiles.sort()) {
     variant.interiorKind = interiorKinds[key].kind;              // "habitable" | "cockpit"
     variant.interiorWalkableM2 = interiorKinds[key].walkableM2;  // surface plancher praticable (m2) — pour reglage du seuil cote app
   }
+  // sidecar lumieres (export-lights.mjs) : KHR_lights_punctual strippees du .glb, relivrees en JSON
+  // (repere du .glb interieur publie) — l'app allume les N plus proches du joueur.
+  if (level === "interior") {
+    const lightsFile = `${key}.lights.json`;
+    const lightsPath = join(modelsDir, lightsFile);
+    try {
+      const lbuf = readFileSync(lightsPath);
+      variant.lights = {
+        url: `${releaseBase}/${lightsFile}`,
+        sha256: createHash("sha256").update(lbuf).digest("hex"),
+        sizeBytes: statSync(lightsPath).size,
+        count: JSON.parse(lbuf.toString("utf8")).count ?? 0,
+      };
+    } catch { /* pas de sidecar pour ce vaisseau */ }
+  }
   byKey.get(key).push(variant);
 
   console.log(`  ${file.padEnd(40)} ${String(tris).padStart(9)} tris  ${fmtMB(sizeBytes).padStart(9)}`);
