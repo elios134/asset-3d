@@ -184,15 +184,16 @@ for (const key of batch) {
       if (seat) { const M = wmSeat(seat); spawnHint = `${M[12].toFixed(2)},${M[13].toFixed(2)},${M[14].toFixed(2)}`; console.log(`  ⌖ ${key} : ancre spawn "${(seat.getName()||"").slice(0,40)}" @ (${M[12].toFixed(1)}, ${M[13].toFixed(1)}, ${M[14].toFixed(1)})`); }
     }
 
-    // cull coque ext leakee (identite de node ; setMesh(null) preserve la hierarchie, prune apres)
-    let culledHull = 0;
-    for (const node of intDoc.getRoot().listNodes()) if (node.getMesh() && hullNames.has(node.getName() || "")) { node.setMesh(null); culledHull++; }
-
-    // cull MECANISMES EXTERIEURS leakes : train d'atterrissage + baies (RLG/FLG/MLG/NLG + BONE_*LG).
+    // MECANISMES EXTERIEURS leakes : train d'atterrissage + baies (RLG/FLG/MLG/NLG + BONE_*LG).
     // `--no-attachments` (ref coque) SKIP le train -> ses noms ne sont pas dans hullNames -> il leake dans
     // l'interieur en geometrie "porte batarde" mal placee (Carrack : RLG_Door_*, RLGB_Door_Hinge...).
     // Ce ne sont PAS des portes interieures (celles-la = mesh_door_*) -> on les retire du parcours.
     const EXT_MECH = /(^|_)(RLG|FLG|MLG|NLG)B?(_|$)|(^|_)BONE_[FRMN]LG/i;
+
+    // cull coque ext leakee (identite de node ; setMesh(null) preserve la hierarchie, prune apres)
+    let culledHull = 0;
+    for (const node of intDoc.getRoot().listNodes()) if (node.getMesh() && hullNames.has(node.getName() || "")) { node.setMesh(null); culledHull++; }
+
     let culledMech = 0;
     for (const node of intDoc.getRoot().listNodes()) if (node.getMesh() && EXT_MECH.test(node.getName() || "")) { node.setMesh(null); culledMech++; }
 
@@ -290,14 +291,16 @@ for (const key of batch) {
     let hullTris = 0;
     if (CHUNK && HULL_TRIS > 0) {
       const hullDoc = await io.read(tmpPre);
-      for (const n of hullDoc.getRoot().listNodes()) if (isDoor(n.getName() || "") && n.getMesh()) n.dispose();
+      // retirer les portes par nom de NOEUD **ET** de MESH — les noms de portes vivent sur le MESH (noeuds
+      // anonymises), exactement comme chunkVisual les exclut. Filtrer le noeud seul = 219 vantaux bakes en
+      // murs dans le hull (BUG "user piege au spawn" : chaque porte fermee etait infranchissable).
+      for (const n of hullDoc.getRoot().listNodes()) if (n.getMesh() && (isDoor(n.getName() || "") || isDoor(n.getMesh().getName() || ""))) n.dispose();
       for (const n of hullDoc.getRoot().listNodes()) n.setName("");
       for (const m of hullDoc.getRoot().listMeshes()) m.setName("");
       // STRIP normales (collider render-off) : weld refuse de fusionner des sommets coincidents aux normales
       // differentes (facettes clay) -> soupe non-reductible (test : reduction x1.7 seulement). Position seule
-      // -> weld reconnecte les shells -> simplify x12 (897k -> 117k). Puis simplify SANS lockBorder (les
-      // interieurs ultra-fragmentes ont "tout en bord" -> lockBorder bloque a ~300k). Trous de murs mineurs
-      // acceptables (sol authoritatif = collision_walk+floor_patch ; capsule joueur a un rayon).
+      // -> weld reconnecte les shells -> simplify x12+. lockBorder:false OK : gate verify-walk = 100.5% de la
+      // connectivite baseline chunks (le bug "user piege" venait des PORTES bakees, pas du simplify).
       for (const mesh of hullDoc.getRoot().listMeshes()) for (const pr of mesh.listPrimitives()) for (const sem of pr.listSemantics()) if (sem !== "POSITION") pr.setAttribute(sem, null);
       await hullDoc.transform(dedup(), prune(), flatten(), joinPrims(), weld({ tolerance: 0.01 }));
       const t0 = docTris(hullDoc);

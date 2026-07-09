@@ -1,8 +1,9 @@
-// Experimentation recette collision_hull : trouve weld+simplify qui reduit vraiment (~100-150k tris)
-// en restant watertight-ish. Lit un _c_KEY_pre.glb (interieur clay PRE-chunk garde via --keep-pre).
+// Banc d'essai recettes collision_hull : depuis un _c_KEY_pre.glb (--keep-pre), genere des candidats
+// hull (weld+simplify params) en glb autonomes nommes collision_hull, a passer a verify-walk --hull=...
+// usage: node scripts/hull-exp.mjs models/_c_KEY_pre.glb
 import { NodeIO } from "@gltf-transform/core";
 import { ALL_EXTENSIONS } from "@gltf-transform/extensions";
-import { dedup, prune, flatten, join as joinPrims, simplify, weld, getBounds } from "@gltf-transform/functions";
+import { dedup, prune, flatten, join as joinPrims, simplify, weld } from "@gltf-transform/functions";
 import { MeshoptEncoder, MeshoptDecoder, MeshoptSimplifier } from "meshoptimizer";
 
 await MeshoptEncoder.ready; await MeshoptDecoder.ready; await MeshoptSimplifier.ready;
@@ -11,36 +12,32 @@ const src = process.argv[2];
 const docTris = (doc) => { let t = 0; for (const m of doc.getRoot().listMeshes()) for (const p of m.listPrimitives()) { const a = p.getIndices() ?? p.getAttribute("POSITION"); t += a ? Math.floor(a.getCount() / 3) : 0; } return t; };
 const DOOR = /door|hatch/i;
 
-// base commune : retirer portes, anonymiser, flatten+join (une seule geo bakee)
 async function base() {
   const doc = await io.read(src);
-  for (const n of doc.getRoot().listNodes()) if (DOOR.test(n.getName() || "") && n.getMesh()) n.dispose();
+  for (const n of doc.getRoot().listNodes()) if (n.getMesh() && (DOOR.test(n.getName() || "") || DOOR.test(n.getMesh().getName() || ""))) n.dispose();
   for (const n of doc.getRoot().listNodes()) n.setName("");
   for (const m of doc.getRoot().listMeshes()) m.setName("");
-  // STRIP normales : un collider n'en a pas besoin, ET weld refuse de fusionner des sommets coincidents
-  // aux normales differentes (facettes clay) -> soupe de triangles non-reductible. Position seule = weld
-  // reconnecte les shells -> simplify efficace.
   for (const mesh of doc.getRoot().listMeshes()) for (const pr of mesh.listPrimitives()) for (const sem of pr.listSemantics()) if (sem !== "POSITION") pr.setAttribute(sem, null);
-  await doc.transform(dedup(), prune(), flatten(), joinPrims());
+  await doc.transform(dedup(), prune(), flatten(), joinPrims(), weld({ tolerance: 0.01 }));
   return doc;
 }
 
 const TARGET = 120000;
-const bstr = (b) => `[${b.min.map((v)=>v.toFixed(1))}]..[${b.max.map((v)=>v.toFixed(1))}] (${(b.max[0]-b.min[0]).toFixed(1)}x${(b.max[1]-b.min[1]).toFixed(1)}x${(b.max[2]-b.min[2]).toFixed(1)})`;
-const ref = await base();
-const b0 = getBounds(ref.getRoot().listScenes()[0]);
-console.log(`BOUNDS source : ${bstr(b0)}`);
 const trials = [
-  { lock: true, error: 0.05 },
-  { lock: false, error: 0.05 },
+  { tag: "raw", simp: null },                          // welde seul, pas de simplify (borne haute)
+  { tag: "lock-e003", simp: { error: 0.003, lockBorder: true } },
+  { tag: "lock-e001", simp: { error: 0.001, lockBorder: true } },
+  { tag: "free-e003", simp: { error: 0.003, lockBorder: false } },
+  { tag: "free-e001", simp: { error: 0.001, lockBorder: false } },
 ];
 for (const tr of trials) {
   const doc = await base();
   const t0 = docTris(doc);
-  await doc.transform(weld({ tolerance: 0.01 }));
-  const ratio = Math.max(0.005, TARGET / docTris(doc));
-  await doc.transform(simplify({ simplifier: MeshoptSimplifier, ratio, error: tr.error, lockBorder: tr.lock }));
+  if (tr.simp) await doc.transform(simplify({ simplifier: MeshoptSimplifier, ratio: Math.max(0.005, TARGET / t0), error: tr.simp.error, lockBorder: tr.simp.lockBorder }));
   const tf = docTris(doc);
-  const b = getBounds(doc.getRoot().listScenes()[0]);
-  console.log(`lock=${tr.lock}  bake ${t0} -> simplify ${tf} (x${(t0/tf).toFixed(1)})  BOUNDS ${bstr(b)}`);
+  for (const n of doc.getRoot().listNodes()) if (n.getMesh()) n.setName("collision_hull");
+  for (const m of doc.getRoot().listMeshes()) m.setName("collision_hull");
+  const out = src.replace(/_pre\.glb$/, `_hull_${tr.tag}.glb`);
+  await io.write(out, doc);
+  console.log(`${tr.tag.padEnd(10)} ${t0} -> ${tf} tris  (${out.split(/[\\/]/).pop()})`);
 }
