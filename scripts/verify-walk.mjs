@@ -17,6 +17,8 @@ const srcPath = process.argv[2];
 const hullPath = argOpt("hull", srcPath);
 const MIN_PCT = parseFloat(argOpt("min", "85"));
 const CAPSULE_R = parseFloat(argOpt("capsule", "0")); // rayon capsule joueur (m) ; 0 = colonne fine (defaut)
+const STEP_UP = parseFloat(argOpt("up", "0.7"));   // montee max par hop (defaut 0.7 = QA collision_hull historique). Regler 0.28 pour la capsule reelle app.
+const STEP_DOWN = parseFloat(argOpt("drop", "0.7")); // descente max par hop. App = chute libre illimitee => --drop=999 pour valider un plancher navmesh asymetrique (sinon sous-estime : les ponts en contrebas sont "injoignables" en symetrique).
 const CELL = 0.25;
 
 const mul = (a, b) => { const o = new Array(16); for (let c = 0; c < 4; c++) for (let r = 0; r < 4; r++) { let s = 0; for (let k = 0; k < 4; k++) s += a[k * 4 + r] * b[c * 4 + k]; o[c * 4 + r] = s; } return o; };
@@ -163,7 +165,7 @@ const flood = (startKey, visited) => {
         const nkx = cx + dx * d, nkz = cz + dz * d; const ys = cells.get(nkx + nkz * nx);
         if (!ys) continue;
         for (const ny2 of ys) {
-          if (Math.abs(ny2 - y) > 0.7) continue;
+          const dyv = ny2 - y; if (dyv > STEP_UP || -dyv > STEP_DOWN) continue; // asymetrie montee/chute (capsule app)
           const nk = `${nkx}|${nkz}|${Math.round(ny2/0.35)}`;
           if (!passSet.has(nk) || s.has(nk)) continue;
           let clear = true;

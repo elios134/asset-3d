@@ -45,6 +45,7 @@ const SPAWN_LARGEST = process.argv.includes("--spawn-largest"); // spawn sur la 
 const FLOOR_NAVMESH = process.argv.includes("--floor-navmesh"); // plancher NAVMESH (floor-navmesh.mjs) : flood capsule 3D sur la vraie collision -> ponts CONNECTES PAR CONSTRUCTION (escaliers captes). Remplace generate-floor pour les capitaux multi-pont (Javelin). Combiner avec --spawn-largest (le hint siege tombe sur le pont isole/passerelle).
 const STEP_UP = opt("step-up", "0.28"); // (navmesh) marche max grimpable par la capsule (m) = step-up REEL app (0.29 dur emergent de R=0.30, mesure au triangle ; regle 0.28 marge). Trop haut connecte des corniches infranchissables.
 const DROP = opt("drop", "999");        // (navmesh) descente max par pas (m). App = capsule tombe librement (pas de snap ni degat) => 999 = illimite : recupere les ponts en contrebas SANS risque (tout ce qui est plus bas est atteignable). --drop=0.28 pour revenir symetrique.
+const NAV_CELL = opt("nav-cell", "0.25"); // (navmesh) taille des quads emis. DOIT etre <= step-up sinon une volee d'escalier devient des pas > step-up et se DECONNECTE (mesure : 0.5 -> 84.6% atteignable, 0.25 -> 100%). 0.25 preserve les marches ~0.2m sous le step-up 0.28.
 const TRIS = parseInt(opt("tris", "600000"), 10);
 const PROP_MIN = parseFloat(opt("prop-min", "0.4")); // cull clutter cosmetique < Nm (gobelets/boulons/boutons ; 0 = off)
 const SOFT = process.argv.includes("--soft"); // simplify DOUX : lockBorder seul, jamais la 2e passe (qui perce)
@@ -265,7 +266,7 @@ for (const key of batch) {
       // CONNECTE PAR CONSTRUCTION (escaliers/rampes captes, ponts relies selon --step-up). Requis la ou
       // generate-floor (grille 2D + test plafond) fragmente les ponts (Javelin). --spawn-largest => spawn
       // sur la plus grande composante (le hint siege tombe souvent sur un pont isole type passerelle).
-      execFileSync("node", ["scripts/floor-navmesh.mjs", floorSrc, tmpFloor, `--cell-out=${CELL}`, `--lift=0`, `--step-up=${STEP_UP}`, ...(DROP != null ? [`--drop=${DROP}`] : []), ...(SPAWN_LARGEST ? [] : (spawnHint ? [`--spawn-hint=${spawnHint}`] : []))], { cwd: ROOT, stdio: "ignore" });
+      execFileSync("node", ["scripts/floor-navmesh.mjs", floorSrc, tmpFloor, `--cell-out=${NAV_CELL}`, `--lift=0`, `--step-up=${STEP_UP}`, ...(DROP != null ? [`--drop=${DROP}`] : []), ...(SPAWN_LARGEST ? [] : (spawnHint ? [`--spawn-hint=${spawnHint}`] : []))], { cwd: ROOT, stdio: "ignore" });
     } else {
       execFileSync("node", ["scripts/generate-floor.mjs", floorSrc, tmpFloor, `--lift=0`, `--ceil=${CEIL}`, `--clear=${CLEAR}`, `--cell=${CELL}`, `--max-yspread=${MAX_YSPREAD}`, ...(MULTI_DECK ? ["--multi-deck"] : []), ...(SPAWN_LARGEST ? ["--spawn-largest"] : []), ...(spawnHint ? [`--spawn-hint=${spawnHint}`] : [])], { cwd: ROOT, stdio: "ignore" });
     }
