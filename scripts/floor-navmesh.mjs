@@ -33,13 +33,13 @@ const optS = (k, d) => { const a = argv.find((x) => x.startsWith(`--${k}=`)); re
 const optN = (k, d) => { const v = optS(k, null); return v == null ? d : parseFloat(v); };
 const CELL = optN("cell", 0.25);        // resolution du flood (fine = escaliers precis)
 const CELL_OUT = optN("cell-out", 0.5); // resolution des quads emis (0.5 = taille comparable a generate-floor)
-const STEP = optN("step", 0.45);        // (retro) marche symetrique si --step-up/--drop absents
-const STEP_UP = optN("step-up", STEP);  // MONTEE max par pas (marche grimpable capsule). Trop haut => corniche => le joueur ne monte pas.
-const STEP_DOWN = optN("drop", STEP);   // DESCENTE max par pas. Defaut = STEP_UP (symetrique = SUR : tout lien est bidirectionnel, pas de joueur coince). Monter --drop pour capter les sauts vers le bas (asymetrique).
+const STEP = optN("step", 0.28);        // (retro) marche symetrique si --step-up/--drop absents
+const STEP_UP = optN("step-up", STEP);  // MONTEE max par pas = step-up REEL du controller app (0.29 dur, emergent de R=0.30 ; regle 0.28 marge). Trop haut => corniche que le joueur ne peut PAS remonter.
+const STEP_DOWN = optN("drop", STEP_UP); // DESCENTE max par pas. App : capsule TOMBE librement (pas de snap, pas de degat) => passer --drop=999 (illimite) recupere les ponts en contrebas. Defaut = STEP_UP (symetrique).
 const CAPSULE_R = optN("capsule", 0.3); // rayon capsule joueur (m)
 const LIFT = optN("lift", 0.1);         // le pied = haut du voxel solide ; on remonte un peu au niveau de marche
 const CLEAR_LO = optN("clear-lo", 0.3); // bas de la bande d'air (au-dessus du pied)
-const CLEAR_HI = optN("clear-hi", 1.7); // haut de la bande d'air (hauteur capsule effective)
+const CLEAR_HI = optN("clear-hi", 1.75); // haut de la bande d'air = hauteur capsule app (H=1.75 ; clairance debout MIN_HEADROOM 1.8)
 const JUMP = Math.round(optN("jump", 4)); // saut de trou max (cellules) : traverse les seuils erodes
 const YQ = 0.35;                        // quantum vertical pour distinguer les ponts (deux niveaux < YQ = meme surface)
 
@@ -154,19 +154,20 @@ console.log(`candidats debout : ${stand.size}`);
 const hintA = argv.find((x) => x.startsWith("--spawn-hint="));
 const hint = hintA ? hintA.split("=")[1].split(",").map(Number) : null;
 const worldFoot = (key) => { const [gx, gz] = key.split("|").map(Number); return [mn[0] + gx*CELL + CELL/2, stand.get(key), mn[2] + gz*CELL + CELL/2]; };
-let seed = null;
+let seedKey = null;
 if (hint && hint.length >= 3 && hint.every(isFinite)) {
   let bd = 1e18;
   for (const key of stand.keys()) { const [wx, wy, wz] = worldFoot(key);
     // pondere Y fort : a une meme colonne XZ, la passerelle (haut) et le pont bas coexistent ; le hint Y desambigue
-    const d = (wx-hint[0])**2 + 3*(wy-hint[1])**2 + (wz-hint[2])**2; if (d < bd) { bd = d; seed = key; } }
-  if (seed) { const [wx, wy, wz] = worldFoot(seed); console.log(`seed (hint 3D -> candidat @ ${wx.toFixed(1)},${wy.toFixed(1)},${wz.toFixed(1)}, dist ${Math.sqrt(bd).toFixed(2)}m)`); }
+    const d = (wx-hint[0])**2 + 3*(wy-hint[1])**2 + (wz-hint[2])**2; if (d < bd) { bd = d; seedKey = key; } }
+  if (seedKey) { const [wx, wy, wz] = worldFoot(seedKey); console.log(`seed (hint 3D -> candidat @ ${wx.toFixed(1)},${wy.toFixed(1)},${wz.toFixed(1)}, dist ${Math.sqrt(bd).toFixed(2)}m)`); }
 }
 
 // FLOOD BFS sur les candidats debout. Directions 4 ; saut de trou d=1..JUMP (seuils de portes erodes) avec
-// passabilite intermediaire ; marche |ΔfootY| <= STEP par HOP (grimpe escaliers/rampes). Connecte PAR
-// construction : tout candidat atteint est joignable a la capsule depuis le seed.
-const floodFrom = (startKey, visited) => {
+// passabilite intermediaire. Marche : MONTEE <= up, DESCENTE <= down (ASYMETRIE : la capsule app grimpe
+// <= step-up 0.28 mais TOMBE librement, sans snap ni degat -> down illimite recupere les ponts en contrebas).
+// Connecte PAR construction : tout candidat atteint est joignable a la capsule depuis le seed.
+const floodFrom = (startKey, visited, up, down) => {
   const s = new Set([startKey]); const q = [startKey];
   while (q.length) {
     const key = q.pop(); const [cx, cz] = key.split("|").map(Number); const y = stand.get(key);
@@ -177,9 +178,9 @@ const floodFrom = (startKey, visited) => {
         for (const ny2 of ys) {
           const nk = `${nkx}|${nkz}|${Math.round(ny2 / YQ)}`;
           if (!stand.has(nk) || s.has(nk)) continue;
-          const dyv = ny2 - y;                    // marche franchissable (montee/descente asymetriques)
-          if (dyv > STEP_UP || -dyv > STEP_DOWN) continue;
-          let ok = true; // passabilite intermediaire (le saut ne traverse pas un mur)
+          const dyv = ny2 - y;
+          if (dyv > up || -dyv > down) continue;
+          let ok = true; // passabilite intermediaire (le pas ne traverse pas un mur)
           for (let i = 1; i < d && ok; i++) { const yi = y + ((ny2 - y) * i) / d; if (!standing(cx + dx*i, cz + dz*i, yi)) ok = false; }
           if (!ok) continue;
           s.add(nk); q.push(nk); if (visited) visited.add(nk);
@@ -190,16 +191,19 @@ const floodFrom = (startKey, visited) => {
   return s;
 };
 
-let reached, seedKey = seed;
-if (seed) reached = floodFrom(seed);
-else {
-  // fallback sans hint : plus grande composante connexe (le seed = son point de depart, garde pour spawn)
+// SPAWN sans hint : ancre SURE = plus grande composante SYMETRIQUE (up=down=STEP_UP) -> zone au sol
+// bidirectionnelle, PAS un perchoir (avec descente∞, un flood aveugle spawnerait sur le point le plus HAUT
+// d'ou l'on tombe partout). La couverture asymetrique est ensuite seedee dessus.
+if (!seedKey) {
   const visited = new Set(); let best = new Set(), bestStart = null;
-  for (const k of stand.keys()) { if (visited.has(k)) continue; visited.add(k); const comp = floodFrom(k, visited); if (comp.size > best.size) { best = comp; bestStart = k; } }
-  reached = best; seedKey = bestStart;
-  if (seedKey) { const [wx, wy, wz] = worldFoot(seedKey); console.log(`seed (fallback + grande composante @ ${wx.toFixed(1)},${wy.toFixed(1)},${wz.toFixed(1)})`); }
+  for (const k of stand.keys()) { if (visited.has(k)) continue; visited.add(k); const comp = floodFrom(k, visited, STEP_UP, STEP_UP); if (comp.size > best.size) { best = comp; bestStart = k; } }
+  seedKey = bestStart;
+  if (seedKey) { const [wx, wy, wz] = worldFoot(seedKey); console.log(`seed (grande composante symetrique ${best.size}c @ ${wx.toFixed(1)},${wy.toFixed(1)},${wz.toFixed(1)})`); }
 }
-console.log(`atteints depuis seed : ${reached.size}/${stand.size} candidats debout (${(100*reached.size/stand.size).toFixed(1)}%)`);
+
+// COUVERTURE : flood ASYMETRIQUE depuis le spawn (montee <= STEP_UP, descente <= STEP_DOWN).
+const reached = seedKey ? floodFrom(seedKey, null, STEP_UP, STEP_DOWN) : new Set();
+console.log(`atteints depuis seed : ${reached.size}/${stand.size} candidats debout (${(100*reached.size/stand.size).toFixed(1)}% ; step-up ${STEP_UP} down ${STEP_DOWN})`);
 
 // DUMP diagnostic (points monde atteints)
 const dumpA = argv.find((x) => x.startsWith("--dump="));

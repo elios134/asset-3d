@@ -43,8 +43,8 @@ const MAX_YSPREAD = opt("max-yspread", "30"); // seuil rejet interieur explose (
 const MULTI_DECK = process.argv.includes("--multi-deck"); // plancher MULTI-PONT (generate-floor emet tous les niveaux/escaliers -> ponts connectes). Pour capitaux hauts.
 const SPAWN_LARGEST = process.argv.includes("--spawn-largest"); // spawn sur la + grande composante (pont principal) au lieu de l'indice siege. Capitaux multi-pont ou la passerelle est un ilot.
 const FLOOR_NAVMESH = process.argv.includes("--floor-navmesh"); // plancher NAVMESH (floor-navmesh.mjs) : flood capsule 3D sur la vraie collision -> ponts CONNECTES PAR CONSTRUCTION (escaliers captes). Remplace generate-floor pour les capitaux multi-pont (Javelin). Combiner avec --spawn-largest (le hint siege tombe sur le pont isole/passerelle).
-const STEP_UP = opt("step-up", "0.45"); // (navmesh) marche max grimpable par la capsule (m). = hauteur de marche du character controller app. Trop bas fragmente ; trop haut connecte des corniches infranchissables.
-const DROP = opt("drop", null);         // (navmesh) descente max par pas (m) ; defaut = STEP_UP (symetrique/sur). Monter pour capter les sauts vers le bas (capsule qui redescend).
+const STEP_UP = opt("step-up", "0.28"); // (navmesh) marche max grimpable par la capsule (m) = step-up REEL app (0.29 dur emergent de R=0.30, mesure au triangle ; regle 0.28 marge). Trop haut connecte des corniches infranchissables.
+const DROP = opt("drop", "999");        // (navmesh) descente max par pas (m). App = capsule tombe librement (pas de snap ni degat) => 999 = illimite : recupere les ponts en contrebas SANS risque (tout ce qui est plus bas est atteignable). --drop=0.28 pour revenir symetrique.
 const TRIS = parseInt(opt("tris", "600000"), 10);
 const PROP_MIN = parseFloat(opt("prop-min", "0.4")); // cull clutter cosmetique < Nm (gobelets/boulons/boutons ; 0 = off)
 const SOFT = process.argv.includes("--soft"); // simplify DOUX : lockBorder seul, jamais la 2e passe (qui perce)
