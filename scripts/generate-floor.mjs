@@ -50,23 +50,30 @@ for (const node of nodes) {
   }
 }
 
-// 2) hauteur plancher par cellule = surface la plus basse avec vide debout au-dessus
-const floorH = new Map();
+// MODE MULTI-PONT (--multi-deck) : emet TOUS les niveaux plancher valides par cellule (pont principal,
+// ponts superieurs, marches d'escalier) au lieu du seul plus bas -> les escaliers entrent dans le filet
+// -> les ponts se CONNECTENT (BFS app/verify-walk grimpe par sauts Y). Requis pour les capitaux hauts
+// (Javelin 8 ponts). Le mono-pont (defaut) reste pour les petits ships (1 pont).
+const MULTI = args.includes("--multi-deck");
+
+// 2) hauteur(s) plancher par cellule = surface(s) avec vide debout au-dessus + plafond (piece close).
+const floorH = new Map();       // mono : plus bas niveau par cellule (feed fill/denoise/spawn/yspread)
+const cellLevels = new Map();   // multi : TOUS les niveaux valides par cellule
 for (const [ck, ys] of cells) {
   ys.sort((a, b) => a - b);
   // clusters de surface (bins tasses)
   const levels = [];
   for (const y of ys) { if (!levels.length || y - levels[levels.length - 1] > YSNAP) levels.push(y); }
-  // plus bas niveau L tel que : (a) vide debout [L+0.3, L+CLEAR] libre ET (b) un PLAFOND existe dans
+  // niveau L valide ssi : (a) vide debout [L+0.3, L+CLEAR] libre ET (b) un PLAFOND existe dans
   // [L+CLEAR, L+CEIL_MAX] -> confine aux VRAIES pieces closes (pas la coque ouverte / le dessous des ailes).
-  let floor = null;
+  const valid = [];
   for (let i = 0; i < levels.length; i++) {
     const L = levels[i];
     const clear = !levels.some((v) => v > L + 0.3 && v < L + CLEAR);
     const ceiling = levels.some((v) => v >= L + CLEAR && v <= L + CEIL_MAX);
-    if (clear && ceiling) { floor = L; break; }
+    if (clear && ceiling) valid.push(L);
   }
-  if (floor != null) floorH.set(ck, floor);
+  if (valid.length) { floorH.set(ck, valid[0]); cellLevels.set(ck, valid); }
 }
 
 // 3) passe de remplissage : cellule sans plancher mais >=3 voisines-plancher -> mediane des voisines
@@ -128,8 +135,10 @@ for (let pass = 0; pass < 6; pass++) {
 // dizaines de m (Mauler 78 m ; les 61 sains <= 22 m). Mesure ICI sur floorH BRUT (avant quantization
 // meshopt, ou l'etalement reel est lisible). yspread > MAXYS -> on vide floorH -> collision_walk vide
 // -> l'invariant de build-clay SKIP le ship. Capte le Mauler et tout futur explose, proprement.
+// En MULTI (multi-pont assume), le yspread est GRAND par conception (ponts empiles) -> garde-fou desactive
+// (le multi-pont est un choix explicite du build ; l'explose se detecte autrement, ex. couverture faible).
 const MAXYS = opt("max-yspread", 30);
-if (floorH.size) {
+if (!MULTI && floorH.size) {
   let ymn = Infinity, ymx = -Infinity; for (const h of floorH.values()) { if (h < ymn) ymn = h; if (h > ymx) ymx = h; }
   const ys = ymx - ymn;
   console.log(`yspread plancher = ${ys.toFixed(1)} m (seuil explose ${MAXYS} m)`);
@@ -144,7 +153,30 @@ let spawnPos = null;     // position 3D explicite (indice marqueur cockpit/passe
 // On place spawn_point DIRECTEMENT a cette position 3D -> l'app snappe au sol du BON pont par raycast.
 // Le Y est crucial en MULTI-PONT : a une meme colonne XZ, la passerelle Idris (y=20) et le pont inferieur
 // (y=5) coexistent ; un indice XZ seul snapperait au plus bas (bug spawn Idris mi-vaisseau). Le Y desambigue.
-{
+// --spawn-largest (capitaux multi-pont type Javelin) : l'indice siege tombe souvent sur un pont isole
+// (passerelle = ilot 6 cellules) alors que les ponts ne se connectent pas (escaliers non captes). On
+// ancre alors le spawn au centre ERODE de la PLUS GRANDE composante connexe (|Δh|<0.8) = le pont
+// principal -> visite mono-pont coherente (comme les autres capitaux) au lieu d'un ilot injouable.
+const SPAWN_LARGEST = args.includes("--spawn-largest");
+if (SPAWN_LARGEST && floorH.size) {
+  const seenC = new Set(); let big = null;
+  for (const start of floorH.keys()) {
+    if (seenC.has(start)) continue;
+    const stack = [start], comp = []; seenC.add(start);
+    while (stack.length) { const ck = stack.pop(); comp.push(ck); const [cx, cz] = parse(ck); const h = floorH.get(ck);
+      for (let dx = -1; dx <= 1; dx++) for (let dz = -1; dz <= 1; dz++) { if (!dx && !dz) continue; const nk = `${cx+dx},${cz+dz}`; if (seenC.has(nk)) continue; const nh = floorH.get(nk); if (nh != null && Math.abs(nh - h) < 0.8) { seenC.add(nk); stack.push(nk); } } }
+    if (!big || comp.length > big.length) big = comp;
+  }
+  if (big) {
+    const set = new Set(big); const dist = new Map();
+    for (const ck of big) { const [cx, cz] = parse(ck); let border = false; for (let dx = -1; dx <= 1 && !border; dx++) for (let dz = -1; dz <= 1; dz++) { if (!dx && !dz) continue; if (!set.has(`${cx+dx},${cz+dz}`)) { border = true; break; } } dist.set(ck, border ? 1 : Infinity); }
+    for (let pass = 0; pass < 300; pass++) { let ch = false; for (const ck of big) { const [cx, cz] = parse(ck); let m = dist.get(ck); for (let dx = -1; dx <= 1; dx++) for (let dz = -1; dz <= 1; dz++) { if (!dx && !dz) continue; const nd = dist.get(`${cx+dx},${cz+dz}`); if (nd != null && nd + 1 < m) m = nd + 1; } if (m < dist.get(ck)) { dist.set(ck, m); ch = true; } } if (!ch) break; }
+    let bestck = big[0], bestd = -1; for (const [ck, d] of dist) if (d !== Infinity && d > bestd) { bestd = d; bestck = ck; }
+    const [cx, cz] = parse(bestck); spawnPos = [cx*CELL+CELL/2, floorH.get(bestck) + LIFT, cz*CELL+CELL/2];
+    console.log(`spawn_point (--spawn-largest : plus grande composante ${big.length}c, degagement ${bestd}) @ monde (${spawnPos[0].toFixed(1)}, ${spawnPos[1].toFixed(1)}, ${spawnPos[2].toFixed(1)})`);
+  }
+}
+if (spawnPos == null) {
   const ha = args.find((x) => x.startsWith("--spawn-hint="));
   const hint = ha ? ha.split("=")[1].split(",").map(Number) : null;
   if (hint && hint.length >= 3 && hint.every((v) => isFinite(v))) {
@@ -173,11 +205,16 @@ if (spawnPos == null) {
   if (spawn != null) { const [cx, cz] = parse(spawn); const h = floorH.get(spawn) + LIFT; console.log(`spawn_point : cellule ${spawn} (degagement ${best} cases) @ monde (${(cx*CELL+CELL/2).toFixed(1)}, ${h.toFixed(1)}, ${(cz*CELL+CELL/2).toFixed(1)})`); }
 }
 
-// 4) genere les quads (2 tris/cellule) a la hauteur plancher
+// 4) genere les quads (2 tris/cellule). MULTI : une nappe par niveau valide de la cellule (les escaliers
+// = niveaux intermediaires connectent les ponts). Mono : la hauteur plancher unique (floorH, deja
+// filtree fill+denoise). Source des paires (ck, hauteur) :
+const floorPairs = MULTI
+  ? [...cellLevels].flatMap(([ck, ls]) => ls.map((h) => [ck, h]))
+  : [...floorH];
 const positions = [], indices = [];
 let vi = 0;
 const normals = [];
-for (const [ck, h] of floorH) {
+for (const [ck, h] of floorPairs) {
   const [cx, cz] = parse(ck);
   const y = h + LIFT;
   const x0 = cx * CELL, z0 = cz * CELL, x1 = x0 + CELL, z1 = z0 + CELL;
