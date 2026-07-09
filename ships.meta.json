@@ -731,9 +731,9 @@
     "manufacturer": "Anvil Aerospace",
     "classification": "Gunship",
     "dims": {
-      "l": 0,
-      "b": 0,
-      "h": 0
+      "l": 53,
+      "b": 37,
+      "h": 16
     },
     "materials": "flat"
   },

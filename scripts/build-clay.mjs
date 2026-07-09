@@ -39,6 +39,7 @@ const habitable = kindsFile ? new Set(Object.entries(kindsFile.kinds).filter(([,
 const opt = (k, d) => { const a = process.argv.find((x) => x.startsWith(`--${k}=`)); return a ? a.split("=")[1] : d; };
 const INT_LOD_OVERRIDE = opt("int-lod", null) != null ? parseInt(opt("int-lod"), 10) : null;
 const CEIL = opt("ceil", "5.0"), CLEAR = opt("clear", "1.9"), CELL = opt("cell", "0.5");
+const MAX_YSPREAD = opt("max-yspread", "30"); // seuil rejet interieur explose (generate-floor). Capitaux TRES hauts (Javelin 89m multi-pont) : monter (--max-yspread=200).
 const TRIS = parseInt(opt("tris", "600000"), 10);
 const PROP_MIN = parseFloat(opt("prop-min", "0.4")); // cull clutter cosmetique < Nm (gobelets/boulons/boutons ; 0 = off)
 const SOFT = process.argv.includes("--soft"); // simplify DOUX : lockBorder seul, jamais la 2e passe (qui perce)
@@ -254,7 +255,7 @@ for (const key of batch) {
     await io.write(tmpIntClay, intDoc);
 
     // 3) plancher collision_walk + spawn_point (generate-floor). En mode chunk : sur la geo PRE-chunk.
-    execFileSync("node", ["scripts/generate-floor.mjs", floorSrc, tmpFloor, `--lift=0`, `--ceil=${CEIL}`, `--clear=${CLEAR}`, `--cell=${CELL}`, ...(spawnHint ? [`--spawn-hint=${spawnHint}`] : [])], { cwd: ROOT, stdio: "ignore" });
+    execFileSync("node", ["scripts/generate-floor.mjs", floorSrc, tmpFloor, `--lift=0`, `--ceil=${CEIL}`, `--clear=${CLEAR}`, `--cell=${CELL}`, `--max-yspread=${MAX_YSPREAD}`, ...(spawnHint ? [`--spawn-hint=${spawnHint}`] : [])], { cwd: ROOT, stdio: "ignore" });
     const fdoc = await io.read(tmpFloor);
     let walkTris = 0; for (const n of fdoc.getRoot().listNodes()) if (/collision_walk/i.test(n.getName() || "") && n.getMesh()) for (const p of n.getMesh().listPrimitives()) walkTris += Math.floor((p.getIndices()?.getCount() ?? 0) / 3);
     // INVARIANT : plancher vide => interieur inexploitable => SKIP (exclu du lot jouable)
@@ -325,6 +326,7 @@ for (const key of batch) {
     cleanup();
     results.push({ key, ok: false, err: e.message.split("\n")[0] });
     console.log(`  ✗ ${key.padEnd(26)} ECHEC : ${e.message.split("\n")[0]}`);
+    if (process.env.DEBUG_STACK) console.error(e.stack);
   }
 }
 const ok = results.filter((r) => r.ok);

@@ -525,6 +525,10 @@
     "ORIG_m80": {
       "walkableM2": 25,
       "kind": "habitable"
+    },
+    "ANVL_Paladin": {
+      "walkableM2": 457,
+      "kind": "habitable"
     }
   }
 }

@@ -33,7 +33,7 @@ function collect(doc, filter) {
       const nm = node.getName() || "";
       const flag = inChunk || /^chunk_/.test(nm);
       const mesh = node.getMesh();
-      if (mesh && filter(nm, flag)) for (const pr of mesh.listPrimitives()) {
+      if (mesh && filter(nm, mesh.getName() || "", flag)) for (const pr of mesh.listPrimitives()) {
         const pos = pr.getAttribute("POSITION"); if (!pos) continue;
         out.push({ wm, pos: pos.getArray(), idx: pr.getIndices()?.getArray() ?? null });
       }
@@ -61,13 +61,15 @@ const doc = await io.read(srcPath);
 await doc.transform(dequantize()); // meshopt quantize : POSITION = entiers bruts sans ca
 const hullDoc = hullPath === srcPath ? doc : await io.read(hullPath);
 if (hullDoc !== doc) await hullDoc.transform(dequantize());
-const COLLIDER = argOpt("collider", "hull"); // hull (defaut) | chunks (= comportement in-game actuel, baseline)
+const COLLIDER = argOpt("collider", "hull"); // hull (defaut) | chunks (baseline in-game capitaux) | visual (ships non-chunk : l'app collisionne le mesh visuel, portes exclues)
 // surface de marche = collision_walk + floor_patch (l'app collisionne les deux ; le walk seul est erode
 // aux seuils de portes -> ilots par piece -> faux "injoignable")
-const walk = worldTris(collect(doc, (nm) => /collision_walk|floor_patch/i.test(nm)));
+const walk = worldTris(collect(doc, (nm, mn) => /collision_walk|floor_patch/i.test(nm) || /collision_walk|floor_patch/i.test(mn)));
 const hull = COLLIDER === "chunks"
-  ? worldTris(collect(hullDoc, (nm, inChunk) => inChunk && !/door|hatch/i.test(nm)))
-  : worldTris(collect(hullDoc, (nm) => /collision_hull/i.test(nm)));
+  ? worldTris(collect(hullDoc, (nm, mn, inChunk) => inChunk && !/door|hatch/i.test(nm) && !/door|hatch/i.test(mn)))
+  : COLLIDER === "visual"
+  ? worldTris(collect(hullDoc, (nm, mn) => !/collision_walk|floor_patch|occluder_shell|spawn_point|door|hatch/i.test(`${nm} ${mn}`)))
+  : worldTris(collect(hullDoc, (nm, mn) => /collision_hull/i.test(nm) || /collision_hull/i.test(mn)));
 if (!walk.length) { console.error("collision_walk absent"); process.exit(2); }
 if (!hull.length) { console.error(`collider "${COLLIDER}" absent de ` + hullPath); process.exit(2); }
 let spawn = null;
@@ -139,32 +141,48 @@ const passable = (cx, cz, y) => {
 let total = 0, pass = 0;
 const passSet = new Map(); // key ix|iz|yq -> y
 for (const [k, ys] of cells) { const cx = k % nx, cz = Math.floor(k / nx); for (const y of ys) { total++; if (passable(cx, cz, y)) { pass++; passSet.set(`${cx}|${cz}|${Math.round(y/0.35)}`, y); } } }
+// --largest : ignore le spawn, part de la cellule qui donne la PLUS GRANDE composante connexe (meilleur
+// cas mono-pont, utile pour un vaisseau multi-pont dont le spawn tombe sur un ilot). Sinon part du spawn.
+const LARGEST = process.argv.includes("--largest");
 let start = null, bd = 1e9;
-for (const [key, y] of passSet) { const [cx, , ] = key.split("|").map(Number); const czz = Number(key.split("|")[1]);
-  const wx = mn[0] + cx * CELL, wz = mn[2] + czz * CELL;
-  const d = (wx-spawn[0])**2 + (y-spawn[1])**2 + (wz-spawn[2])**2; if (d < bd) { bd = d; start = key; } }
-if (!start) { console.error("aucune cellule franchissable pres du spawn"); process.exit(1); }
+if (!LARGEST) {
+  for (const [key, y] of passSet) { const [cx, , ] = key.split("|").map(Number); const czz = Number(key.split("|")[1]);
+    const wx = mn[0] + cx * CELL, wz = mn[2] + czz * CELL;
+    const d = (wx-spawn[0])**2 + (y-spawn[1])**2 + (wz-spawn[2])**2; if (d < bd) { bd = d; start = key; } }
+}
+if (!start && !LARGEST) { console.error("aucune cellule franchissable pres du spawn"); process.exit(1); }
 // BFS avec SAUT DE TROU : le filet walk est erode aux seuils de portes (ilots par piece) — on autorise
 // jusqu'a 4 cellules (1 m) de filet manquant SI la bande d'air 0.5-1.7 m est libre a chaque pas
 // intermediaire (une membrane/mur scelle dans la bande REJETTE le saut : pas de traversee de mur).
-const seen = new Set([start]); const q = [start];
-while (q.length) {
-  const key = q.pop(); const [cx, cz] = key.split("|").map(Number); const y = passSet.get(key);
-  for (const [dx, dz] of [[1,0],[-1,0],[0,1],[0,-1]]) {
-    for (let d = 1; d <= 4; d++) {
-      const nkx = cx + dx * d, nkz = cz + dz * d; const ys = cells.get(nkx + nkz * nx);
-      if (!ys) continue;
-      for (const ny2 of ys) {
-        if (Math.abs(ny2 - y) > 0.7) continue;
-        const nk = `${nkx}|${nkz}|${Math.round(ny2/0.35)}`;
-        if (!passSet.has(nk) || seen.has(nk)) continue;
-        let clear = true;
-        for (let i = 1; i < d && clear; i++) { const yi = y + ((ny2 - y) * i) / d; if (!passable(cx + dx * i, cz + dz * i, yi)) clear = false; }
-        if (!clear) continue;
-        seen.add(nk); q.push(nk);
+const flood = (startKey, visited) => {
+  const s = new Set([startKey]); const q = [startKey];
+  while (q.length) {
+    const key = q.pop(); const [cx, cz] = key.split("|").map(Number); const y = passSet.get(key);
+    for (const [dx, dz] of [[1,0],[-1,0],[0,1],[0,-1]]) {
+      for (let d = 1; d <= 4; d++) {
+        const nkx = cx + dx * d, nkz = cz + dz * d; const ys = cells.get(nkx + nkz * nx);
+        if (!ys) continue;
+        for (const ny2 of ys) {
+          if (Math.abs(ny2 - y) > 0.7) continue;
+          const nk = `${nkx}|${nkz}|${Math.round(ny2/0.35)}`;
+          if (!passSet.has(nk) || s.has(nk)) continue;
+          let clear = true;
+          for (let i = 1; i < d && clear; i++) { const yi = y + ((ny2 - y) * i) / d; if (!passable(cx + dx * i, cz + dz * i, yi)) clear = false; }
+          if (!clear) continue;
+          s.add(nk); q.push(nk); if (visited) visited.add(nk);
+        }
       }
     }
   }
+  return s;
+};
+let seen;
+if (LARGEST) {
+  const visited = new Set(); let best = new Set();
+  for (const k of passSet.keys()) { if (visited.has(k)) continue; visited.add(k); const comp = flood(k, visited); if (comp.size > best.size) best = comp; }
+  seen = best;
+} else {
+  seen = flood(start);
 }
 const dumpPath = argOpt("dump", null);
 if (dumpPath) {

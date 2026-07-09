@@ -1,6 +1,6 @@
 {
   "schemaVersion": 2,
-  "generatedAt": "2026-07-09T14:19:31.174Z",
+  "generatedAt": "2026-07-09T14:51:22.076Z",
   "patchVersion": "sc-4.1",
   "levels": [
     {
@@ -1648,9 +1648,9 @@
       "manufacturer": "Anvil Aerospace",
       "classification": "Gunship",
       "dims": {
-        "l": 0,
-        "b": 0,
-        "h": 0
+        "l": 53,
+        "b": 37,
+        "h": 16
       },
       "materials": "flat",
       "patchVersion": "sc-4.1",
@@ -1662,8 +1662,21 @@
           "tris": 694980,
           "sizeBytes": 6833620,
           "hasInterior": false,
-          "sha256": "bc97b832f305fc6e4fa81055233abbb9431866d74f54aeaab2fea99ad4450719",
+          "sha256": "f90fe0ca03e868259225eab6c1d20f4984658c0e4607287ecd78f30b15be7e38",
           "render": "clay"
+        },
+        {
+          "level": "interior",
+          "label": "Interieur",
+          "modelUrl": "https://github.com/elios134/asset-3d/releases/download/sc-4.1/ANVL_Paladin.clay-interior.glb",
+          "tris": 1238703,
+          "sizeBytes": 12737308,
+          "hasInterior": true,
+          "sha256": "4e5b0dc7816aced0211ae8c0b4724ec2442b8567a7b8728f9801f94072de5e38",
+          "render": "clay",
+          "hasCollision": true,
+          "interiorKind": "habitable",
+          "interiorWalkableM2": 457
         }
       ]
     },
