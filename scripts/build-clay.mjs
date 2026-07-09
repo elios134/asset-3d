@@ -45,7 +45,7 @@ const SOFT = process.argv.includes("--soft"); // simplify DOUX : lockBorder seul
 const OUT_TAG = opt("out-tag", ""); // suffixe fichier (ex. "soft" -> KEY.clay-soft-interior.glb) pour variantes hors-index
 const CHUNK = process.argv.includes("--chunk"); // segmente la geo visuelle en chunks spatiaux (bulle app) ; pas de join/simplify
 const CHUNK_SIZE = parseFloat(opt("chunk-size", "10")); // taille cellule chunk (m) — contrat app = 10
-const HULL_TRIS = parseInt(opt("hull-tris", "120000"), 10); // budget tris de collision_hull (Phase 1.5) : murs low-poly dédiés -> collider instantané. 0 = pas de hull.
+const HULL_TRIS = parseInt(opt("hull-tris", "300000"), 10); // budget tris de collision_hull (Phase 1.5) : murs low-poly dédiés -> collider instantané. 0 = pas de hull. 300k = fidélité embrasures de portes ÉGALE aux chunks in-game (120k pinçait ~9 portes sous le diamètre capsule ; BVH ~130ms négligeable vs 1.2s chunks).
 const EXT_ONLY = process.argv.includes("--ext-only"); // ne construire QUE l'exterieur clay (galerie resine ; ships sans interieur)
 const MODULES = process.argv.includes("--modules"); // inclure les attachements (armes/propulseurs/tourelles) dans l'exterieur — bug StarBreaker corrige (placement OK)
 

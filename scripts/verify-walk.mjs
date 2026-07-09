@@ -16,6 +16,7 @@ const LIST = process.argv.includes("--list");
 const srcPath = process.argv[2];
 const hullPath = argOpt("hull", srcPath);
 const MIN_PCT = parseFloat(argOpt("min", "85"));
+const CAPSULE_R = parseFloat(argOpt("capsule", "0")); // rayon capsule joueur (m) ; 0 = colonne fine (defaut)
 const CELL = 0.25;
 
 const mul = (a, b) => { const o = new Array(16); for (let c = 0; c < 4; c++) for (let r = 0; r < 4; r++) { let s = 0; for (let k = 0; k < 4; k++) s += a[k * 4 + r] * b[c * 4 + k]; o[c * 4 + r] = s; } return o; };
@@ -118,9 +119,19 @@ voxelize(walk, (x, y, z) => {
   ys.push(y);
 });
 
-// franchissable : colonne d'air 0.5-1.7 m au-dessus du pied, sans voxel hull (hors surface de marche)
+// franchissable : bande d'air 0.5-1.7 m au-dessus du pied, sans voxel hull (hors surface de marche).
+// avec CAPSULE_R>0 : tout le disque horizontal de rayon CAPSULE_R autour de (cx,cz) doit etre libre
+// (replique le check capsule de l'app : embrasure remeshee < diametre => bloquee).
+const RC = CAPSULE_R > 0 ? Math.round(CAPSULE_R / CELL) : 0;
 const passable = (cx, cz, y) => {
-  for (let h = 0.5; h <= 1.7; h += CELL) { const v = vid(cx, iy(y + h), cz); if (solid[v] && !walkVox[v]) return false; }
+  for (let h = 0.5; h <= 1.7; h += CELL) {
+    const yy = iy(y + h);
+    for (let dx = -RC; dx <= RC; dx++) for (let dz = -RC; dz <= RC; dz++) {
+      if (dx*dx + dz*dz > RC*RC) continue;
+      const gx = cx + dx, gz = cz + dz; if (gx < 0 || gx >= nx || gz < 0 || gz >= nz) continue;
+      const v = vid(gx, yy, gz); if (solid[v] && !walkVox[v]) return false;
+    }
+  }
   return true;
 };
 

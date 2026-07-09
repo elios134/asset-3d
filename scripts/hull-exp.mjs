@@ -22,22 +22,18 @@ async function base() {
   return doc;
 }
 
-const TARGET = 120000;
-const trials = [
-  { tag: "raw", simp: null },                          // welde seul, pas de simplify (borne haute)
-  { tag: "lock-e003", simp: { error: 0.003, lockBorder: true } },
-  { tag: "lock-e001", simp: { error: 0.001, lockBorder: true } },
-  { tag: "free-e003", simp: { error: 0.003, lockBorder: false } },
-  { tag: "free-e001", simp: { error: 0.001, lockBorder: false } },
-];
-for (const tr of trials) {
+// le levier = budget de tris (le simplify est ratio-driven ; error 0.03 ne mord jamais a 120k).
+// budget + genereux = jambages de portes moins deplaces = moins de pincement, au prix du BVH.
+const trials = [120000, 200000, 300000, 450000];
+for (const T of trials) {
   const doc = await base();
   const t0 = docTris(doc);
-  if (tr.simp) await doc.transform(simplify({ simplifier: MeshoptSimplifier, ratio: Math.max(0.005, TARGET / t0), error: tr.simp.error, lockBorder: tr.simp.lockBorder }));
+  await doc.transform(simplify({ simplifier: MeshoptSimplifier, ratio: Math.max(0.005, T / t0), error: 0.03, lockBorder: false }));
   const tf = docTris(doc);
   for (const n of doc.getRoot().listNodes()) if (n.getMesh()) n.setName("collision_hull");
   for (const m of doc.getRoot().listMeshes()) m.setName("collision_hull");
-  const out = src.replace(/_pre\.glb$/, `_hull_${tr.tag}.glb`);
+  const tag = `t${Math.round(T/1000)}`;
+  const out = src.replace(/_pre\.glb$/, `_hull_${tag}.glb`);
   await io.write(out, doc);
-  console.log(`${tr.tag.padEnd(10)} ${t0} -> ${tf} tris  (${out.split(/[\\/]/).pop()})`);
+  console.log(`${tag.padEnd(8)} cible ${T} -> ${tf} tris  (${out.split(/[\\/]/).pop()})`);
 }
