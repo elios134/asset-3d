@@ -6,6 +6,10 @@
       "walkableM2": 1644,
       "kind": "habitable"
     },
+    "AEGS_Javelin": {
+      "walkableM2": 9891,
+      "kind": "habitable"
+    },
     "AEGS_Idris_M": {
       "walkableM2": 6612,
       "kind": "habitable"

@@ -385,9 +385,9 @@
       "manufacturer": "Aegis Dynamics",
       "classification": "Destroyer",
       "dims": {
-        "l": 0,
-        "b": 0,
-        "h": 0
+        "l": 493,
+        "b": 218,
+        "h": 89
       },
       "materials": "flat",
       "patchVersion": "sc-4.1",
@@ -401,6 +401,19 @@
           "hasInterior": false,
           "sha256": "6ca373a56127edd58e055191da53f888acd43d6a125f6cca0b723884aa5d65ae",
           "render": "clay"
+        },
+        {
+          "level": "interior",
+          "label": "Interieur",
+          "modelUrl": "https://github.com/elios134/asset-3d/releases/download/sc-4.1/AEGS_Javelin.clay-interior.glb",
+          "tris": 3373315,
+          "sizeBytes": 28227900,
+          "hasInterior": true,
+          "sha256": "b7bc6b06d156d93505fb309b03b3382ee3701c3f412ceae8dc7e116641f7d6d0",
+          "render": "clay",
+          "hasCollision": true,
+          "interiorKind": "habitable",
+          "interiorWalkableM2": 9891
         }
       ]
     },

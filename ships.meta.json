@@ -148,9 +148,9 @@
     "manufacturer": "Aegis Dynamics",
     "classification": "Destroyer",
     "dims": {
-      "l": 0,
-      "b": 0,
-      "h": 0
+      "l": 493,
+      "b": 218,
+      "h": 89
     },
     "materials": "flat"
   },
