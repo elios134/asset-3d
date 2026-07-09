@@ -42,6 +42,9 @@ const CEIL = opt("ceil", "5.0"), CLEAR = opt("clear", "1.9"), CELL = opt("cell",
 const MAX_YSPREAD = opt("max-yspread", "30"); // seuil rejet interieur explose (generate-floor). Capitaux TRES hauts (Javelin 89m multi-pont) : monter (--max-yspread=200).
 const MULTI_DECK = process.argv.includes("--multi-deck"); // plancher MULTI-PONT (generate-floor emet tous les niveaux/escaliers -> ponts connectes). Pour capitaux hauts.
 const SPAWN_LARGEST = process.argv.includes("--spawn-largest"); // spawn sur la + grande composante (pont principal) au lieu de l'indice siege. Capitaux multi-pont ou la passerelle est un ilot.
+const FLOOR_NAVMESH = process.argv.includes("--floor-navmesh"); // plancher NAVMESH (floor-navmesh.mjs) : flood capsule 3D sur la vraie collision -> ponts CONNECTES PAR CONSTRUCTION (escaliers captes). Remplace generate-floor pour les capitaux multi-pont (Javelin). Combiner avec --spawn-largest (le hint siege tombe sur le pont isole/passerelle).
+const STEP_UP = opt("step-up", "0.45"); // (navmesh) marche max grimpable par la capsule (m). = hauteur de marche du character controller app. Trop bas fragmente ; trop haut connecte des corniches infranchissables.
+const DROP = opt("drop", null);         // (navmesh) descente max par pas (m) ; defaut = STEP_UP (symetrique/sur). Monter pour capter les sauts vers le bas (capsule qui redescend).
 const TRIS = parseInt(opt("tris", "600000"), 10);
 const PROP_MIN = parseFloat(opt("prop-min", "0.4")); // cull clutter cosmetique < Nm (gobelets/boulons/boutons ; 0 = off)
 const SOFT = process.argv.includes("--soft"); // simplify DOUX : lockBorder seul, jamais la 2e passe (qui perce)
@@ -256,8 +259,16 @@ for (const key of batch) {
     }
     await io.write(tmpIntClay, intDoc);
 
-    // 3) plancher collision_walk + spawn_point (generate-floor). En mode chunk : sur la geo PRE-chunk.
-    execFileSync("node", ["scripts/generate-floor.mjs", floorSrc, tmpFloor, `--lift=0`, `--ceil=${CEIL}`, `--clear=${CLEAR}`, `--cell=${CELL}`, `--max-yspread=${MAX_YSPREAD}`, ...(MULTI_DECK ? ["--multi-deck"] : []), ...(SPAWN_LARGEST ? ["--spawn-largest"] : []), ...(spawnHint ? [`--spawn-hint=${spawnHint}`] : [])], { cwd: ROOT, stdio: "ignore" });
+    // 3) plancher collision_walk + spawn_point. En mode chunk : sur la geo PRE-chunk.
+    if (FLOOR_NAVMESH) {
+      // NAVMESH (capitaux multi-pont) : flood capsule 3D depuis le spawn sur la vraie collision -> plancher
+      // CONNECTE PAR CONSTRUCTION (escaliers/rampes captes, ponts relies selon --step-up). Requis la ou
+      // generate-floor (grille 2D + test plafond) fragmente les ponts (Javelin). --spawn-largest => spawn
+      // sur la plus grande composante (le hint siege tombe souvent sur un pont isole type passerelle).
+      execFileSync("node", ["scripts/floor-navmesh.mjs", floorSrc, tmpFloor, `--cell-out=${CELL}`, `--lift=0`, `--step-up=${STEP_UP}`, ...(DROP != null ? [`--drop=${DROP}`] : []), ...(SPAWN_LARGEST ? [] : (spawnHint ? [`--spawn-hint=${spawnHint}`] : []))], { cwd: ROOT, stdio: "ignore" });
+    } else {
+      execFileSync("node", ["scripts/generate-floor.mjs", floorSrc, tmpFloor, `--lift=0`, `--ceil=${CEIL}`, `--clear=${CLEAR}`, `--cell=${CELL}`, `--max-yspread=${MAX_YSPREAD}`, ...(MULTI_DECK ? ["--multi-deck"] : []), ...(SPAWN_LARGEST ? ["--spawn-largest"] : []), ...(spawnHint ? [`--spawn-hint=${spawnHint}`] : [])], { cwd: ROOT, stdio: "ignore" });
+    }
     const fdoc = await io.read(tmpFloor);
     let walkTris = 0; for (const n of fdoc.getRoot().listNodes()) if (/collision_walk/i.test(n.getName() || "") && n.getMesh()) for (const p of n.getMesh().listPrimitives()) walkTris += Math.floor((p.getIndices()?.getCount() ?? 0) / 3);
     // INVARIANT : plancher vide => interieur inexploitable => SKIP (exclu du lot jouable)
