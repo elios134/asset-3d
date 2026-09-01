@@ -21,11 +21,18 @@ import { execFileSync } from "node:child_process";
 import { readFileSync, existsSync, statSync, rmSync, renameSync } from "node:fs";
 import { fileURLToPath } from "node:url";
 import { dirname, join as pjoin } from "node:path";
+import { loadConfig } from "./lib/config.mjs";
+import { makeEmitter } from "./lib/emit.mjs";
 
 const ROOT = pjoin(dirname(fileURLToPath(import.meta.url)), "..");
 const MODELS = pjoin(ROOT, "models");
-const STARBREAKER = "C:/Users/andre/Documents/starbreaker/starbreaker.exe";
-const P4K = "D:/Program Files/RSI Launcher/StarCitizen/LIVE/Data.p4k";
+const cfg = loadConfig();
+const STARBREAKER = cfg.paths.starbreaker;
+const P4K = cfg.paths.p4k;
+
+const JSON_MODE = process.argv.includes("--json");
+const DRY_RUN = process.argv.includes("--dry-run");
+const emit = makeEmitter(JSON_MODE);
 
 const meta = JSON.parse(readFileSync(pjoin(ROOT, "ships.meta.json"), "utf8"));
 const anchored = new Set(Object.keys(JSON.parse(readFileSync(pjoin(ROOT, "interior-anchors.json"), "utf8"))).filter((k) => k !== "_comment"));
@@ -52,7 +59,7 @@ const io = new NodeIO()
   .registerDependencies({ "meshopt.decoder": MeshoptDecoder, "meshopt.encoder": MeshoptEncoder });
 
 const results = [];
-console.log(`Batch interieurs : ${batch.length} vaisseaux\n`);
+if (!JSON_MODE) console.log(`Batch interieurs : ${batch.length} vaisseaux\n`);
 
 for (const key of batch) {
   const m = meta[key];
@@ -60,6 +67,12 @@ for (const key of batch) {
   const lod = lodFor(l);
   const out = pjoin(MODELS, `${key}.interior.glb`);
   const label = `${key} (${m.name}, ${l}m, LOD${lod})`;
+  emit({ type: "progress", key, name: m.name, step: "start" });
+  if (DRY_RUN) {
+    emit({ type: "plan", key, name: m.name, lod, out });
+    results.push({ key, name: m.name, ok: true, planned: true });
+    continue;
+  }
   try {
     execFileSync(STARBREAKER, ["entity", "export", key, out, "--materials", "colors", "--lod", String(lod), "--mip", "4"],
       { env: { ...process.env, SC_DATA_P4K: P4K }, stdio: "ignore", timeout: 180000 });
@@ -78,20 +91,26 @@ for (const key of batch) {
     const size = statSync(out).size;
 
     results.push({ key, name: m.name, ok: true, cat, rawMB: +mb(rawSize), mb: +mb(size) });
-    console.log(`  ✓ ${label.padEnd(46)} [${cat.padEnd(11)}] ${mb(rawSize)}->${mb(size)} Mo`);
+    if (!JSON_MODE) console.log(`  ✓ ${label.padEnd(46)} [${cat.padEnd(11)}] ${mb(rawSize)}->${mb(size)} Mo`);
+    emit({ type: "progress", key, name: m.name, step: "done", cat });
   } catch (e) {
     results.push({ key, name: m.name, ok: false, err: e.message.split("\n")[0] });
-    console.log(`  ✗ ${label.padEnd(46)} ECHEC : ${e.message.split("\n")[0]}`);
+    if (!JSON_MODE) console.log(`  ✗ ${label.padEnd(46)} ECHEC : ${e.message.split("\n")[0]}`);
+    emit({ type: "progress", key, name: m.name, step: "error", err: e.message.split("\n")[0] });
   }
 }
 
-const ok = results.filter((r) => r.ok);
-const totalMB = ok.reduce((s, r) => s + r.mb, 0);
-const byCat = (c) => ok.filter((r) => r.cat === c).length;
-console.log(`\n${ok.length}/${results.length} OK. Total compresse : ${totalMB.toFixed(0)} Mo (moy ${(totalMB / (ok.length || 1)).toFixed(1)} Mo/vaisseau)`);
-console.log(`Categories : convention=${byCat("convention")}, modulesNoHp=${byCat("modulesNoHp")}, none=${byCat("none")}`);
-const ko = results.filter((r) => !r.ok);
-if (ko.length) console.log(`Echecs (${ko.length}) : ${ko.map((r) => r.key).join(", ")}`);
+emit({ type: "result", ok: results.filter((r) => r.ok).length, ko: results.filter((r) => !r.ok).length, items: results });
+
+if (!JSON_MODE) {
+  const ok = results.filter((r) => r.ok);
+  const totalMB = ok.reduce((s, r) => s + (r.mb ?? 0), 0);
+  const byCat = (c) => ok.filter((r) => r.cat === c).length;
+  console.log(`\n${ok.length}/${results.length} OK. Total compresse : ${totalMB.toFixed(0)} Mo (moy ${(totalMB / (ok.length || 1)).toFixed(1)} Mo/vaisseau)`);
+  console.log(`Categories : convention=${byCat("convention")}, modulesNoHp=${byCat("modulesNoHp")}, none=${byCat("none")}`);
+  const ko = results.filter((r) => !r.ok);
+  if (ko.length) console.log(`Echecs (${ko.length}) : ${ko.map((r) => r.key).join(", ")}`);
+}
 
 // classe l'interieur selon la convention d'ancrage
 function categorize(file) {
