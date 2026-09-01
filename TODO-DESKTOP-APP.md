@@ -19,7 +19,9 @@ Objectif : transformer le pipeline `asset-3d` en logiciel desktop simple permett
   cache disque, repli non bloquant).
 - **Barrière QA** : publication désactivée tant que la QA n'est pas conforme.
 
-Statut : spec rédigée, en attente de relecture utilisateur avant le plan d'implémentation.
+Statut : spec validée. Plan d'implémentation découpé en 2 sous-projets :
+- **Plan 1 — Moteur pilotable (backend CLI)** : `docs/superpowers/plans/2026-09-01-moteur-pilotable.md` — rédigé, prêt à exécuter (8 tâches TDD, `node --test`).
+- **Plan 2 — Coquille Electron + galerie** : à rédiger une fois le Plan 1 vert.
 
 ## 1. Définir le fonctionnement
 
