@@ -18,11 +18,18 @@ import { execFileSync } from "node:child_process";
 import { readFileSync, existsSync, statSync, rmSync, renameSync } from "node:fs";
 import { fileURLToPath } from "node:url";
 import { dirname, join as pjoin } from "node:path";
+import { loadConfig } from "./lib/config.mjs";
+import { makeEmitter } from "./lib/emit.mjs";
 
 const ROOT = pjoin(dirname(fileURLToPath(import.meta.url)), "..");
 const MODELS = pjoin(ROOT, "models");
-const STARBREAKER = "C:/Users/andre/Documents/starbreaker/starbreaker.exe";
-const P4K = "D:/Program Files/RSI Launcher/StarCitizen/LIVE/Data.p4k";
+const cfg = loadConfig();
+const STARBREAKER = cfg.paths.starbreaker;
+const P4K = cfg.paths.p4k;
+
+const JSON_MODE = process.argv.includes("--json");
+const DRY_RUN = process.argv.includes("--dry-run");
+const emit = makeEmitter(JSON_MODE);
 
 const meta = JSON.parse(readFileSync(pjoin(ROOT, "ships.meta.json"), "utf8"));
 const keys = Object.keys(meta).filter((k) => k !== "_comment");
@@ -48,7 +55,7 @@ const isExcluded = (k) => EXCLUDE.test(`${meta[k]?.name ?? ""} ${k}`.replace(/_/
 {
   const before = batch.length;
   batch = batch.filter((k) => !isExcluded(k));
-  if (before - batch.length > 0) console.log(`Exclus (editions wikelo/pyam/bis/exec) : ${before - batch.length}`);
+  if (before - batch.length > 0 && !JSON_MODE) console.log(`Exclus (editions wikelo/pyam/bis/exec) : ${before - batch.length}`);
 }
 
 // LOD selon la longueur (paliers bruts de StarBreaker)
@@ -60,7 +67,7 @@ const io = new NodeIO()
   .registerDependencies({ "meshopt.decoder": MeshoptDecoder, "meshopt.encoder": MeshoptEncoder });
 
 const results = [];
-console.log(`Batch : ${batch.length} vaisseaux\n`);
+if (!JSON_MODE) console.log(`Batch : ${batch.length} vaisseaux\n`);
 
 for (const key of batch) {
   const m = meta[key];
@@ -68,6 +75,12 @@ for (const key of batch) {
   const lod = lodFor(l);
   const out = pjoin(MODELS, `${key}.exterior.glb`);
   const label = `${key} (${m.name}, ${l}m, LOD${lod})`;
+  emit({ type: "progress", key, name: m.name, step: "start" });
+  if (DRY_RUN) {
+    emit({ type: "plan", key, name: m.name, lod, out });
+    results.push({ key, name: m.name, ok: true, planned: true });
+    continue;
+  }
   try {
     // 1) export exterieur detaille
     execFileSync(STARBREAKER, ["entity", "export", key, out,
@@ -82,7 +95,8 @@ for (const key of batch) {
       const doc = await io.read(out);
       const s = stats(doc);
       results.push({ key, name: m.name, ok: true, lod, prims: s.prims, tris: s.tris, mb: mb(rawSize) });
-      console.log(`  ✓ ${label.padEnd(48)} BRUT ${s.prims} draw, ${s.tris.toLocaleString()} tris, ${mb(rawSize)} Mo`);
+      if (!JSON_MODE) console.log(`  ✓ ${label.padEnd(48)} BRUT ${s.prims} draw, ${s.tris.toLocaleString()} tris, ${mb(rawSize)} Mo`);
+      emit({ type: "progress", key, name: m.name, step: "done", tris: s.tris });
     } else {
       const doc = await io.read(out);
       const primsBefore = countPrims(doc);
@@ -94,20 +108,26 @@ for (const key of batch) {
       const size = statSync(out).size;
       const s = stats(doc);
       results.push({ key, name: m.name, ok: true, lod, primsBefore, prims: s.prims, tris: s.tris, rawMB: mb(rawSize), mb: mb(size) });
-      console.log(`  ✓ ${label.padEnd(48)} draw ${primsBefore}->${s.prims}, ${s.tris.toLocaleString()} tris, ${mb(rawSize)}->${mb(size)}`);
+      if (!JSON_MODE) console.log(`  ✓ ${label.padEnd(48)} draw ${primsBefore}->${s.prims}, ${s.tris.toLocaleString()} tris, ${mb(rawSize)}->${mb(size)}`);
+      emit({ type: "progress", key, name: m.name, step: "done", tris: s.tris });
     }
   } catch (e) {
     results.push({ key, name: m.name, ok: false, err: e.message.split("\n")[0] });
-    console.log(`  ✗ ${label.padEnd(48)} ECHEC : ${e.message.split("\n")[0]}`);
+    if (!JSON_MODE) console.log(`  ✗ ${label.padEnd(48)} ECHEC : ${e.message.split("\n")[0]}`);
+    emit({ type: "progress", key, name: m.name, step: "error", err: e.message.split("\n")[0] });
   }
 }
 
-const ok = results.filter((r) => r.ok);
-const totalMB = ok.reduce((s, r) => s + parseFloat(r.mb), 0);
-console.log(`\n${ok.length}/${results.length} OK. Total optimise : ${totalMB.toFixed(1)} Mo` +
-  (ok.length ? ` (moyenne ${(totalMB / ok.length).toFixed(2)} Mo/vaisseau -> extrapolation 273 = ~${Math.round(totalMB / ok.length * 273)} Mo)` : ""));
-const ko = results.filter((r) => !r.ok);
-if (ko.length) console.log(`Echecs : ${ko.map((r) => r.key).join(", ")}`);
+emit({ type: "result", ok: results.filter((r) => r.ok).length, ko: results.filter((r) => !r.ok).length, items: results });
+
+if (!JSON_MODE) {
+  const ok = results.filter((r) => r.ok);
+  const totalMB = ok.reduce((s, r) => s + parseFloat(r.mb ?? 0), 0);
+  console.log(`\n${ok.length}/${results.length} OK. Total optimise : ${totalMB.toFixed(1)} Mo` +
+    (ok.length ? ` (moyenne ${(totalMB / ok.length).toFixed(2)} Mo/vaisseau -> extrapolation 273 = ~${Math.round(totalMB / ok.length * 273)} Mo)` : ""));
+  const ko = results.filter((r) => !r.ok);
+  if (ko.length) console.log(`Echecs : ${ko.map((r) => r.key).join(", ")}`);
+}
 
 function countPrims(doc) { let n = 0; for (const me of doc.getRoot().listMeshes()) n += me.listPrimitives().length; return n; }
 function stats(doc) {
