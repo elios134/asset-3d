@@ -4,6 +4,7 @@ import { runJson } from "./runner";
 import { loadLib } from "./libs";
 import { loadVisitableSet } from "./visitable";
 import { resolveScfleetDb } from "./appconfig";
+import { runUpdate } from "./update";
 import type { AnalyzeResult, Prereqs } from "../shared/types";
 
 type ConfigLib = { loadConfig(opts: { root: string }): { paths: { starbreaker: string; p4k: string } } };
@@ -44,6 +45,10 @@ export function createServices(repoRoot: string) {
       } catch {
         return null;
       }
+    },
+
+    updateData(): Promise<{ ok: boolean; count: number }> {
+      return runUpdate(repoRoot);
     },
   };
 }

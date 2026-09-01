@@ -27,4 +27,5 @@ export interface Api {
   analyze(): Promise<AnalyzeResult>;
   prereqs(): Promise<Prereqs>;
   getThumbnail(name: string): Promise<string | null>;
+  updateData(): Promise<{ ok: boolean; count: number }>;
 }

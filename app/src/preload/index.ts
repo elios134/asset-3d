@@ -5,6 +5,7 @@ const api: Api = {
   analyze: () => ipcRenderer.invoke("analyze"),
   prereqs: () => ipcRenderer.invoke("prereqs"),
   getThumbnail: (name) => ipcRenderer.invoke("thumbnail", name),
+  updateData: () => ipcRenderer.invoke("updateData"),
 };
 
 contextBridge.exposeInMainWorld("api", api);
