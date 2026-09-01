@@ -20,8 +20,8 @@ Objectif : transformer le pipeline `asset-3d` en logiciel desktop simple permett
 - **Barrière QA** : publication désactivée tant que la QA n'est pas conforme.
 
 Statut : spec validée. Plan d'implémentation découpé en 2 sous-projets :
-- **Plan 1 — Moteur pilotable (backend CLI)** : `docs/superpowers/plans/2026-09-01-moteur-pilotable.md` — rédigé, prêt à exécuter (8 tâches TDD, `node --test`).
-- **Plan 2 — Coquille Electron + galerie** : à rédiger une fois le Plan 1 vert.
+- **Plan 1 — Moteur pilotable (backend CLI)** : ✅ **TERMINÉ** (8 tâches TDD, 25/25 verts) — PR #1. `docs/superpowers/plans/2026-09-01-moteur-pilotable.md`.
+- **Plan 2 — Coquille Electron + galerie** : à rédiger. Rappels : lancer `analyze.mjs` avec cwd=racine ; croiser `interior.anchored===false` et `cat!=="convention"` avant auto-traitement d'un intérieur ; runner NDJSON tolérant ; 2 contrats stdout (analyze = objet JSON unique, batch = NDJSON).
 
 ## 1. Définir le fonctionnement
 
