@@ -18,3 +18,4 @@ app-config.json
 # App desktop Electron
 app/node_modules
 app/out
+app/dist

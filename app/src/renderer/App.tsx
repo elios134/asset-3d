@@ -5,6 +5,7 @@ import { PrereqBar } from "./components/PrereqBar";
 import { Toolbar, type Filter } from "./components/Toolbar";
 import { Gallery } from "./components/Gallery";
 import { toggleLevel, selectionCount, type Selection } from "./selection";
+import { isExcludedEdition } from "./exclude";
 import type { AnalyzeResult, Prereqs } from "../shared/types";
 
 export function App() {
@@ -15,7 +16,12 @@ export function App() {
   const load = () => {
     setData(null); setPrereqs(null); setError(null);
     Promise.all([api.analyze(), api.prereqs()])
-      .then(([a, p]) => { setData(a); setPrereqs(p); })
+      .then(([a, p]) => {
+        const ships = a.ships.filter((s) => !isExcludedEdition(s.name));
+        const toProcess = ships.filter((s) => s.toProcess).length;
+        setData({ ...a, ships, counts: { total: ships.length, toProcess } });
+        setPrereqs(p);
+      })
       .catch((e) => setError(String(e?.message ?? e)));
   };
   useEffect(() => { load(); }, []);
