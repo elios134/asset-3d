@@ -10,7 +10,8 @@
     "gen-meta": "node scripts/gen-meta.mjs",
     "qa": "node scripts/qa.mjs",
     "qa:strict": "node scripts/qa.mjs --strict",
-    "optimize": "node scripts/optimize.mjs"
+    "optimize": "node scripts/optimize.mjs",
+    "test": "node --test"
   },
   "license": "SEE README.md",
   "devDependencies": {
