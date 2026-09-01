@@ -1,0 +1,4 @@
+:root { color-scheme: dark; font-family: system-ui, sans-serif; }
+body { margin: 0; background: #0b0b0b; color: #e8e6df; }
+.app { padding: 24px; }
+h1 { font-weight: 500; font-size: 22px; }
