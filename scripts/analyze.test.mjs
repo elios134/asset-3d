@@ -36,3 +36,22 @@ test("analyze --json émet la liste et les compteurs", () => {
   assert.equal(data.ships.find((s) => s.key === "AAA_New").status, "nouveau");
   rmSync(dir, { recursive: true, force: true });
 });
+
+test("analyze échoue explicitement si ships.meta.json est absent", () => {
+  const dir = mkdtempSync(join(tmpdir(), "analyze-"));
+  cpSync(join(HERE, "analyze.mjs"), join(dir, "analyze.mjs"));
+  cpSync(join(HERE, "lib"), join(dir, "lib"), { recursive: true });
+
+  let threw = null;
+  try {
+    execFileSync("node", ["analyze.mjs", "--json"], { cwd: dir, encoding: "utf8" });
+  } catch (err) {
+    threw = err;
+  }
+
+  assert.ok(threw, "le process doit échouer quand ships.meta.json est absent");
+  assert.notEqual(threw.status, 0);
+  assert.match(threw.stderr, /ships\.meta\.json introuvable/);
+
+  rmSync(dir, { recursive: true, force: true });
+});

@@ -18,7 +18,13 @@ if (!resolvedLocal) {
 }
 
 const readJson = (p, fallback) => (existsSync(join(ROOT, p)) ? JSON.parse(readFileSync(join(ROOT, p), "utf8")) : fallback);
-const meta = readJson("ships.meta.json", {});
+
+const metaPath = join(ROOT, "ships.meta.json");
+if (!existsSync(metaPath)) {
+  console.error("ships.meta.json introuvable — lancez analyze depuis la racine du dépôt");
+  process.exit(1);
+}
+const meta = JSON.parse(readFileSync(metaPath, "utf8"));
 const index = readJson("index.json", null);
 const anchors = readJson("interior-anchors.json", {});
 const anchorKeys = new Set(Object.keys(anchors).filter((k) => k !== "_comment"));
@@ -28,6 +34,8 @@ const toProcess = ships.filter((s) => s.toProcess);
 const publishedVersion = index?.patchVersion ?? null;
 
 if (JSON_MODE) {
+  // Contrat stdout : un SEUL objet JSON (contrairement à batch-export.mjs / batch-interior.mjs,
+  // qui émettent du NDJSON — un objet JSON par ligne).
   process.stdout.write(JSON.stringify({
     localVersion: resolvedLocal ?? null, publishedVersion,
     counts: { toProcess: toProcess.length, total: ships.length }, ships,
