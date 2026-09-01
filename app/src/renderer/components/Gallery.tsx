@@ -2,6 +2,7 @@ import type { Ship } from "../../shared/types";
 import type { Selection } from "../selection";
 import type { Filter } from "./Toolbar";
 import { ShipCard } from "./ShipCard";
+import { isExcludedEdition } from "../exclude";
 
 export function Gallery({
   ships, query, filter, sel, onToggle,
@@ -11,6 +12,7 @@ export function Gallery({
 }) {
   const q = query.trim().toLowerCase();
   const list = ships.filter((s) => {
+    if (isExcludedEdition(s.name)) return false;
     if (filter === "toProcess" && !s.toProcess) return false;
     if (q && !`${s.name} ${s.manufacturer}`.toLowerCase().includes(q)) return false;
     return true;
