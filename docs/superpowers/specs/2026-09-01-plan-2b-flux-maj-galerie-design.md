@@ -41,7 +41,7 @@ prépare et présente le travail à faire.
 | Vue par défaut | **« À traiter »** = nouveaux + modifiés. + onglet **« Extraits »** (déjà publiés) + **« Tout »**. |
 | Tri | Option de **tri alphabétique** (par nom). |
 | Bouton « Extraire » | **Flottant**, toujours visible. |
-| Éditions masquées | On conserve le filtre 2a (wikelo/pyam/Best In Show/BIS). Les variantes « Alliance/BTALA » restent **affichées** sauf décision contraire (point ouvert §9). |
+| Éditions masquées | On conserve le filtre 2a (wikelo/pyam/Best In Show/BIS) **et rien de plus**. Les variantes « Alliance » (suffixe interne `BTALA` : MOLE/Golem/Prospector Alliance) et le nouveau Basher sont des vaisseaux jouables légitimes → **affichés**. |
 
 ## 4. Flux utilisateur
 
@@ -122,11 +122,11 @@ Extraction/optimisation réelles · QA · publication `gh` · stockage de la `wi
 vaisseau à l'extraction (pour deltas fins) · installeur Windows signé · packaging embarquant
 scripts+données.
 
-## 9. Points ouverts (à trancher en revue)
+## 9. Décisions de revue (résolues 2026-09-01)
 
-1. **Variantes « Alliance/BTALA »** (MOLE/Golem/Prospector Alliance, etc.) : les afficher
-   (défaut proposé) ou les masquer comme les éditions ?
-2. **Écran d'accueil quand déjà à jour** (publiée == locale) : galerie directe, ou toujours
-   un bouton « rafraîchir » ? (défaut proposé : galerie directe.)
-3. **`gen-meta --json`** : ajouter une sortie structurée légère, ou se contenter de l'exit
-   code + relecture de `ships.meta.json` ? (défaut proposé : exit code + relecture.)
+1. **Variantes « Alliance » (BTALA) + Basher** → **affichées** (vaisseaux jouables légitimes ;
+   `BTALA` est le suffixe interne CIG des « Alliance », pas un type à part). Filtre d'exclusion
+   inchangé (wikelo/pyam/BIS uniquement).
+2. **Déjà à jour** (publiée == locale) → **galerie directe** (pas de bouton rafraîchir imposé).
+3. **Retour `gen-meta`** → **exit code + relecture de `ships.meta.json`** ; aucune modification
+   des scripts du Plan 1.
