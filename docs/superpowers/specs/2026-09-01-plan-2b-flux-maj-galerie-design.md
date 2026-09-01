@@ -41,7 +41,7 @@ prépare et présente le travail à faire.
 | Vue par défaut | **« À traiter »** = nouveaux + modifiés. + onglet **« Extraits »** (déjà publiés) + **« Tout »**. |
 | Tri | Option de **tri alphabétique** (par nom). |
 | Bouton « Extraire » | **Flottant**, toujours visible. |
-| Éditions masquées | On conserve le filtre 2a (wikelo/pyam/Best In Show/BIS) **et rien de plus**. Les variantes « Alliance » (suffixe interne `BTALA` : MOLE/Golem/Prospector Alliance) et le nouveau Basher sont des vaisseaux jouables légitimes → **affichés**. |
+| Éditions masquées | Filtre 2a (wikelo/pyam/Best In Show/BIS) **+ les variantes « Alliance »** (matchées sur le suffixe de clé `_BTALA` : MOLE/Golem/Prospector Alliance). Le **Basher** (`GLSN_Basher`, vrai nouveau vaisseau) reste **affiché**. |
 
 ## 4. Flux utilisateur
 
@@ -124,9 +124,9 @@ scripts+données.
 
 ## 9. Décisions de revue (résolues 2026-09-01)
 
-1. **Variantes « Alliance » (BTALA) + Basher** → **affichées** (vaisseaux jouables légitimes ;
-   `BTALA` est le suffixe interne CIG des « Alliance », pas un type à part). Filtre d'exclusion
-   inchangé (wikelo/pyam/BIS uniquement).
+1. **Variantes « Alliance » (suffixe clé `_BTALA`)** → **masquées** (ajoutées au filtre
+   d'exclusion, matchées sur `_BTALA` pour éviter tout faux positif sur le mot « alliance »).
+   Le **Basher** (`GLSN_Basher`, vrai nouveau vaisseau) reste **affiché**.
 2. **Déjà à jour** (publiée == locale) → **galerie directe** (pas de bouton rafraîchir imposé).
 3. **Retour `gen-meta`** → **exit code + relecture de `ships.meta.json`** ; aucune modification
    des scripts du Plan 1.
