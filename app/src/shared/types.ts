@@ -7,6 +7,7 @@ export interface Ship {
   dims: ShipDims;
   exterior: { published: boolean; patchVersion: string | null };
   interior: { published: boolean; anchored: boolean };
+  visitable: boolean;
   reasons: string[];
   status: string;
   toProcess: boolean;

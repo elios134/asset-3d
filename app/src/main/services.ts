@@ -2,6 +2,8 @@ import { readFile } from "node:fs/promises";
 import { join } from "node:path";
 import { runJson } from "./runner";
 import { loadLib } from "./libs";
+import { loadVisitableSet } from "./visitable";
+import { resolveScfleetDb } from "./appconfig";
 import type { AnalyzeResult, Prereqs } from "../shared/types";
 
 type ConfigLib = { loadConfig(opts: { root: string }): { paths: { starbreaker: string; p4k: string } } };
@@ -14,7 +16,10 @@ type ThumbLib = { getThumbnail(a: { name: string; cacheDir: string }): Promise<{
 export function createServices(repoRoot: string) {
   return {
     async analyze(): Promise<AnalyzeResult> {
-      return (await runJson("scripts/analyze.mjs", ["--json"], { cwd: repoRoot })) as AnalyzeResult;
+      const result = (await runJson("scripts/analyze.mjs", ["--json"], { cwd: repoRoot })) as AnalyzeResult;
+      const visitable = loadVisitableSet(resolveScfleetDb(repoRoot));
+      result.ships = result.ships.map((s) => ({ ...s, visitable: visitable.has(s.key) }));
+      return result;
     },
 
     async prereqs(): Promise<Prereqs> {
