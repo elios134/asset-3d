@@ -1,15 +1,20 @@
 import { test, expect } from "vitest";
-import { isExcludedEdition } from "./exclude";
+import { isExcluded } from "./exclude";
 
-test("exclut les éditions wikelo / pyam / Best In Show / BIS", () => {
-  expect(isExcludedEdition("Idris-P Wikelo War Special")).toBe(true);
-  expect(isExcludedEdition("Cutlass Black PYAM Exec")).toBe(true);
-  expect(isExcludedEdition("Hammerhead 2949 Best In Show Edition")).toBe(true);
-  expect(isExcludedEdition("600i 2951 BIS")).toBe(true);
+test("exclut wikelo / pyam / Best In Show / BIS (sur le nom)", () => {
+  expect(isExcluded({ name: "Idris-P Wikelo War Special", key: "AEGS_Idris_P_Collector_Military" })).toBe(true);
+  expect(isExcluded({ name: "Cutlass Black PYAM Exec", key: "DRAK_Cutlass_Black_Exec_Stealth" })).toBe(true);
+  expect(isExcluded({ name: "Hammerhead 2949 Best In Show Edition", key: "AEGS_Hammerhead_Showdown" })).toBe(true);
+  expect(isExcluded({ name: "600i 2951 BIS", key: "ORIG_600i_BIS2951" })).toBe(true);
 });
 
-test("garde les vaisseaux normaux", () => {
-  expect(isExcludedEdition("Carrack")).toBe(false);
-  expect(isExcludedEdition("Cutlass Black")).toBe(false);
-  expect(isExcludedEdition("Avenger Titan")).toBe(false);
+test("exclut les variantes Alliance (suffixe clé _BTALA)", () => {
+  expect(isExcluded({ name: "MOLE Alliance", key: "ARGO_MOLE_BTALA" })).toBe(true);
+  expect(isExcluded({ name: "Golem Alliance", key: "DRAK_Golem_BTALA" })).toBe(true);
+});
+
+test("garde le Basher et les vaisseaux normaux", () => {
+  expect(isExcluded({ name: "Basher", key: "GLSN_Basher" })).toBe(false);
+  expect(isExcluded({ name: "Carrack", key: "ANVL_Carrack" })).toBe(false);
+  expect(isExcluded({ name: "Cutlass Black", key: "DRAK_Cutlass_Black" })).toBe(false);
 });
