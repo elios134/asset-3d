@@ -1,4 +1,10 @@
-import { contextBridge } from "electron";
+import { contextBridge, ipcRenderer } from "electron";
+import type { Api } from "../shared/types";
 
-// Le pont réel est câblé en Task 3.
-contextBridge.exposeInMainWorld("api", {});
+const api: Api = {
+  analyze: () => ipcRenderer.invoke("analyze"),
+  prereqs: () => ipcRenderer.invoke("prereqs"),
+  getThumbnail: (name) => ipcRenderer.invoke("thumbnail", name),
+};
+
+contextBridge.exposeInMainWorld("api", api);

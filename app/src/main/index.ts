@@ -1,6 +1,8 @@
 import { app, BrowserWindow } from "electron";
 import { join } from "node:path";
 import { fileURLToPath } from "node:url";
+import { findRepoRoot } from "./repo";
+import { registerIpc } from "./ipc";
 
 const __dirname = fileURLToPath(new URL(".", import.meta.url));
 
@@ -25,6 +27,7 @@ function createWindow(): void {
 }
 
 app.whenReady().then(() => {
+  registerIpc(findRepoRoot(__dirname));
   createWindow();
   app.on("activate", () => {
     if (BrowserWindow.getAllWindows().length === 0) createWindow();
