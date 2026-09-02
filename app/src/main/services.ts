@@ -48,7 +48,7 @@ export function createServices(repoRoot: string) {
     },
 
     updateData(): Promise<{ ok: boolean; count: number }> {
-      return runUpdate(repoRoot);
+      return runUpdate(repoRoot, resolveScfleetDb(repoRoot));
     },
   };
 }
