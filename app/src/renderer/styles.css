@@ -26,6 +26,8 @@ h1 { font-weight: 500; font-size: 22px; }
 .silhouette { font-size: 32px; color: #5f5e57; }
 .reason { position: absolute; top: 6px; right: 6px; font-size: 10px; padding: 1px 6px; border-radius: 6px; background: #0b0b0b; }
 .reason.accent { color: #85b7eb; } .reason.warn { color: #efb027; } .reason.ok { color: #97c459; } .reason.muted { color: #9a978d; }
+.visitable { position: absolute; top: 6px; left: 6px; font-size: 10px; padding: 1px 6px; border-radius: 6px; background: #0b0b0b; color: #5dcaa5; }
+.sort { display: inline-flex; align-items: center; gap: 4px; font-size: 12px; color: #cfccc2; }
 .body { padding: 8px 10px; }
 .name { margin: 0; font-size: 13px; font-weight: 500; }
 .meta { margin: 2px 0 8px; font-size: 11px; color: #9a978d; }

@@ -28,6 +28,7 @@ export function ShipCard({
       <div className="thumb">
         {thumb ? <img src={thumb} alt={ship.name} /> : <div className="silhouette">▣</div>}
         <span className={`reason ${REASON_TONE[ship.status] ?? "muted"}`}>{ship.status}</span>
+        {ship.visitable && <span className="visitable" title="Intérieur visitable (crewMax ≥ 2)">visitable</span>}
       </div>
       <div className="body">
         <p className="name">{ship.name}</p>

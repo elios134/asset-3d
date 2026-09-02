@@ -5,6 +5,7 @@ import { PrereqBar } from "./components/PrereqBar";
 import { Toolbar, type Filter } from "./components/Toolbar";
 import { Gallery } from "./components/Gallery";
 import { toggleLevel, selectionCount, type Selection } from "./selection";
+import { initialSelection } from "./preselect";
 import { isExcluded } from "./exclude";
 import { UpdateScreen } from "./components/UpdateScreen";
 import { needsUpdate } from "./gate";
@@ -50,7 +51,8 @@ export function App() {
 function AppBody({ data, prereqs, reload }: { data: AnalyzeResult; prereqs: Prereqs; reload: () => void }) {
   const [query, setQuery] = useState("");
   const [filter, setFilter] = useState<Filter>("toProcess");
-  const [sel, setSel] = useState<Selection>(new Map());
+  const [alpha, setAlpha] = useState(false);
+  const [sel, setSel] = useState<Selection>(() => initialSelection(data.ships));
   const onToggle = (key: string, level: "exterior" | "interior") => setSel((s) => toggleLevel(s, key, level));
   const count = selectionCount(sel);
 
@@ -58,10 +60,10 @@ function AppBody({ data, prereqs, reload }: { data: AnalyzeResult; prereqs: Prer
     <div className="app">
       <Header data={data} prereqs={prereqs} />
       <PrereqBar prereqs={prereqs} />
-      <Toolbar query={query} onQuery={setQuery} filter={filter} onFilter={setFilter} onAnalyze={reload} />
-      <Gallery ships={data.ships} query={query} filter={filter} sel={sel} onToggle={onToggle} />
+      <Toolbar query={query} onQuery={setQuery} filter={filter} onFilter={setFilter} alpha={alpha} onAlpha={setAlpha} onAnalyze={reload} />
+      <Gallery ships={data.ships} query={query} filter={filter} alpha={alpha} sel={sel} onToggle={onToggle} />
       <footer className="footer">
-        <button className="primary" disabled title="Extraction en Plan 2b">Extraire la sélection ({count})</button>
+        <button className="primary" disabled title="Extraction — plan ultérieur">Extraire la sélection ({count})</button>
       </footer>
     </div>
   );
