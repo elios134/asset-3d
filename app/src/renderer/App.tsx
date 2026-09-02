@@ -62,9 +62,9 @@ function AppBody({ data, prereqs, reload }: { data: AnalyzeResult; prereqs: Prer
       <PrereqBar prereqs={prereqs} />
       <Toolbar query={query} onQuery={setQuery} filter={filter} onFilter={setFilter} alpha={alpha} onAlpha={setAlpha} onAnalyze={reload} />
       <Gallery ships={data.ships} query={query} filter={filter} alpha={alpha} sel={sel} onToggle={onToggle} />
-      <footer className="footer">
+      <div className="floating-bar">
         <button className="primary" disabled title="Extraction — plan ultérieur">Extraire la sélection ({count})</button>
-      </footer>
+      </div>
     </div>
   );
 }
