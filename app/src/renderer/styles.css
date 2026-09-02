@@ -35,3 +35,10 @@ h1 { font-weight: 500; font-size: 22px; }
 .footer { position: sticky; bottom: 0; padding: 12px 0; margin-top: 12px; }
 .primary { padding: 8px 14px; border-radius: 8px; border: 1px solid #185fa5; background: transparent; color: #85b7eb; }
 .primary:disabled { opacity: 0.5; cursor: not-allowed; }
+
+.update-card { max-width: 520px; margin: 40px auto; padding: 24px; background: #131209; border: 1px solid #26251f; border-radius: 12px; }
+.versions { display: flex; align-items: center; gap: 18px; justify-content: center; margin-bottom: 12px; }
+.versions .lbl { display: block; font-size: 12px; color: #9a978d; }
+.versions b { font-size: 22px; font-weight: 500; }
+.versions .arrow { color: #9a978d; font-size: 20px; }
+.warn-note { color: #efb027; font-size: 12px; margin-top: 10px; }
