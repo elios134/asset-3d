@@ -1,0 +1,9 @@
+appId: com.asset3d.desktop
+productName: asset-3D
+directories:
+  output: dist
+win:
+  target: nsis
+nsis:
+  oneClick: false
+  allowToChangeInstallationDirectory: true

@@ -14,3 +14,8 @@ Thumbs.db
 # Config machine locale et cache app (non commités)
 app-config.json
 .cache/
+
+# App desktop Electron
+app/node_modules
+app/out
+app/dist
