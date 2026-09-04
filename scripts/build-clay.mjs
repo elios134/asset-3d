@@ -25,6 +25,7 @@ import { execFileSync } from "node:child_process";
 import { readFileSync, existsSync, statSync, rmSync } from "node:fs";
 import { fileURLToPath } from "node:url";
 import { dirname, join } from "node:path";
+import { makeEmitter } from "./lib/emit.mjs";
 
 const ROOT = join(dirname(fileURLToPath(import.meta.url)), "..");
 const MODELS = join(ROOT, "models");
@@ -55,6 +56,10 @@ const CHUNK_SIZE = parseFloat(opt("chunk-size", "10")); // taille cellule chunk 
 const HULL_TRIS = parseInt(opt("hull-tris", "300000"), 10); // budget tris de collision_hull (Phase 1.5) : murs low-poly dédiés -> collider instantané. 0 = pas de hull. 300k = fidélité embrasures de portes ÉGALE aux chunks in-game (120k pinçait ~9 portes sous le diamètre capsule ; BVH ~130ms négligeable vs 1.2s chunks).
 const EXT_ONLY = process.argv.includes("--ext-only"); // ne construire QUE l'exterieur clay (galerie resine ; ships sans interieur)
 const MODULES = process.argv.includes("--modules"); // inclure les attachements (armes/propulseurs/tourelles) dans l'exterieur — bug StarBreaker corrige (placement OK)
+const JSON_MODE = process.argv.includes("--json");
+const DRY_RUN = process.argv.includes("--dry-run");
+const emit = makeEmitter(JSON_MODE);
+if (JSON_MODE) console.log = () => {}; // stdout = NDJSON pur : on silence les logs humains (les enfants sont déjà stdio:"ignore")
 
 const keys = Object.keys(meta).filter((k) => k !== "_comment" && meta[k].dims?.l);
 let batch;
@@ -140,6 +145,12 @@ for (const key of batch) {
   const tmpPre = join(MODELS, `_c_${key}_pre.glb`); // interieur PRE-chunk (pour generer le plancher : le flatten degrade la couverture)
   const KEEP_PRE = process.argv.includes("--keep-pre");
   const cleanup = () => { for (const f of [tmpExt, tmpInt, tmpIntClay, tmpFloor, ...(KEEP_PRE ? [] : [tmpPre]), tmpInt.replace(/\.glb$/, ".fixed.glb")]) if (existsSync(f)) rmSync(f); };
+  emit({ type: "progress", key, name: meta[key]?.name ?? key, step: "start" });
+  if (DRY_RUN) {
+    emit({ type: "plan", key, name: meta[key]?.name ?? key, extOnly: EXT_ONLY });
+    results.push({ key, ok: true, dry: true });
+    continue;
+  }
   try {
     // 1) EXTERIEUR clay (sert aussi de reference coque pour le cull interieur : noms de nodes)
     exp(key, tmpExt, ["--no-interior", ...(MODULES ? [] : ["--no-attachments"]), "--lod", "1"]);
@@ -156,6 +167,7 @@ for (const key of batch) {
     if (EXT_ONLY) {
       if (existsSync(tmpExt)) rmSync(tmpExt);
       results.push({ key, ok: true, ext: statSync(extOut).size, int: 0, extTris, extOnly: true });
+      emit({ type: "progress", key, name: meta[key]?.name ?? key, step: "done", extTris, extBytes: statSync(extOut).size });
       console.log(`  ✓ ${key.padEnd(26)} ext ${mb(statSync(extOut).size)} (${extTris}t) [ext-only]`);
       continue;
     }
@@ -273,7 +285,7 @@ for (const key of batch) {
     const fdoc = await io.read(tmpFloor);
     let walkTris = 0; for (const n of fdoc.getRoot().listNodes()) if (/collision_walk/i.test(n.getName() || "") && n.getMesh()) for (const p of n.getMesh().listPrimitives()) walkTris += Math.floor((p.getIndices()?.getCount() ?? 0) / 3);
     // INVARIANT : plancher vide => interieur inexploitable => SKIP (exclu du lot jouable)
-    if (walkTris === 0) { if (existsSync(extOut)) rmSync(extOut); cleanup(); results.push({ key, ok: false, skip: true, err: "collision_walk vide (interieur non jouable)" }); console.log(`  ⊘ ${key.padEnd(26)} SKIP : collision_walk vide`); continue; }
+    if (walkTris === 0) { if (existsSync(extOut)) rmSync(extOut); cleanup(); results.push({ key, ok: false, skip: true, err: "collision_walk vide (interieur non jouable)" }); emit({ type: "progress", key, name: meta[key]?.name ?? key, step: "skip", reason: "collision_walk vide (intérieur non jouable)" }); console.log(`  ⊘ ${key.padEnd(26)} SKIP : collision_walk vide`); continue; }
 
     // 4) merge clay interieur + plancher (collision_walk + spawn_point) + SHELL OCCULTEUR -> intOut
     const main = await io.read(tmpIntClay);
@@ -335,14 +347,25 @@ for (const key of batch) {
     cleanup();
     const spawn = main.getRoot().listNodes().some((n) => n.getName() === "spawn_point");
     results.push({ key, ok: true, ext: statSync(extOut).size, int: statSync(intOut).size, extTris, intTris, walkTris, hullTris, spawn });
+    emit({
+      type: "progress", key, name: meta[key]?.name ?? key, step: "done",
+      extTris, intTris, extBytes: statSync(extOut).size, intBytes: statSync(intOut).size,
+    });
     console.log(`  ✓ ${key.padEnd(26)} ext ${mb(statSync(extOut).size)} (${extTris}t) · int ${mb(statSync(intOut).size)} (${intTris}t) · walk ${walkTris}t${hullTris ? ` · hull ${hullTris}t` : ""}${spawn ? " +spawn" : ""}${culledHull ? ` · coque-${culledHull}` : ""}${culledMech ? ` · mech-${culledMech}` : ""}`);
   } catch (e) {
     cleanup();
     results.push({ key, ok: false, err: e.message.split("\n")[0] });
+    emit({ type: "progress", key, name: meta[key]?.name ?? key, step: "error", err: e.message.split("\n")[0] });
     console.log(`  ✗ ${key.padEnd(26)} ECHEC : ${e.message.split("\n")[0]}`);
     if (process.env.DEBUG_STACK) console.error(e.stack);
   }
 }
+emit({
+  type: "result",
+  ok: results.filter((r) => r.ok).length,
+  ko: results.filter((r) => !r.ok && !r.skip).length,
+  skipped: results.filter((r) => r.skip).length,
+});
 const ok = results.filter((r) => r.ok);
 const tot = ok.reduce((s, r) => s + r.ext + r.int, 0);
 console.log(`\n${ok.length}/${results.length} jouables. Total clay : ${mb(tot)} (moy ${mb(tot / (ok.length || 1))}/vaisseau)`);
