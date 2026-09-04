@@ -44,3 +44,5 @@ export type ExtractEvent =
   | { type: "plan"; key: string; name?: string; extOnly?: boolean }
   | { type: "result"; ok: number; ko: number; skipped: number }
   | { type: "cancelled"; doneCount: number };
+
+export interface ExtractSummary { ok: number; ko: number; skipped: number; cancelled: boolean }
