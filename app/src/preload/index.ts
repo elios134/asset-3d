@@ -6,6 +6,13 @@ const api: Api = {
   prereqs: () => ipcRenderer.invoke("prereqs"),
   getThumbnail: (name) => ipcRenderer.invoke("thumbnail", name),
   updateData: () => ipcRenderer.invoke("updateData"),
+  startExtract: (items) => ipcRenderer.invoke("extract:start", items),
+  cancelExtract: () => ipcRenderer.invoke("extract:cancel"),
+  onExtractEvent: (cb) => {
+    const h = (_e: unknown, evt: unknown) => cb(evt as Parameters<typeof cb>[0]);
+    ipcRenderer.on("extract:event", h);
+    return () => { ipcRenderer.removeListener("extract:event", h); };
+  },
 };
 
 contextBridge.exposeInMainWorld("api", api);

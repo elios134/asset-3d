@@ -28,6 +28,9 @@ export interface Api {
   prereqs(): Promise<Prereqs>;
   getThumbnail(name: string): Promise<string | null>;
   updateData(): Promise<{ ok: boolean; count: number }>;
+  startExtract(items: ExtractItem[]): Promise<ExtractSummary>;
+  cancelExtract(): Promise<void>;
+  onExtractEvent(cb: (evt: ExtractEvent) => void): () => void;
 }
 
 export interface ExtractItem {
