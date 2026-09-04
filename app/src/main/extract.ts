@@ -33,12 +33,19 @@ export async function runExtract(
       continue;
     }
     try {
-      const res = await run(recipe.script, recipe.args, { cwd: opts.cwd, onEvent: opts.onEvent }).done;
+      const res = await run(recipe.script, recipe.args, {
+        cwd: opts.cwd,
+        // Le résultat par-vaisseau ne doit pas atteindre l'UI : il est déjà
+        // consommé ici via `.done`. Ne laisser passer que les événements de
+        // progression ; l'agrégat final est émis une seule fois après la boucle.
+        onEvent: (e) => { if (e.type !== "result") opts.onEvent(e); },
+      }).done;
       if (res.type === "result") { ok += res.ok; ko += res.ko; skipped += res.skipped; }
     } catch (e) {
       ko++;
       opts.onEvent({ type: "progress", key: item.key, name: item.name, step: "error", err: (e as Error).message });
     }
   }
+  opts.onEvent({ type: "result", ok, ko, skipped });
   return { ok, ko, skipped, cancelled };
 }

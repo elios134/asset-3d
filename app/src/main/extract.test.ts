@@ -1,4 +1,4 @@
-import { test, expect, vi } from "vitest";
+import { test, expect } from "vitest";
 import { runExtract } from "./extract";
 import type { ExtractItem, ExtractEvent } from "../shared/types";
 
@@ -38,4 +38,40 @@ test("annulation après le vaisseau en cours : stoppe la file, émet cancelled",
   expect(calls).toBe(1); // B jamais lancé
   expect(s.cancelled).toBe(true);
   expect(events.some((e) => e.type === "cancelled")).toBe(true);
+});
+
+// faux runStream fidèle au vrai stream.ts : il forwarde CHAQUE ligne NDJSON
+// parsée à onEvent, y compris le "result" propre à ce run, avant de résoudre
+// `.done` avec ce même result. C'est ce comportement qui, sans filtrage côté
+// extract.ts, faisait fuir un "result" par vaisseau vers le renderer.
+const streamFaithfulRun = (script: string, args: string[], o: { onEvent: (e: ExtractEvent) => void }) => {
+  o.onEvent({ type: "progress", key: args[0], step: "start" });
+  o.onEvent({ type: "progress", key: args[0], step: "done" });
+  const result: ExtractEvent = { type: "result", ok: 1, ko: 0, skipped: 0 };
+  o.onEvent(result);
+  return { done: Promise.resolve(result), kill: () => {} };
+};
+
+test("filtre les 'result' par-vaisseau et n'émet qu'un agrégat unique vers l'UI", async () => {
+  const items = [
+    item({ key: "A", wantExterior: true }),
+    item({ key: "B", wantExterior: true }),
+  ];
+  const events: ExtractEvent[] = [];
+  const s = await runExtract(items, {
+    cwd: "/x", onEvent: (e) => events.push(e), isCancelled: () => false, run: streamFaithfulRun,
+  });
+
+  expect(s).toEqual({ ok: 2, ko: 0, skipped: 0, cancelled: false });
+
+  const resultEvents = events.filter((e) => e.type === "result");
+  expect(resultEvents).toEqual([{ type: "result", ok: 2, ko: 0, skipped: 0 }]);
+
+  // Le result agrégé doit arriver après les "done" des deux vaisseaux.
+  const resultIndex = events.findIndex((e) => e.type === "result");
+  const doneIndexes = events
+    .map((e, i) => (e.type === "progress" && e.step === "done" ? i : -1))
+    .filter((i) => i !== -1);
+  expect(doneIndexes.length).toBe(2);
+  expect(Math.max(...doneIndexes)).toBeLessThan(resultIndex);
 });
