@@ -29,3 +29,11 @@ export interface Api {
   getThumbnail(name: string): Promise<string | null>;
   updateData(): Promise<{ ok: boolean; count: number }>;
 }
+
+export interface ExtractItem {
+  key: string;
+  name: string;
+  lengthM: number;
+  wantExterior: boolean;
+  wantInterior: boolean;
+}
