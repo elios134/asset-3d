@@ -44,6 +44,19 @@ h1 { font-weight: 500; font-size: 22px; }
 .primary { padding: 8px 14px; border-radius: 8px; border: 1px solid #185fa5; background: transparent; color: #85b7eb; }
 .primary:disabled { opacity: 0.5; cursor: not-allowed; }
 
+.extract-panel { position: fixed; right: 0; top: 0; bottom: 0; width: 460px; max-width: 90vw;
+  background: #0e0d09; border-left: 1px solid #26251f; display: flex; flex-direction: column; z-index: 20; padding: 14px; }
+.extract-head { display: flex; align-items: center; gap: 8px; margin-bottom: 8px; }
+.extract-head .spacer { flex: 1; }
+.extract-rows { list-style: none; margin: 0; padding: 0; overflow-y: auto; max-height: 40%; }
+.extract-rows li { padding: 3px 0; font-size: 13px; }
+.extract-rows .ic { display: inline-block; width: 18px; }
+.row-done { color: #5dcaa5; } .row-error { color: #e06c6c; } .row-skip { color: #9a978d; } .row-running { color: #efb027; }
+.extract-rows .detail { color: #9a978d; font-size: 11px; }
+.extract-log { flex: 1; overflow-y: auto; background: #060504; border: 1px solid #1c1b16;
+  font-size: 11px; padding: 8px; margin: 8px 0 0; white-space: pre-wrap; }
+.extract-summary { font-size: 13px; color: #cfccc2; }
+
 .update-card { max-width: 520px; margin: 40px auto; padding: 24px; background: #131209; border: 1px solid #26251f; border-radius: 12px; }
 .versions { display: flex; align-items: center; gap: 18px; justify-content: center; margin-bottom: 12px; }
 .versions .lbl { display: block; font-size: 12px; color: #9a978d; }

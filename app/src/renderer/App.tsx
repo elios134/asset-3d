@@ -9,7 +9,8 @@ import { initialSelection } from "./preselect";
 import { isExcluded } from "./exclude";
 import { UpdateScreen } from "./components/UpdateScreen";
 import { needsUpdate } from "./gate";
-import type { AnalyzeResult, Prereqs } from "../shared/types";
+import { ExtractPanel } from "./components/ExtractPanel";
+import type { AnalyzeResult, Prereqs, ExtractItem } from "../shared/types";
 
 type Phase = "checking" | "needsUpdate" | "updating" | "ready" | "error";
 
@@ -55,6 +56,17 @@ function AppBody({ data, prereqs, reload }: { data: AnalyzeResult; prereqs: Prer
   const [sel, setSel] = useState<Selection>(() => initialSelection(data.ships));
   const onToggle = (key: string, level: "exterior" | "interior") => setSel((s) => toggleLevel(s, key, level));
   const count = selectionCount(sel);
+  const [extracting, setExtracting] = useState(false);
+  const canExtract = count > 0 && prereqs.starbreaker && prereqs.p4k;
+  const buildItems = (): ExtractItem[] => {
+    const out: ExtractItem[] = [];
+    for (const s of data.ships) {
+      const v = sel.get(s.key);
+      if (!v || (!v.exterior && !v.interior)) continue;
+      out.push({ key: s.key, name: s.name, lengthM: s.dims.l, wantExterior: v.exterior, wantInterior: v.interior });
+    }
+    return out;
+  };
 
   return (
     <div className="app">
@@ -63,8 +75,16 @@ function AppBody({ data, prereqs, reload }: { data: AnalyzeResult; prereqs: Prer
       <Toolbar query={query} onQuery={setQuery} filter={filter} onFilter={setFilter} alpha={alpha} onAlpha={setAlpha} onAnalyze={reload} />
       <Gallery ships={data.ships} query={query} filter={filter} alpha={alpha} sel={sel} onToggle={onToggle} />
       <div className="floating-bar">
-        <button className="primary" disabled title="Extraction — plan ultérieur">Extraire la sélection ({count})</button>
+        <button
+          className="primary"
+          disabled={!canExtract}
+          title={canExtract ? "Lancer l'extraction clay" : "Sélection vide ou prérequis StarBreaker/Data.p4k manquants"}
+          onClick={() => setExtracting(true)}
+        >
+          Extraire la sélection ({count})
+        </button>
       </div>
+      {extracting && <ExtractPanel items={buildItems()} onClose={() => setExtracting(false)} />}
     </div>
   );
 }
