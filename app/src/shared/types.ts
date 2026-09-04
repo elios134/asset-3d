@@ -37,3 +37,10 @@ export interface ExtractItem {
   wantExterior: boolean;
   wantInterior: boolean;
 }
+
+export type ExtractEvent =
+  | { type: "progress"; key: string; name?: string; step: "start" | "done" | "skip" | "error";
+      extTris?: number; intTris?: number; extBytes?: number; intBytes?: number; reason?: string; err?: string }
+  | { type: "plan"; key: string; name?: string; extOnly?: boolean }
+  | { type: "result"; ok: number; ko: number; skipped: number }
+  | { type: "cancelled"; doneCount: number };
