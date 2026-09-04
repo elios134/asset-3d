@@ -10,6 +10,10 @@ export interface ExtractState {
   cancelled: boolean;
 }
 
+/** Reducer actions: wire events from the main process, plus a local terminal
+ * action for when `startExtract` itself rejects (no `start`/`result` ever arrives). */
+export type ExtractAction = ExtractEvent | { type: "startFatal"; err: string };
+
 export function initExtractState(items: ExtractItem[]): ExtractState {
   return {
     running: true,
@@ -24,7 +28,7 @@ function setRow(rows: ExtractRow[], key: string, patch: Partial<ExtractRow>): Ex
   return rows.map((r) => (r.key === key ? { ...r, ...patch } : r));
 }
 
-export function extractReducer(state: ExtractState, evt: ExtractEvent): ExtractState {
+export function extractReducer(state: ExtractState, evt: ExtractAction): ExtractState {
   switch (evt.type) {
     case "progress": {
       const status: RowStatus =
@@ -45,6 +49,8 @@ export function extractReducer(state: ExtractState, evt: ExtractEvent): ExtractS
       };
     case "cancelled":
       return { ...state, running: false, cancelled: true, log: [...state.log, `— annulé après ${evt.doneCount} vaisseau(x)`] };
+    case "startFatal":
+      return { ...state, running: false, log: [...state.log, `— échec du lancement : ${evt.err}`] };
     default:
       return state;
   }

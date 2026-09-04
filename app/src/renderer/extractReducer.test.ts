@@ -34,3 +34,11 @@ test("result fige le summary et running=false ; cancelled marque l'état", () =>
   expect(s.cancelled).toBe(true);
   expect(s.running).toBe(false);
 });
+
+test("startFatal (rejet de startExtract avant tout événement) libère le panneau : running=false et erreur journalisée", () => {
+  const s = extractReducer(initExtractState(items), { type: "startFatal", err: "Une extraction est déjà en cours." });
+  expect(s.running).toBe(false); // condition pour que le bouton "Fermer" s'affiche
+  expect(s.log.at(-1)).toContain("Une extraction est déjà en cours.");
+  // aucune ligne n'est modifiée : l'échec est global, pas rattaché à un vaisseau précis
+  expect(s.rows.map((r) => r.status)).toEqual(["pending", "pending"]);
+});

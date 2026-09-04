@@ -10,7 +10,7 @@ export function ExtractPanel({ items, onClose }: { items: ExtractItem[]; onClose
 
   useEffect(() => {
     const off = api.onExtractEvent((evt) => dispatch(evt));
-    api.startExtract(items).catch((e) => dispatch({ type: "progress", key: "?", step: "error", err: String(e?.message ?? e) }));
+    api.startExtract(items).catch((e) => dispatch({ type: "startFatal", err: String(e?.message ?? e) }));
     return off;
   }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
