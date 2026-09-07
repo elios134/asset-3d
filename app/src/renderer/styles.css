@@ -57,6 +57,8 @@ h1 { font-weight: 500; font-size: 22px; }
 .extract-log { flex: 1; overflow-y: auto; background: #060504; border: 1px solid #1c1b16;
   font-size: 11px; padding: 8px; margin: 8px 0 0; white-space: pre-wrap; }
 .extract-summary { font-size: 13px; color: #cfccc2; }
+.publish-preview { display: flex; flex-direction: column; gap: 8px; margin-top: 6px; }
+.publish-preview .row-fail { background: #2a1414; border: 1px solid #6b2020; border-radius: 6px; padding: 8px; font-size: 12px; }
 
 .update-card { max-width: 520px; margin: 40px auto; padding: 24px; background: #131209; border: 1px solid #26251f; border-radius: 12px; }
 .versions { display: flex; align-items: center; gap: 18px; justify-content: center; margin-bottom: 12px; }

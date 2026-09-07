@@ -7,7 +7,10 @@ import { resolveScfleetDb } from "./appconfig";
 import { runUpdate } from "./update";
 import { runExtract } from "./extract";
 import { runStream } from "./stream";
-import type { AnalyzeResult, Prereqs, ExtractItem, ExtractSummary, QaEvent, QaSummary } from "../shared/types";
+import { buildPublishPreview, pushManifest } from "./publish";
+import type {
+  AnalyzeResult, Prereqs, ExtractItem, ExtractSummary, QaEvent, QaSummary, PublishPreview, PublishResult,
+} from "../shared/types";
 
 type IpcSender = { send(channel: string, evt: unknown): void };
 type QaRunner = (sender: IpcSender) => Promise<QaSummary>;
@@ -19,10 +22,18 @@ type PrereqLib = {
 };
 type ThumbLib = { getThumbnail(a: { name: string; cacheDir: string }): Promise<{ path: string | null }> };
 
-export function createServices(repoRoot: string, deps: { runQa?: QaRunner } = {}) {
+export function createServices(
+  repoRoot: string,
+  deps: {
+    runQa?: QaRunner;
+    buildPublish?: () => Promise<PublishPreview>;
+    pushManifest?: () => Promise<PublishResult>;
+  } = {},
+) {
   let extractLock = false;
   let cancelFlag = false;
   let qaLock = false;
+  let publishLock = false;
 
   // QA réelle : un seul run couvre tout le catalogue clay (scripts/qa.mjs --json).
   const defaultRunQa: QaRunner = async (sender) => {
@@ -96,6 +107,28 @@ export function createServices(repoRoot: string, deps: { runQa?: QaRunner } = {}
         return await (deps.runQa ?? defaultRunQa)(sender);
       } finally {
         qaLock = false;
+      }
+    },
+
+    // Etape 1 : regenere index.json et resume le diff vs le dernier publie.
+    async buildPublish(): Promise<PublishPreview> {
+      if (publishLock) throw new Error("Une publication est déjà en cours.");
+      publishLock = true;
+      try {
+        return await (deps.buildPublish ?? (() => buildPublishPreview(repoRoot)))();
+      } finally {
+        publishLock = false;
+      }
+    },
+
+    // Etape 2 : commit + push du manifeste (index.json + ships.meta.json).
+    async pushManifest(): Promise<PublishResult> {
+      if (publishLock) throw new Error("Une publication est déjà en cours.");
+      publishLock = true;
+      try {
+        return await (deps.pushManifest ?? (() => pushManifest(repoRoot)))();
+      } finally {
+        publishLock = false;
       }
     },
   };

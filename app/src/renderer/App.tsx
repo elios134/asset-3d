@@ -11,6 +11,7 @@ import { UpdateScreen } from "./components/UpdateScreen";
 import { needsUpdate } from "./gate";
 import { ExtractPanel } from "./components/ExtractPanel";
 import { QaPanel } from "./components/QaPanel";
+import { PublishPanel } from "./components/PublishPanel";
 import type { AnalyzeResult, Prereqs, ExtractItem } from "../shared/types";
 
 type Phase = "checking" | "needsUpdate" | "updating" | "ready" | "error";
@@ -59,6 +60,7 @@ function AppBody({ data, prereqs, reload }: { data: AnalyzeResult; prereqs: Prer
   const count = selectionCount(sel);
   const [extracting, setExtracting] = useState(false);
   const [qaOpen, setQaOpen] = useState(false);
+  const [publishOpen, setPublishOpen] = useState(false);
   // Gate de publication (par session) : Publier reste bloqué tant que la
   // dernière QA n'est pas conforme. Une extraction change le catalogue ⇒ invalide.
   const [qaConforme, setQaConforme] = useState(false);
@@ -99,13 +101,14 @@ function AppBody({ data, prereqs, reload }: { data: AnalyzeResult; prereqs: Prer
           className="primary"
           disabled={!qaConforme}
           title={qaConforme ? "Publier le catalogue sur GitHub" : "Publication bloquée : lancer la QA et obtenir un verdict conforme d'abord"}
-          onClick={() => { /* tranche suivante : publication GitHub */ }}
+          onClick={() => setPublishOpen(true)}
         >
           Publier sur GitHub
         </button>
       </div>
       {extracting && <ExtractPanel items={buildItems()} onClose={() => setExtracting(false)} />}
       {qaOpen && <QaPanel onClose={() => setQaOpen(false)} onDone={setQaConforme} />}
+      {publishOpen && <PublishPanel onClose={() => setPublishOpen(false)} />}
     </div>
   );
 }

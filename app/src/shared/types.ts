@@ -33,6 +33,8 @@ export interface Api {
   onExtractEvent(cb: (evt: ExtractEvent) => void): () => void;
   startQa(): Promise<QaSummary>;
   onQaEvent(cb: (evt: QaEvent) => void): () => void;
+  buildPublish(): Promise<PublishPreview>;
+  pushManifest(): Promise<PublishResult>;
 }
 
 export interface ExtractItem {
@@ -59,3 +61,21 @@ export type QaEvent =
   | { type: "result"; conforme: boolean; ships: number; hard: number; warns: number };
 
 export interface QaSummary { conforme: boolean; ships: number; hard: number; warns: number }
+
+// --- Publication (regenere index.json puis pousse le manifeste) ---
+// Etape 1 : build-index regenere index.json depuis models/ ; on compare l'ensemble
+// des vaisseaux au dernier index publie (HEAD) pour exposer added/removed (garde-fou :
+// une regeneration ne doit pas SUPPRIMER des vaisseaux a l'insu de l'utilisateur).
+export interface PublishPreview {
+  patchVersion: string;
+  total: number;          // vaisseaux dans le nouvel index
+  added: string[];        // clefs presentes dans le nouvel index, absentes de HEAD
+  removed: string[];      // clefs de HEAD absentes du nouvel index (a confirmer !)
+  changedFiles: string[]; // parmi index.json / ships.meta.json : ce qui differe de HEAD
+}
+// Etape 2 : commit + push de index.json + ships.meta.json.
+export interface PublishResult {
+  pushed: boolean;
+  nothingToCommit?: boolean; // rien n'a change depuis HEAD
+  commit?: string;           // hash court du commit pousse
+}

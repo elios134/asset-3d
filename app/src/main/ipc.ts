@@ -10,4 +10,6 @@ export function registerIpc(repoRoot: string): void {
   ipcMain.handle("extract:start", (e, items) => svc.startExtract(e.sender, items));
   ipcMain.handle("extract:cancel", () => svc.cancelExtract());
   ipcMain.handle("qa:start", (e) => svc.startQa(e.sender));
+  ipcMain.handle("publish:build", () => svc.buildPublish());
+  ipcMain.handle("publish:push", () => svc.pushManifest());
 }

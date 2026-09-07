@@ -19,6 +19,8 @@ const api: Api = {
     ipcRenderer.on("qa:event", h);
     return () => { ipcRenderer.removeListener("qa:event", h); };
   },
+  buildPublish: () => ipcRenderer.invoke("publish:build"),
+  pushManifest: () => ipcRenderer.invoke("publish:push"),
 };
 
 contextBridge.exposeInMainWorld("api", api);
