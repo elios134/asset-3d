@@ -10,6 +10,7 @@ import { isExcluded } from "./exclude";
 import { UpdateScreen } from "./components/UpdateScreen";
 import { needsUpdate } from "./gate";
 import { ExtractPanel } from "./components/ExtractPanel";
+import { QaPanel } from "./components/QaPanel";
 import type { AnalyzeResult, Prereqs, ExtractItem } from "../shared/types";
 
 type Phase = "checking" | "needsUpdate" | "updating" | "ready" | "error";
@@ -57,7 +58,12 @@ function AppBody({ data, prereqs, reload }: { data: AnalyzeResult; prereqs: Prer
   const onToggle = (key: string, level: "exterior" | "interior") => setSel((s) => toggleLevel(s, key, level));
   const count = selectionCount(sel);
   const [extracting, setExtracting] = useState(false);
+  const [qaOpen, setQaOpen] = useState(false);
+  // Gate de publication (par session) : Publier reste bloqué tant que la
+  // dernière QA n'est pas conforme. Une extraction change le catalogue ⇒ invalide.
+  const [qaConforme, setQaConforme] = useState(false);
   const canExtract = count > 0 && prereqs.starbreaker && prereqs.p4k;
+  const startExtract = () => { setQaConforme(false); setExtracting(true); };
   const buildItems = (): ExtractItem[] => {
     const out: ExtractItem[] = [];
     for (const s of data.ships) {
@@ -79,12 +85,27 @@ function AppBody({ data, prereqs, reload }: { data: AnalyzeResult; prereqs: Prer
           className="primary"
           disabled={!canExtract}
           title={canExtract ? "Lancer l'extraction clay" : "Sélection vide ou prérequis StarBreaker/Data.p4k manquants"}
-          onClick={() => setExtracting(true)}
+          onClick={startExtract}
         >
           Extraire la sélection ({count})
         </button>
+        <button
+          title="Contrôle qualité géométrique de tout le catalogue avant publication"
+          onClick={() => setQaOpen(true)}
+        >
+          Lancer la QA
+        </button>
+        <button
+          className="primary"
+          disabled={!qaConforme}
+          title={qaConforme ? "Publier le catalogue sur GitHub" : "Publication bloquée : lancer la QA et obtenir un verdict conforme d'abord"}
+          onClick={() => { /* tranche suivante : publication GitHub */ }}
+        >
+          Publier sur GitHub
+        </button>
       </div>
       {extracting && <ExtractPanel items={buildItems()} onClose={() => setExtracting(false)} />}
+      {qaOpen && <QaPanel onClose={() => setQaOpen(false)} onDone={setQaConforme} />}
     </div>
   );
 }

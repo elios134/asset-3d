@@ -52,6 +52,7 @@ h1 { font-weight: 500; font-size: 22px; }
 .extract-rows li { padding: 3px 0; font-size: 13px; }
 .extract-rows .ic { display: inline-block; width: 18px; }
 .row-done { color: #5dcaa5; } .row-error { color: #e06c6c; } .row-skip { color: #9a978d; } .row-running { color: #efb027; }
+.row-pass { color: #5dcaa5; } .row-warn { color: #efb027; } .row-fail { color: #e06c6c; }
 .extract-rows .detail { color: #9a978d; font-size: 11px; }
 .extract-log { flex: 1; overflow-y: auto; background: #060504; border: 1px solid #1c1b16;
   font-size: 11px; padding: 8px; margin: 8px 0 0; white-space: pre-wrap; }
