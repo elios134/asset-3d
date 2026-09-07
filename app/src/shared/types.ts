@@ -31,6 +31,8 @@ export interface Api {
   startExtract(items: ExtractItem[]): Promise<ExtractSummary>;
   cancelExtract(): Promise<void>;
   onExtractEvent(cb: (evt: ExtractEvent) => void): () => void;
+  startQa(): Promise<QaSummary>;
+  onQaEvent(cb: (evt: QaEvent) => void): () => void;
 }
 
 export interface ExtractItem {
@@ -49,3 +51,11 @@ export type ExtractEvent =
   | { type: "cancelled"; doneCount: number };
 
 export interface ExtractSummary { ok: number; ko: number; skipped: number; cancelled: boolean }
+
+// --- QA (contrôle qualité géométrique avant publication) ---
+// Un seul run couvre tout le catalogue clay. Émis par scripts/qa.mjs --json.
+export type QaEvent =
+  | { type: "ship"; key: string; name: string; hard: number; warns: number; messages: string[] }
+  | { type: "result"; conforme: boolean; ships: number; hard: number; warns: number };
+
+export interface QaSummary { conforme: boolean; ships: number; hard: number; warns: number }

@@ -2,33 +2,40 @@ import { spawn } from "node:child_process";
 import { createInterface } from "node:readline";
 import type { ExtractEvent } from "../shared/types";
 
-export interface StreamHandle {
-  done: Promise<ExtractEvent>;
+export interface StreamHandle<E extends { type: string } = ExtractEvent> {
+  done: Promise<E>;
   kill(): void;
 }
 
-export function runStream(
+/**
+ * Spawn `node <script> <args>` et lit son stdout ligne à ligne. Chaque ligne
+ * JSON valide est transmise à `onEvent` (les lignes non-JSON sont ignorées).
+ * `done` résout au dernier événement `{type:"result"}` reçu ; si le process
+ * sort en 0 sans en émettre, résout `emptyResult` s'il est fourni, sinon rejette.
+ * Générique sur le type d'événement : réutilisé par l'extraction et la QA.
+ */
+export function runStream<E extends { type: string } = ExtractEvent>(
   script: string,
   args: string[],
-  opts: { cwd: string; onEvent: (e: ExtractEvent) => void },
-): StreamHandle {
+  opts: { cwd: string; onEvent: (e: E) => void; emptyResult?: E },
+): StreamHandle<E> {
   const child = spawn("node", [script, ...args], { cwd: opts.cwd });
-  let result: ExtractEvent | null = null;
+  let result: E | null = null;
   let stderr = "";
   child.stderr.on("data", (d) => { stderr += d.toString(); });
   const rl = createInterface({ input: child.stdout });
   rl.on("line", (line) => {
-    let evt: ExtractEvent;
-    try { evt = JSON.parse(line) as ExtractEvent; } catch { return; }
+    let evt: E;
+    try { evt = JSON.parse(line) as E; } catch { return; }
     opts.onEvent(evt);
     if (evt.type === "result") result = evt;
   });
-  const done = new Promise<ExtractEvent>((resolve, reject) => {
+  const done = new Promise<E>((resolve, reject) => {
     child.on("error", reject);
     child.on("close", (code) => {
       if (result) resolve(result);
-      else if (code === 0) resolve({ type: "result", ok: 0, ko: 0, skipped: 0 });
-      else reject(new Error(stderr.trim() || `build-clay a quitté avec le code ${code}`));
+      else if (code === 0 && opts.emptyResult) resolve(opts.emptyResult);
+      else reject(new Error(stderr.trim() || `le script a quitté avec le code ${code}`));
     });
   });
   return { done, kill: () => child.kill() };

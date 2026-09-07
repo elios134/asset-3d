@@ -5,7 +5,7 @@ import type { ExtractItem, ExtractEvent, ExtractSummary } from "../shared/types"
 type RunFn = (
   script: string,
   args: string[],
-  opts: { cwd: string; onEvent: (e: ExtractEvent) => void },
+  opts: { cwd: string; onEvent: (e: ExtractEvent) => void; emptyResult?: ExtractEvent },
 ) => StreamHandle;
 
 export async function runExtract(
@@ -39,6 +39,9 @@ export async function runExtract(
         // consommé ici via `.done`. Ne laisser passer que les événements de
         // progression ; l'agrégat final est émis une seule fois après la boucle.
         onEvent: (e) => { if (e.type !== "result") opts.onEvent(e); },
+        // build-clay émet toujours un result ; ce repli ne sert que si un run
+        // sort en 0 sans en émettre (comportement historique : compté comme rien).
+        emptyResult: { type: "result", ok: 0, ko: 0, skipped: 0 },
       }).done;
       if (res.type === "result") { ok += res.ok; ko += res.ko; skipped += res.skipped; }
     } catch (e) {
