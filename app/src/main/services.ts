@@ -6,7 +6,11 @@ import { loadVisitableSet } from "./visitable";
 import { resolveScfleetDb } from "./appconfig";
 import { runUpdate } from "./update";
 import { runExtract } from "./extract";
-import type { AnalyzeResult, Prereqs, ExtractItem, ExtractSummary } from "../shared/types";
+import { runStream } from "./stream";
+import type { AnalyzeResult, Prereqs, ExtractItem, ExtractSummary, QaEvent, QaSummary } from "../shared/types";
+
+type IpcSender = { send(channel: string, evt: unknown): void };
+type QaRunner = (sender: IpcSender) => Promise<QaSummary>;
 
 type ConfigLib = { loadConfig(opts: { root: string }): { paths: { starbreaker: string; p4k: string } } };
 type PrereqLib = {
@@ -15,9 +19,20 @@ type PrereqLib = {
 };
 type ThumbLib = { getThumbnail(a: { name: string; cacheDir: string }): Promise<{ path: string | null }> };
 
-export function createServices(repoRoot: string) {
+export function createServices(repoRoot: string, deps: { runQa?: QaRunner } = {}) {
   let extractLock = false;
   let cancelFlag = false;
+  let qaLock = false;
+
+  // QA réelle : un seul run couvre tout le catalogue clay (scripts/qa.mjs --json).
+  const defaultRunQa: QaRunner = async (sender) => {
+    const r = await runStream<QaEvent>("scripts/qa.mjs", ["--json"], {
+      cwd: repoRoot,
+      onEvent: (evt) => sender.send("qa:event", evt),
+    }).done;
+    if (r.type !== "result") throw new Error("La QA n'a pas émis de résultat.");
+    return { conforme: r.conforme, ships: r.ships, hard: r.hard, warns: r.warns };
+  };
 
   return {
     async analyze(): Promise<AnalyzeResult> {
@@ -72,6 +87,16 @@ export function createServices(repoRoot: string) {
 
     cancelExtract(): void {
       cancelFlag = true;
+    },
+
+    async startQa(sender: IpcSender): Promise<QaSummary> {
+      if (qaLock) throw new Error("Une QA est déjà en cours.");
+      qaLock = true;
+      try {
+        return await (deps.runQa ?? defaultRunQa)(sender);
+      } finally {
+        qaLock = false;
+      }
     },
   };
 }

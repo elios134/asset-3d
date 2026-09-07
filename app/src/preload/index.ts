@@ -13,6 +13,12 @@ const api: Api = {
     ipcRenderer.on("extract:event", h);
     return () => { ipcRenderer.removeListener("extract:event", h); };
   },
+  startQa: () => ipcRenderer.invoke("qa:start"),
+  onQaEvent: (cb) => {
+    const h = (_e: unknown, evt: unknown) => cb(evt as Parameters<typeof cb>[0]);
+    ipcRenderer.on("qa:event", h);
+    return () => { ipcRenderer.removeListener("qa:event", h); };
+  },
 };
 
 contextBridge.exposeInMainWorld("api", api);
