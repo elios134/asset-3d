@@ -179,10 +179,28 @@ function mul(a, b) {
   for (let c = 0; c < 4; c++) for (let r = 0; r < 4; r++) { let s = 0; for (let k = 0; k < 4; k++) s += a[k * 4 + r] * b[c * 4 + k]; o[c * 4 + r] = s; }
   return o;
 }
+// Matrice monde d'un noeud, MEMOISEE (une seule fois par noeud, reutilisee par
+// reportAberrant/worldBBox/containment) et SURE FACE AUX CYCLES : certains exports
+// (ex. AEGS_Idris_M : 61 noeuds) ont une hierarchie cyclique (A enfant de B, B
+// enfant de A). Sans garde, la remontee de parents boucle a l'infini. Le drapeau
+// `prog` (calcul en cours) casse la boucle : un noeud rencontre dans sa propre
+// chaine d'ancetres est traite comme une racine (sa locale sert de base).
 function worldMatrix(g, i) {
-  let m = localMatrix(g.nodes[i]), p = g.parent[i];
-  while (p !== -1) { m = mul(localMatrix(g.nodes[p]), m); p = g.parent[p]; }
-  return m;
+  const cache = g._wm ?? (g._wm = new Array(g.nodes.length).fill(null));
+  const prog = g._wmProg ?? (g._wmProg = new Uint8Array(g.nodes.length));
+  const rec = (k) => {
+    const hit = cache[k];
+    if (hit) return hit;
+    if (prog[k]) return localMatrix(g.nodes[k]); // cycle detecte : on stoppe la remontee
+    prog[k] = 1;
+    const local = localMatrix(g.nodes[k]);
+    const p = g.parent[k];
+    const m = p === -1 ? local : mul(rec(p), local);
+    prog[k] = 0;
+    cache[k] = m;
+    return m;
+  };
+  return rec(i);
 }
 function apply(m, [x, y, z]) {
   return [m[0] * x + m[4] * y + m[8] * z + m[12], m[1] * x + m[5] * y + m[9] * z + m[13], m[2] * x + m[6] * y + m[10] * z + m[14]];
@@ -215,8 +233,11 @@ function subtreeWorldBBox(g, idx) {
   const meshes = g.json.meshes ?? [];
   let found = false;
   const stack = [idx];
+  const seen = new Set(); // stoppe les cycles de hierarchie (children A<->B), cf. worldMatrix
   while (stack.length) {
     const i = stack.pop();
+    if (seen.has(i)) continue;
+    seen.add(i);
     const n = g.nodes[i];
     if (n.mesh != null) {
       const wm = worldMatrix(g, i);
@@ -229,7 +250,7 @@ function subtreeWorldBBox(g, idx) {
           growBox(box, apply(wm, corner));
       }
     }
-    for (const c of n.children ?? []) stack.push(c);
+    for (const c of n.children ?? []) if (!seen.has(c)) stack.push(c);
   }
   return found ? box : null;
 }

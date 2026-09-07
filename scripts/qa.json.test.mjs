@@ -91,6 +91,47 @@ test("qa --json émet du NDJSON pur (ship* + result) et calcule conforme", () =>
   }
 });
 
+// Intérieur avec un CYCLE de hiérarchie : node1 <-> node2 sont parent l'un de
+// l'autre (cas réel : AEGS_Idris_M, 61 noeuds cycliques). Sans garde, worldMatrix
+// boucle a l'infini (while p!==-1). qa doit terminer et emettre un verdict.
+function cyclicInterior() {
+  return {
+    asset: { version: "2.0" },
+    scenes: [{ nodes: [0] }],
+    nodes: [
+      { name: "interior_base_int_main", mesh: 0, children: [1] },
+      { name: "cyc_a", mesh: 0, children: [2] },
+      { name: "cyc_b", mesh: 0, children: [1] }, // -> parent[1]=2 et parent[2]=1 : cycle
+    ],
+    meshes: [{ primitives: [{ attributes: { POSITION: 0 } }] }],
+    accessors: [{ type: "VEC3", componentType: 5126, count: 8, min: [-5, -3, -10], max: [5, 3, 10] }],
+  };
+}
+
+test("qa --json termine malgré un cycle dans la hiérarchie de noeuds", () => {
+  const dir = mkdtempSync(join(tmpdir(), "qa-"));
+  const models = join(dir, "models");
+  const metaPath = join(dir, "ships.meta.json");
+  try {
+    writeFileSync(metaPath, JSON.stringify({ TST_Cycle: { name: "Cyclic", dims: { l: 20, b: 10, h: 6 } } }));
+    mkdirSync(models, { recursive: true });
+    writeFileSync(join(models, "TST_Cycle.clay-exterior.glb"), glb(variant("hull")));
+    writeFileSync(join(models, "TST_Cycle.clay-interior.glb"), glb(cyclicInterior()));
+
+    // timeout dur : si worldMatrix boucle a l'infini, execFileSync leve (ETIMEDOUT) -> test rouge.
+    const out = execFileSync(
+      "node",
+      ["scripts/qa.mjs", "--json", `--models=${models}`, `--meta=${metaPath}`],
+      { cwd: ROOT, encoding: "utf8", timeout: 20000 },
+    );
+    const lines = out.trim().split("\n").filter(Boolean).map((l) => JSON.parse(l));
+    assert.ok(lines.find((e) => e.type === "ship" && e.key === "TST_Cycle"), "un event ship");
+    assert.ok(lines.find((e) => e.type === "result"), "un event result (la QA a bien terminé)");
+  } finally {
+    rmSync(dir, { recursive: true, force: true });
+  }
+});
+
 test("qa --json déquantifie les accessors normalisés (KHR_mesh_quantization)", () => {
   const dir = mkdtempSync(join(tmpdir(), "qa-"));
   const models = join(dir, "models");
