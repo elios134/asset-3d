@@ -18,11 +18,20 @@
 import { readFileSync, readdirSync } from "node:fs";
 import { fileURLToPath } from "node:url";
 import { dirname, join } from "node:path";
+import { makeEmitter } from "./lib/emit.mjs";
 
 const ROOT = join(dirname(fileURLToPath(import.meta.url)), "..");
 const STRICT = process.argv.includes("--strict");
-const modelsDir = join(ROOT, "models");
-const meta = JSON.parse(readFileSync(join(ROOT, "ships.meta.json"), "utf8"));
+const JSON_MODE = process.argv.includes("--json");
+const emit = makeEmitter(JSON_MODE);
+if (JSON_MODE) console.log = () => {}; // stdout = NDJSON pur : on silence le rapport humain (les erreurs partent sur stderr)
+// Overrides (tests / usages hors-racine) : --models=<dir> --meta=<fichier>.
+const argVal = (name, def) => {
+  const p = process.argv.find((a) => a.startsWith(name + "="));
+  return p ? p.slice(name.length + 1) : def;
+};
+const modelsDir = argVal("--models", join(ROOT, "models"));
+const meta = JSON.parse(readFileSync(argVal("--meta", join(ROOT, "ships.meta.json")), "utf8"));
 
 // Tolerances (metres)
 const TOL_CONTAIN = 2.0;   // depassement max tolere hors bas/arriere
@@ -31,7 +40,7 @@ const TOL_DIMS_ABS = 3.0;  // ecart absolu tolere sur l/b/h
 const TOL_DIMS_REL = 0.15; // + ecart relatif tolere
 const ABERRANT_FACTOR = 1.5; // un mesh dont une bbox-axe depasse dim_reelle * ce facteur = aberrant
 
-let hardFail = 0, warns = 0;
+let hardFail = 0, warns = 0, shipCount = 0;
 
 // Regroupe les .glb par key et niveau
 const files = readdirSync(modelsDir).filter((f) => f.toLowerCase().endsWith(".glb"));
@@ -40,7 +49,12 @@ for (const f of files) {
   const stem = f.slice(0, -4);
   const dot = stem.lastIndexOf(".");
   if (dot < 0) continue;
-  const key = stem.slice(0, dot), level = stem.slice(dot + 1);
+  const key = stem.slice(0, dot), rawLevel = stem.slice(dot + 1);
+  // Le catalogue publié est 100 % clay : on ne contrôle que les variantes clay
+  // canoniques (clay-exterior / clay-interior). On ignore le legacy HD
+  // (.exterior/.interior) et les variantes hors-index (out-tag, ex. clay-soft-interior).
+  const level = rawLevel === "clay-interior" ? "interior" : rawLevel === "clay-exterior" ? "exterior" : null;
+  if (!level) continue;
   if (!ships.has(key)) ships.set(key, {});
   ships.get(key)[level] = join(modelsDir, f);
 }
@@ -51,11 +65,13 @@ for (const [key, variants] of ships) {
   const m = meta[key];
   const dims = m?.dims;
   const int = loadGlb(variants.interior);
+  const msgs = [];               // messages "problème" de CE vaisseau (pour l'UI)
+  const h0 = hardFail, w0 = warns; // snapshot pour le delta par vaisseau
 
   // --- Controle 0 : meshes aberrants (et set d'exclusion pour les references) ---
-  const excludeInt = dims ? reportAberrant(int, dims, key + " interior") : new Set();
+  const excludeInt = dims ? reportAberrant(int, dims, key + " interior", msgs) : new Set();
   const ext = variants.exterior ? loadGlb(variants.exterior) : null;
-  const excludeExt = ext && dims ? reportAberrant(ext, dims, key + " exterior") : new Set();
+  const excludeExt = ext && dims ? reportAberrant(ext, dims, key + " exterior", msgs) : new Set();
 
   // --- Controle 1 : containment des modules interieurs dans la coque PROPRE ---
   if (ext) {
@@ -65,7 +81,9 @@ for (const [key, variants] of ships) {
       && Math.abs((hull.xMax - hull.xMin) - dims.b) <= dims.b * 0.2
       && Math.abs((hull.yMax - hull.yMin) - dims.h) <= dims.h * 0.2;
     if (!hullOk) {
-      console.log(`  ⚠ reference coque non fiable (bbox exterior ${(hull.xMax-hull.xMin).toFixed(0)}x${(hull.yMax-hull.yMin).toFixed(0)}x${(hull.zMax-hull.zMin).toFixed(0)}m != dims reelles) → containment ininterpretable, voir controle DIMS`);
+      const msg = `référence coque non fiable (bbox exterior ${(hull.xMax-hull.xMin).toFixed(0)}x${(hull.yMax-hull.yMin).toFixed(0)}x${(hull.zMax-hull.zMin).toFixed(0)}m ≠ dims réelles) → containment ininterprétable, voir contrôle DIMS`;
+      console.log(`  ⚠ ${msg}`);
+      msgs.push(msg);
       warns++;
     } else
     for (const root of interiorRoots(int)) {
@@ -81,13 +99,16 @@ for (const [key, variants] of ships) {
       if (over.zMax > TOL_RAMP) bad.push(`arriere +${over.zMax.toFixed(1)}m`);
       if (bad.length) {
         console.log(`  ✗ ${root.name} DEPASSE la coque : ${bad.join(", ")}`);
+        msgs.push(`${root.name} dépasse la coque : ${bad.join(", ")}`);
         hardFail++;
       } else {
         console.log(`  ✓ ${root.name} contenu dans la coque`);
       }
     }
   } else {
-    console.log(`  ⚠ pas de variante exterior pour la reference coque — containment non verifie`);
+    const msg = "pas de variante exterior pour la référence coque — containment non vérifié";
+    console.log(`  ⚠ ${msg}`);
+    msgs.push(msg);
     warns++;
   }
 
@@ -99,20 +120,30 @@ for (const [key, variants] of ships) {
       const real = dims[axis], val = got[axis], diff = Math.abs(val - real);
       const ok = diff <= TOL_DIMS_ABS || diff / real <= TOL_DIMS_REL;
       console.log(`  ${ok ? "✓" : "✗"} dim ${axis}: export propre ${val.toFixed(1)}m vs reel ${real}m (ecart ${diff.toFixed(1)}m)`);
-      if (!ok) hardFail++;
+      if (!ok) { hardFail++; msgs.push(`dim ${axis} : export ${val.toFixed(1)}m vs réel ${real}m (écart ${diff.toFixed(1)}m)`); }
     }
   } else {
-    console.log(`  ⚠ dims absentes de ships.meta.json — controle dims saute`);
+    const msg = "dims absentes de ships.meta.json — contrôle dims sauté";
+    console.log(`  ⚠ ${msg}`);
+    msgs.push(msg);
     warns++;
   }
+
+  shipCount++;
+  emit({ type: "ship", key, name: m?.name ?? key, hard: hardFail - h0, warns: warns - w0, messages: msgs });
 }
 
 console.log(`\n${hardFail} echec(s) dur(s), ${warns} avertissement(s).`);
-if (hardFail > 0 || (STRICT && warns > 0)) {
+const conforme = hardFail === 0 && !(STRICT && warns > 0);
+emit({ type: "result", conforme, ships: shipCount, hard: hardFail, warns });
+if (!conforme) {
   console.error("QA : NON CONFORME — ne pas publier en l'etat.");
-  process.exit(1);
+  // En mode --json, le verdict voyage dans l'event `result` ; on ne sort pas en
+  // erreur (le consommateur machine lit `conforme`). En mode humain/CI, exit≠0.
+  if (!JSON_MODE) process.exit(1);
+} else {
+  console.log("QA : conforme.");
 }
-console.log("QA : conforme.");
 
 // ---------- GLB + geometrie ----------
 
@@ -220,7 +251,7 @@ function nodeOwnBBox(g, i) {
 
 // Signale les meshes dont la bbox depasse une dim reelle * ABERRANT_FACTOR.
 // Retourne le Set des index de noeuds aberrants (a exclure des references).
-function reportAberrant(g, dims, label) {
+function reportAberrant(g, dims, label, sink) {
   const set = new Set();
   const limit = { b: dims.b * ABERRANT_FACTOR, h: dims.h * ABERRANT_FACTOR, l: dims.l * ABERRANT_FACTOR };
   const hits = [];
@@ -240,6 +271,7 @@ function reportAberrant(g, dims, label) {
       console.log(`      ${h.name.padEnd(40)} bbox ${h.ex.toFixed(0)}x${h.ey.toFixed(0)}x${h.ez.toFixed(0)} m`);
     if (hits.length > 8) console.log(`      … +${hits.length - 8} autres`);
     warns += hits.length;
+    if (sink) sink.push(`${hits.length} mesh(es) aberrant(s) dans ${label} (exclus des références)`);
   }
   return set;
 }
