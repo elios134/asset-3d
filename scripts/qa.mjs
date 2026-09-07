@@ -187,6 +187,21 @@ function worldMatrix(g, i) {
 function apply(m, [x, y, z]) {
   return [m[0] * x + m[4] * y + m[8] * z + m[12], m[1] * x + m[5] * y + m[9] * z + m[13], m[2] * x + m[6] * y + m[10] * z + m[14]];
 }
+// Déquantification KHR_mesh_quantization : les exports clay stockent POSITION en
+// entiers NORMALISÉS (ex. int16), et un scale de noeud reconvertit en mètres.
+// min/max sont alors dans l'espace entier ; il faut les ramener dans [-1,1] AVANT
+// d'appliquer la matrice monde (qui porte le scale). Sans ça, ±32767 × scale ⇒
+// bbox géante ⇒ meshes "aberrants" exclus ⇒ coque/dims vides (-Infinity).
+// NB : déclaration de fonction (hoistée) car appelée depuis la boucle principale.
+function accMinMax(pa) {
+  if (!pa?.min || !pa?.max) return null;
+  const NORM_DIV = { 5120: 127, 5121: 255, 5122: 32767, 5123: 65535 }; // BYTE/UBYTE/SHORT/USHORT
+  const div = pa.normalized ? NORM_DIV[pa.componentType] : undefined;
+  if (!div) return { min: pa.min, max: pa.max };
+  const deq = (v) => Math.max(v / div, -1); // clamp signé conforme glTF ; sans effet sur non signé (≥0)
+  return { min: pa.min.map(deq), max: pa.max.map(deq) };
+}
+
 function emptyBox() { return { xMin: Infinity, yMin: Infinity, zMin: Infinity, xMax: -Infinity, yMax: -Infinity, zMax: -Infinity }; }
 function growBox(box, [x, y, z]) {
   if (x < box.xMin) box.xMin = x; if (y < box.yMin) box.yMin = y; if (z < box.zMin) box.zMin = z;
@@ -206,10 +221,10 @@ function subtreeWorldBBox(g, idx) {
     if (n.mesh != null) {
       const wm = worldMatrix(g, i);
       for (const prim of meshes[n.mesh].primitives ?? []) {
-        const pa = acc[prim.attributes?.POSITION];
-        if (!pa?.min || !pa?.max) continue;
+        const mm = accMinMax(acc[prim.attributes?.POSITION]);
+        if (!mm) continue;
         found = true;
-        const [x0, y0, z0] = pa.min, [x1, y1, z1] = pa.max;
+        const [x0, y0, z0] = mm.min, [x1, y1, z1] = mm.max;
         for (const corner of [[x0,y0,z0],[x1,y0,z0],[x0,y1,z0],[x0,y0,z1],[x1,y1,z0],[x1,y0,z1],[x0,y1,z1],[x1,y1,z1]])
           growBox(box, apply(wm, corner));
       }
@@ -239,10 +254,10 @@ function nodeOwnBBox(g, i) {
   const box = emptyBox();
   let found = false;
   for (const prim of meshes[n.mesh].primitives ?? []) {
-    const pa = acc[prim.attributes?.POSITION];
-    if (!pa?.min || !pa?.max) continue;
+    const mm = accMinMax(acc[prim.attributes?.POSITION]);
+    if (!mm) continue;
     found = true;
-    const [x0, y0, z0] = pa.min, [x1, y1, z1] = pa.max;
+    const [x0, y0, z0] = mm.min, [x1, y1, z1] = mm.max;
     for (const c of [[x0,y0,z0],[x1,y0,z0],[x0,y1,z0],[x0,y0,z1],[x1,y1,z0],[x1,y0,z1],[x0,y1,z1],[x1,y1,z1]])
       growBox(box, apply(wm, c));
   }

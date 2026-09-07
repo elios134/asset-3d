@@ -1,4 +1,4 @@
-import { useEffect, useReducer } from "react";
+import { useEffect, useReducer, useRef } from "react";
 import { api } from "../api";
 import { initQaState, qaReducer } from "../qaReducer";
 
@@ -6,12 +6,18 @@ const ICON: Record<string, string> = { pass: "✓", warn: "⚠", fail: "✗" };
 
 export function QaPanel({ onClose, onDone }: { onClose: () => void; onDone: (conforme: boolean) => void }) {
   const [state, dispatch] = useReducer(qaReducer, initQaState());
+  // StrictMode (dev) invoque l'effet deux fois : sans garde, le 2e startQa tombe
+  // sur le verrou main ("déjà en cours") et faux-échoue. On ne lance qu'une fois.
+  const started = useRef(false);
 
   useEffect(() => {
     const off = api.onQaEvent((evt) => dispatch(evt));
-    api.startQa()
-      .then((s) => onDone(s.conforme))
-      .catch((e) => dispatch({ type: "startFatal", err: String(e?.message ?? e) }));
+    if (!started.current) {
+      started.current = true;
+      api.startQa()
+        .then((s) => onDone(s.conforme))
+        .catch((e) => dispatch({ type: "startFatal", err: String(e?.message ?? e) }));
+    }
     return off;
   }, []); // eslint-disable-line react-hooks/exhaustive-deps
 

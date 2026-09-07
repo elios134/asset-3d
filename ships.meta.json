@@ -5,9 +5,9 @@
     "manufacturer": "Aegis Dynamics",
     "classification": "Interceptor",
     "dims": {
-      "l": 20,
-      "b": 15,
-      "h": 6.5
+      "l": 24.6,
+      "b": 16.8,
+      "h": 7.2
     },
     "materials": "flat"
   },
@@ -16,9 +16,9 @@
     "manufacturer": "Aegis Dynamics",
     "classification": "Light Freight",
     "dims": {
-      "l": 20,
-      "b": 15,
-      "h": 6.5
+      "l": 24.6,
+      "b": 16.8,
+      "h": 7.2
     },
     "materials": "flat"
   },
@@ -27,9 +27,9 @@
     "manufacturer": "Aegis Dynamics",
     "classification": "Light Freight",
     "dims": {
-      "l": 20,
-      "b": 15,
-      "h": 6.5
+      "l": 24.6,
+      "b": 16.8,
+      "h": 7.2
     },
     "materials": "flat"
   },
@@ -38,9 +38,9 @@
     "manufacturer": "Aegis Dynamics",
     "classification": "Interdiction",
     "dims": {
-      "l": 20,
-      "b": 15,
-      "h": 6.5
+      "l": 24.6,
+      "b": 16.8,
+      "h": 7.2
     },
     "materials": "flat"
   },
@@ -148,9 +148,9 @@
     "manufacturer": "Aegis Dynamics",
     "classification": "Destroyer",
     "dims": {
-      "l": 493,
-      "b": 218,
-      "h": 89
+      "l": 0,
+      "b": 0,
+      "h": 0
     },
     "materials": "flat"
   },
@@ -478,9 +478,9 @@
     "manufacturer": "Anvil Aerospace",
     "classification": "Light Fighter",
     "dims": {
-      "l": 0,
-      "b": 0,
-      "h": 0
+      "l": 23,
+      "b": 17,
+      "h": 8
     },
     "materials": "flat"
   },
@@ -654,9 +654,9 @@
     "manufacturer": "Anvil Aerospace",
     "classification": "Heavy Fighter",
     "dims": {
-      "l": 0,
-      "b": 0,
-      "h": 0
+      "l": 24,
+      "b": 18.5,
+      "h": 6.5
     },
     "materials": "flat"
   },
@@ -731,9 +731,9 @@
     "manufacturer": "Anvil Aerospace",
     "classification": "Gunship",
     "dims": {
-      "l": 53,
-      "b": 37,
-      "h": 16
+      "l": 53.5,
+      "b": 38,
+      "h": 15.5
     },
     "materials": "flat"
   },
@@ -850,7 +850,7 @@
   "ARGO_ATLS_GEO_IKTI": {
     "name": "Argo ATLS GEO IKTI",
     "manufacturer": "Banu Souli",
-    "classification": "<= PLACEHOLDER =>",
+    "classification": "Combat",
     "dims": {
       "l": 3.2,
       "b": 1.6,
@@ -893,6 +893,17 @@
   },
   "ARGO_MOLE": {
     "name": "MOLE",
+    "manufacturer": "Argo Astronautics",
+    "classification": "Medium Mining",
+    "dims": {
+      "l": 45,
+      "b": 26,
+      "h": 15
+    },
+    "materials": "flat"
+  },
+  "ARGO_MOLE_BTALA": {
+    "name": "MOLE Alliance",
     "manufacturer": "Argo Astronautics",
     "classification": "Medium Mining",
     "dims": {
@@ -1276,6 +1287,17 @@
     },
     "materials": "flat"
   },
+  "DRAK_Clipper_Collector_Military": {
+    "name": "Clipper Wikelo War Special",
+    "manufacturer": "Drake Interplanetary",
+    "classification": "Generalist",
+    "dims": {
+      "l": 26.5,
+      "b": 21,
+      "h": 18
+    },
+    "materials": "flat"
+  },
   "DRAK_Command_Module": {
     "name": "Command Module",
     "manufacturer": "Drake Interplanetary",
@@ -1441,6 +1463,17 @@
     },
     "materials": "flat"
   },
+  "DRAK_Golem_BTALA": {
+    "name": "Golem Alliance",
+    "manufacturer": "Drake Interplanetary",
+    "classification": "Starter / Light Mining",
+    "dims": {
+      "l": 15.5,
+      "b": 7,
+      "h": 5
+    },
+    "materials": "flat"
+  },
   "DRAK_Golem_Collector_Indust": {
     "name": "Golem Wikelo Work Special",
     "manufacturer": "Drake Interplanetary",
@@ -1479,9 +1512,9 @@
     "manufacturer": "Drake Interplanetary",
     "classification": "Heavy Freight",
     "dims": {
-      "l": 111.5,
-      "b": 39.5,
-      "h": 13.4
+      "l": 117,
+      "b": 50,
+      "h": 25
     },
     "materials": "flat"
   },
@@ -1490,9 +1523,9 @@
     "manufacturer": "Drake Interplanetary",
     "classification": "Heavy Dropship",
     "dims": {
-      "l": 111.5,
-      "b": 39.5,
-      "h": 13.4
+      "l": 117,
+      "b": 50,
+      "h": 25
     },
     "materials": "flat"
   },
@@ -1600,9 +1633,9 @@
     "manufacturer": "Gatac Manufacture",
     "classification": "Starter / Pathfinder",
     "dims": {
-      "l": 0,
-      "b": 0,
-      "h": 0
+      "l": 28,
+      "b": 25,
+      "h": 16
     },
     "materials": "flat"
   },
@@ -1611,20 +1644,31 @@
     "manufacturer": "Gatac Manufacture",
     "classification": "Starter / Pathfinder",
     "dims": {
-      "l": 0,
-      "b": 0,
-      "h": 0
+      "l": 28,
+      "b": 25,
+      "h": 16
     },
     "materials": "flat"
   },
   "GAMA_Tyilui": {
     "name": "Tyilui",
     "manufacturer": "Gatac Manufacture",
-    "classification": "Carrier",
+    "classification": "Snub Carrier",
     "dims": {
       "l": 67.25,
       "b": 58.75,
       "h": 52
+    },
+    "materials": "flat"
+  },
+  "GLSN_Basher": {
+    "name": "Basher",
+    "manufacturer": "Grey's Market",
+    "classification": "Light Fighter",
+    "dims": {
+      "l": 13.7,
+      "b": 11.3,
+      "h": 4.5
     },
     "materials": "flat"
   },
@@ -1721,9 +1765,9 @@
     "manufacturer": "Kruger Intergalactic",
     "classification": "Light Fighter",
     "dims": {
-      "l": 12,
-      "b": 5.25,
-      "h": 3
+      "l": 21.5,
+      "b": 10.5,
+      "h": 4.2
     },
     "materials": "flat"
   },
@@ -1732,9 +1776,9 @@
     "manufacturer": "Kruger Intergalactic",
     "classification": "Light Fighter",
     "dims": {
-      "l": 12,
-      "b": 5.25,
-      "h": 3
+      "l": 21.5,
+      "b": 10.5,
+      "h": 4.2
     },
     "materials": "flat"
   },
@@ -1743,9 +1787,9 @@
     "manufacturer": "Kruger Intergalactic",
     "classification": "Light Fighter",
     "dims": {
-      "l": 12,
-      "b": 5.25,
-      "h": 3
+      "l": 21.5,
+      "b": 10.5,
+      "h": 4.2
     },
     "materials": "flat"
   },
@@ -1754,9 +1798,9 @@
     "manufacturer": "Kruger Intergalactic",
     "classification": "Light Fighter",
     "dims": {
-      "l": 12,
-      "b": 5.25,
-      "h": 3
+      "l": 21.5,
+      "b": 10.5,
+      "h": 4.2
     },
     "materials": "flat"
   },
@@ -1765,9 +1809,9 @@
     "manufacturer": "Kruger Intergalactic",
     "classification": "Light Fighter",
     "dims": {
-      "l": 12,
-      "b": 5.25,
-      "h": 3
+      "l": 21.5,
+      "b": 10.5,
+      "h": 4.2
     },
     "materials": "flat"
   },
@@ -1777,8 +1821,8 @@
     "classification": "Snub Fighter",
     "dims": {
       "l": 12,
-      "b": 5.25,
-      "h": 3
+      "b": 7.75,
+      "h": 3.25
     },
     "materials": "flat"
   },
@@ -1788,8 +1832,8 @@
     "classification": "Racing",
     "dims": {
       "l": 12,
-      "b": 5.25,
-      "h": 3
+      "b": 7.75,
+      "h": 3.25
     },
     "materials": "flat"
   },
@@ -1799,8 +1843,8 @@
     "classification": "Racing",
     "dims": {
       "l": 12,
-      "b": 5.25,
-      "h": 3
+      "b": 7.75,
+      "h": 3.25
     },
     "materials": "flat"
   },
@@ -1938,6 +1982,17 @@
   },
   "MISC_Prospector": {
     "name": "MISC Prospector",
+    "manufacturer": "Musashi Industrial and Starflight Concern",
+    "classification": "Light Mining",
+    "dims": {
+      "l": 26.5,
+      "b": 16.5,
+      "h": 8
+    },
+    "materials": "flat"
+  },
+  "MISC_Prospector_BTALA": {
+    "name": "MISC Prospector Alliance",
     "manufacturer": "Musashi Industrial and Starflight Concern",
     "classification": "Light Mining",
     "dims": {

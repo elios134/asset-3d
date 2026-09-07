@@ -28,6 +28,18 @@ const rows = db.prepare(`
 `).all();
 db.close();
 
+// Overrides de dims (metres) : appliques quand la spec ShipData du jeu diverge
+// nettement de la bounding-box reelle du maillage publie (celle que scripts/qa.mjs
+// mesure). Cle = classNameCig. Sans ca la QA rejette a tort ces vaisseaux.
+// Cas connu : famille Avenger — ShipData annonce 20x15x6.5, le mesh clay
+// (exterieur ET interieur concordants) fait ~24.6x16.8x7.2.
+const DIM_OVERRIDES = {
+  AEGS_Avenger_Stalker: { l: 24.6, b: 16.8, h: 7.2 },
+  AEGS_Avenger_Titan: { l: 24.6, b: 16.8, h: 7.2 },
+  AEGS_Avenger_Titan_Renegade: { l: 24.6, b: 16.8, h: 7.2 },
+  AEGS_Avenger_Warlock: { l: 24.6, b: 16.8, h: 7.2 },
+};
+
 // dedup par nom : garde le classNameCig le plus court (la variante de base)
 const byName = new Map();
 for (const r of rows) {
@@ -43,7 +55,7 @@ for (const r of [...byName.values()].sort((a, b) => a.classNameCig.localeCompare
     name: r.name,
     manufacturer: r.manufacturer,
     classification: r.classification || null,
-    dims: { l: r.length, b: r.beam, h: r.height },
+    dims: DIM_OVERRIDES[r.classNameCig] ?? { l: r.length, b: r.beam, h: r.height },
     materials: "flat",
   };
 }

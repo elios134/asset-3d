@@ -36,6 +36,23 @@ function variant(rootName) {
   };
 }
 
+// Même géométrie, mais encodée comme les exports clay : POSITION en int16
+// NORMALISÉ (KHR_mesh_quantization) + scale du noeud. Réel = (int/32767)*scale.
+// int max = 32767 (normalisé → 1.0), donc scale = demi-extent réel :
+// scale=[5,3,10] ⇒ x∈[-5,5] (b=10), y∈[-3,3] (h=6), z∈[-10,10] (l=20).
+function variantQuant(rootName) {
+  return {
+    asset: { version: "2.0" },
+    scenes: [{ nodes: [0] }],
+    nodes: [{ name: rootName, mesh: 0, scale: [5, 3, 10] }],
+    meshes: [{ primitives: [{ attributes: { POSITION: 0 } }] }],
+    accessors: [{
+      type: "VEC3", componentType: 5122, normalized: true, count: 8,
+      min: [-32767, -32767, -32767], max: [32767, 32767, 32767],
+    }],
+  };
+}
+
 test("qa --json émet du NDJSON pur (ship* + result) et calcule conforme", () => {
   const dir = mkdtempSync(join(tmpdir(), "qa-"));
   const models = join(dir, "models");
@@ -68,6 +85,36 @@ test("qa --json émet du NDJSON pur (ship* + result) et calcule conforme", () =>
 
     const result = lines.find((e) => e.type === "result");
     assert.ok(result, "un événement result final");
+    assert.deepEqual(result, { type: "result", conforme: true, ships: 1, hard: 0, warns: 0 });
+  } finally {
+    rmSync(dir, { recursive: true, force: true });
+  }
+});
+
+test("qa --json déquantifie les accessors normalisés (KHR_mesh_quantization)", () => {
+  const dir = mkdtempSync(join(tmpdir(), "qa-"));
+  const models = join(dir, "models");
+  const metaPath = join(dir, "ships.meta.json");
+  try {
+    writeFileSync(metaPath, JSON.stringify({ TST_Ship: { name: "Test Ship", dims: { l: 20, b: 10, h: 6 } } }));
+    mkdirSync(models, { recursive: true });
+    writeFileSync(join(models, "TST_Ship.clay-exterior.glb"), glb(variantQuant("hull")));
+    writeFileSync(join(models, "TST_Ship.clay-interior.glb"), glb(variantQuant("interior_base_int_main")));
+
+    const out = execFileSync(
+      "node",
+      ["scripts/qa.mjs", "--json", `--models=${models}`, `--meta=${metaPath}`],
+      { cwd: ROOT, encoding: "utf8" },
+    );
+    const lines = out.trim().split("\n").filter(Boolean).map((l) => JSON.parse(l));
+    const ship = lines.find((e) => e.type === "ship");
+    // Sans déquantification : min/max bruts ±32767 × scale ⇒ bbox géante ⇒ meshes
+    // "aberrants" exclus ⇒ coque/dims vides (-Infinity) ⇒ échecs durs.
+    assert.ok(ship, "un événement ship");
+    assert.equal(ship.hard, 0, `aucun échec dur, or messages: ${ship.messages?.join(" | ")}`);
+    assert.equal(ship.warns, 0, `aucun avertissement, or messages: ${ship.messages?.join(" | ")}`);
+
+    const result = lines.find((e) => e.type === "result");
     assert.deepEqual(result, { type: "result", conforme: true, ships: 1, hard: 0, warns: 0 });
   } finally {
     rmSync(dir, { recursive: true, force: true });
