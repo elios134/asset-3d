@@ -1,5 +1,5 @@
 {
-  "_comment": "Genere par scripts/gen-meta.mjs depuis ShipData (app SQLite). clef = classNameCig = nom du fichier models/<key>.glb. Ne pas editer a la main : relancer gen-meta.",
+  "_comment": "Genere par scripts/gen-meta.mjs depuis ShipData (app SQLite). clef = classNameCig = nom du fichier models/<key>.glb. Ne pas editer a la main : relancer gen-meta. Les dims divergentes sont recalees sur la geometrie clay (convention dims~bbox) ; voir DIM_OVERRIDES pour les valeurs vetees a la main.",
   "AEGS_Avenger_Stalker": {
     "name": "Avenger Stalker",
     "manufacturer": "Aegis Dynamics",
@@ -115,9 +115,9 @@
     "manufacturer": "Aegis Dynamics",
     "classification": "Frigate",
     "dims": {
-      "l": 243,
-      "b": 127,
-      "h": 57.5
+      "l": 233.2,
+      "b": 126.7,
+      "h": 96.5
     },
     "materials": "flat"
   },
@@ -148,9 +148,9 @@
     "manufacturer": "Aegis Dynamics",
     "classification": "Destroyer",
     "dims": {
-      "l": 0,
-      "b": 0,
-      "h": 0
+      "l": 493.2,
+      "b": 218.3,
+      "h": 89.2
     },
     "materials": "flat"
   },
@@ -159,9 +159,9 @@
     "manufacturer": "Aegis Dynamics",
     "classification": "Heavy Salvage",
     "dims": {
-      "l": 160,
-      "b": 120,
-      "h": 55
+      "l": 158.2,
+      "b": 101.4,
+      "h": 49.3
     },
     "materials": "flat"
   },
@@ -346,9 +346,9 @@
     "manufacturer": "Anvil Aerospace",
     "classification": "Dropship",
     "dims": {
-      "l": 48,
-      "b": 38,
-      "h": 12
+      "l": 48.6,
+      "b": 33.9,
+      "h": 15.5
     },
     "materials": "flat"
   },
@@ -401,9 +401,9 @@
     "manufacturer": "Anvil Aerospace",
     "classification": "Pathfinder",
     "dims": {
-      "l": 16,
-      "b": 12,
-      "h": 8
+      "l": 12.9,
+      "b": 8.6,
+      "h": 3.4
     },
     "materials": "flat"
   },
@@ -412,9 +412,9 @@
     "manufacturer": "Anvil Aerospace",
     "classification": "Medical",
     "dims": {
-      "l": 16,
-      "b": 12,
-      "h": 8
+      "l": 12.9,
+      "b": 8.6,
+      "h": 3.4
     },
     "materials": "flat"
   },
@@ -423,9 +423,9 @@
     "manufacturer": "Anvil Aerospace",
     "classification": "Pathfinder",
     "dims": {
-      "l": 16,
-      "b": 12,
-      "h": 8
+      "l": 12.9,
+      "b": 8.6,
+      "h": 3.4
     },
     "materials": "flat"
   },
@@ -918,9 +918,9 @@
     "manufacturer": "Argo Astronautics",
     "classification": "Medium Salvage",
     "dims": {
-      "l": 0,
-      "b": 0,
-      "h": 0
+      "l": 45,
+      "b": 25.7,
+      "h": 14.5
     },
     "materials": "flat"
   },
@@ -995,9 +995,9 @@
     "manufacturer": "Banu Souli",
     "classification": "Light Fighter",
     "dims": {
-      "l": 24.5,
-      "b": 24.5,
-      "h": 5
+      "l": 24.8,
+      "b": 22.8,
+      "h": 9.1
     },
     "materials": "flat"
   },
@@ -1149,9 +1149,9 @@
     "manufacturer": "Crusader Industries",
     "classification": "Medium Freight",
     "dims": {
-      "l": 55,
-      "b": 51,
-      "h": 19
+      "l": 54.5,
+      "b": 50,
+      "h": 23.4
     },
     "materials": "flat"
   },
@@ -1281,9 +1281,9 @@
     "manufacturer": "Drake Interplanetary",
     "classification": "Generalist",
     "dims": {
-      "l": 26.5,
-      "b": 21,
-      "h": 18
+      "l": 49.5,
+      "b": 25.3,
+      "h": 13.8
     },
     "materials": "flat"
   },
@@ -1303,9 +1303,9 @@
     "manufacturer": "Drake Interplanetary",
     "classification": "Transport",
     "dims": {
-      "l": 20,
-      "b": 16,
-      "h": 6
+      "l": 26.8,
+      "b": 10.5,
+      "h": 10.1
     },
     "materials": "flat"
   },
@@ -1391,9 +1391,9 @@
     "manufacturer": "Drake Interplanetary",
     "classification": "Starter / Pathfinder",
     "dims": {
-      "l": 20,
-      "b": 16,
-      "h": 6
+      "l": 20.8,
+      "b": 12.7,
+      "h": 6.1
     },
     "materials": "flat"
   },
@@ -1402,9 +1402,9 @@
     "manufacturer": "Drake Interplanetary",
     "classification": "Expedition",
     "dims": {
-      "l": 20,
-      "b": 16,
-      "h": 6
+      "l": 20.7,
+      "b": 12.7,
+      "h": 7
     },
     "materials": "flat"
   },
@@ -1413,9 +1413,9 @@
     "manufacturer": "Drake Interplanetary",
     "classification": "Pathfinder",
     "dims": {
-      "l": 20,
-      "b": 16,
-      "h": 6
+      "l": 20.4,
+      "b": 12.7,
+      "h": 6.6
     },
     "materials": "flat"
   },
@@ -1523,9 +1523,9 @@
     "manufacturer": "Drake Interplanetary",
     "classification": "Heavy Dropship",
     "dims": {
-      "l": 117,
-      "b": 50,
-      "h": 25
+      "l": 143.1,
+      "b": 45.5,
+      "h": 22.4
     },
     "materials": "flat"
   },
@@ -1578,9 +1578,9 @@
     "manufacturer": "Esperia",
     "classification": "Light Freight",
     "dims": {
-      "l": 34,
-      "b": 32,
-      "h": 15
+      "l": 33.2,
+      "b": 26.8,
+      "h": 14
     },
     "materials": "flat"
   },
@@ -1622,9 +1622,9 @@
     "manufacturer": "Gatac Manufacture",
     "classification": "Medium Freight",
     "dims": {
-      "l": 67,
-      "b": 53,
-      "h": 52
+      "l": 49.9,
+      "b": 52.1,
+      "h": 67.2
     },
     "materials": "flat"
   },
@@ -1655,9 +1655,9 @@
     "manufacturer": "Gatac Manufacture",
     "classification": "Snub Carrier",
     "dims": {
-      "l": 67.25,
-      "b": 58.75,
-      "h": 52
+      "l": 58.4,
+      "b": 52.1,
+      "h": 67.2
     },
     "materials": "flat"
   },
@@ -1897,9 +1897,9 @@
     "manufacturer": "Musashi Industrial and Starflight Concern",
     "classification": "Medium Freight",
     "dims": {
-      "l": 38,
-      "b": 34,
-      "h": 9.5
+      "l": 36.7,
+      "b": 31.9,
+      "h": 13.2
     },
     "materials": "flat"
   },
@@ -1963,9 +1963,9 @@
     "manufacturer": "Musashi Industrial and Starflight Concern",
     "classification": "Medium Freight",
     "dims": {
-      "l": 71,
+      "l": 46.7,
       "b": 16.7,
-      "h": 10.7
+      "h": 8.2
     },
     "materials": "flat"
   },
@@ -2194,9 +2194,9 @@
     "manufacturer": "Mirai",
     "classification": "Heavy Fighter",
     "dims": {
-      "l": 26,
-      "b": 17,
-      "h": 10
+      "l": 24.4,
+      "b": 20,
+      "h": 11.5
     },
     "materials": "flat"
   },
@@ -2348,9 +2348,9 @@
     "manufacturer": "Origin Jumpworks",
     "classification": "Expedition",
     "dims": {
-      "l": 91.5,
-      "b": 52,
-      "h": 17
+      "l": 91.6,
+      "b": 52.2,
+      "h": 22.1
     },
     "materials": "flat"
   },
@@ -2381,9 +2381,9 @@
     "manufacturer": "Origin Jumpworks",
     "classification": "Luxury Touring",
     "dims": {
-      "l": 91.5,
-      "b": 52,
-      "h": 17
+      "l": 91.6,
+      "b": 52.2,
+      "h": 22.1
     },
     "materials": "flat"
   },
@@ -2425,9 +2425,9 @@
     "manufacturer": "Origin Jumpworks",
     "classification": "Heavy Fighter",
     "dims": {
-      "l": 11.5,
-      "b": 11,
-      "h": 3.5
+      "l": 31.9,
+      "b": 17.6,
+      "h": 5.3
     },
     "materials": "flat"
   },
@@ -2568,9 +2568,9 @@
     "manufacturer": "Roberts Space Industries",
     "classification": "Starter / Light Fighter",
     "dims": {
-      "l": 27.7,
-      "b": 27.4,
-      "h": 8
+      "l": 27.3,
+      "b": 10.7,
+      "h": 5.1
     },
     "materials": "flat"
   },
@@ -2579,9 +2579,9 @@
     "manufacturer": "Roberts Space Industries",
     "classification": "Medium Freight / Gun Ship",
     "dims": {
-      "l": 63.5,
-      "b": 27.75,
-      "h": 15.25
+      "l": 61.6,
+      "b": 26.5,
+      "h": 19.4
     },
     "materials": "flat"
   },
@@ -2590,9 +2590,9 @@
     "manufacturer": "Roberts Space Industries",
     "classification": "Expedition",
     "dims": {
-      "l": 63.5,
-      "b": 27.75,
-      "h": 15.25
+      "l": 60.9,
+      "b": 26.5,
+      "h": 19.5
     },
     "materials": "flat"
   },
@@ -2601,9 +2601,9 @@
     "manufacturer": "Roberts Space Industries",
     "classification": "Luxury Touring",
     "dims": {
-      "l": 63.5,
-      "b": 27.75,
-      "h": 15.25
+      "l": 67.1,
+      "b": 28.5,
+      "h": 19.6
     },
     "materials": "flat"
   },
@@ -2612,9 +2612,9 @@
     "manufacturer": "Roberts Space Industries",
     "classification": "Luxury Touring",
     "dims": {
-      "l": 63.5,
-      "b": 27.75,
-      "h": 15.25
+      "l": 67.1,
+      "b": 28.5,
+      "h": 19.6
     },
     "materials": "flat"
   },
@@ -2623,9 +2623,9 @@
     "manufacturer": "Roberts Space Industries",
     "classification": "Medium Freight",
     "dims": {
-      "l": 70,
-      "b": 27.75,
-      "h": 15.25
+      "l": 69.1,
+      "b": 26.5,
+      "h": 19.5
     },
     "materials": "flat"
   },
@@ -2722,9 +2722,9 @@
     "manufacturer": "Roberts Space Industries",
     "classification": "Corvette",
     "dims": {
-      "l": 181,
-      "b": 87,
-      "h": 40
+      "l": 165.6,
+      "b": 89.5,
+      "h": 47.6
     },
     "materials": "flat"
   },
@@ -2821,9 +2821,9 @@
     "manufacturer": "Roberts Space Industries",
     "classification": "Medium Freight",
     "dims": {
-      "l": 46,
-      "b": 35,
-      "h": 9
+      "l": 45.7,
+      "b": 26.3,
+      "h": 10.4
     },
     "materials": "flat"
   },
@@ -2832,9 +2832,9 @@
     "manufacturer": "Roberts Space Industries",
     "classification": "Expedition",
     "dims": {
-      "l": 46,
-      "b": 35,
-      "h": 9
+      "l": 45.7,
+      "b": 26.3,
+      "h": 10.4
     },
     "materials": "flat"
   },

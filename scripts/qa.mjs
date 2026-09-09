@@ -75,7 +75,7 @@ for (const [key, variants] of ships) {
 
   // --- Controle 1 : containment des modules interieurs dans la coque PROPRE ---
   if (ext) {
-    const hull = worldBBox(ext, (n, i) => !excludeExt.has(i));
+    const hull = cleanBBox(ext, excludeExt);
     // La reference n'a de sens que si ses dims sont plausibles. Sinon le containment est ininterpretable.
     const hullOk = dims && Math.abs((hull.zMax - hull.zMin) - dims.l) <= dims.l * 0.2
       && Math.abs((hull.xMax - hull.xMin) - dims.b) <= dims.b * 0.2
@@ -113,14 +113,20 @@ for (const [key, variants] of ships) {
   }
 
   // --- Controle 2 : dims globales PROPRES vs dims reelles ---
+  // Convention du catalogue : dims ~ bbox de l'EXTERIEUR (coque). On mesure donc
+  // la bbox propre de l'exterior quand il existe (fallback interior sinon : les
+  // vaisseaux sans coque clay ne sont controles que sur leur interieur). L'interieur
+  // est legitimement plus court que la coque (hauteur sous carene) : le mesurer
+  // contre les dims reelles rejetait a tort les vaisseaux hauts (Constellation...).
   if (dims) {
-    const gb = worldBBox(int, (n, i) => !excludeInt.has(i));
+    const dimG = ext ?? int, dimExclude = ext ? excludeExt : excludeInt, dimLabel = ext ? "exterieur" : "interieur";
+    const gb = cleanBBox(dimG, dimExclude);
     const got = { l: gb.zMax - gb.zMin, b: gb.xMax - gb.xMin, h: gb.yMax - gb.yMin };
     for (const axis of ["l", "b", "h"]) {
       const real = dims[axis], val = got[axis], diff = Math.abs(val - real);
       const ok = diff <= TOL_DIMS_ABS || diff / real <= TOL_DIMS_REL;
-      console.log(`  ${ok ? "✓" : "✗"} dim ${axis}: export propre ${val.toFixed(1)}m vs reel ${real}m (ecart ${diff.toFixed(1)}m)`);
-      if (!ok) { hardFail++; msgs.push(`dim ${axis} : export ${val.toFixed(1)}m vs réel ${real}m (écart ${diff.toFixed(1)}m)`); }
+      console.log(`  ${ok ? "✓" : "✗"} dim ${axis}: ${dimLabel} propre ${val.toFixed(1)}m vs reel ${real}m (ecart ${diff.toFixed(1)}m)`);
+      if (!ok) { hardFail++; msgs.push(`dim ${axis} : ${dimLabel} ${val.toFixed(1)}m vs réel ${real}m (écart ${diff.toFixed(1)}m)`); }
     }
   } else {
     const msg = "dims absentes de ships.meta.json — contrôle dims sauté";
@@ -264,6 +270,13 @@ function worldBBox(g, filter) {
     if (b) { growBox(box, [b.xMin, b.yMin, b.zMin]); growBox(box, [b.xMax, b.yMax, b.zMax]); }
   });
   return box;
+}
+// bbox monde en excluant les meshes aberrants, mais SANS JAMAIS vider l'ensemble :
+// un export mono-mesh (coque en une piece, ex. Redeemer) verrait sa seule piece
+// exclue -> bbox -Infinity (faux positif). Si l'exclusion vide tout, on garde tout.
+function cleanBBox(g, exclude) {
+  const b = worldBBox(g, (n, i) => !exclude.has(i));
+  return Number.isFinite(b.xMax) ? b : worldBBox(g, () => true);
 }
 
 // bbox monde du SEUL mesh porte par le noeud i (sans ses enfants)
