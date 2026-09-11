@@ -2932,9 +2932,9 @@
       "manufacturer": "Drake Interplanetary",
       "classification": "Generalist",
       "dims": {
-        "l": 26.5,
-        "b": 21,
-        "h": 18
+        "l": 49.5,
+        "b": 25.3,
+        "h": 13.8
       },
       "materials": "flat",
       "patchVersion": "sc-4.1",
@@ -2944,9 +2944,9 @@
           "label": "Apercu",
           "modelUrl": "https://github.com/elios134/asset-3d/releases/download/sc-4.1/DRAK_Clipper.clay-exterior.glb",
           "tris": 599999,
-          "sizeBytes": 5300076,
+          "sizeBytes": 5316768,
           "hasInterior": false,
-          "sha256": "eb5c2180bd73b0e7f6e7c7e4009be215ed7b6b35a04cff4a353684b35e8cbab6",
+          "sha256": "b479e4a4c97f7e816474d9959962dcdcf954b85e09562b6e280a23037b534d88",
           "render": "clay"
         },
         {
