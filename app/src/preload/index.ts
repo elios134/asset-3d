@@ -19,8 +19,12 @@ const api: Api = {
     ipcRenderer.on("qa:event", h);
     return () => { ipcRenderer.removeListener("qa:event", h); };
   },
-  buildPublish: () => ipcRenderer.invoke("publish:build"),
-  pushManifest: () => ipcRenderer.invoke("publish:push"),
+  startPublish: (opts) => ipcRenderer.invoke("publish:start", opts),
+  onPublishEvent: (cb) => {
+    const h = (_e: unknown, evt: unknown) => cb(evt as Parameters<typeof cb>[0]);
+    ipcRenderer.on("publish:event", h);
+    return () => { ipcRenderer.removeListener("publish:event", h); };
+  },
 };
 
 contextBridge.exposeInMainWorld("api", api);

@@ -7,13 +7,14 @@ import { resolveScfleetDb } from "./appconfig";
 import { runUpdate } from "./update";
 import { runExtract } from "./extract";
 import { runStream } from "./stream";
-import { buildPublishPreview, pushManifest } from "./publish";
+import { runPublish } from "./publish";
 import type {
-  AnalyzeResult, Prereqs, ExtractItem, ExtractSummary, QaEvent, QaSummary, PublishPreview, PublishResult,
+  AnalyzeResult, Prereqs, ExtractItem, ExtractSummary, QaEvent, QaSummary, PublishOptions, PublishSummary,
 } from "../shared/types";
 
 type IpcSender = { send(channel: string, evt: unknown): void };
 type QaRunner = (sender: IpcSender) => Promise<QaSummary>;
+type PublishRunner = (sender: IpcSender, opts: PublishOptions) => Promise<PublishSummary>;
 
 type ConfigLib = { loadConfig(opts: { root: string }): { paths: { starbreaker: string; p4k: string } } };
 type PrereqLib = {
@@ -26,8 +27,7 @@ export function createServices(
   repoRoot: string,
   deps: {
     runQa?: QaRunner;
-    buildPublish?: () => Promise<PublishPreview>;
-    pushManifest?: () => Promise<PublishResult>;
+    runPublish?: PublishRunner;
   } = {},
 ) {
   let extractLock = false;
@@ -110,23 +110,14 @@ export function createServices(
       }
     },
 
-    // Etape 1 : regenere index.json et resume le diff vs le dernier publie.
-    async buildPublish(): Promise<PublishPreview> {
+    // Publication chirurgicale (scripts/publish.mjs). Un même verrou couvre le
+    // dry-run et la phase réelle : aucune publication concurrente. La phase réelle
+    // (opts.confirm) n'est déclenchée que sur action user explicite dans l'UI.
+    async startPublish(sender: IpcSender, opts: PublishOptions): Promise<PublishSummary> {
       if (publishLock) throw new Error("Une publication est déjà en cours.");
       publishLock = true;
       try {
-        return await (deps.buildPublish ?? (() => buildPublishPreview(repoRoot)))();
-      } finally {
-        publishLock = false;
-      }
-    },
-
-    // Etape 2 : commit + push du manifeste (index.json + ships.meta.json).
-    async pushManifest(): Promise<PublishResult> {
-      if (publishLock) throw new Error("Une publication est déjà en cours.");
-      publishLock = true;
-      try {
-        return await (deps.pushManifest ?? (() => pushManifest(repoRoot)))();
+        return await (deps.runPublish ?? ((s, o) => runPublish(s, o, { cwd: repoRoot })))(sender, opts);
       } finally {
         publishLock = false;
       }

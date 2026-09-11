@@ -64,8 +64,15 @@ function AppBody({ data, prereqs, reload }: { data: AnalyzeResult; prereqs: Prer
   // Gate de publication (par session) : Publier reste bloqué tant que la
   // dernière QA n'est pas conforme. Une extraction change le catalogue ⇒ invalide.
   const [qaConforme, setQaConforme] = useState(false);
+  // Clés extraites dans la session : jeu passé à publish.mjs --only (publication
+  // chirurgicale, jamais tout le catalogue).
+  const [sessionKeys, setSessionKeys] = useState<string[]>([]);
   const canExtract = count > 0 && prereqs.starbreaker && prereqs.p4k;
-  const startExtract = () => { setQaConforme(false); setExtracting(true); };
+  const startExtract = () => {
+    setSessionKeys(buildItems().map((i) => i.key));
+    setQaConforme(false);
+    setExtracting(true);
+  };
   const buildItems = (): ExtractItem[] => {
     const out: ExtractItem[] = [];
     for (const s of data.ships) {
@@ -108,7 +115,13 @@ function AppBody({ data, prereqs, reload }: { data: AnalyzeResult; prereqs: Prer
       </div>
       {extracting && <ExtractPanel items={buildItems()} onClose={() => setExtracting(false)} />}
       {qaOpen && <QaPanel onClose={() => setQaOpen(false)} onDone={setQaConforme} />}
-      {publishOpen && <PublishPanel onClose={() => setPublishOpen(false)} />}
+      {publishOpen && (
+        <PublishPanel
+          keys={sessionKeys}
+          onClose={() => setPublishOpen(false)}
+          onPublished={() => setQaConforme(false)}
+        />
+      )}
     </div>
   );
 }

@@ -10,15 +10,17 @@ export interface StreamHandle<E extends { type: string } = ExtractEvent> {
 /**
  * Spawn `node <script> <args>` et lit son stdout ligne à ligne. Chaque ligne
  * JSON valide est transmise à `onEvent` (les lignes non-JSON sont ignorées).
- * `done` résout au dernier événement `{type:"result"}` reçu ; si le process
- * sort en 0 sans en émettre, résout `emptyResult` s'il est fourni, sinon rejette.
- * Générique sur le type d'événement : réutilisé par l'extraction et la QA.
+ * `done` résout au dernier événement terminal reçu (`{type:"result"}` par
+ * défaut, `resultType` pour un autre script — ex. publish.mjs émet `"done"`) ;
+ * si le process sort en 0 sans en émettre, résout `emptyResult` s'il est
+ * fourni, sinon rejette. Générique : réutilisé par extraction, QA et publication.
  */
 export function runStream<E extends { type: string } = ExtractEvent>(
   script: string,
   args: string[],
-  opts: { cwd: string; onEvent: (e: E) => void; emptyResult?: E },
+  opts: { cwd: string; onEvent: (e: E) => void; emptyResult?: E; resultType?: string },
 ): StreamHandle<E> {
+  const resultType = opts.resultType ?? "result";
   const child = spawn("node", [script, ...args], { cwd: opts.cwd });
   let result: E | null = null;
   let stderr = "";
@@ -28,7 +30,7 @@ export function runStream<E extends { type: string } = ExtractEvent>(
     let evt: E;
     try { evt = JSON.parse(line) as E; } catch { return; }
     opts.onEvent(evt);
-    if (evt.type === "result") result = evt;
+    if (evt.type === resultType) result = evt;
   });
   const done = new Promise<E>((resolve, reject) => {
     child.on("error", reject);

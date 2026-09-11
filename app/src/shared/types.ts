@@ -33,8 +33,8 @@ export interface Api {
   onExtractEvent(cb: (evt: ExtractEvent) => void): () => void;
   startQa(): Promise<QaSummary>;
   onQaEvent(cb: (evt: QaEvent) => void): () => void;
-  buildPublish(): Promise<PublishPreview>;
-  pushManifest(): Promise<PublishResult>;
+  startPublish(opts: PublishOptions): Promise<PublishSummary>;
+  onPublishEvent(cb: (evt: PublishEvent) => void): () => void;
 }
 
 export interface ExtractItem {
@@ -62,20 +62,38 @@ export type QaEvent =
 
 export interface QaSummary { conforme: boolean; ships: number; hard: number; warns: number }
 
-// --- Publication (regenere index.json puis pousse le manifeste) ---
-// Etape 1 : build-index regenere index.json depuis models/ ; on compare l'ensemble
-// des vaisseaux au dernier index publie (HEAD) pour exposer added/removed (garde-fou :
-// une regeneration ne doit pas SUPPRIMER des vaisseaux a l'insu de l'utilisateur).
-export interface PublishPreview {
-  patchVersion: string;
-  total: number;          // vaisseaux dans le nouvel index
-  added: string[];        // clefs presentes dans le nouvel index, absentes de HEAD
-  removed: string[];      // clefs de HEAD absentes du nouvel index (a confirmer !)
-  changedFiles: string[]; // parmi index.json / ships.meta.json : ce qui differe de HEAD
+// --- Publication CHIRURGICALE (scripts/publish.mjs --only=… --json) ---
+// Part de l'index PUBLIE (index.json git-tracké = vérité) et ne patche QUE les
+// clés `keys` ; les orphelins/tests présents dans models/ ne sont JAMAIS embarqués
+// (garde-fou build-index intégré au moteur). Deux phases pilotées par l'app :
+//   1. dry-run (confirm:false) : plan seul, aucun effet de bord.
+//   2. réel (confirm:true) : upload Release (--clobber) + patch index.json + push.
+// La phase réelle n'est lancée QUE sur action user explicite (2e clic « Confirmer »).
+export interface PublishOptions {
+  keys: string[];   // --only=<keys> : sous-ensemble à publier (clés extraites de la session)
+  confirm: boolean; // false = dry-run ; true = --confirm --push (effets de bord)
 }
-// Etape 2 : commit + push de index.json + ships.meta.json.
-export interface PublishResult {
-  pushed: boolean;
-  nothingToCommit?: boolean; // rien n'a change depuis HEAD
-  commit?: string;           // hash court du commit pousse
-}
+
+// Événements NDJSON émis par publish.mjs (terminal = "done").
+export type PublishEvent =
+  | { type: "start"; dryRun: boolean; push: boolean; patchVersion: string; keys: string[] }
+  | { type: "skip"; key: string; reason: string }
+  | { type: "new-ship"; key: string }
+  | { type: "plan"; key: string; level: string; file: string; tris: number; sizeBytes: number; sha256: string }
+  | { type: "upload"; file: string; status: "start" | "done" }
+  | { type: "index-written"; keys: string[] }
+  | { type: "git"; status: "start" | "done" }
+  | { type: "error"; message: string }
+  | {
+      type: "done";
+      dryRun: boolean;
+      wouldUpload?: string[]; // dry-run : fichiers qui seraient uploadés
+      wouldPatch?: string[];  // dry-run : clés qui seraient patchées
+      published?: string[];   // réel : clés patchées
+      uploaded?: string[];    // réel : fichiers uploadés
+      pushed?: boolean;       // réel : index.json poussé ?
+      problems: string[];
+    };
+
+// Résumé terminal (= l'événement "done" sans son champ type).
+export type PublishSummary = Omit<Extract<PublishEvent, { type: "done" }>, "type">;
