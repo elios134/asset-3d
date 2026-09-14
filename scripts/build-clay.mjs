@@ -26,6 +26,8 @@ import { readFileSync, existsSync, statSync, rmSync } from "node:fs";
 import { fileURLToPath } from "node:url";
 import { dirname, join } from "node:path";
 import { makeEmitter } from "./lib/emit.mjs";
+import { reorientTurns } from "./lib/reorient.mjs";
+import { reorientDoc } from "./rotate-glb.mjs";
 
 const ROOT = join(dirname(fileURLToPath(import.meta.url)), "..");
 const MODELS = join(ROOT, "models");
@@ -153,8 +155,13 @@ for (const key of batch) {
   }
   try {
     // 1) EXTERIEUR clay (sert aussi de reference coque pour le cull interieur : noms de nodes)
+    // REORIENTATION (table data-driven, ex. DRAK_Clipper Y+90 -> nez sur Z, convention qa longueur/Z).
+    // Appliquee AVANT le calcul du hull : le hull sert de reference de cull a l'interieur, qui est
+    // reoriente du meme quart de tour -> les deux restent dans le meme repere (containment coherent).
+    const turns = reorientTurns(key);
     exp(key, tmpExt, ["--no-interior", ...(MODULES ? [] : ["--no-attachments"]), "--lod", "1"]);
     const extDoc = await io.read(tmpExt);
+    if (turns) { reorientDoc(extDoc, turns); console.log(`  ↻ ${key} : reoriente ${turns} quart(s) de tour +Y`); }
     const hullNames = new Set(); for (const n of extDoc.getRoot().listNodes()) if (n.getMesh()) hullNames.add(n.getName() || "");
     const hull = getBounds(extDoc.getRoot().listScenes()[0]);
     toClay(extDoc);
@@ -178,6 +185,9 @@ for (const key of batch) {
     let intPath = tmpInt;
     if (anchored.has(key)) { const fx = tmpInt.replace(/\.glb$/, ".fixed.glb"); execFileSync("node", ["scripts/reposition-interior.mjs", tmpInt, fx, `--key=${key}`], { cwd: ROOT, stdio: "ignore" }); intPath = fx; }
     const intDoc = await io.read(intPath);
+    // meme reorientation que l'exterieur, AVANT capture du spawnHint et generate-floor : le plancher
+    // (collision_walk + spawn) est ainsi genere dans le repere final, aligne sur la coque reorientee.
+    if (turns) reorientDoc(intDoc, turns);
 
     // INDICE SPAWN COCKPIT : position monde du siege pilote (hardpoint_seat_pilot / *_Seat_Pilot),
     // capturee AVANT les culls/prune (noeud vide -> sinon prune). Passee a generate-floor pour ancrer
