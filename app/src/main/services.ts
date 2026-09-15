@@ -10,11 +10,13 @@ import { runStream } from "./stream";
 import { runPublish } from "./publish";
 import type {
   AnalyzeResult, Prereqs, ExtractItem, ExtractSummary, QaEvent, QaSummary, PublishOptions, PublishSummary, IndexEntrySummary,
+  FingerprintEvent, FingerprintSummary,
 } from "../shared/types";
 
 type IpcSender = { send(channel: string, evt: unknown): void };
 type QaRunner = (sender: IpcSender) => Promise<QaSummary>;
 type PublishRunner = (sender: IpcSender, opts: PublishOptions) => Promise<PublishSummary>;
+type FingerprintRunner = (sender: IpcSender) => Promise<FingerprintSummary>;
 
 type ConfigLib = { loadConfig(opts: { root: string }): { paths: { starbreaker: string; p4k: string } } };
 type PrereqLib = {
@@ -28,12 +30,14 @@ export function createServices(
   deps: {
     runQa?: QaRunner;
     runPublish?: PublishRunner;
+    runFingerprint?: FingerprintRunner;
   } = {},
 ) {
   let extractLock = false;
   let cancelFlag = false;
   let qaLock = false;
   let publishLock = false;
+  let fingerprintLock = false;
 
   // QA réelle : un seul run couvre tout le catalogue clay (scripts/qa.mjs --json).
   const defaultRunQa: QaRunner = async (sender) => {
@@ -43,6 +47,17 @@ export function createServices(
     }).done;
     if (r.type !== "result") throw new Error("La QA n'a pas émis de résultat.");
     return { conforme: r.conforme, ships: r.ships, hard: r.hard, warns: r.warns };
+  };
+
+  // Scan d'empreintes de source : calcule .cache/fingerprints.json (scripts/fingerprint.mjs --json).
+  // Alimente la détection « modifié » par vaisseau au prochain analyze().
+  const defaultRunFingerprint: FingerprintRunner = async (sender) => {
+    const r = await runStream<FingerprintEvent>("scripts/fingerprint.mjs", ["--json"], {
+      cwd: repoRoot,
+      onEvent: (evt) => sender.send("fp:event", evt),
+    }).done;
+    if (r.type !== "done") throw new Error("Le scan d'empreintes n'a pas émis de résultat.");
+    return { fingerprints: r.fingerprints };
   };
 
   return {
@@ -121,6 +136,16 @@ export function createServices(
         return await (deps.runQa ?? defaultRunQa)(sender);
       } finally {
         qaLock = false;
+      }
+    },
+
+    async startFingerprintScan(sender: IpcSender): Promise<FingerprintSummary> {
+      if (fingerprintLock) throw new Error("Un scan d'empreintes est déjà en cours.");
+      fingerprintLock = true;
+      try {
+        return await (deps.runFingerprint ?? defaultRunFingerprint)(sender);
+      } finally {
+        fingerprintLock = false;
       }
     },
 
