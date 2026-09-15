@@ -1,6 +1,6 @@
 import type { PublishEvent, PublishSummary } from "../shared/types";
 
-export interface PublishPlanRow { key: string; level: string; file: string; tris: number; sizeBytes: number }
+export interface PublishPlanRow { key: string; level: string; file: string; tris: number; sizeBytes: number; sha256: string }
 export interface PublishSkip { key: string; reason: string }
 
 export interface PublishState {
@@ -8,6 +8,7 @@ export interface PublishState {
   dryRun: boolean;              // le run courant/dernier est-il un dry-run ?
   plan: PublishPlanRow[];       // événements "plan" du run courant
   skips: PublishSkip[];         // événements "skip" du run courant
+  newShips: string[];           // clés signalées "nouveau vaisseau" par le run courant
   log: string[];
   summary: PublishSummary | null; // dernier "done"
   err: string | null;
@@ -22,7 +23,7 @@ export type PublishAction =
   | { type: "startFatal"; err: string };
 
 export function initPublishState(): PublishState {
-  return { running: true, dryRun: true, plan: [], skips: [], log: [], summary: null, err: null };
+  return { running: true, dryRun: true, plan: [], skips: [], newShips: [], log: [], summary: null, err: null };
 }
 
 const REASON: Record<string, string> = { "no-glb": "aucun .glb clay dans models/", "no-meta": "absent de ships.meta.json" };
@@ -30,21 +31,21 @@ const REASON: Record<string, string> = { "no-glb": "aucun .glb clay dans models/
 export function publishReducer(state: PublishState, evt: PublishAction): PublishState {
   switch (evt.type) {
     case "reset":
-      return { running: true, dryRun: evt.dryRun, plan: [], skips: [], summary: null, err: null,
+      return { running: true, dryRun: evt.dryRun, plan: [], skips: [], newShips: [], summary: null, err: null,
         log: [...state.log, "— Publication réelle : upload Release + patch index.json + push…"] };
 
     case "start":
       // Ré-amorce le run (le dry-run initial ou le run réel) sans perdre le journal.
-      return { ...state, running: true, dryRun: evt.dryRun, plan: [], skips: [], summary: null,
+      return { ...state, running: true, dryRun: evt.dryRun, plan: [], skips: [], newShips: [], summary: null,
         log: [...state.log, `— ${evt.dryRun ? "Plan (dry-run)" : "Publication"} · patch ${evt.patchVersion} · ${evt.keys.length} clé(s) : ${evt.keys.join(", ")}`] };
 
     case "plan": {
-      const row: PublishPlanRow = { key: evt.key, level: evt.level, file: evt.file, tris: evt.tris, sizeBytes: evt.sizeBytes };
+      const row: PublishPlanRow = { key: evt.key, level: evt.level, file: evt.file, tris: evt.tris, sizeBytes: evt.sizeBytes, sha256: evt.sha256 };
       return { ...state, plan: [...state.plan, row], log: [...state.log, `  ${evt.file} · ${evt.tris.toLocaleString("fr-FR")} tris · ${(evt.sizeBytes / 1e6).toFixed(2)} Mo`] };
     }
 
     case "new-ship":
-      return { ...state, log: [...state.log, `  + nouveau vaisseau : ${evt.key}`] };
+      return { ...state, newShips: [...state.newShips, evt.key], log: [...state.log, `  + nouveau vaisseau : ${evt.key}`] };
 
     case "skip":
       return { ...state, skips: [...state.skips, { key: evt.key, reason: evt.reason }],

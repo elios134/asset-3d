@@ -1,7 +1,13 @@
-import { useEffect, useReducer, useRef, useState } from "react";
+import { useEffect, useMemo, useReducer, useRef, useState } from "react";
 import { api } from "../api";
 import { initPublishState, publishReducer } from "../publishReducer";
 import { initPublishKeys, addPublishKey, removePublishKey, publishCandidates, canPublish } from "../publishSelection";
+import { indexDiff } from "../indexDiff";
+import type { IndexEntrySummary } from "../../shared/types";
+
+const shortSha = (s: string | null) => (s ? s.slice(0, 7) : "—");
+const kb = (n: number | null) => (n == null ? "—" : `${(n / 1e6).toFixed(2)} Mo`);
+const SHIP_LABEL: Record<string, string> = { "new-ship": "NOUVEAU", updated: "MODIFIÉ", unchanged: "inchangé" };
 
 // sessionKeys = clés extraites de la session (jeu par défaut). catalog = tout le catalogue
 // (key+name) pour ajouter n'importe quelle clé à republier SANS la ré-extraire (re-upload correctif).
@@ -17,11 +23,13 @@ export function PublishPanel({ sessionKeys, catalog, onClose, onPublished }: {
   // Phase "run" : dry-run lancé, puis confirmation. On ne revient pas en arrière une fois lancé.
   const [phase, setPhase] = useState<"edit" | "run">("edit");
   const [pubKeys, setPubKeys] = useState<string[]>(() => initPublishKeys(sessionKeys));
+  const [entries, setEntries] = useState<IndexEntrySummary[]>([]);
   const started = useRef(false);
   const confirmed = useRef(false);
 
   useEffect(() => {
     const off = api.onPublishEvent((evt) => dispatch(evt));
+    api.indexEntries().then(setEntries).catch(() => setEntries([]));
     return off;
   }, []);
 
@@ -39,6 +47,10 @@ export function PublishPanel({ sessionKeys, catalog, onClose, onPublished }: {
   const s = state.summary;
   const dryDone = !state.running && !state.err && !!s && s.dryRun;
   const canConfirm = dryDone && (s!.wouldPatch?.length ?? 0) > 0 && !confirmed.current;
+  const diff = useMemo(
+    () => indexDiff(entries, state.plan.map((p) => ({ key: p.key, level: p.level, sha256: p.sha256, sizeBytes: p.sizeBytes })), state.newShips),
+    [entries, state.plan, state.newShips],
+  );
   const publishedOk = !state.running && !state.err && !!s && !s.dryRun;
 
   useEffect(() => { if (publishedOk) onPublished(); }, [publishedOk]); // eslint-disable-line react-hooks/exhaustive-deps
@@ -115,6 +127,29 @@ export function PublishPanel({ sessionKeys, catalog, onClose, onPublished }: {
       {phase === "run" && <pre className="extract-log">{state.log.join("\n")}</pre>}
 
       {state.err && <p className="err">Échec : {state.err}</p>}
+
+      {dryDone && diff.length > 0 && (
+        <div className="index-diff">
+          <p className="detail">Changements dans index.json :</p>
+          <ul className="index-diff-rows">
+            {diff.map((r) => (
+              <li key={r.key} className={`diff-${r.status}`}>
+                <span className={`diff-badge diff-badge-${r.status}`}>{SHIP_LABEL[r.status] ?? r.status}</span>
+                <b>{r.key}</b>
+                <ul className="index-diff-levels">
+                  {r.levels.map((l) => (
+                    <li key={l.level} className="detail">
+                      {l.level} · {l.status === "added" ? `ajouté (${shortSha(l.newSha)}, ${kb(l.newSize)})`
+                        : l.status === "changed" ? `${shortSha(l.oldSha)} → ${shortSha(l.newSha)} · ${kb(l.oldSize)} → ${kb(l.newSize)}`
+                        : `inchangé (${shortSha(l.newSha)})`}
+                    </li>
+                  ))}
+                </ul>
+              </li>
+            ))}
+          </ul>
+        </div>
+      )}
 
       {canConfirm && (
         <div className="publish-confirm">
