@@ -29,7 +29,18 @@ const index = readJson("index.json", null);
 const anchors = readJson("interior-anchors.json", {});
 const anchorKeys = new Set(Object.keys(anchors).filter((k) => k !== "_comment"));
 
-const ships = analyzeShips({ meta, index, localVersion: resolvedLocal, anchorKeys });
+// Empreintes de source (détection « modifié » par vaisseau — voir lib/fingerprint.mjs).
+//  baseline = état enregistré à la publication ; current = état actuel (cache du dernier scan).
+const baseline = readJson("source-baseline.json", {}).fingerprints ?? {};
+const current = readJson(".cache/fingerprints.json", {}).fingerprints ?? {};
+
+// Vaisseaux réellement visitables (pour ne signaler « intérieur manquant » que là où c'est vrai).
+const visScan = readJson("visitable-scan.json", null);
+const visitableKeys = visScan?.convention
+  ? new Set(visScan.convention.map((v) => v.key))
+  : undefined;
+
+const ships = analyzeShips({ meta, index, baseline, current, anchorKeys, visitableKeys });
 const toProcess = ships.filter((s) => s.toProcess);
 const publishedVersion = index?.patchVersion ?? null;
 
