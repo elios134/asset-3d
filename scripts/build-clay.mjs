@@ -28,6 +28,7 @@ import { dirname, join } from "node:path";
 import { makeEmitter } from "./lib/emit.mjs";
 import { reorientTurns } from "./lib/reorient.mjs";
 import { reorientDoc } from "./rotate-glb.mjs";
+import { skipModules } from "./lib/no-modules.mjs";
 
 const ROOT = join(dirname(fileURLToPath(import.meta.url)), "..");
 const MODELS = join(ROOT, "models");
@@ -159,7 +160,11 @@ for (const key of batch) {
     // Appliquee AVANT le calcul du hull : le hull sert de reference de cull a l'interieur, qui est
     // reoriente du meme quart de tour -> les deux restent dans le meme repere (containment coherent).
     const turns = reorientTurns(key);
-    exp(key, tmpExt, ["--no-interior", ...(MODULES ? [] : ["--no-attachments"]), "--lod", "1"]);
+    // modules par-clé : certaines clés (ex. TMBL_Nova) sortent des modules explosés à l'export
+    // (roues à 12.9 m) qui gonflent la bbox -> on force --no-attachments pour elles (table NO_MODULES).
+    const useModules = MODULES && !skipModules(key);
+    if (MODULES && !useModules) console.log(`  ⊘ ${key} : modules ignorés (export aberrant) -> --no-attachments`);
+    exp(key, tmpExt, ["--no-interior", ...(useModules ? [] : ["--no-attachments"]), "--lod", "1"]);
     const extDoc = await io.read(tmpExt);
     if (turns) { reorientDoc(extDoc, turns); console.log(`  ↻ ${key} : reoriente ${turns} quart(s) de tour +Y`); }
     const hullNames = new Set(); for (const n of extDoc.getRoot().listNodes()) if (n.getMesh()) hullNames.add(n.getName() || "");
