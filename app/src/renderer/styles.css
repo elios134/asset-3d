@@ -60,6 +60,16 @@ h1 { font-weight: 500; font-size: 22px; }
 .publish-preview { display: flex; flex-direction: column; gap: 8px; margin-top: 6px; }
 .publish-preview .row-fail { background: #2a1414; border: 1px solid #6b2020; border-radius: 6px; padding: 8px; font-size: 12px; }
 
+.publish-edit { display: flex; flex-direction: column; gap: 10px; margin-top: 6px; }
+.publish-chips { list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; gap: 6px; }
+.publish-chip { display: inline-flex; align-items: center; gap: 6px; font-size: 12px; color: #cfccc2;
+  background: #12314e; border: 1px solid #185fa5; border-radius: 14px; padding: 3px 6px 3px 10px; }
+.publish-chip-key { color: #85b7eb; font-size: 10px; opacity: .8; }
+.publish-chip-x { border: none; background: transparent; color: #85b7eb; cursor: pointer; font-size: 15px; line-height: 1; padding: 0 2px; }
+.publish-chip-x:hover { color: #e06c6c; }
+.publish-add { display: flex; gap: 8px; align-items: center; }
+.publish-add select { flex: 1; background: #0e0d09; color: #cfccc2; border: 1px solid #34322a; border-radius: 6px; padding: 6px; font-size: 12px; }
+
 .update-card { max-width: 520px; margin: 40px auto; padding: 24px; background: #131209; border: 1px solid #26251f; border-radius: 12px; }
 .versions { display: flex; align-items: center; gap: 18px; justify-content: center; margin-bottom: 12px; }
 .versions .lbl { display: block; font-size: 12px; color: #9a978d; }

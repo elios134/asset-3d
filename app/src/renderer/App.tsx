@@ -117,7 +117,8 @@ function AppBody({ data, prereqs, reload }: { data: AnalyzeResult; prereqs: Prer
       {qaOpen && <QaPanel onClose={() => setQaOpen(false)} onDone={setQaConforme} />}
       {publishOpen && (
         <PublishPanel
-          keys={sessionKeys}
+          sessionKeys={sessionKeys}
+          catalog={data.ships.map((s) => ({ key: s.key, name: s.name }))}
           onClose={() => setPublishOpen(false)}
           onPublished={() => setQaConforme(false)}
         />

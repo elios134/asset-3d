@@ -1,58 +1,97 @@
-import { useEffect, useReducer, useRef } from "react";
+import { useEffect, useReducer, useRef, useState } from "react";
 import { api } from "../api";
 import { initPublishState, publishReducer } from "../publishReducer";
+import { initPublishKeys, addPublishKey, removePublishKey, publishCandidates, canPublish } from "../publishSelection";
 
-// keys = clés extraites de la session (QA conforme) à publier via --only.
+// sessionKeys = clés extraites de la session (jeu par défaut). catalog = tout le catalogue
+// (key+name) pour ajouter n'importe quelle clé à republier SANS la ré-extraire (re-upload correctif).
 // onPublished() est appelé après une publication RÉELLE réussie (invalide le gate).
-export function PublishPanel({ keys, onClose, onPublished }: {
-  keys: string[];
+export function PublishPanel({ sessionKeys, catalog, onClose, onPublished }: {
+  sessionKeys: string[];
+  catalog: Array<{ key: string; name: string }>;
   onClose: () => void;
   onPublished: () => void;
 }) {
   const [state, dispatch] = useReducer(publishReducer, initPublishState());
-  // StrictMode (dev) invoque l'effet deux fois : sans garde le 2e dry-run tombe
-  // sur le verrou main ("déjà en cours"). On ne lance le dry-run qu'une fois.
+  // Phase "edit" : l'utilisateur ajuste le jeu de clés avant tout dry-run.
+  // Phase "run" : dry-run lancé, puis confirmation. On ne revient pas en arrière une fois lancé.
+  const [phase, setPhase] = useState<"edit" | "run">("edit");
+  const [pubKeys, setPubKeys] = useState<string[]>(() => initPublishKeys(sessionKeys));
   const started = useRef(false);
   const confirmed = useRef(false);
 
   useEffect(() => {
     const off = api.onPublishEvent((evt) => dispatch(evt));
-    if (!started.current) {
-      started.current = true;
-      if (keys.length === 0) {
-        dispatch({ type: "startFatal", err: "Aucune clé extraite dans cette session — rien à publier." });
-      } else {
-        api.startPublish({ keys, confirm: false })
-          .catch((e) => dispatch({ type: "startFatal", err: String(e?.message ?? e) }));
-      }
-    }
     return off;
-  }, []); // eslint-disable-line react-hooks/exhaustive-deps
+  }, []);
+
+  const nameOf = (k: string) => catalog.find((c) => c.key === k)?.name ?? k;
+  const candidates = publishCandidates(catalog.map((c) => c.key), pubKeys);
+
+  const startDryRun = () => {
+    if (started.current || !canPublish(pubKeys)) return;
+    started.current = true;
+    setPhase("run");
+    api.startPublish({ keys: pubKeys, confirm: false })
+      .catch((e) => dispatch({ type: "startFatal", err: String(e?.message ?? e) }));
+  };
 
   const s = state.summary;
   const dryDone = !state.running && !state.err && !!s && s.dryRun;
   const canConfirm = dryDone && (s!.wouldPatch?.length ?? 0) > 0 && !confirmed.current;
   const publishedOk = !state.running && !state.err && !!s && !s.dryRun;
 
-  // Une publication réelle réussie invalide le gate (comme une extraction).
   useEffect(() => { if (publishedOk) onPublished(); }, [publishedOk]); // eslint-disable-line react-hooks/exhaustive-deps
 
   const doConfirm = () => {
     if (confirmed.current) return;
     confirmed.current = true;
     dispatch({ type: "reset", dryRun: false });
-    api.startPublish({ keys, confirm: true })
+    api.startPublish({ keys: pubKeys, confirm: true })
       .catch((e) => dispatch({ type: "startFatal", err: String(e?.message ?? e) }));
   };
 
   return (
     <div className="extract-panel">
       <div className="extract-head">
-        <b>Publier sur GitHub{keys.length ? ` (${keys.length} vaisseau${keys.length > 1 ? "x" : ""})` : ""}</b>
+        <b>Publier sur GitHub{pubKeys.length ? ` (${pubKeys.length} vaisseau${pubKeys.length > 1 ? "x" : ""})` : ""}</b>
         <div className="spacer" />
         {state.running && <span className="detail">{state.dryRun ? "Analyse (dry-run)…" : "Publication en cours…"}</span>}
         <button onClick={onClose}>Fermer</button>
       </div>
+
+      {phase === "edit" && (
+        <div className="publish-edit">
+          <p className="detail">
+            Vaisseaux à publier — par défaut les clés extraites cette session. Ajoute-en pour republier un vaisseau
+            corrigé à la main sans le ré-extraire ; retire-en pour en exclure.
+          </p>
+          <ul className="publish-chips">
+            {pubKeys.map((k) => (
+              <li key={k} className="publish-chip">
+                {nameOf(k)} <span className="publish-chip-key">{k}</span>
+                <button className="publish-chip-x" title="Retirer" onClick={() => setPubKeys((ks) => removePublishKey(ks, k))}>×</button>
+              </li>
+            ))}
+            {pubKeys.length === 0 && <li className="detail">Aucune clé — ajoutes-en au moins une.</li>}
+          </ul>
+          <div className="publish-add">
+            <select
+              defaultValue=""
+              onChange={(e) => { if (e.target.value) { setPubKeys((ks) => addPublishKey(ks, e.target.value)); e.target.value = ""; } }}
+            >
+              <option value="">+ ajouter un vaisseau…</option>
+              {candidates.map((k) => {
+                const c = catalog.find((x) => x.key === k)!;
+                return <option key={k} value={k}>{c.name} ({k})</option>;
+              })}
+            </select>
+            <button className="primary" disabled={!canPublish(pubKeys)} onClick={startDryRun}>
+              Analyser (dry-run)
+            </button>
+          </div>
+        </div>
+      )}
 
       {state.plan.length > 0 && (
         <ul className="extract-rows">
@@ -73,7 +112,7 @@ export function PublishPanel({ keys, onClose, onPublished }: {
         </ul>
       )}
 
-      <pre className="extract-log">{state.log.join("\n")}</pre>
+      {phase === "run" && <pre className="extract-log">{state.log.join("\n")}</pre>}
 
       {state.err && <p className="err">Échec : {state.err}</p>}
 
