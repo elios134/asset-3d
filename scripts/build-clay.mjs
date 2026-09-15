@@ -29,11 +29,13 @@ import { makeEmitter } from "./lib/emit.mjs";
 import { reorientTurns } from "./lib/reorient.mjs";
 import { reorientDoc } from "./rotate-glb.mjs";
 import { skipModules } from "./lib/no-modules.mjs";
+import { loadConfig } from "./lib/config.mjs";
 
 const ROOT = join(dirname(fileURLToPath(import.meta.url)), "..");
 const MODELS = join(ROOT, "models");
-const STARBREAKER = "C:/Users/andre/Documents/starbreaker/starbreaker.exe";
-const P4K = "D:/Program Files/RSI Launcher/StarCitizen/LIVE/Data.p4k";
+// Chemins StarBreaker / Data.p4k depuis app-config.json (source unique, machine-locale).
+// NE PAS coder en dur : sinon l'extraction ignore la version de jeu configuree.
+const { starbreaker: STARBREAKER, p4k: P4K } = loadConfig({ root: ROOT }).paths;
 const meta = JSON.parse(readFileSync(join(ROOT, "ships.meta.json"), "utf8"));
 const anchored = new Set(Object.keys(JSON.parse(readFileSync(join(ROOT, "interior-anchors.json"), "utf8"))).filter((k) => k !== "_comment"));
 const tryReadJson = (p) => { try { return JSON.parse(readFileSync(p, "utf8")); } catch { return null; } };

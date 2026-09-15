@@ -23,8 +23,8 @@ import { dirname, join } from "node:path";
 
 const ROOT = join(dirname(fileURLToPath(import.meta.url)), "..");
 const MODELS = join(ROOT, "models");
-const STARBREAKER = "C:/Users/andre/Documents/starbreaker/starbreaker.exe";
-const P4K = "D:/Program Files/RSI Launcher/StarCitizen/LIVE/Data.p4k";
+import { loadConfig } from "./lib/config.mjs";
+const { starbreaker: STARBREAKER, p4k: P4K } = loadConfig({ root: ROOT }).paths;
 const kinds = JSON.parse(readFileSync(join(ROOT, "interior-kinds.json"), "utf8")).kinds;
 const anchored = new Set(Object.keys(JSON.parse(readFileSync(join(ROOT, "interior-anchors.json"), "utf8"))).filter((k) => k !== "_comment"));
 
