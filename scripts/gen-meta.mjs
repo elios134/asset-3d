@@ -45,6 +45,7 @@ const DIM_OVERRIDES = {
   MISC_Hull_B: { l: 46.7, b: 16.7, h: 8.2 },     // forme retractee (ShipData 71 = deployee)
   MRAI_Guardian_MX: { l: 24.4, b: 20, h: 11.5 }, // b = envergure ailes
   DRAK_Clipper: { l: 49.5, b: 25.3, h: 13.8 },   // ext reoriente (length sur Z) ; ShipData 26.5 faux
+  TMBL_Nova: { l: 13, b: 7.2, h: 3.1 },           // ShipData 20x12x11 faux (tank) ; geo propre sans modules (NO_MODULES) verifiee
   ORIG_m80: { l: 31.9, b: 17.6, h: 5.3 },         // vrai cargo ~32 m ; ShipData 11.5 perime (bbox clay verifiee)
 };
 

@@ -2920,9 +2920,9 @@
     "manufacturer": "Tumbril Land Systems",
     "classification": "Heavy Tank",
     "dims": {
-      "l": 20,
-      "b": 12,
-      "h": 11
+      "l": 13,
+      "b": 7.2,
+      "h": 3.1
     },
     "materials": "flat"
   },
