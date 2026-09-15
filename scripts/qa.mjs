@@ -60,21 +60,24 @@ for (const f of files) {
 }
 
 for (const [key, variants] of ships) {
-  if (!variants.interior) continue; // QA cible les intérieurs
+  // QA couvre tout ce qui a une variante clay (intérieur ET/OU extérieur). Un vaisseau
+  // extérieur-seul reçoit un verdict (meshes aberrants + dims coque), containment sauté
+  // faute d'intérieur — sinon il resterait sans verdict et non publiable.
   console.log(`\n=== ${key} ===`);
   const m = meta[key];
   const dims = m?.dims;
-  const int = loadGlb(variants.interior);
+  const int = variants.interior ? loadGlb(variants.interior) : null;
+  const ext = variants.exterior ? loadGlb(variants.exterior) : null;
   const msgs = [];               // messages "problème" de CE vaisseau (pour l'UI)
   const h0 = hardFail, w0 = warns; // snapshot pour le delta par vaisseau
 
   // --- Controle 0 : meshes aberrants (et set d'exclusion pour les references) ---
-  const excludeInt = dims ? reportAberrant(int, dims, key + " interior", msgs) : new Set();
-  const ext = variants.exterior ? loadGlb(variants.exterior) : null;
+  const excludeInt = int && dims ? reportAberrant(int, dims, key + " interior", msgs) : new Set();
   const excludeExt = ext && dims ? reportAberrant(ext, dims, key + " exterior", msgs) : new Set();
 
   // --- Controle 1 : containment des modules interieurs dans la coque PROPRE ---
-  if (ext) {
+  // Seulement s'il y a un intérieur À contenir ET une coque de référence.
+  if (int && ext) {
     const hull = cleanBBox(ext, excludeExt);
     // La reference n'a de sens que si ses dims sont plausibles. Sinon le containment est ininterpretable.
     const hullOk = dims && Math.abs((hull.zMax - hull.zMin) - dims.l) <= dims.l * 0.2
@@ -105,12 +108,13 @@ for (const [key, variants] of ships) {
         console.log(`  ✓ ${root.name} contenu dans la coque`);
       }
     }
-  } else {
+  } else if (int && !ext) {
     const msg = "pas de variante exterior pour la référence coque — containment non vérifié";
     console.log(`  ⚠ ${msg}`);
     msgs.push(msg);
     warns++;
   }
+  // extérieur-seul : rien à contenir → pas de contrôle containment (normal).
 
   // --- Controle 2 : dims globales PROPRES vs dims reelles ---
   // Convention du catalogue : dims ~ bbox de l'EXTERIEUR (coque). On mesure donc

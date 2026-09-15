@@ -2,7 +2,7 @@ import { useEffect, useMemo, useReducer, useRef, useState } from "react";
 import { api } from "../api";
 import { initPublishState, publishReducer } from "../publishReducer";
 import { initPublishKeys, addPublishKey, removePublishKey, publishCandidates } from "../publishSelection";
-import { publishBlockers, canAnalyze } from "../qaGate";
+import { keysToVerify, canAnalyze } from "../qaGate";
 import { indexDiff } from "../indexDiff";
 import type { IndexEntrySummary } from "../../shared/types";
 
@@ -37,8 +37,8 @@ export function PublishPanel({ sessionKeys, catalog, verdicts, onClose, onPublis
 
   const nameOf = (k: string) => catalog.find((c) => c.key === k)?.name ?? k;
   const candidates = publishCandidates(catalog.map((c) => c.key), pubKeys);
-  const blockers = publishBlockers(pubKeys, verdicts);
-  const analyzable = canAnalyze(pubKeys, verdicts);
+  const toVerify = keysToVerify(pubKeys, verdicts);
+  const analyzable = canAnalyze(pubKeys);
 
   const startDryRun = () => {
     if (started.current || !analyzable) return;
@@ -94,9 +94,10 @@ export function PublishPanel({ sessionKeys, catalog, verdicts, onClose, onPublis
             })}
             {pubKeys.length === 0 && <li className="detail">Aucune clé — ajoutes-en au moins une.</li>}
           </ul>
-          {blockers.length > 0 && (
-            <p className="err">
-              Bloqué : {blockers.length} clé(s) non conforme(s) ou sans verdict QA — {blockers.join(", ")}. Retire-les ou relance la QA.
+          {toVerify.length > 0 && (
+            <p className="warn-note">
+              ⚠ À vérifier : {toVerify.length} clé(s) non conforme(s) ou sans verdict QA — {toVerify.join(", ")}.
+              La QA est un avertissement : tu peux publier quand même (c'est toi qui décides), ou les retirer / relancer la QA.
             </p>
           )}
           <div className="publish-add">

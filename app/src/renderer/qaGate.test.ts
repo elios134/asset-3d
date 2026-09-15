@@ -1,5 +1,5 @@
 import { test, expect } from "vitest";
-import { qaVerdicts, publishBlockers, canAnalyze } from "./qaGate";
+import { qaVerdicts, keysToVerify, canAnalyze } from "./qaGate";
 
 test("qaVerdicts : conforme ssi 0 échec dur", () => {
   const v = qaVerdicts([
@@ -14,20 +14,17 @@ test("qaVerdicts : liste vide -> record vide", () => {
   expect(qaVerdicts([])).toEqual({});
 });
 
-test("publishBlockers : clés non conformes OU sans verdict", () => {
+test("keysToVerify : clés non conformes OU sans verdict (pour avertissement)", () => {
   const v = { A: true, B: false, C: true };
-  // B non conforme, Z sans verdict -> bloqueurs ; A et C passent
-  expect(publishBlockers(["A", "B", "C", "Z"], v)).toEqual(["B", "Z"]);
+  expect(keysToVerify(["A", "B", "C", "Z"], v)).toEqual(["B", "Z"]);
 });
 
-test("publishBlockers : tout conforme -> aucun bloqueur", () => {
-  expect(publishBlockers(["A", "C"], { A: true, B: false, C: true })).toEqual([]);
+test("keysToVerify : tout conforme -> aucune à vérifier", () => {
+  expect(keysToVerify(["A", "C"], { A: true, B: false, C: true })).toEqual([]);
 });
 
-test("canAnalyze : vrai ssi ≥1 clé et aucun bloqueur", () => {
-  const v = { A: true, B: false };
-  expect(canAnalyze([], v)).toBe(false);         // aucune clé
-  expect(canAnalyze(["A"], v)).toBe(true);       // conforme
-  expect(canAnalyze(["A", "B"], v)).toBe(false); // B bloque
-  expect(canAnalyze(["A", "Z"], v)).toBe(false); // Z sans verdict
+test("canAnalyze : vrai dès ≥1 clé — la QA ne bloque jamais", () => {
+  expect(canAnalyze([])).toBe(false);           // aucune clé
+  expect(canAnalyze(["A"])).toBe(true);          // conforme ou non, on peut analyser
+  expect(canAnalyze(["A", "B", "Z"])).toBe(true); // non conformes/sans verdict : autorisé quand même
 });
