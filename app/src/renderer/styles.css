@@ -113,7 +113,9 @@ h2 { font-size: 19px; font-weight: 700; margin: 0 0 2px; }
 .st.new { background: var(--rose-soft); color: #fca5b5; } .st.mod { background: var(--amber-soft); color: #fcd34d; }
 .st.int { background: var(--accent-soft); color: #a5b4fc; } .st.ok { background: var(--emerald-soft); color: #6ee7b7; }
 .cc .dim { position: absolute; bottom: 7px; left: 9px; font-size: 10px; color: var(--muted); font-variant-numeric: tabular-nums; }
-.cc .thumbimg { width: 100%; height: 100%; object-fit: cover; }
+.thumbwrap { position: absolute; inset: 0; display: grid; place-items: center; color: var(--muted2); }
+.thumbwrap svg { width: 30px; height: 30px; }
+.thumbimg { width: 100%; height: 100%; object-fit: cover; }
 .cc .bd { padding: 9px 11px; } .cc .bn { font-size: 12.5px; font-weight: 600; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
 .cc .bm { font-size: 10px; color: var(--muted); margin-top: 1px; }
 
@@ -126,8 +128,8 @@ h2 { font-size: 19px; font-weight: 700; margin: 0 0 2px; }
 .ship:hover { background: var(--card-hover); } .ship.sel { border-color: var(--accent-line); background: var(--accent-soft); }
 .ck { width: 20px; height: 20px; border-radius: 6px; border: 1.5px solid var(--muted2); display: grid; place-items: center; flex: none; transition: .14s; }
 .ship.sel .ck { background: var(--accent); border-color: var(--accent); } .ck svg { width: 13px; height: 13px; color: #fff; opacity: 0; } .ship.sel .ck svg { opacity: 1; }
-.thumb { width: 46px; height: 46px; border-radius: 10px; background: linear-gradient(135deg, rgba(255,255,255,.06), rgba(255,255,255,.02)); display: grid; place-items: center; flex: none; color: var(--muted2); overflow: hidden; }
-.thumb svg { width: 22px; height: 22px; } .thumb img { width: 100%; height: 100%; object-fit: cover; }
+.thumb { position: relative; width: 46px; height: 46px; border-radius: 10px; background: linear-gradient(135deg, rgba(255,255,255,.06), rgba(255,255,255,.02)); flex: none; color: var(--muted2); overflow: hidden; }
+.thumb .thumbwrap svg { width: 22px; height: 22px; }
 .sinfo { flex: 1; min-width: 0; }
 .sinfo .nm { font-size: 14px; font-weight: 600; display: flex; align-items: center; gap: 8px; }
 .sinfo .mf { font-size: 11px; color: var(--muted); margin-top: 1px; } .sinfo .why { font-size: 11px; color: var(--muted2); margin-top: 4px; }

@@ -10,6 +10,7 @@ import { QaPanel } from "./components/QaPanel";
 import { PublishPanel } from "./components/PublishPanel";
 import { shipStatus, statusCounts, worklistGroups, type ShipStatus } from "./catalogView";
 import { Icon } from "./components/Icon";
+import { Thumbnail } from "./components/Thumbnail";
 import type { AnalyzeResult, Prereqs, ExtractItem, Ship, FingerprintEvent } from "../shared/types";
 
 type Phase = "checking" | "needsUpdate" | "updating" | "ready" | "error";
@@ -196,7 +197,7 @@ function CatalogView({ ships, counts }: { ships: Ship[]; counts: ReturnType<type
           const st = shipStatus(s);
           return (
             <div className="cc" key={s.key} title={s.key}>
-              <div className="top"><span className={`st ${st}`}>{ST_LABEL[st]}</span><Icon name="ship" /><span className="dim">{Math.round(s.dims.l)} m</span></div>
+              <div className="top"><Thumbnail name={s.name} /><span className={`st ${st}`}>{ST_LABEL[st]}</span><span className="dim">{Math.round(s.dims.l)} m</span></div>
               <div className="bd"><div className="bn">{s.name}</div><div className="bm">{s.manufacturer}</div></div>
             </div>
           );
@@ -272,7 +273,7 @@ function WorkView({ groups, sel, onToggle, count, canExtract, onExtract }: {
             return (
               <div className={`ship${on ? " sel" : ""}`} key={s.key}>
                 <span className="ck"><Icon name="check" /></span>
-                <span className="thumb"><Icon name="ship" /></span>
+                <span className="thumb"><Thumbnail name={s.name} /></span>
                 <span className="sinfo">
                   <span className="nm">{s.name} <span className={`tag ${g}`}>{ST_LABEL[shipStatus(s)]}</span></span>
                   <span className="mf">{s.manufacturer} · {s.key}</span>
