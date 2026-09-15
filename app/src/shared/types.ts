@@ -40,6 +40,8 @@ export interface Api {
   onExtractEvent(cb: (evt: ExtractEvent) => void): () => void;
   startQa(): Promise<QaSummary>;
   onQaEvent(cb: (evt: QaEvent) => void): () => void;
+  startFingerprintScan(): Promise<FingerprintSummary>;
+  onFingerprintEvent(cb: (evt: FingerprintEvent) => void): () => void;
   startPublish(opts: PublishOptions): Promise<PublishSummary>;
   onPublishEvent(cb: (evt: PublishEvent) => void): () => void;
 }
@@ -68,6 +70,16 @@ export type QaEvent =
   | { type: "result"; conforme: boolean; ships: number; hard: number; warns: number };
 
 export interface QaSummary { conforme: boolean; ships: number; hard: number; warns: number }
+
+// --- Scan d'empreintes de source (détection « modifié » par vaisseau) ---
+// Émis par scripts/fingerprint.mjs --json. Terminal = "done".
+export type FingerprintEvent =
+  | { type: "start"; total: number }
+  | { type: "progress"; key: string; geoms?: number; fingerprint?: string; error?: string; done: number; total: number }
+  | { type: "adopted"; keys: number; total: number }
+  | { type: "done"; fingerprints: number };
+
+export interface FingerprintSummary { fingerprints: number }
 
 // --- Publication CHIRURGICALE (scripts/publish.mjs --only=… --json) ---
 // Part de l'index PUBLIE (index.json git-tracké = vérité) et ne patche QUE les

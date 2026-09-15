@@ -11,5 +11,6 @@ export function registerIpc(repoRoot: string): void {
   ipcMain.handle("extract:start", (e, items) => svc.startExtract(e.sender, items));
   ipcMain.handle("extract:cancel", () => svc.cancelExtract());
   ipcMain.handle("qa:start", (e) => svc.startQa(e.sender));
+  ipcMain.handle("fp:start", (e) => svc.startFingerprintScan(e.sender));
   ipcMain.handle("publish:start", (e, opts) => svc.startPublish(e.sender, opts));
 }

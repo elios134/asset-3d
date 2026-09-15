@@ -20,6 +20,12 @@ const api: Api = {
     ipcRenderer.on("qa:event", h);
     return () => { ipcRenderer.removeListener("qa:event", h); };
   },
+  startFingerprintScan: () => ipcRenderer.invoke("fp:start"),
+  onFingerprintEvent: (cb) => {
+    const h = (_e: unknown, evt: unknown) => cb(evt as Parameters<typeof cb>[0]);
+    ipcRenderer.on("fp:event", h);
+    return () => { ipcRenderer.removeListener("fp:event", h); };
+  },
   startPublish: (opts) => ipcRenderer.invoke("publish:start", opts),
   onPublishEvent: (cb) => {
     const h = (_e: unknown, evt: unknown) => cb(evt as Parameters<typeof cb>[0]);

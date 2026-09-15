@@ -1,67 +1,88 @@
 import { test } from "node:test";
 import assert from "node:assert/strict";
-import { compareVersion, analyzeShips } from "./detect.mjs";
+import { analyzeShips } from "./detect.mjs";
 
-test("compareVersion compare sur major.minor", () => {
-  assert.equal(compareVersion("sc-4.2", "sc-4.1"), 1);
-  assert.equal(compareVersion("sc-4.1", "sc-4.1"), 0);
-  assert.equal(compareVersion("sc-4.0", "sc-4.1"), -1);
-  assert.equal(compareVersion(null, "sc-4.1"), -1);
-});
-
-const meta = {
+const META = {
   _comment: "x",
-  AAA_New: { name: "New One", manufacturer: "Acme", dims: { l: 20, b: 10, h: 5 } },
-  BBB_Old: { name: "Old One", manufacturer: "Acme", dims: { l: 30, b: 12, h: 6 } },
-  CCC_NoInt: { name: "No Interior", manufacturer: "Acme", dims: { l: 40, b: 14, h: 7 } },
-  DDD_UpToDate: { name: "Fresh", manufacturer: "Acme", dims: { l: 50, b: 16, h: 8 } },
+  AAA_New: { name: "New", manufacturer: "Acme", dims: { l: 20, b: 10, h: 5 } },
+  BBB_Pub: { name: "Pub", manufacturer: "Acme", dims: { l: 30, b: 12, h: 6 } },
+  CCC_ExtOnly: { name: "ExtOnly", manufacturer: "Acme", dims: { l: 15, b: 8, h: 4 } },
 };
-
-const index = {
+const INDEX = {
   patchVersion: "sc-4.1",
   ships: [
-    { key: "BBB_Old", patchVersion: "sc-4.0", variants: [{ level: "exterior" }, { level: "interior" }] },
-    { key: "CCC_NoInt", patchVersion: "sc-4.2", variants: [{ level: "exterior" }] },
-    { key: "DDD_UpToDate", patchVersion: "sc-4.2", variants: [{ level: "exterior" }, { level: "interior" }] },
+    { key: "BBB_Pub", variants: [{ level: "exterior" }, { level: "interior" }] },
+    { key: "CCC_ExtOnly", variants: [{ level: "exterior" }] },
   ],
 };
 
-test("un vaisseau absent du catalogue = nouveau", () => {
-  const ships = analyzeShips({ meta, index, localVersion: "sc-4.2", anchorKeys: new Set() });
-  const s = ships.find((x) => x.key === "AAA_New");
-  assert.deepEqual(s.reasons, ["nouveau"]);
-  assert.equal(s.toProcess, true);
-  assert.equal(s.exterior.published, false);
+const find = (ships, k) => ships.find((s) => s.key === k);
+
+test("non publié -> nouveau (absent en prod)", () => {
+  const ships = analyzeShips({ meta: META, index: INDEX, baseline: {}, current: {} });
+  assert.equal(find(ships, "AAA_New").status, "nouveau");
+  assert.equal(find(ships, "AAA_New").toProcess, true);
 });
 
-test("publié sous une version antérieure = version modifiée", () => {
-  const ships = analyzeShips({ meta, index, localVersion: "sc-4.2", anchorKeys: new Set() });
-  const s = ships.find((x) => x.key === "BBB_Old");
-  assert.ok(s.reasons.includes("version modifiée"));
+test("publié, empreinte identique -> à jour (prod fait foi)", () => {
+  const ships = analyzeShips({
+    meta: META, index: INDEX,
+    baseline: { BBB_Pub: "abc" }, current: { BBB_Pub: "abc" },
+  });
+  assert.equal(find(ships, "BBB_Pub").status, "à jour");
+  assert.equal(find(ships, "BBB_Pub").toProcess, false);
 });
 
-test("extérieur publié sans intérieur = intérieur manquant", () => {
-  const ships = analyzeShips({ meta, index, localVersion: "sc-4.2", anchorKeys: new Set() });
-  const s = ships.find((x) => x.key === "CCC_NoInt");
+test("publié, empreinte différente -> version modifiée", () => {
+  const ships = analyzeShips({
+    meta: META, index: INDEX,
+    baseline: { BBB_Pub: "abc" }, current: { BBB_Pub: "xyz" },
+  });
+  assert.equal(find(ships, "BBB_Pub").status, "version modifiée");
+  assert.equal(find(ships, "BBB_Pub").toProcess, true);
+});
+
+test("publié SANS baseline (prod manuelle) -> à jour, jamais modifié", () => {
+  // même si une empreinte courante existe, l'absence de baseline = on adopte l'existant.
+  const ships = analyzeShips({
+    meta: META, index: INDEX,
+    baseline: {}, current: { BBB_Pub: "xyz" },
+  });
+  assert.equal(find(ships, "BBB_Pub").status, "à jour");
+  assert.equal(find(ships, "BBB_Pub").toProcess, false);
+});
+
+test("publié, empreinte courante inconnue (non scanné) -> à jour, pas de faux positif", () => {
+  const ships = analyzeShips({
+    meta: META, index: INDEX,
+    baseline: { BBB_Pub: "abc" }, current: {},
+  });
+  assert.equal(find(ships, "BBB_Pub").status, "à jour");
+});
+
+test("intérieur manquant : seulement si visitable connu", () => {
+  const withVis = analyzeShips({
+    meta: META, index: INDEX, baseline: { CCC_ExtOnly: "a" }, current: { CCC_ExtOnly: "a" },
+    visitableKeys: new Set(["CCC_ExtOnly"]),
+  });
+  assert.equal(find(withVis, "CCC_ExtOnly").status, "intérieur manquant");
+  assert.equal(find(withVis, "CCC_ExtOnly").toProcess, true);
+
+  // sans info visitable : pas de bruit « intérieur manquant » sur un ext-only.
+  const noVis = analyzeShips({
+    meta: META, index: INDEX, baseline: { CCC_ExtOnly: "a" }, current: { CCC_ExtOnly: "a" },
+  });
+  assert.equal(find(noVis, "CCC_ExtOnly").status, "à jour");
+  assert.equal(find(noVis, "CCC_ExtOnly").toProcess, false);
+});
+
+test("modifié a priorité, mais intérieur manquant reste listé dans reasons", () => {
+  const ships = analyzeShips({
+    meta: META, index: INDEX,
+    baseline: { CCC_ExtOnly: "a" }, current: { CCC_ExtOnly: "b" },
+    visitableKeys: new Set(["CCC_ExtOnly"]),
+  });
+  const s = find(ships, "CCC_ExtOnly");
+  assert.equal(s.status, "version modifiée");
   assert.ok(s.reasons.includes("intérieur manquant"));
-  assert.equal(s.interior.published, false);
-});
-
-test("publié à jour et complet = à jour, non traité", () => {
-  const ships = analyzeShips({ meta, index, localVersion: "sc-4.2", anchorKeys: new Set() });
-  const s = ships.find((x) => x.key === "DDD_UpToDate");
-  assert.deepEqual(s.reasons, []);
-  assert.equal(s.status, "à jour");
-  assert.equal(s.toProcess, false);
-});
-
-test("anchorKeys renseigne interior.anchored", () => {
-  const ships = analyzeShips({ meta, index, localVersion: "sc-4.2", anchorKeys: new Set(["BBB_Old"]) });
-  assert.equal(ships.find((x) => x.key === "BBB_Old").interior.anchored, true);
-  assert.equal(ships.find((x) => x.key === "CCC_NoInt").interior.anchored, false);
-});
-
-test("_comment est ignoré", () => {
-  const ships = analyzeShips({ meta, index, localVersion: "sc-4.2", anchorKeys: new Set() });
-  assert.equal(ships.some((x) => x.key === "_comment"), false);
 });

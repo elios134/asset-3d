@@ -1,7 +1,7 @@
 import { test } from "node:test";
 import assert from "node:assert/strict";
 import { execFileSync } from "node:child_process";
-import { mkdtempSync, writeFileSync, rmSync, cpSync } from "node:fs";
+import { mkdtempSync, writeFileSync, rmSync, cpSync, mkdirSync } from "node:fs";
 import { tmpdir } from "node:os";
 import { join } from "node:path";
 import { fileURLToPath } from "node:url";
@@ -20,6 +20,10 @@ function scratch() {
     ships: [{ key: "BBB_Old", patchVersion: "sc-4.0", variants: [{ level: "exterior" }, { level: "interior" }] }],
   }));
   writeFileSync(join(dir, "interior-anchors.json"), JSON.stringify({ _comment: "x" }));
+  // Empreintes : BBB_Old publié avec empreinte "old", source actuelle "new" -> « version modifiée ».
+  writeFileSync(join(dir, "source-baseline.json"), JSON.stringify({ fingerprints: { BBB_Old: "old" } }));
+  mkdirSync(join(dir, ".cache"), { recursive: true });
+  writeFileSync(join(dir, ".cache", "fingerprints.json"), JSON.stringify({ fingerprints: { BBB_Old: "new" } }));
   cpSync(join(HERE, "analyze.mjs"), join(dir, "analyze.mjs"));
   cpSync(join(HERE, "lib"), join(dir, "lib"), { recursive: true });
   return dir;
@@ -32,8 +36,9 @@ test("analyze --json émet la liste et les compteurs", () => {
   assert.equal(data.localVersion, "sc-4.2");
   assert.equal(data.publishedVersion, "sc-4.1");
   assert.equal(data.counts.total, 2);
-  assert.equal(data.counts.toProcess, 2);
+  assert.equal(data.counts.toProcess, 2); // AAA_New (nouveau) + BBB_Old (empreinte modifiée)
   assert.equal(data.ships.find((s) => s.key === "AAA_New").status, "nouveau");
+  assert.equal(data.ships.find((s) => s.key === "BBB_Old").status, "version modifiée");
   rmSync(dir, { recursive: true, force: true });
 });
 

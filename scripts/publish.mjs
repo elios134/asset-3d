@@ -25,6 +25,7 @@ import { execFileSync } from "node:child_process";
 import { fileURLToPath } from "node:url";
 import { dirname, join } from "node:path";
 import { makeEmitter } from "./lib/emit.mjs";
+import { adoptBaseline } from "./lib/baseline.mjs";
 
 const ROOT = join(dirname(fileURLToPath(import.meta.url)), "..");
 const JSON_MODE = process.argv.includes("--json");
@@ -181,9 +182,23 @@ index.ships.sort((a, b) => a.key.localeCompare(b.key));
 writeFileSync(indexPath, JSON.stringify(index, null, 2) + "\n");
 emit({ type: "index-written", keys: patched });
 
+// Adopte la baseline d'empreintes pour les clés publiées : leur source actuelle devient la
+// nouvelle référence -> elles cessent d'être signalées « modifié ». Depuis .cache/fingerprints.json
+// (produit par scripts/fingerprint.mjs). Sans cache, on n'écrit rien (rien à adopter).
+const baselinePath = join(ROOT, "source-baseline.json");
+const cachePath = join(ROOT, ".cache", "fingerprints.json");
+if (existsSync(cachePath)) {
+  const curFps = JSON.parse(readFileSync(cachePath, "utf8")).fingerprints ?? {};
+  const prevBase = existsSync(baselinePath) ? (JSON.parse(readFileSync(baselinePath, "utf8")).fingerprints ?? {}) : {};
+  const nextBase = adoptBaseline(prevBase, curFps, patched);
+  writeFileSync(baselinePath, JSON.stringify(
+    { _comment: "Empreintes de source de reference (etat publie). Maj a chaque publication.", version: index.patchVersion ?? patchVersion, fingerprints: nextBase }, null, 2) + "\n");
+  emit({ type: "baseline-adopted", keys: patched.filter((k) => k in curFps).length });
+}
+
 if (PUSH) {
   emit({ type: "git", status: "start" });
-  execFileSync("git", ["add", "index.json"], { cwd: ROOT, stdio: JSON_MODE ? "ignore" : "inherit" });
+  execFileSync("git", ["add", "index.json", ...(existsSync(baselinePath) ? ["source-baseline.json"] : [])], { cwd: ROOT, stdio: JSON_MODE ? "ignore" : "inherit" });
   execFileSync("git", ["commit", "-m", `publish: ${patched.join(", ")} (${patchVersion})`], { cwd: ROOT, stdio: JSON_MODE ? "ignore" : "inherit" });
   execFileSync("git", ["push"], { cwd: ROOT, stdio: JSON_MODE ? "ignore" : "inherit" });
   emit({ type: "git", status: "done" });
