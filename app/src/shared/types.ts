@@ -23,9 +23,16 @@ export interface AnalyzeResult {
 
 export interface Prereqs { node: boolean; starbreaker: boolean; p4k: boolean; git: boolean; gh: boolean }
 
+// Entrée minimale de l'index publié (index.json), pour l'aperçu du diff avant publication.
+export interface IndexEntrySummary {
+  key: string;
+  variants: Array<{ level: string; sha256: string; sizeBytes: number }>;
+}
+
 export interface Api {
   analyze(): Promise<AnalyzeResult>;
   prereqs(): Promise<Prereqs>;
+  indexEntries(): Promise<IndexEntrySummary[]>;
   getThumbnail(name: string): Promise<string | null>;
   updateData(): Promise<{ ok: boolean; count: number }>;
   startExtract(items: ExtractItem[]): Promise<ExtractSummary>;

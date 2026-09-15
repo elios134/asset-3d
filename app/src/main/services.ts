@@ -9,7 +9,7 @@ import { runExtract } from "./extract";
 import { runStream } from "./stream";
 import { runPublish } from "./publish";
 import type {
-  AnalyzeResult, Prereqs, ExtractItem, ExtractSummary, QaEvent, QaSummary, PublishOptions, PublishSummary,
+  AnalyzeResult, Prereqs, ExtractItem, ExtractSummary, QaEvent, QaSummary, PublishOptions, PublishSummary, IndexEntrySummary,
 } from "../shared/types";
 
 type IpcSender = { send(channel: string, evt: unknown): void };
@@ -51,6 +51,20 @@ export function createServices(
       const visitable = loadVisitableSet(resolveScfleetDb(repoRoot));
       result.ships = result.ships.map((s) => ({ ...s, visitable: visitable.has(s.key) }));
       return result;
+    },
+
+    // Entrées de l'index PUBLIÉ (index.json git-tracké = vérité) pour l'aperçu du diff avant publication.
+    async indexEntries(): Promise<IndexEntrySummary[]> {
+      try {
+        const idx = JSON.parse(await readFile(join(repoRoot, "index.json"), "utf8"));
+        const ships = Array.isArray(idx?.ships) ? idx.ships : [];
+        return ships.map((s: { key: string; variants?: Array<{ level: string; sha256: string; sizeBytes: number }> }) => ({
+          key: s.key,
+          variants: (s.variants ?? []).map((v) => ({ level: v.level, sha256: v.sha256, sizeBytes: v.sizeBytes })),
+        }));
+      } catch {
+        return [];
+      }
     },
 
     async prereqs(): Promise<Prereqs> {

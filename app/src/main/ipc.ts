@@ -5,6 +5,7 @@ export function registerIpc(repoRoot: string): void {
   const svc = createServices(repoRoot);
   ipcMain.handle("analyze", () => svc.analyze());
   ipcMain.handle("prereqs", () => svc.prereqs());
+  ipcMain.handle("index:entries", () => svc.indexEntries());
   ipcMain.handle("thumbnail", (_e, name: string) => svc.getThumbnail(name));
   ipcMain.handle("updateData", () => svc.updateData());
   ipcMain.handle("extract:start", (e, items) => svc.startExtract(e.sender, items));

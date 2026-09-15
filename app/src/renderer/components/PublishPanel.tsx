@@ -1,58 +1,122 @@
-import { useEffect, useReducer, useRef } from "react";
+import { useEffect, useMemo, useReducer, useRef, useState } from "react";
 import { api } from "../api";
 import { initPublishState, publishReducer } from "../publishReducer";
+import { initPublishKeys, addPublishKey, removePublishKey, publishCandidates } from "../publishSelection";
+import { publishBlockers, canAnalyze } from "../qaGate";
+import { indexDiff } from "../indexDiff";
+import type { IndexEntrySummary } from "../../shared/types";
 
-// keys = clés extraites de la session (QA conforme) à publier via --only.
+const shortSha = (s: string | null) => (s ? s.slice(0, 7) : "—");
+const kb = (n: number | null) => (n == null ? "—" : `${(n / 1e6).toFixed(2)} Mo`);
+const SHIP_LABEL: Record<string, string> = { "new-ship": "NOUVEAU", updated: "MODIFIÉ", unchanged: "inchangé" };
+
+// sessionKeys = clés extraites de la session (jeu par défaut). catalog = tout le catalogue
+// (key+name) pour ajouter n'importe quelle clé à republier SANS la ré-extraire (re-upload correctif).
 // onPublished() est appelé après une publication RÉELLE réussie (invalide le gate).
-export function PublishPanel({ keys, onClose, onPublished }: {
-  keys: string[];
+export function PublishPanel({ sessionKeys, catalog, verdicts, onClose, onPublished }: {
+  sessionKeys: string[];
+  catalog: Array<{ key: string; name: string }>;
+  verdicts: Record<string, boolean>; // key→conforme (dernière QA) : gate par-clé
   onClose: () => void;
   onPublished: () => void;
 }) {
   const [state, dispatch] = useReducer(publishReducer, initPublishState());
-  // StrictMode (dev) invoque l'effet deux fois : sans garde le 2e dry-run tombe
-  // sur le verrou main ("déjà en cours"). On ne lance le dry-run qu'une fois.
+  // Phase "edit" : l'utilisateur ajuste le jeu de clés avant tout dry-run.
+  // Phase "run" : dry-run lancé, puis confirmation. On ne revient pas en arrière une fois lancé.
+  const [phase, setPhase] = useState<"edit" | "run">("edit");
+  const [pubKeys, setPubKeys] = useState<string[]>(() => initPublishKeys(sessionKeys));
+  const [entries, setEntries] = useState<IndexEntrySummary[]>([]);
   const started = useRef(false);
   const confirmed = useRef(false);
 
   useEffect(() => {
     const off = api.onPublishEvent((evt) => dispatch(evt));
-    if (!started.current) {
-      started.current = true;
-      if (keys.length === 0) {
-        dispatch({ type: "startFatal", err: "Aucune clé extraite dans cette session — rien à publier." });
-      } else {
-        api.startPublish({ keys, confirm: false })
-          .catch((e) => dispatch({ type: "startFatal", err: String(e?.message ?? e) }));
-      }
-    }
+    api.indexEntries().then(setEntries).catch(() => setEntries([]));
     return off;
-  }, []); // eslint-disable-line react-hooks/exhaustive-deps
+  }, []);
+
+  const nameOf = (k: string) => catalog.find((c) => c.key === k)?.name ?? k;
+  const candidates = publishCandidates(catalog.map((c) => c.key), pubKeys);
+  const blockers = publishBlockers(pubKeys, verdicts);
+  const analyzable = canAnalyze(pubKeys, verdicts);
+
+  const startDryRun = () => {
+    if (started.current || !analyzable) return;
+    started.current = true;
+    setPhase("run");
+    api.startPublish({ keys: pubKeys, confirm: false })
+      .catch((e) => dispatch({ type: "startFatal", err: String(e?.message ?? e) }));
+  };
 
   const s = state.summary;
   const dryDone = !state.running && !state.err && !!s && s.dryRun;
   const canConfirm = dryDone && (s!.wouldPatch?.length ?? 0) > 0 && !confirmed.current;
+  const diff = useMemo(
+    () => indexDiff(entries, state.plan.map((p) => ({ key: p.key, level: p.level, sha256: p.sha256, sizeBytes: p.sizeBytes })), state.newShips),
+    [entries, state.plan, state.newShips],
+  );
   const publishedOk = !state.running && !state.err && !!s && !s.dryRun;
 
-  // Une publication réelle réussie invalide le gate (comme une extraction).
   useEffect(() => { if (publishedOk) onPublished(); }, [publishedOk]); // eslint-disable-line react-hooks/exhaustive-deps
 
   const doConfirm = () => {
     if (confirmed.current) return;
     confirmed.current = true;
     dispatch({ type: "reset", dryRun: false });
-    api.startPublish({ keys, confirm: true })
+    api.startPublish({ keys: pubKeys, confirm: true })
       .catch((e) => dispatch({ type: "startFatal", err: String(e?.message ?? e) }));
   };
 
   return (
     <div className="extract-panel">
       <div className="extract-head">
-        <b>Publier sur GitHub{keys.length ? ` (${keys.length} vaisseau${keys.length > 1 ? "x" : ""})` : ""}</b>
+        <b>Publier sur GitHub{pubKeys.length ? ` (${pubKeys.length} vaisseau${pubKeys.length > 1 ? "x" : ""})` : ""}</b>
         <div className="spacer" />
         {state.running && <span className="detail">{state.dryRun ? "Analyse (dry-run)…" : "Publication en cours…"}</span>}
         <button onClick={onClose}>Fermer</button>
       </div>
+
+      {phase === "edit" && (
+        <div className="publish-edit">
+          <p className="detail">
+            Vaisseaux à publier — par défaut les clés extraites cette session. Ajoute-en pour republier un vaisseau
+            corrigé à la main sans le ré-extraire ; retire-en pour en exclure.
+          </p>
+          <ul className="publish-chips">
+            {pubKeys.map((k) => {
+              const bad = verdicts[k] !== true;
+              return (
+                <li key={k} className={`publish-chip${bad ? " publish-chip-bad" : ""}`} title={bad ? (k in verdicts ? "QA non conforme" : "Pas de verdict QA") : "QA conforme"}>
+                  {bad ? "⚠ " : ""}{nameOf(k)} <span className="publish-chip-key">{k}</span>
+                  <button className="publish-chip-x" title="Retirer" onClick={() => setPubKeys((ks) => removePublishKey(ks, k))}>×</button>
+                </li>
+              );
+            })}
+            {pubKeys.length === 0 && <li className="detail">Aucune clé — ajoutes-en au moins une.</li>}
+          </ul>
+          {blockers.length > 0 && (
+            <p className="err">
+              Bloqué : {blockers.length} clé(s) non conforme(s) ou sans verdict QA — {blockers.join(", ")}. Retire-les ou relance la QA.
+            </p>
+          )}
+          <div className="publish-add">
+            <select
+              defaultValue=""
+              onChange={(e) => { if (e.target.value) { setPubKeys((ks) => addPublishKey(ks, e.target.value)); e.target.value = ""; } }}
+            >
+              <option value="">+ ajouter un vaisseau…</option>
+              {candidates.map((k) => {
+                const c = catalog.find((x) => x.key === k)!;
+                const bad = verdicts[k] !== true;
+                return <option key={k} value={k}>{bad ? "⚠ " : ""}{c.name} ({k})</option>;
+              })}
+            </select>
+            <button className="primary" disabled={!analyzable} onClick={startDryRun}>
+              Analyser (dry-run)
+            </button>
+          </div>
+        </div>
+      )}
 
       {state.plan.length > 0 && (
         <ul className="extract-rows">
@@ -73,9 +137,32 @@ export function PublishPanel({ keys, onClose, onPublished }: {
         </ul>
       )}
 
-      <pre className="extract-log">{state.log.join("\n")}</pre>
+      {phase === "run" && <pre className="extract-log">{state.log.join("\n")}</pre>}
 
       {state.err && <p className="err">Échec : {state.err}</p>}
+
+      {dryDone && diff.length > 0 && (
+        <div className="index-diff">
+          <p className="detail">Changements dans index.json :</p>
+          <ul className="index-diff-rows">
+            {diff.map((r) => (
+              <li key={r.key} className={`diff-${r.status}`}>
+                <span className={`diff-badge diff-badge-${r.status}`}>{SHIP_LABEL[r.status] ?? r.status}</span>
+                <b>{r.key}</b>
+                <ul className="index-diff-levels">
+                  {r.levels.map((l) => (
+                    <li key={l.level} className="detail">
+                      {l.level} · {l.status === "added" ? `ajouté (${shortSha(l.newSha)}, ${kb(l.newSize)})`
+                        : l.status === "changed" ? `${shortSha(l.oldSha)} → ${shortSha(l.newSha)} · ${kb(l.oldSize)} → ${kb(l.newSize)}`
+                        : `inchangé (${shortSha(l.newSha)})`}
+                    </li>
+                  ))}
+                </ul>
+              </li>
+            ))}
+          </ul>
+        </div>
+      )}
 
       {canConfirm && (
         <div className="publish-confirm">
