@@ -61,16 +61,18 @@ function AppBody({ data, prereqs, reload }: { data: AnalyzeResult; prereqs: Prer
   const [extracting, setExtracting] = useState(false);
   const [qaOpen, setQaOpen] = useState(false);
   const [publishOpen, setPublishOpen] = useState(false);
-  // Gate de publication (par session) : Publier reste bloqué tant que la
-  // dernière QA n'est pas conforme. Une extraction change le catalogue ⇒ invalide.
-  const [qaConforme, setQaConforme] = useState(false);
+  // Gate de publication PAR-CLÉ : verdicts key→conforme de la dernière QA.
+  // Le bouton Publier s'ouvre dès qu'une QA a tourné ; PublishPanel bloque
+  // ensuite toute clé non conforme. Une extraction change le catalogue ⇒ invalide.
+  const [verdicts, setVerdicts] = useState<Record<string, boolean>>({});
+  const qaRan = Object.keys(verdicts).length > 0;
   // Clés extraites dans la session : jeu passé à publish.mjs --only (publication
   // chirurgicale, jamais tout le catalogue).
   const [sessionKeys, setSessionKeys] = useState<string[]>([]);
   const canExtract = count > 0 && prereqs.starbreaker && prereqs.p4k;
   const startExtract = () => {
     setSessionKeys(buildItems().map((i) => i.key));
-    setQaConforme(false);
+    setVerdicts({}); // le catalogue change ⇒ verdicts QA périmés
     setExtracting(true);
   };
   const buildItems = (): ExtractItem[] => {
@@ -106,21 +108,22 @@ function AppBody({ data, prereqs, reload }: { data: AnalyzeResult; prereqs: Prer
         </button>
         <button
           className="primary"
-          disabled={!qaConforme}
-          title={qaConforme ? "Publier le catalogue sur GitHub" : "Publication bloquée : lancer la QA et obtenir un verdict conforme d'abord"}
+          disabled={!qaRan}
+          title={qaRan ? "Publier sur GitHub (clés conformes uniquement)" : "Publication bloquée : lancer la QA d'abord"}
           onClick={() => setPublishOpen(true)}
         >
           Publier sur GitHub
         </button>
       </div>
       {extracting && <ExtractPanel items={buildItems()} onClose={() => setExtracting(false)} />}
-      {qaOpen && <QaPanel onClose={() => setQaOpen(false)} onDone={setQaConforme} />}
+      {qaOpen && <QaPanel onClose={() => setQaOpen(false)} onDone={(_c, v) => setVerdicts(v)} />}
       {publishOpen && (
         <PublishPanel
           sessionKeys={sessionKeys}
           catalog={data.ships.map((s) => ({ key: s.key, name: s.name }))}
+          verdicts={verdicts}
           onClose={() => setPublishOpen(false)}
-          onPublished={() => setQaConforme(false)}
+          onPublished={() => setVerdicts({})}
         />
       )}
     </div>

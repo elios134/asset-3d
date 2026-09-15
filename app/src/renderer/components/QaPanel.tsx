@@ -1,25 +1,35 @@
 import { useEffect, useReducer, useRef } from "react";
 import { api } from "../api";
 import { initQaState, qaReducer } from "../qaReducer";
+import { qaVerdicts } from "../qaGate";
 
 const ICON: Record<string, string> = { pass: "✓", warn: "⚠", fail: "✗" };
 
-export function QaPanel({ onClose, onDone }: { onClose: () => void; onDone: (conforme: boolean) => void }) {
+// onDone remonte le verdict global + les verdicts PAR-CLÉ (key→conforme) pour le gate de publication.
+export function QaPanel({ onClose, onDone }: { onClose: () => void; onDone: (conforme: boolean, verdicts: Record<string, boolean>) => void }) {
   const [state, dispatch] = useReducer(qaReducer, initQaState());
   // StrictMode (dev) invoque l'effet deux fois : sans garde, le 2e startQa tombe
   // sur le verrou main ("déjà en cours") et faux-échoue. On ne lance qu'une fois.
   const started = useRef(false);
+  const reported = useRef(false);
 
   useEffect(() => {
     const off = api.onQaEvent((evt) => dispatch(evt));
     if (!started.current) {
       started.current = true;
-      api.startQa()
-        .then((s) => onDone(s.conforme))
-        .catch((e) => dispatch({ type: "startFatal", err: String(e?.message ?? e) }));
+      api.startQa().catch((e) => dispatch({ type: "startFatal", err: String(e?.message ?? e) }));
     }
     return off;
   }, []); // eslint-disable-line react-hooks/exhaustive-deps
+
+  // Le "result" arrive APRÈS tous les "ship" : à ce rendu, state.rows est complet
+  // -> on remonte les verdicts par-clé une seule fois.
+  useEffect(() => {
+    if (state.summary && !reported.current) {
+      reported.current = true;
+      onDone(state.summary.conforme, qaVerdicts(state.rows));
+    }
+  }, [state.summary]); // eslint-disable-line react-hooks/exhaustive-deps
 
   const fails = state.rows.filter((r) => r.status === "fail").length;
 

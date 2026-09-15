@@ -1,7 +1,8 @@
 import { useEffect, useMemo, useReducer, useRef, useState } from "react";
 import { api } from "../api";
 import { initPublishState, publishReducer } from "../publishReducer";
-import { initPublishKeys, addPublishKey, removePublishKey, publishCandidates, canPublish } from "../publishSelection";
+import { initPublishKeys, addPublishKey, removePublishKey, publishCandidates } from "../publishSelection";
+import { publishBlockers, canAnalyze } from "../qaGate";
 import { indexDiff } from "../indexDiff";
 import type { IndexEntrySummary } from "../../shared/types";
 
@@ -12,9 +13,10 @@ const SHIP_LABEL: Record<string, string> = { "new-ship": "NOUVEAU", updated: "MO
 // sessionKeys = clés extraites de la session (jeu par défaut). catalog = tout le catalogue
 // (key+name) pour ajouter n'importe quelle clé à republier SANS la ré-extraire (re-upload correctif).
 // onPublished() est appelé après une publication RÉELLE réussie (invalide le gate).
-export function PublishPanel({ sessionKeys, catalog, onClose, onPublished }: {
+export function PublishPanel({ sessionKeys, catalog, verdicts, onClose, onPublished }: {
   sessionKeys: string[];
   catalog: Array<{ key: string; name: string }>;
+  verdicts: Record<string, boolean>; // key→conforme (dernière QA) : gate par-clé
   onClose: () => void;
   onPublished: () => void;
 }) {
@@ -35,9 +37,11 @@ export function PublishPanel({ sessionKeys, catalog, onClose, onPublished }: {
 
   const nameOf = (k: string) => catalog.find((c) => c.key === k)?.name ?? k;
   const candidates = publishCandidates(catalog.map((c) => c.key), pubKeys);
+  const blockers = publishBlockers(pubKeys, verdicts);
+  const analyzable = canAnalyze(pubKeys, verdicts);
 
   const startDryRun = () => {
-    if (started.current || !canPublish(pubKeys)) return;
+    if (started.current || !analyzable) return;
     started.current = true;
     setPhase("run");
     api.startPublish({ keys: pubKeys, confirm: false })
@@ -79,14 +83,22 @@ export function PublishPanel({ sessionKeys, catalog, onClose, onPublished }: {
             corrigé à la main sans le ré-extraire ; retire-en pour en exclure.
           </p>
           <ul className="publish-chips">
-            {pubKeys.map((k) => (
-              <li key={k} className="publish-chip">
-                {nameOf(k)} <span className="publish-chip-key">{k}</span>
-                <button className="publish-chip-x" title="Retirer" onClick={() => setPubKeys((ks) => removePublishKey(ks, k))}>×</button>
-              </li>
-            ))}
+            {pubKeys.map((k) => {
+              const bad = verdicts[k] !== true;
+              return (
+                <li key={k} className={`publish-chip${bad ? " publish-chip-bad" : ""}`} title={bad ? (k in verdicts ? "QA non conforme" : "Pas de verdict QA") : "QA conforme"}>
+                  {bad ? "⚠ " : ""}{nameOf(k)} <span className="publish-chip-key">{k}</span>
+                  <button className="publish-chip-x" title="Retirer" onClick={() => setPubKeys((ks) => removePublishKey(ks, k))}>×</button>
+                </li>
+              );
+            })}
             {pubKeys.length === 0 && <li className="detail">Aucune clé — ajoutes-en au moins une.</li>}
           </ul>
+          {blockers.length > 0 && (
+            <p className="err">
+              Bloqué : {blockers.length} clé(s) non conforme(s) ou sans verdict QA — {blockers.join(", ")}. Retire-les ou relance la QA.
+            </p>
+          )}
           <div className="publish-add">
             <select
               defaultValue=""
@@ -95,10 +107,11 @@ export function PublishPanel({ sessionKeys, catalog, onClose, onPublished }: {
               <option value="">+ ajouter un vaisseau…</option>
               {candidates.map((k) => {
                 const c = catalog.find((x) => x.key === k)!;
-                return <option key={k} value={k}>{c.name} ({k})</option>;
+                const bad = verdicts[k] !== true;
+                return <option key={k} value={k}>{bad ? "⚠ " : ""}{c.name} ({k})</option>;
               })}
             </select>
-            <button className="primary" disabled={!canPublish(pubKeys)} onClick={startDryRun}>
+            <button className="primary" disabled={!analyzable} onClick={startDryRun}>
               Analyser (dry-run)
             </button>
           </div>
