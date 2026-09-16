@@ -155,18 +155,25 @@ h2 { font-size: 19px; font-weight: 700; margin: 0 0 2px; }
 .fbtn { position: relative; } .fsep { width: 1px; height: 24px; background: var(--card-border); margin: 0 3px; }
 
 /* ═══ panneaux réutilisés (extract / qa / publish) — restylés sur les tokens V2 ═══ */
-.extract-panel { position: fixed; right: 0; top: 0; bottom: 0; width: 480px; max-width: 92vw; z-index: 40;
-  background: rgba(14,14,20,.96); backdrop-filter: blur(24px); border-left: 1px solid var(--card-border);
-  display: flex; flex-direction: column; padding: 16px; box-shadow: -20px 0 60px rgba(0,0,0,.5); }
+/* Modale centrée (extraction / QA / publication). Le fond assombri est un ::before
+   plein écran ; la carte défile en entier pour ne rien cacher. */
+.extract-panel { position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); z-index: 41;
+  width: min(780px, 94vw); max-height: 88vh; overflow-y: auto;
+  background: rgba(14,14,20,.98); border: 1px solid var(--card-border); border-radius: 16px;
+  display: flex; flex-direction: column; padding: 20px; box-shadow: 0 30px 90px rgba(0,0,0,.65); }
+.extract-panel::before { content: ""; position: fixed; inset: 0; z-index: -1;
+  background: rgba(4,4,8,.66); backdrop-filter: blur(6px); }
+.extract-head { position: sticky; top: -20px; z-index: 1; background: rgba(14,14,20,.98);
+  margin: -20px -20px 10px; padding: 18px 20px 10px; border-radius: 16px 16px 0 0; }
 .extract-head { display: flex; align-items: center; gap: 8px; margin-bottom: 10px; font-size: 15px; }
 .extract-head .spacer { flex: 1; } .extract-head .detail { color: var(--muted); font-size: 12px; }
 .extract-head button, .publish-add button, .extract-panel button:not(.primary):not(.publish-chip-x) { height: 32px; padding: 0 12px; border-radius: 8px; border: 1px solid var(--card-border); background: var(--card); color: var(--fg); cursor: pointer; font-family: inherit; font-size: 12px; }
-.extract-rows { list-style: none; margin: 0; padding: 0; overflow-y: auto; max-height: 38%; }
+.extract-rows { list-style: none; margin: 0; padding: 0; }
 .extract-rows li { padding: 5px 0; font-size: 13px; } .extract-rows .ic { display: inline-block; width: 20px; }
 .row-done, .row-pass { color: var(--emerald); } .row-error, .row-fail { color: var(--rose); }
 .row-skip { color: var(--muted); } .row-running, .row-warn { color: var(--amber); }
 .extract-rows .detail { color: var(--muted); font-size: 11px; }
-.extract-log { flex: 1; overflow-y: auto; background: #060509; border: 1px solid var(--card-border); border-radius: 10px;
+.extract-log { max-height: 260px; overflow-y: auto; background: #060509; border: 1px solid var(--card-border); border-radius: 10px;
   font-size: 11px; padding: 10px; margin: 10px 0 0; white-space: pre-wrap; font-family: ui-monospace, monospace; }
 .extract-summary { font-size: 13px; color: var(--fg); }
 .primary { padding: 9px 15px; border-radius: 10px; border: none; background: var(--accent); color: #fff; font-weight: 600; cursor: pointer; font-family: inherit; box-shadow: 0 6px 20px rgba(99,102,241,.35); }
@@ -184,7 +191,7 @@ h2 { font-size: 19px; font-weight: 700; margin: 0 0 2px; }
 .publish-add { display: flex; gap: 8px; align-items: center; }
 .publish-add select { flex: 1; background: var(--bg); color: var(--fg); border: 1px solid var(--card-border); border-radius: 8px; padding: 8px; font-size: 12px; font-family: inherit; }
 .index-diff { margin-top: 8px; }
-.index-diff-rows { list-style: none; margin: 4px 0 0; padding: 0; overflow-y: auto; max-height: 30%; }
+.index-diff-rows { list-style: none; margin: 4px 0 0; padding: 0; }
 .index-diff-rows > li { padding: 5px 0; font-size: 13px; border-top: 1px solid var(--card-border); }
 .index-diff-levels { list-style: none; margin: 2px 0 0 22px; padding: 0; }
 .diff-badge { display: inline-block; font-size: 10px; font-weight: 700; border-radius: 4px; padding: 1px 6px; margin-right: 6px; text-transform: uppercase; }
