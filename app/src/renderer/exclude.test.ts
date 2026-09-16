@@ -1,5 +1,5 @@
 import { test, expect } from "vitest";
-import { isExcluded } from "./exclude";
+import { isExcluded, isAutoExcluded } from "./exclude";
 
 test("exclut wikelo / pyam / Best In Show / BIS (sur le nom)", () => {
   expect(isExcluded({ name: "Idris-P Wikelo War Special", key: "AEGS_Idris_P_Collector_Military" })).toBe(true);
@@ -17,4 +17,12 @@ test("garde le Basher et les vaisseaux normaux", () => {
   expect(isExcluded({ name: "Basher", key: "GLSN_Basher" })).toBe(false);
   expect(isExcluded({ name: "Carrack", key: "ANVL_Carrack" })).toBe(false);
   expect(isExcluded({ name: "Cutlass Black", key: "DRAK_Cutlass_Black" })).toBe(false);
+});
+
+test("liste manuelle : exclut une clé donnée en plus des règles auto", () => {
+  const manual = new Set(["VNCL_Mauler"]);
+  expect(isExcluded({ name: "Mauler Destroyer", key: "VNCL_Mauler" }, manual)).toBe(true);
+  expect(isExcluded({ name: "Carrack", key: "ANVL_Carrack" }, manual)).toBe(false);
+  // la clé manuelle n'est PAS une exclusion auto
+  expect(isAutoExcluded({ name: "Mauler Destroyer", key: "VNCL_Mauler" })).toBe(false);
 });

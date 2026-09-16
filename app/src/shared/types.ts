@@ -33,6 +33,8 @@ export interface Api {
   analyze(): Promise<AnalyzeResult>;
   prereqs(): Promise<Prereqs>;
   indexEntries(): Promise<IndexEntrySummary[]>;
+  getExclusions(): Promise<string[]>;          // clés exclues manuellement (exclusions.json)
+  setExclusions(keys: string[]): Promise<void>; // remplace la liste manuelle
   getThumbnail(name: string): Promise<string | null>;
   updateData(): Promise<{ ok: boolean; count: number }>;
   startExtract(items: ExtractItem[]): Promise<ExtractSummary>;

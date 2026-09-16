@@ -1,4 +1,4 @@
-import { readFile } from "node:fs/promises";
+import { readFile, writeFile } from "node:fs/promises";
 import { join } from "node:path";
 import { runJson } from "./runner";
 import { loadLib } from "./libs";
@@ -66,6 +66,22 @@ export function createServices(
       const visitable = loadVisitableSet(resolveScfleetDb(repoRoot));
       result.ships = result.ships.map((s) => ({ ...s, visitable: visitable.has(s.key) }));
       return result;
+    },
+
+    // Liste d'exclusion MANUELLE (exclusions.json git-tracké). Union avec les règles auto
+    // (voir renderer/exclude.ts). Écarte de la galerie/publication les vaisseaux non voulus.
+    async getExclusions(): Promise<string[]> {
+      try {
+        const j = JSON.parse(await readFile(join(repoRoot, "exclusions.json"), "utf8"));
+        return Array.isArray(j?.keys) ? j.keys.filter((k: unknown) => typeof k === "string") : [];
+      } catch {
+        return [];
+      }
+    },
+    async setExclusions(keys: string[]): Promise<void> {
+      const uniq = [...new Set(keys.filter((k) => typeof k === "string"))].sort();
+      const body = { _comment: "Vaisseaux exclus manuellement de la galerie/publication (géré dans l'app).", keys: uniq };
+      await writeFile(join(repoRoot, "exclusions.json"), JSON.stringify(body, null, 2) + "\n");
     },
 
     // Entrées de l'index PUBLIÉ (index.json git-tracké = vérité) pour l'aperçu du diff avant publication.

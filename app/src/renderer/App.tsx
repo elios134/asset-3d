@@ -2,7 +2,7 @@ import { useEffect, useMemo, useState } from "react";
 import { api } from "./api";
 import { toggleLevel, selectionCount, type Selection } from "./selection";
 import { initialSelection } from "./preselect";
-import { isExcluded } from "./exclude";
+import { isExcluded, isAutoExcluded } from "./exclude";
 import { needsUpdate } from "./gate";
 import { UpdateScreen } from "./components/UpdateScreen";
 import { ExtractPanel } from "./components/ExtractPanel";
@@ -18,16 +18,15 @@ type View = "catalog" | "version" | "work" | "publish";
 
 export function App() {
   const [phase, setPhase] = useState<Phase>("checking");
-  const [data, setData] = useState<AnalyzeResult | null>(null);
+  const [data, setData] = useState<AnalyzeResult | null>(null); // BRUT : tous les vaisseaux
   const [prereqs, setPrereqs] = useState<Prereqs | null>(null);
+  const [exclusions, setExclusions] = useState<string[]>([]);
   const [error, setError] = useState<string | null>(null);
 
   const fetchData = async (): Promise<AnalyzeResult> => {
-    const [a, p] = await Promise.all([api.analyze(), api.prereqs()]);
-    const ships = a.ships.filter((s) => !isExcluded(s));
-    const filtered = { ...a, ships, counts: { total: ships.length, toProcess: ships.filter((s) => s.toProcess).length } };
-    setData(filtered); setPrereqs(p);
-    return filtered;
+    const [a, p, ex] = await Promise.all([api.analyze(), api.prereqs(), api.getExclusions()]);
+    setData(a); setPrereqs(p); setExclusions(ex);
+    return a;
   };
   const fail = (e: unknown) => { setError(String((e as Error)?.message ?? e)); setPhase("error"); };
 
@@ -45,12 +44,25 @@ export function App() {
   if (phase === "needsUpdate" || phase === "updating")
     return <UpdateScreen data={data} prereqs={prereqs} updating={phase === "updating"} onUpdate={onUpdate} />;
 
-  return <AppBody data={data} prereqs={prereqs} reload={() => fetchData().catch(fail)} />;
+  return (
+    <AppBody
+      data={data} prereqs={prereqs} exclusions={exclusions}
+      onExclusions={(keys) => { setExclusions(keys); api.setExclusions(keys).catch(() => {}); }}
+      reload={() => fetchData().catch(fail)}
+    />
+  );
 }
 
-function AppBody({ data, prereqs, reload }: { data: AnalyzeResult; prereqs: Prereqs; reload: () => Promise<AnalyzeResult | void> }) {
+function AppBody({ data, prereqs, exclusions, onExclusions, reload }: {
+  data: AnalyzeResult; prereqs: Prereqs; exclusions: string[];
+  onExclusions: (keys: string[]) => void; reload: () => Promise<AnalyzeResult | void>;
+}) {
   const [view, setView] = useState<View>("catalog");
-  const [sel, setSel] = useState<Selection>(() => initialSelection(data.ships));
+  const exclSet = useMemo(() => new Set(exclusions), [exclusions]);
+  // Vaisseaux visibles = tout le catalogue moins les exclus (règles auto + liste manuelle).
+  const ships = useMemo(() => data.ships.filter((s) => !isExcluded(s, exclSet)), [data.ships, exclSet]);
+  const [exclOpen, setExclOpen] = useState(false);
+  const [sel, setSel] = useState<Selection>(() => initialSelection(ships));
   const count = selectionCount(sel);
 
   // overlays réutilisés
@@ -66,13 +78,13 @@ function AppBody({ data, prereqs, reload }: { data: AnalyzeResult; prereqs: Prer
   // scan d'empreintes
   const [scan, setScan] = useState<{ done: number; total: number } | null>(null);
 
-  const counts = useMemo(() => statusCounts(data.ships), [data.ships]);
-  const groups = useMemo(() => worklistGroups(data.ships), [data.ships]);
+  const counts = useMemo(() => statusCounts(ships), [ships]);
+  const groups = useMemo(() => worklistGroups(ships), [ships]);
   const worklistCount = groups.new.length + groups.mod.length + groups.int.length;
 
   const buildItems = (): ExtractItem[] => {
     const out: ExtractItem[] = [];
-    for (const s of data.ships) {
+    for (const s of ships) {
       const v = sel.get(s.key);
       if (!v || (!v.exterior && !v.interior)) continue;
       out.push({ key: s.key, name: s.name, lengthM: s.dims.l, wantExterior: v.exterior, wantInterior: v.interior });
@@ -123,7 +135,7 @@ function AppBody({ data, prereqs, reload }: { data: AnalyzeResult; prereqs: Prer
       </header>
 
       <main>
-        {view === "catalog" && <CatalogView ships={data.ships} counts={counts} />}
+        {view === "catalog" && <CatalogView ships={ships} counts={counts} onManageExclusions={() => setExclOpen(true)} />}
         {view === "version" && (
           <VersionView data={data} counts={counts} behind={behind} scan={scan} onScan={runScan} onRefresh={() => reload()} onGoWork={() => setView("work")} worklistCount={worklistCount} />
         )}
@@ -143,12 +155,20 @@ function AppBody({ data, prereqs, reload }: { data: AnalyzeResult; prereqs: Prer
         <NavBtn on={view === "publish"} onClick={() => setView("publish")} icon="upload" label="Publier" />
       </div></nav>
 
+      {exclOpen && (
+        <ExclusionsModal
+          allShips={data.ships}
+          manual={exclusions}
+          onClose={() => setExclOpen(false)}
+          onSave={(keys) => { onExclusions(keys); setExclOpen(false); }}
+        />
+      )}
       {extracting && <ExtractPanel items={buildItems()} onClose={() => { setExtracting(false); reload(); }} />}
       {qaOpen && <QaPanel onClose={() => setQaOpen(false)} onDone={(_c, v) => setVerdicts(v)} />}
       {publishOpen && (
         <PublishPanel
           sessionKeys={sessionKeys}
-          catalog={data.ships.map((s) => ({ key: s.key, name: s.name }))}
+          catalog={ships.map((s) => ({ key: s.key, name: s.name }))}
           verdicts={verdicts}
           onClose={() => setPublishOpen(false)}
           onPublished={() => { setVerdicts({}); reload(); }}
@@ -171,7 +191,7 @@ function NavBtn({ on, onClick, icon, label, pip }: { on: boolean; onClick: () =>
 
 const ST_LABEL: Record<ShipStatus, string> = { new: "Absent", mod: "Modifié", int: "Intér.", ok: "À jour" };
 
-function CatalogView({ ships, counts }: { ships: Ship[]; counts: ReturnType<typeof statusCounts> }) {
+function CatalogView({ ships, counts, onManageExclusions }: { ships: Ship[]; counts: ReturnType<typeof statusCounts>; onManageExclusions: () => void }) {
   const [q, setQ] = useState("");
   const [f, setF] = useState<"all" | ShipStatus>("all");
   const list = useMemo(() => {
@@ -191,6 +211,7 @@ function CatalogView({ ships, counts }: { ships: Ship[]; counts: ReturnType<type
           <p className="sub" style={{ margin: 0 }}>{counts.all} vaisseaux · <span style={{ color: "var(--emerald)" }}>{counts.ok} à jour</span> · états calculés par empreinte de source.</p>
         </div>
         <div className="spacer" />
+        <button className="btn ghost" onClick={onManageExclusions} title="Gérer les vaisseaux exclus de la galerie/publication"><Icon name="list" />Exclusions</button>
         <div className="searchbox"><Icon name="search" /><input value={q} onChange={(e) => setQ(e.target.value)} placeholder="Rechercher un vaisseau…" /></div>
       </div>
       <div className="filters">
@@ -327,6 +348,63 @@ function PublishView({ hasInterior, onQa, onPublish, sessionKeys }: { hasInterio
         <p className="sub" style={{ marginTop: 12 }}>Extraction extérieur-seul : pas de contrôle QA nécessaire (la QA vérifie le containment des intérieurs).</p>
       )}
     </section>
+  );
+}
+
+function ExclusionsModal({ allShips, manual, onClose, onSave }: {
+  allShips: Ship[]; manual: string[]; onClose: () => void; onSave: (keys: string[]) => void;
+}) {
+  const [set, setSet] = useState<Set<string>>(() => new Set(manual));
+  const [q, setQ] = useState("");
+  const toggle = (k: string) => setSet((s) => { const n = new Set(s); n.has(k) ? n.delete(k) : n.add(k); return n; });
+  const list = useMemo(() => {
+    const query = q.toLowerCase();
+    return [...allShips]
+      .filter((s) => !query || s.name.toLowerCase().includes(query) || s.key.toLowerCase().includes(query) || s.manufacturer.toLowerCase().includes(query))
+      .sort((a, b) => a.name.localeCompare(b.name));
+  }, [allShips, q]);
+
+  return (
+    <div className="extract-panel">
+      <div className="extract-head">
+        <b>Gérer les exclusions</b>
+        <div className="spacer" />
+        <span className="detail">{set.size} manuelle(s)</span>
+        <button onClick={onClose}>Fermer</button>
+      </div>
+      <p className="detail" style={{ margin: "0 0 10px" }}>
+        Les vaisseaux exclus sont retirés de la galerie, de la liste de travail et de la publication.
+        Les exclusions <b>auto</b> (éditions wikelo/pyam/BIS, variantes Alliance) ne sont pas modifiables ici.
+      </p>
+      <div className="searchbox" style={{ marginBottom: 10 }}>
+        <Icon name="search" /><input value={q} onChange={(e) => setQ(e.target.value)} placeholder="Rechercher…" />
+      </div>
+      <ul className="extract-rows">
+        {list.map((s) => {
+          const auto = isAutoExcluded(s);
+          const on = auto || set.has(s.key);
+          return (
+            <li key={s.key} className="excl-row">
+              <span className="excl-info">
+                <span className="excl-nm">{s.name}</span>
+                <span className="excl-key">{s.key}</span>
+              </span>
+              {auto ? (
+                <span className="tag" style={{ background: "rgba(255,255,255,.06)", color: "var(--muted)" }}>auto</span>
+              ) : (
+                <button className={`lvlbtn${on ? " on" : ""}`} onClick={() => toggle(s.key)}>
+                  {on ? "Exclu" : "Inclus"}
+                </button>
+              )}
+            </li>
+          );
+        })}
+      </ul>
+      <div style={{ display: "flex", gap: 10, marginTop: 14 }}>
+        <button className="primary" onClick={() => onSave([...set])}>Enregistrer</button>
+        <button onClick={onClose}>Annuler</button>
+      </div>
+    </div>
   );
 }
 
