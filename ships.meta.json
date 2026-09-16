@@ -1623,7 +1623,7 @@
     "classification": "Medium Freight",
     "dims": {
       "l": 49.9,
-      "b": 52.1,
+      "b": 52.2,
       "h": 67.2
     },
     "materials": "flat"
@@ -1845,6 +1845,17 @@
       "l": 12,
       "b": 7.75,
       "h": 3.25
+    },
+    "materials": "flat"
+  },
+  "KRIG_S65_Stingray": {
+    "name": "S-65 Stingray",
+    "manufacturer": "Kruger Intergalactic",
+    "classification": "Medium Fighter",
+    "dims": {
+      "l": 20.4,
+      "b": 24.3,
+      "h": 4.4
     },
     "materials": "flat"
   },

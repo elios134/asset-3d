@@ -14,13 +14,14 @@ test("qaVerdicts : liste vide -> record vide", () => {
   expect(qaVerdicts([])).toEqual({});
 });
 
-test("keysToVerify : clés non conformes OU sans verdict (pour avertissement)", () => {
+test("keysToVerify : seulement les clés explicitement non conformes (pas les sans-verdict)", () => {
   const v = { A: true, B: false, C: true };
-  expect(keysToVerify(["A", "B", "C", "Z"], v)).toEqual(["B", "Z"]);
+  // B non conforme -> signalé ; Z sans verdict -> PAS signalé (QA optionnelle) ; A/C conformes.
+  expect(keysToVerify(["A", "B", "C", "Z"], v)).toEqual(["B"]);
 });
 
-test("keysToVerify : tout conforme -> aucune à vérifier", () => {
-  expect(keysToVerify(["A", "C"], { A: true, B: false, C: true })).toEqual([]);
+test("keysToVerify : aucune QA lancée -> rien à signaler", () => {
+  expect(keysToVerify(["A", "C"], {})).toEqual([]);
 });
 
 test("canAnalyze : vrai dès ≥1 clé — la QA ne bloque jamais", () => {

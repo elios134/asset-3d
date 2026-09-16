@@ -58,8 +58,10 @@ function AppBody({ data, prereqs, reload }: { data: AnalyzeResult; prereqs: Prer
   const [qaOpen, setQaOpen] = useState(false);
   const [publishOpen, setPublishOpen] = useState(false);
   const [verdicts, setVerdicts] = useState<Record<string, boolean>>({});
-  const qaRan = Object.keys(verdicts).length > 0;
   const [sessionKeys, setSessionKeys] = useState<string[]>([]);
+  // La QA (containment) ne concerne que les intérieurs : pertinente seulement si la
+  // session a extrait au moins un intérieur. Elle reste OPTIONNELLE pour publier.
+  const [sessionHasInterior, setSessionHasInterior] = useState(false);
 
   // scan d'empreintes
   const [scan, setScan] = useState<{ done: number; total: number } | null>(null);
@@ -78,7 +80,13 @@ function AppBody({ data, prereqs, reload }: { data: AnalyzeResult; prereqs: Prer
     return out;
   };
   const canExtract = count > 0 && prereqs.starbreaker && prereqs.p4k;
-  const startExtract = () => { setSessionKeys(buildItems().map((i) => i.key)); setVerdicts({}); setExtracting(true); };
+  const startExtract = () => {
+    const items = buildItems();
+    setSessionKeys(items.map((i) => i.key));
+    setSessionHasInterior(items.some((i) => i.wantInterior));
+    setVerdicts({});
+    setExtracting(true);
+  };
 
   const runScan = async () => {
     if (scan) return;
@@ -123,7 +131,7 @@ function AppBody({ data, prereqs, reload }: { data: AnalyzeResult; prereqs: Prer
           <WorkView groups={groups} sel={sel} onToggle={(k, l) => setSel((s) => toggleLevel(s, k, l))} count={count} canExtract={canExtract} onExtract={startExtract} />
         )}
         {view === "publish" && (
-          <PublishView qaRan={qaRan} onQa={() => setQaOpen(true)} onPublish={() => setPublishOpen(true)} sessionKeys={sessionKeys} />
+          <PublishView hasInterior={sessionHasInterior} onQa={() => setQaOpen(true)} onPublish={() => setPublishOpen(true)} sessionKeys={sessionKeys} />
         )}
       </main>
 
@@ -299,18 +307,25 @@ function WorkView({ groups, sel, onToggle, count, canExtract, onExtract }: {
   );
 }
 
-function PublishView({ qaRan, onQa, onPublish, sessionKeys }: { qaRan: boolean; onQa: () => void; onPublish: () => void; sessionKeys: string[] }) {
+function PublishView({ hasInterior, onQa, onPublish, sessionKeys }: { hasInterior: boolean; onQa: () => void; onPublish: () => void; sessionKeys: string[] }) {
   return (
     <section className="view">
       <h2>Publier pour SCFM V2</h2>
-      <p className="sub">Contrôle qualité (avertissement, jamais bloquant), puis upload Release + patch d'<code>index.json</code>. Seul le clic « Confirmer » écrit en prod.</p>
+      <p className="sub">Upload Release + patch d'<code>index.json</code>. Seul le clic « Confirmer » écrit en prod. La QA est optionnelle.</p>
       {sessionKeys.length === 0
         ? <div className="banner warn"><Icon name="alert" /><span>Aucune extraction cette session. Va extraire des vaisseaux d'abord, ou ajoute des clés à republier dans le panneau Publier.</span></div>
         : <div className="banner ok"><Icon name="check" /><span><b>{sessionKeys.length}</b> vaisseau(x) extrait(s) cette session, prêts à publier.</span></div>}
       <div style={{ display: "flex", gap: 12, flexWrap: "wrap" }}>
-        <button className="btn" onClick={onQa}><Icon name="check" />Lancer la QA</button>
-        <button className="btn primary" disabled={!qaRan} onClick={onPublish} title={qaRan ? "Publier (clés conformes)" : "Lance la QA d'abord"}><Icon name="upload" />Publier sur GitHub</button>
+        <button className="btn primary" onClick={onPublish}><Icon name="upload" />Publier sur GitHub</button>
+        {hasInterior && (
+          <button className="btn ghost" onClick={onQa} title="Vérifier le containment des intérieurs (optionnel)">
+            <Icon name="check" />Contrôle qualité intérieurs <span className="muted" style={{ marginLeft: 4 }}>(optionnel)</span>
+          </button>
+        )}
       </div>
+      {!hasInterior && sessionKeys.length > 0 && (
+        <p className="sub" style={{ marginTop: 12 }}>Extraction extérieur-seul : pas de contrôle QA nécessaire (la QA vérifie le containment des intérieurs).</p>
+      )}
     </section>
   );
 }

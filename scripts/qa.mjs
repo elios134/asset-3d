@@ -60,24 +60,21 @@ for (const f of files) {
 }
 
 for (const [key, variants] of ships) {
-  // QA couvre tout ce qui a une variante clay (intérieur ET/OU extérieur). Un vaisseau
-  // extérieur-seul reçoit un verdict (meshes aberrants + dims coque), containment sauté
-  // faute d'intérieur — sinon il resterait sans verdict et non publiable.
+  if (!variants.interior) continue; // QA cible les intérieurs (containment) ; l'extérieur-seul n'est pas contrôlé
   console.log(`\n=== ${key} ===`);
   const m = meta[key];
   const dims = m?.dims;
-  const int = variants.interior ? loadGlb(variants.interior) : null;
-  const ext = variants.exterior ? loadGlb(variants.exterior) : null;
+  const int = loadGlb(variants.interior);
   const msgs = [];               // messages "problème" de CE vaisseau (pour l'UI)
   const h0 = hardFail, w0 = warns; // snapshot pour le delta par vaisseau
 
   // --- Controle 0 : meshes aberrants (et set d'exclusion pour les references) ---
-  const excludeInt = int && dims ? reportAberrant(int, dims, key + " interior", msgs) : new Set();
+  const excludeInt = dims ? reportAberrant(int, dims, key + " interior", msgs) : new Set();
+  const ext = variants.exterior ? loadGlb(variants.exterior) : null;
   const excludeExt = ext && dims ? reportAberrant(ext, dims, key + " exterior", msgs) : new Set();
 
   // --- Controle 1 : containment des modules interieurs dans la coque PROPRE ---
-  // Seulement s'il y a un intérieur À contenir ET une coque de référence.
-  if (int && ext) {
+  if (ext) {
     const hull = cleanBBox(ext, excludeExt);
     // La reference n'a de sens que si ses dims sont plausibles. Sinon le containment est ininterpretable.
     const hullOk = dims && Math.abs((hull.zMax - hull.zMin) - dims.l) <= dims.l * 0.2

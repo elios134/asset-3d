@@ -84,9 +84,9 @@ export function PublishPanel({ sessionKeys, catalog, verdicts, onClose, onPublis
           </p>
           <ul className="publish-chips">
             {pubKeys.map((k) => {
-              const bad = verdicts[k] !== true;
+              const bad = verdicts[k] === false;
               return (
-                <li key={k} className={`publish-chip${bad ? " publish-chip-bad" : ""}`} title={bad ? (k in verdicts ? "QA non conforme" : "Pas de verdict QA") : "QA conforme"}>
+                <li key={k} className={`publish-chip${bad ? " publish-chip-bad" : ""}`} title={bad ? "QA non conforme (avertissement)" : (k in verdicts ? "QA conforme" : "QA non lancée (optionnelle)")}>
                   {bad ? "⚠ " : ""}{nameOf(k)} <span className="publish-chip-key">{k}</span>
                   <button className="publish-chip-x" title="Retirer" onClick={() => setPubKeys((ks) => removePublishKey(ks, k))}>×</button>
                 </li>
@@ -108,7 +108,7 @@ export function PublishPanel({ sessionKeys, catalog, verdicts, onClose, onPublis
               <option value="">+ ajouter un vaisseau…</option>
               {candidates.map((k) => {
                 const c = catalog.find((x) => x.key === k)!;
-                const bad = verdicts[k] !== true;
+                const bad = verdicts[k] === false;
                 return <option key={k} value={k}>{bad ? "⚠ " : ""}{c.name} ({k})</option>;
               })}
             </select>

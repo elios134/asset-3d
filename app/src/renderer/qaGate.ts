@@ -11,9 +11,11 @@ export function qaVerdicts(rows: Array<{ key: string; hard: number }>): Record<s
   return out;
 }
 
-// Clés À VÉRIFIER (avertissement, pas un blocage) : verdict non conforme OU absent (pas encore passé en QA).
+// Clés À VÉRIFIER (avertissement, jamais un blocage) : uniquement celles EXPLICITEMENT non
+// conformes (QA lancée et échec dur). L'absence de verdict n'est PAS signalée : la QA est
+// optionnelle — ne pas l'avoir lancée n'est pas une anomalie.
 export function keysToVerify(pubKeys: string[], verdicts: Record<string, boolean>): string[] {
-  return pubKeys.filter((k) => verdicts[k] !== true);
+  return pubKeys.filter((k) => verdicts[k] === false);
 }
 
 // On peut lancer l'analyse/publication dès qu'au moins une clé est sélectionnée.
