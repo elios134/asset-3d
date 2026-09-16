@@ -1,6 +1,6 @@
 {
   "schemaVersion": 2,
-  "generatedAt": "2026-07-09T14:51:22.076Z",
+  "generatedAt": "2026-09-16T09:54:50.823Z",
   "patchVersion": "sc-4.1",
   "levels": [
     {
@@ -3854,6 +3854,31 @@
       ]
     },
     {
+      "key": "GLSN_Basher",
+      "name": "Basher",
+      "manufacturer": "Grey's Market",
+      "classification": "Light Fighter",
+      "dims": {
+        "l": 13.7,
+        "b": 11.3,
+        "h": 4.5
+      },
+      "materials": "flat",
+      "patchVersion": "sc-4.1",
+      "variants": [
+        {
+          "level": "exterior",
+          "label": "Apercu",
+          "modelUrl": "https://github.com/elios134/asset-3d/releases/download/sc-4.1/GLSN_Basher.clay-exterior.glb",
+          "hasInterior": false,
+          "tris": 456107,
+          "sizeBytes": 3610920,
+          "sha256": "c667e8cf2395bd5a401df673b011d88430523a3c9e10af667816dad7a9ee7aa5",
+          "render": "clay"
+        }
+      ]
+    },
+    {
       "key": "GLSN_Shiv",
       "name": "Shiv",
       "manufacturer": "Grey's Market",
@@ -4187,6 +4212,31 @@
           "sizeBytes": 2809224,
           "hasInterior": false,
           "sha256": "29a5a44964331886f51b5e4baa648768996eaa15bfedabc55bed6d57407e0191",
+          "render": "clay"
+        }
+      ]
+    },
+    {
+      "key": "KRIG_S65_Stingray",
+      "name": "S-65 Stingray",
+      "manufacturer": "Kruger Intergalactic",
+      "classification": "Medium Fighter",
+      "dims": {
+        "l": 20.447,
+        "b": 15.1,
+        "h": 8.231
+      },
+      "materials": "flat",
+      "patchVersion": "sc-4.1",
+      "variants": [
+        {
+          "level": "exterior",
+          "label": "Apercu",
+          "modelUrl": "https://github.com/elios134/asset-3d/releases/download/sc-4.1/KRIG_S65_Stingray.clay-exterior.glb",
+          "hasInterior": false,
+          "tris": 599997,
+          "sizeBytes": 3939184,
+          "sha256": "ca470129b9848f2cc8c25279bb6fc834020b37df429742ef780def6069b1905c",
           "render": "clay"
         }
       ]

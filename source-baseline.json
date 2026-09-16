@@ -1,6 +1,6 @@
 {
-  "_comment": "Empreintes de source de référence (état publié). Généré par scripts/fingerprint.mjs --adopt.",
-  "version": "sc-4.10",
+  "_comment": "Empreintes de source de reference (etat publie). Maj a chaque publication.",
+  "version": "sc-4.1",
   "fingerprints": {
     "AEGS_Avenger_Stalker": "ceabfcbfb1bce25a5dcc4402435bd569b35219843907351be50788f4f64474f4",
     "AEGS_Avenger_Titan": "63e434e5257d99709a4c9a1317dff0973c17623435142dd828e3af409916afdc",
@@ -229,6 +229,8 @@
     "XIAN_Nox": "bef69a3aac6692bd9c21aa99c0fcfe9db3fd7fed71015e95ae4d8458b0de4a56",
     "XIAN_Nox_Kue": "ae42563dce944a8ce229e962a156631cce9627911b69530bc79be517ccdcc73f",
     "XIAN_Scout": "a071fb58ac3d4bf55471ff6d4b03c7da50f5b1f5e301b1b416fca90d09975a2f",
-    "XNAA_SanTokYai": "24db5fabcda97db05b25bfc582dbd5372a7508cdd2a92db4626e1373e89adf40"
+    "XNAA_SanTokYai": "24db5fabcda97db05b25bfc582dbd5372a7508cdd2a92db4626e1373e89adf40",
+    "GLSN_Basher": "806eca238beefcf9aeaf45620f6c8096f560e1df63b1ee6b9f259b01cbaff8c6",
+    "KRIG_S65_Stingray": "8beee3d7c14df599402e33bcc9c4fe10b67a70e3c223ae94b8897acc3fc6bfe8"
   }
 }
