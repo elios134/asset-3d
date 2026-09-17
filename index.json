@@ -1,6 +1,6 @@
 {
   "schemaVersion": 2,
-  "generatedAt": "2026-09-16T09:54:50.823Z",
+  "generatedAt": "2026-09-17T17:54:03.985Z",
   "patchVersion": "sc-4.1",
   "levels": [
     {
@@ -548,10 +548,10 @@
           "level": "exterior",
           "label": "Apercu",
           "modelUrl": "https://github.com/elios134/asset-3d/releases/download/sc-4.1/AEGS_Sabre.clay-exterior.glb",
-          "tris": 340475,
-          "sizeBytes": 2431080,
+          "tris": 340465,
+          "sizeBytes": 2429896,
           "hasInterior": false,
-          "sha256": "d45be683626f9f515788141ef0ee2e12b93d53ae8677cfc38e1ba1c482d7f593",
+          "sha256": "e1a2e984facf540468a8c7a9dc448ce8279615c83e015f4fb831dbf88d25fd2d",
           "render": "clay"
         }
       ]
@@ -648,10 +648,10 @@
           "level": "exterior",
           "label": "Apercu",
           "modelUrl": "https://github.com/elios134/asset-3d/releases/download/sc-4.1/AEGS_Sabre_Raven.clay-exterior.glb",
-          "tris": 300137,
-          "sizeBytes": 2268320,
+          "tris": 321863,
+          "sizeBytes": 2339344,
           "hasInterior": false,
-          "sha256": "b61a65d50e62ca9451dcb59af81edc470e386a18133640f5751222234a05580e",
+          "sha256": "f74f50bdb06692de6df20d5497d9d8b563e5351e144aa0a5cdd367b10e6c9c64",
           "render": "clay"
         }
       ]
@@ -1710,10 +1710,10 @@
           "level": "exterior",
           "label": "Apercu",
           "modelUrl": "https://github.com/elios134/asset-3d/releases/download/sc-4.1/ANVL_Spartan.clay-exterior.glb",
-          "tris": 130215,
-          "sizeBytes": 1031108,
+          "tris": 102855,
+          "sizeBytes": 834640,
           "hasInterior": false,
-          "sha256": "b11be40bf69e436b2563d48ee1aec4b52e8cf333da2a1a85337b352724d281dd",
+          "sha256": "94aea29151c7fdf3c51191dfd7d9a5bafe040c43f271adc902754c94528ff4d7",
           "render": "clay"
         }
       ]
@@ -2944,19 +2944,19 @@
           "label": "Apercu",
           "modelUrl": "https://github.com/elios134/asset-3d/releases/download/sc-4.1/DRAK_Clipper.clay-exterior.glb",
           "tris": 599999,
-          "sizeBytes": 5316768,
+          "sizeBytes": 5431536,
           "hasInterior": false,
-          "sha256": "b479e4a4c97f7e816474d9959962dcdcf954b85e09562b6e280a23037b534d88",
+          "sha256": "5b4800717ad624bc755a8aa57b5b68a7f825c2eec5fbce9f8ccb6db02df8cfc5",
           "render": "clay"
         },
         {
           "level": "interior",
           "label": "Interieur",
           "modelUrl": "https://github.com/elios134/asset-3d/releases/download/sc-4.1/DRAK_Clipper.clay-interior.glb",
-          "tris": 1183319,
-          "sizeBytes": 10657360,
+          "tris": 922956,
+          "sizeBytes": 8808084,
           "hasInterior": true,
-          "sha256": "272a3dd2b34791d1662d8905e6cbb9c87ab67dda27e172e55402528139a6500b",
+          "sha256": "4bedb1cdf2119a8f7c181195e7a6970ce40a38e733223863c0f72ef0c38eef1d",
           "render": "clay",
           "hasCollision": true,
           "interiorKind": "habitable",
@@ -3058,19 +3058,19 @@
           "label": "Apercu",
           "modelUrl": "https://github.com/elios134/asset-3d/releases/download/sc-4.1/DRAK_Cutlass_Black.clay-exterior.glb",
           "tris": 523649,
-          "sizeBytes": 4028676,
+          "sizeBytes": 4028532,
           "hasInterior": false,
-          "sha256": "6d24dbc257d189fd4b665c338d8d0959afc79741a0a3944130db37e771b87a5a",
+          "sha256": "f95f8ea37e1e3d658b5f74d1b5d8934f11ae98f29d2ecca7076cde64e87815e4",
           "render": "clay"
         },
         {
           "level": "interior",
           "label": "Interieur",
           "modelUrl": "https://github.com/elios134/asset-3d/releases/download/sc-4.1/DRAK_Cutlass_Black.clay-interior.glb",
-          "tris": 392212,
-          "sizeBytes": 3572720,
+          "tris": 624534,
+          "sizeBytes": 4929484,
           "hasInterior": true,
-          "sha256": "12cadb393aaf3a04aac0306707595e22bedb85f98d90c33fde79022a6b3d715e",
+          "sha256": "d8c2567a1263f3f1fb695afbe94fb9777350b26b160d8595bf56995721be462b",
           "render": "clay",
           "hasCollision": true,
           "interiorKind": "habitable",
@@ -3178,19 +3178,19 @@
           "label": "Apercu",
           "modelUrl": "https://github.com/elios134/asset-3d/releases/download/sc-4.1/DRAK_Cutlass_Steel.clay-exterior.glb",
           "tris": 575238,
-          "sizeBytes": 4542016,
+          "sizeBytes": 4542220,
           "hasInterior": false,
-          "sha256": "a2fa7c8a940e2cfd0370387c4ce764a8e4a397b2908c545dd64dbc33676e4a61",
+          "sha256": "e91b46f8d1f3a7ef284f14a00db85b888fb9bfffba3b94aeae81bbf4db729b38",
           "render": "clay"
         },
         {
           "level": "interior",
           "label": "Interieur",
           "modelUrl": "https://github.com/elios134/asset-3d/releases/download/sc-4.1/DRAK_Cutlass_Steel.clay-interior.glb",
-          "tris": 440049,
-          "sizeBytes": 3970276,
+          "tris": 674106,
+          "sizeBytes": 5422344,
           "hasInterior": true,
-          "sha256": "e7685afa4bde415f65b8a2ec389fb87ac57d850df8917c31e1c91be3283aeb30",
+          "sha256": "492a5818e749df56f721e8121668ba6c259a5ce723833b919e1b621090c0d462",
           "render": "clay",
           "hasCollision": true,
           "interiorKind": "habitable",
@@ -3933,10 +3933,10 @@
           "level": "exterior",
           "label": "Apercu",
           "modelUrl": "https://github.com/elios134/asset-3d/releases/download/sc-4.1/GRIN_MDC.clay-exterior.glb",
-          "tris": 161313,
-          "sizeBytes": 1610952,
+          "tris": 162365,
+          "sizeBytes": 1617008,
           "hasInterior": false,
-          "sha256": "d2011883cda1d0ac01de255030cbf8c3022db89a51c84dad3ec3fab94d149168",
+          "sha256": "89eb2b38adb3692e35c4687e9986663761c6c8bf6f1abe4aacab1d2409838441",
           "render": "clay"
         }
       ]
@@ -3958,11 +3958,22 @@
           "level": "exterior",
           "label": "Apercu",
           "modelUrl": "https://github.com/elios134/asset-3d/releases/download/sc-4.1/GRIN_MTC.clay-exterior.glb",
-          "tris": 193138,
-          "sizeBytes": 1792988,
+          "tris": 192256,
+          "sizeBytes": 1784300,
           "hasInterior": false,
-          "sha256": "810ed96da9d91c1722898bbbd4e4f06430120748bcb1e1635520ae987f95b63f",
+          "sha256": "bb8025a1d5fb19cde70515c2d9da4374e34007c20681b67ae4dee7b299103094",
           "render": "clay"
+        },
+        {
+          "level": "interior",
+          "label": "Interieur",
+          "modelUrl": "https://github.com/elios134/asset-3d/releases/download/sc-4.1/GRIN_MTC.clay-interior.glb",
+          "hasInterior": true,
+          "tris": 261836,
+          "sizeBytes": 2438180,
+          "sha256": "9cbf1513fc3f20b592802b2228f31692969af6bde828ec0695e8bb5fd1883005",
+          "render": "clay",
+          "hasCollision": true
         }
       ]
     },
