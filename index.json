@@ -1,6 +1,6 @@
 {
   "schemaVersion": 2,
-  "generatedAt": "2026-09-17T18:00:34.952Z",
+  "generatedAt": "2026-10-10T15:18:57.649Z",
   "patchVersion": "sc-4.1",
   "levels": [
     {
@@ -652,6 +652,31 @@
           "sizeBytes": 2339344,
           "hasInterior": false,
           "sha256": "f74f50bdb06692de6df20d5497d9d8b563e5351e144aa0a5cdd367b10e6c9c64",
+          "render": "clay"
+        }
+      ]
+    },
+    {
+      "key": "AEGS_Sabre_Raven_EX",
+      "name": "Sabre Raven EX",
+      "manufacturer": "Aegis Dynamics",
+      "classification": "Medium Fighter",
+      "dims": {
+        "l": 24.5,
+        "b": 24.5,
+        "h": 5
+      },
+      "materials": "flat",
+      "patchVersion": "sc-4.1",
+      "variants": [
+        {
+          "level": "exterior",
+          "label": "Apercu",
+          "modelUrl": "https://github.com/elios134/asset-3d/releases/download/sc-4.1/AEGS_Sabre_Raven_EX.clay-exterior.glb",
+          "hasInterior": false,
+          "tris": 346300,
+          "sizeBytes": 2480376,
+          "sha256": "f3de4b6a9dcfd8c9c4c6aceb8dc715376d81870b7963ae250652805127c5e3bc",
           "render": "clay"
         }
       ]
