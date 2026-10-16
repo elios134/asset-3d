@@ -1,6 +1,6 @@
 {
   "schemaVersion": 2,
-  "generatedAt": "2026-10-10T15:18:57.649Z",
+  "generatedAt": "2026-10-16T19:28:40.749Z",
   "patchVersion": "sc-4.1",
   "levels": [
     {
@@ -182,10 +182,10 @@
           "level": "exterior",
           "label": "Apercu",
           "modelUrl": "https://github.com/elios134/asset-3d/releases/download/sc-4.1/AEGS_Eclipse.clay-exterior.glb",
-          "tris": 185892,
-          "sizeBytes": 1365364,
+          "tris": 232639,
+          "sizeBytes": 1459024,
           "hasInterior": false,
-          "sha256": "cfce3edf2e942b69732b4cb35d720bd754ca4ee45e7b6af36bed1b5bccdc67da",
+          "sha256": "9eb7eead0402685ab0f5bcf5f4e613eaf6c9ddd333ce11f20d8c7b1bf6728ae6",
           "render": "clay"
         }
       ]
@@ -1735,10 +1735,10 @@
           "level": "exterior",
           "label": "Apercu",
           "modelUrl": "https://github.com/elios134/asset-3d/releases/download/sc-4.1/ANVL_Spartan.clay-exterior.glb",
-          "tris": 102855,
-          "sizeBytes": 834640,
+          "tris": 130215,
+          "sizeBytes": 1031100,
           "hasInterior": false,
-          "sha256": "94aea29151c7fdf3c51191dfd7d9a5bafe040c43f271adc902754c94528ff4d7",
+          "sha256": "057800e2737b60393b74c9d7542bf87996814d80df082ba7a924b262f1bcb5a4",
           "render": "clay"
         }
       ]
@@ -3085,7 +3085,7 @@
           "tris": 523649,
           "sizeBytes": 4028532,
           "hasInterior": false,
-          "sha256": "f95f8ea37e1e3d658b5f74d1b5d8934f11ae98f29d2ecca7076cde64e87815e4",
+          "sha256": "c3c2fc776951d87b29b5e9e4423b34a847d2d5602ef2a275b13db1b1d21ef4fc",
           "render": "clay"
         },
         {
@@ -3095,7 +3095,7 @@
           "tris": 624534,
           "sizeBytes": 4929484,
           "hasInterior": true,
-          "sha256": "d8c2567a1263f3f1fb695afbe94fb9777350b26b160d8595bf56995721be462b",
+          "sha256": "8ee89865338b0cd387f5f861407bbeddba21234a5e69f6dc6906b39c03fb76ce",
           "render": "clay",
           "hasCollision": true,
           "interiorKind": "habitable",
@@ -3127,19 +3127,19 @@
           "label": "Apercu",
           "modelUrl": "https://github.com/elios134/asset-3d/releases/download/sc-4.1/DRAK_Cutlass_Blue.clay-exterior.glb",
           "tris": 553392,
-          "sizeBytes": 4413172,
+          "sizeBytes": 4413204,
           "hasInterior": false,
-          "sha256": "690aff70c283480cce662e972664ec6ff2954d3a98d1c9e9b3f533ebe386c665",
+          "sha256": "91d591db271d8f290fafe006e308ed9f20594a45d54008149492ae45976396f5",
           "render": "clay"
         },
         {
           "level": "interior",
           "label": "Interieur",
           "modelUrl": "https://github.com/elios134/asset-3d/releases/download/sc-4.1/DRAK_Cutlass_Blue.clay-interior.glb",
-          "tris": 500099,
-          "sizeBytes": 4739324,
+          "tris": 753750,
+          "sizeBytes": 6371744,
           "hasInterior": true,
-          "sha256": "6ad65c36f342903acaf05ab4f3176fc43d92901f555efdd2f28c54874c9ac385",
+          "sha256": "2f59840d8691a6afa93b1f93e3b0d8275d7a4ffe859a5502141d034949a02542",
           "render": "clay",
           "hasCollision": true,
           "interiorKind": "habitable",
@@ -3165,19 +3165,19 @@
           "label": "Apercu",
           "modelUrl": "https://github.com/elios134/asset-3d/releases/download/sc-4.1/DRAK_Cutlass_Red.clay-exterior.glb",
           "tris": 417525,
-          "sizeBytes": 3280900,
+          "sizeBytes": 3280984,
           "hasInterior": false,
-          "sha256": "96256c80aa32ec0182a700315331bff1bd48b9a6b37f11505b51964332088e40",
+          "sha256": "16f2d4461d459386432f98862d69d3cae8b77cd96e91ddcd974c155e435083ca",
           "render": "clay"
         },
         {
           "level": "interior",
           "label": "Interieur",
           "modelUrl": "https://github.com/elios134/asset-3d/releases/download/sc-4.1/DRAK_Cutlass_Red.clay-interior.glb",
-          "tris": 379115,
-          "sizeBytes": 3603780,
+          "tris": 550308,
+          "sizeBytes": 4669580,
           "hasInterior": true,
-          "sha256": "446a947ca75df200a9ce1e6a5a5e4c7ef34b0aed1cd6dbd0f35d4b1f4f6d8f8b",
+          "sha256": "89f141fd32c5f2041723dd1dcdb87ed54e4cadab9c37ee3dd49344275b0044f0",
           "render": "clay",
           "hasCollision": true,
           "interiorKind": "habitable",
@@ -3205,7 +3205,7 @@
           "tris": 575238,
           "sizeBytes": 4542220,
           "hasInterior": false,
-          "sha256": "e91b46f8d1f3a7ef284f14a00db85b888fb9bfffba3b94aeae81bbf4db729b38",
+          "sha256": "96410d6be1848b308fa7ea453c2581647f08aa07e5c0389445416539e202671c",
           "render": "clay"
         },
         {
@@ -3215,7 +3215,7 @@
           "tris": 674106,
           "sizeBytes": 5422344,
           "hasInterior": true,
-          "sha256": "492a5818e749df56f721e8121668ba6c259a5ce723833b919e1b621090c0d462",
+          "sha256": "ffc03fe3b3e6d8efe7d5c347a799b56b55abe48a81fec4abbe79dc4dec6b303b",
           "render": "clay",
           "hasCollision": true,
           "interiorKind": "habitable",
@@ -5165,9 +5165,9 @@
           "label": "Apercu",
           "modelUrl": "https://github.com/elios134/asset-3d/releases/download/sc-4.1/MRAI_Pulse.clay-exterior.glb",
           "tris": 105176,
-          "sizeBytes": 914364,
+          "sizeBytes": 914360,
           "hasInterior": false,
-          "sha256": "945805b0474d304d494e30e1c2af51f457d4f5afb935b80ee5598f1bb6524193",
+          "sha256": "ddd01a9ebcb5f2eb0b989105d0ebb11ac506156c0b18558ff2fef2efb5499577",
           "render": "clay"
         }
       ]
@@ -5192,7 +5192,7 @@
           "tris": 103824,
           "sizeBytes": 900796,
           "hasInterior": false,
-          "sha256": "32c77e839782b439f5e83d1774a24971f7c381a2e6708fc4ab8ed56b428cb5bf",
+          "sha256": "decce786a59cdd149d1004f88ff94469776251642906a384f4831a30e09902d7",
           "render": "clay"
         }
       ]
@@ -5580,9 +5580,9 @@
       "manufacturer": "Origin Jumpworks",
       "classification": "Heavy Fighter",
       "dims": {
-        "l": 11.5,
-        "b": 11,
-        "h": 3.5
+        "l": 31.9,
+        "b": 17.6,
+        "h": 5.3
       },
       "materials": "flat",
       "patchVersion": "sc-4.1",
@@ -5591,20 +5591,20 @@
           "level": "exterior",
           "label": "Apercu",
           "modelUrl": "https://github.com/elios134/asset-3d/releases/download/sc-4.1/ORIG_m80.clay-exterior.glb",
-          "tris": 600035,
-          "sizeBytes": 4586328,
+          "tris": 600038,
+          "sizeBytes": 4587048,
           "hasInterior": false,
-          "sha256": "1bf8c5a7815ea58a194b289f354f8520e094df491efa6c611a66dd4d02ddc5b3",
+          "sha256": "69ea7bab3d4b12f25a50aafc3e18be7d5bd8f6853e882b3be2d141b9da3e5640",
           "render": "clay"
         },
         {
           "level": "interior",
           "label": "Interieur",
           "modelUrl": "https://github.com/elios134/asset-3d/releases/download/sc-4.1/ORIG_m80.clay-interior.glb",
-          "tris": 699111,
-          "sizeBytes": 5155032,
+          "tris": 651263,
+          "sizeBytes": 4942904,
           "hasInterior": true,
-          "sha256": "4858f3b724f14ba934623d301c814b7ccb4c4305b0c67e83d39d057c64bdb97f",
+          "sha256": "38d320548447f920796ec154a7833deb1a21923e35ad5c5c0571bff07fe92652",
           "render": "clay",
           "hasCollision": true,
           "interiorKind": "habitable",
@@ -5629,10 +5629,10 @@
           "level": "exterior",
           "label": "Apercu",
           "modelUrl": "https://github.com/elios134/asset-3d/releases/download/sc-4.1/ORIG_X1.clay-exterior.glb",
-          "tris": 166679,
-          "sizeBytes": 1122220,
+          "tris": 169444,
+          "sizeBytes": 1140348,
           "hasInterior": false,
-          "sha256": "066b5cd75a86833105e5cdeb38f3a170994b7e4d3411224eb540c61017daa416",
+          "sha256": "d486d1b6ce81ba7f5e424b7b31f729ecf9c481c86929079205718b430595867d",
           "render": "clay"
         }
       ]
@@ -5654,10 +5654,10 @@
           "level": "exterior",
           "label": "Apercu",
           "modelUrl": "https://github.com/elios134/asset-3d/releases/download/sc-4.1/ORIG_X1_Force.clay-exterior.glb",
-          "tris": 168855,
-          "sizeBytes": 1136480,
+          "tris": 206334,
+          "sizeBytes": 1346232,
           "hasInterior": false,
-          "sha256": "73bb1fa109486a548695bd06fa9dd72e8ddc530e83d5666de776cae841da0f13",
+          "sha256": "f9c9886b4c1c395fdefc7fa8e2143a4364600230de48517069ee58b884829599",
           "render": "clay"
         }
       ]
@@ -5957,9 +5957,9 @@
       "manufacturer": "Roberts Space Industries",
       "classification": "Medium Freight / Gun Ship",
       "dims": {
-        "l": 63.5,
-        "b": 27.75,
-        "h": 15.25
+        "l": 61.6,
+        "b": 26.5,
+        "h": 19.4
       },
       "materials": "flat",
       "patchVersion": "sc-4.1",
@@ -5968,20 +5968,20 @@
           "level": "exterior",
           "label": "Apercu",
           "modelUrl": "https://github.com/elios134/asset-3d/releases/download/sc-4.1/RSI_Constellation_Andromeda.clay-exterior.glb",
-          "tris": 695070,
-          "sizeBytes": 6574444,
+          "tris": 694733,
+          "sizeBytes": 6570348,
           "hasInterior": false,
-          "sha256": "affc573e4ac3f7735799b2e49a761bcac055929b8135eda9c7a8bd6e3fc1d99c",
+          "sha256": "e8cadbe96d67c102d51a264be8839db9cee6af02649fbc71eb417ea41546c699",
           "render": "clay"
         },
         {
           "level": "interior",
           "label": "Interieur",
           "modelUrl": "https://github.com/elios134/asset-3d/releases/download/sc-4.1/RSI_Constellation_Andromeda.clay-interior.glb",
-          "tris": 682513,
-          "sizeBytes": 6771620,
+          "tris": 840322,
+          "sizeBytes": 7949960,
           "hasInterior": true,
-          "sha256": "2bb4befb35599d096f97619f81843add4ca019fea216371f6c723cfe5e6e9fcc",
+          "sha256": "183edb684424f31f2e782db74a736095fea8b4f88f6cdb342f5f43bb9579fa28",
           "render": "clay",
           "hasCollision": true,
           "interiorKind": "habitable",
@@ -5995,9 +5995,9 @@
       "manufacturer": "Roberts Space Industries",
       "classification": "Expedition",
       "dims": {
-        "l": 63.5,
-        "b": 27.75,
-        "h": 15.25
+        "l": 60.9,
+        "b": 26.5,
+        "h": 19.5
       },
       "materials": "flat",
       "patchVersion": "sc-4.1",
@@ -6006,20 +6006,20 @@
           "level": "exterior",
           "label": "Apercu",
           "modelUrl": "https://github.com/elios134/asset-3d/releases/download/sc-4.1/RSI_Constellation_Aquila.clay-exterior.glb",
-          "tris": 599937,
-          "sizeBytes": 5712592,
+          "tris": 599958,
+          "sizeBytes": 5712508,
           "hasInterior": false,
-          "sha256": "8743396a88458c27fecd2ce7defdca73c1ba97a642c93dad7821814fbaf5a845",
+          "sha256": "09f34332c975b787051b35e172a904b9ef2ef355780f31c168a63656a06e5d0a",
           "render": "clay"
         },
         {
           "level": "interior",
           "label": "Interieur",
           "modelUrl": "https://github.com/elios134/asset-3d/releases/download/sc-4.1/RSI_Constellation_Aquila.clay-interior.glb",
-          "tris": 641423,
-          "sizeBytes": 6290144,
+          "tris": 762815,
+          "sizeBytes": 7230184,
           "hasInterior": true,
-          "sha256": "46cf39f761ee18db8ea86de7181dacbc2e6a30d780155bfd0b21819a9d284115",
+          "sha256": "d969ce31d42ce4159536cf7cce6836c0a4bc2886f30c5cbc131074d9c442bc24",
           "render": "clay",
           "hasCollision": true,
           "interiorKind": "habitable",
@@ -6033,9 +6033,9 @@
       "manufacturer": "Roberts Space Industries",
       "classification": "Luxury Touring",
       "dims": {
-        "l": 63.5,
-        "b": 27.75,
-        "h": 15.25
+        "l": 67.1,
+        "b": 28.5,
+        "h": 19.6
       },
       "materials": "flat",
       "patchVersion": "sc-4.1",
@@ -6044,20 +6044,20 @@
           "level": "exterior",
           "label": "Apercu",
           "modelUrl": "https://github.com/elios134/asset-3d/releases/download/sc-4.1/RSI_Constellation_Phoenix.clay-exterior.glb",
-          "tris": 599906,
-          "sizeBytes": 5486936,
+          "tris": 599885,
+          "sizeBytes": 5486500,
           "hasInterior": false,
-          "sha256": "822ebb8369b80f06126adbcd05b7f6ec532b586fe14c4288e0046d58305eb234",
+          "sha256": "fbf1e9c73baba6c657afee77a44108c0c063362791ae06b3fc2686387be23106",
           "render": "clay"
         },
         {
           "level": "interior",
           "label": "Interieur",
           "modelUrl": "https://github.com/elios134/asset-3d/releases/download/sc-4.1/RSI_Constellation_Phoenix.clay-interior.glb",
-          "tris": 655230,
-          "sizeBytes": 5849696,
+          "tris": 752702,
+          "sizeBytes": 6765160,
           "hasInterior": true,
-          "sha256": "e746da9de645f2422202aad8ff1948f85e8c5ed54d02dc742cc690bfb2feced3",
+          "sha256": "2b4869e998cced7a57886a533ad7cf3ff07e1233b00f02d1754b4e5a9b550d3f",
           "render": "clay",
           "hasCollision": true,
           "interiorKind": "habitable",
@@ -6109,9 +6109,9 @@
       "manufacturer": "Roberts Space Industries",
       "classification": "Medium Freight",
       "dims": {
-        "l": 70,
-        "b": 27.75,
-        "h": 15.25
+        "l": 69.1,
+        "b": 26.5,
+        "h": 19.5
       },
       "materials": "flat",
       "patchVersion": "sc-4.1",
@@ -6120,20 +6120,20 @@
           "level": "exterior",
           "label": "Apercu",
           "modelUrl": "https://github.com/elios134/asset-3d/releases/download/sc-4.1/RSI_Constellation_Taurus.clay-exterior.glb",
-          "tris": 599977,
-          "sizeBytes": 5417748,
+          "tris": 599974,
+          "sizeBytes": 5416040,
           "hasInterior": false,
-          "sha256": "efa827daeaca0519a3fadff684efbb1f460c2efc7fc81ebb0a91c7f6a72a2f98",
+          "sha256": "d2647f5c4a72d18c2c3632a0efd135e90fccb70b705740eb31c5cba094b9c629",
           "render": "clay"
         },
         {
           "level": "interior",
           "label": "Interieur",
           "modelUrl": "https://github.com/elios134/asset-3d/releases/download/sc-4.1/RSI_Constellation_Taurus.clay-interior.glb",
-          "tris": 488513,
-          "sizeBytes": 4920300,
+          "tris": 673962,
+          "sizeBytes": 6116056,
           "hasInterior": true,
-          "sha256": "07282615c8d1fb43ccb725117c6b812273832fdcb90d46e8635f63841bac8d73",
+          "sha256": "729aedeef5be2b4f561500f3b4fa414efe91fd1d1991e9e4a24ab211fc0bd6a5",
           "render": "clay",
           "hasCollision": true,
           "interiorKind": "habitable",
@@ -6324,9 +6324,9 @@
       "manufacturer": "Roberts Space Industries",
       "classification": "Corvette",
       "dims": {
-        "l": 181,
-        "b": 87,
-        "h": 40
+        "l": 165.6,
+        "b": 89.5,
+        "h": 47.6
       },
       "materials": "flat",
       "patchVersion": "sc-4.1",
