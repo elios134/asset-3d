@@ -13,11 +13,14 @@
 // models/<key>.clay-interior.glb existe : la Visite texturee marche comme la Visite clay.
 
 import { NodeIO } from "@gltf-transform/core";
-import { ALL_EXTENSIONS, EXTTextureWebP } from "@gltf-transform/extensions";
+import { ALL_EXTENSIONS, EXTTextureWebP, KHRTextureBasisu } from "@gltf-transform/extensions";
 import { dedup, prune, meshopt, mergeDocuments, unpartition, getBounds, flatten, join as joinPrims, simplify, dequantize } from "@gltf-transform/functions";
 import { MeshoptEncoder, MeshoptDecoder, MeshoptSimplifier } from "meshoptimizer";
 import sharp from "sharp";
-import { execFileSync } from "node:child_process";
+import { execFileSync, execFile } from "node:child_process";
+import { promisify } from "node:util";
+import { tmpdir, cpus } from "node:os";
+import { writeFileSync } from "node:fs";
 import { readFileSync, existsSync, statSync, rmSync, renameSync, mkdirSync } from "node:fs";
 import { fileURLToPath } from "node:url";
 import { dirname, join } from "node:path";
@@ -27,7 +30,7 @@ const MODELS = join(ROOT, "models");
 import { loadConfig } from "./lib/config.mjs";
 import { skipModules } from "./lib/no-modules.mjs";
 import { reorientTurns } from "./lib/reorient.mjs";
-const { starbreaker: STARBREAKER, p4k: P4K } = loadConfig({ root: ROOT }).paths;
+const { starbreaker: STARBREAKER, p4k: P4K, blender: BLENDER, toktx: TOKTX_CFG } = loadConfig({ root: ROOT }).paths;
 const meta = JSON.parse(readFileSync(join(ROOT, "ships.meta.json"), "utf8"));
 const anchored = new Set(Object.keys(JSON.parse(readFileSync(join(ROOT, "interior-anchors.json"), "utf8"))).filter((k) => k !== "_comment"));
 const primBlacklist = (() => { try { const j = JSON.parse(readFileSync(join(ROOT, "interior-prim-blacklist.json"), "utf8")); delete j._comment; return j; } catch { return {}; } })();
@@ -68,6 +71,13 @@ const argNum = (name, def) => { const a = process.argv.find((x) => x.startsWith(
 const MIP = argNum("mip", 4);
 const EXT_TEX = argNum("ext-tex", 512);
 const INT_TEX = argNum("int-tex", 1024);
+// --ktx2 : textures en KTX2/Basis (restent COMPRESSEES dans la carte graphique : ~4-8x moins de
+// memoire video que le WebP, decompresse en RGBA a l'upload). Encodeur : toktx (KTX-Software).
+const KTX2 = process.argv.includes("--ktx2");
+const TOKTX = process.env.TOKTX || TOKTX_CFG || "toktx";
+// --ao : ombrage ambiant precalcule (Blender Cycles) dans COLOR_0 de l'interieur.
+const AO = process.argv.includes("--ao");
+const AO_SAMPLES = argNum("ao-samples", 32);
 const OUT_SUFFIX = (() => { const a = process.argv.find((x) => x.startsWith("--out-suffix=")); return a ? a.split("=")[1] : null; })();
 const tryReadJson = (p) => { try { return JSON.parse(readFileSync(p, "utf8")); } catch { return null; } };
 const keys = Object.keys(meta).filter((k) => k !== "_comment" && !isExcluded(k) && meta[k].dims?.l);
@@ -148,6 +158,85 @@ const compressTextures = async (doc, size) => {
     const uri = t.getURI(); if (uri) t.setURI(uri.replace(/\.\w+$/, ".webp"));
   }
 };
+// KTX2 : couleur (baseColor, emissive) -> ETC1S sRGB (compact) ; normales -> UASTC lineaire + RDO +
+// zstd (l'ETC1S abime les normales) ; autres donnees (rugosite/metal, occlusion) -> ETC1S lineaire
+// (tolerent bien). Les textures de DONNEES sont a la moitie de la taille couleur : elles pesaient les
+// 2/3 du Cutlass pour un apport visuel moindre. Mipmaps generees.
+// Dimensions ramenees a des multiples de 4 (blocs 4x4 de Basis).
+const execFileP = promisify(execFile);
+const ktx2Textures = async (doc, size) => {
+  const color = new Set(), normal = new Set();
+  for (const m of doc.getRoot().listMaterials()) {
+    for (const t of [m.getBaseColorTexture(), m.getEmissiveTexture()]) if (t) color.add(t);
+    if (m.getNormalTexture()) normal.add(m.getNormalTexture());
+  }
+  const dir = join(tmpdir(), `ktx2-${process.pid}-${Date.now()}`); mkdirSync(dir, { recursive: true });
+  const jobs = doc.getRoot().listTextures().filter((t) => t.getImage() && t.getMimeType() !== "image/ktx2"); // coque deja en KTX2 : intacte
+  let next = 0;
+  const work = async () => {
+    for (let i = next++; i < jobs.length; i = next++) {
+      const t = jobs[i], isColor = color.has(t), isNormal = !isColor && normal.has(t);
+      const max = isColor ? size : Math.max(128, size / 2);
+      const img = sharp(Buffer.from(t.getImage())).resize(max, max, { fit: "inside", withoutEnlargement: true });
+      const { data, info } = await img.png().toBuffer({ resolveWithObject: true });
+      const w = Math.max(4, Math.round(info.width / 4) * 4), h = Math.max(4, Math.round(info.height / 4) * 4);
+      const png = join(dir, `${i}.png`), out = join(dir, `${i}.ktx2`);
+      writeFileSync(png, w === info.width && h === info.height ? data : await sharp(data).resize(w, h, { fit: "fill" }).png().toBuffer());
+      const enc = isNormal ? ["--encode", "uastc", "--uastc_quality", "2", "--uastc_rdo_l", "1.0", "--zcmp", "18"] : ["--encode", "etc1s", "--clevel", "2", "--qlevel", "255"];
+      const args = ["--t2", "--genmipmap", ...enc, "--assign_oetf", isColor ? "srgb" : "linear", out, png];
+      await execFileP(TOKTX, args, { windowsHide: true });
+      t.setImage(new Uint8Array(readFileSync(out))); t.setMimeType("image/ktx2");
+      const uri = t.getURI(); if (uri) t.setURI(uri.replace(/\.\w+$/, ".ktx2"));
+    }
+  };
+  await Promise.all(Array.from({ length: Math.max(2, Math.min(8, cpus().length - 1)) }, work));
+  rmSync(dir, { recursive: true, force: true });
+  for (const e of doc.getRoot().listExtensionsUsed()) if (e.extensionName === "EXT_texture_webp") e.dispose();
+  doc.createExtension(KHRTextureBasisu).setRequired(true);
+};
+// OMBRAGE AMBIANT PRECALCULE (interieur). Blender ne lit pas le KTX2 et reecrirait les materiaux :
+// on ne lui envoie qu'une copie GEOMETRIE SEULE, il cuit l'AO en couleurs de sommets (bake-ao.py),
+// puis on reporte la valeur sur le document d'origine sommet par sommet, par POSITION MONDE (Blender
+// reordonne/eclate les sommets, mais pas leurs positions). three.js multiplie l'albedo par COLOR_0.
+// Sommet sans correspondance -> 1 (pas d'assombrissement) : surtout les micro-pieces ultra denses
+// (boutons, visserie ~5 cm) que Blender supprime a l'import (triangles degeneres) — ~22 % des sommets
+// du Cutlass, sans effet visible. Echec Blender -> pas d'AO, build continue.
+const posKey = (x, y, z, q = 500) => `${Math.round(x * q)},${Math.round(y * q)},${Math.round(z * q)}`;
+const worldPositions = (node, prim, fn) => {
+  const M = node.getWorldMatrix(), a = prim.getAttribute("POSITION"); if (!a) return;
+  const p = [0, 0, 0];
+  for (let i = 0; i < a.getCount(); i++) { a.getElement(i, p); const w = ap(M, p[0], p[1], p[2]); fn(i, w[0], w[1], w[2]); }
+};
+const bakeAO = async (key, doc) => {
+  if (!BLENDER || !existsSync(BLENDER)) { console.log(`  ⚠ ${key} : Blender introuvable (app-config.json paths.blender) — pas d'AO`); return 0; }
+  const geo = join(MODELS, `_ao_${key}_geo.glb`), baked = join(MODELS, `_ao_${key}_baked.glb`);
+  try {
+    const copy = await io.readBinary(await io.writeBinary(doc));
+    for (const m of copy.getRoot().listMeshes()) for (const pr of m.listPrimitives()) { pr.setMaterial(null); for (const sem of pr.listSemantics()) if (sem !== "POSITION" && sem !== "NORMAL") pr.setAttribute(sem, null); }
+    for (const n of copy.getRoot().listNodes()) if (/collision|floor_patch|occluder/i.test(n.getName() || "")) n.setMesh(null);
+    await copy.transform(prune());
+    await io.write(geo, copy);
+    execFileSync(BLENDER, ["--background", "--python", join(ROOT, "scripts/bake-ao.py"), "--", geo, baked, String(AO_SAMPLES)], { stdio: "ignore", timeout: 3600000 });
+    const bdoc = await io.read(baked);
+    // Cle fine (2 mm) puis repli grossier (2 cm) : Blender deplace legerement certains sommets.
+    const ao = new Map(), coarse = new Map(), c = [0, 0, 0, 0];
+    for (const n of bdoc.getRoot().listNodes()) { const mesh = n.getMesh(); if (!mesh) continue;
+      for (const pr of mesh.listPrimitives()) { const col = pr.getAttribute("COLOR_0"); if (!col) continue;
+        worldPositions(n, pr, (i, x, y, z) => { col.getElement(i, c); ao.set(posKey(x, y, z), c[0]); coarse.set(posKey(x, y, z, 50), c[0]); }); } }
+    let hit = 0, total = 0;
+    const done = new Set();
+    for (const n of doc.getRoot().listNodes()) { const mesh = n.getMesh(); if (!mesh) continue;
+      for (const pr of mesh.listPrimitives()) { if (done.has(pr)) continue; done.add(pr);
+        const pos = pr.getAttribute("POSITION"); if (!pos) continue;
+        const arr = new Float32Array(pos.getCount() * 3).fill(1);
+        worldPositions(n, pr, (i, x, y, z) => { total++; const v = ao.get(posKey(x, y, z)) ?? coarse.get(posKey(x, y, z, 50)); if (v != null) { hit++; arr[i * 3] = arr[i * 3 + 1] = arr[i * 3 + 2] = v; } });
+        pr.setAttribute("COLOR_0", doc.createAccessor().setType("VEC3").setArray(arr).setBuffer(doc.getRoot().listBuffers()[0])); } }
+    console.log(`  ◐ ${key} : AO cuit (${AO_SAMPLES} echantillons), ${Math.round((hit / (total || 1)) * 100)} % des sommets apparies`);
+    return hit;
+  } catch (e) { console.log(`  ⚠ ${key} : bake AO en echec (${e.message.split("\n")[0]}) — pas d'AO`); return 0; }
+  finally { for (const f of [geo, baked]) if (existsSync(f)) rmSync(f); }
+};
+const encodeTextures = (doc, size) => (KTX2 ? ktx2Textures(doc, size) : compressTextures(doc, size));
 const exp = (key, out, extra) => execFileSync(STARBREAKER, ["entity", "export", key, out, "--materials", "textures", "--mip", String(MIP), ...extra], { env: { ...process.env, SC_DATA_P4K: P4K }, stdio: "ignore", timeout: 600000 });
 const mul = (a, b) => { const o = new Array(16); for (let c = 0; c < 4; c++) for (let r = 0; r < 4; r++) { let s = 0; for (let k = 0; k < 4; k++) s += a[k * 4 + r] * b[c * 4 + k]; o[c * 4 + r] = s; } return o; };
 const ap = (m, x, y, z) => [m[0]*x+m[4]*y+m[8]*z+m[12], m[1]*x+m[5]*y+m[9]*z+m[13], m[2]*x+m[6]*y+m[10]*z+m[14]];
@@ -177,7 +266,7 @@ for (const key of batch) {
       stripVertexColors(extDoc);
       fixBlackAlbedo(extDoc);
       await extDoc.transform(dedup(), prune());
-      await compressTextures(extDoc, EXT_TEX);
+      await encodeTextures(extDoc, EXT_TEX);
       unshareAccessors(extDoc);
       await extDoc.transform(meshopt({ encoder: MeshoptEncoder, level: "high" }));
       await io.write(extOut, extDoc);
@@ -297,7 +386,8 @@ for (const key of batch) {
       await MeshoptSimplifier.ready;
       await intDoc.transform(simplify({ simplifier: MeshoptSimplifier, ratio: (BUDGET.interior.maxTris / it) * 0.95, error: 0.01 }));
     }
-    await compressTextures(intDoc, INT_TEX);
+    if (AO) await bakeAO(key, intDoc);
+    await encodeTextures(intDoc, INT_TEX);
     // PAS de meshopt ici : la quantization ne doit passer qu'UNE fois, tout a la fin. Re-quantizer
     // des donnees deja quantizees (l'ancien schema : meshopt interieur PUIS meshopt final apres
     // fusion du shell) reintroduisait la corruption sur les prims instanciees (vitres Valkyrie /

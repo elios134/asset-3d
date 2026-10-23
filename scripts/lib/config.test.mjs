@@ -35,3 +35,14 @@ test("loadConfig échoue si un chemin manque", () => {
   assert.throws(() => loadConfig({ root }), /p4k/);
   rmSync(root, { recursive: true, force: true });
 });
+
+test("loadConfig expose les outils optionnels (blender, toktx) quand ils sont renseignés", () => {
+  const root = scratchRoot({ paths: { starbreaker: "S.exe", p4k: "D.p4k", blender: "B.exe", toktx: "T.exe" } });
+  const cfg = loadConfig({ root });
+  assert.equal(cfg.paths.blender, "B.exe");
+  assert.equal(cfg.paths.toktx, "T.exe");
+  rmSync(root, { recursive: true, force: true });
+  const bare = scratchRoot({ paths: { starbreaker: "S.exe", p4k: "D.p4k" } });
+  assert.equal(loadConfig({ root: bare }).paths.blender, null);
+  rmSync(bare, { recursive: true, force: true });
+});

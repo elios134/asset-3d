@@ -17,7 +17,8 @@ import { dirname, join } from "node:path";
 
 const ROOT = join(dirname(fileURLToPath(import.meta.url)), "..");
 const MODELS = join(ROOT, "models");
-const BLENDER = "C:/Program Files/Blender Foundation/Blender 5.1/blender.exe";
+import { loadConfig } from "./lib/config.mjs";
+const BLENDER = loadConfig({ root: ROOT }).paths.blender ?? "C:/Program Files/Blender Foundation/Blender 5.1/blender.exe";
 const key = process.argv[2];
 const samples = process.argv[3] || "16";
 if (!key) { console.error("Usage : node scripts/bake-ao.mjs KEY [samples]"); process.exit(1); }

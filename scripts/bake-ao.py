@@ -11,6 +11,9 @@ import bpy, sys, math
 argv = sys.argv[sys.argv.index("--") + 1:]
 IN, OUT = argv[0], argv[1]
 SAMPLES = int(argv[2]) if len(argv) > 2 else 16
+# Portee de l'AO (m) : au-dela, un obstacle n'assombrit plus. Defaut Blender = 10 m -> dans un
+# interieur ferme TOUT est occulte (AO ~0, moyenne 0,13 mesuree sur le Cutlass). ~1 m = coins/recoins.
+DISTANCE = float(argv[3]) if len(argv) > 3 else 1.0
 
 # reset scene
 bpy.ops.wm.read_factory_settings(use_empty=True)
@@ -20,7 +23,28 @@ scene = bpy.context.scene
 scene.render.engine = "CYCLES"
 scene.cycles.samples = SAMPLES
 scene.cycles.device = "CPU"
+# Carte graphique si disponible (OptiX puis CUDA) : bake 10-20x plus rapide qu'au CPU.
+try:
+    prefs = bpy.context.preferences.addons["cycles"].preferences
+    for backend in ("OPTIX", "CUDA"):
+        try:
+            prefs.compute_device_type = backend
+            prefs.get_devices()
+            gpus = [d for d in prefs.devices if d.type == backend]
+            if gpus:
+                for d in prefs.devices:
+                    d.use = d.type == backend
+                scene.cycles.device = "GPU"
+                print(f"[bake-ao] GPU {backend} : {[d.name for d in gpus]}")
+                break
+        except Exception:
+            continue
+except Exception as e:
+    print("[bake-ao] GPU indisponible, CPU :", e)
 scene.render.bake.use_selected_to_active = False
+if scene.world is None:
+    scene.world = bpy.data.worlds.new("World")
+scene.world.light_settings.distance = DISTANCE
 
 meshes = [o for o in bpy.data.objects if o.type == "MESH" and "occluder" not in (o.name or "").lower()]
 print(f"[bake-ao] {len(meshes)} meshes a baker ({SAMPLES} samples)")

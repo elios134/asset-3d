@@ -1,6 +1,6 @@
 {
   "schemaVersion": 2,
-  "generatedAt": "2026-10-23T19:35:49.277Z",
+  "generatedAt": "2026-10-23T22:10:51.172Z",
   "patchVersion": "sc-4.1",
   "levels": [
     {
@@ -3114,6 +3114,16 @@
           "render": "clay"
         },
         {
+          "level": "exterior",
+          "label": "Apercu",
+          "modelUrl": "https://github.com/elios134/asset-3d/releases/download/sc-4.1/DRAK_Cutlass_Black.exterior.glb",
+          "hasInterior": false,
+          "tris": 423497,
+          "sizeBytes": 20151424,
+          "sha256": "513bf84aea805a7096c73dc6401ea04126458efd8cf62c76cc45cf1263a81eb0",
+          "render": "textured"
+        },
+        {
           "level": "interior",
           "label": "Interieur",
           "modelUrl": "https://github.com/elios134/asset-3d/releases/download/sc-4.1/DRAK_Cutlass_Black.clay-interior.glb",
@@ -3125,6 +3135,25 @@
           "hasCollision": true,
           "interiorKind": "habitable",
           "interiorWalkableM2": 198,
+          "lights": {
+            "url": "https://github.com/elios134/asset-3d/releases/download/sc-4.1/DRAK_Cutlass_Black.lights.json",
+            "sha256": "24389ca38de945f58d31c17b853acd2e8705ca2508f5d099eddce81b4f0cc807",
+            "sizeBytes": 35350,
+            "count": 225
+          }
+        },
+        {
+          "level": "interior",
+          "label": "Interieur",
+          "modelUrl": "https://github.com/elios134/asset-3d/releases/download/sc-4.1/DRAK_Cutlass_Black.interior.glb",
+          "hasInterior": true,
+          "interiorKind": "habitable",
+          "interiorWalkableM2": 198,
+          "tris": 1378108,
+          "sizeBytes": 46475108,
+          "sha256": "abcb17712d581804bbe88ba1c51f318bd9a7a8f0df0495609a12283b2f10b484",
+          "render": "textured",
+          "hasCollision": true,
           "lights": {
             "url": "https://github.com/elios134/asset-3d/releases/download/sc-4.1/DRAK_Cutlass_Black.lights.json",
             "sha256": "24389ca38de945f58d31c17b853acd2e8705ca2508f5d099eddce81b4f0cc807",

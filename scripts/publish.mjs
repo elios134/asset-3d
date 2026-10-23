@@ -18,6 +18,8 @@
 //   node scripts/publish.mjs --only=DRAK_Clipper[,AEGS_Avenger_Titan] [--json] [--confirm] [--push]
 //   node scripts/publish.mjs --manifest=publish.json [...]        (manifest = tableau JSON de cles)
 //   (defaut = --dry-run : plan complet, aucun effet de bord)
+//   --textured : publie les variantes TEXTUREES (<key>.exterior.glb / <key>.interior.glb, pipeline
+//                build-hd) A COTE du clay, sans y toucher. L'app choisit le rendu (bascule Clay/Texture).
 
 import { createHash } from "node:crypto";
 import { readFileSync, writeFileSync, existsSync, statSync } from "node:fs";
@@ -31,6 +33,7 @@ const ROOT = join(dirname(fileURLToPath(import.meta.url)), "..");
 const JSON_MODE = process.argv.includes("--json");
 const CONFIRM = process.argv.includes("--confirm");
 const PUSH = process.argv.includes("--push");
+const TEXTURED = process.argv.includes("--textured");
 const DRY = !CONFIRM;
 const emit = makeEmitter(JSON_MODE);
 if (JSON_MODE) console.log = () => {}; // stdout = NDJSON pur
@@ -71,11 +74,16 @@ const levelOrder = (config.levels ?? []).map((l) => l.id);
 
 emit({ type: "start", dryRun: DRY, push: PUSH, patchVersion, keys });
 
-// clay-<level> present sur le disque -> niveau canonique de l'index
-const LEVELS = [
-  { suffix: "clay-exterior", level: "exterior", render: "clay" },
-  { suffix: "clay-interior", level: "interior", render: "clay", hasCollision: true },
-];
+// clay-<level> (ou <level> avec --textured) present sur le disque -> variante de l'index
+const LEVELS = TEXTURED
+  ? [
+      { suffix: "exterior", level: "exterior", render: "textured" },
+      { suffix: "interior", level: "interior", render: "textured", hasCollision: true },
+    ]
+  : [
+      { suffix: "clay-exterior", level: "exterior", render: "clay" },
+      { suffix: "clay-interior", level: "interior", render: "clay", hasCollision: true },
+    ];
 
 const uploads = [];   // { file, path } a uploader sur la Release
 const patched = [];   // cles patchees
@@ -85,7 +93,7 @@ for (const key of keys) {
   const present = LEVELS.map((L) => ({ ...L, file: `${key}.${L.suffix}.glb`, path: join(modelsDir, `${key}.${L.suffix}.glb`) }))
     .filter((L) => existsSync(L.path));
   if (present.length === 0) {
-    problems.push(`[FICHIER] ${key} : aucun ${key}.clay-*.glb dans models/`);
+    problems.push(`[FICHIER] ${key} : aucun ${key}.${TEXTURED ? "" : "clay-"}*.glb dans models/`);
     emit({ type: "skip", key, reason: "no-glb" });
     continue;
   }
@@ -121,9 +129,13 @@ for (const key of keys) {
     const sizeBytes = statSync(L.path).size;
     const tris = countTriangles(buf);
 
-    let v = ship.variants.find((x) => x.level === L.level);
+    // une variante par (niveau, rendu) : le texture s'ajoute a cote du clay sans l'ecraser
+    let v = ship.variants.find((x) => x.level === L.level && (x.render ?? L.render) === L.render);
     if (!v) {
       v = { level: L.level, label: labelOf[L.level] ?? L.level, modelUrl: `${releaseBase}/${L.file}`, hasInterior: L.level === "interior" };
+      // classement d'habitabilite repris du clay (meme interieur, mesure au build clay)
+      const clay = ship.variants.find((x) => x.level === L.level && x.render === "clay");
+      if (clay?.interiorKind) { v.interiorKind = clay.interiorKind; v.interiorWalkableM2 = clay.interiorWalkableM2; }
       ship.variants.push(v);
     }
     v.modelUrl = `${releaseBase}/${L.file}`;
@@ -150,7 +162,7 @@ for (const key of keys) {
     }
 
     uploads.push({ file: L.file, path: L.path });
-    emit({ type: "plan", key, level: L.level, file: L.file, tris, sizeBytes, sha256 });
+    emit({ type: "plan", key, level: L.level, render: L.render, file: L.file, tris, sizeBytes, sha256 });
   }
 
   ship.variants.sort((a, b) => levelOrder.indexOf(a.level) - levelOrder.indexOf(b.level));

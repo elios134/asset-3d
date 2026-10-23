@@ -1,6 +1,8 @@
 {
   "paths": {
     "starbreaker": "C:/Users/andre/Documents/starbreaker/starbreaker.exe",
-    "p4k": "D:/Program Files/RSI Launcher/StarCitizen/LIVE/Data.p4k"
+    "p4k": "D:/Program Files/RSI Launcher/StarCitizen/LIVE/Data.p4k",
+    "blender": "C:/chemin/vers/blender.exe",
+    "toktx": "C:/chemin/vers/KTX-Software/bin/toktx.exe"
   }
 }

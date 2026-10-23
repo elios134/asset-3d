@@ -67,3 +67,17 @@ test("--dry-run --json : plan chirurgical, aucun effet de bord, index.json intac
   // dry-run = zero ecriture disque
   assert.equal(readFileSync(fx.indexPath, "utf8"), before);
 });
+
+test("--textured : publie la variante TEXTUREE a cote du clay, sans toucher au clay", () => {
+  const fx = fixture();
+  writeFileSync(join(fx.models, "TARGET_Ship.exterior.glb"), miniGlb());
+  const out = execFileSync("node", [
+    "scripts/publish.mjs", "--only=TARGET_Ship", "--textured", "--json",
+    `--index=${fx.indexPath}`, `--meta=${fx.metaPath}`, `--models=${fx.models}`,
+  ], { cwd: ROOT, encoding: "utf8" });
+  const ev = out.trim().split("\n").map((l) => JSON.parse(l));
+  const plans = ev.filter((e) => e.type === "plan");
+  assert.deepEqual(plans.map((p) => [p.level, p.render, p.file]), [["exterior", "textured", "TARGET_Ship.exterior.glb"]]);
+  const done = ev.find((e) => e.type === "done");
+  assert.deepEqual(done.wouldUpload, ["TARGET_Ship.exterior.glb"]);
+});
