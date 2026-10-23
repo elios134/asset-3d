@@ -102,21 +102,6 @@ for (const file of glbFiles.sort()) {
     variant.interiorKind = interiorKinds[key].kind;              // "habitable" | "cockpit"
     variant.interiorWalkableM2 = interiorKinds[key].walkableM2;  // surface plancher praticable (m2) — pour reglage du seuil cote app
   }
-  // sidecar lumieres (export-lights.mjs) : KHR_lights_punctual strippees du .glb, relivrees en JSON
-  // (repere du .glb interieur publie) — l'app allume les N plus proches du joueur.
-  if (level === "interior") {
-    const lightsFile = `${key}.lights.json`;
-    const lightsPath = join(modelsDir, lightsFile);
-    try {
-      const lbuf = readFileSync(lightsPath);
-      variant.lights = {
-        url: `${releaseBase}/${lightsFile}`,
-        sha256: createHash("sha256").update(lbuf).digest("hex"),
-        sizeBytes: statSync(lightsPath).size,
-        count: JSON.parse(lbuf.toString("utf8")).count ?? 0,
-      };
-    } catch { /* pas de sidecar pour ce vaisseau */ }
-  }
   // dedup par niveau : clay-interior PRIORITAIRE sur le HD interior (le clay remplace le HD legacy).
   // clay-interior est traite avant interior (ordre alpha : "clay-" < "int") -> quand le HD arrive, la
   // variante clay existe deja et on ignore le HD.

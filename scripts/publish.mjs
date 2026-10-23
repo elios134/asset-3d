@@ -145,21 +145,9 @@ for (const key of keys) {
     v.render = L.render;
     if (L.hasCollision) v.hasCollision = true;
 
-    // sidecar lumieres interieur (si present)
-    if (L.level === "interior") {
-      const lightsFile = `${key}.lights.json`;
-      const lightsPath = join(modelsDir, lightsFile);
-      if (existsSync(lightsPath)) {
-        const lbuf = readFileSync(lightsPath);
-        v.lights = {
-          url: `${releaseBase}/${lightsFile}`,
-          sha256: createHash("sha256").update(lbuf).digest("hex"),
-          sizeBytes: statSync(lightsPath).size,
-          count: JSON.parse(lbuf.toString("utf8")).count ?? 0,
-        };
-        uploads.push({ file: lightsFile, path: lightsPath });
-      }
-    }
+    // Plus de sidecar lumieres (abandonne cote app : surexposition + recompilations) : une variante
+    // republiee perd sa reference.
+    delete v.lights;
 
     uploads.push({ file: L.file, path: L.path });
     emit({ type: "plan", key, level: L.level, render: L.render, file: L.file, tris, sizeBytes, sha256 });
