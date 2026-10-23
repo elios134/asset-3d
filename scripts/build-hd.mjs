@@ -8,10 +8,13 @@
 // Ecrit models/<key>.exterior.glb et models/<key>.interior.glb (remplace le flat). Robuste aux echecs.
 // Usage : node scripts/build-hd.mjs [KEY...]      (defaut : batch test de 8 varies)
 //         node scripts/build-hd.mjs --all
+//   --modules  exterieur AVEC armes/tourelles/propulseurs (comme build-clay ; table NO_MODULES respectee)
+// L'interieur recoit les couches de collision du clay (collision_walk / floor_patch / spawn_point) si
+// models/<key>.clay-interior.glb existe : la Visite texturee marche comme la Visite clay.
 
 import { NodeIO } from "@gltf-transform/core";
-import { ALL_EXTENSIONS } from "@gltf-transform/extensions";
-import { dedup, prune, textureCompress, meshopt, mergeDocuments, unpartition, getBounds, flatten, join as joinPrims, simplify, dequantize } from "@gltf-transform/functions";
+import { ALL_EXTENSIONS, EXTTextureWebP } from "@gltf-transform/extensions";
+import { dedup, prune, meshopt, mergeDocuments, unpartition, getBounds, flatten, join as joinPrims, simplify, dequantize } from "@gltf-transform/functions";
 import { MeshoptEncoder, MeshoptDecoder, MeshoptSimplifier } from "meshoptimizer";
 import sharp from "sharp";
 import { execFileSync } from "node:child_process";
@@ -22,6 +25,8 @@ import { dirname, join } from "node:path";
 const ROOT = join(dirname(fileURLToPath(import.meta.url)), "..");
 const MODELS = join(ROOT, "models");
 import { loadConfig } from "./lib/config.mjs";
+import { skipModules } from "./lib/no-modules.mjs";
+import { reorientTurns } from "./lib/reorient.mjs";
 const { starbreaker: STARBREAKER, p4k: P4K } = loadConfig({ root: ROOT }).paths;
 const meta = JSON.parse(readFileSync(join(ROOT, "ships.meta.json"), "utf8"));
 const anchored = new Set(Object.keys(JSON.parse(readFileSync(join(ROOT, "interior-anchors.json"), "utf8"))).filter((k) => k !== "_comment"));
@@ -57,6 +62,12 @@ const INT_ONLY = process.argv.includes("--interiors-only");
 //   --out-suffix=X  ecrit models/X/<key>.X-interior.glb au lieu de models/<key>.interior.glb
 const INT_LOD_OVERRIDE = (() => { const a = process.argv.find((x) => x.startsWith("--int-lod=")); return a ? parseInt(a.split("=")[1], 10) : null; })();
 const NO_SIMPLIFY = process.argv.includes("--no-simplify");
+const MODULES = process.argv.includes("--modules");
+// Resolution des textures : --mip=N (niveau lu dans le p4k : 0 = plein, 4 = 1/16) et taille max WebP.
+const argNum = (name, def) => { const a = process.argv.find((x) => x.startsWith(`--${name}=`)); return a ? parseInt(a.split("=")[1], 10) : def; };
+const MIP = argNum("mip", 4);
+const EXT_TEX = argNum("ext-tex", 512);
+const INT_TEX = argNum("int-tex", 1024);
 const OUT_SUFFIX = (() => { const a = process.argv.find((x) => x.startsWith("--out-suffix=")); return a ? a.split("=")[1] : null; })();
 const tryReadJson = (p) => { try { return JSON.parse(readFileSync(p, "utf8")); } catch { return null; } };
 const keys = Object.keys(meta).filter((k) => k !== "_comment" && !isExcluded(k) && meta[k].dims?.l);
@@ -92,8 +103,52 @@ const unshareAccessors = (doc) => { const seen = new Set(); for (const mesh of d
 // On EXCLUT les emissifs (glow : albedo noir + emissif = voulu). Le cas SANS texture (Paint_Base etc.,
 // facteur noir + aucun albedo = grosse surface de coque) n'est PAS recuperable ici (couleur reelle
 // perdue a l'extraction) -> laisse a la garde runtime de l'app (repli gris, choix visuel calibrable).
-const fixBlackAlbedo = (doc) => { let n = 0; for (const mat of doc.getRoot().listMaterials()) { const bf = mat.getBaseColorFactor(); if (!bf) continue; if (bf[0] >= 0.05 || bf[1] >= 0.05 || bf[2] >= 0.05) continue; const ef = mat.getEmissiveFactor(); if ((ef && (ef[0] > 0 || ef[1] > 0 || ef[2] > 0)) || mat.getEmissiveTexture()) continue; if (!mat.getBaseColorTexture()) continue; mat.setBaseColorFactor([1, 1, 1, bf[3]]); n++; } return n; };
-const exp = (key, out, extra) => execFileSync(STARBREAKER, ["entity", "export", key, out, "--materials", "textures", "--mip", "4", ...extra], { env: { ...process.env, SC_DATA_P4K: P4K }, stdio: "ignore", timeout: 600000 });
+// EXCEPTION : une teinte de LIVREE (extras.palette_tint, ou tint_color d'une couche) est une vraie
+// couleur voulue — ex. la peinture quasi noire du Cutlass Black (0.013) — et n'est jamais forcee.
+const authoredTint = (mat) => { const e = mat.getExtras() || {}; return e.palette_tint != null || (Array.isArray(e.layers) && e.layers.some((l) => l && l.tint_color)); };
+const fixBlackAlbedo = (doc) => { let n = 0; for (const mat of doc.getRoot().listMaterials()) { const bf = mat.getBaseColorFactor(); if (!bf) continue; if (bf[0] >= 0.05 || bf[1] >= 0.05 || bf[2] >= 0.05) continue; if (authoredTint(mat)) continue; const ef = mat.getEmissiveFactor(); if ((ef && (ef[0] > 0 || ef[1] > 0 || ef[2] > 0)) || mat.getEmissiveTexture()) continue; if (!mat.getBaseColorTexture()) continue; mat.setBaseColorFactor([1, 1, 1, bf[3]]); n++; } return n; };
+// Couleurs de sommets : chez CIG ce sont des MASQUES de melange de couches (peinture / usure), pas
+// des couleurs. Laisses dans le .glb, three.js les multiplie a l'albedo -> coques violettes/magenta
+// (constate sur l'essai Cutlass/Avenger/Constellation). Retires partout.
+const stripVertexColors = (doc) => { let n = 0; for (const mesh of doc.getRoot().listMeshes()) for (const pr of mesh.listPrimitives()) for (const sem of pr.listSemantics()) if (sem.startsWith("COLOR_")) { pr.setAttribute(sem, null); n++; } return n; };
+// Couches de collision du clay greffees dans l'interieur texture (meme repere : meme export LOD +
+// meme reposition). Ignore pour les cles REORIENTEES (le clay est tourne, pas le HD).
+const COLLISION = /collision|floor_patch|spawn_point/i;
+const graftCollision = async (key, intDoc) => {
+  const clayPath = join(MODELS, `${key}.clay-interior.glb`);
+  if (!existsSync(clayPath) || reorientTurns(key)) return 0;
+  const clay = await io.read(clayPath);
+  await clay.transform(dequantize());
+  // Chaque couche remonte a la racine de la scene avec sa transform MONDE (flatten() ne deplace pas
+  // les noeuds vides : spawn_point serait perdu avec son parent), puis tout le reste est jete.
+  const cScene = clay.getRoot().getDefaultScene() || clay.getRoot().listScenes()[0];
+  const layers = clay.getRoot().listNodes().filter((n) => COLLISION.test(n.getName() || ""));
+  for (const n of layers) { const wm = n.getWorldMatrix(); for (const p of n.listParents()) if (p !== cScene && p.propertyType === "Node") p.removeChild(n); n.setMatrix(wm); cScene.addChild(n); }
+  const keep = new Set(layers);
+  for (const n of clay.getRoot().listNodes()) if (!keep.has(n)) n.dispose();
+  const kept = layers.length;
+  await clay.transform(prune({ keepLeaves: true })); // garder spawn_point (noeud vide)
+  if (!kept) return 0;
+  const scene = intDoc.getRoot().getDefaultScene() || intDoc.getRoot().listScenes()[0];
+  const map = mergeDocuments(intDoc, clay);
+  for (const sc of clay.getRoot().listScenes()) for (const n of sc.listChildren()) { const d = map.get(n); if (d) scene.addChild(d); }
+  await intDoc.transform(unpartition()); // un seul buffer (contrat GLB)
+  return kept;
+};
+// Textures -> WebP <= size px. PAS textureCompress() de gltf-transform : au-dela de ~256 px il rend
+// une partie des images CORROMPUES (72/170 sur le Cutlass en --mip=1 ; nombre variable d'une relecture
+// a l'autre = memoire partagee ecrasee) -> pieces blanches dans le viewer. Ici : une image a la fois,
+// resultat copie dans un Uint8Array neuf (verifie : 0/170 corrompue apres reecriture).
+const compressTextures = async (doc, size) => {
+  doc.createExtension(EXTTextureWebP).setRequired(true);
+  for (const t of doc.getRoot().listTextures()) {
+    const img = t.getImage(); if (!img) continue;
+    const out = await sharp(Buffer.from(img)).resize(size, size, { fit: "inside", withoutEnlargement: true }).webp({ quality: 80 }).toBuffer();
+    t.setImage(new Uint8Array(out)); t.setMimeType("image/webp");
+    const uri = t.getURI(); if (uri) t.setURI(uri.replace(/\.\w+$/, ".webp"));
+  }
+};
+const exp = (key, out, extra) => execFileSync(STARBREAKER, ["entity", "export", key, out, "--materials", "textures", "--mip", String(MIP), ...extra], { env: { ...process.env, SC_DATA_P4K: P4K }, stdio: "ignore", timeout: 600000 });
 const mul = (a, b) => { const o = new Array(16); for (let c = 0; c < 4; c++) for (let r = 0; r < 4; r++) { let s = 0; for (let k = 0; k < 4; k++) s += a[k * 4 + r] * b[c * 4 + k]; o[c * 4 + r] = s; } return o; };
 const ap = (m, x, y, z) => [m[0]*x+m[4]*y+m[8]*z+m[12], m[1]*x+m[5]*y+m[9]*z+m[13], m[2]*x+m[6]*y+m[10]*z+m[14]];
 
@@ -113,14 +168,16 @@ for (const key of batch) {
       // echelle de LODs : le plus fin qui tient dans le budget tris
       let extLodUsed = null;
       for (const lod of extLods(l)) {
-        exp(key, tmpExt, ["--no-interior", "--no-attachments", "--lod", String(lod)]);
+        exp(key, tmpExt, ["--no-interior", ...(MODULES && !skipModules(key) ? [] : ["--no-attachments"]), "--lod", String(lod)]);
         extLodUsed = lod;
         if (glbTris(tmpExt) <= BUDGET.exterior.maxTris) break;
       }
       const extDoc = await io.read(tmpExt);
       stripLights(extDoc);
+      stripVertexColors(extDoc);
       fixBlackAlbedo(extDoc);
-      await extDoc.transform(dedup(), prune(), textureCompress({ encoder: sharp, targetFormat: "webp", resize: [512, 512], quality: 80 }));
+      await extDoc.transform(dedup(), prune());
+      await compressTextures(extDoc, EXT_TEX);
       unshareAccessors(extDoc);
       await extDoc.transform(meshopt({ encoder: MeshoptEncoder, level: "high" }));
       await io.write(extOut, extDoc);
@@ -166,6 +223,7 @@ for (const key of batch) {
     if (anchored.has(key)) { const fx = tmpInt.replace(/\.glb$/, ".fixed.glb"); execFileSync("node", ["scripts/reposition-interior.mjs", tmpInt, fx, `--key=${key}`], { cwd: ROOT, stdio: "ignore" }); intPath = fx; }
     const intDoc = await io.read(intPath);
     stripLights(intDoc);
+    stripVertexColors(intDoc);
     fixBlackAlbedo(intDoc);
     // EMISSIF EXTERIEUR leake. L'export interieur embarque toutes les features emissives de la coque
     // ext qui, vues de l'interieur, brillent comme des blocs orange/saumon flottants (retour app :
@@ -239,7 +297,7 @@ for (const key of batch) {
       await MeshoptSimplifier.ready;
       await intDoc.transform(simplify({ simplifier: MeshoptSimplifier, ratio: (BUDGET.interior.maxTris / it) * 0.95, error: 0.01 }));
     }
-    await intDoc.transform(textureCompress({ encoder: sharp, targetFormat: "webp", resize: [1024, 1024], quality: 80 }));
+    await compressTextures(intDoc, INT_TEX);
     // PAS de meshopt ici : la quantization ne doit passer qu'UNE fois, tout a la fin. Re-quantizer
     // des donnees deja quantizees (l'ancien schema : meshopt interieur PUIS meshopt final apres
     // fusion du shell) reintroduisait la corruption sur les prims instanciees (vitres Valkyrie /
@@ -264,6 +322,10 @@ for (const key of batch) {
     const r = intDoc.getRoot(); const scenes = r.listScenes(); const def = r.getDefaultScene() || scenes[0];
     for (const sc of scenes) { if (sc === def) continue; for (const n of sc.listChildren()) def.addChild(n); sc.dispose(); }
     await intDoc.transform(dedup(), unpartition());
+    // Greffe APRES dedup/unpartition (comme build-clay) : leurs passes de nettoyage retireraient le
+    // noeud vide spawn_point.
+    const grafted = await graftCollision(key, intDoc);
+    console.log(grafted ? `  ⛶ ${key} : ${grafted} couches de collision du clay greffees` : `  ⚠ ${key} : pas de couches de collision (clay absent ou reoriente)`);
     unshareAccessors(intDoc);
     await intDoc.transform(meshopt({ encoder: MeshoptEncoder, level: "high" }));
     await io.write(intOut, intDoc);
