@@ -1,6 +1,6 @@
 {
   "schemaVersion": 2,
-  "generatedAt": "2026-10-16T19:28:40.749Z",
+  "generatedAt": "2026-10-23T19:35:49.277Z",
   "patchVersion": "sc-4.1",
   "levels": [
     {
@@ -2003,6 +2003,31 @@
           "sizeBytes": 1659588,
           "hasInterior": false,
           "sha256": "d7f961f78a5d7171911624cb3d3026bb0f800b0ea5882d5c423d047653b23420",
+          "render": "clay"
+        }
+      ]
+    },
+    {
+      "key": "ARGO_ATLS_GEO_IKTI_NTLS",
+      "name": "Argo ATLS IKTI Akuma",
+      "manufacturer": "Unknown",
+      "classification": "Combat",
+      "dims": {
+        "l": 3.2,
+        "b": 1.6,
+        "h": 1.6
+      },
+      "materials": "flat",
+      "patchVersion": "sc-4.1",
+      "variants": [
+        {
+          "level": "exterior",
+          "label": "Apercu",
+          "modelUrl": "https://github.com/elios134/asset-3d/releases/download/sc-4.1/ARGO_ATLS_GEO_IKTI_NTLS.clay-exterior.glb",
+          "hasInterior": false,
+          "tris": 203240,
+          "sizeBytes": 1659568,
+          "sha256": "b2089e8f4077047118c5c2ddd32c2643aa08f4662b55427cc0c5ea72737c61ad",
           "render": "clay"
         }
       ]
@@ -6028,6 +6053,42 @@
       ]
     },
     {
+      "key": "RSI_Constellation_Mk5_Centaurus",
+      "name": "Constellation Mk V Centaurus",
+      "manufacturer": "Roberts Space Industries",
+      "classification": "Medium Freight / Gun Ship",
+      "dims": {
+        "l": 82.5,
+        "b": 47.5,
+        "h": 20.25
+      },
+      "materials": "flat",
+      "patchVersion": "sc-4.1",
+      "variants": [
+        {
+          "level": "exterior",
+          "label": "Apercu",
+          "modelUrl": "https://github.com/elios134/asset-3d/releases/download/sc-4.1/RSI_Constellation_Mk5_Centaurus.clay-exterior.glb",
+          "hasInterior": false,
+          "tris": 960819,
+          "sizeBytes": 8453984,
+          "sha256": "c59462457c0c29252a07e4b2683a26b908b257d96fe1efd13b0a57cc0d8ed24c",
+          "render": "clay"
+        },
+        {
+          "level": "interior",
+          "label": "Interieur",
+          "modelUrl": "https://github.com/elios134/asset-3d/releases/download/sc-4.1/RSI_Constellation_Mk5_Centaurus.clay-interior.glb",
+          "hasInterior": true,
+          "tris": 1549063,
+          "sizeBytes": 12778764,
+          "sha256": "f3a573d77d87c25b670c1610cf9692710b5c0baeb0737ea497c90339ffc1e532",
+          "render": "clay",
+          "hasCollision": true
+        }
+      ]
+    },
+    {
       "key": "RSI_Constellation_Phoenix",
       "name": "Constellation Phoenix",
       "manufacturer": "Roberts Space Industries",
@@ -6427,6 +6488,31 @@
           "sizeBytes": 3762700,
           "hasInterior": false,
           "sha256": "78b7ec77cb48389d936da7b35db77e066045e1a9673d093dbbc7013c8cc004e0",
+          "render": "clay"
+        }
+      ]
+    },
+    {
+      "key": "RSI_Skylark",
+      "name": "Skylark",
+      "manufacturer": "Roberts Space Industries",
+      "classification": "Snub Fighter",
+      "dims": {
+        "l": 7,
+        "b": 6.5,
+        "h": 3.5
+      },
+      "materials": "flat",
+      "patchVersion": "sc-4.1",
+      "variants": [
+        {
+          "level": "exterior",
+          "label": "Apercu",
+          "modelUrl": "https://github.com/elios134/asset-3d/releases/download/sc-4.1/RSI_Skylark.clay-exterior.glb",
+          "hasInterior": false,
+          "tris": 353303,
+          "sizeBytes": 2508268,
+          "sha256": "622dd300397f3689644cb37f5aa6265228be4ceeabc1a6825a4fbdee3dd5d828",
           "render": "clay"
         }
       ]
