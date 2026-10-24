@@ -1,17 +1,20 @@
 #!/usr/bin/env node
-// build-hd.mjs — pipeline HD complet par vaisseau (texture WebP + shell occulteur).
+// build-hd.mjs — rendu PEINT par vaisseau (alternative au clay, choisie dans l'app).
 //
-// EXTERIEUR (silhouette texturee) : export --materials textures --no-attachments -> dedup + webp512 + meshopt.
-// INTERIEUR : export --materials textures -> reposition (si table d'ancrage) -> cull strays -> dedup + webp1024
-//   + meshopt -> FUSION de la silhouette exterieure (shell occulteur : les trous montrent la coque, pas les etoiles).
-//
-// Ecrit models/<key>.exterior.glb et models/<key>.interior.glb (remplace le flat). Robuste aux echecs.
-// Usage : node scripts/build-hd.mjs [KEY...]      (defaut : batch test de 8 varies)
-//         node scripts/build-hd.mjs --all
+// La couleur de la vraie texture du jeu est lue au niveau de chaque SOMMET et inscrite en couleur de
+// sommet ; tout le vaisseau partage ensuite UN materiau (+ un pour les vitres) -> autant d'appels de
+// dessin que le clay, couleurs reelles sans le detail fin, aucune texture dans le fichier.
+// EXTERIEUR : export --materials textures (--modules : armes/tourelles) -> peinture -> fusion -> meshopt.
+// INTERIEUR (seulement si models/<key>.clay-interior.glb existe : il fournit le plancher de collision) :
+//   export -> reposition (table d'ancrage) -> culls -> peinture -> zones de 10 m (--chunk) -> shell
+//   occulteur (exterieur peint) -> couches de collision du clay greffees -> meshopt.
+// Ecrit models/<key>.painted-exterior.glb et models/<key>.painted-interior.glb. Robuste aux echecs.
+// Usage : node scripts/build-hd.mjs [KEY...] | --all   [--modules] [--chunk] [--mip=N]
+//         (flotte : node scripts/build-hd.mjs --all --modules --chunk)
 
 import { NodeIO } from "@gltf-transform/core";
 import { ALL_EXTENSIONS } from "@gltf-transform/extensions";
-import { dedup, prune, textureCompress, meshopt, mergeDocuments, unpartition, getBounds, flatten, join as joinPrims, simplify, dequantize } from "@gltf-transform/functions";
+import { dedup, prune, meshopt, mergeDocuments, unpartition, getBounds, flatten, join as joinPrims, simplify, dequantize } from "@gltf-transform/functions";
 import { MeshoptEncoder, MeshoptDecoder, MeshoptSimplifier } from "meshoptimizer";
 import sharp from "sharp";
 import { execFileSync } from "node:child_process";
@@ -22,6 +25,10 @@ import { dirname, join } from "node:path";
 const ROOT = join(dirname(fileURLToPath(import.meta.url)), "..");
 const MODELS = join(ROOT, "models");
 import { loadConfig } from "./lib/config.mjs";
+import { skipModules } from "./lib/no-modules.mjs";
+import { reorientTurns } from "./lib/reorient.mjs";
+import { reorientDoc } from "./rotate-glb.mjs";
+import { chunkVisual } from "./lib/chunk.mjs";
 const { starbreaker: STARBREAKER, p4k: P4K } = loadConfig({ root: ROOT }).paths;
 const meta = JSON.parse(readFileSync(join(ROOT, "ships.meta.json"), "utf8"));
 const anchored = new Set(Object.keys(JSON.parse(readFileSync(join(ROOT, "interior-anchors.json"), "utf8"))).filter((k) => k !== "_comment"));
@@ -57,6 +64,14 @@ const INT_ONLY = process.argv.includes("--interiors-only");
 //   --out-suffix=X  ecrit models/X/<key>.X-interior.glb au lieu de models/<key>.interior.glb
 const INT_LOD_OVERRIDE = (() => { const a = process.argv.find((x) => x.startsWith("--int-lod=")); return a ? parseInt(a.split("=")[1], 10) : null; })();
 const NO_SIMPLIFY = process.argv.includes("--no-simplify");
+const MODULES = process.argv.includes("--modules");
+// --chunk : interieur decoupe en zones de 10 m (contrat « bulle » de la Visite : seules les zones
+// proches sont dessinees). Indispensable sur les capitaux (Idris ~4 M triangles). Pas de join/simplify.
+const CHUNK = process.argv.includes("--chunk");
+// --mip=N : niveau des textures lues dans le p4k pour la peinture (0 = plein, 2 = 1/4 : assez pour une
+// couleur par sommet, et 4x plus rapide a decoder).
+const argNum = (name, def) => { const a = process.argv.find((x) => x.startsWith(`--${name}=`)); return a ? parseInt(a.split("=")[1], 10) : def; };
+const MIP = argNum("mip", 2);
 const OUT_SUFFIX = (() => { const a = process.argv.find((x) => x.startsWith("--out-suffix=")); return a ? a.split("=")[1] : null; })();
 const tryReadJson = (p) => { try { return JSON.parse(readFileSync(p, "utf8")); } catch { return null; } };
 const keys = Object.keys(meta).filter((k) => k !== "_comment" && !isExcluded(k) && meta[k].dims?.l);
@@ -92,41 +107,162 @@ const unshareAccessors = (doc) => { const seen = new Set(); for (const mesh of d
 // On EXCLUT les emissifs (glow : albedo noir + emissif = voulu). Le cas SANS texture (Paint_Base etc.,
 // facteur noir + aucun albedo = grosse surface de coque) n'est PAS recuperable ici (couleur reelle
 // perdue a l'extraction) -> laisse a la garde runtime de l'app (repli gris, choix visuel calibrable).
-const fixBlackAlbedo = (doc) => { let n = 0; for (const mat of doc.getRoot().listMaterials()) { const bf = mat.getBaseColorFactor(); if (!bf) continue; if (bf[0] >= 0.05 || bf[1] >= 0.05 || bf[2] >= 0.05) continue; const ef = mat.getEmissiveFactor(); if ((ef && (ef[0] > 0 || ef[1] > 0 || ef[2] > 0)) || mat.getEmissiveTexture()) continue; if (!mat.getBaseColorTexture()) continue; mat.setBaseColorFactor([1, 1, 1, bf[3]]); n++; } return n; };
-const exp = (key, out, extra) => execFileSync(STARBREAKER, ["entity", "export", key, out, "--materials", "textures", "--mip", "4", ...extra], { env: { ...process.env, SC_DATA_P4K: P4K }, stdio: "ignore", timeout: 600000 });
+// EXCEPTION : une teinte de LIVREE (extras.palette_tint, ou tint_color d'une couche) est une vraie
+// couleur voulue — ex. la peinture quasi noire du Cutlass Black (0.013) — et n'est jamais forcee.
+const authoredTint = (mat) => { const e = mat.getExtras() || {}; return e.palette_tint != null || (Array.isArray(e.layers) && e.layers.some((l) => l && l.tint_color)); };
+// COULEUR DE COUCHE DE MELANGE (shader Illum %BLENDLAYER). CIG y laisse la couleur de base a NOIR
+// (Diffuse 0,0,0) et met la vraie couleur dans BlendLayer2DiffuseColor ; StarBreaker exporte alors un
+// facteur 1,1,1 -> surfaces BLANCHES (Idris : parois « darks_grey_metal_blend », grilles, accents rouges).
+// On reprend la couleur de la couche (plancher 0,05 : sous ce seuil fixBlackAlbedo / l'app « repareraient »
+// en blanc). Ne touche QUE ce cas precis (29 materiaux sur 565 pour l'interieur de l'Idris).
+const fixBlendLayerColor = (doc) => {
+  let n = 0;
+  for (const mat of doc.getRoot().listMaterials()) {
+    const e = mat.getExtras() || {}, f = mat.getBaseColorFactor();
+    const diffuse = (e.semantic?.authored_attributes || []).find((a) => a.name === "Diffuse")?.value;
+    const layer2 = e.semantic?.public_params?.BlendLayer2DiffuseColor;
+    if (diffuse !== "0,0,0" || !layer2 || !f.slice(0, 3).every((x) => Math.abs(x - 1) < 1e-3)) continue;
+    const c = String(layer2).split(",").map(Number);
+    if (c.length < 3 || c.some((x) => !Number.isFinite(x))) continue;
+    mat.setBaseColorFactor([Math.max(c[0], 0.05), Math.max(c[1], 0.05), Math.max(c[2], 0.05), f[3]]);
+    n++;
+  }
+  return n;
+};
+const fixBlackAlbedo = (doc) => { let n = 0; for (const mat of doc.getRoot().listMaterials()) { const bf = mat.getBaseColorFactor(); if (!bf) continue; if (bf[0] >= 0.05 || bf[1] >= 0.05 || bf[2] >= 0.05) continue; if (authoredTint(mat)) continue; const ef = mat.getEmissiveFactor(); if ((ef && (ef[0] > 0 || ef[1] > 0 || ef[2] > 0)) || mat.getEmissiveTexture()) continue; if (!mat.getBaseColorTexture()) continue; mat.setBaseColorFactor([1, 1, 1, bf[3]]); n++; } return n; };
+// Couleurs de sommets : chez CIG ce sont des MASQUES de melange de couches (peinture / usure), pas
+// des couleurs. Laisses dans le .glb, three.js les multiplie a l'albedo -> coques violettes/magenta
+// (constate sur l'essai Cutlass/Avenger/Constellation). Retires partout.
+const stripVertexColors = (doc) => { let n = 0; for (const mesh of doc.getRoot().listMeshes()) for (const pr of mesh.listPrimitives()) for (const sem of pr.listSemantics()) if (sem.startsWith("COLOR_")) { pr.setAttribute(sem, null); n++; } return n; };
+// Couches de collision du clay greffees dans l'interieur peint (meme repere : meme export LOD +
+// meme reposition, meme reorientation).
+const COLLISION = /collision|floor_patch|spawn_point/i;
+const graftCollision = async (key, intDoc) => {
+  const clayPath = join(MODELS, `${key}.clay-interior.glb`);
+  if (!existsSync(clayPath)) return 0;
+  const clay = await io.read(clayPath);
+  await clay.transform(dequantize());
+  // Chaque couche remonte a la racine de la scene avec sa transform MONDE (flatten() ne deplace pas
+  // les noeuds vides : spawn_point serait perdu avec son parent), puis tout le reste est jete.
+  const cScene = clay.getRoot().getDefaultScene() || clay.getRoot().listScenes()[0];
+  const layers = clay.getRoot().listNodes().filter((n) => COLLISION.test(n.getName() || ""));
+  for (const n of layers) { const wm = n.getWorldMatrix(); for (const p of n.listParents()) if (p !== cScene && p.propertyType === "Node") p.removeChild(n); n.setMatrix(wm); cScene.addChild(n); }
+  const keep = new Set(layers);
+  for (const n of clay.getRoot().listNodes()) if (!keep.has(n)) n.dispose();
+  const kept = layers.length;
+  await clay.transform(prune({ keepLeaves: true })); // garder spawn_point (noeud vide)
+  if (!kept) return 0;
+  const scene = intDoc.getRoot().getDefaultScene() || intDoc.getRoot().listScenes()[0];
+  const map = mergeDocuments(intDoc, clay);
+  for (const sc of clay.getRoot().listScenes()) for (const n of sc.listChildren()) { const d = map.get(n); if (d) scene.addChild(d); }
+  await intDoc.transform(unpartition()); // un seul buffer (contrat GLB)
+  return kept;
+};
+// --- rendu peint ---
+const srgbToLinear = (c) => (c <= 0.04045 ? c / 12.92 : Math.pow((c + 0.055) / 1.055, 2.4));
+const pixelCache = new Map();
+const texPixels = async (tex) => {
+  if (pixelCache.has(tex)) return pixelCache.get(tex);
+  let px = null;
+  try {
+    const { data, info } = await sharp(Buffer.from(tex.getImage())).ensureAlpha().raw().toBuffer({ resolveWithObject: true });
+    px = { data, w: info.width, h: info.height };
+  } catch { /* image illisible : couleur du facteur seule */ }
+  pixelCache.set(tex, px);
+  return px;
+};
+// Lit la texture (repetee, KHR_texture_transform applique) au point UV ; renvoie [r,g,b] lineaires.
+const sampleTex = (px, u, v, tr) => {
+  if (tr) {
+    const [ox, oy] = tr.getOffset(), [sx, sy] = tr.getScale(), rot = tr.getRotation();
+    const c = Math.cos(rot), sn = Math.sin(rot);
+    const x = u * sx, y = v * sy;
+    u = c * x + sn * y + ox; v = -sn * x + c * y + oy;
+  }
+  u -= Math.floor(u); v -= Math.floor(v);
+  const i = (Math.min(px.h - 1, Math.floor(v * px.h)) * px.w + Math.min(px.w - 1, Math.floor(u * px.w))) * 4;
+  return [srgbToLinear(px.data[i] / 255), srgbToLinear(px.data[i + 1] / 255), srgbToLinear(px.data[i + 2] / 255)];
+};
+const bakePaint = async (doc) => {
+  const root = doc.getRoot();
+  const paint = doc.createMaterial("painted").setBaseColorFactor([1, 1, 1, 1]).setRoughnessFactor(0.6).setMetallicFactor(0.15).setDoubleSided(true);
+  const glass = doc.createMaterial("painted_glass").setBaseColorFactor([0.6, 0.7, 0.8, 0.25]).setAlphaMode("BLEND").setRoughnessFactor(0.1).setMetallicFactor(0).setDoubleSided(true);
+  let decals = 0;
+  for (const mesh of root.listMeshes()) for (const pr of mesh.listPrimitives()) {
+    const mat = pr.getMaterial();
+    const pos = pr.getAttribute("POSITION"); if (!pos) continue;
+    if (mat && (mat.getExtension("KHR_materials_transmission") || (mat.getAlphaMode() === "BLEND" && /glass|window|canopy/i.test(mat.getName() || "")))) { pr.setMaterial(glass); continue; }
+    // decals / autocollants (transparents par alpha) : peints opaques ils masqueraient la surface dessous
+    if (mat && mat.getAlphaMode() === "BLEND") { pr.dispose(); decals++; continue; }
+    const f = mat ? mat.getBaseColorFactor() : [1, 1, 1, 1];
+    const tex = mat?.getBaseColorTexture(), info = mat?.getBaseColorTextureInfo();
+    const px = tex ? await texPixels(tex) : null;
+    const uv = px ? pr.getAttribute(`TEXCOORD_${info.getTexCoord()}`) : null;
+    const tr = info?.getExtension("KHR_texture_transform") ?? null;
+    const n = pos.getCount(), arr = new Float32Array(n * 3), t = [0, 0];
+    for (let i = 0; i < n; i++) {
+      let rgb = [1, 1, 1];
+      if (uv) { uv.getElement(i, t); rgb = sampleTex(px, t[0], t[1], tr); }
+      arr[i * 3] = rgb[0] * f[0]; arr[i * 3 + 1] = rgb[1] * f[1]; arr[i * 3 + 2] = rgb[2] * f[2];
+    }
+    pr.setAttribute("COLOR_0", doc.createAccessor().setType("VEC3").setArray(arr).setBuffer(root.listBuffers()[0]));
+    for (const sem of pr.listSemantics()) if (sem.startsWith("TEXCOORD_")) pr.setAttribute(sem, null);
+    pr.setMaterial(paint);
+  }
+  await doc.transform(prune());
+  return decals;
+};
+const exp = (key, out, extra) => execFileSync(STARBREAKER, ["entity", "export", key, out, "--materials", "textures", "--mip", String(MIP), ...extra], { env: { ...process.env, SC_DATA_P4K: P4K }, stdio: "ignore", timeout: 600000 });
 const mul = (a, b) => { const o = new Array(16); for (let c = 0; c < 4; c++) for (let r = 0; r < 4; r++) { let s = 0; for (let k = 0; k < 4; k++) s += a[k * 4 + r] * b[c * 4 + k]; o[c * 4 + r] = s; } return o; };
 const ap = (m, x, y, z) => [m[0]*x+m[4]*y+m[8]*z+m[12], m[1]*x+m[5]*y+m[9]*z+m[13], m[2]*x+m[6]*y+m[10]*z+m[14]];
 
+// --resume : saute les vaisseaux deja peints ; --skip=K1,K2 : saute ces cles (un plantage natif de
+// sharp tue le processus sans passer par le catch -> on relance la flotte en ecartant le fautif).
+const RESUME = process.argv.includes("--resume");
+const SKIP = new Set((process.argv.find((x) => x.startsWith("--skip=")) ?? "--skip=").slice(7).split(",").filter(Boolean));
 const results = [];
-console.log(`Pipeline HD : ${batch.length} vaisseaux\n`);
+console.log(`Pipeline PEINT : ${batch.length} vaisseaux\n`);
 for (const key of batch) {
   const m = meta[key], l = m.dims?.l ?? 25; // defaut 25m si dims absentes (ships sans cote ShipData)
-  const extOut = join(MODELS, `${key}.exterior.glb`);
-  const intOut = OUT_SUFFIX ? join(MODELS, OUT_SUFFIX, `${key}.${OUT_SUFFIX}-interior.glb`) : join(MODELS, `${key}.interior.glb`);
+  const extOut = join(MODELS, `${key}.painted-exterior.glb`);
+  const intOut = OUT_SUFFIX ? join(MODELS, OUT_SUFFIX, `${key}.${OUT_SUFFIX}-interior.glb`) : join(MODELS, `${key}.painted-interior.glb`);
+  const wantsInt = !EXT_ONLY && existsSync(join(MODELS, `${key}.clay-interior.glb`));
+  if (SKIP.has(key) || (RESUME && existsSync(extOut) && (!wantsInt || existsSync(intOut)))) continue;
+  console.log(`▶ ${key}`);
   if (OUT_SUFFIX) mkdirSync(join(MODELS, OUT_SUFFIX), { recursive: true });
   const tmpExt = join(MODELS, `_hd_${key}_ext.glb`), tmpInt = join(MODELS, `_hd_${key}_int.glb`);
   const tmpHull = join(MODELS, `_hd_${key}_hull.glb`);
+  // Meme reorientation que build-clay (table REORIENT : Clipper, Reliant...) sur l'exterieur ET
+  // l'interieur -> meme repere que le clay (plancher de collision greffe aligne).
+  const turns = reorientTurns(key);
+  // Interieur seulement si le clay en publie un (il fournit le plancher de collision).
+  const extOnly = EXT_ONLY || !existsSync(join(MODELS, `${key}.clay-interior.glb`));
   try {
     let hull;
-    // 1) EXTERIEUR silhouette texturee (sauf --interiors-only)
+    // 1) EXTERIEUR peint (sauf --interiors-only)
     if (!INT_ONLY) {
       // echelle de LODs : le plus fin qui tient dans le budget tris
       let extLodUsed = null;
       for (const lod of extLods(l)) {
-        exp(key, tmpExt, ["--no-interior", "--no-attachments", "--lod", String(lod)]);
+        exp(key, tmpExt, ["--no-interior", ...(MODULES && !skipModules(key) ? [] : ["--no-attachments"]), "--lod", String(lod)]);
         extLodUsed = lod;
         if (glbTris(tmpExt) <= BUDGET.exterior.maxTris) break;
       }
       const extDoc = await io.read(tmpExt);
+      if (turns) reorientDoc(extDoc, turns);
       stripLights(extDoc);
+      stripVertexColors(extDoc);
+      fixBlendLayerColor(extDoc);
       fixBlackAlbedo(extDoc);
-      await extDoc.transform(dedup(), prune(), textureCompress({ encoder: sharp, targetFormat: "webp", resize: [512, 512], quality: 80 }));
+      await extDoc.transform(dedup(), prune());
+      await bakePaint(extDoc);
+      await extDoc.transform(flatten(), joinPrims());
       unshareAccessors(extDoc);
       await extDoc.transform(meshopt({ encoder: MeshoptEncoder, level: "high" }));
       await io.write(extOut, extDoc);
       hull = getBounds(extDoc.getRoot().listScenes()[0]);
     }
-    if (EXT_ONLY) {
+    if (extOnly) {
       if (existsSync(tmpExt)) rmSync(tmpExt);
       results.push({ key, ok: true, ext: statSync(extOut).size, int: 0 });
       console.log(`  ✓ ${key.padEnd(28)} ext ${mb(statSync(extOut).size)}`);
@@ -135,7 +271,7 @@ for (const key of batch) {
     // reference coque/shell = exterieur (existant si --interiors-only)
     if (INT_ONLY) hull = getBounds((await io.read(extOut)).getRoot().listScenes()[0]);
 
-    // 2) INTERIEUR texture -> reposition (si ancre) -> cull strays -> webp -> shell
+    // 2) INTERIEUR -> reposition (si ancre) -> cull strays -> peinture -> zones -> shell
     // LOD ADAPTATIF (round 8, decision user « 96 Mo strict ») : on tente le LOD1 (detail x2 ; gros
     // gagnants du scan delta : Railen/Tyilui/Ironclad/Tiburon/MOLE/Starlifter) et on retombe au
     // LOD2 (+simplify) si le fichier FINAL depasse maxSizeBytes. Pre-filtre : un export LOD1
@@ -165,7 +301,10 @@ for (const key of batch) {
     let intPath = tmpInt;
     if (anchored.has(key)) { const fx = tmpInt.replace(/\.glb$/, ".fixed.glb"); execFileSync("node", ["scripts/reposition-interior.mjs", tmpInt, fx, `--key=${key}`], { cwd: ROOT, stdio: "ignore" }); intPath = fx; }
     const intDoc = await io.read(intPath);
+    if (turns) reorientDoc(intDoc, turns);
     stripLights(intDoc);
+    stripVertexColors(intDoc);
+    fixBlendLayerColor(intDoc);
     fixBlackAlbedo(intDoc);
     // EMISSIF EXTERIEUR leake. L'export interieur embarque toutes les features emissives de la coque
     // ext qui, vues de l'interieur, brillent comme des blocs orange/saumon flottants (retour app :
@@ -221,25 +360,44 @@ for (const key of batch) {
     {
       const DOOR = /door|hatch|bulkhead/i, DOOR_EXCL = /wall|frame/i;
       const isDoor = (nm) => DOOR.test(nm) && !DOOR_EXCL.test(nm);
-      const tag = (node, name) => { if (node.getMesh() && !isDoor(node.getName() || "")) node.setName(name); for (const c of node.listChildren()) tag(c, name); };
+      // Parcours iteratif + deja-vus : la version recursive depassait la pile sur l'interieur du M80.
+      const tag = (root, name) => {
+        const seen = new Set(), stack = [root];
+        while (stack.length) {
+          const node = stack.pop();
+          if (seen.has(node)) continue;
+          seen.add(node);
+          if (node.getMesh() && !isDoor(node.getName() || "")) node.setName(name);
+          stack.push(...node.listChildren());
+        }
+      };
       for (const n of intDoc.getRoot().listNodes()) { const nm = n.getName() || ""; if (isDoor(nm)) tag(n, nm); }
       for (const n of intDoc.getRoot().listNodes()) if (!isDoor(n.getName() || "")) n.setName("");
       for (const m of intDoc.getRoot().listMeshes()) if (!isDoor(m.getName() || "")) m.setName("");
     }
     // flatten+join : draw calls /10-20 (retour user : lag Visite sur les capitaux — Polaris 7754 draws).
     // keepNamed : seuls les noeuds encore nommes (= portes) echappent a la fusion.
-    await intDoc.transform(dedup(), prune(), flatten(), joinPrims({ keepNamed: true }));
+    console.log(`  🎨 ${key} : interieur peint (${await bakePaint(intDoc)} decals retires)`);
+    if (CHUNK) {
+      // mode BULLE (comme build-clay --chunk) : zones spatiales, instancing preserve, pas de join/simplify.
+      await intDoc.transform(dedup(), prune());
+      const { nChunks, nTris } = await chunkVisual(intDoc, 10, (nm) => /door|hatch|bulkhead/i.test(nm) && !/wall|frame/i.test(nm)); // = isDoor ci-dessus
+      // Fusion PAR ZONE des pieces de meme materiau (noeuds freres sous chaque chunk) : sans ca, chaque
+      // piece reste un appel de dessin (Carrack : 7 900 appels pour 14 zones visibles, processeur sature).
+      // Les portes, nommees et hors zones, restent separees (keepNamed).
+      await intDoc.transform(joinPrims({ keepNamed: true }), prune());
+      console.log(`  ▦ ${key} : ${nChunks} zones de 10 m, ${nTris} triangles`);
+    } else await intDoc.transform(dedup(), prune(), flatten(), joinPrims({ keepNamed: true }));
     // budget tris : LOD2 des capitaux peut deborder -> simplify meshopt (preserve les murs, contrairement au LOD3 CIG)
     // unshare AVANT simplify : simplify remappe les sommets et corrompt les accessors partages
     // exactement comme reorder+quantize (constate : vitres Valkyrie/bouteille du Carrack, seuls
     // les capitaux au-dessus du budget tris etaient touches par CE point de corruption-la).
     unshareAccessors(intDoc);
     const it = docTris(intDoc);
-    if (!NO_SIMPLIFY && it > BUDGET.interior.maxTris) {
+    if (!CHUNK && !NO_SIMPLIFY && it > BUDGET.interior.maxTris) {
       await MeshoptSimplifier.ready;
       await intDoc.transform(simplify({ simplifier: MeshoptSimplifier, ratio: (BUDGET.interior.maxTris / it) * 0.95, error: 0.01 }));
     }
-    await intDoc.transform(textureCompress({ encoder: sharp, targetFormat: "webp", resize: [1024, 1024], quality: 80 }));
     // PAS de meshopt ici : la quantization ne doit passer qu'UNE fois, tout a la fin. Re-quantizer
     // des donnees deja quantizees (l'ancien schema : meshopt interieur PUIS meshopt final apres
     // fusion du shell) reintroduisait la corruption sur les prims instanciees (vitres Valkyrie /
@@ -249,9 +407,8 @@ for (const key of batch) {
     // du shell ne doit matcher le masquage app) ; (2) pre-joindre le shell SEUL (fusion maximale) ;
     // (3) tagger "occluder_shell" : CONTRAT APP = render-only, EXCLU du collider (le shell ne doit
     // jamais bloquer le joueur ni porter de collision).
-    // Le shell garde ses VRAIS materiaux texture (rendu valide par l'user : « les trous montrent la
-    // coque, c'est parfait ») — l'app ne l'override plus, elle le rend tel quel (render-only via le
-    // nom). Anonymiser puis joindre (fusion par materiau), puis tag occluder_shell sur ce qui reste.
+    // Le shell garde son materiau peint (« les trous montrent la coque ») — l'app le rend tel quel
+    // (render-only via le nom). Anonymiser puis joindre (fusion par materiau), puis tag occluder_shell sur ce qui reste.
     const shellDoc = await io.read(extOut);
     for (const n of shellDoc.getRoot().listNodes()) n.setName("");
     for (const m of shellDoc.getRoot().listMeshes()) m.setName("");
@@ -264,6 +421,10 @@ for (const key of batch) {
     const r = intDoc.getRoot(); const scenes = r.listScenes(); const def = r.getDefaultScene() || scenes[0];
     for (const sc of scenes) { if (sc === def) continue; for (const n of sc.listChildren()) def.addChild(n); sc.dispose(); }
     await intDoc.transform(dedup(), unpartition());
+    // Greffe APRES dedup/unpartition (comme build-clay) : leurs passes de nettoyage retireraient le
+    // noeud vide spawn_point.
+    const grafted = await graftCollision(key, intDoc);
+    console.log(grafted ? `  ⛶ ${key} : ${grafted} couches de collision du clay greffees` : `  ⚠ ${key} : pas de couches de collision (clay absent ou reoriente)`);
     unshareAccessors(intDoc);
     await intDoc.transform(meshopt({ encoder: MeshoptEncoder, level: "high" }));
     await io.write(intOut, intDoc);
@@ -290,6 +451,6 @@ for (const key of batch) {
 }
 const ok = results.filter((r) => r.ok);
 const tot = ok.reduce((s, r) => s + r.ext + r.int, 0);
-console.log(`\n${ok.length}/${results.length} OK. Total HD : ${mb(tot)} (moy ${mb(tot / (ok.length || 1))}/vaisseau -> extrapolation 229 = ~${(tot / (ok.length || 1) * 229 / 1073741824).toFixed(1)} Go)`);
+console.log(`\n${ok.length}/${results.length} OK. Total peint : ${mb(tot)} (moy ${mb(tot / (ok.length || 1))}/vaisseau -> extrapolation 229 = ~${(tot / (ok.length || 1) * 229 / 1073741824).toFixed(1)} Go)`);
 const ko = results.filter((r) => !r.ok); if (ko.length) console.log(`Echecs : ${ko.map((r) => r.key).join(", ")}`);
 function mb(b) { return (b / 1048576).toFixed(1) + " Mo"; }

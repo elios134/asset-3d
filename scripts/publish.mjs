@@ -18,6 +18,10 @@
 //   node scripts/publish.mjs --only=DRAK_Clipper[,AEGS_Avenger_Titan] [--json] [--confirm] [--push]
 //   node scripts/publish.mjs --manifest=publish.json [...]        (manifest = tableau JSON de cles)
 //   (defaut = --dry-run : plan complet, aucun effet de bord)
+//   --painted  : publie les variantes PEINTES (<key>.painted-exterior.glb / .painted-interior.glb, pipeline
+//                build-hd) A COTE du clay, sans y toucher. L'app choisit le rendu (bascule Clay / Peint).
+//   --dev-index : n'envoie RIEN ; ecrit index.dev.json (local, ignore par git) a cote de index.json.
+//                L'app en developpement (npm run tauri dev) le lit et charge les .glb locaux.
 
 import { createHash } from "node:crypto";
 import { readFileSync, writeFileSync, existsSync, statSync } from "node:fs";
@@ -31,6 +35,8 @@ const ROOT = join(dirname(fileURLToPath(import.meta.url)), "..");
 const JSON_MODE = process.argv.includes("--json");
 const CONFIRM = process.argv.includes("--confirm");
 const PUSH = process.argv.includes("--push");
+const PAINTED = process.argv.includes("--painted");
+const DEV_INDEX = process.argv.includes("--dev-index");
 const DRY = !CONFIRM;
 const emit = makeEmitter(JSON_MODE);
 if (JSON_MODE) console.log = () => {}; // stdout = NDJSON pur
@@ -63,7 +69,9 @@ const repoSlug = `${githubOwner}/${githubRepo}`;
 
 // Overrides (tests / usages hors-racine) : --index= --meta= --models=
 const indexPath = argVal("--index", join(ROOT, "index.json"));
-const index = JSON.parse(readFileSync(indexPath, "utf8"));
+// --dev-index : on cumule les essais dans index.dev.json (repart de index.json la premiere fois).
+const devIndexPath = join(dirname(indexPath), "index.dev.json");
+const index = JSON.parse(readFileSync(DEV_INDEX && existsSync(devIndexPath) ? devIndexPath : indexPath, "utf8"));
 const meta = JSON.parse(readFileSync(argVal("--meta", join(ROOT, "ships.meta.json")), "utf8"));
 const modelsDir = argVal("--models", join(ROOT, "models"));
 const labelOf = Object.fromEntries((config.levels ?? []).map((l) => [l.id, l.label]));
@@ -71,11 +79,16 @@ const levelOrder = (config.levels ?? []).map((l) => l.id);
 
 emit({ type: "start", dryRun: DRY, push: PUSH, patchVersion, keys });
 
-// clay-<level> present sur le disque -> niveau canonique de l'index
-const LEVELS = [
-  { suffix: "clay-exterior", level: "exterior", render: "clay" },
-  { suffix: "clay-interior", level: "interior", render: "clay", hasCollision: true },
-];
+// clay-<level> (ou <level> avec --textured) present sur le disque -> variante de l'index
+const LEVELS = PAINTED
+  ? [
+      { suffix: "painted-exterior", level: "exterior", render: "painted" },
+      { suffix: "painted-interior", level: "interior", render: "painted", hasCollision: true },
+    ]
+  : [
+      { suffix: "clay-exterior", level: "exterior", render: "clay" },
+      { suffix: "clay-interior", level: "interior", render: "clay", hasCollision: true },
+    ];
 
 const uploads = [];   // { file, path } a uploader sur la Release
 const patched = [];   // cles patchees
@@ -85,7 +98,7 @@ for (const key of keys) {
   const present = LEVELS.map((L) => ({ ...L, file: `${key}.${L.suffix}.glb`, path: join(modelsDir, `${key}.${L.suffix}.glb`) }))
     .filter((L) => existsSync(L.path));
   if (present.length === 0) {
-    problems.push(`[FICHIER] ${key} : aucun ${key}.clay-*.glb dans models/`);
+    problems.push(`[FICHIER] ${key} : aucun ${key}.${PAINTED ? "painted-" : "clay-"}*.glb dans models/`);
     emit({ type: "skip", key, reason: "no-glb" });
     continue;
   }
@@ -121,9 +134,13 @@ for (const key of keys) {
     const sizeBytes = statSync(L.path).size;
     const tris = countTriangles(buf);
 
-    let v = ship.variants.find((x) => x.level === L.level);
+    // une variante par (niveau, rendu) : le peint s'ajoute a cote du clay sans l'ecraser
+    let v = ship.variants.find((x) => x.level === L.level && (x.render ?? L.render) === L.render);
     if (!v) {
       v = { level: L.level, label: labelOf[L.level] ?? L.level, modelUrl: `${releaseBase}/${L.file}`, hasInterior: L.level === "interior" };
+      // classement d'habitabilite repris du clay (meme interieur, mesure au build clay)
+      const clay = ship.variants.find((x) => x.level === L.level && x.render === "clay");
+      if (clay?.interiorKind) { v.interiorKind = clay.interiorKind; v.interiorWalkableM2 = clay.interiorWalkableM2; }
       ship.variants.push(v);
     }
     v.modelUrl = `${releaseBase}/${L.file}`;
@@ -133,24 +150,12 @@ for (const key of keys) {
     v.render = L.render;
     if (L.hasCollision) v.hasCollision = true;
 
-    // sidecar lumieres interieur (si present)
-    if (L.level === "interior") {
-      const lightsFile = `${key}.lights.json`;
-      const lightsPath = join(modelsDir, lightsFile);
-      if (existsSync(lightsPath)) {
-        const lbuf = readFileSync(lightsPath);
-        v.lights = {
-          url: `${releaseBase}/${lightsFile}`,
-          sha256: createHash("sha256").update(lbuf).digest("hex"),
-          sizeBytes: statSync(lightsPath).size,
-          count: JSON.parse(lbuf.toString("utf8")).count ?? 0,
-        };
-        uploads.push({ file: lightsFile, path: lightsPath });
-      }
-    }
+    // Plus de sidecar lumieres (abandonne cote app : surexposition + recompilations) : une variante
+    // republiee perd sa reference.
+    delete v.lights;
 
     uploads.push({ file: L.file, path: L.path });
-    emit({ type: "plan", key, level: L.level, file: L.file, tris, sizeBytes, sha256 });
+    emit({ type: "plan", key, level: L.level, render: L.render, file: L.file, tris, sizeBytes, sha256 });
   }
 
   ship.variants.sort((a, b) => levelOrder.indexOf(a.level) - levelOrder.indexOf(b.level));
@@ -160,6 +165,15 @@ for (const key of keys) {
 if (patched.length === 0) {
   emit({ type: "done", dryRun: DRY, published: [], problems });
   if (problems.length) { console.error(problems.join("\n")); process.exit(1); }
+  process.exit(0);
+}
+
+if (DEV_INDEX) {
+  index.generatedAt = new Date().toISOString();
+  index.ships.sort((a, b) => a.key.localeCompare(b.key));
+  writeFileSync(devIndexPath, JSON.stringify(index, null, 2) + "\n");
+  emit({ type: "done", dryRun: false, devIndex: devIndexPath, wouldPatch: patched, problems });
+  console.log(`[dev] index.dev.json ecrit (${patched.join(", ")}) — rien n'a ete envoye.`);
   process.exit(0);
 }
 

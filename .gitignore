@@ -19,3 +19,4 @@ app-config.json
 app/node_modules
 app/out
 app/dist
+index.dev.json

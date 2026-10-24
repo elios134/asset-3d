@@ -30,6 +30,7 @@ import { reorientTurns } from "./lib/reorient.mjs";
 import { reorientDoc } from "./rotate-glb.mjs";
 import { skipModules } from "./lib/no-modules.mjs";
 import { loadConfig } from "./lib/config.mjs";
+import { chunkVisual } from "./lib/chunk.mjs";
 
 const ROOT = join(dirname(fileURLToPath(import.meta.url)), "..");
 const MODELS = join(ROOT, "models");
@@ -111,32 +112,6 @@ const simplifyTo = async (doc) => {
 const unshareAccessors = (doc) => { const seen = new Set(); for (const mesh of doc.getRoot().listMeshes()) for (const pr of mesh.listPrimitives()) { for (const sem of pr.listSemantics()) { const a = pr.getAttribute(sem); if (!a) continue; if (seen.has(a)) pr.setAttribute(sem, a.clone()); else seen.add(a); } const idx = pr.getIndices(); if (idx) { if (seen.has(idx)) pr.setIndices(idx.clone()); else seen.add(idx); } } };
 const compress = async (doc) => { await doc.transform(dedup(), unpartition()); unshareAccessors(doc); await doc.transform(meshopt({ encoder: MeshoptEncoder, level: "high" })); };
 const ap3 = (m, x, y, z) => [m[0]*x+m[4]*y+m[8]*z, m[1]*x+m[5]*y+m[9]*z, m[2]*x+m[6]*y+m[10]*z]; // 3x3 (normales, sans translation)
-
-// CHUNKER (contrat bulle app) : segmente la geo visuelle en cellules spatiales de `cell` m. On PRESERVE
-// l'instancing (StarBreaker repete lourdement rambardes/panneaux/props ; baker = x2-3 la taille) : flatten()
-// bake les transforms parents dans le matrix LOCAL de chaque noeud-mesh (hierarchie plate, meshes toujours
-// PARTAGES) puis on REPARENTE chaque noeud-mesh sous un chunk `chunk_gx_gy_gz` selon le centroide MONDE de
-// sa bbox. Chunk = transform identite ; l'enfant garde son matrix (= monde). L'app calcule la Box3 tight par
-// chunk et toggle sa visibilite. HORS chunks : portes (isDoorFn) + specials ajoutes APRES (shell/collision_
-// walk/spawn_point/floor_patch). Pas de join/simplify -> detail max, fichier leger (instancing conserve).
-const chunkVisual = async (doc, cell, isDoorFn) => {
-  await doc.transform(flatten()); // noeuds-mesh -> enfants directs de la scene, transform monde bakee en local
-  const root = doc.getRoot();
-  const scene = root.getDefaultScene() || root.listScenes()[0];
-  const chunks = new Map(); const P = [0,0,0];
-  const targets = root.listNodes().filter((n) => n.getMesh() && !isDoorFn(n.getName() || "") && !isDoorFn(n.getMesh().getName() || ""));
-  for (const node of targets) {
-    const M = node.getMatrix(); // = monde (post-flatten)
-    const mesh = node.getMesh(); let xn = 1/0, yn = 1/0, zn = 1/0, xx = -1/0, yx = -1/0, zx = -1/0;
-    for (const pr of mesh.listPrimitives()) { const a = pr.getAttribute("POSITION"); if (!a) continue; const c = a.getCount(); const step = Math.max(1, Math.floor(c / 24)); for (let i = 0; i < c; i += step) { a.getElement(i, P); if (P[0]<xn)xn=P[0]; if (P[1]<yn)yn=P[1]; if (P[2]<zn)zn=P[2]; if (P[0]>xx)xx=P[0]; if (P[1]>yx)yx=P[1]; if (P[2]>zx)zx=P[2]; } }
-    if (!isFinite(xn)) continue;
-    const wc = ap(M, (xn+xx)/2, (yn+yx)/2, (zn+zx)/2); // centroide monde de la bbox locale
-    const key = `${Math.floor(wc[0]/cell)}_${Math.floor(wc[1]/cell)}_${Math.floor(wc[2]/cell)}`;
-    let cn = chunks.get(key); if (!cn) { cn = doc.createNode(`chunk_${key}`); scene.addChild(cn); chunks.set(key, cn); }
-    scene.removeChild(node); cn.addChild(node); // instancing preserve (mesh partage inchange)
-  }
-  return { nChunks: chunks.size, nTris: docTris(doc) };
-};
 
 const results = [];
 console.log(`Pipeline CLAY : ${batch.length} vaisseaux (tris<=${TRIS}, ceil=${CEIL})\n`);
