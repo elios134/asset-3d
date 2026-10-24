@@ -20,6 +20,9 @@
 //   (defaut = --dry-run : plan complet, aucun effet de bord)
 //   --textured : publie les variantes TEXTUREES (<key>.exterior.glb / <key>.interior.glb, pipeline
 //                build-hd) A COTE du clay, sans y toucher. L'app choisit le rendu (bascule Clay/Texture).
+//   --painted  : idem pour les variantes PEINTES (<key>.painted-exterior.glb / .painted-interior.glb).
+//   --dev-index : n'envoie RIEN ; ecrit index.dev.json (local, ignore par git) a cote de index.json.
+//                L'app en developpement (npm run tauri dev) le lit et charge les .glb locaux.
 
 import { createHash } from "node:crypto";
 import { readFileSync, writeFileSync, existsSync, statSync } from "node:fs";
@@ -34,6 +37,8 @@ const JSON_MODE = process.argv.includes("--json");
 const CONFIRM = process.argv.includes("--confirm");
 const PUSH = process.argv.includes("--push");
 const TEXTURED = process.argv.includes("--textured");
+const PAINTED = process.argv.includes("--painted");
+const DEV_INDEX = process.argv.includes("--dev-index");
 const DRY = !CONFIRM;
 const emit = makeEmitter(JSON_MODE);
 if (JSON_MODE) console.log = () => {}; // stdout = NDJSON pur
@@ -66,7 +71,9 @@ const repoSlug = `${githubOwner}/${githubRepo}`;
 
 // Overrides (tests / usages hors-racine) : --index= --meta= --models=
 const indexPath = argVal("--index", join(ROOT, "index.json"));
-const index = JSON.parse(readFileSync(indexPath, "utf8"));
+// --dev-index : on cumule les essais dans index.dev.json (repart de index.json la premiere fois).
+const devIndexPath = join(dirname(indexPath), "index.dev.json");
+const index = JSON.parse(readFileSync(DEV_INDEX && existsSync(devIndexPath) ? devIndexPath : indexPath, "utf8"));
 const meta = JSON.parse(readFileSync(argVal("--meta", join(ROOT, "ships.meta.json")), "utf8"));
 const modelsDir = argVal("--models", join(ROOT, "models"));
 const labelOf = Object.fromEntries((config.levels ?? []).map((l) => [l.id, l.label]));
@@ -75,7 +82,12 @@ const levelOrder = (config.levels ?? []).map((l) => l.id);
 emit({ type: "start", dryRun: DRY, push: PUSH, patchVersion, keys });
 
 // clay-<level> (ou <level> avec --textured) present sur le disque -> variante de l'index
-const LEVELS = TEXTURED
+const LEVELS = PAINTED
+  ? [
+      { suffix: "painted-exterior", level: "exterior", render: "painted" },
+      { suffix: "painted-interior", level: "interior", render: "painted", hasCollision: true },
+    ]
+  : TEXTURED
   ? [
       { suffix: "exterior", level: "exterior", render: "textured" },
       { suffix: "interior", level: "interior", render: "textured", hasCollision: true },
@@ -93,7 +105,7 @@ for (const key of keys) {
   const present = LEVELS.map((L) => ({ ...L, file: `${key}.${L.suffix}.glb`, path: join(modelsDir, `${key}.${L.suffix}.glb`) }))
     .filter((L) => existsSync(L.path));
   if (present.length === 0) {
-    problems.push(`[FICHIER] ${key} : aucun ${key}.${TEXTURED ? "" : "clay-"}*.glb dans models/`);
+    problems.push(`[FICHIER] ${key} : aucun ${key}.${PAINTED ? "painted-" : TEXTURED ? "" : "clay-"}*.glb dans models/`);
     emit({ type: "skip", key, reason: "no-glb" });
     continue;
   }
@@ -160,6 +172,15 @@ for (const key of keys) {
 if (patched.length === 0) {
   emit({ type: "done", dryRun: DRY, published: [], problems });
   if (problems.length) { console.error(problems.join("\n")); process.exit(1); }
+  process.exit(0);
+}
+
+if (DEV_INDEX) {
+  index.generatedAt = new Date().toISOString();
+  index.ships.sort((a, b) => a.key.localeCompare(b.key));
+  writeFileSync(devIndexPath, JSON.stringify(index, null, 2) + "\n");
+  emit({ type: "done", dryRun: false, devIndex: devIndexPath, wouldPatch: patched, problems });
+  console.log(`[dev] index.dev.json ecrit (${patched.join(", ")}) — rien n'a ete envoye.`);
   process.exit(0);
 }
 

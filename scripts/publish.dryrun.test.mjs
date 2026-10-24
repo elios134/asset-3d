@@ -3,7 +3,7 @@ import assert from "node:assert/strict";
 import { execFileSync } from "node:child_process";
 import { fileURLToPath } from "node:url";
 import { dirname, join } from "node:path";
-import { mkdtempSync, writeFileSync, readFileSync } from "node:fs";
+import { mkdtempSync, writeFileSync, readFileSync, existsSync } from "node:fs";
 import { tmpdir } from "node:os";
 
 const ROOT = join(dirname(fileURLToPath(import.meta.url)), "..");
@@ -80,4 +80,23 @@ test("--textured : publie la variante TEXTUREE a cote du clay, sans toucher au c
   assert.deepEqual(plans.map((p) => [p.level, p.render, p.file]), [["exterior", "textured", "TARGET_Ship.exterior.glb"]]);
   const done = ev.find((e) => e.type === "done");
   assert.deepEqual(done.wouldUpload, ["TARGET_Ship.exterior.glb"]);
+});
+
+test("--painted --dev-index : écrit index.dev.json à côté (aucun envoi), index.json intact", () => {
+  const fx = fixture();
+  writeFileSync(join(fx.models, "TARGET_Ship.painted-exterior.glb"), miniGlb());
+  const before = readFileSync(fx.indexPath, "utf8");
+  const out = execFileSync("node", [
+    "scripts/publish.mjs", "--only=TARGET_Ship", "--painted", "--dev-index", "--json",
+    `--index=${fx.indexPath}`, `--meta=${fx.metaPath}`, `--models=${fx.models}`,
+  ], { cwd: ROOT, encoding: "utf8" });
+  const ev = out.trim().split("\n").map((l) => JSON.parse(l));
+  assert.ok(!ev.some((e) => e.type === "upload"));
+  assert.equal(readFileSync(fx.indexPath, "utf8"), before);
+  const devPath = join(fx.dir, "index.dev.json");
+  assert.ok(existsSync(devPath));
+  const dev = JSON.parse(readFileSync(devPath, "utf8"));
+  const ship = dev.ships.find((x) => x.key === "TARGET_Ship");
+  assert.deepEqual(ship.variants.map((v) => [v.level, v.render]), [["exterior", "clay"], ["exterior", "painted"]]);
+  assert.ok(ship.variants[1].modelUrl.endsWith("/TARGET_Ship.painted-exterior.glb"));
 });
