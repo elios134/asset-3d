@@ -216,12 +216,19 @@ const exp = (key, out, extra) => execFileSync(STARBREAKER, ["entity", "export", 
 const mul = (a, b) => { const o = new Array(16); for (let c = 0; c < 4; c++) for (let r = 0; r < 4; r++) { let s = 0; for (let k = 0; k < 4; k++) s += a[k * 4 + r] * b[c * 4 + k]; o[c * 4 + r] = s; } return o; };
 const ap = (m, x, y, z) => [m[0]*x+m[4]*y+m[8]*z+m[12], m[1]*x+m[5]*y+m[9]*z+m[13], m[2]*x+m[6]*y+m[10]*z+m[14]];
 
+// --resume : saute les vaisseaux deja peints ; --skip=K1,K2 : saute ces cles (un plantage natif de
+// sharp tue le processus sans passer par le catch -> on relance la flotte en ecartant le fautif).
+const RESUME = process.argv.includes("--resume");
+const SKIP = new Set((process.argv.find((x) => x.startsWith("--skip=")) ?? "--skip=").slice(7).split(",").filter(Boolean));
 const results = [];
 console.log(`Pipeline PEINT : ${batch.length} vaisseaux\n`);
 for (const key of batch) {
   const m = meta[key], l = m.dims?.l ?? 25; // defaut 25m si dims absentes (ships sans cote ShipData)
   const extOut = join(MODELS, `${key}.painted-exterior.glb`);
   const intOut = OUT_SUFFIX ? join(MODELS, OUT_SUFFIX, `${key}.${OUT_SUFFIX}-interior.glb`) : join(MODELS, `${key}.painted-interior.glb`);
+  const wantsInt = !EXT_ONLY && existsSync(join(MODELS, `${key}.clay-interior.glb`));
+  if (SKIP.has(key) || (RESUME && existsSync(extOut) && (!wantsInt || existsSync(intOut)))) continue;
+  console.log(`▶ ${key}`);
   if (OUT_SUFFIX) mkdirSync(join(MODELS, OUT_SUFFIX), { recursive: true });
   const tmpExt = join(MODELS, `_hd_${key}_ext.glb`), tmpInt = join(MODELS, `_hd_${key}_int.glb`);
   const tmpHull = join(MODELS, `_hd_${key}_hull.glb`);
@@ -353,7 +360,17 @@ for (const key of batch) {
     {
       const DOOR = /door|hatch|bulkhead/i, DOOR_EXCL = /wall|frame/i;
       const isDoor = (nm) => DOOR.test(nm) && !DOOR_EXCL.test(nm);
-      const tag = (node, name) => { if (node.getMesh() && !isDoor(node.getName() || "")) node.setName(name); for (const c of node.listChildren()) tag(c, name); };
+      // Parcours iteratif + deja-vus : la version recursive depassait la pile sur l'interieur du M80.
+      const tag = (root, name) => {
+        const seen = new Set(), stack = [root];
+        while (stack.length) {
+          const node = stack.pop();
+          if (seen.has(node)) continue;
+          seen.add(node);
+          if (node.getMesh() && !isDoor(node.getName() || "")) node.setName(name);
+          stack.push(...node.listChildren());
+        }
+      };
       for (const n of intDoc.getRoot().listNodes()) { const nm = n.getName() || ""; if (isDoor(nm)) tag(n, nm); }
       for (const n of intDoc.getRoot().listNodes()) if (!isDoor(n.getName() || "")) n.setName("");
       for (const m of intDoc.getRoot().listMeshes()) if (!isDoor(m.getName() || "")) m.setName("");
