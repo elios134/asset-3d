@@ -18,9 +18,8 @@
 //   node scripts/publish.mjs --only=DRAK_Clipper[,AEGS_Avenger_Titan] [--json] [--confirm] [--push]
 //   node scripts/publish.mjs --manifest=publish.json [...]        (manifest = tableau JSON de cles)
 //   (defaut = --dry-run : plan complet, aucun effet de bord)
-//   --textured : publie les variantes TEXTUREES (<key>.exterior.glb / <key>.interior.glb, pipeline
-//                build-hd) A COTE du clay, sans y toucher. L'app choisit le rendu (bascule Clay/Texture).
-//   --painted  : idem pour les variantes PEINTES (<key>.painted-exterior.glb / .painted-interior.glb).
+//   --painted  : publie les variantes PEINTES (<key>.painted-exterior.glb / .painted-interior.glb, pipeline
+//                build-hd) A COTE du clay, sans y toucher. L'app choisit le rendu (bascule Clay / Peint).
 //   --dev-index : n'envoie RIEN ; ecrit index.dev.json (local, ignore par git) a cote de index.json.
 //                L'app en developpement (npm run tauri dev) le lit et charge les .glb locaux.
 
@@ -36,7 +35,6 @@ const ROOT = join(dirname(fileURLToPath(import.meta.url)), "..");
 const JSON_MODE = process.argv.includes("--json");
 const CONFIRM = process.argv.includes("--confirm");
 const PUSH = process.argv.includes("--push");
-const TEXTURED = process.argv.includes("--textured");
 const PAINTED = process.argv.includes("--painted");
 const DEV_INDEX = process.argv.includes("--dev-index");
 const DRY = !CONFIRM;
@@ -87,11 +85,6 @@ const LEVELS = PAINTED
       { suffix: "painted-exterior", level: "exterior", render: "painted" },
       { suffix: "painted-interior", level: "interior", render: "painted", hasCollision: true },
     ]
-  : TEXTURED
-  ? [
-      { suffix: "exterior", level: "exterior", render: "textured" },
-      { suffix: "interior", level: "interior", render: "textured", hasCollision: true },
-    ]
   : [
       { suffix: "clay-exterior", level: "exterior", render: "clay" },
       { suffix: "clay-interior", level: "interior", render: "clay", hasCollision: true },
@@ -105,7 +98,7 @@ for (const key of keys) {
   const present = LEVELS.map((L) => ({ ...L, file: `${key}.${L.suffix}.glb`, path: join(modelsDir, `${key}.${L.suffix}.glb`) }))
     .filter((L) => existsSync(L.path));
   if (present.length === 0) {
-    problems.push(`[FICHIER] ${key} : aucun ${key}.${PAINTED ? "painted-" : TEXTURED ? "" : "clay-"}*.glb dans models/`);
+    problems.push(`[FICHIER] ${key} : aucun ${key}.${PAINTED ? "painted-" : "clay-"}*.glb dans models/`);
     emit({ type: "skip", key, reason: "no-glb" });
     continue;
   }
@@ -141,7 +134,7 @@ for (const key of keys) {
     const sizeBytes = statSync(L.path).size;
     const tris = countTriangles(buf);
 
-    // une variante par (niveau, rendu) : le texture s'ajoute a cote du clay sans l'ecraser
+    // une variante par (niveau, rendu) : le peint s'ajoute a cote du clay sans l'ecraser
     let v = ship.variants.find((x) => x.level === L.level && (x.render ?? L.render) === L.render);
     if (!v) {
       v = { level: L.level, label: labelOf[L.level] ?? L.level, modelUrl: `${releaseBase}/${L.file}`, hasInterior: L.level === "interior" };

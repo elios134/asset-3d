@@ -1,26 +1,23 @@
 #!/usr/bin/env node
-// build-hd.mjs — pipeline HD complet par vaisseau (texture WebP + shell occulteur).
+// build-hd.mjs — rendu PEINT par vaisseau (alternative au clay, choisie dans l'app).
 //
-// EXTERIEUR (silhouette texturee) : export --materials textures --no-attachments -> dedup + webp512 + meshopt.
-// INTERIEUR : export --materials textures -> reposition (si table d'ancrage) -> cull strays -> dedup + webp1024
-//   + meshopt -> FUSION de la silhouette exterieure (shell occulteur : les trous montrent la coque, pas les etoiles).
-//
-// Ecrit models/<key>.exterior.glb et models/<key>.interior.glb (remplace le flat). Robuste aux echecs.
-// Usage : node scripts/build-hd.mjs [KEY...]      (defaut : batch test de 8 varies)
-//         node scripts/build-hd.mjs --all
-//   --modules  exterieur AVEC armes/tourelles/propulseurs (comme build-clay ; table NO_MODULES respectee)
-// L'interieur recoit les couches de collision du clay (collision_walk / floor_patch / spawn_point) si
-// models/<key>.clay-interior.glb existe : la Visite texturee marche comme la Visite clay.
+// La couleur de la vraie texture du jeu est lue au niveau de chaque SOMMET et inscrite en couleur de
+// sommet ; tout le vaisseau partage ensuite UN materiau (+ un pour les vitres) -> autant d'appels de
+// dessin que le clay, couleurs reelles sans le detail fin, aucune texture dans le fichier.
+// EXTERIEUR : export --materials textures (--modules : armes/tourelles) -> peinture -> fusion -> meshopt.
+// INTERIEUR (seulement si models/<key>.clay-interior.glb existe : il fournit le plancher de collision) :
+//   export -> reposition (table d'ancrage) -> culls -> peinture -> zones de 10 m (--chunk) -> shell
+//   occulteur (exterieur peint) -> couches de collision du clay greffees -> meshopt.
+// Ecrit models/<key>.painted-exterior.glb et models/<key>.painted-interior.glb. Robuste aux echecs.
+// Usage : node scripts/build-hd.mjs [KEY...] | --all   [--modules] [--chunk] [--mip=N]
+//         (flotte : node scripts/build-hd.mjs --all --modules --chunk)
 
 import { NodeIO } from "@gltf-transform/core";
-import { ALL_EXTENSIONS, EXTTextureWebP, KHRTextureBasisu } from "@gltf-transform/extensions";
+import { ALL_EXTENSIONS } from "@gltf-transform/extensions";
 import { dedup, prune, meshopt, mergeDocuments, unpartition, getBounds, flatten, join as joinPrims, simplify, dequantize } from "@gltf-transform/functions";
 import { MeshoptEncoder, MeshoptDecoder, MeshoptSimplifier } from "meshoptimizer";
 import sharp from "sharp";
-import { execFileSync, execFile } from "node:child_process";
-import { promisify } from "node:util";
-import { tmpdir, cpus } from "node:os";
-import { writeFileSync } from "node:fs";
+import { execFileSync } from "node:child_process";
 import { readFileSync, existsSync, statSync, rmSync, renameSync, mkdirSync } from "node:fs";
 import { fileURLToPath } from "node:url";
 import { dirname, join } from "node:path";
@@ -32,7 +29,7 @@ import { skipModules } from "./lib/no-modules.mjs";
 import { reorientTurns } from "./lib/reorient.mjs";
 import { reorientDoc } from "./rotate-glb.mjs";
 import { chunkVisual } from "./lib/chunk.mjs";
-const { starbreaker: STARBREAKER, p4k: P4K, blender: BLENDER, toktx: TOKTX_CFG } = loadConfig({ root: ROOT }).paths;
+const { starbreaker: STARBREAKER, p4k: P4K } = loadConfig({ root: ROOT }).paths;
 const meta = JSON.parse(readFileSync(join(ROOT, "ships.meta.json"), "utf8"));
 const anchored = new Set(Object.keys(JSON.parse(readFileSync(join(ROOT, "interior-anchors.json"), "utf8"))).filter((k) => k !== "_comment"));
 const primBlacklist = (() => { try { const j = JSON.parse(readFileSync(join(ROOT, "interior-prim-blacklist.json"), "utf8")); delete j._comment; return j; } catch { return {}; } })();
@@ -71,27 +68,10 @@ const MODULES = process.argv.includes("--modules");
 // --chunk : interieur decoupe en zones de 10 m (contrat « bulle » de la Visite : seules les zones
 // proches sont dessinees). Indispensable sur les capitaux (Idris ~4 M triangles). Pas de join/simplify.
 const CHUNK = process.argv.includes("--chunk");
-// --lite-materials : materiaux harmonises -> beaucoup moins de programmes d'affichage distincts (attente
-// de compilation a l'entree de la Visite) : extensions KHR_materials_* retirees (vitrages -> transparence
-// simple, comme l'app le faisait deja), occlusion retiree (sans effet visible sous l'eclairage Visite).
-const LITE = process.argv.includes("--lite-materials");
-// --painted : rendu « peint » (alternative legere au texture pour les capitaux). La couleur de la vraie
-// texture est lue au niveau de chaque SOMMET et inscrite en couleur de sommet ; tout le vaisseau partage
-// ensuite UN materiau (+ un pour les vitres) -> autant d'appels de dessin que le clay, couleurs reelles
-// sans le detail fin. Fichiers <key>.painted-exterior.glb / .painted-interior.glb, aucune texture.
-const PAINTED = process.argv.includes("--painted");
-// Resolution des textures : --mip=N (niveau lu dans le p4k : 0 = plein, 4 = 1/16) et taille max WebP.
+// --mip=N : niveau des textures lues dans le p4k pour la peinture (0 = plein, 2 = 1/4 : assez pour une
+// couleur par sommet, et 4x plus rapide a decoder).
 const argNum = (name, def) => { const a = process.argv.find((x) => x.startsWith(`--${name}=`)); return a ? parseInt(a.split("=")[1], 10) : def; };
-const MIP = argNum("mip", 4);
-const EXT_TEX = argNum("ext-tex", 512);
-const INT_TEX = argNum("int-tex", 1024);
-// --ktx2 : textures en KTX2/Basis (restent COMPRESSEES dans la carte graphique : ~4-8x moins de
-// memoire video que le WebP, decompresse en RGBA a l'upload). Encodeur : toktx (KTX-Software).
-const KTX2 = process.argv.includes("--ktx2");
-const TOKTX = process.env.TOKTX || TOKTX_CFG || "toktx";
-// --ao : ombrage ambiant precalcule (Blender Cycles) dans COLOR_0 de l'interieur.
-const AO = process.argv.includes("--ao");
-const AO_SAMPLES = argNum("ao-samples", 32);
+const MIP = argNum("mip", 2);
 const OUT_SUFFIX = (() => { const a = process.argv.find((x) => x.startsWith("--out-suffix=")); return a ? a.split("=")[1] : null; })();
 const tryReadJson = (p) => { try { return JSON.parse(readFileSync(p, "utf8")); } catch { return null; } };
 const keys = Object.keys(meta).filter((k) => k !== "_comment" && !isExcluded(k) && meta[k].dims?.l);
@@ -154,7 +134,7 @@ const fixBlackAlbedo = (doc) => { let n = 0; for (const mat of doc.getRoot().lis
 // des couleurs. Laisses dans le .glb, three.js les multiplie a l'albedo -> coques violettes/magenta
 // (constate sur l'essai Cutlass/Avenger/Constellation). Retires partout.
 const stripVertexColors = (doc) => { let n = 0; for (const mesh of doc.getRoot().listMeshes()) for (const pr of mesh.listPrimitives()) for (const sem of pr.listSemantics()) if (sem.startsWith("COLOR_")) { pr.setAttribute(sem, null); n++; } return n; };
-// Couches de collision du clay greffees dans l'interieur texture (meme repere : meme export LOD +
+// Couches de collision du clay greffees dans l'interieur peint (meme repere : meme export LOD +
 // meme reposition, meme reorientation).
 const COLLISION = /collision|floor_patch|spawn_point/i;
 const graftCollision = async (key, intDoc) => {
@@ -177,112 +157,6 @@ const graftCollision = async (key, intDoc) => {
   for (const sc of clay.getRoot().listScenes()) for (const n of sc.listChildren()) { const d = map.get(n); if (d) scene.addChild(d); }
   await intDoc.transform(unpartition()); // un seul buffer (contrat GLB)
   return kept;
-};
-// Textures -> WebP <= size px. PAS textureCompress() de gltf-transform : au-dela de ~256 px il rend
-// une partie des images CORROMPUES (72/170 sur le Cutlass en --mip=1 ; nombre variable d'une relecture
-// a l'autre = memoire partagee ecrasee) -> pieces blanches dans le viewer. Ici : une image a la fois,
-// resultat copie dans un Uint8Array neuf (verifie : 0/170 corrompue apres reecriture).
-const compressTextures = async (doc, size) => {
-  doc.createExtension(EXTTextureWebP).setRequired(true);
-  for (const t of doc.getRoot().listTextures()) {
-    const img = t.getImage(); if (!img) continue;
-    const out = await sharp(Buffer.from(img)).resize(size, size, { fit: "inside", withoutEnlargement: true }).webp({ quality: 80 }).toBuffer();
-    t.setImage(new Uint8Array(out)); t.setMimeType("image/webp");
-    const uri = t.getURI(); if (uri) t.setURI(uri.replace(/\.\w+$/, ".webp"));
-  }
-};
-// KTX2 : couleur (baseColor, emissive) -> ETC1S sRGB (compact) ; normales -> UASTC lineaire + RDO +
-// zstd (l'ETC1S abime les normales) ; autres donnees (rugosite/metal, occlusion) -> ETC1S lineaire
-// (tolerent bien). Les textures de DONNEES sont a la moitie de la taille couleur : elles pesaient les
-// 2/3 du Cutlass pour un apport visuel moindre. Mipmaps generees.
-// Dimensions ramenees a des multiples de 4 (blocs 4x4 de Basis).
-const execFileP = promisify(execFile);
-const ktx2Textures = async (doc, size) => {
-  const color = new Set(), normal = new Set();
-  for (const m of doc.getRoot().listMaterials()) {
-    for (const t of [m.getBaseColorTexture(), m.getEmissiveTexture()]) if (t) color.add(t);
-    if (m.getNormalTexture()) normal.add(m.getNormalTexture());
-  }
-  const dir = join(tmpdir(), `ktx2-${process.pid}-${Date.now()}`); mkdirSync(dir, { recursive: true });
-  const jobs = doc.getRoot().listTextures().filter((t) => t.getImage() && t.getMimeType() !== "image/ktx2"); // coque deja en KTX2 : intacte
-  let next = 0;
-  const work = async () => {
-    for (let i = next++; i < jobs.length; i = next++) {
-      const t = jobs[i], isColor = color.has(t), isNormal = !isColor && normal.has(t);
-      const max = isColor ? size : Math.max(128, size / 2);
-      const img = sharp(Buffer.from(t.getImage())).resize(max, max, { fit: "inside", withoutEnlargement: true });
-      const { data, info } = await img.png().toBuffer({ resolveWithObject: true });
-      const w = Math.max(4, Math.round(info.width / 4) * 4), h = Math.max(4, Math.round(info.height / 4) * 4);
-      const png = join(dir, `${i}.png`), out = join(dir, `${i}.ktx2`);
-      writeFileSync(png, w === info.width && h === info.height ? data : await sharp(data).resize(w, h, { fit: "fill" }).png().toBuffer());
-      const enc = isNormal ? ["--encode", "uastc", "--uastc_quality", "2", "--uastc_rdo_l", "1.0", "--zcmp", "18"] : ["--encode", "etc1s", "--clevel", "2", "--qlevel", "255"];
-      const args = ["--t2", "--genmipmap", ...enc, "--assign_oetf", isColor ? "srgb" : "linear", out, png];
-      await execFileP(TOKTX, args, { windowsHide: true });
-      t.setImage(new Uint8Array(readFileSync(out))); t.setMimeType("image/ktx2");
-      const uri = t.getURI(); if (uri) t.setURI(uri.replace(/\.\w+$/, ".ktx2"));
-    }
-  };
-  await Promise.all(Array.from({ length: Math.max(2, Math.min(8, cpus().length - 1)) }, work));
-  rmSync(dir, { recursive: true, force: true });
-  for (const e of doc.getRoot().listExtensionsUsed()) if (e.extensionName === "EXT_texture_webp") e.dispose();
-  doc.createExtension(KHRTextureBasisu).setRequired(true);
-};
-// OMBRAGE AMBIANT PRECALCULE (interieur). Blender ne lit pas le KTX2 et reecrirait les materiaux :
-// on ne lui envoie qu'une copie GEOMETRIE SEULE, il cuit l'AO en couleurs de sommets (bake-ao.py),
-// puis on reporte la valeur sur le document d'origine sommet par sommet, par POSITION MONDE (Blender
-// reordonne/eclate les sommets, mais pas leurs positions). three.js multiplie l'albedo par COLOR_0.
-// Sommet sans correspondance -> 1 (pas d'assombrissement) : surtout les micro-pieces ultra denses
-// (boutons, visserie ~5 cm) que Blender supprime a l'import (triangles degeneres) — ~22 % des sommets
-// du Cutlass, sans effet visible. Echec Blender -> pas d'AO, build continue.
-const posKey = (x, y, z, q = 500) => `${Math.round(x * q)},${Math.round(y * q)},${Math.round(z * q)}`;
-const worldPositions = (node, prim, fn) => {
-  const M = node.getWorldMatrix(), a = prim.getAttribute("POSITION"); if (!a) return;
-  const p = [0, 0, 0];
-  for (let i = 0; i < a.getCount(); i++) { a.getElement(i, p); const w = ap(M, p[0], p[1], p[2]); fn(i, w[0], w[1], w[2]); }
-};
-const bakeAO = async (key, doc) => {
-  if (!BLENDER || !existsSync(BLENDER)) { console.log(`  ⚠ ${key} : Blender introuvable (app-config.json paths.blender) — pas d'AO`); return 0; }
-  const geo = join(MODELS, `_ao_${key}_geo.glb`), baked = join(MODELS, `_ao_${key}_baked.glb`);
-  try {
-    const copy = await io.readBinary(await io.writeBinary(doc));
-    for (const m of copy.getRoot().listMeshes()) for (const pr of m.listPrimitives()) { pr.setMaterial(null); for (const sem of pr.listSemantics()) if (sem !== "POSITION" && sem !== "NORMAL") pr.setAttribute(sem, null); }
-    for (const n of copy.getRoot().listNodes()) if (/collision|floor_patch|occluder/i.test(n.getName() || "")) n.setMesh(null);
-    await copy.transform(prune());
-    await io.write(geo, copy);
-    execFileSync(BLENDER, ["--background", "--python", join(ROOT, "scripts/bake-ao.py"), "--", geo, baked, String(AO_SAMPLES)], { stdio: "ignore", timeout: 3600000 });
-    const bdoc = await io.read(baked);
-    // Cle fine (2 mm) puis repli grossier (2 cm) : Blender deplace legerement certains sommets.
-    const ao = new Map(), coarse = new Map(), c = [0, 0, 0, 0];
-    for (const n of bdoc.getRoot().listNodes()) { const mesh = n.getMesh(); if (!mesh) continue;
-      for (const pr of mesh.listPrimitives()) { const col = pr.getAttribute("COLOR_0"); if (!col) continue;
-        worldPositions(n, pr, (i, x, y, z) => { col.getElement(i, c); ao.set(posKey(x, y, z), c[0]); coarse.set(posKey(x, y, z, 50), c[0]); }); } }
-    let hit = 0, total = 0;
-    const done = new Set();
-    for (const n of doc.getRoot().listNodes()) { const mesh = n.getMesh(); if (!mesh) continue;
-      for (const pr of mesh.listPrimitives()) { if (done.has(pr)) continue; done.add(pr);
-        const pos = pr.getAttribute("POSITION"); if (!pos) continue;
-        const arr = new Float32Array(pos.getCount() * 3).fill(1);
-        worldPositions(n, pr, (i, x, y, z) => { total++; const v = ao.get(posKey(x, y, z)) ?? coarse.get(posKey(x, y, z, 50)); if (v != null) { hit++; arr[i * 3] = arr[i * 3 + 1] = arr[i * 3 + 2] = v; } });
-        pr.setAttribute("COLOR_0", doc.createAccessor().setType("VEC3").setArray(arr).setBuffer(doc.getRoot().listBuffers()[0])); } }
-    console.log(`  ◐ ${key} : AO cuit (${AO_SAMPLES} echantillons), ${Math.round((hit / (total || 1)) * 100)} % des sommets apparies`);
-    return hit;
-  } catch (e) { console.log(`  ⚠ ${key} : bake AO en echec (${e.message.split("\n")[0]}) — pas d'AO`); return 0; }
-  finally { for (const f of [geo, baked]) if (existsSync(f)) rmSync(f); }
-};
-const KEEP_MAT_EXT = new Set(["KHR_materials_emissive_strength"]);
-const liteMaterials = (doc) => {
-  for (const m of doc.getRoot().listMaterials()) {
-    if (m.getExtension("KHR_materials_transmission")) {
-      const f = m.getBaseColorFactor();
-      m.setBaseColorFactor([f[0], f[1], f[2], 0.25]).setAlphaMode("BLEND");
-    }
-    for (const e of m.listExtensions()) if (!KEEP_MAT_EXT.has(e.extensionName)) m.setExtension(e.extensionName, null);
-    m.setOcclusionTexture(null);
-    // extras CIG (chemins de couches, attributs) : propres a chaque materiau -> empechent dedup() de
-    // fusionner des doublons exacts (Carrack : 1 030 materiaux pour 574 distincts). On ne garde que le
-    // marqueur de teinte de livree, lu par l'app pour ne pas blanchir une vraie peinture noire.
-    m.setExtras(authoredTint(m) ? { palette_tint: 1 } : {});
-  }
 };
 // --- rendu peint ---
 const srgbToLinear = (c) => (c <= 0.04045 ? c / 12.92 : Math.pow((c + 0.055) / 1.055, 2.4));
@@ -338,28 +212,27 @@ const bakePaint = async (doc) => {
   await doc.transform(prune());
   return decals;
 };
-const encodeTextures = (doc, size) => (KTX2 ? ktx2Textures(doc, size) : compressTextures(doc, size));
 const exp = (key, out, extra) => execFileSync(STARBREAKER, ["entity", "export", key, out, "--materials", "textures", "--mip", String(MIP), ...extra], { env: { ...process.env, SC_DATA_P4K: P4K }, stdio: "ignore", timeout: 600000 });
 const mul = (a, b) => { const o = new Array(16); for (let c = 0; c < 4; c++) for (let r = 0; r < 4; r++) { let s = 0; for (let k = 0; k < 4; k++) s += a[k * 4 + r] * b[c * 4 + k]; o[c * 4 + r] = s; } return o; };
 const ap = (m, x, y, z) => [m[0]*x+m[4]*y+m[8]*z+m[12], m[1]*x+m[5]*y+m[9]*z+m[13], m[2]*x+m[6]*y+m[10]*z+m[14]];
 
 const results = [];
-console.log(`Pipeline HD : ${batch.length} vaisseaux\n`);
+console.log(`Pipeline PEINT : ${batch.length} vaisseaux\n`);
 for (const key of batch) {
   const m = meta[key], l = m.dims?.l ?? 25; // defaut 25m si dims absentes (ships sans cote ShipData)
-  const extOut = join(MODELS, PAINTED ? `${key}.painted-exterior.glb` : `${key}.exterior.glb`);
-  const intOut = OUT_SUFFIX ? join(MODELS, OUT_SUFFIX, `${key}.${OUT_SUFFIX}-interior.glb`) : join(MODELS, PAINTED ? `${key}.painted-interior.glb` : `${key}.interior.glb`);
+  const extOut = join(MODELS, `${key}.painted-exterior.glb`);
+  const intOut = OUT_SUFFIX ? join(MODELS, OUT_SUFFIX, `${key}.${OUT_SUFFIX}-interior.glb`) : join(MODELS, `${key}.painted-interior.glb`);
   if (OUT_SUFFIX) mkdirSync(join(MODELS, OUT_SUFFIX), { recursive: true });
   const tmpExt = join(MODELS, `_hd_${key}_ext.glb`), tmpInt = join(MODELS, `_hd_${key}_int.glb`);
   const tmpHull = join(MODELS, `_hd_${key}_hull.glb`);
   // Meme reorientation que build-clay (table REORIENT : Clipper, Reliant...) sur l'exterieur ET
   // l'interieur -> meme repere que le clay (plancher de collision greffe aligne).
   const turns = reorientTurns(key);
-  // Rendu peint : interieur seulement si le clay en publie un (il fournit le plancher de collision).
-  const extOnly = EXT_ONLY || (PAINTED && !existsSync(join(MODELS, `${key}.clay-interior.glb`)));
+  // Interieur seulement si le clay en publie un (il fournit le plancher de collision).
+  const extOnly = EXT_ONLY || !existsSync(join(MODELS, `${key}.clay-interior.glb`));
   try {
     let hull;
-    // 1) EXTERIEUR silhouette texturee (sauf --interiors-only)
+    // 1) EXTERIEUR peint (sauf --interiors-only)
     if (!INT_ONLY) {
       // echelle de LODs : le plus fin qui tient dans le budget tris
       let extLodUsed = null;
@@ -373,10 +246,10 @@ for (const key of batch) {
       stripLights(extDoc);
       stripVertexColors(extDoc);
       fixBlendLayerColor(extDoc);
-      if (LITE) liteMaterials(extDoc);
       fixBlackAlbedo(extDoc);
       await extDoc.transform(dedup(), prune());
-      if (PAINTED) { await bakePaint(extDoc); await extDoc.transform(flatten(), joinPrims()); } else await encodeTextures(extDoc, EXT_TEX);
+      await bakePaint(extDoc);
+      await extDoc.transform(flatten(), joinPrims());
       unshareAccessors(extDoc);
       await extDoc.transform(meshopt({ encoder: MeshoptEncoder, level: "high" }));
       await io.write(extOut, extDoc);
@@ -391,7 +264,7 @@ for (const key of batch) {
     // reference coque/shell = exterieur (existant si --interiors-only)
     if (INT_ONLY) hull = getBounds((await io.read(extOut)).getRoot().listScenes()[0]);
 
-    // 2) INTERIEUR texture -> reposition (si ancre) -> cull strays -> webp -> shell
+    // 2) INTERIEUR -> reposition (si ancre) -> cull strays -> peinture -> zones -> shell
     // LOD ADAPTATIF (round 8, decision user « 96 Mo strict ») : on tente le LOD1 (detail x2 ; gros
     // gagnants du scan delta : Railen/Tyilui/Ironclad/Tiburon/MOLE/Starlifter) et on retombe au
     // LOD2 (+simplify) si le fichier FINAL depasse maxSizeBytes. Pre-filtre : un export LOD1
@@ -487,8 +360,7 @@ for (const key of batch) {
     }
     // flatten+join : draw calls /10-20 (retour user : lag Visite sur les capitaux — Polaris 7754 draws).
     // keepNamed : seuls les noeuds encore nommes (= portes) echappent a la fusion.
-    if (LITE) liteMaterials(intDoc);
-    if (PAINTED) console.log(`  🎨 ${key} : interieur peint (${await bakePaint(intDoc)} decals retires)`);
+    console.log(`  🎨 ${key} : interieur peint (${await bakePaint(intDoc)} decals retires)`);
     if (CHUNK) {
       // mode BULLE (comme build-clay --chunk) : zones spatiales, instancing preserve, pas de join/simplify.
       await intDoc.transform(dedup(), prune());
@@ -509,8 +381,6 @@ for (const key of batch) {
       await MeshoptSimplifier.ready;
       await intDoc.transform(simplify({ simplifier: MeshoptSimplifier, ratio: (BUDGET.interior.maxTris / it) * 0.95, error: 0.01 }));
     }
-    if (AO) await bakeAO(key, intDoc);
-    if (!PAINTED) await encodeTextures(intDoc, INT_TEX);
     // PAS de meshopt ici : la quantization ne doit passer qu'UNE fois, tout a la fin. Re-quantizer
     // des donnees deja quantizees (l'ancien schema : meshopt interieur PUIS meshopt final apres
     // fusion du shell) reintroduisait la corruption sur les prims instanciees (vitres Valkyrie /
@@ -520,9 +390,8 @@ for (const key of batch) {
     // du shell ne doit matcher le masquage app) ; (2) pre-joindre le shell SEUL (fusion maximale) ;
     // (3) tagger "occluder_shell" : CONTRAT APP = render-only, EXCLU du collider (le shell ne doit
     // jamais bloquer le joueur ni porter de collision).
-    // Le shell garde ses VRAIS materiaux texture (rendu valide par l'user : « les trous montrent la
-    // coque, c'est parfait ») — l'app ne l'override plus, elle le rend tel quel (render-only via le
-    // nom). Anonymiser puis joindre (fusion par materiau), puis tag occluder_shell sur ce qui reste.
+    // Le shell garde son materiau peint (« les trous montrent la coque ») — l'app le rend tel quel
+    // (render-only via le nom). Anonymiser puis joindre (fusion par materiau), puis tag occluder_shell sur ce qui reste.
     const shellDoc = await io.read(extOut);
     for (const n of shellDoc.getRoot().listNodes()) n.setName("");
     for (const m of shellDoc.getRoot().listMeshes()) m.setName("");
@@ -565,6 +434,6 @@ for (const key of batch) {
 }
 const ok = results.filter((r) => r.ok);
 const tot = ok.reduce((s, r) => s + r.ext + r.int, 0);
-console.log(`\n${ok.length}/${results.length} OK. Total HD : ${mb(tot)} (moy ${mb(tot / (ok.length || 1))}/vaisseau -> extrapolation 229 = ~${(tot / (ok.length || 1) * 229 / 1073741824).toFixed(1)} Go)`);
+console.log(`\n${ok.length}/${results.length} OK. Total peint : ${mb(tot)} (moy ${mb(tot / (ok.length || 1))}/vaisseau -> extrapolation 229 = ~${(tot / (ok.length || 1) * 229 / 1073741824).toFixed(1)} Go)`);
 const ko = results.filter((r) => !r.ok); if (ko.length) console.log(`Echecs : ${ko.map((r) => r.key).join(", ")}`);
 function mb(b) { return (b / 1048576).toFixed(1) + " Mo"; }

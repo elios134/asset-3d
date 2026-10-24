@@ -15,6 +15,6 @@ export function loadConfig({ root = DEFAULT_ROOT } = {}) {
   for (const key of ["starbreaker", "p4k"]) {
     if (!paths[key]) throw new Error(`app-config.json : chemin "${key}" manquant.`);
   }
-  // Outils optionnels (pipeline HD) : Blender (bake AO) et toktx (KTX2). null si non renseignes.
-  return { ...base, paths: { starbreaker: paths.starbreaker, p4k: paths.p4k, blender: paths.blender ?? null, toktx: paths.toktx ?? null } };
+  // Outil optionnel : Blender (bake-ao). null si non renseigne.
+  return { ...base, paths: { starbreaker: paths.starbreaker, p4k: paths.p4k, blender: paths.blender ?? null } };
 }
