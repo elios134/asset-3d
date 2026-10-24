@@ -86,3 +86,18 @@ test("--painted --dev-index : écrit index.dev.json à côté (aucun envoi), ind
   assert.deepEqual(ship.variants.map((v) => [v.level, v.render]), [["exterior", "clay"], ["exterior", "painted"]]);
   assert.ok(ship.variants[1].modelUrl.endsWith("/TARGET_Ship.painted-exterior.glb"));
 });
+
+test("--painted : jamais de peint sans clay publié au même niveau (intérieur non publié, vaisseau absent)", () => {
+  const fx = fixture();
+  writeFileSync(join(fx.models, "TARGET_Ship.painted-exterior.glb"), miniGlb());
+  writeFileSync(join(fx.models, "TARGET_Ship.painted-interior.glb"), miniGlb()); // pas de clay interieur publie
+  writeFileSync(join(fx.models, "ORPHAN_Test.painted-exterior.glb"), miniGlb()); // absent de l'index
+  const out = execFileSync("node", [
+    "scripts/publish.mjs", "--only=TARGET_Ship,ORPHAN_Test", "--painted", "--json",
+    `--index=${fx.indexPath}`, `--meta=${fx.metaPath}`, `--models=${fx.models}`,
+  ], { cwd: ROOT, encoding: "utf8" });
+  const done = out.trim().split("\n").map((l) => JSON.parse(l)).find((e) => e.type === "done");
+  assert.deepEqual(done.wouldUpload, ["TARGET_Ship.painted-exterior.glb"]);
+  assert.deepEqual(done.wouldPatch, ["TARGET_Ship"]);
+  assert.ok(done.problems.some((p) => p.includes("ORPHAN_Test")));
+});

@@ -109,6 +109,17 @@ for (const key of keys) {
   }
 
   let ship = index.ships.find((s) => s.key === key);
+  // Le peint double le clay publie, niveau par niveau : jamais de vaisseau ni d'interieur peint sans
+  // son clay (interieurs non visitables volontairement non publies ; fallback clay au chargement).
+  if (PAINTED) {
+    const hasClay = (lvl) => ship?.variants.some((x) => x.level === lvl && (x.render ?? "clay") === "clay");
+    for (const L of present.filter((L) => !hasClay(L.level))) emit({ type: "skip", key, level: L.level, reason: "no-clay" });
+    present.splice(0, present.length, ...present.filter((L) => hasClay(L.level)));
+    if (present.length === 0) {
+      problems.push(`[CLAY] ${key} : aucun clay publie, le peint n'est pas publie seul`);
+      continue;
+    }
+  }
   const isNew = !ship;
   if (isNew) {
     const m = meta[key];
