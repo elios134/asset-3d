@@ -31,7 +31,7 @@ import { reorientDoc } from "./rotate-glb.mjs";
 import { skipModules } from "./lib/no-modules.mjs";
 import { loadConfig } from "./lib/config.mjs";
 import { chunkVisual } from "./lib/chunk.mjs";
-import { loadExclusions } from "./lib/exclusions.mjs";
+import { makeExcluder } from "./lib/exclusions.mjs";
 
 const ROOT = join(dirname(fileURLToPath(import.meta.url)), "..");
 const MODELS = join(ROOT, "models");
@@ -68,8 +68,8 @@ const DRY_RUN = process.argv.includes("--dry-run");
 const emit = makeEmitter(JSON_MODE);
 if (JSON_MODE) console.log = () => {}; // stdout = NDJSON pur : on silence les logs humains (les enfants sont déjà stdio:"ignore")
 
-const excluded = loadExclusions(ROOT); // variantes ecartees a la main (exclusions.json) : sautees par --all
-const keys = Object.keys(meta).filter((k) => k !== "_comment" && meta[k].dims?.l && !excluded.has(k));
+const isExcluded = makeExcluder(ROOT, meta); // regles de l'app + exclusions.json : sautes par --all
+const keys = Object.keys(meta).filter((k) => k !== "_comment" && meta[k].dims?.l && !isExcluded(k));
 let batch;
 const args = process.argv.slice(2).filter((a) => !a.startsWith("--"));
 if (process.argv.includes("--all")) batch = (habitable && !EXT_ONLY) ? keys.filter((k) => habitable.has(k)) : keys; // ext-only --all = TOUS les ships (galerie resine)

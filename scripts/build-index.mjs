@@ -16,6 +16,7 @@ import { createHash } from "node:crypto";
 import { readFileSync, writeFileSync, readdirSync, statSync } from "node:fs";
 import { fileURLToPath } from "node:url";
 import { dirname, join } from "node:path";
+import { makeExcluder } from "./lib/exclusions.mjs";
 
 const ROOT = join(dirname(fileURLToPath(import.meta.url)), "..");
 const STRICT = process.argv.includes("--strict");
@@ -23,6 +24,7 @@ const SCHEMA_VERSION = 2;
 
 const config = readJson(join(ROOT, "config.json"));
 const meta = readJson(join(ROOT, "ships.meta.json"));
+const isExcluded = makeExcluder(ROOT, meta); // regles de l'app (source unique) + exclusions.json
 const modelsDir = join(ROOT, "models");
 // classification d'habitabilite (surface de plancher praticable) — optionnelle
 const interiorKinds = tryReadJson(join(ROOT, "interior-kinds.json"))?.kinds ?? {};
@@ -53,11 +55,9 @@ for (const file of glbFiles.sort()) {
 
   // PIVOT CLAY : galerie ET visites en resine. clay-interior -> variante "interior" (render:clay,
   // prioritaire sur HD) ; clay-exterior -> variante "exterior" (render:clay, prioritaire sur HD).
-  // Exclusions : interieur explose (Mauler, verdict QA app) ; editions speciales (BIS/executive/wikelo/
-  // pyam) que la flotte HD excluait deja -> garde la coherence a 229 (les clay-ext en trop = orphelins).
+  // Exclusions : interieur explose (Mauler, verdict QA app) ; vaisseaux exclus par l'app.
   const EXCLUDE_INTERIOR = new Set(["VNCL_Mauler"]);
-  const EXCLUDE_EDITION = /\bwikelo\b|\bpyam\b|best in show|\bbis\d*\b|\bexecutive\b|\bexec\b/;
-  if (EXCLUDE_EDITION.test(`${meta[key]?.name ?? ""} ${key}`.replace(/_/g, " ").toLowerCase())) continue;
+  if (isExcluded(key)) continue;
   let isClayInterior = false, isClayExterior = false;
   if (level === "clay-interior") { level = "interior"; isClayInterior = true; }
   if (level === "clay-exterior") { level = "exterior"; isClayExterior = true; }

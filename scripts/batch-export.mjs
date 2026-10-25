@@ -20,6 +20,7 @@ import { fileURLToPath } from "node:url";
 import { dirname, join as pjoin } from "node:path";
 import { loadConfig } from "./lib/config.mjs";
 import { makeEmitter } from "./lib/emit.mjs";
+import { makeExcluder } from "./lib/exclusions.mjs";
 
 const ROOT = pjoin(dirname(fileURLToPath(import.meta.url)), "..");
 const MODELS = pjoin(ROOT, "models");
@@ -49,13 +50,12 @@ else {
   batch = [...new Set(batch)];
 }
 
-// Exclusion des editions speciales / peintures (teste sur name + classNameCig, underscores -> espaces)
-const EXCLUDE = /\bwikelo\b|\bpyam\b|best in show|\bbis\d*\b|\bexecutive\b|\bexec\b/;
-const isExcluded = (k) => EXCLUDE.test(`${meta[k]?.name ?? ""} ${k}`.replace(/_/g, " ").toLowerCase());
+// Regles de l'app (source unique) + liste manuelle exclusions.json.
+const isExcluded = makeExcluder(ROOT, meta);
 {
   const before = batch.length;
   batch = batch.filter((k) => !isExcluded(k));
-  if (before - batch.length > 0 && !JSON_MODE) console.log(`Exclus (editions wikelo/pyam/bis/exec) : ${before - batch.length}`);
+  if (before - batch.length > 0 && !JSON_MODE) console.log(`Exclus (regles app + exclusions.json) : ${before - batch.length}`);
 }
 
 // LOD selon la longueur (paliers bruts de StarBreaker)

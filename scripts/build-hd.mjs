@@ -29,14 +29,13 @@ import { skipModules } from "./lib/no-modules.mjs";
 import { reorientTurns } from "./lib/reorient.mjs";
 import { reorientDoc } from "./rotate-glb.mjs";
 import { chunkVisual } from "./lib/chunk.mjs";
-import { loadExclusions } from "./lib/exclusions.mjs";
+import { makeExcluder } from "./lib/exclusions.mjs";
 const { starbreaker: STARBREAKER, p4k: P4K } = loadConfig({ root: ROOT }).paths;
 const meta = JSON.parse(readFileSync(join(ROOT, "ships.meta.json"), "utf8"));
 const anchored = new Set(Object.keys(JSON.parse(readFileSync(join(ROOT, "interior-anchors.json"), "utf8"))).filter((k) => k !== "_comment"));
 const primBlacklist = (() => { try { const j = JSON.parse(readFileSync(join(ROOT, "interior-prim-blacklist.json"), "utf8")); delete j._comment; return j; } catch { return {}; } })();
-const EXCLUDE = /\bwikelo\b|\bpyam\b|best in show|\bbis\d*\b|\bexecutive\b|\bexec\b/;
-const MANUAL_EXCLUDED = loadExclusions(ROOT);
-const isExcluded = (k) => MANUAL_EXCLUDED.has(k) || EXCLUDE.test(`${meta[k]?.name ?? ""} ${k}`.replace(/_/g, " ").toLowerCase());
+// Regles de l'app (source unique) + liste manuelle exclusions.json.
+const isExcluded = makeExcluder(ROOT, meta);
 const GENERIC = /^(box|cube|plane|cylinder|sphere|cone|circle|icosphere|object|empty)[._]?\d+$/i;
 // LOD adaptatif au budget (retour user : capitaux meconnaissables au LOD3 — Idris 42k tris pour 800k
 // de budget). On tente le LOD le plus fin plausible et on retombe si le budget tris est depasse.

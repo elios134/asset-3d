@@ -23,6 +23,7 @@ import { fileURLToPath } from "node:url";
 import { dirname, join as pjoin } from "node:path";
 import { loadConfig } from "./lib/config.mjs";
 import { makeEmitter } from "./lib/emit.mjs";
+import { makeExcluder } from "./lib/exclusions.mjs";
 
 const ROOT = pjoin(dirname(fileURLToPath(import.meta.url)), "..");
 const MODELS = pjoin(ROOT, "models");
@@ -36,8 +37,8 @@ const emit = makeEmitter(JSON_MODE);
 
 const meta = JSON.parse(readFileSync(pjoin(ROOT, "ships.meta.json"), "utf8"));
 const anchored = new Set(Object.keys(JSON.parse(readFileSync(pjoin(ROOT, "interior-anchors.json"), "utf8"))).filter((k) => k !== "_comment"));
-const EXCLUDE = /\bwikelo\b|\bpyam\b|best in show|\bbis\d*\b|\bexecutive\b|\bexec\b/;
-const isExcluded = (k) => EXCLUDE.test(`${meta[k]?.name ?? ""} ${k}`.replace(/_/g, " ").toLowerCase());
+// Regles de l'app (source unique) + liste manuelle exclusions.json.
+const isExcluded = makeExcluder(ROOT, meta);
 
 const keys = Object.keys(meta).filter((k) => k !== "_comment" && !isExcluded(k) && !anchored.has(k) && meta[k].dims?.l);
 

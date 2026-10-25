@@ -18,6 +18,7 @@ import { readFileSync, writeFileSync, existsSync, rmSync } from "node:fs";
 import { fileURLToPath } from "node:url";
 import { dirname, join } from "node:path";
 import { tmpdir } from "node:os";
+import { makeExcluder } from "./lib/exclusions.mjs";
 
 const ROOT = join(dirname(fileURLToPath(import.meta.url)), "..");
 const MODELS = join(ROOT, "models");
@@ -29,8 +30,8 @@ const io = new NodeIO().registerExtensions([EXTMeshoptCompression]).registerDepe
 const maxArg = process.argv.find((a) => a.startsWith("--max="));
 let keys = process.argv.slice(2).filter((a) => !a.startsWith("--"));
 if (process.argv.includes("--all")) {
-  const EXCLUDE = /\bwikelo\b|\bpyam\b|best in show|\bbis\d*\b|\bexecutive\b|\bexec\b/;
-  keys = Object.keys(meta).filter((k) => k !== "_comment" && !EXCLUDE.test(`${meta[k]?.name ?? ""} ${k}`.replace(/_/g, " ").toLowerCase()) && existsSync(join(MODELS, `${k}.exterior.glb`)));
+  const isExcluded = makeExcluder(ROOT, meta); // regles de l'app + exclusions.json
+  keys = Object.keys(meta).filter((k) => k !== "_comment" && !isExcluded(k) && existsSync(join(MODELS, `${k}.exterior.glb`)));
   if (maxArg) keys = keys.slice(0, parseInt(maxArg.split("=")[1]));
 }
 
