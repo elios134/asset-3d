@@ -275,6 +275,17 @@
     },
     "materials": "flat"
   },
+  "AEGS_Sabre_Raven_EX": {
+    "name": "Sabre Raven EX",
+    "manufacturer": "Aegis Dynamics",
+    "classification": "Medium Fighter",
+    "dims": {
+      "l": 24.5,
+      "b": 24.5,
+      "h": 5
+    },
+    "materials": "flat"
+  },
   "AEGS_Tiburon": {
     "name": "Tiburon",
     "manufacturer": "Aegis Dynamics",
@@ -850,6 +861,17 @@
   "ARGO_ATLS_GEO_IKTI": {
     "name": "Argo ATLS GEO IKTI",
     "manufacturer": "Banu Souli",
+    "classification": "Combat",
+    "dims": {
+      "l": 3.2,
+      "b": 1.6,
+      "h": 1.6
+    },
+    "materials": "flat"
+  },
+  "ARGO_ATLS_GEO_IKTI_NTLS": {
+    "name": "Argo ATLS IKTI Akuma",
+    "manufacturer": "Unknown",
     "classification": "Combat",
     "dims": {
       "l": 3.2,
@@ -1853,9 +1875,9 @@
     "manufacturer": "Kruger Intergalactic",
     "classification": "Medium Fighter",
     "dims": {
-      "l": 20.4,
-      "b": 24.3,
-      "h": 4.4
+      "l": 20.447,
+      "b": 15.1,
+      "h": 8.231
     },
     "materials": "flat"
   },
@@ -2586,7 +2608,7 @@
     "materials": "flat"
   },
   "RSI_Constellation_Andromeda": {
-    "name": "Constellation Andromeda",
+    "name": "Constellation Mk IV Andromeda",
     "manufacturer": "Roberts Space Industries",
     "classification": "Medium Freight / Gun Ship",
     "dims": {
@@ -2597,7 +2619,7 @@
     "materials": "flat"
   },
   "RSI_Constellation_Aquila": {
-    "name": "Constellation Aquila",
+    "name": "Constellation Mk IV Aquila",
     "manufacturer": "Roberts Space Industries",
     "classification": "Expedition",
     "dims": {
@@ -2607,8 +2629,19 @@
     },
     "materials": "flat"
   },
+  "RSI_Constellation_Mk5_Centaurus": {
+    "name": "Constellation Mk V Centaurus",
+    "manufacturer": "Roberts Space Industries",
+    "classification": "Medium Freight / Gun Ship",
+    "dims": {
+      "l": 82.5,
+      "b": 47.5,
+      "h": 20.25
+    },
+    "materials": "flat"
+  },
   "RSI_Constellation_Phoenix": {
-    "name": "Constellation Phoenix",
+    "name": "Constellation Mk IV Phoenix",
     "manufacturer": "Roberts Space Industries",
     "classification": "Luxury Touring",
     "dims": {
@@ -2619,7 +2652,7 @@
     "materials": "flat"
   },
   "RSI_Constellation_Phoenix_Emerald": {
-    "name": "Constellation Phoenix Emerald",
+    "name": "Constellation Mk IV Phoenix Emerald",
     "manufacturer": "Roberts Space Industries",
     "classification": "Luxury Touring",
     "dims": {
@@ -2630,7 +2663,7 @@
     "materials": "flat"
   },
   "RSI_Constellation_Taurus": {
-    "name": "Constellation Taurus",
+    "name": "Constellation Mk IV Taurus",
     "manufacturer": "Roberts Space Industries",
     "classification": "Medium Freight",
     "dims": {
@@ -2641,7 +2674,7 @@
     "materials": "flat"
   },
   "RSI_Constellation_Taurus_Military": {
-    "name": "Constellation Taurus Wikelo War Special",
+    "name": "Constellation Mk IV Taurus Wikelo War Special",
     "manufacturer": "Roberts Space Industries",
     "classification": "Medium Freight",
     "dims": {
@@ -2780,6 +2813,17 @@
       "l": 32,
       "b": 24,
       "h": 13
+    },
+    "materials": "flat"
+  },
+  "RSI_Skylark": {
+    "name": "Skylark",
+    "manufacturer": "Roberts Space Industries",
+    "classification": "Snub Fighter",
+    "dims": {
+      "l": 7,
+      "b": 6.5,
+      "h": 3.5
     },
     "materials": "flat"
   },

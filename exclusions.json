@@ -1,4 +1,7 @@
 {
   "_comment": "Vaisseaux exclus manuellement de la galerie/publication (géré dans l'app).",
-  "keys": []
+  "keys": [
+    "ANVL_Lightning_F8C_Exec",
+    "ORIG_600i_Executive_Edition"
+  ]
 }

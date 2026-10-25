@@ -20,3 +20,6 @@ app/node_modules
 app/out
 app/dist
 index.dev.json
+
+# Caches de compilation TypeScript
+*.tsbuildinfo
