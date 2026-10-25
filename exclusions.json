@@ -2,6 +2,9 @@
   "_comment": "Vaisseaux exclus manuellement de la galerie/publication (géré dans l'app).",
   "keys": [
     "ANVL_Lightning_F8C_Exec",
-    "ORIG_600i_Executive_Edition"
+    "ORIG_600i_Executive_Edition",
+    "ARGO_MOLE_BTALA",
+    "DRAK_Golem_BTALA",
+    "MISC_Prospector_BTALA"
   ]
 }
