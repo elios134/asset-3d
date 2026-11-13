@@ -80,6 +80,13 @@ export function createServices(
       return result;
     },
 
+    // Ré-énumère les vaisseaux depuis le JEU (scripts/list-ships.mjs → game-ships.json).
+    // À relancer après une MAJ du jeu pour voir les nouveaux vaisseaux (ex. Galaxy).
+    async scanGame(): Promise<{ count: number }> {
+      const r = (await runJson("scripts/list-ships.mjs", ["--json"], { cwd: repoRoot })) as { count: number };
+      return { count: r.count };
+    },
+
     // Liste d'exclusion MANUELLE (exclusions.json git-tracké). Union avec les règles auto
     // (voir renderer/exclude.ts). Écarte de la galerie/publication les vaisseaux non voulus.
     async getExclusions(): Promise<string[]> {

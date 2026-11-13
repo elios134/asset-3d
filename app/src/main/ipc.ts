@@ -12,6 +12,7 @@ function dialogFilters(key: ConfigKey): Electron.FileFilter[] {
 export function registerIpc(repoRoot: string): void {
   const svc = createServices(repoRoot);
   ipcMain.handle("analyze", () => svc.analyze());
+  ipcMain.handle("game:scan", () => svc.scanGame());
   ipcMain.handle("prereqs", () => svc.prereqs());
   ipcMain.handle("config:get", () => svc.getConfig());
   ipcMain.handle("config:detect", () => svc.detectPaths());

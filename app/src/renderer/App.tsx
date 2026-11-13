@@ -78,6 +78,9 @@ function AppBody({ data, prereqs, exclusions, onExclusions, reload }: {
 
   // scan d'empreintes
   const [scan, setScan] = useState<{ done: number; total: number } | null>(null);
+  // scan du jeu (ré-énumération des vaisseaux depuis la DataCore)
+  const [gameScanning, setGameScanning] = useState(false);
+  const [gameScanMsg, setGameScanMsg] = useState<string | null>(null);
 
   const counts = useMemo(() => statusCounts(ships), [ships]);
   const groups = useMemo(() => worklistGroups(ships), [ships]);
@@ -112,6 +115,20 @@ function AppBody({ data, prereqs, exclusions, onExclusions, reload }: {
     finally { off(); setScan(null); }
   };
 
+  const runGameScan = async () => {
+    if (gameScanning) return;
+    setGameScanning(true); setGameScanMsg(null);
+    try {
+      const { count } = await api.scanGame();
+      await reload();
+      setGameScanMsg(`${count} vaisseaux détectés dans le jeu.`);
+    } catch (e) {
+      setGameScanMsg(`Échec du scan : ${String((e as Error)?.message ?? e)}`);
+    } finally {
+      setGameScanning(false);
+    }
+  };
+
   const local = data.localVersion ?? "?";
   const prod = data.publishedVersion ?? "—";
   const behind = needsUpdate(data.publishedVersion, data.localVersion);
@@ -138,7 +155,7 @@ function AppBody({ data, prereqs, exclusions, onExclusions, reload }: {
       <main>
         {view === "catalog" && <CatalogView ships={ships} counts={counts} onManageExclusions={() => setExclOpen(true)} />}
         {view === "version" && (
-          <VersionView data={data} counts={counts} behind={behind} scan={scan} onScan={runScan} onRefresh={() => reload()} onGoWork={() => setView("work")} worklistCount={worklistCount} />
+          <VersionView data={data} counts={counts} behind={behind} scan={scan} onScan={runScan} onRefresh={() => reload()} onGoWork={() => setView("work")} worklistCount={worklistCount} gameScanning={gameScanning} gameScanMsg={gameScanMsg} onScanGame={runGameScan} />
         )}
         {view === "work" && (
           <WorkView groups={groups} sel={sel} onToggle={(k, l) => setSel((s) => toggleLevel(s, k, l))} count={count} canExtract={canExtract} onExtract={startExtract} />
@@ -238,9 +255,10 @@ function CatalogView({ ships, counts, onManageExclusions }: { ships: Ship[]; cou
   );
 }
 
-function VersionView({ data, counts, behind, scan, onScan, onRefresh, onGoWork, worklistCount }: {
+function VersionView({ data, counts, behind, scan, onScan, onRefresh, onGoWork, worklistCount, gameScanning, gameScanMsg, onScanGame }: {
   data: AnalyzeResult; counts: ReturnType<typeof statusCounts>; behind: boolean;
   scan: { done: number; total: number } | null; onScan: () => void; onRefresh: () => void; onGoWork: () => void; worklistCount: number;
+  gameScanning: boolean; gameScanMsg: string | null; onScanGame: () => void;
 }) {
   const pct = scan && scan.total ? Math.round((scan.done / scan.total) * 100) : 0;
   return (
@@ -273,10 +291,12 @@ function VersionView({ data, counts, behind, scan, onScan, onRefresh, onGoWork, 
       </div>
 
       <div style={{ display: "flex", gap: 12, flexWrap: "wrap" }}>
-        <button className="btn primary" disabled={!!scan} onClick={onScan}><Icon name="scan" />{scan ? "Scan en cours…" : "Scanner les empreintes"}</button>
-        <button className="btn ghost" disabled={!!scan} onClick={onRefresh}><Icon name="refresh" />Rafraîchir</button>
+        <button className="btn primary" disabled={gameScanning} onClick={onScanGame}><Icon name="ship" />{gameScanning ? "Scan du jeu…" : "Scanner le jeu"}</button>
+        <button className="btn" disabled={!!scan} onClick={onScan}><Icon name="scan" />{scan ? "Scan en cours…" : "Scanner les empreintes"}</button>
+        <button className="btn ghost" disabled={!!scan || gameScanning} onClick={onRefresh}><Icon name="refresh" />Rafraîchir</button>
         <button className="btn" onClick={onGoWork}><Icon name="list" />Voir la liste de travail</button>
       </div>
+      {gameScanMsg && <p className="sub" style={{ margin: "10px 0 0" }}>{gameScanMsg}</p>}
 
       <ConfigPanel onChange={onRefresh} />
     </section>
