@@ -4,6 +4,7 @@
 import { readFileSync, existsSync } from "node:fs";
 import { join } from "node:path";
 import { analyzeShips } from "./lib/detect.mjs";
+import { mergeGameShips } from "./lib/ship-enum.mjs";
 import { loadConfig } from "./lib/config.mjs";
 import { readLocalGameVersion } from "./lib/game-version.mjs";
 
@@ -25,6 +26,12 @@ if (!existsSync(metaPath)) {
   process.exit(1);
 }
 const meta = JSON.parse(readFileSync(metaPath, "utf8"));
+// Source de vérité « ce qui existe à extraire » = le JEU (game-ships.json, via
+// scripts/list-ships.mjs). Les vaisseaux du jeu absents du catalogue (ex. Galaxy
+// fraîchement sorti) sont injectés pour apparaître dans l'app, même si SCFM ne les
+// connaît pas encore. Absent/illisible ⇒ on reste sur le seul catalogue meta.
+const gameKeys = readJson("game-ships.json", {}).keys ?? [];
+const fullMeta = gameKeys.length ? mergeGameShips(meta, gameKeys) : meta;
 const index = readJson("index.json", null);
 const anchors = readJson("interior-anchors.json", {});
 const anchorKeys = new Set(Object.keys(anchors).filter((k) => k !== "_comment"));
@@ -40,7 +47,7 @@ const visitableKeys = visScan?.convention
   ? new Set(visScan.convention.map((v) => v.key))
   : undefined;
 
-const ships = analyzeShips({ meta, index, baseline, current, anchorKeys, visitableKeys });
+const ships = analyzeShips({ meta: fullMeta, index, baseline, current, anchorKeys, visitableKeys });
 const toProcess = ships.filter((s) => s.toProcess);
 const publishedVersion = index?.patchVersion ?? null;
 
