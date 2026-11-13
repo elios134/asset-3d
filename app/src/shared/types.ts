@@ -23,6 +23,17 @@ export interface AnalyzeResult {
 
 export interface Prereqs { node: boolean; starbreaker: boolean; p4k: boolean; git: boolean; gh: boolean }
 
+// --- Configuration des chemins (app-config.json, machine-local) ---
+export type ConfigKey = "p4k" | "starbreaker" | "blender";
+export interface AppPaths { p4k: string | null; starbreaker: string | null; blender: string | null }
+export interface ConfigStatus {
+  paths: AppPaths;
+  exists: { p4k: boolean; starbreaker: boolean; blender: boolean };
+}
+// Chemins trouvés par l'auto-détection (null = introuvable). Non enregistrés tant
+// que l'utilisateur n'a pas confirmé (setConfigPath).
+export interface DetectedPaths { p4k: string | null; starbreaker: string | null }
+
 // Entrée minimale de l'index publié (index.json), pour l'aperçu du diff avant publication.
 export interface IndexEntrySummary {
   key: string;
@@ -32,6 +43,10 @@ export interface IndexEntrySummary {
 export interface Api {
   analyze(): Promise<AnalyzeResult>;
   prereqs(): Promise<Prereqs>;
+  getConfig(): Promise<ConfigStatus>;            // chemins actuels + existence
+  detectPaths(): Promise<DetectedPaths>;         // auto-détection (sans enregistrer)
+  setConfigPath(key: ConfigKey, value: string): Promise<ConfigStatus>; // valide + enregistre
+  pickConfigPath(key: ConfigKey): Promise<ConfigStatus>; // ouvre une fenêtre de sélection
   indexEntries(): Promise<IndexEntrySummary[]>;
   getExclusions(): Promise<string[]>;          // clés exclues manuellement (exclusions.json)
   setExclusions(keys: string[]): Promise<void>; // remplace la liste manuelle

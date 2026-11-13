@@ -11,6 +11,7 @@ import { PublishPanel } from "./components/PublishPanel";
 import { shipStatus, statusCounts, worklistGroups, type ShipStatus } from "./catalogView";
 import { Icon } from "./components/Icon";
 import { Thumbnail } from "./components/Thumbnail";
+import { ConfigPanel } from "./components/ConfigPanel";
 import type { AnalyzeResult, Prereqs, ExtractItem, Ship, FingerprintEvent } from "../shared/types";
 
 type Phase = "checking" | "needsUpdate" | "updating" | "ready" | "error";
@@ -276,6 +277,8 @@ function VersionView({ data, counts, behind, scan, onScan, onRefresh, onGoWork, 
         <button className="btn ghost" disabled={!!scan} onClick={onRefresh}><Icon name="refresh" />Rafraîchir</button>
         <button className="btn" onClick={onGoWork}><Icon name="list" />Voir la liste de travail</button>
       </div>
+
+      <ConfigPanel onChange={onRefresh} />
     </section>
   );
 }

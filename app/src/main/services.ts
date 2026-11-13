@@ -8,9 +8,10 @@ import { runUpdate } from "./update";
 import { runExtract } from "./extract";
 import { runStream } from "./stream";
 import { runPublish } from "./publish";
+import { existsSync } from "node:fs";
 import type {
   AnalyzeResult, Prereqs, ExtractItem, ExtractSummary, QaEvent, QaSummary, PublishOptions, PublishSummary, IndexEntrySummary,
-  FingerprintEvent, FingerprintSummary,
+  FingerprintEvent, FingerprintSummary, ConfigKey, ConfigStatus, DetectedPaths,
 } from "../shared/types";
 
 type IpcSender = { send(channel: string, evt: unknown): void };
@@ -24,6 +25,17 @@ type PrereqLib = {
   defaultWhich(cmd: string): boolean;
 };
 type ThumbLib = { getThumbnail(a: { name: string; cacheDir: string }): Promise<{ path: string | null }> };
+type DetectLib = {
+  detectP4k(a?: { existsFn?: (p: string) => boolean }): string | null;
+  detectStarbreaker(a?: { existsFn?: (p: string) => boolean }): string | null;
+};
+type AppConfigLib = {
+  CONFIG_KEYS: string[];
+  validatePath(key: string, value: string, existsFn?: (p: string) => boolean): string | null;
+  mergePaths(current: unknown, key: string, value: string): { paths?: Record<string, string> };
+  readAppConfig(root: string): { paths?: Record<string, string | null> };
+  writeAppConfig(root: string, obj: unknown): void;
+};
 
 export function createServices(
   repoRoot: string,
@@ -96,6 +108,40 @@ export function createServices(
       } catch {
         return [];
       }
+    },
+
+    // --- Configuration des chemins (app-config.json) ---
+    // Chemins actuels + existence réelle sur le disque (null = non renseigné).
+    async getConfig(): Promise<ConfigStatus> {
+      const io = await loadLib<AppConfigLib>(repoRoot, "app-config-io.mjs");
+      const raw = io.readAppConfig(repoRoot).paths ?? {};
+      const pick = (k: ConfigKey) => (typeof raw[k] === "string" && raw[k] ? (raw[k] as string) : null);
+      const paths = { p4k: pick("p4k"), starbreaker: pick("starbreaker"), blender: pick("blender") };
+      return {
+        paths,
+        exists: {
+          p4k: !!paths.p4k && existsSync(paths.p4k),
+          starbreaker: !!paths.starbreaker && existsSync(paths.starbreaker),
+          blender: !!paths.blender && existsSync(paths.blender),
+        },
+      };
+    },
+
+    // Auto-détection : balaie les emplacements d'install RSI connus + bibliothèques
+    // personnalisées. Ne rien enregistrer (l'app propose, l'utilisateur confirme).
+    async detectPaths(): Promise<DetectedPaths> {
+      const d = await loadLib<DetectLib>(repoRoot, "detect-sc.mjs");
+      return { p4k: d.detectP4k(), starbreaker: d.detectStarbreaker() };
+    },
+
+    // Valide (fichier existant ; p4k => nom Data.p4k) puis fusionne dans app-config.json
+    // sans toucher aux autres champs. Lève un message clair si invalide.
+    async setConfigPath(key: ConfigKey, value: string): Promise<ConfigStatus> {
+      const io = await loadLib<AppConfigLib>(repoRoot, "app-config-io.mjs");
+      const err = io.validatePath(key, value, existsSync);
+      if (err) throw new Error(err);
+      io.writeAppConfig(repoRoot, io.mergePaths(io.readAppConfig(repoRoot), key, value));
+      return this.getConfig();
     },
 
     async prereqs(): Promise<Prereqs> {

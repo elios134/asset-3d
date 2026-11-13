@@ -4,6 +4,10 @@ import type { Api } from "../shared/types";
 const api: Api = {
   analyze: () => ipcRenderer.invoke("analyze"),
   prereqs: () => ipcRenderer.invoke("prereqs"),
+  getConfig: () => ipcRenderer.invoke("config:get"),
+  detectPaths: () => ipcRenderer.invoke("config:detect"),
+  setConfigPath: (key, value) => ipcRenderer.invoke("config:set", key, value),
+  pickConfigPath: (key) => ipcRenderer.invoke("config:pick", key),
   indexEntries: () => ipcRenderer.invoke("index:entries"),
   getExclusions: () => ipcRenderer.invoke("exclusions:get"),
   setExclusions: (keys) => ipcRenderer.invoke("exclusions:set", keys),
