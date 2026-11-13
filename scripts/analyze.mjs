@@ -30,8 +30,9 @@ const meta = JSON.parse(readFileSync(metaPath, "utf8"));
 // scripts/list-ships.mjs). Les vaisseaux du jeu absents du catalogue (ex. Galaxy
 // fraîchement sorti) sont injectés pour apparaître dans l'app, même si SCFM ne les
 // connaît pas encore. Absent/illisible ⇒ on reste sur le seul catalogue meta.
-const gameKeys = readJson("game-ships.json", {}).keys ?? [];
-const fullMeta = gameKeys.length ? mergeGameShips(meta, gameKeys) : meta;
+const gameFile = readJson("game-ships.json", {});
+const gameKeys = gameFile.keys ?? [];
+const fullMeta = gameKeys.length ? mergeGameShips(meta, gameKeys, gameFile.dims ?? {}) : meta;
 const index = readJson("index.json", null);
 const anchors = readJson("interior-anchors.json", {});
 const anchorKeys = new Set(Object.keys(anchors).filter((k) => k !== "_comment"));

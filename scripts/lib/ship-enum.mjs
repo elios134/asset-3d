@@ -74,15 +74,26 @@ export function deriveShipLabel(key) {
   return { manufacturer, name };
 }
 
+// Convertit le maxBoundingBoxSize du jeu (Vec3) en dims projet : l=longueur(y),
+// b=largeur(x), h=hauteur(z). Approximatif (affiné ensuite sur la géométrie clay).
+export function bboxToDims(vec) {
+  if (!vec) return null;
+  const n = (v) => (typeof v === "number" && isFinite(v) ? Math.round(v * 10) / 10 : null);
+  const l = n(vec.y), b = n(vec.x), h = n(vec.z);
+  if (l == null || b == null || h == null) return null;
+  return { l, b, h };
+}
+
 // Fusionne les vaisseaux du JEU dans le catalogue meta : toute clé présente en jeu
-// mais absente de meta reçoit une entrée synthétique (dims à 0, à mesurer à
-// l'extraction) pour apparaître dans l'app. Ne touche pas aux entrées existantes.
-export function mergeGameShips(meta, gameKeys) {
+// mais absente de meta reçoit une entrée synthétique (dims depuis la bbox du jeu si
+// dispo, sinon 0 — affinées à l'extraction) pour apparaître dans l'app ET être
+// publiable. Ne touche jamais aux entrées existantes.
+export function mergeGameShips(meta, gameKeys, dimsByKey = {}) {
   const out = { ...meta };
   for (const key of gameKeys) {
     if (key === "_comment" || out[key]) continue;
     const { manufacturer, name } = deriveShipLabel(key);
-    out[key] = { name, manufacturer, dims: { l: 0, b: 0, h: 0 }, fromGame: true };
+    out[key] = { name, manufacturer, dims: dimsByKey[key] ?? { l: 0, b: 0, h: 0 }, fromGame: true };
   }
   return out;
 }

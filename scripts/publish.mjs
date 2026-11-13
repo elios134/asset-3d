@@ -30,6 +30,7 @@ import { fileURLToPath } from "node:url";
 import { dirname, join } from "node:path";
 import { makeEmitter } from "./lib/emit.mjs";
 import { adoptBaseline } from "./lib/baseline.mjs";
+import { mergeGameShips } from "./lib/ship-enum.mjs";
 
 const ROOT = join(dirname(fileURLToPath(import.meta.url)), "..");
 const JSON_MODE = process.argv.includes("--json");
@@ -72,7 +73,13 @@ const indexPath = argVal("--index", join(ROOT, "index.json"));
 // --dev-index : on cumule les essais dans index.dev.json (repart de index.json la premiere fois).
 const devIndexPath = join(dirname(indexPath), "index.dev.json");
 const index = JSON.parse(readFileSync(DEV_INDEX && existsSync(devIndexPath) ? devIndexPath : indexPath, "utf8"));
-const meta = JSON.parse(readFileSync(argVal("--meta", join(ROOT, "ships.meta.json")), "utf8"));
+const metaRaw = JSON.parse(readFileSync(argVal("--meta", join(ROOT, "ships.meta.json")), "utf8"));
+// Les vaisseaux énumérés depuis le JEU (game-ships.json) mais pas encore dans
+// ships.meta.json (ex. Galaxy) sont fusionnés ici pour être publiables (dims depuis
+// la bbox du jeu). ships.meta.json n'est pas modifié (gen-meta le régénère).
+const gamePath = argVal("--game-ships", join(ROOT, "game-ships.json"));
+const game = existsSync(gamePath) ? JSON.parse(readFileSync(gamePath, "utf8")) : {};
+const meta = (game.keys?.length) ? mergeGameShips(metaRaw, game.keys, game.dims ?? {}) : metaRaw;
 const modelsDir = argVal("--models", join(ROOT, "models"));
 const labelOf = Object.fromEntries((config.levels ?? []).map((l) => [l.id, l.label]));
 const levelOrder = (config.levels ?? []).map((l) => l.id);

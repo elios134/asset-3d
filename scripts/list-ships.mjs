@@ -8,7 +8,7 @@ import { execFileSync } from "node:child_process";
 import { readFileSync, writeFileSync, existsSync } from "node:fs";
 import { join } from "node:path";
 import { loadConfig } from "./lib/config.mjs";
-import { parseProjection, selectShips, diffCatalogue } from "./lib/ship-enum.mjs";
+import { parseProjection, selectShips, diffCatalogue, bboxToDims } from "./lib/ship-enum.mjs";
 
 const ROOT = process.cwd();
 const JSON_MODE = process.argv.includes("--json");
@@ -25,13 +25,21 @@ function query(propertyPath) {
 }
 
 if (!JSON_MODE) console.error("Interrogation de la DataCore du jeu…");
-// 1) clés ayant un composant véhicule ; 2) chemin de géométrie de coque par clé.
+// 1) clés ayant un composant véhicule ; 2) chemin de géométrie de coque par clé ;
+// 3) maxBoundingBoxSize (Vec3) par clé → dims approximatives (affinées à l'extraction).
 const vehicleKeys = [...parseProjection(query("EntityClassDefinition.Components[VehicleComponentParams]")).keys()];
 const geomByKey = parseProjection(query("EntityClassDefinition.Components[SGeometryResourceParams].Geometry.Geometry.Geometry.path"));
+const bboxByKey = parseProjection(query("EntityClassDefinition.Components[VehicleComponentParams].maxBoundingBoxSize"));
 
 const ships = selectShips({ vehicleKeys, geomByKey });
+const dims = {};
+for (const key of ships) {
+  const raw = bboxByKey.get(key);
+  if (!raw) continue;
+  try { const d = bboxToDims(JSON.parse(raw)); if (d) dims[key] = d; } catch { /* bbox illisible → dims 0 */ }
+}
 writeFileSync(join(ROOT, "game-ships.json"), JSON.stringify(
-  { _comment: "Vaisseaux/véhicules énumérés depuis le JEU (DataCore). Source de vérité de ce qui est extractible. Généré par scripts/list-ships.mjs.", patchVersion: null, keys: ships },
+  { _comment: "Vaisseaux/véhicules énumérés depuis le JEU (DataCore). Source de vérité de ce qui est extractible. Généré par scripts/list-ships.mjs. dims = maxBoundingBoxSize du jeu (approx).", patchVersion: null, keys: ships, dims },
   null, 2,
 ) + "\n");
 

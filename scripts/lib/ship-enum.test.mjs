@@ -1,6 +1,6 @@
 import { test } from "node:test";
 import assert from "node:assert/strict";
-import { parseProjection, isShipGeometry, EXCLUDE_RE, selectShips, diffCatalogue, deriveShipLabel, mergeGameShips } from "./ship-enum.mjs";
+import { parseProjection, isShipGeometry, EXCLUDE_RE, selectShips, diffCatalogue, deriveShipLabel, mergeGameShips, bboxToDims } from "./ship-enum.mjs";
 
 test("parseProjection : TSV name\\tvalue, retire le préfixe et normalise les antislashs", () => {
   const m = parseProjection(
@@ -51,14 +51,26 @@ test("deriveShipLabel : fabricant = 1er token, nom = reste", () => {
   assert.deepEqual(deriveShipLabel("AEGS_Avenger_Titan"), { manufacturer: "AEGS", name: "Avenger Titan" });
 });
 
-test("mergeGameShips : ajoute les clés jeu absentes, préserve l'existant", () => {
+test("bboxToDims : Vec3 jeu -> dims projet (l=y, b=x, h=z), arrondi 0.1", () => {
+  assert.deepEqual(bboxToDims({ x: 60, y: 110, z: 25 }), { l: 110, b: 60, h: 25 });
+  assert.deepEqual(bboxToDims({ x: 17.54, y: 21.01, z: 5.5 }), { l: 21, b: 17.5, h: 5.5 });
+  assert.equal(bboxToDims(null), null);
+  assert.equal(bboxToDims({ x: 1, y: null, z: 2 }), null);
+});
+
+test("mergeGameShips : ajoute les clés jeu absentes, dims depuis bbox, préserve l'existant", () => {
   const meta = { _comment: "x", AEGS_Gladius: { name: "Gladius", manufacturer: "Aegis", dims: { l: 1, b: 2, h: 3 } } };
-  const merged = mergeGameShips(meta, ["AEGS_Gladius", "RSI_Galaxy"]);
+  const merged = mergeGameShips(meta, ["AEGS_Gladius", "RSI_Galaxy"], { RSI_Galaxy: { l: 110, b: 60, h: 25 } });
   assert.equal(merged.AEGS_Gladius.dims.l, 1); // inchangé
   assert.equal(merged.RSI_Galaxy.name, "Galaxy");
   assert.equal(merged.RSI_Galaxy.manufacturer, "RSI");
   assert.equal(merged.RSI_Galaxy.fromGame, true);
-  assert.deepEqual(merged.RSI_Galaxy.dims, { l: 0, b: 0, h: 0 });
+  assert.deepEqual(merged.RSI_Galaxy.dims, { l: 110, b: 60, h: 25 });
+});
+
+test("mergeGameShips : dims à 0 si la bbox manque", () => {
+  const merged = mergeGameShips({}, ["DRAK_Marauder"]);
+  assert.deepEqual(merged.DRAK_Marauder.dims, { l: 0, b: 0, h: 0 });
 });
 
 test("diffCatalogue : nouveaux en jeu vs manquants du jeu", () => {
