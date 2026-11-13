@@ -1,6 +1,6 @@
 {
   "schemaVersion": 2,
-  "generatedAt": "2026-11-13T21:28:15.803Z",
+  "generatedAt": "2026-11-13T21:33:02.406Z",
   "patchVersion": "sc-4.1",
   "levels": [
     {
@@ -2448,6 +2448,42 @@
           "sizeBytes": 3291828,
           "sha256": "0164533c1fb3c611078c15074e54796777177929e94975048c7014e8d7240ebb",
           "render": "painted"
+        }
+      ]
+    },
+    {
+      "key": "ANVL_Liberator",
+      "name": "Liberator",
+      "manufacturer": "ANVL",
+      "classification": null,
+      "dims": {
+        "l": 119,
+        "b": 67,
+        "h": 25
+      },
+      "materials": "flat",
+      "patchVersion": "sc-4.1",
+      "variants": [
+        {
+          "level": "exterior",
+          "label": "Apercu",
+          "modelUrl": "https://github.com/elios134/asset-3d/releases/download/sc-4.1/ANVL_Liberator.clay-exterior.glb",
+          "hasInterior": false,
+          "tris": 733552,
+          "sizeBytes": 5948328,
+          "sha256": "549001d30b260413fdc40cfeaa19f223fd2bd2883c02cebb678fc1e20c4745f9",
+          "render": "clay"
+        },
+        {
+          "level": "interior",
+          "label": "Interieur",
+          "modelUrl": "https://github.com/elios134/asset-3d/releases/download/sc-4.1/ANVL_Liberator.clay-interior.glb",
+          "hasInterior": true,
+          "tris": 1284441,
+          "sizeBytes": 10487352,
+          "sha256": "22c41efe166b27dbda74b35fe8a96de755c7155d35f84738335d3f632d3e3c92",
+          "render": "clay",
+          "hasCollision": true
         }
       ]
     },
@@ -5411,6 +5447,32 @@
       ]
     },
     {
+      "key": "DRAK_Marauder",
+      "name": "Marauder",
+      "manufacturer": "DRAK",
+      "classification": null,
+      "dims": {
+        "l": 20,
+        "b": 19,
+        "h": 6
+      },
+      "materials": "flat",
+      "patchVersion": "sc-4.1",
+      "variants": [
+        {
+          "level": "interior",
+          "label": "Interieur",
+          "modelUrl": "https://github.com/elios134/asset-3d/releases/download/sc-4.1/DRAK_Marauder.clay-interior.glb",
+          "hasInterior": true,
+          "tris": 870926,
+          "sizeBytes": 5991252,
+          "sha256": "526e9b84580ade23c9512f6f6c8caf1ebd20c9f604c3a9d60b3431596f6d6952",
+          "render": "clay",
+          "hasCollision": true
+        }
+      ]
+    },
+    {
       "key": "DRAK_Mule",
       "name": "Mule",
       "manufacturer": "Drake Interplanetary",
@@ -5730,6 +5792,31 @@
           "sizeBytes": 2863880,
           "sha256": "9e9f7b734cdd6d1cedaa564895b9f496c00dbbb433c1eb13444a433ca0bf1645",
           "render": "painted"
+        }
+      ]
+    },
+    {
+      "key": "GAMA_Hyun",
+      "name": "Hyun",
+      "manufacturer": "GAMA",
+      "classification": null,
+      "dims": {
+        "l": 36.8,
+        "b": 22.6,
+        "h": 31.9
+      },
+      "materials": "flat",
+      "patchVersion": "sc-4.1",
+      "variants": [
+        {
+          "level": "exterior",
+          "label": "Apercu",
+          "modelUrl": "https://github.com/elios134/asset-3d/releases/download/sc-4.1/GAMA_Hyun.clay-exterior.glb",
+          "hasInterior": false,
+          "tris": 538896,
+          "sizeBytes": 3885700,
+          "sha256": "a2605fd7c2fdb67ade9d9733b3d18a90e85ebc9f9b6ffede6ca9d3e67994d00f",
+          "render": "clay"
         }
       ]
     },
