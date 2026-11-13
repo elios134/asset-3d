@@ -1,6 +1,6 @@
 {
   "schemaVersion": 2,
-  "generatedAt": "2026-11-13T21:24:16.625Z",
+  "generatedAt": "2026-11-13T21:28:15.803Z",
   "patchVersion": "sc-4.1",
   "levels": [
     {
@@ -9344,6 +9344,42 @@
           "sizeBytes": 13893376,
           "sha256": "f2384496f22795f841967eb71ce692e695f1448d0bc89f16527eaf858abd8691",
           "render": "painted",
+          "hasCollision": true
+        }
+      ]
+    },
+    {
+      "key": "RSI_Galaxy",
+      "name": "Galaxy",
+      "manufacturer": "RSI",
+      "classification": null,
+      "dims": {
+        "l": 110,
+        "b": 60,
+        "h": 25
+      },
+      "materials": "flat",
+      "patchVersion": "sc-4.1",
+      "variants": [
+        {
+          "level": "exterior",
+          "label": "Apercu",
+          "modelUrl": "https://github.com/elios134/asset-3d/releases/download/sc-4.1/RSI_Galaxy.clay-exterior.glb",
+          "hasInterior": false,
+          "tris": 739234,
+          "sizeBytes": 6166280,
+          "sha256": "31f9c445d252d9bdef741732fb4ce8d0091826acf0bf172de25bfcc7b746907c",
+          "render": "clay"
+        },
+        {
+          "level": "interior",
+          "label": "Interieur",
+          "modelUrl": "https://github.com/elios134/asset-3d/releases/download/sc-4.1/RSI_Galaxy.clay-interior.glb",
+          "hasInterior": true,
+          "tris": 1371048,
+          "sizeBytes": 11779372,
+          "sha256": "b9746f7218fd1e74f9508c218d7c5455e493ab5a4c21dbc259d412eb806aed87",
+          "render": "clay",
           "hasCollision": true
         }
       ]
