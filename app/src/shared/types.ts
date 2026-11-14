@@ -43,6 +43,7 @@ export interface IndexEntrySummary {
 export interface Api {
   analyze(): Promise<AnalyzeResult>;
   scanGame(): Promise<{ count: number }>;        // ré-énumère les vaisseaux depuis le jeu (game-ships.json)
+  extractedKeys(): Promise<string[]>;            // clés ayant un .glb clay dans models/ (extraites, session ou non)
   prereqs(): Promise<Prereqs>;
   getConfig(): Promise<ConfigStatus>;            // chemins actuels + existence
   detectPaths(): Promise<DetectedPaths>;         // auto-détection (sans enregistrer)

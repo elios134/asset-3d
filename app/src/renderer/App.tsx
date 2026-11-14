@@ -82,6 +82,18 @@ function AppBody({ data, prereqs, exclusions, onExclusions, reload }: {
   const [gameScanning, setGameScanning] = useState(false);
   const [gameScanMsg, setGameScanMsg] = useState<string | null>(null);
 
+  // Vaisseaux réellement extraits sur disque (models/), toutes sessions confondues.
+  const [extracted, setExtracted] = useState<string[]>([]);
+  const refreshExtracted = () => api.extractedKeys().then(setExtracted).catch(() => setExtracted([]));
+  useEffect(() => { void refreshExtracted(); }, []);
+  // « Prêts à publier » = extraits sur disque, connus (non exclus) et PAS encore en prod.
+  const publishedSet = useMemo(() => new Set(ships.filter((s) => s.exterior.published).map((s) => s.key)), [ships]);
+  const shipKeySet = useMemo(() => new Set(ships.map((s) => s.key)), [ships]);
+  const readyKeys = useMemo(
+    () => extracted.filter((k) => shipKeySet.has(k) && !publishedSet.has(k)),
+    [extracted, shipKeySet, publishedSet],
+  );
+
   const counts = useMemo(() => statusCounts(ships), [ships]);
   const groups = useMemo(() => worklistGroups(ships), [ships]);
   const worklistCount = groups.new.length + groups.mod.length + groups.int.length;
@@ -161,7 +173,7 @@ function AppBody({ data, prereqs, exclusions, onExclusions, reload }: {
           <WorkView groups={groups} sel={sel} onToggle={(k, l) => setSel((s) => toggleLevel(s, k, l))} count={count} canExtract={canExtract} onExtract={startExtract} />
         )}
         {view === "publish" && (
-          <PublishView hasInterior={sessionHasInterior} onQa={() => setQaOpen(true)} onPublish={() => setPublishOpen(true)} sessionKeys={sessionKeys} />
+          <PublishView hasInterior={sessionHasInterior} onQa={() => setQaOpen(true)} onPublish={() => setPublishOpen(true)} sessionKeys={sessionKeys} readyKeys={readyKeys} />
         )}
       </main>
 
@@ -181,15 +193,16 @@ function AppBody({ data, prereqs, exclusions, onExclusions, reload }: {
           onSave={(keys) => { onExclusions(keys); setExclOpen(false); }}
         />
       )}
-      {extracting && <ExtractPanel items={buildItems()} onClose={() => { setExtracting(false); reload(); }} />}
+      {extracting && <ExtractPanel items={buildItems()} onClose={() => { setExtracting(false); reload(); refreshExtracted(); }} />}
       {qaOpen && <QaPanel onClose={() => setQaOpen(false)} onDone={(_c, v) => setVerdicts(v)} />}
       {publishOpen && (
         <PublishPanel
           sessionKeys={sessionKeys}
+          readyKeys={readyKeys}
           catalog={ships.map((s) => ({ key: s.key, name: s.name }))}
           verdicts={verdicts}
           onClose={() => setPublishOpen(false)}
-          onPublished={() => { setVerdicts({}); reload(); }}
+          onPublished={() => { setVerdicts({}); reload(); refreshExtracted(); }}
         />
       )}
     </div>
@@ -351,14 +364,14 @@ function WorkView({ groups, sel, onToggle, count, canExtract, onExtract }: {
   );
 }
 
-function PublishView({ hasInterior, onQa, onPublish, sessionKeys }: { hasInterior: boolean; onQa: () => void; onPublish: () => void; sessionKeys: string[] }) {
+function PublishView({ hasInterior, onQa, onPublish, sessionKeys, readyKeys }: { hasInterior: boolean; onQa: () => void; onPublish: () => void; sessionKeys: string[]; readyKeys: string[] }) {
   return (
     <section className="view">
       <h2>Publier pour SCFM V2</h2>
       <p className="sub">Upload Release + patch d'<code>index.json</code>. Seul le clic « Confirmer » écrit en prod. La QA est optionnelle.</p>
-      {sessionKeys.length === 0
-        ? <div className="banner warn"><Icon name="alert" /><span>Aucune extraction cette session. Va extraire des vaisseaux d'abord, ou ajoute des clés à republier dans le panneau Publier.</span></div>
-        : <div className="banner ok"><Icon name="check" /><span><b>{sessionKeys.length}</b> vaisseau(x) extrait(s) cette session, prêts à publier.</span></div>}
+      {readyKeys.length === 0
+        ? <div className="banner warn"><Icon name="alert" /><span>Rien d'extrait à publier. Va extraire des vaisseaux d'abord, ou ajoute des clés à republier dans le panneau Publier.</span></div>
+        : <div className="banner ok"><Icon name="check" /><span><b>{readyKeys.length}</b> vaisseau(x) extrait(s) non publié(s), prêts à publier{sessionKeys.length ? ` (dont ${sessionKeys.length} cette session)` : ""}.</span></div>}
       <div style={{ display: "flex", gap: 12, flexWrap: "wrap" }}>
         <button className="btn primary" onClick={onPublish}><Icon name="upload" />Publier sur GitHub</button>
         {hasInterior && (

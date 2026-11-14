@@ -13,8 +13,9 @@ const SHIP_LABEL: Record<string, string> = { "new-ship": "NOUVEAU", updated: "MO
 // sessionKeys = clés extraites de la session (jeu par défaut). catalog = tout le catalogue
 // (key+name) pour ajouter n'importe quelle clé à republier SANS la ré-extraire (re-upload correctif).
 // onPublished() est appelé après une publication RÉELLE réussie (invalide le gate).
-export function PublishPanel({ sessionKeys, catalog, verdicts, onClose, onPublished }: {
+export function PublishPanel({ sessionKeys, readyKeys = [], catalog, verdicts, onClose, onPublished }: {
   sessionKeys: string[];
+  readyKeys?: string[]; // extraits sur disque (toutes sessions) non encore publiés → proposés d'office
   catalog: Array<{ key: string; name: string }>;
   verdicts: Record<string, boolean>; // key→conforme (dernière QA) : gate par-clé
   onClose: () => void;
@@ -24,7 +25,7 @@ export function PublishPanel({ sessionKeys, catalog, verdicts, onClose, onPublis
   // Phase "edit" : l'utilisateur ajuste le jeu de clés avant tout dry-run.
   // Phase "run" : dry-run lancé, puis confirmation. On ne revient pas en arrière une fois lancé.
   const [phase, setPhase] = useState<"edit" | "run">("edit");
-  const [pubKeys, setPubKeys] = useState<string[]>(() => initPublishKeys(sessionKeys));
+  const [pubKeys, setPubKeys] = useState<string[]>(() => initPublishKeys(sessionKeys, readyKeys));
   const [entries, setEntries] = useState<IndexEntrySummary[]>([]);
   const started = useRef(false);
   const confirmed = useRef(false);
@@ -79,8 +80,8 @@ export function PublishPanel({ sessionKeys, catalog, verdicts, onClose, onPublis
       {phase === "edit" && (
         <div className="publish-edit">
           <p className="detail">
-            Vaisseaux à publier — par défaut les clés extraites cette session. Ajoute-en pour republier un vaisseau
-            corrigé à la main sans le ré-extraire ; retire-en pour en exclure.
+            Vaisseaux à publier — par défaut tout ce qui est extrait dans <code>models/</code> et pas encore en prod
+            (sessions comprises). Ajoute-en pour republier un vaisseau corrigé à la main ; retire-en pour en exclure.
           </p>
           <ul className="publish-chips">
             {pubKeys.map((k) => {

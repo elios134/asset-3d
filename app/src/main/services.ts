@@ -1,4 +1,4 @@
-import { readFile, writeFile } from "node:fs/promises";
+import { readFile, writeFile, readdir } from "node:fs/promises";
 import { join } from "node:path";
 import { runJson } from "./runner";
 import { loadLib } from "./libs";
@@ -85,6 +85,22 @@ export function createServices(
     async scanGame(): Promise<{ count: number }> {
       const r = (await runJson("scripts/list-ships.mjs", ["--json"], { cwd: repoRoot })) as { count: number };
       return { count: r.count };
+    },
+
+    // Clés réellement extraites sur disque (models/<key>.clay-{exterior,interior}.glb),
+    // peu importe la session. asset-3D = vérité : un vaisseau extrait doit être publiable.
+    async extractedKeys(): Promise<string[]> {
+      try {
+        const files = await readdir(join(repoRoot, "models"));
+        const keys = new Set<string>();
+        for (const f of files) {
+          const m = /^(.+)\.clay-(?:exterior|interior)\.glb$/.exec(f);
+          if (m) keys.add(m[1]);
+        }
+        return [...keys].sort();
+      } catch {
+        return [];
+      }
     },
 
     // Liste d'exclusion MANUELLE (exclusions.json git-tracké). Union avec les règles auto

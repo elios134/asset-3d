@@ -3,9 +3,11 @@
 // ajouter/retirer n'importe quelle clé du catalogue, pour republier un vaisseau corrigé à la main sans
 // le ré-extraire. Aucune logique React ici — testé isolément.
 
-// Jeu initial = clés de session, dédupliquées (ordre préservé).
-export function initPublishKeys(sessionKeys: string[]): string[] {
-  return [...new Set(sessionKeys)];
+// Jeu initial = clés de session + clés déjà extraites non encore publiées (« prêtes »),
+// dédupliquées (ordre préservé, session d'abord). asset-3D = vérité : tout vaisseau
+// extrait sur disque et absent de la prod est proposé d'office à la publication.
+export function initPublishKeys(sessionKeys: string[], readyKeys: string[] = []): string[] {
+  return [...new Set([...sessionKeys, ...readyKeys])];
 }
 
 // Ajoute une clé si absente (et non vide). Immuable.

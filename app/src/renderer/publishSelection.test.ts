@@ -4,6 +4,8 @@ import { initPublishKeys, addPublishKey, removePublishKey, publishCandidates, ca
 test("initPublishKeys part des clés de session, dédupliquées", () => {
   expect(initPublishKeys(["A", "B", "A"])).toEqual(["A", "B"]);
   expect(initPublishKeys([])).toEqual([]);
+  // union session + prêts (extraits non publiés), session d'abord, dédupliquée
+  expect(initPublishKeys(["A"], ["B", "A", "C"])).toEqual(["A", "B", "C"]);
 });
 
 test("addPublishKey ajoute une clé absente, immuable", () => {

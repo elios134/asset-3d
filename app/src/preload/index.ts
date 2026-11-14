@@ -4,6 +4,7 @@ import type { Api } from "../shared/types";
 const api: Api = {
   analyze: () => ipcRenderer.invoke("analyze"),
   scanGame: () => ipcRenderer.invoke("game:scan"),
+  extractedKeys: () => ipcRenderer.invoke("models:extracted"),
   prereqs: () => ipcRenderer.invoke("prereqs"),
   getConfig: () => ipcRenderer.invoke("config:get"),
   detectPaths: () => ipcRenderer.invoke("config:detect"),
