@@ -1,6 +1,6 @@
 {
   "schemaVersion": 2,
-  "generatedAt": "2026-11-13T21:33:02.406Z",
+  "generatedAt": "2026-11-15T21:07:43.809Z",
   "patchVersion": "sc-4.1",
   "levels": [
     {
@@ -5459,6 +5459,16 @@
       "materials": "flat",
       "patchVersion": "sc-4.1",
       "variants": [
+        {
+          "level": "exterior",
+          "label": "Apercu",
+          "modelUrl": "https://github.com/elios134/asset-3d/releases/download/sc-4.1/DRAK_Marauder.clay-exterior.glb",
+          "hasInterior": false,
+          "tris": 599967,
+          "sizeBytes": 4657948,
+          "sha256": "5a9ddcbfe0693020b5da63eb32101d5cad166a3295b2104531ff6723a6303b0c",
+          "render": "clay"
+        },
         {
           "level": "interior",
           "label": "Interieur",
