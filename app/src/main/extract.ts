@@ -32,21 +32,28 @@ export async function runExtract(
       opts.onEvent({ type: "progress", key: item.key, name: item.name, step: "skip", reason: recipe.reason });
       continue;
     }
+    // Étape 0 = clay (fait foi pour le compteur : c'est le rendu minimal publiable).
+    // Étapes suivantes = peint, best-effort : leurs événements de progression
+    // remontent, mais un échec peint n'invalide pas le vaisseau (il reste clay).
+    const forward = (e: ExtractEvent) => { if (e.type !== "result") opts.onEvent(e); };
+    const emptyResult: ExtractEvent = { type: "result", ok: 0, ko: 0, skipped: 0 };
     try {
-      const res = await run(recipe.script, recipe.args, {
-        cwd: opts.cwd,
-        // Le résultat par-vaisseau ne doit pas atteindre l'UI : il est déjà
-        // consommé ici via `.done`. Ne laisser passer que les événements de
-        // progression ; l'agrégat final est émis une seule fois après la boucle.
-        onEvent: (e) => { if (e.type !== "result") opts.onEvent(e); },
-        // build-clay émet toujours un result ; ce repli ne sert que si un run
-        // sort en 0 sans en émettre (comportement historique : compté comme rien).
-        emptyResult: { type: "result", ok: 0, ko: 0, skipped: 0 },
+      const res = await run(recipe.steps[0].script, recipe.steps[0].args, {
+        cwd: opts.cwd, onEvent: forward, emptyResult,
       }).done;
       if (res.type === "result") { ok += res.ok; ko += res.ko; skipped += res.skipped; }
     } catch (e) {
       ko++;
       opts.onEvent({ type: "progress", key: item.key, name: item.name, step: "error", err: (e as Error).message });
+      continue; // clay échoué → on ne tente pas le peint
+    }
+    for (const step of recipe.steps.slice(1)) {
+      if (opts.isCancelled()) break;
+      try {
+        await run(step.script, step.args, { cwd: opts.cwd, onEvent: forward, emptyResult }).done;
+      } catch (e) {
+        opts.onEvent({ type: "progress", key: item.key, name: item.name, step: "error", err: `peint : ${(e as Error).message}` });
+      }
     }
   }
   opts.onEvent({ type: "result", ok, ko, skipped });

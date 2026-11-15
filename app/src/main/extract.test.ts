@@ -67,11 +67,12 @@ test("filtre les 'result' par-vaisseau et n'émet qu'un agrégat unique vers l'U
   const resultEvents = events.filter((e) => e.type === "result");
   expect(resultEvents).toEqual([{ type: "result", ok: 2, ko: 0, skipped: 0 }]);
 
-  // Le result agrégé doit arriver après les "done" des deux vaisseaux.
+  // Le result agrégé doit arriver après les "done". 2 vaisseaux × 2 étapes
+  // (clay + peint) = 4 "done" ; aucun "result" par-étape ne fuit vers l'UI.
   const resultIndex = events.findIndex((e) => e.type === "result");
   const doneIndexes = events
     .map((e, i) => (e.type === "progress" && e.step === "done" ? i : -1))
     .filter((i) => i !== -1);
-  expect(doneIndexes.length).toBe(2);
+  expect(doneIndexes.length).toBe(4);
   expect(Math.max(...doneIndexes)).toBeLessThan(resultIndex);
 });

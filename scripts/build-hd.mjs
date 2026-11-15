@@ -30,8 +30,14 @@ import { reorientTurns } from "./lib/reorient.mjs";
 import { reorientDoc } from "./rotate-glb.mjs";
 import { chunkVisual } from "./lib/chunk.mjs";
 import { makeExcluder } from "./lib/exclusions.mjs";
+import { makeEmitter } from "./lib/emit.mjs";
+import { mergeGameShips } from "./lib/ship-enum.mjs";
 const { starbreaker: STARBREAKER, p4k: P4K } = loadConfig({ root: ROOT }).paths;
-const meta = JSON.parse(readFileSync(join(ROOT, "ships.meta.json"), "utf8"));
+const metaRaw = JSON.parse(readFileSync(join(ROOT, "ships.meta.json"), "utf8"));
+// Fusionne les vaisseaux du JEU (game-ships.json) absents de ships.meta.json (ex. Galaxy)
+// pour que le pipeline peint les gère aussi (dims depuis la bbox du jeu).
+const game = (() => { try { return JSON.parse(readFileSync(join(ROOT, "game-ships.json"), "utf8")); } catch { return {}; } })();
+const meta = game.keys?.length ? mergeGameShips(metaRaw, game.keys, game.dims ?? {}) : metaRaw;
 const anchored = new Set(Object.keys(JSON.parse(readFileSync(join(ROOT, "interior-anchors.json"), "utf8"))).filter((k) => k !== "_comment"));
 const primBlacklist = (() => { try { const j = JSON.parse(readFileSync(join(ROOT, "interior-prim-blacklist.json"), "utf8")); delete j._comment; return j; } catch { return {}; } })();
 // Regles de l'app (source unique) + liste manuelle exclusions.json.
@@ -73,6 +79,10 @@ const CHUNK = process.argv.includes("--chunk");
 // couleur par sommet, et 4x plus rapide a decoder).
 const argNum = (name, def) => { const a = process.argv.find((x) => x.startsWith(`--${name}=`)); return a ? parseInt(a.split("=")[1], 10) : def; };
 const MIP = argNum("mip", 2);
+// Mode piloté par l'app : stdout = NDJSON pur (events de progression + result).
+const JSON_MODE = process.argv.includes("--json");
+const emit = makeEmitter(JSON_MODE);
+if (JSON_MODE) console.log = () => {};
 const OUT_SUFFIX = (() => { const a = process.argv.find((x) => x.startsWith("--out-suffix=")); return a ? a.split("=")[1] : null; })();
 const tryReadJson = (p) => { try { return JSON.parse(readFileSync(p, "utf8")); } catch { return null; } };
 const keys = Object.keys(meta).filter((k) => k !== "_comment" && !isExcluded(k) && meta[k].dims?.l);
@@ -230,6 +240,7 @@ for (const key of batch) {
   const wantsInt = !EXT_ONLY && existsSync(join(MODELS, `${key}.clay-interior.glb`));
   if (SKIP.has(key) || (RESUME && existsSync(extOut) && (!wantsInt || existsSync(intOut)))) continue;
   console.log(`▶ ${key}`);
+  emit({ type: "progress", key, name: m?.name ?? key, step: "start" });
   if (OUT_SUFFIX) mkdirSync(join(MODELS, OUT_SUFFIX), { recursive: true });
   const tmpExt = join(MODELS, `_hd_${key}_ext.glb`), tmpInt = join(MODELS, `_hd_${key}_int.glb`);
   const tmpHull = join(MODELS, `_hd_${key}_hull.glb`);
@@ -266,6 +277,7 @@ for (const key of batch) {
     if (extOnly) {
       if (existsSync(tmpExt)) rmSync(tmpExt);
       results.push({ key, ok: true, ext: statSync(extOut).size, int: 0 });
+      emit({ type: "progress", key, name: m?.name ?? key, step: "done", extBytes: statSync(extOut).size });
       console.log(`  ✓ ${key.padEnd(28)} ext ${mb(statSync(extOut).size)}`);
       continue;
     }
@@ -443,13 +455,16 @@ for (const key of batch) {
 
     for (const f of [tmpExt, tmpInt, tmpHull, tmpInt.replace(/\.glb$/, ".fixed.glb")]) if (existsSync(f)) rmSync(f);
     results.push({ key, ok: true, ext: statSync(extOut).size, int: statSync(intOut).size });
+    emit({ type: "progress", key, name: m?.name ?? key, step: "done", extBytes: statSync(extOut).size, intBytes: statSync(intOut).size });
     console.log(`  ✓ ${key.padEnd(28)} ext ${mb(statSync(extOut).size)} · int ${mb(statSync(intOut).size)} LOD${intLodUsed} ${anchored.has(key) ? "(reposition)" : ""}`);
   } catch (e) {
     for (const f of [tmpExt, tmpInt, tmpHull, tmpInt.replace(/\.glb$/, ".fixed.glb")]) if (existsSync(f)) rmSync(f);
     results.push({ key, ok: false, err: e.message.split("\n")[0] });
+    emit({ type: "progress", key, name: m?.name ?? key, step: "error", err: e.message.split("\n")[0] });
     console.log(`  ✗ ${key.padEnd(28)} ECHEC : ${e.message.split("\n")[0]}`);
   }
 }
+emit({ type: "result", ok: results.filter((r) => r.ok).length, ko: results.filter((r) => !r.ok).length, skipped: 0 });
 const ok = results.filter((r) => r.ok);
 const tot = ok.reduce((s, r) => s + r.ext + r.int, 0);
 console.log(`\n${ok.length}/${results.length} OK. Total peint : ${mb(tot)} (moy ${mb(tot / (ok.length || 1))}/vaisseau -> extrapolation 229 = ~${(tot / (ok.length || 1) * 229 / 1073741824).toFixed(1)} Go)`);
